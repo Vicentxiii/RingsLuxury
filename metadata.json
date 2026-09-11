@@ -1,0 +1,6 @@
+{
+  "name": "RINGS LUXURY — High Jewelry Atelier",
+  "description": "A cinematic luxury website for an exclusive artisan high-jewelry atelier marrying Ancient Greek monumental art, Baroque grandeur, and contemporary haute joaillerie.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

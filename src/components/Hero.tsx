@@ -1,0 +1,153 @@
+import React, { useState } from 'react';
+import { ArrowDown, Compass, Eye, ShieldCheck } from 'lucide-react';
+import { WebGLCanvas } from './WebGLCanvas';
+import { LaurelWreath, GreekKeyBorder, GreekMeanderDivider } from './OrnamentIcons';
+import heroStatueImg from '../assets/images/hero_statue_temple_1789071913515.jpg';
+
+interface HeroProps {
+  onEnterAtelier: () => void;
+}
+
+export function Hero({ onEnterAtelier }: HeroProps) {
+  const [viewMode, setViewMode] = useState<'temple' | 'webgl'>('temple');
+
+  return (
+    <section
+      id="hero"
+      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#020202]"
+    >
+      {/* Background Visual Layer */}
+      {viewMode === 'temple' ? (
+        <div className="absolute inset-0 z-0">
+          {/* Classical Temple Statue Image with slow dramatic zoom and chiaroscuro vignette */}
+          <div
+            className="absolute inset-0 bg-cover bg-center transition-transform duration-[12000ms] ease-out scale-105"
+            style={{ backgroundImage: `url(${heroStatueImg})` }}
+          />
+
+          {/* Heavy Atmospheric Dark Vignette & Black Marble Overlays */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-[#020202]/65 to-[#020202]/85" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_#020202_80%)]" />
+
+          {/* Thin subtle warm golden volumetric light beam overlay */}
+          <div className="absolute top-0 right-1/4 w-72 h-full bg-gradient-to-b from-[#C5A059]/10 via-[#C5A059]/5 to-transparent blur-3xl pointer-events-none transform -rotate-12" />
+        </div>
+      ) : (
+        <div className="absolute inset-0 z-0 bg-[#020202]">
+          <WebGLCanvas interactive={true} artifactType="ring" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-transparent to-[#020202]/80 pointer-events-none" />
+        </div>
+      )}
+
+      {/* Film Grain Subtle Layer */}
+      <div className="absolute inset-0 film-grain pointer-events-none opacity-40 z-1" />
+
+      {/* Greek Architectural Pillars Flanking Silhouette for Monumental Scale */}
+      <div className="absolute inset-y-0 left-0 w-24 md:w-48 bg-gradient-to-r from-[#020202] via-[#020202]/90 to-transparent pointer-events-none z-2 flex flex-col justify-between py-12 px-6 opacity-60">
+        <div className="text-[9px] uppercase tracking-[0.4em] text-[#9A7B38] [writing-mode:vertical-lr] rotate-180">
+          ARCHITECTURA • HELLENICA
+        </div>
+        <div className="h-40 w-px bg-gradient-to-b from-transparent via-[#C5A059]/30 to-transparent mx-auto" />
+        <div className="text-[9px] uppercase tracking-[0.4em] text-[#9A7B38] [writing-mode:vertical-lr] rotate-180">
+          MMXXVI • SECRETO
+        </div>
+      </div>
+
+      <div className="absolute inset-y-0 right-0 w-24 md:w-48 bg-gradient-to-l from-[#020202] via-[#020202]/90 to-transparent pointer-events-none z-2 flex flex-col justify-between py-12 px-6 opacity-60">
+        <div className="text-[9px] uppercase tracking-[0.4em] text-[#9A7B38] [writing-mode:vertical-lr]">
+          AURUM • SACRUM
+        </div>
+        <div className="h-40 w-px bg-gradient-to-b from-transparent via-[#C5A059]/30 to-transparent mx-auto" />
+        <div className="text-[9px] uppercase tracking-[0.4em] text-[#9A7B38] [writing-mode:vertical-lr]">
+          STATUA • AETERNITAS
+        </div>
+      </div>
+
+      {/* Center Monumental Typography Container */}
+      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-28 pb-20 sm:pt-36 sm:pb-28 flex flex-col items-center">
+        {/* Subtle Top Gold Laurel & Seal */}
+        <div className="inline-flex items-center gap-3 px-6 py-2.5 border border-[#C5A059]/30 rounded-full bg-[#050505]/80 backdrop-blur-md mb-10 shadow-[0_0_20px_rgba(197,160,89,0.15)] animate-fadeIn">
+          <LaurelWreath className="w-4 h-4 text-[#C5A059]" />
+          <span className="text-[10px] sm:text-[11px] font-medium tracking-[0.42em] uppercase text-[#E6CA85]">
+            HAUTE JOAILLERIE D’ANTIQUITÉ
+          </span>
+          <LaurelWreath className="w-4 h-4 text-[#C5A059] transform -scale-x-100" />
+        </div>
+
+        {/* Framing Gold Lines */}
+        <div className="w-full max-w-xl flex items-center justify-center gap-5 mb-8 opacity-80">
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#C5A059]/60 to-[#C5A059]" />
+          <div className="w-2 h-2 rotate-45 border border-[#C5A059] bg-[#020202]" />
+          <span className="text-[11px] font-serif tracking-[0.35em] text-[#C5A059] uppercase">
+            RINGS LUXURY • ATELIER
+          </span>
+          <div className="w-2 h-2 rotate-45 border border-[#C5A059] bg-[#020202]" />
+          <div className="h-px flex-1 bg-gradient-to-l from-transparent via-[#C5A059]/60 to-[#C5A059]" />
+        </div>
+
+        {/* Hero Title: THE ART OF ETERNITY */}
+        <h1
+          id="hero-title"
+          className="font-cinzel text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-[0.2em] uppercase text-[#FBF9F5] font-light leading-[1.06] mb-8 drop-shadow-[0_20px_45px_rgba(0,0,0,0.95)]"
+        >
+          THE ART
+          <br />
+          <span className="font-decorative text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-[0.22em] text-transparent bg-clip-text bg-gradient-to-b from-[#FFF0D0] via-[#C5A059] to-[#8C6D2C] italic">
+            OF ETERNITY
+          </span>
+        </h1>
+
+        {/* Subtitle: MASTERPIECES FOR THOSE WHO COLLECT TIME */}
+        <p
+          id="hero-subtitle"
+          className="font-sans-luxury text-sm sm:text-base md:text-lg font-light tracking-[0.42em] uppercase text-[#D4CEBF] max-w-2xl mb-12 sm:mb-14 leading-relaxed"
+        >
+          MASTERPIECES FOR THOSE
+          <br />
+          <span className="text-[#E6CA85] font-normal">WHO COLLECT TIME</span>
+        </p>
+
+        {/* Subtle Gold Ornamental Line Under Subtitle */}
+        <GreekMeanderDivider className="mb-12 sm:mb-14 w-full max-w-sm opacity-80" />
+
+        {/* CTA Button Group: Substantially larger and more spacious */}
+        <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8 mt-2 w-full justify-center">
+          <button
+            id="hero-cta-enter"
+            onClick={onEnterAtelier}
+            className="group relative px-10 sm:px-14 py-5 sm:py-6 bg-[#050505] border-2 border-[#C5A059] text-[#C5A059] hover:text-[#020202] transition-all duration-500 overflow-hidden shadow-[0_0_40px_rgba(197,160,89,0.25)] hover:shadow-[0_0_60px_rgba(197,160,89,0.5)] rounded-full hover:scale-105 active:scale-95 cursor-pointer"
+          >
+            {/* Hover gold fill sliding up */}
+            <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-[#C5A059] via-[#E6CA85] to-[#C5A059] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out rounded-full" />
+
+            <span className="relative z-10 font-cinzel text-xs sm:text-sm md:text-base font-semibold tracking-[0.38em] uppercase">
+              ENTER THE ATELIER
+            </span>
+          </button>
+
+          {/* Interactive 3D WebGL Toggle Button - Larger and Prominent */}
+          <button
+            id="hero-view-toggle"
+            onClick={() => setViewMode(viewMode === 'temple' ? 'webgl' : 'temple')}
+            className="group flex items-center gap-3 px-8 sm:px-10 py-4.5 sm:py-5.5 border border-[#C5A059]/40 hover:border-[#C5A059] bg-[#070707]/80 hover:bg-[#C5A059]/15 text-[#EAE6DF] hover:text-[#E6CA85] transition-all duration-300 text-xs sm:text-sm uppercase tracking-[0.3em] rounded-full shadow-[0_0_25px_rgba(0,0,0,0.6)] hover:scale-105 active:scale-95 cursor-pointer"
+          >
+            <Eye className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#C5A059] group-hover:rotate-12 transition-transform" />
+            <span>{viewMode === 'temple' ? 'Inspect 3D Artifact' : 'View Temple Statue'}</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Bottom Architectural Border and Scroll Prompt */}
+      <div className="absolute bottom-0 left-0 w-full flex flex-col items-center z-10 pointer-events-none pb-4">
+        <a
+          href="#collections"
+          className="pointer-events-auto group flex flex-col items-center gap-2 text-[#9A7B38] hover:text-[#C5A059] transition-colors duration-300 mb-4"
+        >
+          <span className="text-[9px] uppercase tracking-[0.35em]">Descend into Archive</span>
+          <ArrowDown className="w-3.5 h-3.5 animate-bounce text-[#C5A059]" />
+        </a>
+        <GreekKeyBorder className="w-full h-2 opacity-30" />
+      </div>
+    </section>
+  );
+}

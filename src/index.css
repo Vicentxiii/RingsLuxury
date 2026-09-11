@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-cinzel: 'Cinzel', serif;
+    --font-cinzel-decorative: 'Cinzel Decorative', serif;
+    --font-cormorant: 'Cormorant Garamond', serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    --font-poppins: 'Poppins', sans-serif;
+  }
+}
+
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+.font-decorative {
+  font-family: 'Cinzel Decorative', serif;
+}
+
+.font-cormorant {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.font-sans-luxury {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Luxury Antique Gold Colors */
+.text-gold {
+  color: #C5A059;
+}
+
+.text-gold-light {
+  color: #E6CA85;
+}
+
+.text-gold-muted {
+  color: #9A7B38;
+}
+
+.bg-gold {
+  background-color: #C5A059;
+}
+
+.border-gold {
+  border-color: rgba(197, 160, 89, 0.35);
+}
+
+.border-gold-subtle {
+  border-color: rgba(197, 160, 89, 0.18);
+}
+
+/* Subtle Film Grain */
+.film-grain {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
+  background-size: 4px 4px;
+}
+
+/* Black Marble Texture Effect */
+.bg-black-marble {
+  background-color: #050505;
+  background-image: 
+    radial-gradient(at 10% 20%, rgba(20, 20, 20, 0.6) 0px, transparent 50%),
+    radial-gradient(at 90% 80%, rgba(15, 15, 15, 0.7) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(10, 10, 10, 0.8) 0px, transparent 50%);
+}
+
+/* Greek Key Border SVG generator styling */
+.greek-key-line {
+  background-repeat: repeat-x;
+  background-size: 24px 8px;
+}
+
+/* Smooth custom dark scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #020202;
+}
+::-webkit-scrollbar-thumb {
+  background: #25221b;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8a6f3b;
+}
+
+/* Ensure all interactive buttons adopt the refined rounded aesthetic */
+button:not(.not-rounded) {
+  border-radius: 9999px;
+}
