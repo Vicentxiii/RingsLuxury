@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Eye, ShieldCheck, Sparkles, Instagram } from 'lucide-react';
 import { ArtifactModal, ArtifactData } from './ArtifactModal';
 import { GreekKeyBorder, GreekMeanderDivider, LaurelWreath, AcanthusLeaf } from './OrnamentIcons';
@@ -15,7 +16,15 @@ interface CollectionProps {
 }
 
 export function Collection({ onSelectPieceForCommission, onNavigateToJorgeUquillas }: CollectionProps) {
+  const navigate = useNavigate();
   const [selectedArtifact, setSelectedArtifact] = useState<ArtifactData | null>(null);
+
+  const slugMap: Record<string, string> = {
+    'I': 'the-emperor-signet-sovereign-power',
+    'II': "athenas-aegis-torque-wisdom",
+    'III': 'apollonian-laurel-diadem-sun-god',
+    'IV': 'oracle-of-delphi-sovereign-cuff',
+  };
 
   const collectionItems: ArtifactData[] = [
     {
@@ -133,7 +142,7 @@ export function Collection({ onSelectPieceForCommission, onNavigateToJorgeUquill
           {/* Piece I: THE EMPEROR - Enormous visual occupying most of viewport */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* Left large visual occupying 7 cols */}
-            <div className="lg:col-span-8 relative group">
+            <div className="lg:col-span-8 relative group cursor-pointer" onClick={() => navigate(`/produto/${slugMap['I']}`)}>
               <div className="relative border border-[#C5A059]/30 bg-[#070707] p-3 md:p-5 shadow-[0_30px_100px_rgba(0,0,0,0.9)] transition-all duration-700 group-hover:border-[#C5A059]/60">
                 {/* Thin gold architectural corners */}
                 <div className="absolute -top-1.5 -left-1.5 w-3 h-3 border-t-2 border-l-2 border-[#C5A059]" />
@@ -187,7 +196,14 @@ export function Collection({ onSelectPieceForCommission, onNavigateToJorgeUquill
                 A singular masterpiece inspired by ancient imperial iconography. The colossal signet commands the presence of Roman Caesars and Hellenistic warlords, chiseled with an eagle carrying obsidian laurel wreaths.
               </p>
 
-              <div className="pt-4 flex items-center gap-6">
+              <div className="pt-4 flex flex-wrap items-center gap-4">
+                <button
+                  onClick={() => navigate(`/produto/${slugMap['I']}`)}
+                  className="group inline-flex items-center gap-2 px-5 py-2.5 bg-[#C5A059] hover:bg-[#E6CA85] text-[#020202] font-cinzel text-[10px] tracking-[0.25em] uppercase rounded-full transition-colors"
+                >
+                  <span>Ver Página</span>
+                  <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                </button>
                 <button
                   id="discover-piece-1"
                   onClick={() => setSelectedArtifact(collectionItems[0])}
@@ -228,7 +244,14 @@ export function Collection({ onSelectPieceForCommission, onNavigateToJorgeUquill
                 Echoing the invulnerable breastplate of the goddess of wisdom. Twenty-four interlocking gold scales articulated to move like silk across the wearer's neck, protecting against temporal decay.
               </p>
 
-              <div className="pt-4 flex items-center gap-6">
+              <div className="pt-4 flex flex-wrap items-center gap-4">
+                <button
+                  onClick={() => navigate(`/produto/${slugMap['II']}`)}
+                  className="group inline-flex items-center gap-2 px-5 py-2.5 bg-[#C5A059] hover:bg-[#E6CA85] text-[#020202] font-cinzel text-[10px] tracking-[0.25em] uppercase rounded-full transition-colors"
+                >
+                  <span>Ver Página</span>
+                  <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                </button>
                 <button
                   id="discover-piece-2"
                   onClick={() => setSelectedArtifact(collectionItems[1])}
@@ -242,7 +265,7 @@ export function Collection({ onSelectPieceForCommission, onNavigateToJorgeUquill
             </div>
 
             {/* Right visual occupying 8 cols */}
-            <div className="lg:col-span-8 lg:order-2 order-1 relative group">
+            <div className="lg:col-span-8 lg:order-2 order-1 relative group cursor-pointer" onClick={() => navigate(`/produto/${slugMap['II']}`)}>
               <div className="relative border border-[#C5A059]/30 bg-[#070707] p-3 md:p-5 shadow-[0_30px_100px_rgba(0,0,0,0.9)] transition-all duration-700 group-hover:border-[#C5A059]/60">
                 <div className="absolute -top-1.5 -left-1.5 w-3 h-3 border-t-2 border-l-2 border-[#C5A059]" />
                 <div className="absolute -top-1.5 -right-1.5 w-3 h-3 border-t-2 border-r-2 border-[#C5A059]" />
@@ -309,14 +332,23 @@ export function Collection({ onSelectPieceForCommission, onNavigateToJorgeUquill
                   Twelve botanical leaves micro-cast with dew-drop diamonds celebrating the sacred victory of the god of light, music, and eternal truth.
                 </p>
 
-                <button
-                  id="discover-piece-3"
-                  onClick={() => setSelectedArtifact(collectionItems[2])}
-                  className="pt-2 group inline-flex items-center gap-3 text-xs font-cinzel tracking-[0.3em] uppercase text-[#C5A059] hover:text-[#E6CA85]"
-                >
-                  <span>DISCOVER</span>
-                  <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
-                </button>
+                <div className="flex flex-wrap items-center gap-3 pt-2">
+                  <button
+                    onClick={() => navigate(`/produto/${slugMap['III']}`)}
+                    className="group inline-flex items-center gap-2 px-5 py-2.5 bg-[#C5A059] hover:bg-[#E6CA85] text-[#020202] font-cinzel text-[10px] tracking-[0.25em] uppercase rounded-full transition-colors"
+                  >
+                    <span>Ver Página</span>
+                    <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                  </button>
+                  <button
+                    id="discover-piece-3"
+                    onClick={() => setSelectedArtifact(collectionItems[2])}
+                    className="group inline-flex items-center gap-3 text-xs font-cinzel tracking-[0.3em] uppercase text-[#C5A059] hover:text-[#E6CA85]"
+                  >
+                    <span>DISCOVER</span>
+                    <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -358,14 +390,23 @@ export function Collection({ onSelectPieceForCommission, onNavigateToJorgeUquill
                   A baroque architectural cuff marrying classical Hellenistic cameos with heavy gold scrolls, sculpted from solid 22K antique gold.
                 </p>
 
-                <button
-                  id="discover-piece-4"
-                  onClick={() => setSelectedArtifact(collectionItems[3])}
-                  className="pt-2 group inline-flex items-center gap-3 text-xs font-cinzel tracking-[0.3em] uppercase text-[#C5A059] hover:text-[#E6CA85]"
-                >
-                  <span>DISCOVER</span>
-                  <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
-                </button>
+                <div className="flex flex-wrap items-center gap-3 pt-2">
+                  <button
+                    onClick={() => navigate(`/produto/${slugMap['IV']}`)}
+                    className="group inline-flex items-center gap-2 px-5 py-2.5 bg-[#C5A059] hover:bg-[#E6CA85] text-[#020202] font-cinzel text-[10px] tracking-[0.25em] uppercase rounded-full transition-colors"
+                  >
+                    <span>Ver Página</span>
+                    <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                  </button>
+                  <button
+                    id="discover-piece-4"
+                    onClick={() => setSelectedArtifact(collectionItems[3])}
+                    className="group inline-flex items-center gap-3 text-xs font-cinzel tracking-[0.3em] uppercase text-[#C5A059] hover:text-[#E6CA85]"
+                  >
+                    <span>DISCOVER</span>
+                    <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>

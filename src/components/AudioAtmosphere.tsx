@@ -7,15 +7,25 @@ interface DarkTrack {
   composer: string;
   genre: string;
   src: string;
+  startAt?: number;
 }
 
 const DARK_TRACKS: DarkTrack[] = [
+  {
+    id: 'a-hero-within',
+    name: 'A Hero Within',
+    composer: 'Shawn Barnes',
+    genre: 'Epic • Heroic',
+    src: '/audio/a-hero-within.mp3',
+    startAt: 6,
+  },
   {
     id: 'dark-cello',
     name: 'Cello Suite Prélude',
     composer: 'J.S. Bach',
     genre: 'Violoncelo Solo Dark',
     src: '/audio/dark-cello.mp3',
+    startAt: 0,
   },
   {
     id: 'dark-cinematic',
@@ -23,6 +33,7 @@ const DARK_TRACKS: DarkTrack[] = [
     composer: 'Kevin MacLeod',
     genre: 'Violoncelo & Cordas Sombrias',
     src: '/audio/dark-cinematic.mp3',
+    startAt: 0,
   },
 ];
 
@@ -30,42 +41,122 @@ export function AudioAtmosphere() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [trackIndex, setTrackIndex] = useState(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const isPlayingRef = useRef(false);
+  const hasMountedRef = useRef(false);
 
   const currentTrack = DARK_TRACKS[trackIndex];
 
-  // Initialize and handle track transitions
+  // sync ref with state
+  useEffect(() => {
+    isPlayingRef.current = isPlaying;
+  }, [isPlaying]);
+
+  // Initialize + autoplay at 00:06 + handle track transitions
   useEffect(() => {
     if (!audioRef.current) {
       const audio = new Audio();
       audio.loop = true;
       audio.volume = 0.5;
+      audio.preload = 'auto';
       audioRef.current = audio;
     }
 
-    const audio = audioRef.current;
-    const wasPlaying = isPlaying;
+    const audio = audioRef.current!;
+    const isFirstLoad = !hasMountedRef.current;
+    hasMountedRef.current = true;
 
-    audio.src = currentTrack.src;
+    // should autoplay on first load regardless of previous state
+    const shouldPlay = isFirstLoad ? true : isPlayingRef.current;
+
+    const srcEncoded = encodeURI(currentTrack.src);
+    audio.src = srcEncoded;
     audio.load();
 
-    if (wasPlaying) {
-      audio.play().catch(() => {
-        setIsPlaying(false);
-      });
+    const startAt = currentTrack.startAt ?? 6;
+
+    const seekAndPlay = () => {
+      try {
+        // ensure valid seek
+        if (!isNaN(audio.duration) && audio.duration > startAt) {
+          audio.currentTime = startAt;
+        } else {
+          audio.currentTime = startAt;
+        }
+      } catch {
+        // ignore seek errors before metadata
+      }
+      if (shouldPlay) {
+        audio
+          .play()
+          .then(() => setIsPlaying(true))
+          .catch((err) => {
+            console.warn('Audio autoplay bloqueado, aguardando interação:', err);
+            setIsPlaying(false);
+            // fallback: primeira interação do usuário inicia em 00:06
+            if (isFirstLoad) {
+              const onFirstInteraction = () => {
+                const a = audioRef.current;
+                if (a && a.paused) {
+                  try {
+                    a.currentTime = startAt;
+                  } catch {}
+                  a.play()
+                    .then(() => setIsPlaying(true))
+                    .catch(() => {});
+                }
+              };
+              window.addEventListener('click', onFirstInteraction, { once: true });
+              window.addEventListener('keydown', onFirstInteraction, { once: true });
+              window.addEventListener('touchstart', onFirstInteraction, { once: true });
+              // também tenta após 500ms caso metadata demore
+              setTimeout(onFirstInteraction, 800);
+            }
+          });
+      }
+    };
+
+    const handleLoaded = () => {
+      seekAndPlay();
+    };
+
+    if (audio.readyState >= 1) {
+      // metadata already available
+      handleLoaded();
+    } else {
+      audio.addEventListener('loadedmetadata', handleLoaded, { once: true });
+      // fallback para canplay
+      audio.addEventListener('canplay', handleLoaded, { once: true });
     }
 
     return () => {
       audio.pause();
+      audio.removeEventListener('loadedmetadata', handleLoaded);
+      audio.removeEventListener('canplay', handleLoaded);
     };
   }, [trackIndex]);
 
   // Handle play / pause toggle
   const togglePlay = () => {
+    const startAt = currentTrack.startAt ?? 0;
     if (!audioRef.current) {
-      const audio = new Audio(currentTrack.src);
+      const audio = new Audio(encodeURI(currentTrack.src));
       audio.loop = true;
       audio.volume = 0.5;
+      audio.preload = 'auto';
       audioRef.current = audio;
+      audio.src = encodeURI(currentTrack.src);
+      audio.load();
+      try {
+        audio.currentTime = startAt;
+      } catch {}
+      audio
+        .play()
+        .then(() => setIsPlaying(true))
+        .catch((err) => {
+          console.warn('Audio playback error:', err);
+          setIsPlaying(false);
+        });
+      return;
     }
 
     const audio = audioRef.current;
@@ -74,10 +165,35 @@ export function AudioAtmosphere() {
       audio.pause();
       setIsPlaying(false);
     } else {
+      // se for primeira reprodução ou estiver no inicio, garante 00:06
+      const needsSeek = audio.currentTime < 0.5 || audio.currentTime === 0;
+      if (needsSeek && startAt > 0) {
+        try {
+          audio.currentTime = startAt;
+        } catch {}
+      }
+      // se src mudou mas não recarregou
+      if (audio.src !== encodeURI(currentTrack.src) && !audio.src.includes(encodeURI(currentTrack.src))) {
+        audio.src = encodeURI(currentTrack.src);
+        audio.load();
+        const onReady = () => {
+          try {
+            audio.currentTime = startAt;
+          } catch {}
+          audio.play().then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
+        };
+        audio.addEventListener('loadedmetadata', onReady, { once: true });
+        return;
+      }
       audio
         .play()
         .then(() => {
           setIsPlaying(true);
+          if (needsSeek && startAt > 0) {
+            try {
+              audio.currentTime = startAt;
+            } catch {}
+          }
         })
         .catch((err) => {
           console.warn('Audio playback error:', err);
@@ -121,17 +237,19 @@ export function AudioAtmosphere() {
               <span className="w-1 bg-[#C5A059] rounded-full animate-[pulse_0.7s_ease-in-out_infinite_0.4s] h-2" />
             </div>
             <span className="text-[#C5A059] font-medium hidden sm:inline">
-              Violoncelo: {currentTrack.name}
+              {currentTrack.id === 'a-hero-within' ? `${currentTrack.name} • Epic` : `Violoncelo: ${currentTrack.name}`}
             </span>
             <span className="text-[#C5A059] font-medium sm:hidden">
-              Cello ON
+              {currentTrack.id === 'a-hero-within' ? `Epic ON` : `Cello ON`}
             </span>
           </>
         ) : (
           <>
             <Music className="w-3.5 h-3.5 text-[#C5A059] group-hover:scale-110 transition-transform" />
-            <span className="hidden sm:inline">Violoncelo Dark</span>
-            <span className="sm:hidden">Violoncelo</span>
+            <span className="hidden sm:inline">
+              {currentTrack.id === 'a-hero-within' ? `Epic: ${currentTrack.name}` : `Violoncelo Dark`}
+            </span>
+            <span className="sm:hidden">{currentTrack.id === 'a-hero-within' ? `Epic` : `Violoncelo`}</span>
           </>
         )}
       </button>

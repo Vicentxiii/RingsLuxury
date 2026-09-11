@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { LaurelWreath } from './OrnamentIcons';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { AudioAtmosphere } from './AudioAtmosphere';
 import { StaggeredMenu, StaggeredMenuItem, StaggeredMenuSocialItem } from './StaggeredMenu';
 
@@ -8,8 +8,10 @@ interface HeaderProps {
   onNavigateToJorgeUquillas?: () => void;
 }
 
-export function Header({ onOpenConsultation, onNavigateToJorgeUquillas }: HeaderProps) {
+export function Header({ onOpenConsultation }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,89 +25,77 @@ export function Header({ onOpenConsultation, onNavigateToJorgeUquillas }: Header
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, path: string, isAnchor: boolean = false) => {
+    e.preventDefault();
+    if (isAnchor) {
+      if (location.pathname !== '/') {
+        navigate('/');
+        setTimeout(() => {
+          const el = document.getElementById(path.replace('#', ''));
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      } else {
+        const el = document.getElementById(path.replace('#', ''));
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      navigate(path);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   const menuItems: StaggeredMenuItem[] = [
     {
-      label: 'Home',
+      label: 'HOME',
       ariaLabel: 'Return to introduction and temple of art',
-      link: '#hero',
-      onClick: (e) => {
-        e.preventDefault();
-        const el = document.getElementById('hero');
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      },
+      link: '/',
+      onClick: (e) => handleNavigation(e, '/'),
     },
     {
-      label: 'Collections',
-      ariaLabel: 'Explore high jewelry artifacts and antiquities',
-      link: '#collections',
-      onClick: (e) => {
-        e.preventDefault();
-        const el = document.getElementById('collections');
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      },
+      label: 'LUXURY RINGS',
+      link: '/luxury-rings',
+      onClick: (e) => handleNavigation(e, '/luxury-rings'),
     },
     {
-      label: 'The Atelier',
-      ariaLabel: 'Step inside the private Parisian and Athenian workshop',
-      link: '#atelier',
-      onClick: (e) => {
-        e.preventDefault();
-        const el = document.getElementById('atelier');
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      },
+      label: 'EMPEROR RINGS',
+      link: '/emperor-rings',
+      onClick: (e) => handleNavigation(e, '/emperor-rings'),
     },
     {
-      label: 'Craftsmanship',
-      ariaLabel: 'Witness lost-wax casting, repoussé and gem-setting',
-      link: '#craftsmanship',
-      onClick: (e) => {
-        e.preventDefault();
-        const el = document.getElementById('craftsmanship');
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      },
+      label: 'SPECIAL EDITIONS',
+      link: '/special-editions',
+      onClick: (e) => handleNavigation(e, '/special-editions'),
     },
     {
-      label: 'Heritage',
-      ariaLabel: 'Three generations of classic Greek goldsmithing',
-      link: '#heritage',
-      onClick: (e) => {
-        e.preventDefault();
-        const el = document.getElementById('heritage');
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      },
+      label: 'GOLD-SILVER RINGS',
+      link: '/gold-silver-rings',
+      onClick: (e) => handleNavigation(e, '/gold-silver-rings'),
     },
     {
-      label: 'Masterpieces',
-      ariaLabel: 'Explore singular haute joaillerie archival creations',
-      link: '#masterpiece',
-      onClick: (e) => {
-        e.preventDefault();
-        const el = document.getElementById('masterpiece');
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      },
+      label: 'LUXURY QUEENS',
+      link: '/luxuryqueens',
+      onClick: (e) => handleNavigation(e, '/luxuryqueens'),
     },
-    ...(onNavigateToJorgeUquillas
-      ? [
-          {
-            label: 'Jorge Uquillas',
-            ariaLabel: 'Exclusive 360 sculpture: Laocoön — Bronze and Time',
-            link: '#/jorge-uquillas',
-            onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
-              e.preventDefault();
-              onNavigateToJorgeUquillas();
-            },
-          },
-        ]
-      : []),
     {
-      label: 'Private Salon',
-      ariaLabel: 'Book a confidential bespoke commission consultation',
+      label: 'NECKLACES',
+      link: '/necklaces',
+      onClick: (e) => handleNavigation(e, '/necklaces'),
+    },
+    {
+      label: 'COURSES',
+      link: '/courses',
+      onClick: (e) => handleNavigation(e, '/courses'),
+    },
+    {
+      label: 'CONTACT',
       link: '#contact',
-      onClick: (e) => {
-        e.preventDefault();
-        onOpenConsultation();
-      },
+      onClick: (e) => handleNavigation(e, '#contact', true),
     },
+    {
+      label: 'BLOG',
+      link: '/blog',
+      onClick: (e) => handleNavigation(e, '/blog'),
+    }
   ];
 
   const socialItems: StaggeredMenuSocialItem[] = [
@@ -133,8 +123,9 @@ export function Header({ onOpenConsultation, onNavigateToJorgeUquillas }: Header
         colors={['#18140E', '#2B2213', '#080808']}
         customLogo={
           <a
-            href="#hero"
+            href="/"
             id="brand-logo"
+            onClick={(e) => handleNavigation(e, '/')}
             className="group flex items-center gap-3 text-left focus:outline-none transition-transform hover:scale-[1.02]"
           >
             <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden border border-[#C5A059]/50 bg-[#050505] p-0.5 flex items-center justify-center shadow-[0_0_15px_rgba(197,160,89,0.25)] group-hover:border-[#C5A059] transition-all">
