@@ -13,9 +13,9 @@ export function JorgeUquillas() {
   return (
     <div className="w-full h-screen bg-[#020202] relative overflow-hidden">
       <SEO
-        title="Jorge Uquillas — Laocoön: Bronze and Time"
-        description="Conheça o mestre Jorge Uquillas. Cavalo de bronze em 3D, Laocoön: Bronze and Time — obra única que une memória ancestral e visão moderna em bronze fluido."
-        keywords="Jorge Uquillas, Laocoön, Bronze Horse, Rings Luxury, Mestre Artesão, High Jewelry"
+        title="RINGS LUXURY by Jorge Uquillas — Laocoön Bronze Horse | HandCrafted Anéis Artesanais Ouro 18k"
+        description="RINGS LUXURY by Jorge Uquillas — Laocoön: Bronze and Time. Cavalo de bronze e anéis artesanais 1/1 HandCrafted em ouro 18k com diamantes, gravados com buril. Handmade 18k gold diamond rings by master artisan Jorge Uquillas. Brasil • Miami."
+        keywords="Jorge Uquillas, RINGS LUXURY, Laocoön, Bronze Horse, anéis artesanais, HandCrafted, ouro 18k, handmade 18k gold diamond rings, buril, anéis feitos à mão, atelier Brasil Miami"
         url="/jorge-uquillas"
       />
       {/* Overlay de navegação para sair do iframe (o html interno tem nav mas ficaria preso no iframe) */}
@@ -26,10 +26,10 @@ export function JorgeUquillas() {
         >
           <ArrowLeft className="w-3.5 h-3.5" /> Atelier
         </button>
-        <span className="hidden sm:inline-flex items-center gap-2 text-[8px] tracking-[0.32em] uppercase text-white/60 pointer-events-none">
-          <span className="w-1 h-1 rounded-full bg-[#C5A059] animate-pulse" />
-          Jorge Uquillas • Bronze Horse 3D
-        </span>
+          <span className="hidden sm:inline-flex items-center gap-2 text-[8px] tracking-[0.32em] uppercase text-white/60 pointer-events-none">
+            <span className="w-1 h-1 rounded-full bg-[#C5A059] animate-pulse" />
+            RINGS LUXURY • Jorge Uquillas • HandCrafted 18k • Anéis Artesanais
+          </span>
         <a
           href="/#contact"
           onClick={(e) => {
@@ -50,7 +50,7 @@ export function JorgeUquillas() {
       {/* Iframe que carrega a experiência imersiva completa do cavalo de bronze */}
       <iframe
         src="/jorge-uquillas.html"
-        title="Jorge Uquillas — Bronze Horse 3D"
+        title="RINGS LUXURY by Jorge Uquillas — Laocoön Bronze Horse 3D — Anéis artesanais HandCrafted ouro 18k"
         className="w-full h-full border-0"
         allow="autoplay; fullscreen"
         loading="eager"
