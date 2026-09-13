@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { ArrowDown, Compass, Eye, ShieldCheck } from 'lucide-react';
-import { WebGLCanvas } from './WebGLCanvas';
+import React from 'react';
+import { ArrowDown, Eye } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { LaurelWreath, GreekKeyBorder, GreekMeanderDivider } from './OrnamentIcons';
 import heroStatueImg from '../assets/images/hero_statue_temple_1789071913515.jpg';
 
@@ -8,36 +8,56 @@ interface HeroProps {
   onEnterAtelier: () => void;
 }
 
+// Nova foto colocada em public/PUBLIC — hero trocado da estátua para novo fundo
+const NEW_HERO_CANDIDATES = [
+  encodeURI('/PUBLIC/large-banner-433.jpg'),
+  encodeURI('/PUBLIC/hero-new.jpg'),
+  encodeURI('/PUBLIC/hero.jpg'),
+  encodeURI('/PUBLIC/new-hero.jpg'),
+];
+
 export function Hero({ onEnterAtelier }: HeroProps) {
-  const [viewMode, setViewMode] = useState<'temple' | 'webgl'>('temple');
+  const navigate = useNavigate();
+  const [heroBg, setHeroBg] = React.useState<string>(NEW_HERO_CANDIDATES[0]);
+  const [bgFailed, setBgFailed] = React.useState(false);
 
   return (
     <section
       id="hero"
       className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#020202]"
     >
-      {/* Background Visual Layer */}
-      {viewMode === 'temple' ? (
-        <div className="absolute inset-0 z-0">
-          {/* Classical Temple Statue Image with slow dramatic zoom and chiaroscuro vignette */}
+      {/* Background Visual Layer - Nova foto da PUBLIC no lugar da estátua */}
+      <div className="absolute inset-0 z-0">
+        {/* Nova imagem do hero com fallback para estátua antiga */}
+        {!bgFailed ? (
+          <img
+            src={heroBg}
+            alt="Rings Luxury - Hero"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-[12000ms] ease-out scale-105"
+            onError={() => {
+              // tenta próximo candidato, se falhar todos usa estátua antiga
+              const idx = NEW_HERO_CANDIDATES.indexOf(heroBg);
+              if (idx >= 0 && idx < NEW_HERO_CANDIDATES.length - 1) {
+                setHeroBg(NEW_HERO_CANDIDATES[idx + 1]);
+              } else {
+                setBgFailed(true);
+              }
+            }}
+          />
+        ) : (
           <div
             className="absolute inset-0 bg-cover bg-center transition-transform duration-[12000ms] ease-out scale-105"
             style={{ backgroundImage: `url(${heroStatueImg})` }}
           />
+        )}
 
-          {/* Heavy Atmospheric Dark Vignette & Black Marble Overlays */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-[#020202]/65 to-[#020202]/85" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_#020202_80%)]" />
+        {/* Heavy Atmospheric Dark Vignette & Black Marble Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-[#020202]/65 to-[#020202]/85" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_#020202_80%)]" />
 
-          {/* Thin subtle warm golden volumetric light beam overlay */}
-          <div className="absolute top-0 right-1/4 w-72 h-full bg-gradient-to-b from-[#C5A059]/10 via-[#C5A059]/5 to-transparent blur-3xl pointer-events-none transform -rotate-12" />
-        </div>
-      ) : (
-        <div className="absolute inset-0 z-0 bg-[#020202]">
-          <WebGLCanvas interactive={true} artifactType="ring" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-transparent to-[#020202]/80 pointer-events-none" />
-        </div>
-      )}
+        {/* Thin subtle warm golden volumetric light beam overlay */}
+        <div className="absolute top-0 right-1/4 w-72 h-full bg-gradient-to-b from-[#C5A059]/10 via-[#C5A059]/5 to-transparent blur-3xl pointer-events-none transform -rotate-12" />
+      </div>
 
       {/* Film Grain Subtle Layer */}
       <div className="absolute inset-0 film-grain pointer-events-none opacity-40 z-1" />
@@ -125,14 +145,17 @@ export function Hero({ onEnterAtelier }: HeroProps) {
             </span>
           </button>
 
-          {/* Interactive 3D WebGL Toggle Button - Larger and Prominent */}
+          {/* Know the Master - Redirect to Jorge Uquillas Bronze Horse */}
           <button
             id="hero-view-toggle"
-            onClick={() => setViewMode(viewMode === 'temple' ? 'webgl' : 'temple')}
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+              navigate('/jorge-uquillas');
+            }}
             className="group flex items-center gap-3 px-8 sm:px-10 py-4.5 sm:py-5.5 border border-[#C5A059]/40 hover:border-[#C5A059] bg-[#070707]/80 hover:bg-[#C5A059]/15 text-[#EAE6DF] hover:text-[#E6CA85] transition-all duration-300 text-xs sm:text-sm uppercase tracking-[0.3em] rounded-full shadow-[0_0_25px_rgba(0,0,0,0.6)] hover:scale-105 active:scale-95 cursor-pointer"
           >
             <Eye className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#C5A059] group-hover:rotate-12 transition-transform" />
-            <span>{viewMode === 'temple' ? 'Inspect 3D Artifact' : 'View Temple Statue'}</span>
+            <span>Know the master</span>
           </button>
         </div>
       </div>

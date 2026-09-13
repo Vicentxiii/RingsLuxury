@@ -9,6 +9,7 @@ import { Heritage } from '../components/Heritage';
 import { Gallery } from '../components/Gallery';
 import { MasterpieceDetail } from '../components/MasterpieceDetail';
 import { QuoteSection } from '../components/QuoteSection';
+import { WorldClients } from '../components/WorldClients';
 import { Contact } from '../components/Contact';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
@@ -81,14 +82,17 @@ export function Home() {
         {/* IX. Sententia Aurea Quote */}
         <QuoteSection />
 
-        {/* X. Contact & Private Salon Admissions */}
+        {/* X. Clients All Over The World - Social Proof for Jorge Uquillas */}
+        <WorldClients />
+
+        {/* XI. Contact & Private Salon Admissions */}
         <Contact
           preselectedPiece={commissionTarget}
           onClearPreselectedPiece={() => setCommissionTarget('')}
         />
       </main>
 
-      {/* XI. Architectural Footer */}
+      {/* XII. Architectural Footer */}
       <Footer />
     </div>
   );

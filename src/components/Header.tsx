@@ -128,19 +128,20 @@ export function Header({ onOpenConsultation }: HeaderProps) {
             onClick={(e) => handleNavigation(e, '/')}
             className="group flex items-center gap-3 text-left focus:outline-none transition-transform hover:scale-[1.02]"
           >
-            <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden border border-[#C5A059]/50 bg-[#050505] p-0.5 flex items-center justify-center shadow-[0_0_15px_rgba(197,160,89,0.25)] group-hover:border-[#C5A059] transition-all">
-              <img
-                src="/logo.png"
-                alt="Rings Luxury Logo"
-                className="w-full h-full object-cover rounded-full"
-                onError={(e) => {
-                  const target = e.currentTarget;
-                  if (!target.src.includes('logo.svg')) {
-                    target.src = '/logo.svg';
-                  }
-                }}
-              />
-            </div>
+            <img
+              src="/PUBLIC/logo-cortado.webp"
+              alt="Rings Luxury Logo"
+              className="w-9 h-9 sm:w-10 sm:h-10 object-contain select-none shrink-0"
+              draggable={false}
+              onError={(e) => {
+                const target = e.currentTarget;
+                if (!target.src.includes('logo-cortado.png') && !target.src.includes('Logo%20cortado')) {
+                  target.src = '/PUBLIC/logo-cortado.png';
+                } else if (!target.src.includes('logo.svg')) {
+                  target.src = '/logo.svg';
+                }
+              }}
+            />
             <div className="flex flex-col">
               <span className="font-cinzel text-sm sm:text-base md:text-lg font-semibold tracking-[0.28em] text-[#F3EFE6] group-hover:text-[#C5A059] transition-colors duration-500">
                 RINGS LUXURY
