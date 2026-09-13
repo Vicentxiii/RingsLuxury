@@ -39,13 +39,13 @@ export function Footer() {
                   RINGS LUXURY
                 </span>
                 <span className="text-[10px] uppercase tracking-[0.45em] text-[#9A7B38]">
-                  Haute Joaillerie • Atelier
+                  Jorge Uquillas • HandCrafted 18k • Anéis Artesanais
                 </span>
               </div>
             </div>
 
             <p className="font-cormorant text-lg italic text-[#C2BDB2] max-w-sm leading-relaxed">
-              "Entering the eternal sanctuary where Ancient Greek monumental sculpture, Baroque grandeur, and contemporary goldsmithing become one."
+              "RINGS LUXURY by Jorge Uquillas — Anéis artesanais 1/1 HandCrafted em ouro 18k com diamantes, gravados com buril. Handmade 18k gold diamond rings."
             </p>
 
             <div className="flex items-center gap-4 text-[10px] tracking-[0.25em] text-[#9A7B38] uppercase">
@@ -152,9 +152,9 @@ export function Footer() {
             © MMXXVI RINGS LUXURY ATELIER. ALL MONUMENTS RESERVED.
           </div>
 
-          {/* At the very bottom: CRAFTED BY HAND. CREATED FOR ETERNITY. */}
-          <div className="font-cinzel text-xs md:text-sm font-semibold tracking-[0.4em] uppercase text-[#C5A059]">
-            CRAFTED BY HAND. CREATED FOR ETERNITY.
+          {/* At the very bottom: SEO HandCrafted */}
+          <div className="font-cinzel text-[10px] md:text-xs font-semibold tracking-[0.32em] uppercase text-[#C5A059] text-center">
+            HANDCRAFTED BY JORGE UQUILLAS • ANÉIS ARTESANAIS OURO 18K • RINGS LUXURY
           </div>
 
           <div className="text-[10px] tracking-[0.3em] uppercase text-[#9A7B38]">

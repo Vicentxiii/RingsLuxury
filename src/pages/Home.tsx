@@ -39,9 +39,9 @@ export function Home() {
   return (
     <div className="min-h-screen bg-[#020202] text-[#EAE6DF] selection:bg-[#C5A059] selection:text-[#020202] font-sans-luxury relative overflow-x-hidden">
       <SEO 
-        title="HOME" 
-        description="A cinematic luxury website for an exclusive artisan high-jewelry atelier marrying Ancient Greek monumental art, Baroque grandeur, and contemporary haute joaillerie. Pieces crafted by Jorge Uquillas."
-        keywords="RINGS LUXURY, JORGE UQUILLAS, High Jewelry, Atelier, Custom Jewelry, Ancient Greek Art, Baroque"
+        title="RINGS LUXURY by Jorge Uquillas — HandCrafted 18k Gold Rings | Anéis Artesanais Feitos à Mão" 
+        description="RINGS LUXURY by Jorge Uquillas — Anéis artesanais 1/1 HandCrafted feitos à mão em ouro 18k com diamantes naturais, gravados com buril. Handmade 18k gold diamond rings by master artisan Jorge Uquillas. Atelier Brasil • Miami • Athens — alta joalheria autoral."
+        keywords="RINGS LUXURY, JORGE UQUILLAS, anéis artesanais, HandCrafted, anéis feitos à mão ouro 18k, handmade 18k gold diamond rings, buril, anel 1/1, atelier Brasil Miami, alta joalheria"
       />
       {/* Universal Film Grain Overlay */}
       <div className="fixed inset-0 film-grain pointer-events-none z-40 opacity-35" />

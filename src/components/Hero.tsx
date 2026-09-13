@@ -3,6 +3,7 @@ import { ArrowDown, Eye } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { LaurelWreath, GreekKeyBorder, GreekMeanderDivider } from './OrnamentIcons';
 import heroStatueImg from '../assets/images/hero_statue_temple_1789071913515.jpg';
+import { AutoFlippingWords } from './ui/flipping-word-swap';
 
 interface HeroProps {
   onEnterAtelier: () => void;
@@ -24,15 +25,15 @@ export function Hero({ onEnterAtelier }: HeroProps) {
   return (
     <section
       id="hero"
-      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#020202]"
+      className="relative w-full min-h-screen flex items-center justify-center overflow-visible bg-[#020202]"
     >
       {/* Background Visual Layer - Nova foto da PUBLIC no lugar da estátua */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 overflow-hidden">
         {/* Nova imagem do hero com fallback para estátua antiga */}
         {!bgFailed ? (
           <img
             src={heroBg}
-            alt="Rings Luxury - Hero"
+            alt="RINGS LUXURY by Jorge Uquillas — Anéis artesanais HandCrafted em ouro 18k com diamantes — Hero"
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-[12000ms] ease-out scale-105"
             onError={() => {
               // tenta próximo candidato, se falhar todos usa estátua antiga
@@ -89,7 +90,7 @@ export function Hero({ onEnterAtelier }: HeroProps) {
         <div className="inline-flex items-center gap-3 px-6 py-2.5 border border-[#C5A059]/30 rounded-full bg-[#050505]/80 backdrop-blur-md mb-10 shadow-[0_0_20px_rgba(197,160,89,0.15)] animate-fadeIn">
           <LaurelWreath className="w-4 h-4 text-[#C5A059]" />
           <span className="text-[10px] sm:text-[11px] font-medium tracking-[0.42em] uppercase text-[#E6CA85]">
-            HAUTE JOAILLERIE D’ANTIQUITÉ
+            JORGE UQUILLAS • HANDCRAFTED HAUTE JOAILLERIE
           </span>
           <LaurelWreath className="w-4 h-4 text-[#C5A059] transform -scale-x-100" />
         </div>
@@ -99,32 +100,43 @@ export function Hero({ onEnterAtelier }: HeroProps) {
           <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#C5A059]/60 to-[#C5A059]" />
           <div className="w-2 h-2 rotate-45 border border-[#C5A059] bg-[#020202]" />
           <span className="text-[11px] font-serif tracking-[0.35em] text-[#C5A059] uppercase">
-            RINGS LUXURY • ATELIER
+            RINGS LUXURY • JORGE UQUILLAS • HANDCRAFTED
           </span>
           <div className="w-2 h-2 rotate-45 border border-[#C5A059] bg-[#020202]" />
           <div className="h-px flex-1 bg-gradient-to-l from-transparent via-[#C5A059]/60 to-[#C5A059]" />
         </div>
 
-        {/* Hero Title: THE ART OF ETERNITY */}
+        {/* Hero Title: THE ART OF — OF ao lado de ART na mesma linha */}
         <h1
           id="hero-title"
-          className="font-cinzel text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-[0.2em] uppercase text-[#FBF9F5] font-light leading-[1.06] mb-8 drop-shadow-[0_20px_45px_rgba(0,0,0,0.95)]"
+          className="font-cinzel text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-[0.2em] uppercase text-[#FBF9F5] font-light leading-[1.06] drop-shadow-[0_20px_45px_rgba(0,0,0,0.95)] whitespace-nowrap"
         >
-          THE ART
-          <br />
-          <span className="font-decorative text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-[0.22em] text-transparent bg-clip-text bg-gradient-to-b from-[#FFF0D0] via-[#C5A059] to-[#8C6D2C] italic">
-            OF ETERNITY
+          <span className="inline-flex items-baseline justify-center gap-x-[0.18em] whitespace-nowrap">
+            <span>THE ART</span>
+            <span>OF</span>
           </span>
         </h1>
+        {/* Flipping Word Swap — ETERNITY / POWER / STATUS — auto flip, sem corte */}
+        <div className="mt-3 sm:mt-4 flex justify-center w-full max-w-full overflow-visible px-4">
+          <AutoFlippingWords
+            words={["ETERNITY", "POWER", "STATUS"]}
+            duration={420}
+            stagger={42}
+            interval={2600}
+            className="font-cinzel text-[1.7rem] sm:text-[2.9rem] md:text-[4rem] lg:text-[5.5rem] tracking-[0.04em] uppercase font-light leading-[1.06] text-transparent bg-clip-text bg-gradient-to-b from-[#FFF8DC] via-[#E6CA85] to-[#C5A059] [filter:drop-shadow(0_0_22px_rgba(197,160,89,0.45))_drop-shadow(0_12px_28px_rgba(0,0,0,0.85))] overflow-visible"
+            toClassName="text-transparent bg-clip-text bg-gradient-to-b from-[#FFF8DC] via-[#E6CA85] to-[#C5A059]"
+          />
+        </div>
 
-        {/* Subtitle: MASTERPIECES FOR THOSE WHO COLLECT TIME */}
+        {/* Subtitle: SEO — Anéis artesanais HandCrafted by Jorge Uquillas */}
         <p
           id="hero-subtitle"
-          className="font-sans-luxury text-sm sm:text-base md:text-lg font-light tracking-[0.42em] uppercase text-[#D4CEBF] max-w-2xl mb-12 sm:mb-14 leading-relaxed"
+          className="font-sans-luxury text-sm sm:text-base md:text-lg font-light tracking-[0.32em] uppercase text-[#D4CEBF] max-w-3xl mb-12 sm:mb-14 leading-relaxed"
         >
-          MASTERPIECES FOR THOSE
+          ANÉIS ARTESANAIS 1/1 HANDCRAFTED
           <br />
-          <span className="text-[#E6CA85] font-normal">WHO COLLECT TIME</span>
+          <span className="text-[#E6CA85] font-normal">EM OURO 18K COM DIAMANTES — JORGE UQUILLAS</span>
+          <span className="block mt-3 text-[11px] sm:text-xs tracking-[0.28em] text-[#9A7B38] normal-case">Handmade 18k gold diamond rings • gravados com buril • RINGS LUXURY • Brasil • Miami</span>
         </p>
 
         {/* Subtle Gold Ornamental Line Under Subtitle */}
@@ -134,7 +146,10 @@ export function Hero({ onEnterAtelier }: HeroProps) {
         <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8 mt-2 w-full justify-center">
           <button
             id="hero-cta-enter"
-            onClick={onEnterAtelier}
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+              navigate('/jorge-uquillas');
+            }}
             className="group relative px-10 sm:px-14 py-5 sm:py-6 bg-[#050505] border-2 border-[#C5A059] text-[#C5A059] hover:text-[#020202] transition-all duration-500 overflow-hidden shadow-[0_0_40px_rgba(197,160,89,0.25)] hover:shadow-[0_0_60px_rgba(197,160,89,0.5)] rounded-full hover:scale-105 active:scale-95 cursor-pointer"
           >
             {/* Hover gold fill sliding up */}

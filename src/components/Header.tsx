@@ -130,7 +130,7 @@ export function Header({ onOpenConsultation }: HeaderProps) {
           >
             <img
               src="/PUBLIC/logo-cortado.webp"
-              alt="Rings Luxury Logo"
+              alt="RINGS LUXURY by Jorge Uquillas — Anéis artesanais HandCrafted ouro 18k"
               className="w-9 h-9 sm:w-10 sm:h-10 object-contain select-none shrink-0"
               draggable={false}
               onError={(e) => {
@@ -147,7 +147,7 @@ export function Header({ onOpenConsultation }: HeaderProps) {
                 RINGS LUXURY
               </span>
               <span className="text-[7.5px] sm:text-[8.5px] uppercase tracking-[0.35em] text-[#9A7B38]">
-                Haute Joaillerie • Atelier
+                Jorge Uquillas • HandCrafted 18k • Anéis Artesanais
               </span>
             </div>
           </a>

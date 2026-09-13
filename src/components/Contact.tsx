@@ -52,26 +52,26 @@ export function Contact({ preselectedPiece, onClearPreselectedPiece }: ContactPr
             <LaurelWreath className="w-4 h-4 text-[#C5A059] transform -scale-x-100" />
           </div>
 
-          {/* Title: ENTER THE ATELIER */}
+          {/* Title: SEO — Jorge Uquillas */}
           <h2
             id="contact-title"
-            className="font-cinzel text-4xl sm:text-5xl md:text-6xl tracking-[0.2em] uppercase text-[#FBF9F5] font-light mb-4"
+            className="font-cinzel text-4xl sm:text-5xl md:text-6xl tracking-[0.18em] uppercase text-[#FBF9F5] font-light mb-4"
           >
-            ENTER THE ATELIER
+            RINGS LUXURY • JORGE UQUILLAS
           </h2>
 
-          {/* Subtitle: For private commissions, exclusive masterpieces and collectors. */}
+          {/* Subtitle: Anéis artesanais HandCrafted */}
           <p
             id="contact-subtitle"
-            className="font-cormorant text-xl md:text-2xl italic tracking-[0.16em] text-[#C5A059] font-light leading-relaxed mb-6"
+            className="font-cormorant text-xl md:text-2xl italic tracking-[0.12em] text-[#C5A059] font-light leading-relaxed mb-6"
           >
-            For private commissions,
+            Anéis artesanais HandCrafted em ouro 18k
             <br />
-            exclusive masterpieces and collectors.
+            com diamantes — gravados com buril
           </p>
 
-          <p className="font-sans-luxury text-xs text-[#A8A296] tracking-[0.2em] uppercase max-w-lg mx-auto leading-relaxed">
-            Due to the singular nature of our craftsmanship, consultations are conducted by appointment only within our private salons or via private diplomatic liaison.
+          <p className="font-sans-luxury text-xs text-[#A8A296] tracking-[0.18em] uppercase max-w-xl mx-auto leading-relaxed">
+            Atelier Jorge Uquillas — RINGS LUXURY. Consultas privadas para encomendas 1/1 Handmade 18k gold diamond rings. Atendimento Brasil • Miami • Athens.
           </p>
 
           <GreekMeanderDivider className="mt-8 opacity-60" />

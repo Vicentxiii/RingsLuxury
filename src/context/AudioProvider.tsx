@@ -108,16 +108,16 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
     const hasSavedTime = initialTime !== null && !isNaN(initialTime) && initialTime > 0.5 && initialTime < 1e6;
     const targetTime = hasSavedTime ? initialTime! : startAt;
 
-    // se nunca salvou estado, tenta autoplay (primeira visita)
-    // se salvou e estava tocando, continua tocando; se estava pausado, fica pausado
-    const shouldAttemptPlay = wasPlaying === null ? true : wasPlaying;
+    // NUNCA autoplay — só toca se usuário clicar no botão de música
+    // mesmo que sessionStorage diga que estava tocando, exige clique novamente
+    const shouldAttemptPlay = false;
+    // const shouldAttemptPlay = wasPlaying === true; // <- use esta linha se quiser retomar após reload
 
     audio.src = encodeURI(track.src);
     audio.load();
 
     const tryPlay = (seekTime: number) => {
       try {
-        // ensure seek is not beyond duration when metadata not ready; will be corrected on loadedmetadata
         audio.currentTime = seekTime;
       } catch {}
       audio
@@ -129,44 +129,21 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
           } catch {}
         })
         .catch((err) => {
-          console.warn('Audio autoplay bloqueado, aguardando interação:', err);
+          console.warn('Audio bloqueado até clique no botão:', err);
           setIsPlaying(false);
           try {
             sessionStorage.setItem('rl-audio-playing', 'false');
           } catch {}
-          const onFirstInteraction = () => {
-            const a = audioRef.current;
-            if (a && a.paused) {
-              try {
-                a.currentTime = seekTime;
-              } catch {}
-              a.play()
-                .then(() => {
-                  setIsPlaying(true);
-                  try {
-                    sessionStorage.setItem('rl-audio-playing', 'true');
-                  } catch {}
-                })
-                .catch(() => {});
-            }
-          };
-          window.addEventListener('click', onFirstInteraction, { once: true });
-          window.addEventListener('keydown', onFirstInteraction, { once: true });
-          window.addEventListener('touchstart', onFirstInteraction, { once: true });
-          setTimeout(onFirstInteraction, 800);
         });
     };
 
     const handleLoaded = () => {
       if (shouldAttemptPlay) {
-        // se tem targetTime salvo, usa ele, senão startAt
-        // se duration já conhecida e targetTime > duration, fallback para startAt
         let seek = targetTime;
         try {
           if (!isNaN(audio.duration) && audio.duration > 0 && seek >= audio.duration) {
             seek = startAt;
           }
-          // se ainda não tem savedTime, garante startAt
           if (!hasSavedTime) seek = startAt;
         } catch {}
         tryPlay(seek);
@@ -175,6 +152,9 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
           audio.currentTime = hasSavedTime ? targetTime : startAt;
         } catch {}
         setIsPlaying(false);
+        try {
+          sessionStorage.setItem('rl-audio-playing', 'false');
+        } catch {}
       }
     };
 
