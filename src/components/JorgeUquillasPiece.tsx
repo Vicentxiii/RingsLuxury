@@ -689,9 +689,19 @@ export function JorgeUquillasPiece({ onBackToAtelier, onOpenConsultation }: Jorg
 
         .jq-video-wrap {
           margin-left: 60px;
-          margin-top: 28px;
-          width: calc(32vw - 60px);
-          max-width: 520px;
+          margin-top: 18px;
+          width: calc(18vw - 20px);
+          max-width: 280px;
+          border-radius: 10px;
+          overflow: hidden;
+          opacity: 0;
+          transform: translateY(16px);
+          transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1), transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+          transition-delay: 0.5s;
+        }
+        #jq-slide-1.active .jq-video-wrap {
+          opacity: 1;
+          transform: translateY(0);
         }
         @media (max-width: 900px) {
           .jq-slide-title { font-size: 64px; }
@@ -706,8 +716,8 @@ export function JorgeUquillasPiece({ onBackToAtelier, onOpenConsultation }: Jorg
           .jq-grid-lines { left: 16px; right: 16px; width: calc(100% - 32px); }
           .jq-video-wrap {
             margin-left: 24px !important;
-            width: calc(85vw) !important;
-            max-width: none !important;
+            width: calc(62vw) !important;
+            max-width: 260px !important;
           }
         }
       `}</style>
@@ -718,18 +728,16 @@ export function JorgeUquillasPiece({ onBackToAtelier, onOpenConsultation }: Jorg
 
       {/* Cinematic container */}
       <div className="jq-cinematic-container">
-        {/* Header */}
-        <div className="flex justify-between items-center w-full z-20 pointer-events-auto py-5">
-          <div className="flex flex-col">
-            <div className="text-sm font-semibold tracking-[5px] uppercase text-white font-['Outfit']">
-              Laocoön
-            </div>
-            <div className="text-[9px] tracking-[3px] uppercase text-[#C5A059] mt-0.5">
-              Jorge Uquillas • Obra Única
+        {/* Header — Laocoön removido, RINGS LUXURY centralizado */}
+        <div className="relative flex justify-between items-center w-full z-20 pointer-events-auto py-5">
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center text-center pointer-events-none">
+            <div className="text-[11px] tracking-[4px] uppercase text-[#E6CA85] font-['Outfit'] whitespace-nowrap">
+              RINGS LUXURY • Jorge Uquillas • HandCrafted 18k • Anéis Artesanais
             </div>
           </div>
+          <div className="w-10 hidden md:block" aria-hidden="true" />
 
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden items-center gap-6" style={{ display: 'none' }}>
             <a href="#slide-1" className="jq-nav-link text-white no-underline text-[10px] uppercase tracking-[2px] font-medium hover:text-[#C5A059] transition-colors">
               Bronze
             </a>
@@ -805,11 +813,6 @@ export function JorgeUquillasPiece({ onBackToAtelier, onOpenConsultation }: Jorg
                 <span>Instagram: @ringsluxury</span>
               </a>
             </div>
-          </div>
-          <div className="jq-video-wrap" style={{ marginLeft: '60px', marginTop: '28px', width: 'calc(32vw - 60px)', maxWidth: '520px', borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(197,160,89,0.22)', boxShadow: '0 12px 40px rgba(0,0,0,0.65)' }}>
-            <video autoPlay muted loop playsInline preload="metadata" style={{ width: '100%', height: 'auto', display: 'block', background: '#000' }}>
-              <source src="/PUBLIC/anel-1.mp4" type="video/mp4" />
-            </video>
           </div>
         </div>
 

@@ -101,7 +101,7 @@
             color: #c5a059;
             margin-top: 2px;
         }
-        .header-nav { display: flex; align-items: center; gap: 24px; }
+        .header-nav { display: none !important; }
         .nav-link {
             color: #ffffff; text-decoration: none;
             font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
@@ -274,16 +274,28 @@
 
         .video-wrap-jorge {
             margin-left: 60px;
-            margin-top: 28px;
-            width: calc(32vw - 60px);
-            max-width: 520px;
-            border-radius: 12px;
+            margin-top: 18px;
+            width: calc(18vw - 20px);
+            max-width: 280px;
+            aspect-ratio: 1 / 1;
+            border-radius: 10px;
             overflow: hidden;
             pointer-events: auto;
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1), transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+            transition-delay: 0.5s;
+            background: #000;
+        }
+        #slide-1.active .video-wrap-jorge {
+            opacity: 1;
+            transform: translateY(0);
         }
         .video-wrap-jorge video {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
             display: block;
         }
 
@@ -301,9 +313,9 @@
             .grid-lines { left: 16px; right: 16px; width: calc(100% - 32px); }
             .video-wrap-jorge {
                 margin-left: 24px;
-                width: calc(85vw);
-                max-width: none;
-                margin-top: 18px;
+                width: calc(62vw);
+                max-width: 260px;
+                margin-top: 14px;
             }
         }
     </style>
@@ -325,11 +337,10 @@
 
     <!-- Cinematic Overlay Container -->
     <div class="cinematic-container">
-        <!-- Header -->
-        <div class="main-header">
-            <div class="brand-wrapper">
-                <div class="brand">Laocoön</div>
-                <div class="artist-sub">RINGS LUXURY • Jorge Uquillas • HandCrafted 18k • Anéis Artesanais</div>
+        <!-- Header — Laocoön removido, RINGS LUXURY centralizado -->
+        <div class="main-header" style="position: relative; justify-content: space-between;">
+            <div class="brand-wrapper" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: flex; justify-content: center; width: auto; pointer-events: none;">
+                <div class="artist-sub" style="text-align: center; white-space: nowrap;">RINGS LUXURY • Jorge Uquillas • HandCrafted 18k • Anéis Artesanais</div>
             </div>
             <nav class="header-nav">
                 <a href="#slide-1" class="nav-link">Bronze</a>
@@ -352,21 +363,6 @@
             <div class="desc-row">
                 <p class="slide-desc col-1" style="font-size: 15px; font-weight: 400; color: #E6CA85; letter-spacing: 0.06em;">Discover how Jorge Uquillas became one of the finest burin engravers in the world and of an era</p>
                 <p class="slide-desc col-2" style="font-size: 14px; line-height: 1.7;">With over 1000 1/1 HandCrafted pieces already created — handmade 18k gold diamond rings engraved with burin — Jorge Uquillas — RINGS LUXURY — has served clients worldwide, from São Paulo to Miami, Dubai to Athens. Each ring is a unique work, handmade without mold, eternalized in gold.</p>
-            </div>
-            <!-- Video anel 1 — otimizado desktop + mobile -->
-            <div class="video-wrap-jorge">
-                <video
-                    autoplay
-                    muted
-                    loop
-                    playsinline
-                    preload="metadata"
-                    poster=""
-                    aria-label="Jorge Uquillas — Anel artesanal HandCrafted em ouro 18k — vídeo"
-                    style="width: 100%; height: auto; display: block; border-radius: 12px; border: 1px solid rgba(197,160,89,0.22); box-shadow: 0 12px 40px rgba(0,0,0,0.65); background: #000;"
-                >
-                    <source src="/PUBLIC/anel-1.mp4" type="video/mp4" />
-                </video>
             </div>
         </div>
 
@@ -411,6 +407,80 @@
 
     <!-- Canvas -->
     <canvas id="webgl"></canvas>
+
+    <!-- Galeria de Vídeos — 4 vídeos lado a lado, autoplay liso desktop + mobile -->
+    <section id="atelier-videos" style="position: relative; z-index: 20; background: #020202; padding: 80px 60px; margin-top: 500vh; border-top: 1px solid rgba(197,160,89,0.12);">
+        <div style="max-width: 1280px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <p style="font-family: 'Outfit', sans-serif; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: #C5A059; margin-bottom: 12px;">RINGS LUXURY • JORGE UQUILLAS • HANDCRAFTED</p>
+                <h2 style="font-family: 'Italiana', serif; font-size: 42px; color: #fff6ed; letter-spacing: 2px; margin-bottom: 12px;">Atelier em Movimento</h2>
+                <p style="font-size: 13px; color: #9A7B38; letter-spacing: 1px; max-width: 600px; margin: 0 auto;">Anéis artesanais 1/1 em ouro 18k — gravados com buril — vídeos otimizados para rodar liso no desktop e no celular</p>
+            </div>
+            <div class="video-grid">
+                <div class="video-card">
+                    <video autoplay muted loop playsinline preload="metadata" poster="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                        <source src="/PUBLIC/snapinsta.com.br-6a0616357a089.mp4" type="video/mp4" />
+                    </video>
+                </div>
+                <div class="video-card">
+                    <video autoplay muted loop playsinline preload="metadata" poster="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                        <source src="/PUBLIC/snapinsta.com.br-6a061a9339497.mp4" type="video/mp4" />
+                    </video>
+                </div>
+                <div class="video-card">
+                    <video autoplay muted loop playsinline preload="metadata" poster="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                        <source src="/PUBLIC/snapinsta.com.br-6a061b6c4ed81.mp4" type="video/mp4" />
+                    </video>
+                </div>
+                <div class="video-card">
+                    <video autoplay muted loop playsinline preload="metadata" poster="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                        <source src="/PUBLIC/v_mp_.mp4" type="video/mp4" />
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+    <style>
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+        .video-card {
+            aspect-ratio: 9 / 16;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(197,160,89,0.18);
+            background: #000;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+        }
+        .video-card video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        @media (max-width: 1024px) {
+            .video-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 640px) {
+            #atelier-videos { padding: 48px 16px !important; margin-top: 500vh !important; }
+            .video-grid {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                gap: 12px;
+                padding-bottom: 12px;
+                grid-template-columns: none;
+            }
+            .video-card {
+                flex: 0 0 72vw;
+                max-width: 280px;
+                aspect-ratio: 9 / 16;
+                scroll-snap-align: start;
+            }
+        }
+    </style>
 
     <script type="module">
         import * as THREE from 'three';
