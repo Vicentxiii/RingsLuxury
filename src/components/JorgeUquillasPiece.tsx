@@ -131,12 +131,12 @@ export function JorgeUquillasPiece({ onBackToAtelier, onOpenConsultation }: Jorg
         
         float smokeDensity = fbm(p + 3.6 * r);
 
-        // Palette: Deep Obsidian Black with Smoky Pearl & White Plumes
-        vec3 colBlack     = vec3(0.005, 0.005, 0.008); // Deep velvet black
-        vec3 colSmokeDark = vec3(0.12, 0.13, 0.16);    // Translucent charcoal mist shadow
-        vec3 colSmokeMid  = vec3(0.54, 0.57, 0.62);    // Silvery ethereal mist
-        vec3 colSmokeHigh = vec3(0.92, 0.94, 0.98);    // Luminous billowing white smoke
-        vec3 colPureWhite = vec3(1.0, 1.0, 1.0);       // Crisp white billowing crests
+        // Palette site original: preto mármore #020202 + dourado Rings Luxury
+        vec3 colBlack     = vec3(0.008, 0.006, 0.004); // #020202 warm black
+        vec3 colSmokeDark = vec3(0.12, 0.08, 0.03);    // dark gold smoke
+        vec3 colSmokeMid  = vec3(0.50, 0.38, 0.18);    // mid gold
+        vec3 colSmokeHigh = vec3(0.77, 0.63, 0.35);    // #C5A059
+        vec3 colPureWhite = vec3(0.90, 0.79, 0.52);    // #E6CA85 luminous gold crest
 
         // Layer the smoke with smooth density transitions
         vec3 color = colBlack;
@@ -437,7 +437,7 @@ export function JorgeUquillasPiece({ onBackToAtelier, onOpenConsultation }: Jorg
         : (window.pageYOffset !== undefined ? window.pageYOffset : document.documentElement.scrollTop);
       const targetScroll = maxScroll > 0 ? scrollTop / maxScroll : 0;
 
-      currentScroll += (targetScroll - currentScroll) * 0.025;
+      currentScroll += (targetScroll - currentScroll) * 0.05;
 
       mouseX += (targetMouseX - mouseX) * 0.05;
       mouseY += (targetMouseY - mouseY) * 0.05;
@@ -458,8 +458,8 @@ export function JorgeUquillasPiece({ onBackToAtelier, onOpenConsultation }: Jorg
       }
 
       if (modelPivot) {
-        modelPivot.rotation.y = mouseX * 0.3 + currentScroll * Math.PI * 0.75;
-        modelPivot.rotation.x = mouseY * 0.18 + Math.sin(currentScroll * Math.PI) * 0.2;
+        modelPivot.rotation.y = mouseX * 0.35 + currentScroll * Math.PI * 3.8;
+        modelPivot.rotation.x = mouseY * 0.22 + Math.sin(currentScroll * Math.PI) * 0.55;
       }
 
       if (sparkParticles) {
@@ -531,7 +531,7 @@ export function JorgeUquillasPiece({ onBackToAtelier, onOpenConsultation }: Jorg
   return (
     <div
       ref={containerRef}
-      className="relative w-full bg-[#000000] text-[#ffffff] min-h-[900vh] cursor-none select-none font-['Outfit']"
+      className="relative w-full bg-[#000000] text-[#ffffff] min-h-[500vh] cursor-none select-none font-['Outfit']"
       style={{ cursor: 'none' }}
     >
       <style>{`
@@ -567,7 +567,7 @@ export function JorgeUquillasPiece({ onBackToAtelier, onOpenConsultation }: Jorg
           box-sizing: border-box;
         }
         .jq-slide { position: absolute; bottom: 12%; pointer-events: none; }
-        #jq-slide-1 { left: 0; width: 100%; }
+        #jq-slide-1 { left: 0; width: 100%; bottom: auto; top: 22%; }
         #jq-slide-1 .jq-slide-title { margin-left: 60px; }
         #jq-slide-1 .jq-desc-row { position: relative; display: flex; width: 100%; }
         #jq-slide-1 .jq-col-1 {
@@ -585,9 +585,10 @@ export function JorgeUquillasPiece({ onBackToAtelier, onOpenConsultation }: Jorg
         #jq-slide-2 { left: 0; width: 100%; }
         #jq-slide-2-img {
           position: fixed;
-          top: 90px;
+          top: 160px;
           left: 60px;
-          width: calc(25vw - 60px);
+          width: calc(32vw - 60px);
+          max-width: 520px;
           aspect-ratio: 1 / 1;
           overflow: hidden;
           z-index: 2;
@@ -686,6 +687,12 @@ export function JorgeUquillasPiece({ onBackToAtelier, onOpenConsultation }: Jorg
           box-shadow: 0 0 4px rgba(255, 255, 255, 0.15);
         }
 
+        .jq-video-wrap {
+          margin-left: 60px;
+          margin-top: 28px;
+          width: calc(32vw - 60px);
+          max-width: 520px;
+        }
         @media (max-width: 900px) {
           .jq-slide-title { font-size: 64px; }
           .jq-cinematic-container { padding: 0 24px 24px 24px; }
@@ -697,6 +704,11 @@ export function JorgeUquillasPiece({ onBackToAtelier, onOpenConsultation }: Jorg
           #jq-slide-3 { left: 24px; width: calc(85vw); }
           #jq-slide-4 { left: 24px; width: calc(85vw); }
           .jq-grid-lines { left: 16px; right: 16px; width: calc(100% - 32px); }
+          .jq-video-wrap {
+            margin-left: 24px !important;
+            width: calc(85vw) !important;
+            max-width: none !important;
+          }
         }
       `}</style>
 
@@ -770,18 +782,18 @@ export function JorgeUquillasPiece({ onBackToAtelier, onOpenConsultation }: Jorg
           </div>
         </div>
 
-        {/* Slide 1 */}
+        {/* Slide 1 — English */}
         <div className="jq-slide" id="jq-slide-1">
-          <h2 className="jq-slide-title">
-            Bronze <br />and Time
+          <h2 className="jq-slide-title" style={{ fontSize: '62px', lineHeight: '1.05' }}>
+            Discover the story<br />of Jorge Uquillas
           </h2>
           <div className="jq-desc-row">
-            <p className="jq-slide-desc jq-col-1">
-              A timeless material holding centuries of human history. Fluid in hot flames, eternal in its form. Each curve captures a tense, dramatic moment.
+            <p className="jq-slide-desc jq-col-1" style={{ fontSize: '15px', color: '#E6CA85' }}>
+              Discover how Jorge Uquillas became one of the finest burin engravers in the world and of an era
             </p>
             <div className="jq-slide-desc jq-col-2 space-y-3">
               <p>
-                Born of molten fire and creative will, it stands to bridge our ancient memory and modern vision. A fluid energy frozen in still, heavy bronze.
+                With over 1000 1/1 HandCrafted pieces already created — handmade 18k gold diamond rings engraved with burin — Jorge Uquillas — RINGS LUXURY — has served clients worldwide, from São Paulo to Miami, Dubai to Athens. Each ring is a unique work, handmade without mold, eternalized in gold.
               </p>
               <a
                 href="https://www.instagram.com/ringsluxury"
@@ -794,24 +806,29 @@ export function JorgeUquillasPiece({ onBackToAtelier, onOpenConsultation }: Jorg
               </a>
             </div>
           </div>
+          <div className="jq-video-wrap" style={{ marginLeft: '60px', marginTop: '28px', width: 'calc(32vw - 60px)', maxWidth: '520px', borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(197,160,89,0.22)', boxShadow: '0 12px 40px rgba(0,0,0,0.65)' }}>
+            <video autoPlay muted loop playsInline preload="metadata" style={{ width: '100%', height: 'auto', display: 'block', background: '#000' }}>
+              <source src="/PUBLIC/anel-1.mp4" type="video/mp4" />
+            </video>
+          </div>
         </div>
 
-        {/* Slide 2 Image Mask */}
+        {/* Slide 2 Image Mask — Foto Jorge Uquillas — larger & lower on desktop */}
         <div className="slide-image-mask" id="jq-slide-2-img">
           <img
-            src={`${ASSET_BASE_URL}/1.png`}
-            alt="Editorial Concept Jorge Uquillas"
+            src="/PUBLIC/Captura%20de%20tela%202026-09-12%20185443.png"
+            alt="Jorge Uquillas — RINGS LUXURY HandCrafted — handmade 18k gold diamond rings"
             referrerPolicy="no-referrer"
           />
         </div>
 
-        {/* Slide 2 */}
+        {/* Slide 2 — JORGE UQUILLAS English */}
         <div className="jq-slide" id="jq-slide-2">
           <h2 className="jq-slide-title">
-            Marble <br />Emotion
+            JORGE<br />UQUILLAS
           </h2>
-          <p className="jq-slide-desc">
-            A sculpture frozen at the peak of human suffering and heroic struggle. Laocoön and his sons, bound by ruthless fate.
+          <p className="jq-slide-desc" style={{ fontSize: '14px', lineHeight: '1.75' }}>
+            Jorge Uquillas is a renowned Designer and Artistic Engraver of jewelry of Colombian-Ecuadorian origin. He started in a simple atelier in Bogota, following the third-generation family tradition with Master Ivan Uquillas (ECU-1996). He perfected techniques in Europe, becoming one of the greatest exponents in burin engraving of modern world jewelry. Today based in São Paulo, Brazil, he is the only exponent of this level in the country and one of the only ones on the continent — with clients in more than 50 countries, RINGS LUXURY is highly valued in luxury. 1/1 HandCrafted handmade 18k gold diamond rings engraved with burin.
           </p>
         </div>
 

@@ -23,7 +23,7 @@
         }
 
         body {
-            min-height: 900vh;
+            min-height: 500vh;
             font-family: 'Outfit', sans-serif;
             color: #ffffff;
             overflow-x: hidden;
@@ -81,7 +81,8 @@
             display: flex; justify-content: space-between; align-items: center;
             width: 100%; z-index: 20;
             pointer-events: auto;
-            padding: 20px 0;
+            padding: 16px 0 12px 0;
+            margin-top: 44px;
         }
         .brand-wrapper {
             display: flex;
@@ -149,7 +150,7 @@
         /* Slides */
         .slide { position: absolute; bottom: 12%; pointer-events: none; }
 
-        #slide-1 { left: 0; width: 100%; }
+        #slide-1 { left: 0; width: 100%; bottom: auto; top: 22%; }
         #slide-1 .slide-title { margin-left: 60px; }
         #slide-1 .desc-row { position: relative; display: flex; width: 100%; }
         #slide-1 .col-1 {
@@ -167,9 +168,10 @@
         #slide-2 { left: 0; width: 100%; }
         #slide-2-img {
             position: fixed;
-            top: 90px;
+            top: 160px;
             left: 60px;
-            width: calc(25vw - 60px);
+            width: calc(32vw - 60px);
+            max-width: 520px;
             aspect-ratio: 1 / 1;
             overflow: hidden;
             z-index: 2;
@@ -247,7 +249,7 @@
         .grid-horizontal-line {
             position: fixed; top: 70px; left: 0; right: 0;
             width: 100%; height: 1px;
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.06);
             z-index: 5; pointer-events: none;
         }
         .grid-lines {
@@ -255,10 +257,11 @@
             width: calc(100% - 80px); height: 100vh;
             display: flex; justify-content: space-between;
             z-index: 5; pointer-events: none;
+            opacity: 0.6;
         }
         .grid-line {
             position: relative; width: 1px; height: 100%;
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.06);
         }
         .grid-line:nth-child(3) { margin-top: 70px; height: calc(100vh - 70px); }
         .grid-dot {
@@ -267,6 +270,21 @@
             width: 6px; height: 6px; border-radius: 50%;
             background: rgba(255, 255, 255, 0.35);
             box-shadow: 0 0 4px rgba(255, 255, 255, 0.15);
+        }
+
+        .video-wrap-jorge {
+            margin-left: 60px;
+            margin-top: 28px;
+            width: calc(32vw - 60px);
+            max-width: 520px;
+            border-radius: 12px;
+            overflow: hidden;
+            pointer-events: auto;
+        }
+        .video-wrap-jorge video {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         /* Responsive adjustments */
@@ -281,6 +299,12 @@
             #slide-3 { left: 24px; width: calc(85vw); }
             #slide-4 { left: 24px; width: calc(85vw); }
             .grid-lines { left: 16px; right: 16px; width: calc(100% - 32px); }
+            .video-wrap-jorge {
+                margin-left: 24px;
+                width: calc(85vw);
+                max-width: none;
+                margin-top: 18px;
+            }
         }
     </style>
 
@@ -324,20 +348,35 @@
 
         <!-- Slides -->
         <div class="slide" id="slide-1">
-            <h2 class="slide-title">Bronze <br>and Time</h2>
+            <h2 class="slide-title" style="font-size: 62px; line-height: 1.05;">Discover the story<br>of Jorge Uquillas</h2>
             <div class="desc-row">
-                <p class="slide-desc col-1">RINGS LUXURY by Jorge Uquillas — Anéis artesanais 1/1 HandCrafted em ouro 18k com diamantes. A timeless bronze holding centuries of human history. Handmade 18k gold diamond rings gravados com buril.</p>
-                <p class="slide-desc col-2">Born of molten fire and creative will by master artisan Jorge Uquillas, it bridges ancient memory and modern vision — RINGS LUXURY HandCrafted. A fluid energy frozen in still, heavy bronze.</p>
+                <p class="slide-desc col-1" style="font-size: 15px; font-weight: 400; color: #E6CA85; letter-spacing: 0.06em;">Discover how Jorge Uquillas became one of the finest burin engravers in the world and of an era</p>
+                <p class="slide-desc col-2" style="font-size: 14px; line-height: 1.7;">With over 1000 1/1 HandCrafted pieces already created — handmade 18k gold diamond rings engraved with burin — Jorge Uquillas — RINGS LUXURY — has served clients worldwide, from São Paulo to Miami, Dubai to Athens. Each ring is a unique work, handmade without mold, eternalized in gold.</p>
+            </div>
+            <!-- Video anel 1 — otimizado desktop + mobile -->
+            <div class="video-wrap-jorge">
+                <video
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                    poster=""
+                    aria-label="Jorge Uquillas — Anel artesanal HandCrafted em ouro 18k — vídeo"
+                    style="width: 100%; height: auto; display: block; border-radius: 12px; border: 1px solid rgba(197,160,89,0.22); box-shadow: 0 12px 40px rgba(0,0,0,0.65); background: #000;"
+                >
+                    <source src="/PUBLIC/anel-1.mp4" type="video/mp4" />
+                </video>
             </div>
         </div>
 
         <div class="slide-image-mask" id="slide-2-img">
-            <img src="https://api.getlayers.ai/storage/v1/object/public/public/assets/laocoon-59f84455c6/1.png" alt="Editorial Concept">
+            <img src="/PUBLIC/Captura%20de%20tela%202026-09-12%20185443.png" alt="Jorge Uquillas — RINGS LUXURY HandCrafted — Anéis artesanais ouro 18k">
         </div>
 
         <div class="slide" id="slide-2">
-            <h2 class="slide-title">Marble <br>Emotion</h2>
-            <p class="slide-desc">Jorge Uquillas — RINGS LUXURY HandCrafted. A sculpture frozen at the peak of human suffering and heroic struggle. Laocoön and his sons, bound by ruthless fate — anéis artesanais ouro 18k.</p>
+            <h2 class="slide-title">JORGE<br>UQUILLAS</h2>
+            <p class="slide-desc" style="font-size: 14px; line-height: 1.75;">Jorge Uquillas is a renowned Designer and Artistic Engraver of jewelry of Colombian-Ecuadorian origin. He started in a simple atelier in Bogota, following the third-generation family tradition with Master Ivan Uquillas (ECU-1996). He perfected techniques in Europe, becoming one of the greatest exponents in Artistic Design and burin engraving of modern world jewelry. Today based in São Paulo, Brazil, he is the only exponent of this level in the country and one of the only ones on the continent. With satisfied clients in more than 50 countries, RINGS LUXURY is highly valued in the luxury market — 1/1 HandCrafted handmade 18k gold diamond rings engraved with burin, unique works that captivate art and beauty lovers.</p>
         </div>
 
         <div class="slide" id="slide-3">
@@ -377,7 +416,7 @@
         import * as THREE from 'three';
         import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
-        const ASSET_BASE_URL = "https://api.getlayers.ai/storage/v1/object/public/public/assets/laocoon-59f84455c6";
+        const ASSET_BASE_URL = "/PUBLIC";
 
         const canvas = document.querySelector('#webgl');
         let scene, camera, renderer;
@@ -428,7 +467,7 @@
             renderer.shadowMap.enabled = true;
             renderer.shadowMap.type = THREE.PCFSoftShadowMap;
             renderer.toneMapping = THREE.ACESFilmicToneMapping;
-            renderer.toneMappingExposure = 2.2;
+            renderer.toneMappingExposure = 2.8;
 
             initLighting();
             createSparks();
@@ -436,10 +475,14 @@
         }
 
         function initLighting() {
-            const ambientLight = new THREE.AmbientLight('#ffffff', 0.1);
+            const ambientLight = new THREE.AmbientLight('#fff8e7', 0.55);
             scene.add(ambientLight);
+            const hemiLight = new THREE.HemisphereLight('#ffe8a0', '#1a1208', 1.0);
+            scene.add(hemiLight);
+            const hemiGold = new THREE.HemisphereLight('#ffd86b', '#0a0800', 0.7);
+            scene.add(hemiGold);
 
-            const keyLight = new THREE.SpotLight('#ffffff', 18.0);
+            const keyLight = new THREE.SpotLight('#fff6d6', 32.0);
             keyLight.position.set(4, 6, 3);
             keyLight.angle = Math.PI / 4;
             keyLight.penumbra = 0.9;
@@ -451,11 +494,11 @@
             keyLight.shadow.bias = -0.001;
             scene.add(keyLight);
 
-            const rimLight = new THREE.DirectionalLight('#e3f2ff', 10.0);
+            const rimLight = new THREE.DirectionalLight('#ffde8a', 14.0);
             rimLight.position.set(-5, 3, -4);
             scene.add(rimLight);
 
-            const fillLight = new THREE.DirectionalLight('#fff3e6', 0.8);
+            const fillLight = new THREE.DirectionalLight('#ffe8a0', 1.6);
             fillLight.position.set(-2, -4, 2);
             scene.add(fillLight);
         }
@@ -527,7 +570,7 @@
         function loadModel() {
             const loader = new GLTFLoader();
             loader.load(
-                ASSET_BASE_URL + '/bronze_horse.glb',
+                ASSET_BASE_URL + '/lion_head_4k.gltf',
                 (gltf) => {
                     gltfModel = gltf.scene;
 
@@ -540,12 +583,23 @@
                             child.castShadow = true;
                             child.receiveShadow = true;
                             if (child.material) {
-                                child.material.roughness = 0.42;
-                                child.material.metalness = 0.92;
+                                try {
+                                    if (child.material.color) child.material.color.setHex(0xC5A059);
+                                    if (child.material.map) child.material.map.anisotropy = 16;
+                                } catch {}
+                                child.material.roughness = 0.18;
+                                child.material.metalness = 0.96;
+                                child.material.envMapIntensity = 2.2;
                                 child.material.flatShading = false;
-                                if (child.material.map) {
-                                    child.material.map.anisotropy = 16;
+                                if ('clearcoat' in child.material) {
+                                    child.material.clearcoat = 1.0;
+                                    child.material.clearcoatRoughness = 0.08;
                                 }
+                                if (child.material.emissive) {
+                                    child.material.emissive.setHex(0x221a08);
+                                    child.material.emissiveIntensity = 0.12;
+                                }
+                                child.material.needsUpdate = true;
                             }
                         }
                     });
@@ -558,7 +612,7 @@
                     const boxInitial = new THREE.Box3().setFromObject(gltfModel);
                     const sizeInitial = boxInitial.getSize(new THREE.Vector3());
                     const maxDim = Math.max(sizeInitial.x, sizeInitial.y, sizeInitial.z);
-                    const targetScale = 3.5 / (maxDim > 0.0001 ? maxDim : 1);
+                    const targetScale = 2.4 / (maxDim > 0.0001 ? maxDim : 1);
                     gltfModel.scale.setScalar(targetScale);
 
                     gltfModel.updateMatrixWorld(true);
@@ -644,15 +698,16 @@
                     float crispSpecular = pow(max(0.0, 1.0 - abs(waveField - 0.15)), 8.0);
                     float crest = wideSheen * 0.5 + crispSpecular * 0.9;
                     
-                    vec3 c0_shadow = vec3(0.0010, 0.0006, 0.0004);
-                    vec3 c0_wave1  = vec3(0.085, 0.040, 0.015);
-                    vec3 c0_wave2  = vec3(0.050, 0.022, 0.008);
-                    vec3 c0_crest  = vec3(0.45, 0.30, 0.18);
+                    // Fundo bem mais escuro — quase preto #020202, leão dourado separado
+                    vec3 c0_shadow = vec3(0.005, 0.004, 0.003);
+                    vec3 c0_wave1  = vec3(0.04, 0.03, 0.012);
+                    vec3 c0_wave2  = vec3(0.03, 0.02, 0.008);
+                    vec3 c0_crest  = vec3(0.12, 0.09, 0.04);
                     
-                    vec3 c1_shadow = vec3(0.0004, 0.0006, 0.0012);
-                    vec3 c1_wave1  = vec3(0.015, 0.035, 0.065);
-                    vec3 c1_wave2  = vec3(0.008, 0.020, 0.045);
-                    vec3 c1_crest  = vec3(0.18, 0.35, 0.55);
+                    vec3 c1_shadow = vec3(0.006, 0.005, 0.003);
+                    vec3 c1_wave1  = vec3(0.05, 0.035, 0.015);
+                    vec3 c1_wave2  = vec3(0.035, 0.025, 0.01);
+                    vec3 c1_crest  = vec3(0.14, 0.10, 0.05);
                     
                     float t = smoothstep(0.0, 1.0, scroll);
                     vec3 colShadow = mix(c0_shadow, c1_shadow, t);
@@ -664,7 +719,9 @@
                     color = mix(color, colWave2, smoothstep(-0.6, 0.2, waveField));
                     color = mix(color, colWave1, smoothstep(0.0, 0.8, waveField));
                     
-                    color += colCrest * crest * 1.4;
+                    // luz que passa sobre o leão — mais forte no scroll
+                    float scrollLight = 1.0 + uScroll * 2.8;
+                    color += colCrest * crest * 3.2 * scrollLight;
                     
                     float vignette = 1.0 - dot(uv, uv) * 0.12;
                     color *= vignette;
@@ -799,7 +856,7 @@
                 : (window.pageYOffset !== undefined ? window.pageYOffset : document.documentElement.scrollTop);
             const targetScroll = maxScroll > 0 ? scrollTop / maxScroll : 0;
 
-            currentScroll += (targetScroll - currentScroll) * 0.025;
+            currentScroll += (targetScroll - currentScroll) * 0.022;
 
             mouseX += (targetMouseX - mouseX) * 0.05;
             mouseY += (targetMouseY - mouseY) * 0.05;
@@ -810,8 +867,8 @@
             if (cursorOuter) { cursorOuter.style.left = `${outerCursorX}px`; cursorOuter.style.top = `${outerCursorY}px`; }
 
             if (modelPivot) {
-                modelPivot.rotation.y = mouseX * 0.25;
-                modelPivot.rotation.x = mouseY * 0.15;
+                modelPivot.rotation.y = mouseX * 0.18 + currentScroll * Math.PI * 0.85;
+                modelPivot.rotation.x = mouseY * 0.12 + Math.sin(currentScroll * Math.PI) * 0.15;
             }
 
             if (sparkParticles) {
