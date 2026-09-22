@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Header } from '../components/Header';
 import { Hero } from '../components/Hero';
+import { QuemSouEu } from '../components/QuemSouEu';
+import { WhyChoose } from '../components/WhyChoose';
+import { FolhasScroll } from '../components/FolhasScroll';
 import { Collection } from '../components/Collection';
 import { StatueSection } from '../components/StatueSection';
 import { Atelier } from '../components/Atelier';
@@ -43,8 +46,11 @@ export function Home() {
         description="RINGS LUXURY by Jorge Uquillas — Anéis artesanais 1/1 HandCrafted feitos à mão em ouro 18k com diamantes naturais, gravados com buril. Handmade 18k gold diamond rings by master artisan Jorge Uquillas. Atelier Brasil • Miami • Athens — alta joalheria autoral."
         keywords="RINGS LUXURY, JORGE UQUILLAS, anéis artesanais, HandCrafted, anéis feitos à mão ouro 18k, handmade 18k gold diamond rings, buril, anel 1/1, atelier Brasil Miami, alta joalheria"
       />
-      {/* Universal Film Grain Overlay */}
-      <div className="fixed inset-0 film-grain pointer-events-none z-40 opacity-35" />
+      {/* Universal Film Grain — DESATIVADO na Hero para ficar liso/elegante (removidas bolinhas) */}
+      {/* <div className="fixed inset-0 film-grain pointer-events-none z-40 opacity-35" /> */}
+
+      {/* Folhas douradas com parallax no scroll — laterais, somem elegante */}
+      <FolhasScroll />
 
       {/* Navigation Header */}
       <Header
@@ -55,6 +61,12 @@ export function Home() {
       <main>
         {/* I. Cinematic Hero */}
         <Hero onEnterAtelier={handleEnterAtelier} />
+
+        {/* I.1 — SOBRE MIM / QUEM SOU EU — montagem Jorge Uquillas by @vicenteczar.dev */}
+        <QuemSouEu />
+
+        {/* I.2 — WHY CHOOSE RINGS LUXURY? — terceira seção fiel ao print */}
+        <WhyChoose />
 
         {/* II. The Museum Collection */}
         <Collection

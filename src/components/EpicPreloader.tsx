@@ -151,12 +151,12 @@ export function EpicPreloader({ isExiting }: EpicPreloaderProps) {
           <div className="mt-1.5 sm:mt-2 flex items-center gap-2 sm:gap-3 opacity-90">
             <span className="h-px w-5 sm:w-8 bg-gradient-to-r from-transparent to-[#C5A059]/60" />
             <p className="text-[7.5px] sm:text-[10px] tracking-[0.28em] sm:tracking-[0.38em] uppercase text-[#C5A059] font-medium whitespace-nowrap">
-              Haute Joaillerie • Atelier
+              Master Engraver
             </p>
             <span className="h-px w-5 sm:w-8 bg-gradient-to-l from-transparent to-[#C5A059]/60" />
           </div>
           <p className="mt-1 text-[7px] sm:text-[8.5px] tracking-[0.22em] sm:tracking-[0.28em] uppercase text-[#9A7B38]/80">
-            Athens • Paris • Geneva
+            São Paulo • Miami • Colombia
           </p>
         </div>
 

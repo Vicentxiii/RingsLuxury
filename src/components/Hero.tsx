@@ -1,191 +1,128 @@
 import React from 'react';
-import { ArrowDown, Eye } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import { LaurelWreath, GreekKeyBorder, GreekMeanderDivider } from './OrnamentIcons';
-import heroStatueImg from '../assets/images/hero_statue_temple_1789071913515.jpg';
-import { AutoFlippingWords } from './ui/flipping-word-swap';
 
 interface HeroProps {
   onEnterAtelier: () => void;
 }
 
-// Nova foto colocada em public/PUBLIC — hero trocado da estátua para novo fundo
-const NEW_HERO_CANDIDATES = [
-  encodeURI('/PUBLIC/large-banner-433.jpg'),
-  encodeURI('/PUBLIC/hero-new.jpg'),
-  encodeURI('/PUBLIC/hero.jpg'),
-  encodeURI('/PUBLIC/new-hero.jpg'),
-];
+// Imagem composta da HERO antiga (Odin esquerda + Medusa direita) — 2048x1080
+const OLD_HERO_COMPOSITE = encodeURI(
+  '/PUBLIC/Medusa e Odim capa do site rings luxury by Jorge Uquillas.webp'
+);
 
-export function Hero({ onEnterAtelier }: HeroProps) {
-  const navigate = useNavigate();
-  const [heroBg, setHeroBg] = React.useState<string>(NEW_HERO_CANDIDATES[0]);
-  const [bgFailed, setBgFailed] = React.useState(false);
+// Fallback estático caso o embed do YouTube não carregue / bloqueie
+const FALLBACK_COVER = OLD_HERO_COMPOSITE;
 
+const YOUTUBE_ID = 'ieNPhZ4Vdss';
+// autoplay mudo em loop, sem controles, sem relacionados, modest branding
+const YOUTUBE_EMBED = `https://www.youtube.com/embed/${YOUTUBE_ID}?autoplay=1&mute=1&controls=0&loop=1&playlist=${YOUTUBE_ID}&playsinline=1&modestbranding=1&rel=0&iv_load_policy=3&showinfo=0&enablejsapi=0`;
+
+export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
   return (
     <section
       id="hero"
-      className="relative w-full min-h-screen flex items-center justify-center overflow-visible bg-[#020202]"
+      className="relative w-full bg-[#020202] overflow-hidden flex items-center justify-center isolate"
+      style={{ height: '92vh', minHeight: '560px', maxHeight: '900px' }}
+      aria-label="RINGS LUXURY by Jorge Uquillas — Hero"
     >
-      {/* Background Visual Layer - Nova foto da PUBLIC no lugar da estátua */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        {/* Nova imagem do hero com fallback para estátua antiga */}
-        {!bgFailed ? (
-          <img
-            src={heroBg}
-            alt="RINGS LUXURY by Jorge Uquillas — Anéis artesanais HandCrafted em ouro 18k com diamantes — Hero"
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-[12000ms] ease-out scale-105"
-            onError={() => {
-              // tenta próximo candidato, se falhar todos usa estátua antiga
-              const idx = NEW_HERO_CANDIDATES.indexOf(heroBg);
-              if (idx >= 0 && idx < NEW_HERO_CANDIDATES.length - 1) {
-                setHeroBg(NEW_HERO_CANDIDATES[idx + 1]);
-              } else {
-                setBgFailed(true);
-              }
+      {/* 1. VIDEO BACKGROUND - YouTube */}
+      <div className="absolute inset-0 z-0 overflow-hidden bg-[#040404]">
+        <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none">
+          <iframe
+            title="RINGS LUXURY — Atelier handcrafted background film"
+            src={YOUTUBE_EMBED}
+            className="absolute top-1/2 left-1/2 w-[300%] h-[300%] sm:w-[220%] sm:h-[220%] lg:w-[135%] lg:h-[135%] -translate-x-1/2 -translate-y-1/2 object-cover scale-[1.02]"
+            style={{ border: 0, opacity: 1 }}
+            allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+            allowFullScreen={false}
+            loading="eager"
+            referrerPolicy="strict-origin-when-cross-origin"
+          />
+        </div>
+        <div
+          className="absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat opacity-30"
+          style={{ backgroundImage: `url("${FALLBACK_COVER}")` }}
+          aria-hidden
+        />
+      </div>
+
+      {/* 2. DARKEN OVERLAYS — AINDA MAIS CLARO */}
+      <div className="absolute inset-0 z-10 bg-[#020202]/07" aria-hidden />
+      <div
+        className="absolute inset-0 z-10 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse 90% 74% at 50% 52%, transparent 58%, rgba(2,2,2,0.05) 72%, rgba(2,2,2,0.16) 94%)',
+        }}
+        aria-hidden
+      />
+      <div className="absolute inset-x-0 top-0 h-[6%] z-10 bg-gradient-to-b from-[#020202]/28 via-[#020202]/04 to-transparent pointer-events-none" aria-hidden />
+      <div className="absolute inset-x-0 bottom-0 h-[8%] z-10 bg-gradient-to-t from-[#020202]/20 via-[#020202]/03 to-transparent pointer-events-none" aria-hidden />
+      <div className="absolute inset-y-0 left-0 w-[10%] z-10 bg-gradient-to-r from-[#020202]/14 via-[#020202]/03 to-transparent pointer-events-none hidden sm:block" aria-hidden />
+      <div className="absolute inset-y-0 right-0 w-[10%] z-10 bg-gradient-to-l from-[#020202]/14 via-[#020202]/03 to-transparent pointer-events-none hidden sm:block" aria-hidden />
+
+      {/* 3. COMPOSITE ODIN + MEDUSA por cima do video — liso sem textura */}
+      <div className="absolute inset-0 z-20 pointer-events-none select-none overflow-hidden" aria-hidden>
+        <img
+          src={OLD_HERO_COMPOSITE}
+          alt=""
+          draggable={false}
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          style={{ objectPosition: 'center center', opacity: 0.84 }}
+          onError={(e) => {
+            (e.currentTarget as HTMLImageElement).style.display = 'none';
+          }}
+        />
+        <div className="absolute inset-0 bg-[#020202]/03" />
+        <div className="absolute inset-0 shadow-[inset_0_0_40px_rgba(0,0,0,0.12)]" />
+      </div>
+
+      {/* 5. TEXTO CENTRAL — WELCOME TO RINGS LUXURY / MASTER PIECES */}
+      <div className="relative z-30 w-full max-w-6xl mx-auto px-6 flex flex-col items-center justify-center text-center pointer-events-none">
+        <h1 className="flex flex-col items-center gap-3 sm:gap-4">
+          <span
+            className="font-cormorant font-light text-[#E9E2D6]/95 leading-none whitespace-nowrap"
+            style={{
+              fontSize: 'clamp(11px, 1.9vw, 22px)',
+              letterSpacing: '0.62em',
+              textShadow: '0 2px 18px rgba(0,0,0,0.85), 0 0 30px rgba(0,0,0,0.55)',
+              fontWeight: 300,
             }}
-          />
-        ) : (
-          <div
-            className="absolute inset-0 bg-cover bg-center transition-transform duration-[12000ms] ease-out scale-105"
-            style={{ backgroundImage: `url(${heroStatueImg})` }}
-          />
-        )}
-
-        {/* Heavy Atmospheric Dark Vignette & Black Marble Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-[#020202]/65 to-[#020202]/85" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_#020202_80%)]" />
-
-        {/* Thin subtle warm golden volumetric light beam overlay */}
-        <div className="absolute top-0 right-1/4 w-72 h-full bg-gradient-to-b from-[#C5A059]/10 via-[#C5A059]/5 to-transparent blur-3xl pointer-events-none transform -rotate-12" />
-      </div>
-
-      {/* Film Grain Subtle Layer */}
-      <div className="absolute inset-0 film-grain pointer-events-none opacity-40 z-1" />
-
-      {/* Greek Architectural Pillars Flanking Silhouette for Monumental Scale */}
-      <div className="absolute inset-y-0 left-0 w-24 md:w-48 bg-gradient-to-r from-[#020202] via-[#020202]/90 to-transparent pointer-events-none z-2 flex flex-col justify-between py-12 px-6 opacity-60">
-        <div className="text-[9px] uppercase tracking-[0.4em] text-[#9A7B38] [writing-mode:vertical-lr] rotate-180">
-          ARCHITECTURA • HELLENICA
-        </div>
-        <div className="h-40 w-px bg-gradient-to-b from-transparent via-[#C5A059]/30 to-transparent mx-auto" />
-        <div className="text-[9px] uppercase tracking-[0.4em] text-[#9A7B38] [writing-mode:vertical-lr] rotate-180">
-          MMXXVI • SECRETO
-        </div>
-      </div>
-
-      <div className="absolute inset-y-0 right-0 w-24 md:w-48 bg-gradient-to-l from-[#020202] via-[#020202]/90 to-transparent pointer-events-none z-2 flex flex-col justify-between py-12 px-6 opacity-60">
-        <div className="text-[9px] uppercase tracking-[0.4em] text-[#9A7B38] [writing-mode:vertical-lr]">
-          AURUM • SACRUM
-        </div>
-        <div className="h-40 w-px bg-gradient-to-b from-transparent via-[#C5A059]/30 to-transparent mx-auto" />
-        <div className="text-[9px] uppercase tracking-[0.4em] text-[#9A7B38] [writing-mode:vertical-lr]">
-          STATUA • AETERNITAS
-        </div>
-      </div>
-
-      {/* Center Monumental Typography Container */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-28 pb-20 sm:pt-36 sm:pb-28 flex flex-col items-center">
-        {/* Subtle Top Gold Laurel & Seal */}
-        <div className="inline-flex items-center gap-3 px-6 py-2.5 border border-[#C5A059]/30 rounded-full bg-[#050505]/80 backdrop-blur-md mb-10 shadow-[0_0_20px_rgba(197,160,89,0.15)] animate-fadeIn">
-          <LaurelWreath className="w-4 h-4 text-[#C5A059]" />
-          <span className="text-[10px] sm:text-[11px] font-medium tracking-[0.42em] uppercase text-[#E6CA85]">
-            JORGE UQUILLAS • HANDCRAFTED HAUTE JOAILLERIE
+          >
+            WELCOME TO RINGS LUXURY
           </span>
-          <LaurelWreath className="w-4 h-4 text-[#C5A059] transform -scale-x-100" />
-        </div>
-
-        {/* Framing Gold Lines */}
-        <div className="w-full max-w-xl flex items-center justify-center gap-5 mb-8 opacity-80">
-          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#C5A059]/60 to-[#C5A059]" />
-          <div className="w-2 h-2 rotate-45 border border-[#C5A059] bg-[#020202]" />
-          <span className="text-[11px] font-serif tracking-[0.35em] text-[#C5A059] uppercase">
-            RINGS LUXURY • JORGE UQUILLAS • HANDCRAFTED
-          </span>
-          <div className="w-2 h-2 rotate-45 border border-[#C5A059] bg-[#020202]" />
-          <div className="h-px flex-1 bg-gradient-to-l from-transparent via-[#C5A059]/60 to-[#C5A059]" />
-        </div>
-
-        {/* Hero Title: THE ART OF — OF ao lado de ART na mesma linha */}
-        <h1
-          id="hero-title"
-          className="font-cinzel text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-[0.2em] uppercase text-[#FBF9F5] font-light leading-[1.06] drop-shadow-[0_20px_45px_rgba(0,0,0,0.95)] whitespace-nowrap"
-        >
-          <span className="inline-flex items-baseline justify-center gap-x-[0.18em] whitespace-nowrap">
-            <span>THE ART</span>
-            <span>OF</span>
+          <span
+            className="font-cormorant font-light text-[#E9E2D6]/80 leading-none whitespace-nowrap"
+            style={{
+              fontSize: 'clamp(8px, 1.05vw, 11.5px)',
+              letterSpacing: '0.78em',
+              textShadow: '0 1px 12px rgba(0,0,0,0.9)',
+              fontWeight: 300,
+            }}
+          >
+            MASTER PIECES
           </span>
         </h1>
-        {/* Flipping Word Swap — ETERNITY / POWER / STATUS — auto flip, sem corte */}
-        <div className="mt-3 sm:mt-4 flex justify-center w-full max-w-full overflow-visible px-4">
-          <AutoFlippingWords
-            words={["ETERNITY", "POWER", "STATUS"]}
-            duration={420}
-            stagger={42}
-            interval={2600}
-            className="font-cinzel text-[1.7rem] sm:text-[2.9rem] md:text-[4rem] lg:text-[5.5rem] tracking-[0.04em] uppercase font-light leading-[1.06] text-transparent bg-clip-text bg-gradient-to-b from-[#FFF8DC] via-[#E6CA85] to-[#C5A059] [filter:drop-shadow(0_0_22px_rgba(197,160,89,0.45))_drop-shadow(0_12px_28px_rgba(0,0,0,0.85))] overflow-visible"
-            toClassName="text-transparent bg-clip-text bg-gradient-to-b from-[#FFF8DC] via-[#E6CA85] to-[#C5A059]"
-          />
-        </div>
-
-        {/* Subtitle: SEO — Anéis artesanais HandCrafted by Jorge Uquillas */}
-        <p
-          id="hero-subtitle"
-          className="font-sans-luxury text-sm sm:text-base md:text-lg font-light tracking-[0.32em] uppercase text-[#D4CEBF] max-w-3xl mb-12 sm:mb-14 leading-relaxed"
-        >
-          ANÉIS ARTESANAIS 1/1 HANDCRAFTED
-          <br />
-          <span className="text-[#E6CA85] font-normal">EM OURO 18K COM DIAMANTES — JORGE UQUILLAS</span>
-          <span className="block mt-3 text-[11px] sm:text-xs tracking-[0.28em] text-[#9A7B38] normal-case">Handmade 18k gold diamond rings • gravados com buril • RINGS LUXURY • Brasil • Miami</span>
-        </p>
-
-        {/* Subtle Gold Ornamental Line Under Subtitle */}
-        <GreekMeanderDivider className="mb-12 sm:mb-14 w-full max-w-sm opacity-80" />
-
-        {/* CTA Button Group: Substantially larger and more spacious */}
-        <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8 mt-2 w-full justify-center">
-          <button
-            id="hero-cta-enter"
-            onClick={() => {
-              window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
-              navigate('/jorge-uquillas');
-            }}
-            className="group relative px-10 sm:px-14 py-5 sm:py-6 bg-[#050505] border-2 border-[#C5A059] text-[#C5A059] hover:text-[#020202] transition-all duration-500 overflow-hidden shadow-[0_0_40px_rgba(197,160,89,0.25)] hover:shadow-[0_0_60px_rgba(197,160,89,0.5)] rounded-full hover:scale-105 active:scale-95 cursor-pointer"
-          >
-            {/* Hover gold fill sliding up */}
-            <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-[#C5A059] via-[#E6CA85] to-[#C5A059] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out rounded-full" />
-
-            <span className="relative z-10 font-cinzel text-xs sm:text-sm md:text-base font-semibold tracking-[0.38em] uppercase">
-              ENTER THE ATELIER
-            </span>
-          </button>
-
-          {/* Know the Master - Redirect to Jorge Uquillas Bronze Horse */}
-          <button
-            id="hero-view-toggle"
-            onClick={() => {
-              window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
-              navigate('/jorge-uquillas');
-            }}
-            className="group flex items-center gap-3 px-8 sm:px-10 py-4.5 sm:py-5.5 border border-[#C5A059]/40 hover:border-[#C5A059] bg-[#070707]/80 hover:bg-[#C5A059]/15 text-[#EAE6DF] hover:text-[#E6CA85] transition-all duration-300 text-xs sm:text-sm uppercase tracking-[0.3em] rounded-full shadow-[0_0_25px_rgba(0,0,0,0.6)] hover:scale-105 active:scale-95 cursor-pointer"
-          >
-            <Eye className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-[#C5A059] group-hover:rotate-12 transition-transform" />
-            <span>Know the master</span>
-          </button>
-        </div>
       </div>
 
-      {/* Bottom Architectural Border and Scroll Prompt */}
-      <div className="absolute bottom-0 left-0 w-full flex flex-col items-center z-10 pointer-events-none pb-4">
-        <a
-          href="#collections"
-          className="pointer-events-auto group flex flex-col items-center gap-2 text-[#9A7B38] hover:text-[#C5A059] transition-colors duration-300 mb-4"
+      {/* 6. LINHA INFERIOR CURVA */}
+      <div className="absolute bottom-0 left-0 w-full h-[38px] z-20 pointer-events-none overflow-hidden" aria-hidden>
+        <svg
+          viewBox="0 0 1440 38"
+          preserveAspectRatio="none"
+          className="w-full h-full block text-[#020202]"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <span className="text-[9px] uppercase tracking-[0.35em]">Descend into Archive</span>
-          <ArrowDown className="w-3.5 h-3.5 animate-bounce text-[#C5A059]" />
-        </a>
-        <GreekKeyBorder className="w-full h-2 opacity-30" />
+          <path d="M0 28 C 260 38, 420 2, 720 14 C 1020 26, 1180 36, 1440 12 L 1440 38 L 0 38 Z" opacity="0.98" />
+        </svg>
       </div>
+
+      <a
+        href="#collections"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 opacity-0 focus:opacity-100 focus:pointer-events-auto pointer-events-none text-[10px] tracking-[0.3em] text-[#C5A059] border border-[#C5A059]/40 px-4 py-2 rounded-full bg-black/60 backdrop-blur"
+      >
+        Ver coleção
+      </a>
     </section>
   );
 }
