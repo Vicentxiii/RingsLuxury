@@ -95,3 +95,28 @@
 button:not(.not-rounded) {
   border-radius: 9999px;
 }
+
+/* Mini-carrossel horizontal de bandeiras — Shipping Worldwide */
+@keyframes shipping-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.shipping-marquee-track {
+  animation: shipping-marquee 48s linear infinite;
+  will-change: transform;
+}
+
+.shipping-marquee:hover .shipping-marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shipping-marquee-track {
+    animation: none;
+  }
+}

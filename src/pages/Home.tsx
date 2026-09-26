@@ -3,6 +3,8 @@ import { Header } from '../components/Header';
 import { Hero } from '../components/Hero';
 import { QuemSouEu } from '../components/QuemSouEu';
 import { WhyChoose } from '../components/WhyChoose';
+import { YouDecide } from '../components/YouDecide';
+import { ShippingWorldwide } from '../components/ShippingWorldwide';
 import { FolhasScroll } from '../components/FolhasScroll';
 import { Collection } from '../components/Collection';
 import { StatueSection } from '../components/StatueSection';
@@ -68,6 +70,15 @@ export function Home() {
         {/* I.2 — WHY CHOOSE RINGS LUXURY? — terceira seção fiel ao print */}
         <WhyChoose />
 
+        {/* I.3 — YOU DECIDE EVERY STONE EVERY DETAIL — com carrossel do ateliê */}
+        <YouDecide />
+
+        {/* I.4 — SHIPPING WORLDWIDE — mini-carrossel de bandeiras */}
+        <ShippingWorldwide />
+
+        {/* I.5 — WHAT PEOPLE SAY ABOUT RINGS LUXURY — provas sociais Google */}
+        <WorldClients />
+
         {/* II. The Museum Collection */}
         <Collection
           onSelectPieceForCommission={(piece) => handleOpenConsultation(piece)}
@@ -93,9 +104,6 @@ export function Home() {
 
         {/* IX. Sententia Aurea Quote */}
         <QuoteSection />
-
-        {/* X. Clients All Over The World - Social Proof for Jorge Uquillas */}
-        <WorldClients />
 
         {/* XI. Contact & Private Salon Admissions */}
         <Contact

@@ -10,26 +10,8 @@ export function WhyChoose() {
       className="relative w-full bg-black overflow-hidden isolate border-b border-[#C5A059]/35"
       aria-label="Why choose Rings Luxury"
     >
-      {/* FUNDO — Backgroudn com textura dourada sutil no canto inferior direito */}
-      <div className="absolute inset-0 z-0 overflow-hidden bg-black">
-        <img
-          src="/PUBLIC/why-bg.webp"
-          alt=""
-          draggable={false}
-          className="absolute inset-0 w-full h-full object-cover object-right-bottom opacity-[0.72]"
-          onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-        />
-        {/* véu para manter centro bem preto e bordas suaves */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-black/35 to-black/10" aria-hidden />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              'radial-gradient(ellipse 78% 65% at 50% 38%, transparent 48%, rgba(0,0,0,0.55) 88%)',
-          }}
-          aria-hidden
-        />
-      </div>
+      {/* FUNDO — sem imagem, preto liso */}
+      <div className="absolute inset-0 z-0 overflow-hidden bg-[#020202]" />
 
       {/* CONTEÚDO */}
       <div className="relative z-10 w-full max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10 pt-10 sm:pt-12 lg:pt-[42px] pb-12 sm:pb-14 lg:pb-[44px]">

@@ -35,6 +35,8 @@ export function QuemSouEu({}: QuemSouEuProps) {
           }}
           aria-hidden
         />
+        {/* FADE INFERIOR — esconde o corte entre esta seção e a próxima */}
+        <div className="absolute bottom-0 left-0 w-full h-[140px] sm:h-[180px] lg:h-[220px] bg-gradient-to-b from-transparent to-[#020202] pointer-events-none" aria-hidden />
       </div>
 
       {/* CONTEÚDO — 2 colunas */}
