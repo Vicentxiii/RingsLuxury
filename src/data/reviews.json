@@ -1,0 +1,65 @@
+{
+  "$comment": "Fonte única de verdade dos depoimentos. Consumida por (1) src/components/WorldClients.tsx e (2) vite-plugin-seo-inject.ts, que injeta os reviews no HTML estático de build. NÃO inserir 'date' sem a data real do Google. Nenhum texto pode ser editado, cortado ou traduzido.",
+  "source": {
+    "$comment": "Preencher com o link real do Perfil do Google. Enquanto for null, o plugin NÃO emite 'publisher: Google' (atribuição não verificável é violação de spam do Google).",
+    "platform": "Google",
+    "businessProfileUrl": null,
+    "placeId": null
+  },
+  "reviews": [
+    {
+      "id": "r-1",
+      "name": "Silvio Gomez",
+      "photo": "/PUBLIC/Rings Luxury Google Reviews client 1.png",
+      "initial": "",
+      "rating": 5,
+      "date": null,
+      "text": "Best artisan in the jewelry business I've ever met, his traces in burin are unique and exclusive, owning a jewel by the artist Jorge Uquillas is without a doubt a privilege, congratulations and thank you Master."
+    },
+    {
+      "id": "r-2",
+      "name": "Tommy Chan",
+      "photo": "/PUBLIC/Rings Luxury Google Reviews CLIENT 2.png",
+      "initial": "",
+      "rating": 5,
+      "date": null,
+      "text": "An excellent professional, he has mastery in the art of the burin in addition to extreme creativity... a true professor. With regard to the person: Exemplary honesty... it is a pleasure to be able to enjoy this sincere friendship... congratulations showered with much success, noble Jorge... I hope to be able to increase my collectibles as soon as possible..."
+    },
+    {
+      "id": "r-3",
+      "name": "Gerson Mella Filho",
+      "photo": "/PUBLIC/Rings Luxury Google Reviews Client 3.png",
+      "initial": "",
+      "rating": 5,
+      "date": null,
+      "text": "Jorge is not only an amazing artist but also a great professional. Care, dedication, humility and honesty. There is no other like him."
+    },
+    {
+      "id": "r-4",
+      "name": "Lilian Ferro Duarte",
+      "photo": "/PUBLIC/Rings Luxury Google Reviews Client 4.png",
+      "initial": "",
+      "rating": 5,
+      "date": null,
+      "text": "Jorge Pessoa talentosa, criativa, honesta e muito gentil, adorei o anel que ele fez para mim. Agora vou fazer mais 4 peças com ele pois são joias únicas e exclusivamente feitas à mão e para você! Indico com tamanha certeza!"
+    },
+    {
+      "id": "r-5",
+      "name": "Nelson Pereira",
+      "photo": null,
+      "initial": "N",
+      "rating": 5,
+      "date": null,
+      "text": "Grande artista. Competente e com muita criatividade. Atendimento personalizado, explicação detalhada do trabalho aprovado. Seriedade no trato de valores e pontualidade na entrega."
+    },
+    {
+      "id": "r-6",
+      "name": "Alexandre Ribeiro",
+      "photo": "/PUBLIC/Rings Luxury Google Reviews Client 5.png",
+      "initial": "",
+      "rating": 5,
+      "date": null,
+      "text": "Como sempre surpreendi, transformam sonhos em joias, obrigado mais uma vez por esse trabalho."
+    }
+  ]
+}

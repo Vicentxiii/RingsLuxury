@@ -15,6 +15,7 @@ export default function App() {
   const [isPreloading, setIsPreloading] = useState(true);
   const [isRevealing, setIsRevealing] = useState(false);
   const [showPreloader, setShowPreloader] = useState(true);
+  const [revealSettled, setRevealSettled] = useState(false);
 
   useEffect(() => {
     // Bloqueia scroll enquanto preloader visível
@@ -47,18 +48,34 @@ export default function App() {
     };
   }, []);
 
+  // filter/transform criam containing block e quebram position:fixed do header.
+  // Removidos assim que o reveal termina, para o menu/audio ficarem fixos no viewport.
+  useEffect(() => {
+    if (!isRevealing) return;
+    const t3 = setTimeout(() => setRevealSettled(true), 1250);
+    return () => clearTimeout(t3);
+  }, [isRevealing]);
+
   return (
     <AudioProvider>
       {showPreloader && <EpicPreloader isExiting={!isPreloading} />}
       <div
-        className="transition-all ease-[cubic-bezier(0.16,1,0.3,1)] will-change-[filter,opacity,transform]"
-        style={{
-          filter: isRevealing ? 'blur(0px)' : 'blur(16px)',
-          opacity: isRevealing ? 1 : 0,
-          transform: isRevealing ? 'scale(1)' : 'scale(0.985)',
-          transitionDuration: '1200ms',
-          transitionProperty: 'filter, opacity, transform',
-        }}
+        className={
+          revealSettled
+            ? undefined
+            : 'transition-all ease-[cubic-bezier(0.16,1,0.3,1)] will-change-[filter,opacity,transform]'
+        }
+        style={
+          revealSettled
+            ? undefined
+            : {
+                filter: isRevealing ? 'blur(0px)' : 'blur(16px)',
+                opacity: isRevealing ? 1 : 0,
+                transform: isRevealing ? 'scale(1)' : 'scale(0.985)',
+                transitionDuration: '1200ms',
+                transitionProperty: 'filter, opacity, transform',
+              }
+        }
       >
         <Routes>
       <Route path="/" element={<Home />} />

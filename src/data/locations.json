@@ -1,0 +1,31 @@
+{
+  "$comment": "Locais do atelier. Preencha 'address' e 'embedUrl' quando tiver os dados reais. Enquanto 'embedUrl' for null, o componente usa o embed sem chave da API montado a partir de 'mapQuery'. NUNCA preencher 'address' com lugar inventado: endereco falso em markup e o caminho mais curto para acao manual do Google.",
+  "locations": [
+    {
+      "id": "miami",
+      "label": "Rings Luxury Miami",
+      "district": "Brickell",
+      "city": "Miami",
+      "region": "Florida",
+      "country": "United States",
+      "countryCode": "US",
+      "mapQuery": "Miami, FL, USA",
+      "zoom": 12,
+      "address": null,
+      "embedUrl": null
+    },
+    {
+      "id": "sao-paulo",
+      "label": "Atelier Rings Luxury",
+      "district": "Avenida Paulista",
+      "city": "São Paulo",
+      "region": "SP",
+      "country": "Brazil",
+      "countryCode": "BR",
+      "mapQuery": "Avenida Paulista, São Paulo, SP, Brazil",
+      "zoom": 14,
+      "address": null,
+      "embedUrl": null
+    }
+  ]
+}

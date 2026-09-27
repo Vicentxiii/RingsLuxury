@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { absoluteUrl, HAS_SITE_URL } from '../site.config';
 
 interface SEOProps {
   title: string;
@@ -10,31 +11,37 @@ interface SEOProps {
 }
 
 export function SEO({ title, description, keywords, url, image }: SEOProps) {
-  const siteUrl = 'https://ringsluxury.com';
-  const defaultImage = `${siteUrl}/og-image.jpg`;
-  
+  const canonical = url ? absoluteUrl(url) : absoluteUrl('/');
+  // Sem domínio configurado não há imagem absoluta confiável; og:image
+  // apontando para um host errado é pior que omitir.
+  const defaultImage = HAS_SITE_URL ? absoluteUrl('/og-image.jpg') : undefined;
+  const ogImage = image || defaultImage;
+
   const seoTitle = `${title} | RINGS LUXURY | JORGE UQUILLAS`;
-  
+
   return (
     <Helmet>
       <title>{seoTitle}</title>
       <meta name="description" content={description} />
       {keywords && <meta name="keywords" content={keywords} />}
-      
+
+      {/* Canonical por rota. Sem domínio definido, fica omitido de propósito. */}
+      {HAS_SITE_URL && <link rel="canonical" href={canonical} />}
+
       {/* Open Graph / Facebook */}
       <meta property="og:type" content="website" />
-      <meta property="og:url" content={url ? `${siteUrl}${url}` : siteUrl} />
+      <meta property="og:url" content={canonical} />
       <meta property="og:title" content={seoTitle} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={image || defaultImage} />
+      {ogImage && <meta property="og:image" content={ogImage} />}
 
-      {/* Twitter */}
-      <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content={url ? `${siteUrl}${url}` : siteUrl} />
-      <meta property="twitter:title" content={seoTitle} />
-      <meta property="twitter:description" content={description} />
-      <meta property="twitter:image" content={image || defaultImage} />
-      
+      {/* Twitter — usa name=, não property= (property é ignorado aqui) */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:url" content={canonical} />
+      <meta name="twitter:title" content={seoTitle} />
+      <meta name="twitter:description" content={description} />
+      {ogImage && <meta name="twitter:image" content={ogImage} />}
+
       {/* Schema.org for Google — HandCrafted anéis artesanais */}
       <script type="application/ld+json">
         {JSON.stringify({
@@ -46,8 +53,8 @@ export function SEO({ title, description, keywords, url, image }: SEOProps) {
             "name": "Jorge Uquillas"
           },
           "description": description,
-          "url": siteUrl,
-          "image": image || defaultImage,
+          "url": canonical,
+          ...(ogImage ? { image: ogImage } : {}),
           "priceRange": "$$$$",
           "keywords": "RINGS LUXURY, Jorge Uquillas, anéis artesanais, HandCrafted, ouro 18k, handmade 18k gold diamond rings, buril",
           "knowsAbout": ["HandCrafted jewelry", "Anéis artesanais ouro 18k", "Burin engraving", "High jewelry atelier"]

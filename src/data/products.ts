@@ -350,6 +350,42 @@ export const products: Product[] = [
     sku: 'RL-HEL-012',
     inStock: true,
   },
+  {
+    id: '013',
+    slug: 'bitcoin-signet-hand-engraved-18k',
+    name: 'BITCOIN SIGNET',
+    subname: 'Sovereign of the Decentralized Age',
+    category: 'Luxury Rings',
+    categorySlug: 'luxury-rings',
+    price: '$ 12,000.00',
+    priceNumber: 12000,
+    description: 'A hand-engraved 18K gold signet carrying the Bitcoin sigil inside a pavé bezel, with a sculpted eagle worked across the shoulders. A 1/1 piece for those who treat code as heirloom.',
+    extendedHistory: 'Cast in solid 18K gold and finished entirely by hand at the atelier. The bezel is set with pavé diamonds framing the ₿ sigil, which is then chiseled by graver into the face of the signet alongside a stippled ground. The shoulders carry a modeled eagle, its feathers cut with the same burin used on the master’s imperial pieces. No two strokes are repeated; the piece is finished only when the master signs it.',
+    symbolism: 'Sovereignty, immutable record, and themarriage of ancient craft with decentralized trust.',
+    specs: {
+      material: '18K Solid Gold',
+      // A CONFIRMAR: peso exato da peça. Não inventar número plausível —
+      // aparece na aba Dossiê e um valor falso pode ir para o ar.
+      weight: 'A CONFIRMAR',
+      // A CONFIRMAR: total de quilates do pave. A foto mostra pave no aro e
+      // nos ombros, mas não a contagem.
+      gems: 'A CONFIRMAR — pavé no aro e nos ombros (visível na foto)',
+      // A CONFIRMAR: horas de buril.
+      craftHours: 'A CONFIRMAR',
+      provenance: 'Rings Luxury Atelier, São Paulo',
+      edition: 'One of One • Bitcoin Protocol',
+      dimensions: 'Sob medida',
+      // A CONFIRMAR: o que realmente foi gravado no interior.
+      hallmark: 'A CONFIRMAR',
+    },
+    // Só a foto real. As outras 12 peças usam imagens AI genéricas como
+    // 2a-4a foto, mas aqui isso mostraria outro anel como se fosse detalhe
+    // desta peça. Galeria de uma imagem é o honesto.
+    images: [encodeURI('/PUBLIC/Anel de bitcoin engravado a mao by jorge uquilas rings luxury.png')],
+    sku: 'RL-BTC-013',
+    inStock: true,
+    featured: true,
+  },
 ];
 
 export function getProductBySlug(slug: string): Product | undefined {

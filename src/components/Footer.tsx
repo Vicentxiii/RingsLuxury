@@ -1,12 +1,47 @@
 import React from 'react';
-import { Instagram } from 'lucide-react';
-import { LaurelWreath, GreekKeyBorder, GreekMeanderDivider, AncientCoinMedallion } from './OrnamentIcons';
+import { Link } from 'react-router-dom';
+import { Clock, Instagram, Mail, MapPin, Phone } from 'lucide-react';
+import { GreekKeyBorder } from './OrnamentIcons';
+import contact from '../data/contact.json';
+import locationsData from '../data/locations.json';
+
+/**
+ * Rodapé — principal bloco de entity signal do site.
+ *
+ * Decisões de SEO aqui:
+ * - Links para PÁGINAS reais via react-router (`/luxury-rings`, `/blog`, ...).
+ *   A versao anterior so tinha ancoras `#hash` da propria home, que nao
+ *   transmitem nada para as 12 paginas de produto e os 6 posts.
+ * - NAP completo e clicavel: `tel:` e `mailto:`. Telefone e o sinal mais forte
+ * de SEO local e hoje nao existia em lugar nenhum do projeto.
+ * - `sameAs` e schema vem de src/data/contact.json e src/data/locations.json,
+ *   que o plugin de build tambem leem. Uma fonte, zero divergencia.
+ * - Enderecos de Athens, Paris e Geneve foram REMOVIDOS. Eram placeholders
+ *   ficticios e brigavam com as localacoes reais (Miami, Sao Paulo), o que
+ *   destoi qualquer sinal deNAP. Nao volte a declara-los sem um endereco real.
+ */
+const COLLECTIONS = [
+  { to: '/luxury-rings', label: 'Luxury Rings' },
+  { to: '/emperor-rings', label: 'Emperor Rings' },
+  { to: '/gold-silver-rings', label: 'Gold & Silver Rings' },
+  { to: '/special-editions', label: 'Special Editions' },
+  { to: '/necklaces', label: 'Necklaces' },
+  { to: '/luxuryqueens', label: 'Luxury Queens' },
+];
+
+const ATELIER = [
+  { to: '/jorge-uquillas', label: 'About Jorge Uquillas' },
+  { to: '/blog', label: "The Master's Journal" },
+  { to: '/courses', label: 'Engraving Courses' },
+];
 
 export function Footer() {
   return (
     <footer
       id="main-footer"
       className="relative w-full bg-[#020202] text-[#EAE6DF] pt-24 pb-16 overflow-hidden border-t border-[#C5A059]/30"
+      itemScope
+      itemType="https://schema.org/Organization"
     >
       {/* Black marble ambient overlay */}
       <div className="absolute inset-0 bg-black-marble opacity-80 pointer-events-none" />
@@ -18,13 +53,13 @@ export function Footer() {
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 pb-16 border-b border-[#C5A059]/20">
-          {/* Brand Presentation & Large Logo */}
-          <div className="md:col-span-5 space-y-6">
+          {/* Brand */}
+          <div className="md:col-span-4 space-y-6">
             <div className="flex items-center gap-3">
-              <div className="relative w-10 h-10 rounded-full overflow-hidden border border-[#C5A059]/50 bg-[#050505] p-0.5 flex items-center justify-center shadow-[0_0_20px_rgba(197,160,89,0.25)]">
+              <div className="relative w-10 h-10 rounded-full overflow-hidden border border-[#C5A059]/50 bg-[#050505] p-0.5 flex items-center justify-center shrink-0 shadow-[0_0_20px_rgba(197,160,89,0.25)]">
                 <img
                   src="/logo.png"
-                  alt="Rings Luxury Logo"
+                  alt="Rings Luxury"
                   className="w-full h-full object-cover rounded-full"
                   onError={(e) => {
                     const target = e.currentTarget;
@@ -35,131 +70,154 @@ export function Footer() {
                 />
               </div>
               <div className="flex flex-col">
-                <span className="font-cinzel text-2xl md:text-3xl font-medium tracking-[0.3em] text-[#F3EFE6]">
+                <span
+                  className="font-cinzel text-xl md:text-2xl font-medium tracking-[0.3em] text-[#F3EFE6]"
+                  itemProp="name"
+                >
                   RINGS LUXURY
                 </span>
-                <span className="text-[10px] uppercase tracking-[0.45em] text-[#9A7B38]">
-                  Jorge Uquillas • HandCrafted 18k • Anéis Artesanais
+                <span
+                  className="text-[9px] uppercase tracking-[0.4em] text-[#9A7B38]"
+                  itemProp="slogan"
+                >
+                  Jorge Uquillas • HandCrafted 18k
                 </span>
               </div>
             </div>
 
-            <p className="font-cormorant text-lg italic text-[#C2BDB2] max-w-sm leading-relaxed">
-              "RINGS LUXURY by Jorge Uquillas — Anéis artesanais 1/1 HandCrafted em ouro 18k com diamantes, gravados com buril. Handmade 18k gold diamond rings."
+            <p className="font-cormorant text-base md:text-lg italic text-[#C2BDB2] max-w-sm leading-relaxed">
+              Anéis artesanais 1/1 HandCrafted em ouro 18k com diamantes naturais,
+              gravados com buril por Jorge Uquillas. Handmade 18k gold diamond rings.
             </p>
 
             <div className="flex items-center gap-4 text-[10px] tracking-[0.25em] text-[#9A7B38] uppercase">
-              <span>ATHENS</span>
-              <span>•</span>
-              <span>PLACE VENDÔME</span>
-              <span>•</span>
-              <span>GENEVA</span>
+              <span>São Paulo</span>
+              <span aria-hidden>•</span>
+              <span>Miami</span>
             </div>
+
+            <a
+              href="https://www.instagram.com/ringsluxury"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Rings Luxury no Instagram"
+              className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#C5A059]/40 hover:border-[#C5A059] text-[#C5A059] hover:text-[#E6CA85] hover:bg-[#C5A059]/10 rounded-full font-sans-luxury text-[11px] font-medium tracking-[0.2em] uppercase transition-all"
+                >
+              <Instagram className="w-3.5 h-3.5" />
+              <span>Instagram @ringsluxury</span>
+            </a>
           </div>
 
-          {/* Navigation Links */}
+          {/* Coleções — links reais, não âncoras */}
+          <nav className="md:col-span-3 space-y-4" aria-label="Collections">
+            <h2 className="font-cinzel text-[11px] tracking-[0.35em] uppercase text-[#C5A059]">
+              Collections
+            </h2>
+            <ul className="space-y-2.5 text-[11px] font-sans-luxury tracking-[0.2em] uppercase text-[#A8A296]">
+              {COLLECTIONS.map((c) => (
+                <li key={c.to}>
+                  <Link to={c.to} className="hover:text-[#C5A059] transition-colors">
+                    {c.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Ateliê */}
+          <nav className="md:col-span-2 space-y-4" aria-label="Atelier">
+            <h2 className="font-cinzel text-[11px] tracking-[0.35em] uppercase text-[#C5A059]">
+              Atelier
+            </h2>
+            <ul className="space-y-2.5 text-[11px] font-sans-luxury tracking-[0.2em] uppercase text-[#A8A296]">
+              {ATELIER.map((a) => (
+                <li key={a.to}>
+                  <Link to={a.to} className="hover:text-[#C5A059] transition-colors">
+                    {a.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Contato — NAP */}
           <div className="md:col-span-3 space-y-4">
-            <h4 className="font-cinzel text-xs tracking-[0.35em] uppercase text-[#C5A059] mb-4">
-              ARCHIVES & SANCTUARY
-            </h4>
-            <ul className="space-y-2.5 text-[11px] font-sans-luxury tracking-[0.25em] uppercase text-[#A8A296]">
+            <h2 className="font-cinzel text-[11px] tracking-[0.35em] uppercase text-[#C5A059]">
+              Private Salon
+            </h2>
+
+            <ul className="space-y-3 text-xs text-[#A8A296] font-sans-luxury leading-relaxed">
               <li>
-                <a href="#hero" className="hover:text-[#C5A059] transition-colors">
-                  I • Opening Scene
+                <a
+                  href={`tel:${contact.phone}`}
+                  className="inline-flex items-center gap-2 hover:text-[#C5A059] transition-colors"
+                >
+                  <Phone className="w-3.5 h-3.5 text-[#C5A059] shrink-0" aria-hidden />
+                  {contact.phoneDisplay}
                 </a>
               </li>
               <li>
-                <a href="#collections" className="hover:text-[#C5A059] transition-colors">
-                  II • The Collection
+                <a
+                  href={`mailto:${contact.email}`}
+                  className="inline-flex items-center gap-2 hover:text-[#C5A059] transition-colors break-all"
+                >
+                  <Mail className="w-3.5 h-3.5 text-[#C5A059] shrink-0" aria-hidden />
+                  {contact.email}
                 </a>
               </li>
-              <li>
-                <a href="#atelier" className="hover:text-[#C5A059] transition-colors">
-                  III • The Hand of the Master
-                </a>
-              </li>
-              <li>
-                <a href="#craftsmanship" className="hover:text-[#C5A059] transition-colors">
-                  IV • Five Sacred Stages
-                </a>
-              </li>
-              <li>
-                <a href="#heritage" className="hover:text-[#C5A059] transition-colors">
-                  V • Ancient Greek Heritage
-                </a>
-              </li>
-              <li>
-                <a href="#gallery" className="hover:text-[#C5A059] transition-colors">
-                  VI • Baroque Private Salon
-                </a>
-              </li>
-              <li>
-                <a href="#masterpiece" className="hover:text-[#C5A059] transition-colors">
-                  VII • Microscopic Masterpiece
-                </a>
+              <li className="inline-flex items-center gap-2">
+                <Clock className="w-3.5 h-3.5 text-[#C5A059] shrink-0" aria-hidden />
+                <span>
+                  {contact.hours.display}
+                  <br />
+                  {contact.hours.displayDays}
+                </span>
               </li>
             </ul>
-          </div>
 
-          {/* Private Salons & Social Protocol */}
-          <div className="md:col-span-4 space-y-4">
-            <h4 className="font-cinzel text-xs tracking-[0.35em] uppercase text-[#C5A059] mb-4">
-              PRIVATE SALON ADMISSIO
-            </h4>
-            <div className="space-y-3 text-xs text-[#A8A296] font-sans-luxury leading-relaxed tracking-wider">
-              <p>
-                <strong className="text-[#F3EFE6] font-cinzel">ATHENS:</strong> 12 Stratonos & Tripodon, Plaka (Subterranean Sanctuary)
-              </p>
-              <p>
-                <strong className="text-[#F3EFE6] font-cinzel">PARIS:</strong> 18 Place Vendôme, 75001 Paris (By Private Concierge)
-              </p>
-              <p>
-                <strong className="text-[#F3EFE6] font-cinzel">GENEVA:</strong> 42 Rue du Rhône, 1204 Genève
-              </p>
-            </div>
-
-            <div className="pt-3">
-              <a
-                href="https://www.instagram.com/ringsluxury"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#C5A059]/40 hover:border-[#C5A059] text-[#C5A059] hover:text-[#E6CA85] hover:bg-[#C5A059]/10 rounded-full font-sans-luxury text-[11px] font-medium tracking-[0.2em] uppercase transition-all"
-              >
-                <Instagram className="w-3.5 h-3.5" />
-                <span>Instagram @ringsluxury</span>
-              </a>
-            </div>
-
-            <div className="pt-2 flex items-center gap-5 text-[11px] font-cinzel tracking-[0.25em] text-[#C5A059]">
-              <a href="#contact" className="hover:text-[#E6CA85] transition-colors">
-                ACQUISITIONS
-              </a>
-              <span>/</span>
-              <a href="#contact" className="hover:text-[#E6CA85] transition-colors">
-                GAZETTE ARCHIVE
-              </a>
-              <span>/</span>
-              <a href="#contact" className="hover:text-[#E6CA85] transition-colors">
-                PRESS SALON
-              </a>
-            </div>
+            <ul className="pt-2 space-y-2 text-xs text-[#A8A296] font-sans-luxury leading-relaxed">
+              {locationsData.locations.map((loc) => (
+                <li key={loc.id} className="flex items-start gap-2">
+                  <MapPin className="w-3.5 h-3.5 text-[#C5A059] shrink-0 mt-0.5" aria-hidden />
+                  <span>
+                    <strong className="text-[#F3EFE6] font-cinzel">{loc.city}</strong>
+                    {loc.district ? ` — ${loc.district}` : ''}
+                    <br />
+                    <span className="text-[#9A7B38]">Visits under schedule</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        {/* Bottom Bar: Copyright & Timeless Motto */}
-        <div className="pt-12 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+        {/* Bottom bar */}
+        <div className="pt-12 flex flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
           <div className="text-[10px] tracking-[0.3em] uppercase text-[#9A7B38]">
-            © MMXXVI RINGS LUXURY ATELIER. ALL MONUMENTS RESERVED.
+            © MMXXVI RINGS LUXURY ATELIER
           </div>
 
-          {/* At the very bottom: SEO HandCrafted */}
-          <div className="font-cinzel text-[10px] md:text-xs font-semibold tracking-[0.32em] uppercase text-[#C5A059] text-center">
-            HANDCRAFTED BY JORGE UQUILLAS • ANÉIS ARTESANAIS OURO 18K • RINGS LUXURY
+          <div className="font-cinzel text-[10px] font-semibold tracking-[0.28em] uppercase text-[#C5A059] text-center">
+            HandCrafted 18k Gold • Anéis Artesanais Ouro 18k
           </div>
 
           <div className="text-[10px] tracking-[0.3em] uppercase text-[#9A7B38]">
-            ATHÈNES • HELLAS
+            All monuments reserved
           </div>
+        </div>
+
+        {/* Crédito de criação — link de volta ao portfólio */}
+        <div className="pt-10 flex justify-center">
+          <a
+            href={contact.credit.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[9px] sm:text-[10px] uppercase tracking-[0.32em] text-[#9A7B38] hover:text-[#C5A059] transition-colors text-center"
+          >
+            {contact.credit.prefix}{' '}
+            <span className="text-[#C5A059]">{contact.credit.name}</span>, {contact.credit.role}{' '}
+            from {contact.credit.from}
+          </a>
         </div>
       </div>
 
@@ -170,3 +228,5 @@ export function Footer() {
     </footer>
   );
 }
+
+export default Footer;

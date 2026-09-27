@@ -15,6 +15,7 @@ import { Gallery } from '../components/Gallery';
 import { MasterpieceDetail } from '../components/MasterpieceDetail';
 import { QuoteSection } from '../components/QuoteSection';
 import { WorldClients } from '../components/WorldClients';
+import { AtelierLocations } from '../components/AtelierLocations';
 import { Contact } from '../components/Contact';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
@@ -78,6 +79,9 @@ export function Home() {
 
         {/* I.5 — WHAT PEOPLE SAY ABOUT RINGS LUXURY — provas sociais Google */}
         <WorldClients />
+
+        {/* I.6 — VISITS IN THE PHYSICAL WORKSHOP UNDER SCHEDULE — Miami + São Paulo */}
+        <AtelierLocations />
 
         {/* II. The Museum Collection */}
         <Collection

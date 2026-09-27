@@ -1,0 +1,21 @@
+{
+  "$comment": "Dados de contato em UM lugar só. Rodapé, JSON-LD e bloco estático de build leem daqui — é o que garante NAP consistente (o sinal mais forte de SEO local). CONFERIR antes de publicar: estes dados vieram do rodapé do site antigo e há conflito no email, marcado abaixo.",
+  "phone": "+5511977240777",
+  "phoneDisplay": "+55 11 97724-0777",
+  "email": "uquillasartjewells@gmail.com",
+  "$emailConflict": "O codebase referencia 'ringsluxury@gmail.com' no nome do arquivo public/PUBLIC/Rings Luxury Master Engraver Sketch 2 site ringsluxury@gmail.com.jpeg. Dois emails diferentes = inconsistencia de NAP. Confirmar qual e o oficial.",
+  "hours": {
+    "days": ["Monday", "Friday"],
+    "opens": "10:00",
+    "closes": "19:00",
+    "display": "10:00 – 19:00",
+    "displayDays": "Monday – Friday"
+  },
+  "credit": {
+    "prefix": "Site created by",
+    "name": "@Vicentxiii Czar",
+    "role": "Digital Artisano",
+    "from": "Transcend Digital",
+    "url": "https://github.com/Vicentxiii"
+  }
+}
