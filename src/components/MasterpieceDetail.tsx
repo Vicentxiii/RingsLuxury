@@ -1,17 +1,22 @@
 import React, { useState, useRef } from 'react';
 import { Sparkles, ZoomIn, Info, Check } from 'lucide-react';
 import { GreekKeyBorder, GreekMeanderDivider, LaurelWreath, AcanthusLeaf } from './OrnamentIcons';
-import masterpieceImg from '../assets/images/masterpiece_macro_cuff_1789071946040.jpg';
+
+/** Anel Kraken em ouro, rubis e diamantes — substitui a macro do cuff */
+const KRAKEN_IMG =
+  '/PUBLIC/Anel%20Kraken%20feito%20em%20ouro%20Rubis%20e%20diamantes%20y%20Jorge%20Uquillas%20Rings%20Luxury.jpg';
 
 interface Hotspot {
   id: string;
   title: string;
+  /** mini descrição — poucos caracteres, condizente com o título */
+  mini: string;
   subtitle: string;
   description: string;
-  top: string;
-  left: string;
-  lineWidth: string;
-  lineDirection: 'left' | 'right';
+  /** classes literais de posição (mobile + sm) — Tailwind precisa do texto literal */
+  pos: string;
+  /** true = etiqueta abre para a direita do dot (não cobre o anel) */
+  tipLeft?: boolean;
 }
 
 export function MasterpieceDetail() {
@@ -23,47 +28,40 @@ export function MasterpieceDetail() {
   const hotspots: Hotspot[] = [
     {
       id: 'hotspot-1',
-      title: 'HAND ENGRAVED',
-      subtitle: 'Stereoscopic Micro-Chiseling',
+      title: 'Hand Engraving',
+      mini: 'Buril carved',
+      subtitle: 'Buril micro-chiseling',
       description:
-        'Chiseled directly into solid gold under 40x magnification with hand-shaped steel burins. Every hairline leaf vein catches ambient candlelight.',
-      top: '28%',
-      left: '32%',
-      lineWidth: 'w-24 md:w-32',
-      lineDirection: 'left',
+        'Chiseled directly into solid gold under 40x magnification with hand-shaped steel burins. Every tentacle scale catches ambient candlelight.',
+      pos: 'top-[34%] left-[18%] sm:top-[30%] sm:left-[20%]',
     },
     {
       id: 'hotspot-2',
-      title: '18K / 22K SOLID GOLD',
-      subtitle: 'Hellenistic Alloy Formulation',
+      title: '18k Gold',
+      mini: 'Solid 18k',
+      subtitle: 'Solid 18k gold body',
       description:
-        'Prepared with a proprietary matte-satin antique gold recipe containing copper and silver traces identical to archaeological Macedonian hoards.',
-      top: '42%',
-      left: '68%',
-      lineWidth: 'w-24 md:w-36',
-      lineDirection: 'right',
+        'Cast and finished in solid 18k gold with a proprietary matte-satin antique recipe, polished to a mirror glow.',
+      pos: 'top-[18%] left-[60%] sm:top-[22%] sm:left-[68%]',
+      tipLeft: true,
     },
     {
       id: 'hotspot-3',
-      title: 'ONE OF ONE',
-      subtitle: 'Inviolable Unicity',
+      title: 'MasterPiece',
+      mini: 'One of one',
+      subtitle: 'One of one',
       description:
         'The original wax matrix was incinerated in the lost-wax burnout. No mold or digital copy exists anywhere on earth.',
-      top: '72%',
-      left: '26%',
-      lineWidth: 'w-20 md:w-28',
-      lineDirection: 'left',
+      pos: 'top-[64%] left-[16%] sm:top-[66%] sm:left-[25%]',
     },
     {
       id: 'hotspot-4',
-      title: 'MASTER ARTISAN',
-      subtitle: '160 Recorded Workshop Hours',
+      title: 'Rubis and Diamonds',
+      mini: 'Ruby + pavé',
+      subtitle: 'Ruby eyes & diamond pavé',
       description:
-        'Executed exclusively by Rings Luxury Atelier Chief Master Goldsmith in Athens, certified with his personal hallmark punch.',
-      top: '64%',
-      left: '74%',
-      lineWidth: 'w-20 md:w-32',
-      lineDirection: 'right',
+        'Glowing ruby eyes ringed by a hand-set diamond pavé — every stone placed one by one under the microscope.',
+      pos: 'top-[48%] left-[64%] sm:top-[54%] sm:left-[83%]',
     },
   ];
 
@@ -119,12 +117,12 @@ export function MasterpieceDetail() {
           {/* Enormous Macro Image */}
           <div className="relative w-full h-full overflow-hidden bg-[#020202]">
             <img
-              src={masterpieceImg}
-              alt="High jewelry macro photography details"
+              src={KRAKEN_IMG}
+              alt="Anel Kraken em ouro 18k com rubis e diamantes — macro das tentáculos e caveiras gravadas à mão por Jorge Uquillas"
               referrerPolicy="no-referrer"
               loading="lazy"
-              className={`w-full h-full object-cover filter contrast-[1.12] brightness-[0.95] transition-transform duration-700 ease-out ${
-                isZoomed ? 'scale-150 origin-center cursor-move' : 'scale-100'
+              className={`w-full h-full object-cover object-[50%_45%] filter contrast-[1.12] brightness-[0.95] transition-transform duration-700 ease-out ${
+                isZoomed ? 'scale-[2.2] origin-center cursor-move' : 'scale-[1.35]'
               }`}
               style={
                 isZoomed
@@ -155,10 +153,9 @@ export function MasterpieceDetail() {
               return (
                 <div
                   key={hs.id}
-                  style={{ top: hs.top, left: hs.left }}
-                  className="absolute z-30 transform -translate-x-1/2 -translate-y-1/2"
+                  className={`absolute z-30 transform -translate-x-1/2 -translate-y-1/2 ${hs.pos}`}
                 >
-                  {/* Pulsing Center Target */}
+                  {/* Pulsing Center Target + etiqueta sempre visível */}
                   <button
                     onClick={() => setActiveHotspot(hs.id)}
                     className="group relative flex items-center justify-center p-2 focus:outline-none"
@@ -173,37 +170,20 @@ export function MasterpieceDetail() {
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-current" />
                     </span>
-                  </button>
-
-                  {/* Thin Gold Connecting Line & Annotation Box */}
-                  <div
-                    className={`absolute top-1/2 -translate-y-1/2 pointer-events-auto flex items-center gap-2 transition-all duration-500 ${
-                      hs.lineDirection === 'left'
-                        ? 'right-full flex-row-reverse text-right'
-                        : 'left-full flex-row text-left'
-                    } ${isSelected ? 'opacity-100 scale-100' : 'opacity-80 hover:opacity-100'}`}
-                  >
-                    {/* Gold Connecting Line */}
-                    <div className={`h-px bg-[#C5A059] ${hs.lineWidth}`} />
-
-                    {/* Annotation Label Box */}
-                    <div
-                      onClick={() => setActiveHotspot(hs.id)}
-                      className={`cursor-pointer p-2.5 md:p-3 bg-[#050505]/95 border border-[#C5A059]/50 backdrop-blur-md min-w-[160px] md:min-w-[200px] shadow-[0_10px_30px_rgba(0,0,0,0.9)] ${
-                        isSelected ? 'border-[#C5A059] ring-1 ring-[#C5A059]/30' : ''
+                    {/* etiqueta — sempre aparente, com mini descrição */}
+                    <span
+                      className={`pointer-events-none absolute top-full mt-3 whitespace-nowrap rounded-2xl border border-[#C5A059]/60 bg-[#050505]/95 px-3 py-2 sm:px-4 text-center shadow-[0_10px_30px_rgba(0,0,0,0.9)] backdrop-blur-md ${
+                        hs.tipLeft ? 'left-0' : 'left-1/2 -translate-x-1/2'
                       }`}
                     >
-                      <div className="flex items-center gap-1.5 mb-0.5 justify-start">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#C5A059]" />
-                        <span className="font-cinzel text-[10px] md:text-xs tracking-[0.25em] uppercase text-[#F3EFE6] font-semibold">
-                          {hs.title}
-                        </span>
-                      </div>
-                      <span className="text-[8px] md:text-[9px] uppercase tracking-[0.3em] text-[#9A7B38] block">
-                        {hs.subtitle}
+                      <span className="block font-cinzel text-[8px] sm:text-[9px] uppercase tracking-[0.2em] sm:tracking-[0.28em] text-[#E6CA85]">
+                        {hs.title}
                       </span>
-                    </div>
-                  </div>
+                      <span className="mt-1 block font-sans-luxury text-[7px] sm:text-[8px] uppercase tracking-[0.18em] sm:tracking-[0.24em] text-[#9A7B38]">
+                        {hs.mini}
+                      </span>
+                    </span>
+                  </button>
                 </div>
               );
             })}
@@ -213,7 +193,7 @@ export function MasterpieceDetail() {
             {/* Museum Catalogue Reference */}
             <div className="px-5 py-2 bg-[#020202]/90 border border-[#C5A059]/30 backdrop-blur-md pointer-events-auto rounded-full">
               <span className="text-[9px] uppercase tracking-[0.35em] text-[#E6CA85]">
-                PIECE UNIQUE • 22K HELLENIC CUFF BRACELET
+                PIECE UNIQUE • 18K GOLD KRAKEN RING — RUBIES & DIAMONDS
               </span>
             </div>
 
@@ -223,7 +203,7 @@ export function MasterpieceDetail() {
               className="px-5 py-2.5 bg-[#050505]/95 border border-[#C5A059] hover:bg-[#C5A059] text-[#C5A059] hover:text-[#020202] text-[10px] font-cinzel uppercase tracking-[0.25em] transition-all flex items-center gap-2 pointer-events-auto shadow-lg rounded-full"
             >
               <ZoomIn className="w-3.5 h-3.5" />
-              <span>{isZoomed ? 'Reset View' : 'Microscope Zoom 150%'}</span>
+              <span>{isZoomed ? 'Reset View' : 'Microscope Zoom 220%'}</span>
             </button>
           </div>
         </div>

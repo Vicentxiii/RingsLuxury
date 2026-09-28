@@ -56,19 +56,20 @@ export function Footer() {
           {/* Brand */}
           <div className="md:col-span-4 space-y-6">
             <div className="flex items-center gap-3">
-              <div className="relative w-10 h-10 rounded-full overflow-hidden border border-[#C5A059]/50 bg-[#050505] p-0.5 flex items-center justify-center shrink-0 shadow-[0_0_20px_rgba(197,160,89,0.25)]">
-                <img
-                  src="/logo.png"
-                  alt="Rings Luxury"
-                  className="w-full h-full object-cover rounded-full"
-                  onError={(e) => {
-                    const target = e.currentTarget;
-                    if (!target.src.includes('logo.svg')) {
-                      target.src = '/logo.svg';
-                    }
-                  }}
-                />
-              </div>
+              <img
+                src="/PUBLIC/logo-cortado.png"
+                alt="RINGS LUXURY by Jorge Uquillas"
+                className="w-auto h-14 md:h-16 object-contain select-none shrink-0"
+                draggable={false}
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.src.includes('logo-cortado.webp')) {
+                    target.src = '/PUBLIC/logo-cortado.webp';
+                  } else if (!target.src.includes('logo.svg')) {
+                    target.src = '/logo.svg';
+                  }
+                }}
+              />
               <div className="flex flex-col">
                 <span
                   className="font-cinzel text-xl md:text-2xl font-medium tracking-[0.3em] text-[#F3EFE6]"
@@ -194,7 +195,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="pt-12 flex flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
           <div className="text-[10px] tracking-[0.3em] uppercase text-[#9A7B38]">
-            © MMXXVI RINGS LUXURY ATELIER
+            © MMXXVI RINGS LUXURY ATELIER — All Rights Reserved
           </div>
 
           <div className="font-cinzel text-[10px] font-semibold tracking-[0.28em] uppercase text-[#C5A059] text-center">
@@ -202,7 +203,7 @@ export function Footer() {
           </div>
 
           <div className="text-[10px] tracking-[0.3em] uppercase text-[#9A7B38]">
-            All monuments reserved
+            Handmade in Brazil
           </div>
         </div>
 

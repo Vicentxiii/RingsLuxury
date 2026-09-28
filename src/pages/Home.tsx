@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Header } from '../components/Header';
 import { Hero } from '../components/Hero';
 import { QuemSouEu } from '../components/QuemSouEu';
+import { FeaturedRing } from '../components/FeaturedRing';
 import { WhyChoose } from '../components/WhyChoose';
 import { YouDecide } from '../components/YouDecide';
 import { ShippingWorldwide } from '../components/ShippingWorldwide';
@@ -68,6 +69,12 @@ export function Home() {
         {/* I.1 — SOBRE MIM / QUEM SOU EU — montagem Jorge Uquillas by @vicenteczar.dev */}
         <QuemSouEu />
 
+        {/* I.1.2 — THE MASTERPIECE DETAIL / MICROSCOPIC PROVENANCE — logo após a biografia */}
+        <MasterpieceDetail />
+
+        {/* I.1.1 — ANEL DE OURO 18K EM DESTAQUE — abaixo da peça em microscopic examination */}
+        <FeaturedRing />
+
         {/* I.2 — WHY CHOOSE RINGS LUXURY? — terceira seção fiel ao print */}
         <WhyChoose />
 
@@ -102,9 +109,6 @@ export function Home() {
 
         {/* VII. Baroque Private Gallery Salon */}
         <Gallery />
-
-        {/* VIII. Masterpiece Detail & Microscopic Examination */}
-        <MasterpieceDetail />
 
         {/* IX. Sententia Aurea Quote */}
         <QuoteSection />

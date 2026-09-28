@@ -115,8 +115,30 @@ button:not(.not-rounded) {
   animation-play-state: paused;
 }
 
+/* Marquee de anéis — FeaturedRing: faixa infinita em loop lento */
+@keyframes ring-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.ring-marquee-track {
+  animation: ring-marquee 64s linear infinite;
+  will-change: transform;
+}
+
+.ring-marquee:hover .ring-marquee-track {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .shipping-marquee-track {
+    animation: none;
+  }
+  .ring-marquee-track {
     animation: none;
   }
 }
