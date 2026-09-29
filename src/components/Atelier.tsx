@@ -1,17 +1,16 @@
 import React from 'react';
 import { GreekKeyBorder, GreekMeanderDivider, AcanthusLeaf } from './OrnamentIcons';
-import artisanImg from '../assets/images/artisan_hands_engrave_1789071934811.jpg';
-import emperorRingImg from '../assets/images/emperor_ring_artifact_1789071924540.jpg';
+
+const ATELIER_VIDEO = '/PUBLIC/atelier-video-monograma-maconico-templarios.mp4';
+const AGUIA_IMG =
+  '/PUBLIC/Luxury%20rings%20collection%20anel%20Aguia%20ma%C3%A7onica%20by%20Jorge%20Uquillas%20rings%20luxury.png';
 
 export function Atelier() {
   return (
     <section
       id="atelier"
-      className="relative w-full py-32 md:py-44 bg-[#050505] text-[#EAE6DF] overflow-hidden"
+      className="relative w-full py-32 md:py-44 bg-black text-[#EAE6DF] overflow-hidden"
     >
-      {/* Background Black Marble Veins & Ambient Gradients */}
-      <div className="absolute inset-0 bg-black-marble opacity-60" />
-      <div className="absolute -top-32 right-0 w-96 h-96 bg-[#C5A059]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         {/* Editorial Grid */}
@@ -25,15 +24,18 @@ export function Atelier() {
               </span>
             </div>
 
-            {/* Large Typography: THE HAND OF THE MASTER */}
+            {/* Large Typography: THE HAND OF JORGE UQUILLAS — letra única */}
             <h2
               id="atelier-heading"
-              className="font-cinzel text-4xl sm:text-5xl md:text-6xl tracking-[0.16em] uppercase text-[#FBF9F5] font-light leading-[1.12]"
+              className="font-cinzel text-2xl sm:text-3xl md:text-4xl tracking-[0.16em] uppercase text-[#FBF9F5] font-light leading-[1.25]"
             >
-              THE HAND
+              THE HAND OF
               <br />
-              <span className="font-decorative text-3xl sm:text-4xl md:text-5xl text-[#C5A059] italic">
-                OF THE MASTER
+              <span className="text-[#C5A059]">
+                JORGE UQUILLAS
+              </span>
+              <span className="mt-3 block text-xs sm:text-sm tracking-[0.4em] text-[#E6CA85] uppercase">
+                Master Engraver
               </span>
             </h2>
 
@@ -41,11 +43,11 @@ export function Atelier() {
             <blockquote className="font-cormorant text-2xl sm:text-3xl italic text-[#EAE6DF] leading-relaxed border-l-2 border-[#C5A059]/40 pl-6 my-6">
               "Every masterpiece begins with an idea,
               <br />
-              but becomes eternal through the hand of the artisan."
+              but becomes eternal through the hand of master engraver Jorge Uquillas."
             </blockquote>
 
             <p className="font-sans-luxury text-xs sm:text-sm text-[#A8A296] leading-relaxed tracking-wider">
-              Within our subterranean atelier beneath the shadow of the Acropolis, ancient metallurgical rites converge with contemporary haute joaillerie. Here, no digital rapid-prototyping exists. Every curve is carved in beeswax; every laurel leaf is chased by hand with 19th-century hardened steel gravers.
+              Within the subterranean atelier of master engraver Jorge Uquillas, beneath the shadow of the Acropolis, ancient metallurgical rites converge with contemporary haute joaillerie. Here, no digital rapid-prototyping exists. Every curve is carved in beeswax by Jorge Uquillas; every laurel leaf is chased by his hand with 19th-century hardened steel gravers.
             </p>
 
             {/* Atelier Disciplines Spec Grid */}
@@ -87,35 +89,38 @@ export function Atelier() {
               <div className="absolute -bottom-1 -right-1 w-2.5 h-2.5 border-b border-r border-[#C5A059]" />
 
               <div className="overflow-hidden aspect-[16/11] bg-[#020202]">
-                <img
-                  src={artisanImg}
-                  alt="Artisan hands engraving gold jewelry"
-                  referrerPolicy="no-referrer"
-                  loading="lazy"
-                  className="w-full h-full object-cover filter contrast-[1.1] brightness-95 hover:scale-105 transition-transform duration-1000"
+                <video
+                  src={ATELIER_VIDEO}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  aria-label="Anel Rings Luxury — anel monograma maçônico templários, by Jorge Uquillas"
+                  className="w-full h-full object-cover filter contrast-[1.1] brightness-95"
                 />
               </div>
 
               {/* Caption */}
               <div className="mt-3 flex items-center justify-between text-[9px] uppercase tracking-[0.3em] text-[#9A7B38]">
-                <span>ARCHIVE PLATE NO. IX</span>
-                <span>HAND-CHISELED 22K GOLD VOLUTES</span>
+                <span>ATELIER FILM — LOOP</span>
+                <span>MONOGRAMA MAÇÔNICO • TEMPLÁRIOS</span>
               </div>
             </div>
 
-            {/* Overlapping secondary vignette (Ring on marble) */}
+            {/* Overlapping secondary vignette (Águia Maçônica) */}
             <div className="hidden sm:block absolute -bottom-12 -left-10 w-48 md:w-56 border border-[#C5A059]/40 bg-[#0A0A0A] p-2 shadow-[0_20px_50px_rgba(0,0,0,0.9)]">
-              <div className="aspect-square overflow-hidden bg-[#020202]">
+              <div className="aspect-square overflow-hidden bg-black">
                 <img
-                  src={emperorRingImg}
-                  alt="Finished artifact"
+                  src={AGUIA_IMG}
+                  alt="Anel Águia Maçônica em ouro 18k — by Jorge Uquillas"
                   referrerPolicy="no-referrer"
                   loading="lazy"
-                  className="w-full h-full object-cover filter contrast-110"
+                  className="w-full h-full object-contain filter contrast-110"
                 />
               </div>
               <p className="mt-2 text-[8px] uppercase tracking-[0.25em] text-[#C5A059] text-center">
-                FINISHED MONUMENT
+                ÁGUIA MAÇÔNICA • JORGE UQUILLAS
               </p>
             </div>
           </div>

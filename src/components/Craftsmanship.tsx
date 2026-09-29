@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ArrowLeft, ArrowRight, Compass, Shield, Sparkles, Feather } from 'lucide-react';
 import { GreekKeyBorder, GreekMeanderDivider, LaurelWreath } from './OrnamentIcons';
 
-// Craftsmanship imagery
-import artisanImg from '../assets/images/artisan_hands_engrave_1789071934811.jpg';
-import masterpieceImg from '../assets/images/masterpiece_macro_cuff_1789071946040.jpg';
-import emperorRingImg from '../assets/images/emperor_ring_artifact_1789071924540.jpg';
-import statueImg from '../assets/images/statue_darkness_eternal_1789071956592.jpg';
-import heroStatueImg from '../assets/images/hero_statue_temple_1789071913515.jpg';
+// Craftsmanship imagery — 5 fotos novas da pasta public (ordem: Design → Eternize)
+const DESIGN_IMG = '/PUBLIC/Design%20of%20ring%20by%20rings%20luxury.jpg';
+const SCULPT_IMG =
+  '/PUBLIC/Sculpt%20by%20rings%20luxury%20master%20Hand%20Engraver%20Jorge%20Uquillas.jpg';
+const ENGRAVE_IMG =
+  '/PUBLIC/Engraving%20Ring%20by%20Jorge%20Uquillas%20the%20master%20Engraver%20Rings%20Luxury.jpeg';
+const POLISH_IMG =
+  '/PUBLIC/Rings%20luxury%20polindo%20anel%20Master%20Engraver%20Jorge%20Uquillas.png';
+const ETERNIZE_IMG =
+  '/PUBLIC/Anel%20de%20ouro%2018K%20eternizado%20com%20Cera%20e%20SELO%20by%20Rings%20Luxury%20Jorge%20Uquillas.jpeg';
+
 
 interface CraftStage {
   numeral: string;
@@ -22,6 +27,9 @@ interface CraftStage {
 
 export function Craftsmanship() {
   const [activeStageIndex, setActiveStageIndex] = useState(0);
+  const [autoPlay, setAutoPlay] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
+  const timerRef = useRef<number | null>(null);
 
   const stages: CraftStage[] = [
     {
@@ -33,7 +41,7 @@ export function Craftsmanship() {
         'Every jewel is conceived through geometric harmony governed by the Pythagorean Golden Ratio (1:1.618). Hand-drawn onto tinted vellum using sepia ink and gold leaf leafing, exploring the weight of darkness and light.',
       ritual: 'Chiaroscuro study of negative space and mythological iconography.',
       tool: 'Hand-cut goose quill, bone dividers, and tinted archival vellum.',
-      image: heroStatueImg,
+      image: DESIGN_IMG,
     },
     {
       numeral: 'II',
@@ -44,7 +52,7 @@ export function Craftsmanship() {
         'Rather than digital rendering, our artisans hand-sculpt organic beeswax and hard dental wax under stereoscopic microscopes, carving micro-reliefs of Olympian deities and classical acanthus leaves.',
       ritual: 'Thermal wax carving with heated steel needles and natural resin.',
       tool: 'Heated miniature spatulas, hard micro-wax, and flame lamps.',
-      image: artisanImg,
+      image: SCULPT_IMG,
     },
     {
       numeral: 'III',
@@ -55,7 +63,7 @@ export function Craftsmanship() {
         'Using hardened steel burins ground to razor angles, the master engraver cuts directly into solid 18K and 22K gold. Every microscopic cut produces an imperishable facet that refracts light with antique depth.',
       ritual: 'Rhythmic chiseled cuts guided by steady respiration and muscle memory.',
       tool: 'Handmade French burins, pitch bowls, and jeweler’s eyeglass.',
-      image: emperorRingImg,
+      image: ENGRAVE_IMG,
     },
     {
       numeral: 'IV',
@@ -66,7 +74,7 @@ export function Craftsmanship() {
         'We reject aggressive machine buffing, which rounds crisp classical borders. Instead, stones are burnished using natural agate tips and crushed volcanic obsidian powder to achieve an aristocratic matte-satin luster.',
       ritual: 'Cold water burnishing to preserve crisp classical architectural edges.',
       tool: 'German agate burnishers and pulverized obsidian abrasive.',
-      image: masterpieceImg,
+      image: POLISH_IMG,
     },
     {
       numeral: 'V',
@@ -77,11 +85,28 @@ export function Craftsmanship() {
         'The completed creation receives the Athenian Owl master stamp, the Rings Luxury royal crest, and an individual archival folio sealed in hot beeswax. It is now immortalized in the Rings Luxury registry forever.',
       ritual: 'Cold steel punch impression and archival registry entry.',
       tool: 'Hand-carved hardened steel punch and sovereign seal wax.',
-      image: statueImg,
+      image: ETERNIZE_IMG,
     },
   ];
 
   const currentStage = stages[activeStageIndex];
+
+  // Auto-play leve: 2.5s por fase, pausa no hover, para definitivo no clique
+  useEffect(() => {
+    if (!autoPlay || isHovered) return;
+    timerRef.current = window.setInterval(() => {
+      setActiveStageIndex((prev) => (prev + 1) % stages.length);
+    }, 2500);
+    return () => {
+      if (timerRef.current) window.clearInterval(timerRef.current);
+    };
+  }, [autoPlay, isHovered, stages.length]);
+
+  const handleSelectStage = (idx: number) => {
+    setAutoPlay(false);
+    if (timerRef.current) window.clearInterval(timerRef.current);
+    setActiveStageIndex(idx);
+  };
 
   return (
     <section
@@ -115,7 +140,7 @@ export function Craftsmanship() {
           {stages.map((stage, idx) => (
             <button
               key={stage.numeral}
-              onClick={() => setActiveStageIndex(idx)}
+              onClick={() => handleSelectStage(idx)}
               className={`flex flex-col items-center flex-1 min-w-[120px] transition-all duration-300 relative group pb-2 ${
                 activeStageIndex === idx
                   ? 'text-[#C5A059]'
@@ -141,7 +166,11 @@ export function Craftsmanship() {
         </div>
 
         {/* Stage Presentation Showcase */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center"
+        >
           {/* Left: Stage Visual */}
           <div className="lg:col-span-7 relative group">
             <div className="relative border border-[#C5A059]/40 bg-[#070707] p-3 md:p-5 shadow-[0_25px_80px_rgba(0,0,0,0.9)]">
@@ -216,7 +245,7 @@ export function Craftsmanship() {
             <div className="flex items-center justify-between pt-6 border-t border-[#C5A059]/20">
               <button
                 disabled={activeStageIndex === 0}
-                onClick={() => setActiveStageIndex((prev) => Math.max(0, prev - 1))}
+                onClick={() => handleSelectStage(Math.max(0, activeStageIndex - 1))}
                 className="flex items-center gap-2 text-xs font-cinzel tracking-[0.25em] uppercase text-[#EAE6DF]/60 hover:text-[#C5A059] disabled:opacity-20 disabled:pointer-events-none transition-colors"
               >
                 <ArrowLeft className="w-4 h-4" />
@@ -229,7 +258,7 @@ export function Craftsmanship() {
 
               <button
                 disabled={activeStageIndex === stages.length - 1}
-                onClick={() => setActiveStageIndex((prev) => Math.min(stages.length - 1, prev + 1))}
+                onClick={() => handleSelectStage(Math.min(stages.length - 1, activeStageIndex + 1))}
                 className="flex items-center gap-2 text-xs font-cinzel tracking-[0.25em] uppercase text-[#C5A059] hover:text-[#E6CA85] disabled:opacity-20 disabled:pointer-events-none transition-colors"
               >
                 <span>NEXT STAGE</span>

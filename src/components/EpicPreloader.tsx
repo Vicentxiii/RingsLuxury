@@ -59,13 +59,6 @@ export function EpicPreloader({ isExiting }: EpicPreloaderProps) {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[500px] rounded-full opacity-[0.06] blur-[60px] bg-[radial-gradient(circle_at_center,_#E6CA85_0%,_transparent_65%)]" />
         {/* Vignette */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_30%,_#020202_85%)]" />
-        {/* Grain */}
-        <div className="absolute inset-0 opacity-[0.04] film-grain pointer-events-none" />
-        {/* Linhas gregas sutis */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: `linear-gradient(rgba(197,160,89,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(197,160,89,0.15) 1px, transparent 1px)`,
-          backgroundSize: '80px 80px'
-        }} />
       </div>
 
       {/* Partículas minúsculas amarelas flutuantes */}

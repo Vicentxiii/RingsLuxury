@@ -1,10 +1,13 @@
-import React, { useState, useRef } from 'react';
-import { Sparkles, ZoomIn, Info, Check } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Sparkles, ZoomIn, Info, BadgeCheck, X } from 'lucide-react';
 import { GreekKeyBorder, GreekMeanderDivider, LaurelWreath, AcanthusLeaf } from './OrnamentIcons';
 
 /** Anel Kraken em ouro, rubis e diamantes — substitui a macro do cuff */
 const KRAKEN_IMG =
   '/PUBLIC/Anel%20Kraken%20feito%20em%20ouro%20Rubis%20e%20diamantes%20y%20Jorge%20Uquillas%20Rings%20Luxury.jpg';
+
+const CERT_IMG =
+  '/PUBLIC/Certificado%20de%20autenticidade%20Rings%20Luxury%20Jorge%20Uquillas.jpg';
 
 interface Hotspot {
   id: string;
@@ -23,7 +26,27 @@ export function MasterpieceDetail() {
   const [activeHotspot, setActiveHotspot] = useState<string>('hotspot-1');
   const [isZoomed, setIsZoomed] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [lensPos, setLensPos] = useState({ x: 50, y: 50 });
+  const RING_CENTER = { x: 47, y: 43 };
+  const [lensPos, setLensPos] = useState(RING_CENTER);
+  const [showCert, setShowCert] = useState(false);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        if (showCert) setShowCert(false);
+        else setIsZoomed(false);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [showCert, isZoomed]);
+
+  useEffect(() => {
+    document.body.style.overflow = showCert ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [showCert]);
 
   const hotspots: Hotspot[] = [
     {
@@ -33,7 +56,7 @@ export function MasterpieceDetail() {
       subtitle: 'Buril micro-chiseling',
       description:
         'Chiseled directly into solid gold under 40x magnification with hand-shaped steel burins. Every tentacle scale catches ambient candlelight.',
-      pos: 'top-[34%] left-[18%] sm:top-[30%] sm:left-[20%]',
+      pos: 'top-[56%] left-[67%]',
     },
     {
       id: 'hotspot-2',
@@ -42,7 +65,7 @@ export function MasterpieceDetail() {
       subtitle: 'Solid 18k gold body',
       description:
         'Cast and finished in solid 18k gold with a proprietary matte-satin antique recipe, polished to a mirror glow.',
-      pos: 'top-[18%] left-[60%] sm:top-[22%] sm:left-[68%]',
+      pos: 'top-[24%] left-[54%]',
       tipLeft: true,
     },
     {
@@ -52,7 +75,7 @@ export function MasterpieceDetail() {
       subtitle: 'One of one',
       description:
         'The original wax matrix was incinerated in the lost-wax burnout. No mold or digital copy exists anywhere on earth.',
-      pos: 'top-[64%] left-[16%] sm:top-[66%] sm:left-[25%]',
+      pos: 'top-[71%] left-[37%]',
     },
     {
       id: 'hotspot-4',
@@ -61,17 +84,31 @@ export function MasterpieceDetail() {
       subtitle: 'Ruby eyes & diamond pavé',
       description:
         'Glowing ruby eyes ringed by a hand-set diamond pavé — every stone placed one by one under the microscope.',
-      pos: 'top-[48%] left-[64%] sm:top-[54%] sm:left-[83%]',
+      pos: 'top-[40%] left-[29%]',
     },
   ];
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
+    const rect = e.currentTarget.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
     setLensPos({ x, y });
   };
+
+  const handleZoomToggle = () => {
+    if (!isZoomed) setLensPos(RING_CENTER);
+    setIsZoomed(!isZoomed);
+  };
+
+  // Dots abrem para os lados no hover (liberam o anel) e voltam ao sair
+  const [scattered, setScattered] = useState(false);
+  // Vetores para fora do centro do anel (47,43) — distância ~52px
+  const SCATTER_VEC = [
+    { x: 44, y: 28 },
+    { x: 18, y: -49 },
+    { x: -18, y: 49 },
+    { x: -51, y: -9 },
+  ];
 
   return (
     <section
@@ -105,7 +142,6 @@ export function MasterpieceDetail() {
         {/* Monumental Macro Exhibition Stage */}
         <div
           ref={containerRef}
-          onMouseMove={handleMouseMove}
           className="relative w-full h-[65vh] sm:h-[75vh] md:h-[85vh] bg-[#050505] border border-[#C5A059]/40 overflow-hidden select-none p-3 md:p-6 shadow-[0_30px_100px_rgba(0,0,0,0.95)]"
         >
           {/* Classical Frame Corner Brackets */}
@@ -115,14 +151,25 @@ export function MasterpieceDetail() {
           <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-[#C5A059] z-20" />
 
           {/* Enormous Macro Image */}
-          <div className="relative w-full h-full overflow-hidden bg-[#020202]">
+          <div
+            onMouseMove={(e) => {
+              handleMouseMove(e);
+              setScattered(true);
+            }}
+            onMouseEnter={() => setScattered(true)}
+            onMouseLeave={() => {
+              setLensPos(RING_CENTER);
+              setScattered(false);
+            }}
+            className="relative w-full h-full overflow-hidden bg-[#020202]"
+          >
             <img
               src={KRAKEN_IMG}
               alt="Anel Kraken em ouro 18k com rubis e diamantes — macro das tentáculos e caveiras gravadas à mão por Jorge Uquillas"
               referrerPolicy="no-referrer"
               loading="lazy"
-              className={`w-full h-full object-cover object-[50%_45%] filter contrast-[1.12] brightness-[0.95] transition-transform duration-700 ease-out ${
-                isZoomed ? 'scale-[2.2] origin-center cursor-move' : 'scale-[1.35]'
+              className={`w-full h-full object-cover object-[50%_38%] filter contrast-[1.12] brightness-[0.95] transition-transform duration-700 ease-out ${
+                isZoomed ? 'scale-[2.2] origin-center cursor-move' : 'scale-[1.08]'
               }`}
               style={
                 isZoomed
@@ -134,7 +181,7 @@ export function MasterpieceDetail() {
             />
 
             {/* Dark Vignette Around Edges */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,#020202_90%)] pointer-events-none" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_35%,#020202_92%)] pointer-events-none" />
 
             {/* Directional Candlelight Spotlight that follows cursor */}
             <div
@@ -144,54 +191,80 @@ export function MasterpieceDetail() {
                 top: `${lensPos.y}%`,
               }}
             />
+
+            {/* Hotspots — espaçam para os lados no hover, voltam ao sair */}
+            {!isZoomed &&
+              hotspots.map((hs, idx) => {
+                const isSelected = activeHotspot === hs.id;
+                const vec = SCATTER_VEC[idx % SCATTER_VEC.length];
+                const sx = scattered ? vec.x : 0;
+                const sy = scattered ? vec.y : 0;
+                return (
+                  <div
+                    key={hs.id}
+                    className={`absolute z-30 -translate-x-1/2 -translate-y-1/2 ${hs.pos}`}
+                  >
+                    <div
+                      className="transition-transform duration-700 ease-out will-change-transform"
+                      style={{ transform: `translate(${sx}px, ${sy}px)` }}
+                    >
+                    <button
+                      onClick={() => setActiveHotspot(hs.id)}
+                      aria-label={hs.title}
+                      className="group relative flex items-center justify-center w-6 h-6 cursor-pointer focus:outline-none"
+                    >
+                      {/* halo sutil */}
+                      <span
+                        className={`absolute w-4 h-4 rounded-full border border-[#C5A059]/50 transition-all ${
+                          isSelected ? 'scale-125 border-[#C5A059]' : 'group-hover:scale-110'
+                        }`}
+                      />
+                      <span
+                        className={`absolute w-4 h-4 rounded-full bg-[#C5A059]/15 ${
+                          isSelected ? 'animate-ping [animation-duration:2.2s]' : 'hidden group-hover:block group-hover:animate-ping group-hover:[animation-duration:2.2s]'
+                        }`}
+                      />
+                      {/* dot central — 10px */}
+                      <span
+                        className={`relative w-2.5 h-2.5 rounded-full border flex items-center justify-center transition-all shadow-[0_0_10px_rgba(197,160,89,0.8)] ${
+                          isSelected
+                            ? 'bg-[#C5A059] border-[#E6CA85] scale-110'
+                            : 'bg-[#050505]/90 border-[#C5A059] group-hover:bg-[#C5A059]/80'
+                        }`}
+                      >
+                        <span
+                          className={`w-1 h-1 rounded-full ${
+                            isSelected ? 'bg-[#020202]' : 'bg-[#C5A059] group-hover:bg-[#020202]'
+                          }`}
+                        />
+                      </span>
+                      {/* palavra clicável — mesmo botão do dot */}
+                      <span
+                        className={`absolute bottom-full mb-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border px-4 py-2 backdrop-blur-md shadow-[0_6px_20px_rgba(0,0,0,0.85)] transition-all cursor-pointer ${
+                          isSelected
+                            ? 'bg-[#C5A059] border-[#E6CA85]'
+                            : 'bg-[#020202]/85 border-[#C5A059]/40 group-hover:border-[#C5A059]/80'
+                        }`}
+                      >
+                        <span
+                          className={`block font-cinzel text-[11px] sm:text-[12px] uppercase tracking-[0.2em] leading-none ${
+                            isSelected ? 'text-[#020202]' : 'text-[#E6CA85]'
+                          }`}
+                        >
+                          {hs.title}
+                        </span>
+                      </span>
+                    </button>
+                    </div>
+                  </div>
+                );
+              })}
           </div>
 
-          {/* Hotspot Annotations with Thin Gold Connecting Lines */}
-          {!isZoomed &&
-            hotspots.map((hs) => {
-              const isSelected = activeHotspot === hs.id;
-              return (
-                <div
-                  key={hs.id}
-                  className={`absolute z-30 transform -translate-x-1/2 -translate-y-1/2 ${hs.pos}`}
-                >
-                  {/* Pulsing Center Target + etiqueta sempre visível */}
-                  <button
-                    onClick={() => setActiveHotspot(hs.id)}
-                    className="group relative flex items-center justify-center p-2 focus:outline-none"
-                  >
-                    <span className="absolute w-8 h-8 rounded-full bg-[#C5A059]/20 animate-ping" />
-                    <span
-                      className={`relative w-4 h-4 rounded-full border border-[#C5A059] flex items-center justify-center transition-all ${
-                        isSelected
-                          ? 'bg-[#C5A059] text-[#020202] scale-125'
-                          : 'bg-[#050505] text-[#C5A059] group-hover:scale-110'
-                      }`}
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-current" />
-                    </span>
-                    {/* etiqueta — sempre aparente, com mini descrição */}
-                    <span
-                      className={`pointer-events-none absolute top-full mt-3 whitespace-nowrap rounded-2xl border border-[#C5A059]/60 bg-[#050505]/95 px-3 py-2 sm:px-4 text-center shadow-[0_10px_30px_rgba(0,0,0,0.9)] backdrop-blur-md ${
-                        hs.tipLeft ? 'left-0' : 'left-1/2 -translate-x-1/2'
-                      }`}
-                    >
-                      <span className="block font-cinzel text-[8px] sm:text-[9px] uppercase tracking-[0.2em] sm:tracking-[0.28em] text-[#E6CA85]">
-                        {hs.title}
-                      </span>
-                      <span className="mt-1 block font-sans-luxury text-[7px] sm:text-[8px] uppercase tracking-[0.18em] sm:tracking-[0.24em] text-[#9A7B38]">
-                        {hs.mini}
-                      </span>
-                    </span>
-                  </button>
-                </div>
-              );
-            })}
-
           {/* Controls Bar at Bottom */}
-          <div className="absolute bottom-6 left-6 right-6 z-30 flex items-center justify-between pointer-events-none">
+          <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 z-30 flex items-center justify-between gap-3 pointer-events-none">
             {/* Museum Catalogue Reference */}
-            <div className="px-5 py-2 bg-[#020202]/90 border border-[#C5A059]/30 backdrop-blur-md pointer-events-auto rounded-full">
+            <div className="hidden sm:block px-5 py-2 bg-[#020202]/90 border border-[#C5A059]/30 backdrop-blur-md pointer-events-auto rounded-full">
               <span className="text-[9px] uppercase tracking-[0.35em] text-[#E6CA85]">
                 PIECE UNIQUE • 18K GOLD KRAKEN RING — RUBIES & DIAMONDS
               </span>
@@ -199,8 +272,8 @@ export function MasterpieceDetail() {
 
             {/* Zoom Mode Toggle */}
             <button
-              onClick={() => setIsZoomed(!isZoomed)}
-              className="px-5 py-2.5 bg-[#050505]/95 border border-[#C5A059] hover:bg-[#C5A059] text-[#C5A059] hover:text-[#020202] text-[10px] font-cinzel uppercase tracking-[0.25em] transition-all flex items-center gap-2 pointer-events-auto shadow-lg rounded-full"
+              onClick={handleZoomToggle}
+              className="ml-auto px-4 py-2 sm:px-5 sm:py-2.5 bg-[#050505]/95 border border-[#C5A059] hover:bg-[#C5A059] text-[#C5A059] hover:text-[#020202] text-[9px] sm:text-[10px] font-cinzel uppercase tracking-[0.25em] transition-all flex items-center gap-2 pointer-events-auto shadow-lg rounded-full"
             >
               <ZoomIn className="w-3.5 h-3.5" />
               <span>{isZoomed ? 'Reset View' : 'Microscope Zoom 220%'}</span>
@@ -223,10 +296,25 @@ export function MasterpieceDetail() {
               </p>
             </div>
 
-            <div className="flex items-center gap-2 px-4 py-2 border border-[#C5A059]/30 bg-[#0A0A0A] text-[#C5A059] text-[10px] uppercase tracking-[0.25em] whitespace-nowrap">
-              <Check className="w-3.5 h-3.5" />
-              <span>Certified Museum Standard</span>
-            </div>
+            <button
+              type="button"
+              onClick={() => setShowCert(true)}
+              className="group relative overflow-hidden flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-[#9A7B38] via-[#E6CA85] to-[#C5A059] text-[#020202] transition-all duration-500 text-left shadow-[0_0_35px_rgba(197,160,89,0.35)] hover:shadow-[0_0_55px_rgba(230,202,133,0.6)] hover:brightness-110"
+            >
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/60 to-transparent animate-[shineSweep_2.8s_ease-in-out_infinite]"
+              />
+              <BadgeCheck className="relative w-5 h-5 shrink-0" />
+              <span className="relative flex flex-col gap-1">
+                <span className="text-[11px] uppercase tracking-[0.25em] font-cinzel font-semibold">
+                  All pieces coming with certificate
+                </span>
+                <span className="text-[9px] uppercase tracking-[0.3em] text-[#020202]/70">
+                  Tap to view authenticity →
+                </span>
+              </span>
+            </button>
           </div>
         )}
       </div>
@@ -234,6 +322,59 @@ export function MasterpieceDetail() {
       <div className="w-full mt-24 opacity-20">
         <GreekKeyBorder className="w-full h-1" />
       </div>
+
+      {/* Certificate Modal — glass 3D, somente o certificado */}
+      {showCert && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8 animate-[fadeIn_0.35s_ease-out]"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Certificate of authenticity"
+        >
+          {/* fundo totalmente desfocado */}
+          <button
+            aria-label="Close certificate"
+            onClick={() => setShowCert(false)}
+            className="absolute inset-0 bg-black/75 backdrop-blur-2xl backdrop-saturate-150 cursor-zoom-out"
+          />
+          {/* palco 3D */}
+          <div
+            className="relative max-w-3xl w-full animate-[cert3D_0.6s_cubic-bezier(0.22,1,0.36,1)]"
+            style={{ perspective: '1400px' }}
+          >
+            <div className="relative overflow-hidden rounded-none border border-white/15 bg-white/[0.06] shadow-[0_50px_140px_rgba(0,0,0,0.9)]">
+              <img
+                src={CERT_IMG}
+                alt="Certificado de autenticidade Rings Luxury — Jorge Uquillas"
+                className="block w-full h-auto max-h-[82vh] object-contain"
+              />
+              {/* vidro — brilho */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.16] via-transparent via-35% to-transparent" />
+              <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+            </div>
+            {/* X quadrado em vidro */}
+            <button
+              onClick={() => setShowCert(false)}
+              aria-label="Fechar"
+              className="absolute top-3 right-3 w-9 h-9 rounded-none bg-black/40 backdrop-blur-md border border-white/20 text-white/85 flex items-center justify-center hover:bg-white/15 hover:text-white transition-all"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      )}
+
+      <style>{`
+        @keyframes shineSweep {
+          0% { transform: translateX(-100%); }
+          55%, 100% { transform: translateX(100%); }
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes cert3D {
+          from { opacity: 0; transform: translateY(34px) rotateX(12deg) rotateY(-8deg) scale(0.94); }
+          to { opacity: 1; transform: translateY(0) rotateX(0deg) rotateY(0deg) scale(1); }
+        }
+      `}</style>
     </section>
   );
 }

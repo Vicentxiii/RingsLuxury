@@ -10,8 +10,8 @@ export function WhyChoose() {
       className="relative w-full bg-black overflow-hidden isolate border-b border-[#C5A059]/35"
       aria-label="Why choose Rings Luxury"
     >
-      {/* FUNDO — sem imagem, preto liso */}
-      <div className="absolute inset-0 z-0 overflow-hidden bg-[#020202]" />
+      {/* FUNDO — preto puro igual à seção de cima */}
+      <div className="absolute inset-0 z-0 overflow-hidden bg-black" />
 
       {/* CONTEÚDO */}
       <div className="relative z-10 w-full max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10 pt-10 sm:pt-12 lg:pt-[42px] pb-12 sm:pb-14 lg:pb-[44px]">

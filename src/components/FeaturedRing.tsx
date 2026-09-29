@@ -117,15 +117,7 @@ export function FeaturedRing() {
       className="relative w-full bg-black overflow-hidden isolate"
       aria-label="Luxury rings collection — 18k gold handcrafted rings by Jorge Uquillas"
     >
-      {/* halo de palco, bem difuso — sem borda visível */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 z-0"
-        style={{
-          background:
-            'radial-gradient(ellipse 62% 44% at 50% 40%, rgba(197,160,89,0.09) 0%, rgba(197,160,89,0.035) 44%, rgba(197,160,89,0.01) 68%, transparent 86%)',
-        }}
-      />
+      {/* sessão 100% preta — sem halo/flare */}
 
       {/* CABEÇALHO CENTRALIZADO */}
       <div className="relative z-10 w-full max-w-[1180px] mx-auto px-5 sm:px-8 lg:px-10 pt-16 sm:pt-20 lg:pt-24 pb-10 sm:pb-12">
@@ -184,35 +176,35 @@ export function FeaturedRing() {
         role="region"
         aria-label="Coleção Luxury Rings em movimento contínuo"
       >
-        <div className="ring-marquee-track flex w-max items-stretch">
+        <div className="ring-marquee-track flex w-max items-center">
           {/* duas cópias idênticas = loop sem costura no -50% */}
           {[0, 1].map((copy) => (
-            <div key={copy} className="flex items-stretch" aria-hidden={copy === 1}>
+            <div key={copy} className="flex items-center" aria-hidden={copy === 1}>
               {PIECES.map((piece) => (
                 <figure
                   key={`${copy}-${piece.src}`}
-                  className="group relative shrink-0 w-[190px] sm:w-[220px] lg:w-[240px] px-3 sm:px-4"
+                  className="group relative shrink-0 w-[220px] sm:w-[260px] lg:w-[300px] px-5 sm:px-7 flex flex-col items-center justify-center bg-transparent border-0"
                 >
-                  <div className="relative h-full rounded-[18px] border border-[#C5A059]/22 bg-[#050505]/70 px-3 pt-3 pb-4 transition-colors duration-500 group-hover:border-[#C5A059]/55">
-                    <div className="relative aspect-square overflow-hidden rounded-[12px] bg-black/40">
-                      <img
-                        src={piece.src}
-                        alt={piece.alt}
-                        loading="lazy"
-                        draggable={false}
-                        className="absolute inset-0 w-full h-full object-contain p-2 select-none transition-transform duration-700 ease-out group-hover:scale-[1.06]"
-                        style={{ filter: 'brightness(0.9) contrast(1.05)' }}
-                        onError={(e) =>
-                          ((e.currentTarget as HTMLImageElement).style.display = 'none')
-                        }
-                      />
-                    </div>
-                    <figcaption className="mt-3 text-center font-cinzel uppercase text-[#C5A059]/85 transition-colors duration-500 group-hover:text-[#E6CA85]"
-                      style={{ fontSize: 'clamp(8.5px, 0.68vw, 10px)', letterSpacing: '0.26em' }}
-                    >
-                      {piece.name}
-                    </figcaption>
-                  </div>
+                  <img
+                    src={piece.src}
+                    alt={piece.alt}
+                    loading="lazy"
+                    draggable={false}
+                    className="w-full h-auto max-h-[260px] sm:max-h-[300px] object-contain select-none transition-transform duration-700 ease-out group-hover:scale-[1.1]"
+                    style={{
+                      filter:
+                        'brightness(1) contrast(1.08) drop-shadow(0 18px 30px rgba(0,0,0,0.9))',
+                    }}
+                    onError={(e) =>
+                      ((e.currentTarget as HTMLImageElement).style.display = 'none')
+                    }
+                  />
+                  <figcaption
+                    className="mt-2 text-center font-cinzel uppercase text-[#C5A059]/85 transition-colors duration-500 group-hover:text-[#E6CA85]"
+                    style={{ fontSize: 'clamp(8.5px, 0.68vw, 10px)', letterSpacing: '0.26em' }}
+                  >
+                    {piece.name}
+                  </figcaption>
                 </figure>
               ))}
             </div>

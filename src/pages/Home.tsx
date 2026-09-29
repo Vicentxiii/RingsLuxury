@@ -12,7 +12,6 @@ import { StatueSection } from '../components/StatueSection';
 import { Atelier } from '../components/Atelier';
 import { Craftsmanship } from '../components/Craftsmanship';
 import { Heritage } from '../components/Heritage';
-import { Gallery } from '../components/Gallery';
 import { MasterpieceDetail } from '../components/MasterpieceDetail';
 import { QuoteSection } from '../components/QuoteSection';
 import { WorldClients } from '../components/WorldClients';
@@ -78,8 +77,14 @@ export function Home() {
         {/* I.2 — WHY CHOOSE RINGS LUXURY? — terceira seção fiel ao print */}
         <WhyChoose />
 
+        {/* IV. The Atelier: The Hand of the Master — logo abaixo do WHY CHOOSE */}
+        <Atelier />
+
         {/* I.3 — YOU DECIDE EVERY STONE EVERY DETAIL — com carrossel do ateliê */}
         <YouDecide />
+
+        {/* V. Craftsmanship: Five Sacred Stages — logo abaixo do YOU DECIDE */}
+        <Craftsmanship />
 
         {/* I.4 — SHIPPING WORLDWIDE — mini-carrossel de bandeiras */}
         <ShippingWorldwide />
@@ -98,17 +103,8 @@ export function Home() {
         {/* III. Dramatic Greek Statue Parallax Section */}
         <StatueSection />
 
-        {/* IV. The Atelier: The Hand of the Master */}
-        <Atelier />
-
-        {/* V. Craftsmanship: Five Sacred Stages */}
-        <Craftsmanship />
-
         {/* VI. Ancient Greek Heritage */}
         <Heritage />
-
-        {/* VII. Baroque Private Gallery Salon */}
-        <Gallery />
 
         {/* IX. Sententia Aurea Quote */}
         <QuoteSection />
