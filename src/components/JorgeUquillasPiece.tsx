@@ -839,7 +839,7 @@ export function JorgeUquillasPiece({ onBackToAtelier, onOpenConsultation }: Jorg
         <div className="jq-slide" id="jq-slide-3">
           <h2 className="jq-slide-title">Family<br />Tradition</h2>
           <p className="jq-slide-desc">
-            Uma nobre arte passada de avô para neto — três gerações de mestres do buril. Jorge Uquillas aprendeu as primeiras técnicas com o grande Mestre Ivan Uquillas, levou a tradição da família da Colômbia aos ateliês da Europa e hoje, em São Paulo, é um dos únicos expoentes desse nível no continente. Cada joia carrega esse legado, esculpido à mão em ouro 18k.
+            A noble art passed from grandfather to grandson, three generations of burin masters. Jorge Uquillas learned his first techniques with the great Master Ivan Uquillas, carried the family tradition from Colombia to the ateliers of Europe, and today, in São Paulo, stands as one of the only exponents of this level on the continent. Each jewel carries this legacy, hand-carved in 18k gold.
           </p>
         </div>
 
