@@ -37,7 +37,7 @@ export function QuoteSection() {
           “TIME CREATES HISTORY.
           <br />
           <span className="text-[#C5A059] font-normal not-italic font-cinzel text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-[0.22em] block mt-2">
-            THE MASTER CREATES LEGACY.”
+            THE MASTER ENGRAVER CREATES LEGACY.”
           </span>
         </blockquote>
 
