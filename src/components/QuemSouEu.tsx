@@ -46,7 +46,7 @@ export function QuemSouEu({}: QuemSouEuProps) {
       </div>
 
       {/* CONTEÚDO — 2 colunas */}
-      <div className="relative z-10 w-full max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-12 lg:py-[54px]">
+      <div className="relative z-10 w-full max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-10 py-16 sm:py-20 lg:py-[110px]">
         <div className="grid grid-cols-1 lg:grid-cols-[1.08fr_0.92fr] gap-8 lg:gap-10 xl:gap-14 items-center">
           {/* ESQUERDA — Montagem Jorge + anéis */}
           <div className="order-1 flex justify-center lg:justify-end items-center">

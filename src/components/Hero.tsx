@@ -78,7 +78,7 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
 
       {/* 4. FADE PRETO NA BASE — dissolve o corte entre o hero e a próxima seção */}
       <div
-        className="absolute inset-x-0 bottom-0 h-[40%] z-[25] pointer-events-none bg-gradient-to-t from-[#020202] via-[#020202] to-transparent"
+        className="absolute inset-x-0 bottom-0 h-[28%] z-[25] pointer-events-none bg-gradient-to-t from-[#020202] via-[#020202]/70 to-transparent"
         aria-hidden
       />
 
