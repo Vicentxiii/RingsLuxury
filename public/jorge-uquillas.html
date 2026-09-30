@@ -284,8 +284,33 @@
             transition: filter 0.3s, transform 0.3s; margin-top: 4px;
         }
         .contact-send:hover { filter: brightness(1.08); transform: translateY(-1px); }
-        .contact-success-text { font-size: 14px; line-height: 1.7; color: #d1d5db; margin: 8px 0 14px; }
-        .contact-success-text .contact-success-name { color: #E6CA85; }
+        /* Modal de confirmação */
+        .request-modal { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .request-modal[hidden] { display: none; }
+        .request-modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.72); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .request-modal-card {
+            position: relative; max-width: 440px; width: 100%; text-align: center;
+            background: rgba(8,8,8,0.92); border: 1px solid rgba(197,160,89,0.45);
+            border-radius: 20px; padding: 40px 36px 32px;
+            box-shadow: 0 40px 120px rgba(0,0,0,0.9), 0 0 60px rgba(197,160,89,0.12);
+            animation: modalIn 0.45s cubic-bezier(0.22,1,0.36,1);
+        }
+        @keyframes modalIn { from { opacity: 0; transform: translateY(24px) scale(0.96); } to { opacity: 1; transform: none; } }
+        .request-modal-check {
+            width: 64px; height: 64px; margin: 0 auto 18px; border-radius: 50%;
+            border: 1px solid #C5A059; display: flex; align-items: center; justify-content: center;
+            background: rgba(197,160,89,0.1);
+        }
+        .request-modal-title { font-family: 'Italiana', serif; font-size: 34px; color: #fff6ed; margin: 6px 0 10px; letter-spacing: 1px; }
+        .request-modal-text { font-size: 13px; line-height: 1.7; color: #d1d5db; margin-bottom: 24px; }
+        .request-modal-btn {
+            display: inline-block; padding: 14px 44px; border-radius: 999px;
+            background: linear-gradient(135deg, #9A7B38, #E6CA85 55%, #C5A059);
+            color: #0A0805; font-weight: 600; font-size: 11px; letter-spacing: 3px;
+            text-transform: uppercase; text-decoration: none;
+            transition: filter 0.3s, transform 0.3s;
+        }
+        .request-modal-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
         .contact-ig {
             display: inline-block; padding: 10px 22px;
             border: 1px solid rgba(197,160,89,0.5); border-radius: 999px;
@@ -503,11 +528,6 @@
                     </div>
                     <button class="contact-send" type="submit">Send Request</button>
                 </form>
-                <div id="contact-success" hidden>
-                    <p class="contact-kicker">REQUEST RECEIVED</p>
-                    <p class="contact-success-text">Thank you, <span class="contact-success-name"></span>. Your request has been received, the atelier will contact you shortly about your 1/1 ring.</p>
-                    <a class="contact-ig" href="https://www.instagram.com/ringsluxury" target="_blank" rel="noopener">Instagram @ringsluxury</a>
-                </div>
             </div>
         </div>
     </div>
@@ -1086,20 +1106,34 @@
         });
     </script>
     <script>
-        // Contact panel — mostra confirmação ao enviar (sem backend)
+        // Contact panel — abre modal elegante ao enviar (sem backend)
         (function () {
             var form = document.getElementById('contact-form');
-            if (!form) return;
+            var modal = document.getElementById('request-modal');
+            if (!form || !modal) return;
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
                 if (!form.checkValidity()) { form.reportValidity(); return; }
-                var name = document.getElementById('cf-name').value.trim();
-                form.style.display = 'none';
-                var ok = document.getElementById('contact-success');
-                ok.querySelector('.contact-success-name').textContent = name;
-                ok.hidden = false;
+                modal.hidden = false;
+                document.body.style.overflow = 'hidden';
+            });
+            modal.querySelector('[data-close-modal]').addEventListener('click', function () {
+                modal.hidden = true;
+                document.body.style.overflow = '';
             });
         })();
     </script>
+    <div id="request-modal" class="request-modal" hidden>
+        <div class="request-modal-backdrop" data-close-modal></div>
+        <div class="request-modal-card">
+            <div class="request-modal-check">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#E6CA85" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <p class="contact-kicker">RINGS LUXURY • PRIVATE COMMISSION</p>
+            <h3 class="request-modal-title">Your Request Has Been Sent</h3>
+            <p class="request-modal-text">Thank you. The atelier will contact you shortly about your 1/1 ring.</p>
+            <a class="request-modal-btn" href="/" target="_top">Back to Home</a>
+        </div>
+    </div>
 </body>
 </html>
