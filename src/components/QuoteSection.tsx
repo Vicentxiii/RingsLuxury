@@ -7,6 +7,20 @@ export function QuoteSection() {
       id="quote"
       className="relative w-full py-40 md:py-56 bg-[#020202] text-[#EAE6DF] flex flex-col items-center justify-center overflow-hidden"
     >
+      {/* Fundo — imagem de fundo da seção Jorge Uquillas Rings Luxury */}
+      <div className="absolute inset-0 overflow-hidden" aria-hidden>
+        <img
+          src="/PUBLIC/Imagem%20de%20fundo%20de%20se%C3%A7%C3%A3o%20Jorge%20uquillas%20Rings%20Luxury.jpg"
+          alt=""
+          draggable={false}
+          className="absolute inset-0 w-full h-full object-cover object-center select-none"
+          onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+        />
+        {/* véu escuro para o texto respirar */}
+        <div className="absolute inset-0 bg-[#020202]/72" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#020202] via-transparent to-[#020202]" />
+      </div>
+
       {/* Subtle radial dark ambient gradient */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(197,160,89,0.04)_0%,transparent_65%)] pointer-events-none" />
 
