@@ -82,7 +82,7 @@
             width: 100%; z-index: 20;
             pointer-events: auto;
             padding: 16px 0 12px 0;
-            margin-top: 44px;
+            margin-top: 96px;
         }
         .brand-wrapper {
             display: flex;
@@ -151,15 +151,15 @@
         .slide { position: absolute; bottom: 12%; pointer-events: none; }
 
         #slide-1 { left: 0; width: 100%; bottom: auto; top: 22%; }
-        #slide-1 .slide-title { margin-left: 140px; }
+        #slide-1 .slide-title { margin-left: 60px; }
         #slide-1 .desc-row { position: relative; display: flex; flex-direction: column; gap: 18px; width: 100%; }
         #slide-1 .col-1 {
-            margin-left: 140px;
+            margin-left: 60px;
             width: calc(25vw - 60px);
             max-width: calc(25vw - 60px);
         }
         #slide-1 .col-2 {
-            margin-left: 140px;
+            margin-left: 60px;
             width: calc(30vw - 60px);
             max-width: 480px;
         }
@@ -168,9 +168,9 @@
         #slide-2-img {
             position: fixed;
             top: 160px;
-            left: 60px;
-            width: calc(24vw - 60px);
-            max-width: 380px;
+            left: 90px;
+            width: calc(32vw - 60px);
+            max-width: 520px;
             aspect-ratio: 1 / 1;
             overflow: hidden;
             border-radius: 20px;
@@ -190,11 +190,12 @@
         #slide-2-img.active { clip-path: inset(0 0 0 0); opacity: 1; }
         #slide-2-img.active img { transform: scale(1.12); }
 
-        #slide-2 .slide-title { margin-left: calc(50vw + 20px); }
+        #slide-2 .slide-title { margin-left: calc(50vw + 20px); text-shadow: 0 2px 30px rgba(0,0,0,0.95), 0 0 80px rgba(0,0,0,0.9); }
         #slide-2 .slide-desc {
             margin-left: calc(50vw + 20px);
             width: calc(28vw - 60px);
             max-width: calc(28vw - 60px);
+            text-shadow: 0 1px 18px rgba(0,0,0,0.95), 0 0 40px rgba(0,0,0,0.85);
         }
 
         #slide-3 {
@@ -307,7 +308,7 @@
             #slide-1 .slide-title { margin-left: 24px; }
             #slide-1 .col-1 { margin-left: 24px; width: calc(85vw); max-width: none; }
             #slide-1 .col-2 { margin-left: 24px; width: calc(85vw); max-width: none; }
-            #slide-2-img { left: 16px; right: auto; top: 130px; width: calc(48vw); max-width: 240px; }
+            #slide-2-img { left: 16px; right: auto; top: 130px; width: calc(70vw); max-width: 340px; }
             #slide-2 .slide-title { margin-left: 24px; }
             #slide-2 .slide-desc { margin-left: 24px; width: calc(85vw); }
             #slide-3 { left: 24px; width: calc(85vw); }
@@ -353,10 +354,6 @@
                 <span class="nav-dot"></span>
                 <a href="#slide-4" class="nav-link">Digital</a>
             </nav>
-            <div class="header-actions">
-                <a href="/" class="back-btn">← Atelier</a>
-                <a href="/#contact" class="contact-btn">Contact <span class="btn-circle"></span></a>
-            </div>
         </div>
 
         <!-- Slides -->
@@ -895,7 +892,8 @@
             if (cursorOuter) { cursorOuter.style.left = `${outerCursorX}px`; cursorOuter.style.top = `${outerCursorY}px`; }
 
             if (modelPivot) {
-                modelPivot.rotation.y = mouseX * 0.18 + currentScroll * Math.PI * 0.4;
+                // Gira junto com a câmera, devagar — mantém o rosto visível ao longo do scroll
+                modelPivot.rotation.y = mouseX * 0.18 + currentScroll * Math.PI * 1.6;
                 modelPivot.rotation.x = mouseY * 0.12 + Math.sin(currentScroll * Math.PI) * 0.15;
             }
 

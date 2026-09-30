@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
 import { SEO } from '../components/SEO';
+import { Header } from '../components/Header';
 
 export function JorgeUquillas() {
   const navigate = useNavigate();
@@ -19,24 +19,23 @@ export function JorgeUquillas() {
     };
   }, []);
 
+  const handleOpenConsultation = () => {
+    navigate('/');
+    setTimeout(() => {
+      const el = document.getElementById('contact');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  };
+
   return (
     <div className="w-full h-screen bg-[#020202] relative overflow-hidden">
+      <Header onOpenConsultation={handleOpenConsultation} />
       <SEO
         title="RINGS LUXURY by Jorge Uquillas — Laocoön Bronze Horse | HandCrafted Anéis Artesanais Ouro 18k"
         description="RINGS LUXURY by Jorge Uquillas — Laocoön: Bronze and Time. Cavalo de bronze e anéis artesanais 1/1 HandCrafted em ouro 18k com diamantes, gravados com buril. Handmade 18k gold diamond rings by master artisan Jorge Uquillas. Brasil • Miami."
         keywords="Jorge Uquillas, RINGS LUXURY, Laocoön, Bronze Horse, anéis artesanais, HandCrafted, ouro 18k, handmade 18k gold diamond rings, buril, anéis feitos à mão, atelier Brasil Miami"
         url="/jorge-uquillas"
       />
-      {/* Overlay minimal — evita duplicar header do iframe */}
-      <div className="absolute top-0 left-0 z-20 p-4 sm:p-6 pointer-events-none">
-        <button
-          onClick={() => navigate('/')}
-          className="pointer-events-auto inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#C5A059]/40 bg-[#070707]/80 backdrop-blur-md text-[#C5A059] hover:bg-[#C5A059] hover:text-[#020202] hover:border-[#C5A059] transition-all text-[10px] tracking-[0.22em] uppercase font-cinzel shadow-[0_4px_20px_rgba(0,0,0,0.5)]"
-        >
-          <ArrowLeft className="w-3.5 h-3.5" /> Atelier
-        </button>
-      </div>
-
       {/* Iframe que carrega a experiência imersiva completa — pocket watch 3D */}
       <iframe
         src="/jorge-uquillas.html"
