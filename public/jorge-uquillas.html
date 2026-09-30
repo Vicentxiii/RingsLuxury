@@ -408,80 +408,6 @@
     <!-- Canvas -->
     <canvas id="webgl"></canvas>
 
-    <!-- Galeria de Vídeos — 4 vídeos lado a lado, autoplay liso desktop + mobile -->
-    <section id="atelier-videos" style="position: relative; z-index: 20; background: #020202; padding: 80px 60px; margin-top: 500vh; border-top: 1px solid rgba(197,160,89,0.12);">
-        <div style="max-width: 1280px; margin: 0 auto;">
-            <div style="text-align: center; margin-bottom: 40px;">
-                <p style="font-family: 'Outfit', sans-serif; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: #C5A059; margin-bottom: 12px;">RINGS LUXURY • JORGE UQUILLAS • HANDCRAFTED</p>
-                <h2 style="font-family: 'Italiana', serif; font-size: 42px; color: #fff6ed; letter-spacing: 2px; margin-bottom: 12px;">Atelier em Movimento</h2>
-                <p style="font-size: 13px; color: #9A7B38; letter-spacing: 1px; max-width: 600px; margin: 0 auto;">Anéis artesanais 1/1 em ouro 18k — gravados com buril — vídeos otimizados para rodar liso no desktop e no celular</p>
-            </div>
-            <div class="video-grid">
-                <div class="video-card">
-                    <video autoplay muted loop playsinline preload="metadata" poster="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                        <source src="/PUBLIC/snapinsta.com.br-6a0616357a089.mp4" type="video/mp4" />
-                    </video>
-                </div>
-                <div class="video-card">
-                    <video autoplay muted loop playsinline preload="metadata" poster="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                        <source src="/PUBLIC/snapinsta.com.br-6a061a9339497.mp4" type="video/mp4" />
-                    </video>
-                </div>
-                <div class="video-card">
-                    <video autoplay muted loop playsinline preload="metadata" poster="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                        <source src="/PUBLIC/snapinsta.com.br-6a061b6c4ed81.mp4" type="video/mp4" />
-                    </video>
-                </div>
-                <div class="video-card">
-                    <video autoplay muted loop playsinline preload="metadata" poster="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                        <source src="/PUBLIC/v_mp_.mp4" type="video/mp4" />
-                    </video>
-                </div>
-            </div>
-        </div>
-    </section>
-    <style>
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-        }
-        .video-card {
-            aspect-ratio: 9 / 16;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(197,160,89,0.18);
-            background: #000;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.6);
-        }
-        .video-card video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        @media (max-width: 1024px) {
-            .video-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 640px) {
-            #atelier-videos { padding: 48px 16px !important; margin-top: 500vh !important; }
-            .video-grid {
-                display: flex;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-                -webkit-overflow-scrolling: touch;
-                gap: 12px;
-                padding-bottom: 12px;
-                grid-template-columns: none;
-            }
-            .video-card {
-                flex: 0 0 72vw;
-                max-width: 280px;
-                aspect-ratio: 9 / 16;
-                scroll-snap-align: start;
-            }
-        }
-    </style>
-
     <script type="module">
         import * as THREE from 'three';
         import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
@@ -540,16 +466,17 @@
             renderer.toneMappingExposure = 2.8;
 
             initLighting();
+            initEnvironment();
             createSparks();
             loadModel();
         }
 
         function initLighting() {
-            const ambientLight = new THREE.AmbientLight('#fff8e7', 0.55);
+            const ambientLight = new THREE.AmbientLight('#fff8e7', 1.0);
             scene.add(ambientLight);
-            const hemiLight = new THREE.HemisphereLight('#ffe8a0', '#1a1208', 1.0);
+            const hemiLight = new THREE.HemisphereLight('#ffe8a0', '#1a1208', 1.5);
             scene.add(hemiLight);
-            const hemiGold = new THREE.HemisphereLight('#ffd86b', '#0a0800', 0.7);
+            const hemiGold = new THREE.HemisphereLight('#ffd86b', '#0a0800', 1.0);
             scene.add(hemiGold);
 
             const keyLight = new THREE.SpotLight('#fff6d6', 32.0);
@@ -568,9 +495,38 @@
             rimLight.position.set(-5, 3, -4);
             scene.add(rimLight);
 
-            const fillLight = new THREE.DirectionalLight('#ffe8a0', 1.6);
+            const fillLight = new THREE.DirectionalLight('#ffe8a0', 3.2);
             fillLight.position.set(-2, -4, 2);
             scene.add(fillLight);
+
+            // Luz frontal quente do lado da câmera — revela os detalhes do rosto/juba
+            const frontLight = new THREE.DirectionalLight('#fff3d9', 3.5);
+            frontLight.position.set(1.5, 1.5, 5);
+            scene.add(frontLight);
+        }
+
+        // Ambiente dourado para o metal refletir (sem env, metalness alto = preto)
+        function initEnvironment() {
+            const envScene = new THREE.Scene();
+            const planeGeo = new THREE.PlaneGeometry(12, 12);
+            const panel = (color, intensity, x, y, z) => {
+                const mesh = new THREE.Mesh(
+                    planeGeo,
+                    new THREE.MeshBasicMaterial({ side: THREE.DoubleSide })
+                );
+                mesh.material.color.set(color).multiplyScalar(intensity);
+                mesh.position.set(x, y, z);
+                mesh.lookAt(0, 0, 0);
+                envScene.add(mesh);
+            };
+            panel('#fff3d0', 6.0, 4, 6, 5);   // chave quente frontal-direita
+            panel('#ffd98a', 4.0, -5, 3, 2);  // lateral esquerda dourada
+            panel('#fff8e7', 3.0, 0, -4, 4);  // rebote inferior
+            panel('#c9a24a', 2.5, 0, 5, -6);  // topo/fundo dourado
+            panel('#ffffff', 1.5, -2, 1, 6);  // brilho frontal suave
+            const pmrem = new THREE.PMREMGenerator(renderer);
+            scene.environment = pmrem.fromScene(envScene, 0.04).texture;
+            pmrem.dispose();
         }
 
         function createSparkTexture() {
@@ -657,17 +613,17 @@
                                     if (child.material.color) child.material.color.setHex(0xC5A059);
                                     if (child.material.map) child.material.map.anisotropy = 16;
                                 } catch {}
-                                child.material.roughness = 0.18;
-                                child.material.metalness = 0.96;
-                                child.material.envMapIntensity = 2.2;
+                                child.material.roughness = 0.28;
+                                child.material.metalness = 0.9;
+                                child.material.envMapIntensity = 2.6;
                                 child.material.flatShading = false;
                                 if ('clearcoat' in child.material) {
                                     child.material.clearcoat = 1.0;
                                     child.material.clearcoatRoughness = 0.08;
                                 }
                                 if (child.material.emissive) {
-                                    child.material.emissive.setHex(0x221a08);
-                                    child.material.emissiveIntensity = 0.12;
+                                    child.material.emissive.setHex(0x3a2a0c);
+                                    child.material.emissiveIntensity = 0.35;
                                 }
                                 child.material.needsUpdate = true;
                             }
