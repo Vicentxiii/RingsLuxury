@@ -20,6 +20,8 @@ export function QuemSouEu({}: QuemSouEuProps) {
     >
       {/* FUNDO — desfocado com blur como no print, liso sem textura */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-black">
+        {/* FADE SUPERIOR — dissolve o corte com o hero acima */}
+        <div className="absolute top-0 left-0 w-full h-[140px] sm:h-[180px] bg-gradient-to-b from-[#020202] to-transparent pointer-events-none" aria-hidden />
         <img
           src="/PUBLIC/fundo-quem-sou-eu.webp"
           alt=""
