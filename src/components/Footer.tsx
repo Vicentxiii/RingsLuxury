@@ -87,8 +87,8 @@ export function Footer() {
             </div>
 
             <p className="font-cormorant text-base md:text-lg italic text-[#C2BDB2] max-w-sm leading-relaxed">
-              Anéis artesanais 1/1 HandCrafted em ouro 18k com diamantes naturais,
-              gravados com hand engraver por Jorge Uquillas. Handmade 18k gold diamond rings.
+              1/1 handcrafted 18k gold artisan rings with natural diamonds,
+              finished by master hand engraver Jorge Uquillas.
             </p>
 
             <div className="flex items-center gap-4 text-[10px] tracking-[0.25em] text-[#9A7B38] uppercase">
@@ -101,7 +101,7 @@ export function Footer() {
               href="https://www.instagram.com/ringsluxury"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Rings Luxury no Instagram"
+              aria-label="Rings Luxury on Instagram"
               className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#C5A059]/40 hover:border-[#C5A059] text-[#C5A059] hover:text-[#E6CA85] hover:bg-[#C5A059]/10 rounded-full font-sans-luxury text-[11px] font-medium tracking-[0.2em] uppercase transition-all"
                 >
               <Instagram className="w-3.5 h-3.5" />
@@ -199,7 +199,7 @@ export function Footer() {
           </div>
 
           <div className="font-cinzel text-[10px] font-semibold tracking-[0.28em] uppercase text-[#C5A059] text-center">
-            HandCrafted 18k Gold • Anéis Artesanais Ouro 18k
+            HandCrafted 18k Gold • Handmade 18k Gold Rings
           </div>
 
           <div className="text-[10px] tracking-[0.3em] uppercase text-[#9A7B38]">

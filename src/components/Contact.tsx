@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { ArrowRight, CheckCircle2, Shield, Sparkles, MapPin, Calendar, Lock, Instagram } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowRight, CheckCircle2, Shield, Sparkles, MapPin, Calendar, Instagram } from 'lucide-react';
 import { GreekKeyBorder, GreekMeanderDivider, LaurelWreath, AncientCoinMedallion } from './OrnamentIcons';
 
 interface ContactProps {
@@ -7,23 +7,16 @@ interface ContactProps {
   onClearPreselectedPiece?: () => void;
 }
 
-export function Contact({ preselectedPiece, onClearPreselectedPiece }: ContactProps) {
+// Campos de peça/interesse removidos — props mantidas por compatibilidade com as páginas.
+export function Contact({}: ContactProps) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    city: 'Athens — Plaka Sanctuary',
-    pieceInterest: preselectedPiece || 'Bespoke Imperial Commission',
-    notes: '',
+    city: 'Miami — Atelier',
   });
 
   const [submitted, setSubmitted] = useState(false);
   const [bookingCode, setBookingCode] = useState('');
-
-  useEffect(() => {
-    if (preselectedPiece) {
-      setFormData((prev) => ({ ...prev, pieceInterest: preselectedPiece }));
-    }
-  }, [preselectedPiece]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,13 +58,13 @@ export function Contact({ preselectedPiece, onClearPreselectedPiece }: ContactPr
             id="contact-subtitle"
             className="font-cormorant text-xl md:text-2xl italic tracking-[0.12em] text-[#C5A059] font-light leading-relaxed mb-6"
           >
-            Anéis artesanais HandCrafted em ouro 18k
+            HandCrafted 18k gold artisan rings
             <br />
-            com diamantes — gravados com hand engraver
+            with natural diamonds, finished by master hand engraver
           </p>
 
           <p className="font-sans-luxury text-xs text-[#A8A296] tracking-[0.18em] uppercase max-w-xl mx-auto leading-relaxed">
-            Atelier Jorge Uquillas — RINGS LUXURY. Consultas privadas para encomendas 1/1 Handmade 18k gold diamond rings. Atendimento Brasil • Miami • Athens.
+            Jorge Uquillas Atelier — RINGS LUXURY. Private consultations for 1/1 handmade 18k gold diamond ring commissions. Serving Brazil • Miami • Athens.
           </p>
 
           <GreekMeanderDivider className="mt-8 opacity-60" />
@@ -128,67 +121,24 @@ export function Contact({ preselectedPiece, onClearPreselectedPiece }: ContactPr
                 />
               </div>
 
-              {/* Two columns: City & Piece Interest */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="relative border-b border-[#C5A059]/30 focus-within:border-[#C5A059] transition-colors pb-2">
-                  <label
-                    htmlFor="client-city"
-                    className="block text-[9px] uppercase tracking-[0.35em] text-[#9A7B38] mb-1 font-sans-luxury"
-                  >
-                    PREFERRED SALON LOCATION
-                  </label>
-                  <select
-                    id="client-city"
-                    value={formData.city}
-                    onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                    className="w-full bg-[#080808] text-[#F3EFE6] font-cinzel text-sm tracking-wider focus:outline-none cursor-pointer"
-                  >
-                    <option value="Athens — Plaka Sanctuary">Athens — Plaka Sanctuary</option>
-                    <option value="Paris — Place Vendôme Salon">Paris — Place Vendôme Salon</option>
-                    <option value="Geneva — Rue du Rhône Suite">Geneva — Rue du Rhône Suite</option>
-                    <option value="Private Collector Residence">Private Collector Residence</option>
-                  </select>
-                </div>
-
-                <div className="relative border-b border-[#C5A059]/30 focus-within:border-[#C5A059] transition-colors pb-2">
-                  <label
-                    htmlFor="client-interest"
-                    className="block text-[9px] uppercase tracking-[0.35em] text-[#9A7B38] mb-1 font-sans-luxury"
-                  >
-                    ARTIFACT OF INTEREST
-                  </label>
-                  <input
-                    id="client-interest"
-                    type="text"
-                    value={formData.pieceInterest}
-                    onChange={(e) => setFormData({ ...formData, pieceInterest: e.target.value })}
-                    className="w-full bg-transparent text-[#F3EFE6] font-cinzel text-sm tracking-wider focus:outline-none"
-                  />
-                </div>
-              </div>
-
-              {/* Notes */}
+              {/* Preferred salon location */}
               <div className="relative border-b border-[#C5A059]/30 focus-within:border-[#C5A059] transition-colors pb-2">
                 <label
-                  htmlFor="client-notes"
+                  htmlFor="client-city"
                   className="block text-[9px] uppercase tracking-[0.35em] text-[#9A7B38] mb-1 font-sans-luxury"
                 >
-                  SPECIAL COMMISSIONS / PROVENANCE REQUESTS (OPTIONAL)
+                  PREFERRED SALON LOCATION
                 </label>
-                <textarea
-                  id="client-notes"
-                  rows={2}
-                  placeholder="Specify particular mythological iconography, family crests, or custom gold alloy..."
-                  value={formData.notes}
-                  onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                  className="w-full bg-transparent text-[#F3EFE6] font-sans-luxury text-xs tracking-wider placeholder-[#444] focus:outline-none resize-none"
-                />
-              </div>
-
-              {/* Security & Confidentiality note */}
-              <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.25em] text-[#9A7B38] pt-2">
-                <Lock className="w-3.5 h-3.5 text-[#C5A059]" />
-                <span>Strictly Confidential • Athenian Archival Discretion Guaranteed</span>
+                <select
+                  id="client-city"
+                  value={formData.city}
+                  onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                  className="w-full bg-[#080808] text-[#F3EFE6] font-cinzel text-sm tracking-wider focus:outline-none cursor-pointer"
+                >
+                  <option value="Miami — Atelier">Miami — Atelier</option>
+                  <option value="São Paulo — Atelier">São Paulo — Atelier</option>
+                  <option value="Colombia — Atelier">Colombia — Atelier</option>
+                </select>
               </div>
 
               {/* Submit CTA & Direct Instagram Channel */}
@@ -210,7 +160,7 @@ export function Contact({ preselectedPiece, onClearPreselectedPiece }: ContactPr
                     className="inline-flex items-center gap-2 px-6 py-2.5 border border-[#C5A059]/40 hover:border-[#C5A059] text-[#C5A059] hover:text-[#E6CA85] hover:bg-[#C5A059]/10 rounded-full font-sans-luxury text-[11px] font-medium tracking-[0.2em] uppercase transition-all"
                   >
                     <Instagram className="w-4 h-4 text-[#C5A059]" />
-                    <span>Conexão Direta: Instagram @ringsluxury</span>
+                    <span>Direct line: Instagram @ringsluxury</span>
                   </a>
                 </div>
               </div>
@@ -258,7 +208,6 @@ export function Contact({ preselectedPiece, onClearPreselectedPiece }: ContactPr
               <button
                 onClick={() => {
                   setSubmitted(false);
-                  if (onClearPreselectedPiece) onClearPreselectedPiece();
                 }}
                 className="px-8 py-3.5 border border-[#C5A059]/40 hover:border-[#C5A059] text-[#C5A059] font-cinzel text-xs tracking-[0.3em] uppercase transition-colors rounded-full"
               >
