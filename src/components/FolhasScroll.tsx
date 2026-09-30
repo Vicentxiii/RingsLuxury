@@ -74,8 +74,11 @@ export function FolhasScroll() {
   const tY = local * 520; // queda até embaixo
   const tX = local * 170; // abertura diagonal
 
-  const r1 = local * 18;
-  const r2 = -local * 16;
+  // giro no próprio eixo como folha caindo de verdade + flutuação lateral
+  const r1 = local * 540;
+  const r2 = -local * 480;
+  const sway1 = Math.sin(local * Math.PI * 3) * 30;
+  const sway2 = Math.sin(local * Math.PI * 3 + Math.PI) * 30;
   const scale = 1 - local * 0.1;
 
   // se ainda não entrou ou já passou, não renderiza com opacity 0 mas mantém no DOM para transição
@@ -99,7 +102,7 @@ export function FolhasScroll() {
           width: '76px',
           height: 'auto',
           opacity: op,
-          transform: `translate3d(${tX * 0.45}px, ${tY}px, 0) rotate(${r1}deg) scale(${scale})`,
+          transform: `translate3d(${tX * 0.45 + sway1}px, ${tY}px, 0) rotate(${r1}deg) scale(${scale})`,
           filter: 'drop-shadow(0 10px 22px rgba(0,0,0,0.48)) brightness(1.02)',
         }}
         onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
@@ -117,7 +120,7 @@ export function FolhasScroll() {
           width: '88px',
           height: 'auto',
           opacity: op * 0.96,
-          transform: `translate3d(${-tX * 0.45}px, ${tY * 0.92}px, 0) rotate(${r2}deg) scale(${scale})`,
+          transform: `translate3d(${-tX * 0.45 + sway2}px, ${tY * 0.92}px, 0) rotate(${r2}deg) scale(${scale})`,
           filter: 'drop-shadow(0 12px 26px rgba(0,0,0,0.5)) brightness(1.02)',
         }}
         onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
