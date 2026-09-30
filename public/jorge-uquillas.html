@@ -1107,7 +1107,7 @@
     </script>
     <script>
         // Contact panel — abre modal elegante ao enviar (sem backend)
-        (function () {
+        window.addEventListener('DOMContentLoaded', function () {
             var form = document.getElementById('contact-form');
             var modal = document.getElementById('request-modal');
             if (!form || !modal) return;
@@ -1121,7 +1121,7 @@
                 modal.hidden = true;
                 document.body.style.overflow = '';
             });
-        })();
+        });
     </script>
     <div id="request-modal" class="request-modal" hidden>
         <div class="request-modal-backdrop" data-close-modal></div>
