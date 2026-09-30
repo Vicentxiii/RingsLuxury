@@ -168,7 +168,7 @@
         #slide-2-img {
             position: fixed;
             top: 160px;
-            right: 60px;
+            left: 60px;
             width: calc(24vw - 60px);
             max-width: 380px;
             aspect-ratio: 1 / 1;
@@ -190,11 +190,11 @@
         #slide-2-img.active { clip-path: inset(0 0 0 0); opacity: 1; }
         #slide-2-img.active img { transform: scale(1.12); }
 
-        #slide-2 .slide-title { margin-left: 140px; }
+        #slide-2 .slide-title { margin-left: calc(50vw + 20px); }
         #slide-2 .slide-desc {
-            margin-left: 140px;
-            width: calc(30vw - 60px);
-            max-width: calc(30vw - 60px);
+            margin-left: calc(50vw + 20px);
+            width: calc(28vw - 60px);
+            max-width: calc(28vw - 60px);
         }
 
         #slide-3 {
@@ -307,7 +307,7 @@
             #slide-1 .slide-title { margin-left: 24px; }
             #slide-1 .col-1 { margin-left: 24px; width: calc(85vw); max-width: none; }
             #slide-1 .col-2 { margin-left: 24px; width: calc(85vw); max-width: none; }
-            #slide-2-img { left: auto; right: 16px; top: 130px; width: calc(48vw); max-width: 240px; }
+            #slide-2-img { left: 16px; right: auto; top: 130px; width: calc(48vw); max-width: 240px; }
             #slide-2 .slide-title { margin-left: 24px; }
             #slide-2 .slide-desc { margin-left: 24px; width: calc(85vw); }
             #slide-3 { left: 24px; width: calc(85vw); }
@@ -895,7 +895,7 @@
             if (cursorOuter) { cursorOuter.style.left = `${outerCursorX}px`; cursorOuter.style.top = `${outerCursorY}px`; }
 
             if (modelPivot) {
-                modelPivot.rotation.y = mouseX * 0.18 + currentScroll * Math.PI * 0.85;
+                modelPivot.rotation.y = mouseX * 0.18 + currentScroll * Math.PI * 0.4;
                 modelPivot.rotation.x = mouseY * 0.12 + Math.sin(currentScroll * Math.PI) * 0.15;
             }
 
