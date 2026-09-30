@@ -43,8 +43,54 @@ export function QuemSouEu({}: QuemSouEuProps) {
         <div className="absolute bottom-0 left-0 w-full h-[140px] sm:h-[180px] lg:h-[220px] bg-gradient-to-b from-transparent to-[#020202] pointer-events-none" aria-hidden />
       </div>
 
-      {/* CONTEÚDO — 2 colunas */}
+      {/* CONTEÚDO — título por cima, foto + bio abaixo */}
       <div className="relative z-10 w-full max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-12 lg:py-[54px]">
+        {/* CABEÇALHO — nome por cima da foto */}
+        <div className="flex flex-col items-center text-center max-w-[800px] mx-auto">
+          <h2
+            className="font-cinzel font-normal text-[#F5F0E6] leading-none tracking-[0.03em] mt-1.5"
+            style={{
+              fontSize: 'clamp(24px, 2.7vw, 36px)',
+              letterSpacing: '0.02em',
+              textShadow: '0 2px 18px rgba(0,0,0,0.75)',
+            }}
+          >
+            Who is Jorge Uquillas
+          </h2>
+
+          {/* Arabesco dourado — maior e mais colado no título */}
+          <div className="relative w-full max-w-[800px] mt-1 mb-1 flex justify-center items-center">
+            <div
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[240px] h-[36px] bg-[#C5A059]/35 blur-[14px] pointer-events-none"
+              aria-hidden
+            />
+            <img
+              src="/PUBLIC/arabesco-quem-sou-eu.webp"
+              alt=""
+              draggable={false}
+              className="relative w-[95%] max-w-[700px] h-auto object-contain object-center select-none"
+              style={{ opacity: 0.98 }}
+              onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+            />
+          </div>
+
+          {/* Subtítulos — colados no arabesco, logo abaixo do título */}
+          <div className="flex flex-col items-center gap-0.5 -mt-1 mb-8">
+            <span
+              className="font-cinzel font-normal text-[#9A8B6F] uppercase tracking-[0.48em]"
+              style={{ fontSize: 'clamp(9px, 0.85vw, 11px)', letterSpacing: '0.52em' }}
+            >
+              MASTER ENGRAVER
+            </span>
+            <span
+              className="font-cinzel font-normal text-[#6E634D] uppercase"
+              style={{ fontSize: '8.5px', letterSpacing: '0.62em' }}
+            >
+              BIOGRAPHY
+            </span>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-[1.08fr_0.92fr] gap-8 lg:gap-10 xl:gap-14 items-center">
           {/* ESQUERDA — Montagem Jorge + anéis */}
           <div className="order-1 flex justify-center lg:justify-end items-center">
@@ -60,52 +106,8 @@ export function QuemSouEu({}: QuemSouEuProps) {
             </div>
           </div>
 
-          {/* DIREITA — Texto */}
-          <div className="order-2 flex flex-col items-center lg:items-center text-center lg:text-center max-w-[560px] mx-auto lg:mx-0 lg:pr-2">
-            {/* Título — “Who is Jorge Uquillas” levemente menor e descido para perto do arabesco */}
-            <h2
-              className="font-cinzel font-normal text-[#F5F0E6] leading-none tracking-[0.03em] mt-1.5"
-              style={{
-                fontSize: 'clamp(24px, 2.7vw, 36px)',
-                letterSpacing: '0.02em',
-                textShadow: '0 2px 18px rgba(0,0,0,0.75)',
-              }}
-            >
-              Who is Jorge Uquillas
-            </h2>
-
-            {/* Arabesco dourado — maior e mais colado no título */}
-            <div className="relative w-full max-w-[800px] mt-1 mb-1 flex justify-center items-center">
-              <div
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[240px] h-[36px] bg-[#C5A059]/35 blur-[14px] pointer-events-none"
-                aria-hidden
-              />
-              <img
-                src="/PUBLIC/arabesco-quem-sou-eu.webp"
-                alt=""
-                draggable={false}
-                className="relative w-[95%] max-w-[700px] h-auto object-contain object-center select-none"
-                style={{ opacity: 0.98 }}
-                onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-              />
-            </div>
-
-            {/* Subtítulos — colados no arabesco, texto afastado abaixo */}
-            <div className="flex flex-col items-center gap-0.5 -mt-1 mb-7">
-              <span
-                className="font-cinzel font-normal text-[#9A8B6F] uppercase tracking-[0.48em]"
-                style={{ fontSize: 'clamp(9px, 0.85vw, 11px)', letterSpacing: '0.52em' }}
-              >
-                MASTER ENGRAVER
-              </span>
-              <span
-                className="font-cinzel font-normal text-[#6E634D] uppercase"
-                style={{ fontSize: '8.5px', letterSpacing: '0.62em' }}
-              >
-                BIOGRAPHY
-              </span>
-            </div>
-
+          {/* DIREITA — Biografia */}
+          <div className="order-2 flex flex-col items-start text-left max-w-[560px] mx-auto lg:mx-0 lg:pr-2 w-full">
             {/* Biografia — texto fiel ao print, liso sem bolinhas */}
             <div className="w-full text-left font-sans-luxury text-[#EDE8DB] leading-relaxed space-y-3.5">
               <p className="text-[11px] sm:text-[11.5px] leading-[1.72] text-[#EFE9DC]/95">
