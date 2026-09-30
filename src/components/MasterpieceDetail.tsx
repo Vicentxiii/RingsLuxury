@@ -7,7 +7,7 @@ const KRAKEN_IMG =
   '/PUBLIC/Anel%20Kraken%20feito%20em%20ouro%20Rubis%20e%20diamantes%20y%20Jorge%20Uquillas%20Rings%20Luxury.jpg';
 
 const CERT_IMG =
-  '/PUBLIC/Certificado%20de%20autenticidade%20Rings%20Luxury%20Jorge%20Uquillas.jpg';
+  '/PUBLIC/NOVO%20CERTIFICADO%20DE%20AUTHENTICIDADE%20JORGE%20UQUILLAS%20HAND%20ENGRAVER.png';
 
 interface Hotspot {
   id: string;
