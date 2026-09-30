@@ -76,6 +76,12 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
         <div className="absolute inset-0 shadow-[inset_0_0_40px_rgba(0,0,0,0.12)]" />
       </div>
 
+      {/* 4. FADE PRETO NA BASE — dissolve o corte entre o hero e a próxima seção */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-[26%] z-[25] pointer-events-none bg-gradient-to-t from-[#020202] via-[#020202]/55 to-transparent"
+        aria-hidden
+      />
+
       {/* 5. TEXTO CENTRAL — WELCOME TO RINGS LUXURY / MASTER PIECES */}
       <div className="relative z-30 w-full max-w-6xl mx-auto px-6 flex flex-col items-center justify-center text-center pointer-events-none">
         <h1 className="flex flex-col items-center gap-3 sm:gap-4">
