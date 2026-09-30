@@ -42,6 +42,16 @@
             outline: none;
         }
 
+        /* Degradê preto leve no rodapé — elegância cinematográfica */
+        .bottom-fade {
+            position: fixed;
+            left: 0; right: 0; bottom: 0;
+            height: 24vh;
+            z-index: 4;
+            pointer-events: none;
+            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+        }
+
         /* Custom cursor */
         .cursor-inner {
             position: fixed; top: 0; left: 0;
@@ -199,9 +209,10 @@
         }
 
         #slide-3 {
-            left: 60px;
-            width: calc(25vw - 60px);
-            max-width: calc(25vw - 60px);
+            left: 110px;
+            width: calc(28vw - 60px);
+            max-width: calc(28vw - 60px);
+            bottom: 18%;
         }
         #slide-3 .slide-title { white-space: nowrap; }
 
@@ -376,7 +387,7 @@
 
         <div class="slide" id="slide-3">
             <h2 class="slide-title">Family Tradition</h2>
-            <p class="slide-desc">Uma nobre arte passada de avô para neto — três gerações de mestres do buril. Da tradição da família Uquillas aos ateliês da Europa, cada joia carrega um legado esculpido à mão em ouro 18k.</p>
+            <p class="slide-desc">Uma nobre arte passada de avô para neto — três gerações de mestres do buril. Jorge Uquillas aprendeu as primeiras técnicas com o grande Mestre Ivan Uquillas, levou a tradição da família da Colômbia aos ateliês da Europa e hoje, em São Paulo, é um dos únicos expoentes desse nível no continente. Cada joia carrega esse legado, esculpido à mão em ouro 18k.</p>
         </div>
 
         <div class="slide" id="slide-4">
@@ -406,6 +417,7 @@
 
     <!-- Canvas -->
     <canvas id="webgl"></canvas>
+    <div class="bottom-fade"></div>
 
     <script type="module">
         import * as THREE from 'three';
