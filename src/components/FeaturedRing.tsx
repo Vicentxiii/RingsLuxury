@@ -235,7 +235,7 @@ export function FeaturedRing() {
         <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center gap-3.5 sm:gap-4">
           <GoldButton
             label="I'd like see more pieces"
-            onClick={() => scrollToSection('collections')}
+            onClick={() => scrollToSection('masterpiece')}
             variant="primary"
             icon={<ArrowRight className="h-3.5 w-3.5" strokeWidth={1.4} />}
           />

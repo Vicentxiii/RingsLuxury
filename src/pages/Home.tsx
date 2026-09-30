@@ -7,8 +7,6 @@ import { WhyChoose } from '../components/WhyChoose';
 import { YouDecide } from '../components/YouDecide';
 import { ShippingWorldwide } from '../components/ShippingWorldwide';
 import { FolhasScroll } from '../components/FolhasScroll';
-import { Collection } from '../components/Collection';
-import { StatueSection } from '../components/StatueSection';
 import { Atelier } from '../components/Atelier';
 import { Craftsmanship } from '../components/Craftsmanship';
 import { Heritage } from '../components/Heritage';
@@ -36,9 +34,9 @@ export function Home() {
   };
 
   const handleEnterAtelier = () => {
-    const collectionsElem = document.getElementById('collections');
-    if (collectionsElem) {
-      collectionsElem.scrollIntoView({ behavior: 'smooth' });
+    const masterpieceElem = document.getElementById('masterpiece');
+    if (masterpieceElem) {
+      masterpieceElem.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -94,14 +92,6 @@ export function Home() {
 
         {/* I.6 — VISITS IN THE PHYSICAL WORKSHOP UNDER SCHEDULE — Miami + São Paulo */}
         <AtelierLocations />
-
-        {/* II. The Museum Collection */}
-        <Collection
-          onSelectPieceForCommission={(piece) => handleOpenConsultation(piece)}
-        />
-
-        {/* III. Dramatic Greek Statue Parallax Section */}
-        <StatueSection />
 
         {/* VI. Ancient Greek Heritage */}
         <Heritage />

@@ -118,7 +118,7 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
       </div>
 
       <a
-        href="#collections"
+        href="#masterpiece"
         className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 opacity-0 focus:opacity-100 focus:pointer-events-auto pointer-events-none text-[10px] tracking-[0.3em] text-[#C5A059] border border-[#C5A059]/40 px-4 py-2 rounded-full bg-black/60 backdrop-blur"
       >
         Ver coleção
