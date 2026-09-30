@@ -9,7 +9,6 @@ import { ShippingWorldwide } from '../components/ShippingWorldwide';
 import { FolhasScroll } from '../components/FolhasScroll';
 import { Atelier } from '../components/Atelier';
 import { Craftsmanship } from '../components/Craftsmanship';
-import { Heritage } from '../components/Heritage';
 import { MasterpieceDetail } from '../components/MasterpieceDetail';
 import { QuoteSection } from '../components/QuoteSection';
 import { WorldClients } from '../components/WorldClients';
@@ -92,9 +91,6 @@ export function Home() {
 
         {/* I.6 — VISITS IN THE PHYSICAL WORKSHOP UNDER SCHEDULE — Miami + São Paulo */}
         <AtelierLocations />
-
-        {/* VI. Ancient Greek Heritage */}
-        <Heritage />
 
         {/* IX. Sententia Aurea Quote */}
         <QuoteSection />
