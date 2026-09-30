@@ -837,9 +837,9 @@ export function JorgeUquillasPiece({ onBackToAtelier, onOpenConsultation }: Jorg
 
         {/* Slide 3 */}
         <div className="jq-slide" id="jq-slide-3">
-          <h2 className="jq-slide-title">Liquid Metal</h2>
+          <h2 className="jq-slide-title">Family Tradition</h2>
           <p className="jq-slide-desc">
-            Art that breathes. Mesmerizing waves of liquid bronze flow through space, reflecting every contour and tensed muscle of the ancient masterpiece.
+            Uma nobre arte passada de avô para neto — três gerações de mestres do buril. Da tradição da família Uquillas aos ateliês da Europa, cada joia carrega um legado esculpido à mão em ouro 18k.
           </p>
         </div>
 
