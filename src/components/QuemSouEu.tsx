@@ -64,49 +64,19 @@ export function QuemSouEu({}: QuemSouEuProps) {
 
           {/* DIREITA — Texto */}
           <div className="order-2 flex flex-col items-center lg:items-center text-center lg:text-center max-w-[560px] mx-auto lg:mx-0 lg:pr-2">
-            {/* Título — “Who is Jorge Uquillas” levemente menor e descido para perto do arabesco */}
+            {/* Nome — grande, duas linhas, sem arabesco */}
             <h2
-              className="font-cinzel font-normal text-[#F5F0E6] leading-none tracking-[0.03em] mt-1.5"
+              className="font-cinzel font-normal text-[#F5F0E6] leading-[1.02] tracking-[0.03em] mt-1.5 mb-8"
               style={{
-                fontSize: 'clamp(24px, 2.7vw, 36px)',
-                letterSpacing: '0.02em',
+                fontSize: 'clamp(40px, 4.6vw, 68px)',
+                letterSpacing: '0.04em',
                 textShadow: '0 2px 18px rgba(0,0,0,0.75)',
               }}
             >
-              Who is Jorge Uquillas
+              JORGE
+              <br />
+              UQUILLAS
             </h2>
-
-            {/* Arabesco dourado — maior e mais colado no título */}
-            <div className="relative w-full max-w-[800px] mt-1 mb-1 flex justify-center items-center">
-              <div
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[240px] h-[36px] bg-[#C5A059]/35 blur-[14px] pointer-events-none"
-                aria-hidden
-              />
-              <img
-                src="/PUBLIC/arabesco-quem-sou-eu.webp"
-                alt=""
-                draggable={false}
-                className="relative w-[95%] max-w-[700px] h-auto object-contain object-center select-none"
-                style={{ opacity: 0.98 }}
-                onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-              />
-            </div>
-
-            {/* Subtítulos — colados no arabesco, texto afastado abaixo */}
-            <div className="flex flex-col items-center gap-0.5 -mt-1 mb-7">
-              <span
-                className="font-cinzel font-normal text-[#9A8B6F] uppercase tracking-[0.48em]"
-                style={{ fontSize: 'clamp(9px, 0.85vw, 11px)', letterSpacing: '0.52em' }}
-              >
-                MASTER ENGRAVER
-              </span>
-              <span
-                className="font-cinzel font-normal text-[#6E634D] uppercase"
-                style={{ fontSize: '8.5px', letterSpacing: '0.62em' }}
-              >
-                BIOGRAPHY
-              </span>
-            </div>
 
             {/* Biografia — texto fiel ao print, liso sem bolinhas */}
             <div className="w-full text-left font-sans-luxury text-[#EDE8DB] leading-relaxed space-y-3.5">

@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 
 /**
  * Folhas douradas — aparecem SÓ na segunda seção (QUEM SOU EU)
- * - Perto do nome/foto do Jorge, ficam no meio da seção
- * - Ao descer para a terceira seção já sumiram (fade + diagonal para baixo)
+ * - Nascem nos cantos laterais da seção, descem em diagonal para o meio e somem
+ * - Nunca ficam em cima do texto
  */
 export function FolhasScroll() {
   const [y, setY] = useState(0);
@@ -17,7 +17,7 @@ export function FolhasScroll() {
       const h = el.offsetHeight;
       // começa a aparecer quando a seção entra (40% da viewport já visível)
       const start = top - window.innerHeight * 0.52;
-      // termina antes da terceira seção (Collection) — 85% da altura da QuemSouEu
+      // termina antes da terceira seção — 88% da altura da QuemSouEu
       const end = top + h * 0.88;
       setRange({ start: Math.max(0, start), end });
     };
@@ -87,39 +87,37 @@ export function FolhasScroll() {
       aria-hidden
       style={{ opacity: hidden ? 0 : 1, transition: 'opacity 0.22s linear' }}
     >
-      {/* FOLHA 1 — perto da foto (lado esquerdo da seção) — cai diagonal esquerda-baixo */}
+      {/* FOLHA 1 — canto esquerdo da seção — desce em diagonal para o meio e some */}
       <img
         src="/PUBLIC/folha-scroll-1.webp"
         alt=""
         draggable={false}
         className="absolute select-none will-change-transform"
         style={{
-          top: '50%',
-          left: 'calc(50% - 168px)',
-          width: '82px',
+          top: '26%',
+          left: 'max(14px, 2.5vw)',
+          width: '76px',
           height: 'auto',
-          marginTop: '-86px',
           opacity: op,
-          transform: `translate3d(${-tX}px, ${tY}px, 0) rotate(${r1}deg) scale(${scale})`,
+          transform: `translate3d(${tX * 0.45}px, ${tY}px, 0) rotate(${r1}deg) scale(${scale})`,
           filter: 'drop-shadow(0 10px 22px rgba(0,0,0,0.48)) brightness(1.02)',
         }}
         onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
       />
 
-      {/* FOLHA 2 — perto do nome (lado direito, próxima ao título JORGE UQUILLAS) — cai diagonal direita-baixo */}
+      {/* FOLHA 2 — canto direito da seção — desce em diagonal para o meio e some */}
       <img
         src="/PUBLIC/folha-scroll-2.png"
         alt=""
         draggable={false}
         className="absolute select-none will-change-transform"
         style={{
-          top: '50%',
-          left: 'calc(50% + 78px)',
-          width: '96px',
+          top: '32%',
+          right: 'max(14px, 2.5vw)',
+          width: '88px',
           height: 'auto',
-          marginTop: '-118px',
           opacity: op * 0.96,
-          transform: `translate3d(${tX}px, ${tY * 0.92}px, 0) rotate(${r2}deg) scale(${scale})`,
+          transform: `translate3d(${-tX * 0.45}px, ${tY * 0.92}px, 0) rotate(${r2}deg) scale(${scale})`,
           filter: 'drop-shadow(0 12px 26px rgba(0,0,0,0.5)) brightness(1.02)',
         }}
         onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
