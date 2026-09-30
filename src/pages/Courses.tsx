@@ -23,7 +23,7 @@ export function Courses() {
     {
       id: "02",
       title: "Artistic Engraving Fundamentals",
-      description: "Learn the secrets of the burin. Hand-engraving techniques that have been passed down through generations since the Ancient Greeks.",
+      description: "Learn the secrets of the hand engraver. Hand-engraving techniques that have been passed down through generations since the Ancient Greeks.",
       duration: "6 Weeks",
       level: "Intermediate"
     },

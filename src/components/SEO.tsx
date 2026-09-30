@@ -56,8 +56,8 @@ export function SEO({ title, description, keywords, url, image }: SEOProps) {
           "url": canonical,
           ...(ogImage ? { image: ogImage } : {}),
           "priceRange": "$$$$",
-          "keywords": "RINGS LUXURY, Jorge Uquillas, anéis artesanais, HandCrafted, ouro 18k, handmade 18k gold diamond rings, buril",
-          "knowsAbout": ["HandCrafted jewelry", "Anéis artesanais ouro 18k", "Burin engraving", "High jewelry atelier"]
+          "keywords": "RINGS LUXURY, Jorge Uquillas, anéis artesanais, HandCrafted, ouro 18k, handmade 18k gold diamond rings, hand engraver",
+          "knowsAbout": ["HandCrafted jewelry", "Anéis artesanais ouro 18k", "Hand engraving", "High jewelry atelier"]
         })}
       </script>
     </Helmet>

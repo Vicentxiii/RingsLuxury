@@ -67,7 +67,7 @@ export function Contact({ preselectedPiece, onClearPreselectedPiece }: ContactPr
           >
             Anéis artesanais HandCrafted em ouro 18k
             <br />
-            com diamantes — gravados com buril
+            com diamantes — gravados com hand engraver
           </p>
 
           <p className="font-sans-luxury text-xs text-[#A8A296] tracking-[0.18em] uppercase max-w-xl mx-auto leading-relaxed">

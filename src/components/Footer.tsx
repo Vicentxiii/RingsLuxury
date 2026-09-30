@@ -88,7 +88,7 @@ export function Footer() {
 
             <p className="font-cormorant text-base md:text-lg italic text-[#C2BDB2] max-w-sm leading-relaxed">
               Anéis artesanais 1/1 HandCrafted em ouro 18k com diamantes naturais,
-              gravados com buril por Jorge Uquillas. Handmade 18k gold diamond rings.
+              gravados com hand engraver por Jorge Uquillas. Handmade 18k gold diamond rings.
             </p>
 
             <div className="flex items-center gap-4 text-[10px] tracking-[0.25em] text-[#9A7B38] uppercase">

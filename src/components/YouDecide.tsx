@@ -14,7 +14,7 @@ interface Slide {
 const SLIDES: Slide[] = [
   {
     src: '/PUBLIC/Rings Luxury Master Engraver Sketch 1.jpeg',
-    alt: 'Sketch 1 — buril e anel heráldico do Master Engraver',
+    alt: 'Sketch 1 — hand engraver e anel heráldico do Master Engraver',
   },
   {
     src: '/PUBLIC/Rings Luxury Master Engraver Sketch 2 site.jpeg',

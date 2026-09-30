@@ -360,7 +360,7 @@ export const products: Product[] = [
     price: '$ 12,000.00',
     priceNumber: 12000,
     description: 'A hand-engraved 18K gold signet carrying the Bitcoin sigil inside a pavé bezel, with a sculpted eagle worked across the shoulders. A 1/1 piece for those who treat code as heirloom.',
-    extendedHistory: 'Cast in solid 18K gold and finished entirely by hand at the atelier. The bezel is set with pavé diamonds framing the ₿ sigil, which is then chiseled by graver into the face of the signet alongside a stippled ground. The shoulders carry a modeled eagle, its feathers cut with the same burin used on the master’s imperial pieces. No two strokes are repeated; the piece is finished only when the master signs it.',
+    extendedHistory: 'Cast in solid 18K gold and finished entirely by hand at the atelier. The bezel is set with pavé diamonds framing the ₿ sigil, which is then chiseled by graver into the face of the signet alongside a stippled ground. The shoulders carry a modeled eagle, its feathers cut with the same hand engraver used on the master’s imperial pieces. No two strokes are repeated; the piece is finished only when the master signs it.',
     symbolism: 'Sovereignty, immutable record, and themarriage of ancient craft with decentralized trust.',
     specs: {
       material: '18K Solid Gold',
@@ -370,7 +370,7 @@ export const products: Product[] = [
       // A CONFIRMAR: total de quilates do pave. A foto mostra pave no aro e
       // nos ombros, mas não a contagem.
       gems: 'A CONFIRMAR — pavé no aro e nos ombros (visível na foto)',
-      // A CONFIRMAR: horas de buril.
+      // A CONFIRMAR: horas de hand engraver.
       craftHours: 'A CONFIRMAR',
       provenance: 'Rings Luxury Atelier, São Paulo',
       edition: 'One of One • Bitcoin Protocol',

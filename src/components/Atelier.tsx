@@ -65,7 +65,7 @@ export function Atelier() {
                   DISCIPLINE II
                 </span>
                 <span className="font-cinzel text-xs text-[#F3EFE6] uppercase tracking-wider">
-                  Intaglio & Burin Carving
+                  Intaglio & Hand Engraving
                 </span>
               </div>
               <div>

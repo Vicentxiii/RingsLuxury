@@ -44,8 +44,8 @@ export function Home() {
     <div className="min-h-screen bg-[#020202] text-[#EAE6DF] selection:bg-[#C5A059] selection:text-[#020202] font-sans-luxury relative overflow-x-hidden">
       <SEO 
         title="RINGS LUXURY by Jorge Uquillas — HandCrafted 18k Gold Rings | Anéis Artesanais Feitos à Mão" 
-        description="RINGS LUXURY by Jorge Uquillas — Anéis artesanais 1/1 HandCrafted feitos à mão em ouro 18k com diamantes naturais, gravados com buril. Handmade 18k gold diamond rings by master artisan Jorge Uquillas. Atelier Brasil • Miami • Athens — alta joalheria autoral."
-        keywords="RINGS LUXURY, JORGE UQUILLAS, anéis artesanais, HandCrafted, anéis feitos à mão ouro 18k, handmade 18k gold diamond rings, buril, anel 1/1, atelier Brasil Miami, alta joalheria"
+        description="RINGS LUXURY by Jorge Uquillas — Anéis artesanais 1/1 HandCrafted feitos à mão em ouro 18k com diamantes naturais, gravados com hand engraver. Handmade 18k gold diamond rings by master artisan Jorge Uquillas. Atelier Brasil • Miami • Athens — alta joalheria autoral."
+        keywords="RINGS LUXURY, JORGE UQUILLAS, anéis artesanais, HandCrafted, anéis feitos à mão ouro 18k, handmade 18k gold diamond rings, hand engraver, anel 1/1, atelier Brasil Miami, alta joalheria"
       />
       {/* Universal Film Grain — DESATIVADO na Hero para ficar liso/elegante (removidas bolinhas) */}
       {/* <div className="fixed inset-0 film-grain pointer-events-none z-40 opacity-35" /> */}

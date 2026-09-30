@@ -32,8 +32,8 @@ export function JorgeUquillas() {
       <Header onOpenConsultation={handleOpenConsultation} />
       <SEO
         title="RINGS LUXURY by Jorge Uquillas — Laocoön Bronze Horse | HandCrafted Anéis Artesanais Ouro 18k"
-        description="RINGS LUXURY by Jorge Uquillas — Laocoön: Bronze and Time. Cavalo de bronze e anéis artesanais 1/1 HandCrafted em ouro 18k com diamantes, gravados com buril. Handmade 18k gold diamond rings by master artisan Jorge Uquillas. Brasil • Miami."
-        keywords="Jorge Uquillas, RINGS LUXURY, Laocoön, Bronze Horse, anéis artesanais, HandCrafted, ouro 18k, handmade 18k gold diamond rings, buril, anéis feitos à mão, atelier Brasil Miami"
+        description="RINGS LUXURY by Jorge Uquillas — Laocoön: Bronze and Time. Cavalo de bronze e anéis artesanais 1/1 HandCrafted em ouro 18k com diamantes, gravados com hand engraver. Handmade 18k gold diamond rings by master artisan Jorge Uquillas. Brasil • Miami."
+        keywords="Jorge Uquillas, RINGS LUXURY, Laocoön, Bronze Horse, anéis artesanais, HandCrafted, ouro 18k, handmade 18k gold diamond rings, hand engraver, anéis feitos à mão, atelier Brasil Miami"
         url="/jorge-uquillas"
       />
       {/* Iframe que carrega a experiência imersiva completa — pocket watch 3D */}

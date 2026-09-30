@@ -797,11 +797,11 @@ export function JorgeUquillasPiece({ onBackToAtelier, onOpenConsultation }: Jorg
           </h2>
           <div className="jq-desc-row">
             <p className="jq-slide-desc jq-col-1" style={{ fontSize: '15px', color: '#E6CA85' }}>
-              Discover how Jorge Uquillas became one of the finest burin engravers in the world and of an era
+              Discover how Jorge Uquillas became one of the finest hand engravers in the world and of an era
             </p>
             <div className="jq-slide-desc jq-col-2 space-y-3">
               <p>
-                With over 1000 1/1 HandCrafted pieces already created — handmade 18k gold diamond rings engraved with burin — Jorge Uquillas — RINGS LUXURY — has served clients worldwide, from São Paulo to Miami, Dubai to Athens. Each ring is a unique work, handmade without mold, eternalized in gold.
+                With over 1000 1/1 HandCrafted pieces already created — handmade 18k gold diamond rings engraved with hand engraver — Jorge Uquillas — RINGS LUXURY — has served clients worldwide, from São Paulo to Miami, Dubai to Athens. Each ring is a unique work, handmade without mold, eternalized in gold.
               </p>
               <a
                 href="https://www.instagram.com/ringsluxury"
@@ -831,7 +831,7 @@ export function JorgeUquillasPiece({ onBackToAtelier, onOpenConsultation }: Jorg
             JORGE<br />UQUILLAS
           </h2>
           <p className="jq-slide-desc" style={{ fontSize: '14px', lineHeight: '1.75' }}>
-            Jorge Uquillas is a renowned Designer and Artistic Engraver of jewelry of Colombian-Ecuadorian origin. He started in a simple atelier in Bogota, following the third-generation family tradition with Master Ivan Uquillas (ECU-1996). He perfected techniques in Europe, becoming one of the greatest exponents in burin engraving of modern world jewelry. Today based in São Paulo, Brazil, he is the only exponent of this level in the country and one of the only ones on the continent — with clients in more than 50 countries, RINGS LUXURY is highly valued in luxury. 1/1 HandCrafted handmade 18k gold diamond rings engraved with burin.
+            Jorge Uquillas is a renowned Designer and Artistic Engraver of jewelry of Colombian-Ecuadorian origin. He started in a simple atelier in Bogota, following the third-generation family tradition with Master Ivan Uquillas (ECU-1996). He perfected techniques in Europe, becoming one of the greatest exponents in hand engraving of modern world jewelry. Today based in São Paulo, Brazil, he is the only exponent of this level in the country and one of the only ones on the continent — with clients in more than 50 countries, RINGS LUXURY is highly valued in luxury. 1/1 HandCrafted handmade 18k gold diamond rings engraved with hand engraver.
           </p>
         </div>
 
@@ -839,7 +839,7 @@ export function JorgeUquillasPiece({ onBackToAtelier, onOpenConsultation }: Jorg
         <div className="jq-slide" id="jq-slide-3">
           <h2 className="jq-slide-title">Family<br />Tradition</h2>
           <p className="jq-slide-desc">
-            A noble art passed from grandfather to grandson, three generations of burin masters. Jorge Uquillas learned his first techniques with the great Master Ivan Uquillas, carried the family tradition from Colombia to the ateliers of Europe, and today, in São Paulo, stands as one of the only exponents of this level on the continent. Each jewel carries this legacy, hand-carved in 18k gold.
+            A noble art passed from grandfather to grandson, three generations of master hand engravers. Jorge Uquillas learned his first techniques with the great Master Ivan Uquillas, carried the family tradition from Colombia to the ateliers of Europe, and today, in São Paulo, stands as one of the only exponents of this level on the continent. Each jewel carries this legacy, hand-carved in 18k gold.
           </p>
         </div>
 

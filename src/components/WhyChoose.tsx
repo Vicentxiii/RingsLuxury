@@ -40,12 +40,12 @@ export function WhyChoose() {
 
           {/* ÍCONES — 4 colunas */}
           <div className="mt-9 sm:mt-11 lg:mt-[38px] w-full max-w-[860px] grid grid-cols-2 lg:grid-cols-4 gap-y-9 gap-x-6 sm:gap-x-8 lg:gap-x-10 items-start justify-items-center">
-            {/* 100% HAND MADE — buril */}
+            {/* 100% HAND MADE — hand engraver */}
             <div className="flex flex-col items-center text-center w-full max-w-[150px]">
               <div className="w-[96px] h-[96px] sm:w-[108px] sm:h-[108px] lg:w-[118px] lg:h-[118px] flex items-center justify-center">
                 <img
                   src="/PUBLIC/why-100-handmade.png"
-                  alt="100% Hand Made — buril"
+                  alt="100% Hand Made — hand engraver"
                   className="w-full h-full object-contain select-none"
                   draggable={false}
                   onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}

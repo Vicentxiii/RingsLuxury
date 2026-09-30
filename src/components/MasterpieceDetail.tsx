@@ -52,10 +52,10 @@ export function MasterpieceDetail() {
     {
       id: 'hotspot-1',
       title: 'Hand Engraving',
-      mini: 'Buril carved',
-      subtitle: 'Buril micro-chiseling',
+      mini: 'Hand Engraver carved',
+      subtitle: 'Hand Engraver micro-chiseling',
       description:
-        'Chiseled directly into solid gold under 40x magnification with hand-shaped steel burins. Every tentacle scale catches ambient candlelight.',
+        'Chiseled directly into solid gold under 40x magnification with hand-shaped steel hand engravers. Every tentacle scale catches ambient candlelight.',
       pos: 'top-[56%] left-[67%]',
     },
     {

@@ -57,12 +57,12 @@ export function Craftsmanship() {
     {
       numeral: 'III',
       title: 'ENGRAVE',
-      subtitle: 'Intaglio & Burin Chasing',
+      subtitle: 'Intaglio & Hand Engraving',
       duration: '90 — 140 Hours',
       description:
-        'Using hardened steel burins ground to razor angles, the master engraver cuts directly into solid 18K and 22K gold. Every microscopic cut produces an imperishable facet that refracts light with antique depth.',
+        'Using hardened steel hand engravers ground to razor angles, the master engraver cuts directly into solid 18K and 22K gold. Every microscopic cut produces an imperishable facet that refracts light with antique depth.',
       ritual: 'Rhythmic chiseled cuts guided by steady respiration and muscle memory.',
-      tool: 'Handmade French burins, pitch bowls, and jeweler’s eyeglass.',
+      tool: 'Handmade French hand engravers, pitch bowls, and jeweler’s eyeglass.',
       image: ENGRAVE_IMG,
     },
     {
