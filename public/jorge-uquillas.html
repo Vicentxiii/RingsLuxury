@@ -216,8 +216,15 @@
         }
         #slide-3 .slide-title { white-space: nowrap; }
 
-        #slide-4 { right: 80px; width: 400px; max-width: 400px; bottom: 15%; }
+        #slide-4 {
+            left: 0; right: 0; width: 100%; max-width: none; bottom: 12%;
+            display: flex; justify-content: space-between; align-items: flex-end;
+            padding: 0 200px 0 90px; box-sizing: border-box;
+        }
+        .praise-block { max-width: 430px; }
+        #slide-4 .praise-title { font-size: 46px; line-height: 1.15; margin-bottom: 14px; }
         .contact-panel {
+            width: 400px; flex-shrink: 0;
             background: rgba(5,5,5,0.72);
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
@@ -373,8 +380,10 @@
             #slide-1 .col-1 { margin-left: 24px; width: calc(85vw); max-width: none; }
             #slide-1 .col-2 { margin-left: 24px; width: calc(85vw); max-width: none; }
             #slide-2-img { left: 16px; right: auto; top: 130px; width: calc(70vw); max-width: 340px; }
-            #slide-4 { left: 16px; right: 16px; width: auto; max-width: none; bottom: 6%; }
+            #slide-4 { left: 16px; right: 16px; width: auto; max-width: none; bottom: 4%; flex-direction: column; align-items: stretch; gap: 14px; padding: 0; }
             #slide-4 .contact-title { font-size: 40px; }
+            #slide-4 .praise-title { font-size: 30px; margin-bottom: 8px; }
+            #slide-4 .contact-panel { width: auto; max-height: 52vh; overflow-y: auto; }
             .contact-panel { padding: 20px 18px 16px; }
             #slide-2 .slide-title { margin-left: 24px; }
             #slide-2 .slide-desc { margin-left: 24px; width: calc(85vw); }
@@ -446,6 +455,10 @@
         </div>
 
         <div class="slide" id="slide-4">
+            <div class="praise-block">
+                <h2 class="slide-title praise-title">"The Burin Master of Our Era"</h2>
+                <p class="slide-desc">Jorge Uquillas is acclaimed worldwide, trusted by collectors of the highest echelon, with 100% satisfied clients in more than 50 countries.</p>
+            </div>
             <div class="contact-panel">
                 <p class="contact-kicker">RINGS LUXURY • PRIVATE COMMISSION</p>
                 <h2 class="slide-title contact-title">Contact</h2>
