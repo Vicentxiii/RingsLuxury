@@ -1,3 +1,6 @@
+import { useNavigate } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
+
 interface QuemSouEuProps {}
 
 /**
@@ -8,6 +11,7 @@ interface QuemSouEuProps {}
  * - Sem whatsapp flutuante e sem seta de topo (conforme pedido)
  */
 export function QuemSouEu({}: QuemSouEuProps) {
+  const navigate = useNavigate();
   return (
     <section
       id="quem-sou-eu"
@@ -128,6 +132,31 @@ export function QuemSouEu({}: QuemSouEuProps) {
                 Jorge Uquillas is a craftsman who has left his mark in the history of world jewelry, with a unique
                 and unparalleled work that captivates lovers of art and beauty.
               </p>
+            </div>
+
+            {/* CTA — experiência 3D / about */}
+            <div className="w-full mt-8 flex justify-center lg:justify-start">
+              <button
+                type="button"
+                onClick={() => navigate('/jorge-uquillas')}
+                className="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-full border border-[#C5A059]/55 bg-[#C5A059]/[0.07] px-6 py-3.5 sm:px-8 sm:py-4 font-cinzel uppercase whitespace-nowrap text-[#E6CA85] transition-all duration-500 ease-out hover:border-[#C5A059] hover:bg-[#C5A059] hover:text-[#0A0805] hover:shadow-[0_10px_38px_rgba(197,160,89,0.32)] focus:outline-none focus-visible:ring-1 focus-visible:ring-[#E6CA85]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#020202]"
+                style={{ fontSize: 'clamp(9.5px, 0.72vw, 11px)', letterSpacing: '0.3em' }}
+              >
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-[5px] rounded-full border border-[#C5A059]/18 transition-colors duration-500 group-hover:border-[#0A0805]/20"
+                />
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-[#E6CA85]/20 to-transparent transition-transform duration-[900ms] ease-out group-hover:translate-x-full"
+                />
+                <span className="relative z-10 flex items-center gap-3">
+                  <span>About Jorge Uquillas</span>
+                  <span className="transition-transform duration-500 group-hover:translate-x-1">
+                    <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.4} />
+                  </span>
+                </span>
+              </button>
             </div>
           </div>
         </div>
