@@ -28,11 +28,10 @@ export function Contact({}: ContactProps) {
   return (
     <section
       id="contact"
-      className="relative w-full py-32 md:py-48 bg-[#040404] text-[#EAE6DF] overflow-hidden"
+      className="relative w-full py-32 md:py-48 bg-black text-[#EAE6DF] overflow-hidden"
     >
-      {/* Background Black Marble Veins & Soft Volumetric Golden Spotlight */}
-      <div className="absolute inset-0 bg-black-marble opacity-70" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#C5A059]/5 rounded-full blur-3xl pointer-events-none" />
+      {/* Fundo todo preto + degradê leve na barra inferior */}
+      <div className="absolute bottom-0 left-0 w-full h-44 bg-gradient-to-t from-black via-black/60 to-transparent pointer-events-none" />
 
       <div className="max-w-4xl mx-auto px-6 md:px-12 relative z-10">
         {/* Section Header */}

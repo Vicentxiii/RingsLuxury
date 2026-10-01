@@ -3,6 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { GalleryPage } from './pages/GalleryPage';
 import { LuxuryRings } from './pages/LuxuryRings';
+import { EmperorRings } from './pages/EmperorRings';
+import { SpecialEditions } from './pages/SpecialEditions';
 import { LuxuryQueens } from './pages/LuxuryQueens';
 import { Courses } from './pages/Courses';
 import { Blog } from './pages/Blog';
@@ -81,8 +83,8 @@ export default function App() {
         <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/luxury-rings" element={<LuxuryRings />} />
-      <Route path="/emperor-rings" element={<GalleryPage title="Emperor Rings" categorySlug="emperor-rings" />} />
-      <Route path="/special-editions" element={<GalleryPage title="Special Editions" categorySlug="special-editions" />} />
+      <Route path="/emperor-rings" element={<EmperorRings />} />
+      <Route path="/special-editions" element={<SpecialEditions />} />
       <Route path="/gold-silver-rings" element={<GalleryPage title="Gold & Silver Rings" categorySlug="gold-silver-rings" />} />
       <Route path="/necklaces" element={<GalleryPage title="Necklaces" categorySlug="necklaces" />} />
       <Route path="/luxuryqueens" element={<LuxuryQueens />} />

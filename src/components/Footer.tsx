@@ -39,12 +39,24 @@ export function Footer() {
   return (
     <footer
       id="main-footer"
-      className="relative w-full bg-[#020202] text-[#EAE6DF] pt-24 pb-16 overflow-hidden border-t border-[#C5A059]/30"
+      className="relative w-full bg-black text-[#EAE6DF] pt-24 pb-16 overflow-hidden border-t border-[#C5A059]/30"
       itemScope
       itemType="https://schema.org/Organization"
     >
-      {/* Black marble ambient overlay */}
-      <div className="absolute inset-0 bg-black-marble opacity-80 pointer-events-none" />
+      {/* Sem textura — preto puro */}
+      {/* Imagem de fundo do rodapé — 30% de opacidade */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden>
+        <img
+          src="/PUBLIC/Fundo%20do%20rodap%C3%A9%20Rings%20Luxury%20Jorge%20Uquillas%20aneis%20feitos%20a%20mao.jpg"
+          alt=""
+          draggable={false}
+          className="absolute inset-0 w-full h-full object-cover object-center opacity-[0.12] select-none"
+          onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+        />
+      </div>
+
+      {/* Degradê preto forte no final — letras ficam por cima */}
+      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black via-black/85 to-transparent pointer-events-none" aria-hidden />
 
       {/* Monumental Greek Key Border Header */}
       <div className="w-full mb-16 opacity-40">
