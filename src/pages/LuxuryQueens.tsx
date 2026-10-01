@@ -82,7 +82,7 @@ export function LuxuryQueens() {
                 <button
                   type="button"
                   onClick={() => scrollToContact()}
-                  className="w-full aspect-square flex items-center justify-center overflow-hidden cursor-pointer focus:outline-none"
+                  className="w-full h-[260px] sm:h-[300px] flex items-center justify-center overflow-hidden cursor-pointer focus:outline-none"
                   aria-label={`${piece.name} — inquire`}
                 >
                   <img
@@ -90,7 +90,7 @@ export function LuxuryQueens() {
                     alt={piece.alt}
                     loading="lazy"
                     draggable={false}
-                    className="max-w-full max-h-full object-contain select-none transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                    className="max-w-full max-h-full w-auto object-contain select-none transition-transform duration-700 ease-out group-hover:scale-[1.05]"
                     style={{ filter: 'drop-shadow(0 24px 40px rgba(0,0,0,0.9))' }}
                     onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                   />
