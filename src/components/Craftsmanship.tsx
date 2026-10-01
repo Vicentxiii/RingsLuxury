@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowLeft, ArrowRight, Compass, Shield, Sparkles, Feather } from 'lucide-react';
 import { GreekKeyBorder, GreekMeanderDivider, LaurelWreath } from './OrnamentIcons';
+import { useLanguage } from '../i18n/LanguageContext';
 
 // Craftsmanship imagery — 5 fotos novas da pasta public (ordem: Design → Eternize)
 const DESIGN_IMG = '/PUBLIC/Design%20of%20ring%20by%20rings%20luxury.jpg';
@@ -26,6 +27,7 @@ interface CraftStage {
 }
 
 export function Craftsmanship() {
+  const { t } = useLanguage();
   const [activeStageIndex, setActiveStageIndex] = useState(0);
   const [autoPlay, setAutoPlay] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
@@ -34,57 +36,52 @@ export function Craftsmanship() {
   const stages: CraftStage[] = [
     {
       numeral: 'I',
-      title: 'DESIGN',
-      subtitle: 'The Sacred Blueprint & Golden Ratio',
-      duration: '40 — 60 Hours',
-      description:
-        'Every jewel is conceived through geometric harmony governed by the Pythagorean Golden Ratio (1:1.618). Hand-drawn onto tinted vellum using sepia ink and gold leaf leafing, exploring the weight of darkness and light.',
-      ritual: 'Chiaroscuro study of negative space and mythological iconography.',
-      tool: 'Hand-cut goose quill, bone dividers, and tinted archival vellum.',
+      title: t.home.crStage1Title,
+      subtitle: t.home.crStage1Subtitle,
+      duration: t.home.crStage1Duration,
+      description: t.home.crStage1Desc,
+      ritual: t.home.crStage1Ritual,
+      tool: t.home.crStage1Tool,
       image: DESIGN_IMG,
     },
     {
       numeral: 'II',
-      title: 'SCULPT',
-      subtitle: 'Lost-Wax Micro-Sculpting',
-      duration: '80 — 120 Hours',
-      description:
-        'Rather than digital rendering, our artisans hand-sculpt organic beeswax and hard dental wax under stereoscopic microscopes, carving micro-reliefs of Olympian deities and classical acanthus leaves.',
-      ritual: 'Thermal wax carving with heated steel needles and natural resin.',
-      tool: 'Heated miniature spatulas, hard micro-wax, and flame lamps.',
+      title: t.home.crStage2Title,
+      subtitle: t.home.crStage2Subtitle,
+      duration: t.home.crStage2Duration,
+      description: t.home.crStage2Desc,
+      ritual: t.home.crStage2Ritual,
+      tool: t.home.crStage2Tool,
       image: SCULPT_IMG,
     },
     {
       numeral: 'III',
-      title: 'ENGRAVE',
-      subtitle: 'Intaglio & Hand Engraving',
-      duration: '90 — 140 Hours',
-      description:
-        'Using hardened steel hand engravers ground to razor angles, the master engraver cuts directly into solid 18K and 22K gold. Every microscopic cut produces an imperishable facet that refracts light with antique depth.',
-      ritual: 'Rhythmic chiseled cuts guided by steady respiration and muscle memory.',
-      tool: 'Handmade French hand engravers, pitch bowls, and jeweler’s eyeglass.',
+      title: t.home.crStage3Title,
+      subtitle: t.home.crStage3Subtitle,
+      duration: t.home.crStage3Duration,
+      description: t.home.crStage3Desc,
+      ritual: t.home.crStage3Ritual,
+      tool: t.home.crStage3Tool,
       image: ENGRAVE_IMG,
     },
     {
       numeral: 'IV',
-      title: 'POLISH',
-      subtitle: 'Obsidian & Agate Burnishing',
-      duration: '35 — 50 Hours',
-      description:
-        'We reject aggressive machine buffing, which rounds crisp classical borders. Instead, stones are burnished using natural agate tips and crushed volcanic obsidian powder to achieve an aristocratic matte-satin luster.',
-      ritual: 'Cold water burnishing to preserve crisp classical architectural edges.',
-      tool: 'German agate burnishers and pulverized obsidian abrasive.',
+      title: t.home.crStage4Title,
+      subtitle: t.home.crStage4Subtitle,
+      duration: t.home.crStage4Duration,
+      description: t.home.crStage4Desc,
+      ritual: t.home.crStage4Ritual,
+      tool: t.home.crStage4Tool,
       image: POLISH_IMG,
     },
     {
       numeral: 'V',
-      title: 'ETERNIZE',
-      subtitle: 'The Hallmarking of Immortality',
-      duration: 'Final Sanctuary Rite',
-      description:
-        'The completed creation receives the Athenian Owl master stamp, the Rings Luxury royal crest, and an individual archival folio sealed in hot beeswax. It is now immortalized in the Rings Luxury registry forever.',
-      ritual: 'Cold steel punch impression and archival registry entry.',
-      tool: 'Hand-carved hardened steel punch and sovereign seal wax.',
+      title: t.home.crStage5Title,
+      subtitle: t.home.crStage5Subtitle,
+      duration: t.home.crStage5Duration,
+      description: t.home.crStage5Desc,
+      ritual: t.home.crStage5Ritual,
+      tool: t.home.crStage5Tool,
       image: ETERNIZE_IMG,
     },
   ];
@@ -119,17 +116,17 @@ export function Craftsmanship() {
           <div className="inline-flex items-center gap-2 mb-4">
             <LaurelWreath className="w-4 h-4 text-[#C5A059]" />
             <span className="text-[10px] uppercase tracking-[0.4em] text-[#C5A059] font-medium">
-              THE FIVE SACRED STAGES
+              {t.home.crKicker}
             </span>
             <LaurelWreath className="w-4 h-4 text-[#C5A059] transform -scale-x-100" />
           </div>
 
           <h2 className="font-cinzel text-4xl sm:text-5xl md:text-6xl tracking-[0.16em] uppercase text-[#FBF9F5] font-light mb-4">
-            CRAFTSMANSHIP
+            {t.home.crTitle}
           </h2>
 
           <p className="font-cormorant text-xl md:text-2xl tracking-[0.2em] italic text-[#C5A059] font-light uppercase">
-            CHRONICLES OF PERFECTION
+            {t.home.crSubtitle}
           </p>
 
           <GreekMeanderDivider className="mt-8 opacity-60" />
@@ -192,7 +189,7 @@ export function Craftsmanship() {
               {/* Stage Badge */}
               <div className="absolute top-8 left-8 px-4 py-1.5 bg-[#020202]/90 border border-[#C5A059]/40 backdrop-blur-md">
                 <span className="text-[10px] uppercase tracking-[0.35em] text-[#C5A059]">
-                  PHASE {currentStage.numeral} • {currentStage.duration}
+                  {t.home.crPhase} {currentStage.numeral} • {currentStage.duration}
                 </span>
               </div>
             </div>
@@ -207,7 +204,7 @@ export function Craftsmanship() {
                 </span>
                 <div className="h-8 w-px bg-[#C5A059]/40" />
                 <span className="text-[10px] uppercase tracking-[0.35em] text-[#9A7B38]">
-                  METALLURGICAL PROTOCOL
+                  {t.home.crProtocol}
                 </span>
               </div>
 
@@ -228,14 +225,14 @@ export function Craftsmanship() {
             <div className="space-y-3 pt-4 border-t border-[#C5A059]/20 text-xs">
               <div className="p-3.5 bg-[#070707] border-l-2 border-[#C5A059]">
                 <span className="text-[9px] uppercase tracking-[0.25em] text-[#C5A059] block mb-1 font-semibold">
-                  Sacred Ritual
+                  {t.home.crRitualLabel}
                 </span>
                 <span className="text-[#C2BDB2]">{currentStage.ritual}</span>
               </div>
 
               <div className="p-3.5 bg-[#070707] border-l-2 border-[#C5A059]/50">
                 <span className="text-[9px] uppercase tracking-[0.25em] text-[#9A7B38] block mb-1 font-semibold">
-                  Master Instrument
+                  {t.home.crInstrumentLabel}
                 </span>
                 <span className="text-[#C2BDB2]">{currentStage.tool}</span>
               </div>
@@ -249,7 +246,7 @@ export function Craftsmanship() {
                 className="flex items-center gap-2 text-xs font-cinzel tracking-[0.25em] uppercase text-[#EAE6DF]/60 hover:text-[#C5A059] disabled:opacity-20 disabled:pointer-events-none transition-colors"
               >
                 <ArrowLeft className="w-4 h-4" />
-                <span>PREVIOUS</span>
+                <span>{t.home.crPrev}</span>
               </button>
 
               <span className="text-[10px] tracking-[0.3em] text-[#9A7B38]">
@@ -261,7 +258,7 @@ export function Craftsmanship() {
                 onClick={() => handleSelectStage(Math.min(stages.length - 1, activeStageIndex + 1))}
                 className="flex items-center gap-2 text-xs font-cinzel tracking-[0.25em] uppercase text-[#C5A059] hover:text-[#E6CA85] disabled:opacity-20 disabled:pointer-events-none transition-colors"
               >
-                <span>NEXT STAGE</span>
+                <span>{t.home.crNext}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>

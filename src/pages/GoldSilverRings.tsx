@@ -3,6 +3,7 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
 import { Contact } from '../components/Contact';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface RingItem {
   src: string;
@@ -13,51 +14,6 @@ interface RingItem {
 
 const GOLDSILVER_BG = encodeURI('/PUBLIC/Fundo da Seção Mixed Gold Rings 3 rings luxury Jorge Uquillas.png');
 
-const RINGS: RingItem[] = [
-  {
-    src: encodeURI('/PUBLIC/Mixed Luxury Gold Ring by rings Luxury Jorge Uquillas.png'),
-    name: 'Mixed Luxury Gold Ring',
-    price: '$ 3,500.00',
-    alt: 'Mixed Luxury Gold Ring by Jorge Uquillas',
-  },
-  {
-    src: encodeURI('/PUBLIC/Wolf Silver Ring by Jorge Uquillas Rings Luxury.png'),
-    name: 'Wolf Silver Ring',
-    price: '$ 1,500.00',
-    alt: 'Wolf Silver Ring by Jorge Uquillas',
-  },
-  {
-    src: encodeURI('/PUBLIC/Family Crest Silver Ring By rings Luxury Jorge Uquillas.png'),
-    name: 'Family Crest Silver Ring',
-    price: '$ 1,500.00',
-    alt: 'Family Crest Silver Ring by Jorge Uquillas',
-  },
-  {
-    src: encodeURI('/PUBLIC/Miced Maçonic 33 Degrees Gold Silver Ring by Rings Luxury Jorge Uquillas.png'),
-    name: 'Mixed Maçonic 33 Degrees Gold Silver Ring',
-    price: '$ 3,500.00',
-    alt: 'Mixed Maçonic 33 Degrees Gold Silver Ring by Jorge Uquillas',
-  },
-  {
-    src: encodeURI('/PUBLIC/Miced Gold-Silver ring Family Crest by Jorge uquillas Rings Luxury.png'),
-    name: 'Mixed Gold-Silver Family Crest Ring',
-    price: '$ 3,500.00',
-    alt: 'Mixed Gold-Silver Family Crest Ring by Jorge Uquillas',
-  },
-  {
-    src: encodeURI('/PUBLIC/Mixed Templar Gold Silver Ring 18k by Jorge Uquillas Rings Luxury.png'),
-    name: 'Mixed Templar Gold Silver Ring 18k',
-    price: '$ 3,500.00',
-    alt: 'Mixed Templar Gold Silver Ring 18k by Jorge Uquillas',
-  },
-  {
-    src: encodeURI('/PUBLIC/Miced Gold-Silver ring Family Crest by Jorge uquillas Rings Luxury with number.png'),
-    name: 'Mixed Gold-Silver Ring Family Crest',
-    price: '$ 3,500.00',
-    alt: 'Mixed Gold-Silver Ring Family Crest by Jorge Uquillas',
-  },
-];
-
 function scrollToContact() {
   setTimeout(() => {
     const el = document.getElementById('contact');
@@ -66,12 +22,59 @@ function scrollToContact() {
 }
 
 export function GoldSilverRings() {
+  const { t } = useLanguage();
+
+  const RINGS: RingItem[] = [
+    {
+      src: encodeURI('/PUBLIC/Mixed Luxury Gold Ring by rings Luxury Jorge Uquillas.png'),
+      name: 'Mixed Luxury Gold Ring',
+      price: '$ 3,500.00',
+      alt: t.collections.altGoldSilver1,
+    },
+    {
+      src: encodeURI('/PUBLIC/Wolf Silver Ring by Jorge Uquillas Rings Luxury.png'),
+      name: 'Wolf Silver Ring',
+      price: '$ 1,500.00',
+      alt: t.collections.altGoldSilver2,
+    },
+    {
+      src: encodeURI('/PUBLIC/Family Crest Silver Ring By rings Luxury Jorge Uquillas.png'),
+      name: 'Family Crest Silver Ring',
+      price: '$ 1,500.00',
+      alt: t.collections.altGoldSilver3,
+    },
+    {
+      src: encodeURI('/PUBLIC/Miced Maçonic 33 Degrees Gold Silver Ring by Rings Luxury Jorge Uquillas.png'),
+      name: 'Mixed Maçonic 33 Degrees Gold Silver Ring',
+      price: '$ 3,500.00',
+      alt: t.collections.altGoldSilver4,
+    },
+    {
+      src: encodeURI('/PUBLIC/Miced Gold-Silver ring Family Crest by Jorge uquillas Rings Luxury.png'),
+      name: 'Mixed Gold-Silver Family Crest Ring',
+      price: '$ 3,500.00',
+      alt: t.collections.altGoldSilver5,
+    },
+    {
+      src: encodeURI('/PUBLIC/Mixed Templar Gold Silver Ring 18k by Jorge Uquillas Rings Luxury.png'),
+      name: 'Mixed Templar Gold Silver Ring 18k',
+      price: '$ 3,500.00',
+      alt: t.collections.altGoldSilver6,
+    },
+    {
+      src: encodeURI('/PUBLIC/Miced Gold-Silver ring Family Crest by Jorge uquillas Rings Luxury with number.png'),
+      name: 'Mixed Gold-Silver Ring Family Crest',
+      price: '$ 3,500.00',
+      alt: t.collections.altGoldSilver7,
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-black text-[#EAE6DF] font-sans-luxury relative overflow-x-hidden">
       <SEO
-        title="Golden Silver Rings — Mixed Gold & Silver | Jorge Uquillas"
-        description="Golden Silver Rings by Jorge Uquillas — Wolf, Family Crest, Maçonic 33 Degrees, Templar and Mixed Luxury 1/1 HandCrafted gold and silver rings."
-        keywords="RINGS LUXURY, Golden Silver Rings, Wolf Ring, Maçonic Ring, Templar Ring, gold silver, Jorge Uquillas"
+        title={t.collections.seoGoldSilverTitle}
+        description={t.collections.seoGoldSilverDescription}
+        keywords={t.collections.seoGoldSilverKeywords}
       />
 
       <Header onOpenConsultation={() => scrollToContact()} />
@@ -109,7 +112,7 @@ export function GoldSilverRings() {
               className="font-cinzel font-normal uppercase text-white"
               style={{ fontSize: 'clamp(30px, 3.4vw, 50px)', letterSpacing: '0.1em' }}
             >
-              Golden Silver Rings
+              {t.collections.goldSilverTitle}
             </h1>
             {/* filete dourado com brilho central */}
             <div className="relative mx-auto mt-6 w-full max-w-[560px]" aria-hidden>
@@ -126,7 +129,7 @@ export function GoldSilverRings() {
                   type="button"
                   onClick={() => scrollToContact()}
                   className="w-full aspect-square flex items-center justify-center overflow-hidden cursor-pointer focus:outline-none"
-                  aria-label={`${ring.name} — inquire`}
+                  aria-label={`${ring.name} ${t.collections.inquireSuffix}`}
                 >
                   <img
                     src={ring.src}
@@ -149,7 +152,7 @@ export function GoldSilverRings() {
                   onClick={() => scrollToContact()}
                   className="mt-3 px-6 py-1.5 border border-white/25 hover:border-[#C5A059] rounded-full text-[11px] tracking-[0.12em] text-white/85 hover:text-[#E6CA85] transition-colors"
                 >
-                  Add to cart
+                  {t.collections.addToCart}
                 </button>
               </div>
             ))}

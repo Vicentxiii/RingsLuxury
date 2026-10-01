@@ -6,6 +6,7 @@ import { SEO } from '../components/SEO';
 import { Contact } from '../components/Contact';
 import { products, getProductsByCategory } from '../data/products';
 import { ArrowRight } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface GalleryPageProps {
   title: string;
@@ -13,6 +14,7 @@ interface GalleryPageProps {
 }
 
 export function GalleryPage({ title, categorySlug }: GalleryPageProps) {
+  const { t, lang } = useLanguage();
   const [commissionTarget, setCommissionTarget] = useState<string>('');
 
   const handleOpenConsultation = (pieceName?: string) => {
@@ -46,7 +48,7 @@ export function GalleryPage({ title, categorySlug }: GalleryPageProps) {
       <main className="max-w-7xl mx-auto px-6 py-20 relative z-10">
         <header className="text-center mb-24">
           <h2 className="font-poppins text-xs font-semibold uppercase tracking-[0.3em] text-[#C5A059] mb-4">
-            Exclusive Collection
+            {t.pages.galleryKicker}
           </h2>
           <h1 className="font-cinzel text-4xl md:text-6xl font-medium tracking-wide text-[#F3EFE6] mb-8">
             {title}
@@ -72,12 +74,12 @@ export function GalleryPage({ title, categorySlug }: GalleryPageProps) {
                 </div>
                 <div className="absolute inset-0 bg-[#020202]/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center z-20">
                   <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#C5A059] text-[#020202] font-cinzel text-[10px] tracking-[0.25em] uppercase rounded-full">
-                    Ver Detalhes <ArrowRight className="w-3 h-3" />
+                    {t.pages.galleryViewDetails} <ArrowRight className="w-3 h-3" />
                   </span>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 z-10 px-3 py-2 bg-gradient-to-t from-[#020202] to-transparent flex items-center justify-between">
                   <span className="text-[8px] uppercase tracking-[0.3em] text-[#E6CA85]/70">{piece.specs.edition}</span>
-                  <span className={`text-[8px] uppercase tracking-widest px-2 py-0.5 rounded-full border ${piece.inStock ? 'border-emerald-500/40 text-emerald-300 bg-emerald-500/10' : 'border-red-500/40 text-red-300'}`}>{piece.inStock ? 'Disponível' : 'Sob Consulta'}</span>
+                  <span className={`text-[8px] uppercase tracking-widest px-2 py-0.5 rounded-full border ${piece.inStock ? 'border-emerald-500/40 text-emerald-300 bg-emerald-500/10' : 'border-red-500/40 text-red-300'}`}>{piece.inStock ? t.pages.galleryInStock : t.pages.galleryMadeToOrder}</span>
                 </div>
               </Link>
               
@@ -87,7 +89,7 @@ export function GalleryPage({ title, categorySlug }: GalleryPageProps) {
                   {piece.name}
                 </Link>
                 <p className="font-cormorant text-[#A8A296] text-base leading-relaxed mt-2 flex-grow line-clamp-2">
-                  {piece.description}
+                  {lang === 'es' ? (piece.description_es ?? piece.description) : lang === 'pt' ? (piece.description_pt ?? piece.description) : piece.description}
                 </p>
                 
                 <div className="mt-6 flex items-center gap-3">
@@ -95,13 +97,13 @@ export function GalleryPage({ title, categorySlug }: GalleryPageProps) {
                     to={`/produto/${piece.slug}`}
                     className="flex-1 py-3 bg-[#C5A059] hover:bg-[#E6CA85] text-[#020202] font-cinzel text-[10px] tracking-[0.25em] uppercase flex items-center justify-center gap-2 rounded-full transition-colors"
                   >
-                    Ver Obra
+                    {t.pages.galleryViewWork}
                   </Link>
                   <button 
                     onClick={() => handleOpenConsultation(piece.name)}
                     className="px-5 py-3 border border-[#C5A059]/30 hover:border-[#C5A059] text-[#C5A059] hover:text-[#E6CA85] font-cinzel text-[10px] tracking-[0.2em] uppercase rounded-full transition-colors"
                   >
-                    Inquire
+                    {t.pages.galleryInquire}
                   </button>
                 </div>
               </div>

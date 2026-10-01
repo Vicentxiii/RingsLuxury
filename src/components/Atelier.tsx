@@ -1,11 +1,13 @@
 import React from 'react';
 import { GreekKeyBorder, GreekMeanderDivider, AcanthusLeaf } from './OrnamentIcons';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const ATELIER_VIDEO = '/PUBLIC/atelier-video-monograma-maconico-templarios.mp4';
 const AGUIA_IMG =
   '/PUBLIC/Luxury%20rings%20collection%20anel%20Aguia%20ma%C3%A7onica%20by%20Jorge%20Uquillas%20rings%20luxury.png';
 
 export function Atelier() {
+  const { t } = useLanguage();
   return (
     <section
       id="atelier"
@@ -20,7 +22,7 @@ export function Atelier() {
             <div className="inline-flex items-center gap-2">
               <AcanthusLeaf className="w-4 h-4 text-[#C5A059]" />
               <span className="text-[10px] uppercase tracking-[0.4em] text-[#C5A059] font-medium">
-                THE SACRED WORKSHOP • ATHÈNES
+                {t.home.atKicker}
               </span>
             </div>
 
@@ -29,51 +31,51 @@ export function Atelier() {
               id="atelier-heading"
               className="font-cinzel text-2xl sm:text-3xl md:text-4xl tracking-[0.16em] uppercase text-[#FBF9F5] font-light leading-[1.25]"
             >
-              THE HAND OF
+              {t.home.atTitleA}
               <br />
               <span className="text-[#C5A059]">
                 JORGE UQUILLAS
               </span>
               <span className="mt-3 block text-xs sm:text-sm tracking-[0.4em] text-[#E6CA85] uppercase">
-                Master Engraver
+                {t.home.atRole}
               </span>
             </h2>
 
             {/* Text: Every masterpiece begins with an idea... */}
             <blockquote className="font-cormorant text-2xl sm:text-3xl italic text-[#EAE6DF] leading-relaxed border-l-2 border-[#C5A059]/40 pl-6 my-6">
-              "Every masterpiece begins with an idea,
+              {t.home.atQuote1}
               <br />
-              but becomes eternal through the hand of master engraver Jorge Uquillas."
+              {t.home.atQuote2}
             </blockquote>
 
             <p className="font-sans-luxury text-xs sm:text-sm text-[#A8A296] leading-relaxed tracking-wider">
-              Within the subterranean atelier of master engraver Jorge Uquillas, beneath the shadow of the Acropolis, ancient metallurgical rites converge with contemporary haute joaillerie. Here, no digital rapid-prototyping exists. Every curve is carved in beeswax by Jorge Uquillas; every laurel leaf is chased by his hand with 19th-century hardened steel gravers.
+              {t.home.atText}
             </p>
 
             {/* Atelier Disciplines Spec Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-6 border-t border-[#C5A059]/20">
               <div>
                 <span className="text-[10px] uppercase tracking-[0.25em] text-[#9A7B38] block mb-1">
-                  DISCIPLINE I
+                  {t.home.atDisc1}
                 </span>
                 <span className="font-cinzel text-xs text-[#F3EFE6] uppercase tracking-wider">
-                  Cire Perdue (Lost-Wax)
+                  {t.home.atDisc1Name}
                 </span>
               </div>
               <div>
                 <span className="text-[10px] uppercase tracking-[0.25em] text-[#9A7B38] block mb-1">
-                  DISCIPLINE II
+                  {t.home.atDisc2}
                 </span>
                 <span className="font-cinzel text-xs text-[#F3EFE6] uppercase tracking-wider">
-                  Intaglio & Hand Engraving
+                  {t.home.atDisc2Name}
                 </span>
               </div>
               <div>
                 <span className="text-[10px] uppercase tracking-[0.25em] text-[#9A7B38] block mb-1">
-                  DISCIPLINE III
+                  {t.home.atDisc3}
                 </span>
                 <span className="font-cinzel text-xs text-[#F3EFE6] uppercase tracking-wider">
-                  Agate Burnishing
+                  {t.home.atDisc3Name}
                 </span>
               </div>
             </div>
@@ -96,15 +98,15 @@ export function Atelier() {
                   loop
                   playsInline
                   preload="metadata"
-                  aria-label="Anel Rings Luxury — anel monograma maçônico templários, by Jorge Uquillas"
+                  aria-label={t.home.atVideoAria}
                   className="w-full h-full object-cover filter contrast-[1.1] brightness-95"
                 />
               </div>
 
               {/* Caption */}
               <div className="mt-3 flex items-center justify-between text-[9px] uppercase tracking-[0.3em] text-[#9A7B38]">
-                <span>ATELIER FILM — LOOP</span>
-                <span>MONOGRAMA MAÇÔNICO • TEMPLÁRIOS</span>
+                <span>{t.home.atCaptionFilm}</span>
+                <span>{t.home.atCaptionMono}</span>
               </div>
             </div>
 
@@ -113,7 +115,7 @@ export function Atelier() {
               <div className="aspect-square overflow-hidden bg-black">
                 <img
                   src={AGUIA_IMG}
-                  alt="Anel Águia Maçônica em ouro 18k — by Jorge Uquillas"
+                  alt={t.home.atAguiaAlt}
                   referrerPolicy="no-referrer"
                   loading="lazy"
                   className="w-full h-full object-contain filter contrast-110"

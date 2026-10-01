@@ -1,8 +1,11 @@
 import React from 'react';
 import { ShieldCheck, Lock, Truck, RefreshCcw, Award, CreditCard } from 'lucide-react';
 import { GreekMeanderDivider } from './OrnamentIcons';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export function ProductPaymentMethods() {
+  const { t } = useLanguage();
+
   return (
     <section className="relative w-full border border-[#C5A059]/25 bg-[#080808] overflow-hidden">
       {/* corner brackets */}
@@ -17,15 +20,15 @@ export function ProductPaymentMethods() {
           <div className="inline-flex items-center gap-2 mb-3">
             <Lock className="w-3.5 h-3.5 text-[#C5A059]" />
             <span className="text-[10px] uppercase tracking-[0.4em] text-[#C5A059] font-medium">
-              Aquisição Segura & Discreta
+              {t.collections.payEyebrow}
             </span>
             <Lock className="w-3.5 h-3.5 text-[#C5A059]" />
           </div>
           <h3 className="font-cinzel text-lg md:text-xl tracking-[0.22em] uppercase text-[#F3EFE6]">
-            Meios de Pagamento Aceitos
+            {t.collections.payTitle}
           </h3>
           <p className="font-cormorant text-sm italic text-[#9A7B38] mt-1">
-            Transação criptografada • Fatura discreta • Atelier Guarantee
+            {t.collections.paySubtitle}
           </p>
         </div>
 
@@ -34,16 +37,16 @@ export function ProductPaymentMethods() {
           {/* Cartões */}
           <div className="lg:col-span-7">
             <span className="text-[9px] uppercase tracking-[0.35em] text-[#9A7B38] block mb-3">
-              Cartões de Crédito — Parcelamento em até 12x sem juros
+              {t.collections.payCardsLabel}
             </span>
             <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
               {[
-                { label: 'VISA', sub: 'Crédito & Débito' },
-                { label: 'MASTERCARD', sub: 'Crédito & Débito' },
-                { label: 'AMEX', sub: 'American Express' },
-                { label: 'ELO', sub: 'Nacional' },
-                { label: 'HIPERCARD', sub: 'Nacional' },
-                { label: 'DINERS', sub: 'International' },
+                { label: 'VISA', sub: t.collections.payCardCreditDebit },
+                { label: 'MASTERCARD', sub: t.collections.payCardCreditDebit },
+                { label: 'AMEX', sub: t.collections.payCardAmex },
+                { label: 'ELO', sub: t.collections.payCardNational },
+                { label: 'HIPERCARD', sub: t.collections.payCardNational },
+                { label: 'DINERS', sub: t.collections.payCardInternational },
               ].map((card) => (
                 <div
                   key={card.label}
@@ -66,7 +69,7 @@ export function ProductPaymentMethods() {
                 </div>
                 <div>
                   <span className="block font-cinzel text-xs tracking-widest text-[#F3EFE6]">PIX</span>
-                  <span className="block text-[9px] tracking-widest uppercase text-[#9A7B38]">5% desconto • Aprovação imediata</span>
+                  <span className="block text-[9px] tracking-widest uppercase text-[#9A7B38]">{t.collections.payPixNote}</span>
                 </div>
               </div>
               <div className="flex items-center gap-3 p-3 bg-[#050505] border border-[#C5A059]/20">
@@ -74,8 +77,8 @@ export function ProductPaymentMethods() {
                   <span className="font-cinzel text-[7px] tracking-widest text-[#C5A059]">BOLETO</span>
                 </div>
                 <div>
-                  <span className="block font-cinzel text-xs tracking-widest text-[#F3EFE6]">Boleto Bancário</span>
-                  <span className="block text-[9px] tracking-widest uppercase text-[#9A7B38]">3% desconto • 1-2 dias úteis</span>
+                  <span className="block font-cinzel text-xs tracking-widest text-[#F3EFE6]">{t.collections.payBoleto}</span>
+                  <span className="block text-[9px] tracking-widest uppercase text-[#9A7B38]">{t.collections.payBoletoNote}</span>
                 </div>
               </div>
               <div className="flex items-center gap-3 p-3 bg-[#050505] border border-[#C5A059]/20">
@@ -83,56 +86,56 @@ export function ProductPaymentMethods() {
                   <span className="font-cinzel text-[7px] tracking-widest text-[#C5A059]">WIRE</span>
                 </div>
                 <div>
-                  <span className="block font-cinzel text-xs tracking-widest text-[#F3EFE6]">Wire Transfer</span>
-                  <span className="block text-[9px] tracking-widest uppercase text-[#9A7B38]">SWIFT • IBAN • Crypto</span>
+                  <span className="block font-cinzel text-xs tracking-widest text-[#F3EFE6]">{t.collections.payWire}</span>
+                  <span className="block text-[9px] tracking-widest uppercase text-[#9A7B38]">{t.collections.payWireNote}</span>
                 </div>
               </div>
             </div>
 
             <p className="mt-4 text-[10px] leading-relaxed tracking-wider text-[#A8A296] font-sans-luxury">
-              * Parcelamento em até <strong className="text-[#C5A059]">12x sem juros</strong> para cartões nacionais. Internacionais em até 6x. PIX e Wire com desconto de atelier. Fatura discreta como <em>“RL Atelier SA”</em>. Câmbio USD/BRL/EUR no fechamento.
+              {t.collections.payNotePrefix}<strong className="text-[#C5A059]">{t.collections.payNoteStrong}</strong>{t.collections.payNoteMiddle}<em>{t.collections.payNoteBrand}</em>{t.collections.payNoteSuffix}
             </p>
           </div>
 
           {/* Garantias */}
           <div className="lg:col-span-5 lg:border-l lg:border-[#C5A059]/15 lg:pl-8 space-y-4">
             <span className="text-[9px] uppercase tracking-[0.35em] text-[#9A7B38] block mb-3">
-              Garantias do Atelier
+              {t.collections.payGuarantees}
             </span>
             <div className="grid grid-cols-2 gap-3">
               <div className="flex gap-2.5 p-3 bg-[#050505] border border-[#C5A059]/15">
                 <ShieldCheck className="w-4 h-4 text-[#C5A059] mt-0.5 shrink-0" />
                 <div>
-                  <span className="block text-[10px] uppercase tracking-widest text-[#F3EFE6] font-cinzel">Certificado</span>
-                  <span className="block text-[10px] leading-relaxed text-[#A8A296]">Owl of Athena + laudo gemológico GIA</span>
+                  <span className="block text-[10px] uppercase tracking-widest text-[#F3EFE6] font-cinzel">{t.collections.payCert}</span>
+                  <span className="block text-[10px] leading-relaxed text-[#A8A296]">{t.collections.payCertDesc}</span>
                 </div>
               </div>
               <div className="flex gap-2.5 p-3 bg-[#050505] border border-[#C5A059]/15">
                 <Lock className="w-4 h-4 text-[#C5A059] mt-0.5 shrink-0" />
                 <div>
-                  <span className="block text-[10px] uppercase tracking-widest text-[#F3EFE6] font-cinzel">SSL 256-bit</span>
-                  <span className="block text-[10px] leading-relaxed text-[#A8A296]">Checkout criptografado</span>
+                  <span className="block text-[10px] uppercase tracking-widest text-[#F3EFE6] font-cinzel">{t.collections.paySsl}</span>
+                  <span className="block text-[10px] leading-relaxed text-[#A8A296]">{t.collections.paySslDesc}</span>
                 </div>
               </div>
               <div className="flex gap-2.5 p-3 bg-[#050505] border border-[#C5A059]/15">
                 <Truck className="w-4 h-4 text-[#C5A059] mt-0.5 shrink-0" />
                 <div>
-                  <span className="block text-[10px] uppercase tracking-widest text-[#F3EFE6] font-cinzel">Insured Delivery</span>
-                  <span className="block text-[10px] leading-relaxed text-[#A8A296]">Seguro integral • Caixa de mármore negro</span>
+                  <span className="block text-[10px] uppercase tracking-widest text-[#F3EFE6] font-cinzel">{t.collections.payInsured}</span>
+                  <span className="block text-[10px] leading-relaxed text-[#A8A296]">{t.collections.payInsuredDesc}</span>
                 </div>
               </div>
               <div className="flex gap-2.5 p-3 bg-[#050505] border border-[#C5A059]/15">
                 <RefreshCcw className="w-4 h-4 text-[#C5A059] mt-0.5 shrink-0" />
                 <div>
-                  <span className="block text-[10px] uppercase tracking-widest text-[#F3EFE6] font-cinzel">Atelier 7 dias</span>
-                  <span className="block text-[10px] leading-relaxed text-[#A8A296]">Ajuste ou crédito integral</span>
+                  <span className="block text-[10px] uppercase tracking-widest text-[#F3EFE6] font-cinzel">{t.collections.payAtelier}</span>
+                  <span className="block text-[10px] leading-relaxed text-[#A8A296]">{t.collections.payAtelierDesc}</span>
                 </div>
               </div>
             </div>
 
             <div className="flex items-center gap-2 pt-2 text-[9px] uppercase tracking-[0.3em] text-[#9A7B38]">
               <Award className="w-3.5 h-3.5 text-[#C5A059]" />
-              <span>Athenian Archival Discretion Guaranteed</span>
+              <span>{t.collections.payDiscretion}</span>
             </div>
           </div>
         </div>
@@ -142,11 +145,11 @@ export function ProductPaymentMethods() {
         </div>
 
         <div className="mt-4 flex flex-wrap items-center justify-center gap-3 text-[8px] uppercase tracking-[0.3em] text-[#9A7B38]">
-          <span>© MMXXVI RINGS LUXURY ATELIER</span>
+          <span>{t.collections.payCopyright}</span>
           <span className="w-1 h-1 bg-[#C5A059]/40 rounded-full" />
-          <span>CNPJ 00.000.000/0001-00 • Athens • Paris • Geneva</span>
+          <span>{t.collections.payOffices}</span>
           <span className="w-1 h-1 bg-[#C5A059]/40 rounded-full" />
-          <span>Discreet Billing</span>
+          <span>{t.collections.payDiscreet}</span>
         </div>
       </div>
     </section>

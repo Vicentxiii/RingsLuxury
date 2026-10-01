@@ -1,14 +1,17 @@
+import { useLanguage } from '../i18n/LanguageContext';
+
 /**
  * Seção WHY CHOOSE RINGS LUXURY? — fiel ao print, SEO com título literal (sem imagem TITLE)
  * - Fundo: why-bg.webp
  * - 4 ícones: why-100-handmade, why-best-gold, why-lifetime, why-satisfied
  */
 export function WhyChoose() {
+  const { t } = useLanguage();
   return (
     <section
       id="why-choose"
       className="relative w-full bg-black overflow-hidden isolate border-b border-[#C5A059]/35"
-      aria-label="Why choose Rings Luxury"
+      aria-label={t.home.whyAria}
     >
       {/* FUNDO — preto puro igual à seção de cima */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-black" />
@@ -18,7 +21,7 @@ export function WhyChoose() {
         {/* TÍTULO — 100% texto literal para SEO, sem imagem TITLE */}
         <div className="flex flex-col items-center justify-center text-center">
           <h2 className="font-cinzel font-normal tracking-[0.06em] uppercase flex items-baseline gap-[0.35em] text-[20px] sm:text-[24px] lg:text-[26px]">
-            <span className="text-[#F2ECE0]">WHY CHOOSE</span>
+            <span className="text-[#F2ECE0]">{t.home.whyTitleA}</span>
             <span className="text-[#C5A059] italic font-cormorant font-medium tracking-[0.04em]">RINGS LUXURY?</span>
           </h2>
           {/* Linha ornamental dourada abaixo do título — replica a do print sem usar a imagem TITLE */}
@@ -45,14 +48,14 @@ export function WhyChoose() {
               <div className="w-[96px] h-[96px] sm:w-[108px] sm:h-[108px] lg:w-[118px] lg:h-[118px] flex items-center justify-center">
                 <img
                   src="/PUBLIC/why-100-handmade.png"
-                  alt="100% Hand Made — hand engraver"
+                  alt={t.home.whyAlt1}
                   className="w-full h-full object-contain select-none"
                   draggable={false}
                   onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                 />
               </div>
               <span className="mt-2 font-sans-luxury font-semibold text-[#C2A86A] uppercase tracking-[0.14em] text-[8.5px] sm:text-[9px] leading-[1.35]">
-                100% HAND MADE
+                {t.home.whyLabel1}
               </span>
             </div>
 
@@ -61,14 +64,14 @@ export function WhyChoose() {
               <div className="w-[96px] h-[96px] sm:w-[108px] sm:h-[108px] lg:w-[118px] lg:h-[118px] flex items-center justify-center">
                 <img
                   src="/PUBLIC/why-best-gold.png"
-                  alt="Best Gold Quality — 18K Au"
+                  alt={t.home.whyAlt2}
                   className="w-full h-full object-contain select-none"
                   draggable={false}
                   onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                 />
               </div>
               <span className="mt-2 font-sans-luxury font-semibold text-[#C2A86A] uppercase tracking-[0.14em] text-[8.5px] sm:text-[9px] leading-[1.35]">
-                BEST GOLD QUALITY
+                {t.home.whyLabel2}
               </span>
             </div>
 
@@ -77,19 +80,19 @@ export function WhyChoose() {
               <div className="w-[96px] h-[96px] sm:w-[108px] sm:h-[108px] lg:w-[118px] lg:h-[118px] flex items-center justify-center">
                 <img
                   src="/PUBLIC/why-lifetime.png"
-                  alt="Lifetime Warranty — Quality is Everything"
+                  alt={t.home.whyAlt3}
                   className="w-full h-full object-contain select-none"
                   draggable={false}
                   onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                 />
               </div>
               <span className="mt-2 font-sans-luxury font-semibold text-[#C2A86A] uppercase tracking-[0.12em] text-[8.5px] sm:text-[9px] leading-[1.35]">
-                QUALITY
+                {t.home.whyLabel3Line1}
                 <br />
-                TS EVERTHING
+                {t.home.whyLabel3Line2}
               </span>
               {/* observa-se no print “QUALITY IS EVERTHING” com quebra — mantido fiel, mas corrigido visualmente */}
-              <span className="sr-only">Lifetime Warranty — Quality is Everything</span>
+              <span className="sr-only">{t.home.whySrLifetime}</span>
             </div>
 
             {/* WORLD WIDE SATISFIED CUSTOMERS */}
@@ -97,16 +100,16 @@ export function WhyChoose() {
               <div className="w-[96px] h-[96px] sm:w-[108px] sm:h-[108px] lg:w-[118px] lg:h-[118px] flex items-center justify-center">
                 <img
                   src="/PUBLIC/why-satisfied.png"
-                  alt="World Wide Satisfied Customers"
+                  alt={t.home.whyAlt4}
                   className="w-full h-full object-contain select-none"
                   draggable={false}
                   onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                 />
               </div>
               <span className="mt-2 font-sans-luxury font-semibold text-[#C2A86A] uppercase tracking-[0.12em] text-[8.5px] sm:text-[9px] leading-[1.35]">
-                WORLD WIDE
+                {t.home.whyLabel4Line1}
                 <br />
-                SATISFIED COSTUMERS
+                {t.home.whyLabel4Line2}
               </span>
             </div>
           </div>

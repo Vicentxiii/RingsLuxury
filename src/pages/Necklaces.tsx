@@ -5,14 +5,14 @@ import { SEO } from '../components/SEO';
 import { Contact } from '../components/Contact';
 import { useLanguage } from '../i18n/LanguageContext';
 
-interface RingItem {
+interface NecklaceItem {
   src: string;
   name: string;
   price: string;
   alt: string;
 }
 
-const SPECIAL_BG = encodeURI('/PUBLIC/Fundo da seção ESPECIAL EDITION rings luxury Jorge Uquillas.jpg');
+const NECKLACES_BG = encodeURI('/PUBLIC/Dobra da pagina Necklaces site Rings Luxury by Jorge Uquillas.jpg');
 
 function scrollToContact() {
   setTimeout(() => {
@@ -21,113 +21,83 @@ function scrollToContact() {
   }, 100);
 }
 
-export function SpecialEditions() {
+export function Necklaces() {
   const { t } = useLanguage();
 
-  const RINGS: RingItem[] = [
+  const NECKLACES: NecklaceItem[] = [
     {
-      src: encodeURI('/PUBLIC/Luxury rings collection anel Tempest by Jorge Uquillas rings luxury (2).png'),
-      name: 'Tempest Ring Especial Edition',
+      src: encodeURI('/PUBLIC/Panther Necklace by  Jorge Uquillas Rings Luxury 18K gold with Citrin.png'),
+      name: 'Panther Necklace',
+      price: '$ 22,500.00',
+      alt: t.collections.altNecklace1,
+    },
+    {
+      src: encodeURI('/PUBLIC/Rhino NeckLace 18k gold with Diamonds by Rings Luxury Jorege Uquillas.png'),
+      name: 'Rhino Necklace',
+      price: '$ 150,000.00',
+      alt: t.collections.altNecklace2,
+    },
+    {
+      src: encodeURI('/PUBLIC/Variable 18K gold Chains By Jorge Uquillas Rings Luxury.png'),
+      name: 'Variable 18K Gold Chains 18mm',
+      price: '$ 0.00',
+      alt: t.collections.altNecklace3,
+    },
+    {
+      src: encodeURI('/PUBLIC/Medusa Necklace Full Diamonds 18 Gold by Jorge Uquillas Rings Luxury.png'),
+      name: 'Medusa Necklace Full Diamonds 18k gold',
+      price: '$ 112,000.00',
+      alt: t.collections.altNecklace4,
+    },
+    {
+      src: encodeURI('/PUBLIC/Lion NeckLace 18K gold by Rings Luxury.png'),
+      name: 'Lion Necklace 18k gold',
+      price: '$ 22,000.00',
+      alt: t.collections.altNecklace5,
+    },
+    {
+      src: encodeURI('/PUBLIC/King Lion NeckLace By Rings Luxury Jorge uquillas.png'),
+      name: 'King Lion Necklace',
       price: t.collections.priceUponRequest,
-      alt: t.collections.altSpecial1,
+      alt: t.collections.altNecklace6,
     },
     {
-      src: encodeURI('/PUBLIC/Anel  Luxury Rings de bitcoin engravado a mao by jorge uquilas rings luxury.png'),
-      name: 'Bitcoin Ring Especial Edition',
-      price: '$ 9,800.00',
-      alt: t.collections.altSpecial2,
-    },
-    {
-      src: encodeURI('/PUBLIC/Luxury rings collection anel caveira com diamantes by Jorge Uquillas rings luxury.png'),
-      name: 'King Skull Ring 18 With Diamonds Especial Edition',
-      price: '$ 9,800.00',
-      alt: t.collections.altSpecial3,
-    },
-    {
-      src: encodeURI('/PUBLIC/Tiger Ring Especial Edition by Rings Luxury Jorge Uquillas.png'),
-      name: 'Tiger Ring Especial Edition',
+      src: encodeURI('/PUBLIC/Colar de Safiras e diamantes by jORGE uQUILLAS rINGS lUXURY 2 SEM FUNDO.png'),
+      name: 'Sapphire and Diamond Necklace',
       price: t.collections.priceUponRequest,
-      alt: t.collections.altSpecial4,
-    },
-    {
-      src: encodeURI('/PUBLIC/Anel Rings Luxury para DR Viotto by Jorge Uquillas.png'),
-      name: 'DR Viotto Ring',
-      price: t.collections.priceUponRequest,
-      alt: t.collections.altSpecial5,
-    },
-    {
-      src: encodeURI('/PUBLIC/medusa rings 18k gold with diamonds by Rings Luxuru Jorge Uquillas.png'),
-      name: 'Medusa Rings 18k Gold with Diamonds',
-      price: t.collections.priceUponRequest,
-      alt: t.collections.altSpecial6,
-    },
-    {
-      src: encodeURI('/PUBLIC/Avengers Rings By Jorge Uquillas Rings Luxury 18k Gold.png'),
-      name: 'Avengers Rings 18k Gold',
-      price: t.collections.priceUponRequest,
-      alt: t.collections.altSpecial7,
-    },
-    {
-      src: encodeURI('/PUBLIC/Anel Kraken Especial Edition by Rings Luxury Jorge Uquillas.png'),
-      name: 'Kraken Especial Edition Ring',
-      price: t.collections.priceUponRequest,
-      alt: t.collections.altSpecial8,
-    },
-    {
-      src: encodeURI('/PUBLIC/Jesus Ring 18K with diamonds By Rings Luxury Jorge Uquillas.png'),
-      name: 'Jesus Ring 18k with Diamonds',
-      price: t.collections.priceUponRequest,
-      alt: t.collections.altSpecial9,
-    },
-    {
-      src: encodeURI('/PUBLIC/Monkey Ring 18k gold with Diamonds by Jorge Uquillas rings Luxury.png'),
-      name: 'Monkey Ring 18k Gold with Diamonds',
-      price: t.collections.priceUponRequest,
-      alt: t.collections.altSpecial10,
-    },
-    {
-      src: encodeURI('/PUBLIC/Memento Mori by Jorge uquillas, rings Luxury.png'),
-      name: 'Memento Mori Ring',
-      price: t.collections.priceUponRequest,
-      alt: t.collections.altSpecial11,
-    },
-    {
-      src: encodeURI('/PUBLIC/King Lion Ring with DIamonds by Jorge Uquillas Rings Luxury.png'),
-      name: 'King Lion Ring with Diamonds',
-      price: t.collections.priceUponRequest,
-      alt: t.collections.altSpecial12,
+      alt: t.collections.altNecklace7,
     },
   ];
 
   return (
     <div className="min-h-screen bg-black text-[#EAE6DF] font-sans-luxury relative overflow-x-hidden">
       <SEO
-        title={t.collections.seoSpecialTitle}
-        description={t.collections.seoSpecialDescription}
-        keywords={t.collections.seoSpecialKeywords}
+        title={t.collections.seoNecklacesTitle}
+        description={t.collections.seoNecklacesDescription}
+        keywords={t.collections.seoNecklacesKeywords}
       />
 
       <Header onOpenConsultation={() => scrollToContact()} />
 
       <main className="relative w-full overflow-hidden">
-        {/* Leões ao fundo, um de cada lado — sempre visíveis */}
+        {/* Dobra ao fundo, um de cada lado — sempre visíveis */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden>
           <div className="absolute inset-y-0 left-0 w-[30%] sm:w-[26%] overflow-hidden">
             <img
-              src={SPECIAL_BG}
+              src={NECKLACES_BG}
               alt=""
               draggable={false}
-              className="absolute inset-0 w-full h-full object-cover object-left opacity-[0.12] select-none"
+              className="absolute inset-0 w-full h-full object-cover object-left opacity-25 select-none"
               onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
             />
             <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black" />
           </div>
           <div className="absolute inset-y-0 right-0 w-[30%] sm:w-[26%] overflow-hidden">
             <img
-              src={SPECIAL_BG}
+              src={NECKLACES_BG}
               alt=""
               draggable={false}
-              className="absolute inset-0 w-full h-full object-cover object-right opacity-[0.12] select-none"
+              className="absolute inset-0 w-full h-full object-cover object-right opacity-25 select-none"
               onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
             />
             <div className="absolute inset-0 bg-gradient-to-l from-transparent to-black" />
@@ -142,7 +112,7 @@ export function SpecialEditions() {
               className="font-cinzel font-normal uppercase text-white"
               style={{ fontSize: 'clamp(30px, 3.4vw, 50px)', letterSpacing: '0.1em' }}
             >
-              {t.collections.specialTitle}
+              {t.collections.necklacesTitle}
             </h1>
             {/* filete dourado com brilho central */}
             <div className="relative mx-auto mt-6 w-full max-w-[560px]" aria-hidden>
@@ -151,19 +121,19 @@ export function SpecialEditions() {
             </div>
           </div>
 
-          {/* Grade de anéis */}
+          {/* Grade de colares */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-14">
-            {RINGS.map((ring) => (
-              <div key={ring.src} className="group flex flex-col items-center text-center">
+            {NECKLACES.map((necklace) => (
+              <div key={necklace.src} className="group flex flex-col items-center text-center">
                 <button
                   type="button"
                   onClick={() => scrollToContact()}
                   className="w-full aspect-square flex items-center justify-center overflow-hidden cursor-pointer focus:outline-none"
-                  aria-label={`${ring.name} ${t.collections.inquireSuffix}`}
+                  aria-label={`${necklace.name} ${t.collections.inquireSuffix}`}
                 >
                   <img
-                    src={ring.src}
-                    alt={ring.alt}
+                    src={necklace.src}
+                    alt={necklace.alt}
                     loading="lazy"
                     draggable={false}
                     className="max-w-full max-h-full object-contain select-none transition-transform duration-700 ease-out group-hover:scale-[1.05]"
@@ -172,10 +142,10 @@ export function SpecialEditions() {
                   />
                 </button>
                 <p className="mt-2 min-h-[40px] flex items-start justify-center text-[12px] leading-[1.5] text-white/90 max-w-[260px]">
-                  {ring.name}
+                  {necklace.name}
                 </p>
                 <p className="mt-1.5 font-cinzel text-[14px] tracking-[0.08em] text-[#E6CA85]">
-                  {ring.price}
+                  {necklace.price}
                 </p>
                 <button
                   type="button"
@@ -196,4 +166,4 @@ export function SpecialEditions() {
   );
 }
 
-export default SpecialEditions;
+export default Necklaces;

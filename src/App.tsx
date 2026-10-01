@@ -1,18 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Home } from './pages/Home';
-import { GalleryPage } from './pages/GalleryPage';
+import { Necklaces } from './pages/Necklaces';
 import { LuxuryRings } from './pages/LuxuryRings';
 import { EmperorRings } from './pages/EmperorRings';
 import { SpecialEditions } from './pages/SpecialEditions';
 import { GoldSilverRings } from './pages/GoldSilverRings';
 import { LuxuryQueens } from './pages/LuxuryQueens';
 import { Courses } from './pages/Courses';
+// WebGL pesado (three.js) — carrega só ao visitar /contact
+const ContactPage = lazy(() =>
+  import('./pages/ContactPage').then((m) => ({ default: m.ContactPage })),
+);
 import { Blog } from './pages/Blog';
 import { BlogPost } from './pages/BlogPost';
 import { ProductPage } from './pages/ProductPage';
 import { JorgeUquillas } from './pages/JorgeUquillas';
 import { AudioProvider } from './context/AudioProvider';
+import { LanguageProvider } from './i18n/LanguageContext';
 import { EpicPreloader } from './components/EpicPreloader';
 
 export default function App() {
@@ -62,6 +67,7 @@ export default function App() {
 
   return (
     <AudioProvider>
+      <LanguageProvider>
       {showPreloader && <EpicPreloader isExiting={!isPreloading} />}
       <div
         className={
@@ -81,15 +87,17 @@ export default function App() {
               }
         }
       >
+        <Suspense fallback={<div className="min-h-screen bg-black" />}>
         <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/luxury-rings" element={<LuxuryRings />} />
       <Route path="/emperor-rings" element={<EmperorRings />} />
       <Route path="/special-editions" element={<SpecialEditions />} />
       <Route path="/gold-silver-rings" element={<GoldSilverRings />} />
-      <Route path="/necklaces" element={<GalleryPage title="Necklaces" categorySlug="necklaces" />} />
+      <Route path="/necklaces" element={<Necklaces />} />
       <Route path="/luxuryqueens" element={<LuxuryQueens />} />
       <Route path="/courses" element={<Courses />} />
+      <Route path="/contact" element={<ContactPage />} />
       <Route path="/blog" element={<Blog />} />
       <Route path="/blog/:slug" element={<BlogPost />} />
       <Route path="/produto/:slug" element={<ProductPage />} />
@@ -98,7 +106,9 @@ export default function App() {
       <Route path="/jorgeuquillas" element={<JorgeUquillas />} />
       <Route path="*" element={<Home />} />
     </Routes>
+        </Suspense>
       </div>
+      </LanguageProvider>
     </AudioProvider>
   );
 }

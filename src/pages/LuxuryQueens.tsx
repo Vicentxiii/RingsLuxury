@@ -3,6 +3,7 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
 import { Contact } from '../components/Contact';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface PieceItem {
   src: string;
@@ -13,21 +14,6 @@ interface PieceItem {
 
 const QUEENS_BG = encodeURI('/PUBLIC/Seção Luxury Queens by Jorge Uquillas Rings Luxury.jpg');
 
-const PIECES: PieceItem[] = [
-  {
-    src: encodeURI('/PUBLIC/Anel Luxury Queens Rings Luxury by Jorge Uquillas.png'),
-    name: 'Luxury Queens Ring',
-    price: '$ 15,000.00',
-    alt: 'Luxury Queens Ring by Jorge Uquillas',
-  },
-  {
-    src: encodeURI('/PUBLIC/Colar de Safiras e diamantes by jORGE uQUILLAS rINGS lUXURY 2 SEM FUNDO.png'),
-    name: 'Sapphire and Diamond Necklace',
-    price: '$ 150,000.00',
-    alt: 'Sapphire and Diamond Necklace by Jorge Uquillas',
-  },
-];
-
 function scrollToContact() {
   setTimeout(() => {
     const el = document.getElementById('contact');
@@ -36,12 +22,29 @@ function scrollToContact() {
 }
 
 export function LuxuryQueens() {
+  const { t } = useLanguage();
+
+  const PIECES: PieceItem[] = [
+    {
+      src: encodeURI('/PUBLIC/Anel Luxury Queens Rings Luxury by Jorge Uquillas.png'),
+      name: 'Luxury Queens Ring',
+      price: '$ 15,000.00',
+      alt: t.collections.altQueens1,
+    },
+    {
+      src: encodeURI('/PUBLIC/Colar de Safiras e diamantes by jORGE uQUILLAS rINGS lUXURY 2 SEM FUNDO.png'),
+      name: 'Sapphire and Diamond Necklace',
+      price: '$ 150,000.00',
+      alt: t.collections.altQueens2,
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-black text-[#EAE6DF] font-sans-luxury relative overflow-x-hidden">
       <SEO
-        title="Luxury Queens — Sapphire Necklace & Diamond Ring | Jorge Uquillas"
-        description="Luxury Queens by Jorge Uquillas — sapphire and diamond necklace and solitaire diamond ring, 1/1 HandCrafted haute joaillerie."
-        keywords="RINGS LUXURY, Luxury Queens, sapphire necklace, diamond ring, Jorge Uquillas"
+        title={t.collections.seoQueensTitle}
+        description={t.collections.seoQueensDescription}
+        keywords={t.collections.seoQueensKeywords}
       />
 
       <Header onOpenConsultation={() => scrollToContact()} />
@@ -66,7 +69,7 @@ export function LuxuryQueens() {
               className="font-cinzel font-normal uppercase text-white"
               style={{ fontSize: 'clamp(30px, 3.4vw, 50px)', letterSpacing: '0.1em' }}
             >
-              Luxury Queens
+              {t.collections.queensTitle}
             </h1>
             {/* filete dourado com brilho central */}
             <div className="relative mx-auto mt-6 w-full max-w-[560px]" aria-hidden>
@@ -83,7 +86,7 @@ export function LuxuryQueens() {
                   type="button"
                   onClick={() => scrollToContact()}
                   className="w-full h-[260px] sm:h-[300px] flex items-center justify-center overflow-hidden cursor-pointer focus:outline-none"
-                  aria-label={`${piece.name} — inquire`}
+                  aria-label={`${piece.name} ${t.collections.inquireSuffix}`}
                 >
                   <img
                     src={piece.src}
@@ -106,7 +109,7 @@ export function LuxuryQueens() {
                   onClick={() => scrollToContact()}
                   className="mt-3 px-6 py-1.5 border border-white/25 hover:border-[#C5A059] rounded-full text-[11px] tracking-[0.12em] text-white/85 hover:text-[#E6CA85] transition-colors"
                 >
-                  Add to cart
+                  {t.collections.addToCart}
                 </button>
               </div>
             ))}

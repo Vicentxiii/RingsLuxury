@@ -1,10 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface EpicPreloaderProps {
   isExiting: boolean;
 }
 
 export function EpicPreloader({ isExiting }: EpicPreloaderProps) {
+  const { t } = useLanguage();
   const [progress, setProgress] = useState(0);
 
   // Progress visível em 4s — animação contínua e suave, realística
@@ -144,12 +146,12 @@ export function EpicPreloader({ isExiting }: EpicPreloaderProps) {
           <div className="mt-1.5 sm:mt-2 flex items-center gap-2 sm:gap-3 opacity-90">
             <span className="h-px w-5 sm:w-8 bg-gradient-to-r from-transparent to-[#C5A059]/60" />
             <p className="text-[7.5px] sm:text-[10px] tracking-[0.28em] sm:tracking-[0.38em] uppercase text-[#C5A059] font-medium whitespace-nowrap">
-              Master Engraver
+              {t.home.preMaster}
             </p>
             <span className="h-px w-5 sm:w-8 bg-gradient-to-l from-transparent to-[#C5A059]/60" />
           </div>
           <p className="mt-1 text-[7px] sm:text-[8.5px] tracking-[0.22em] sm:tracking-[0.28em] uppercase text-[#9A7B38]/80">
-            São Paulo • Miami • Colombia
+            {t.home.preCities}
           </p>
         </div>
 
@@ -174,7 +176,7 @@ export function EpicPreloader({ isExiting }: EpicPreloaderProps) {
           </div>
           <div className="flex items-center justify-between w-full">
             <span className="text-[8px] tracking-[0.28em] uppercase text-[#9A7B38]">
-              Entering Atelier
+              {t.home.preEntering}
             </span>
             <span className="font-cinzel text-[10px] tracking-widest text-[#C5A059]">
               {Math.round(progress)}%
@@ -184,7 +186,7 @@ export function EpicPreloader({ isExiting }: EpicPreloaderProps) {
 
         {/* Texto inferior */}
         <p className="mt-4 text-[7.5px] tracking-[0.32em] uppercase text-[#9A7B38]/55 animate-[pulse_2s_ease-in-out_infinite]">
-          Forged in antiquity • Born for eternity
+          {t.home.preTagline}
         </p>
       </div>
 

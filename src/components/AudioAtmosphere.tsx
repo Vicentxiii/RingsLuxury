@@ -1,8 +1,10 @@
 import React from 'react';
 import { Music, SkipForward } from 'lucide-react';
 import { useAudio } from '../context/AudioProvider';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export function AudioAtmosphere() {
+  const { t } = useLanguage();
   const { isPlaying, currentTrack, togglePlay, nextTrack } = useAudio();
 
   return (
@@ -10,7 +12,7 @@ export function AudioAtmosphere() {
       <button
         id="dark-audio-toggle-btn"
         onClick={togglePlay}
-        title={isPlaying ? `Pausar: ${currentTrack.name}` : `Ouvir ${currentTrack.genre}`}
+        title={isPlaying ? `${t.home.auPausePrefix}${currentTrack.name}` : `${t.home.auListenPrefix}${currentTrack.genre}`}
         className={`group flex items-center gap-2.5 px-4 py-2 rounded-full border transition-all duration-500 backdrop-blur-md text-[10px] tracking-[0.22em] uppercase font-sans-luxury ${
           isPlaying
             ? 'border-[#C5A059] bg-[#C5A059]/15 text-[#F3EFE6] shadow-[0_0_25px_rgba(197,160,89,0.35)]'
@@ -25,19 +27,19 @@ export function AudioAtmosphere() {
               <span className="w-1 bg-[#C5A059] rounded-full animate-[pulse_0.7s_ease-in-out_infinite_0.4s] h-2" />
             </div>
             <span className="text-[#C5A059] font-medium hidden sm:inline">
-              {currentTrack.id === 'a-hero-within' ? `${currentTrack.name} • Epic` : `Violoncelo: ${currentTrack.name}`}
+              {currentTrack.id === 'a-hero-within' ? `${currentTrack.name} • ${t.home.auEpic}` : `${t.home.auCelloPrefix}${currentTrack.name}`}
             </span>
             <span className="text-[#C5A059] font-medium sm:hidden">
-              {currentTrack.id === 'a-hero-within' ? `Epic ON` : `Cello ON`}
+              {currentTrack.id === 'a-hero-within' ? t.home.auEpicOn : t.home.auCelloOn}
             </span>
           </>
         ) : (
           <>
             <Music className="w-3.5 h-3.5 text-[#C5A059] group-hover:scale-110 transition-transform" />
             <span className="hidden sm:inline">
-              {currentTrack.id === 'a-hero-within' ? `Epic: ${currentTrack.name}` : `Violoncelo Dark`}
+              {currentTrack.id === 'a-hero-within' ? `${t.home.auEpicPrefix}${currentTrack.name}` : t.home.auCelloDark}
             </span>
-            <span className="sm:hidden">{currentTrack.id === 'a-hero-within' ? `Epic` : `Violoncelo`}</span>
+            <span className="sm:hidden">{currentTrack.id === 'a-hero-within' ? t.home.auEpic : t.home.auCello}</span>
           </>
         )}
       </button>
@@ -46,7 +48,7 @@ export function AudioAtmosphere() {
       {isPlaying && (
         <button
           onClick={nextTrack}
-          title="Próxima Faixa (Violoncelo & Cordas)"
+          title={t.home.auNextTitle}
           className="p-2 rounded-full border border-[#C5A059]/40 bg-[#070707]/80 hover:bg-[#C5A059]/20 hover:border-[#C5A059] text-[#C5A059] transition-all"
         >
           <SkipForward className="w-3 h-3" />

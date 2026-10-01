@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowRight, CheckCircle2, Shield, Sparkles, MapPin, Calendar, Instagram } from 'lucide-react';
 import { GreekKeyBorder, GreekMeanderDivider, LaurelWreath, AncientCoinMedallion } from './OrnamentIcons';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface ContactProps {
   preselectedPiece?: string;
@@ -9,6 +10,7 @@ interface ContactProps {
 
 // Campos de peça/interesse removidos — props mantidas por compatibilidade com as páginas.
 export function Contact({}: ContactProps) {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -39,7 +41,7 @@ export function Contact({}: ContactProps) {
           <div className="inline-flex items-center gap-2 mb-4">
             <LaurelWreath className="w-4 h-4 text-[#C5A059]" />
             <span className="text-[10px] uppercase tracking-[0.45em] text-[#C5A059] font-medium">
-              PRIVATE SALON ADMISSION
+              {t.pages.contactKicker}
             </span>
             <LaurelWreath className="w-4 h-4 text-[#C5A059] transform -scale-x-100" />
           </div>
@@ -49,7 +51,7 @@ export function Contact({}: ContactProps) {
             id="contact-title"
             className="font-cinzel text-4xl sm:text-5xl md:text-6xl tracking-[0.18em] uppercase text-[#FBF9F5] font-light mb-4"
           >
-            RINGS LUXURY • JORGE UQUILLAS
+            {t.pages.contactTitle}
           </h2>
 
           {/* Subtitle: Anéis artesanais HandCrafted */}
@@ -57,13 +59,13 @@ export function Contact({}: ContactProps) {
             id="contact-subtitle"
             className="font-cormorant text-xl md:text-2xl italic tracking-[0.12em] text-[#C5A059] font-light leading-relaxed mb-6"
           >
-            HandCrafted 18k gold artisan rings
+            {t.pages.contactSub1}
             <br />
-            with natural diamonds, finished by master hand engraver
+            {t.pages.contactSub2}
           </p>
 
           <p className="font-sans-luxury text-xs text-[#A8A296] tracking-[0.18em] uppercase max-w-xl mx-auto leading-relaxed">
-            Jorge Uquillas Atelier — RINGS LUXURY. Private consultations for 1/1 handmade 18k gold diamond ring commissions. Serving Brazil • Miami • Athens.
+            {t.pages.contactLine}
           </p>
 
           <GreekMeanderDivider className="mt-8 opacity-60" />
@@ -88,13 +90,13 @@ export function Contact({}: ContactProps) {
                   htmlFor="client-name"
                   className="block text-[9px] uppercase tracking-[0.35em] text-[#9A7B38] mb-1 font-sans-luxury"
                 >
-                  FULL NAME / HONORIFIC TITLE
+                  {t.pages.contactFormName}
                 </label>
                 <input
                   id="client-name"
                   type="text"
                   required
-                  placeholder="e.g. Lord Alexander Vance / Archon Helene"
+                  placeholder={t.pages.contactFormNamePlaceholder}
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full bg-transparent text-[#F3EFE6] font-cinzel text-base tracking-wider placeholder-[#444] focus:outline-none"
@@ -107,13 +109,13 @@ export function Contact({}: ContactProps) {
                   htmlFor="client-email"
                   className="block text-[9px] uppercase tracking-[0.35em] text-[#9A7B38] mb-1 font-sans-luxury"
                 >
-                  PRIVATE LIAISON / CONFIDENTIAL EMAIL
+                  {t.pages.contactFormEmail}
                 </label>
                 <input
                   id="client-email"
                   type="email"
                   required
-                  placeholder="liaison@privateoffice.com"
+                  placeholder={t.pages.contactFormEmailPlaceholder}
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full bg-transparent text-[#F3EFE6] font-cinzel text-base tracking-wider placeholder-[#444] focus:outline-none"
@@ -126,7 +128,7 @@ export function Contact({}: ContactProps) {
                   htmlFor="client-city"
                   className="block text-[9px] uppercase tracking-[0.35em] text-[#9A7B38] mb-1 font-sans-luxury"
                 >
-                  PREFERRED SALON LOCATION
+                  {t.pages.contactFormCity}
                 </label>
                 <select
                   id="client-city"
@@ -147,7 +149,7 @@ export function Contact({}: ContactProps) {
                   type="submit"
                   className="group relative w-full py-5 bg-[#C5A059] text-[#020202] hover:bg-[#E6CA85] transition-all duration-500 font-cinzel text-xs sm:text-sm font-semibold tracking-[0.35em] uppercase flex items-center justify-center gap-3 shadow-[0_0_30px_rgba(197,160,89,0.2)] rounded-full"
                 >
-                  <span>REQUEST A PRIVATE CONSULTATION</span>
+                  <span>{t.pages.contactFormSubmit}</span>
                   <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                 </button>
 
@@ -159,7 +161,7 @@ export function Contact({}: ContactProps) {
                     className="inline-flex items-center gap-2 px-6 py-2.5 border border-[#C5A059]/40 hover:border-[#C5A059] text-[#C5A059] hover:text-[#E6CA85] hover:bg-[#C5A059]/10 rounded-full font-sans-luxury text-[11px] font-medium tracking-[0.2em] uppercase transition-all"
                   >
                     <Instagram className="w-4 h-4 text-[#C5A059]" />
-                    <span>Direct line: Instagram @ringsluxury</span>
+                    <span>{t.pages.contactFormInstagram}</span>
                   </a>
                 </div>
               </div>
@@ -173,34 +175,34 @@ export function Contact({}: ContactProps) {
             </div>
 
             <span className="text-[10px] uppercase tracking-[0.45em] text-[#C5A059] block mb-2 font-medium">
-              SEAL OF ADMISSION GRANTED
+              {t.pages.contactSuccessSeal}
             </span>
 
             <h3 className="font-cinzel text-3xl md:text-4xl tracking-[0.18em] uppercase text-[#FBF9F5] mb-4">
-              WELCOME TO THE ATELIER
+              {t.pages.contactSuccessTitle}
             </h3>
 
             <p className="font-cormorant text-xl italic text-[#C5A059] mb-6">
-              "Your petition has been inscribed into the secret archive."
+              {t.pages.contactSuccessQuote}
             </p>
 
             <div className="p-4 max-w-md mx-auto bg-[#030303] border border-[#C5A059]/30 text-xs text-[#EAE6DF] space-y-2 mb-8">
               <div className="flex justify-between border-b border-[#C5A059]/20 pb-1">
-                <span className="text-[#9A7B38] uppercase tracking-wider">Sanctuary Dossier:</span>
+                <span className="text-[#9A7B38] uppercase tracking-wider">{t.pages.contactSuccessDossier}</span>
                 <span className="font-mono text-[#C5A059]">{bookingCode}</span>
               </div>
               <div className="flex justify-between border-b border-[#C5A059]/20 pb-1">
-                <span className="text-[#9A7B38] uppercase tracking-wider">Client Inscription:</span>
+                <span className="text-[#9A7B38] uppercase tracking-wider">{t.pages.contactSuccessClient}</span>
                 <span className="font-cinzel">{formData.name}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-[#9A7B38] uppercase tracking-wider">Private Salon:</span>
+                <span className="text-[#9A7B38] uppercase tracking-wider">{t.pages.contactSuccessSalon}</span>
                 <span>{formData.city}</span>
               </div>
             </div>
 
             <p className="font-sans-luxury text-xs text-[#A8A296] tracking-wider max-w-lg mx-auto mb-8 leading-relaxed">
-              Our Curatorial Liaison will contact your confidential channel within one lunar cycle (24 hours) with your encrypted invitation and parchment itinerary.
+              {t.pages.contactSuccessNote}
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -210,7 +212,7 @@ export function Contact({}: ContactProps) {
                 }}
                 className="px-8 py-3.5 border border-[#C5A059]/40 hover:border-[#C5A059] text-[#C5A059] font-cinzel text-xs tracking-[0.3em] uppercase transition-colors rounded-full"
               >
-                Submit Another Inquiry
+                {t.pages.contactSuccessAgain}
               </button>
 
               <a
@@ -220,7 +222,7 @@ export function Contact({}: ContactProps) {
                 className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#C5A059]/15 hover:bg-[#C5A059]/30 border border-[#C5A059]/50 text-[#C5A059] font-sans-luxury text-xs tracking-[0.2em] uppercase transition-all rounded-full"
               >
                 <Instagram className="w-4 h-4" />
-                <span>Instagram @ringsluxury</span>
+                <span>{t.pages.contactSuccessInstagram}</span>
               </a>
             </div>
           </div>

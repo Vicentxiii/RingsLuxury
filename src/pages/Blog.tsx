@@ -4,8 +4,10 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
 import { blogPosts } from '../data/blogPosts';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export function Blog() {
+  const { t } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleOpenConsultation = () => {
@@ -24,9 +26,9 @@ export function Blog() {
   return (
     <div className="min-h-screen bg-[#020202] text-[#EAE6DF] selection:bg-[#C5A059] selection:text-[#020202] font-sans-luxury relative overflow-x-hidden pt-24">
       <SEO 
-        title="BLOG - Journal of Haute Joaillerie"
-        description="Read the official RINGS LUXURY blog by Jorge Uquillas. Articles on the art of engraving, the price of gold, and ancient jewelry making."
-        keywords="RINGS LUXURY Blog, Jorge Uquillas, Artistic Engraving, Gold Price, Haute Joaillerie Journal"
+        title={t.pages.blogSeoTitle}
+        description={t.pages.blogSeoDescription}
+        keywords={t.pages.blogSeoKeywords}
       />
       
       <div className="fixed inset-0 film-grain pointer-events-none z-40 opacity-35" />
@@ -36,10 +38,10 @@ export function Blog() {
       <main className="max-w-7xl mx-auto px-6 py-20 relative z-10">
         <header className="text-center mb-16">
           <h2 className="font-poppins text-xs font-semibold uppercase tracking-[0.3em] text-[#C5A059] mb-4">
-            The Master's Journal
+            {t.pages.blogKicker}
           </h2>
           <h1 className="font-cinzel text-4xl md:text-6xl font-medium tracking-wide text-[#F3EFE6] mb-8">
-            Chronicles of Craft
+            {t.pages.blogTitle}
           </h1>
           <div className="w-px h-16 bg-gradient-to-b from-[#C5A059] to-transparent mx-auto" />
         </header>
@@ -48,7 +50,7 @@ export function Blog() {
         <div className="max-w-md mx-auto mb-20 relative">
           <input 
             type="text" 
-            placeholder="Search the archives..." 
+            placeholder={t.pages.blogSearchPlaceholder} 
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full bg-[#050505] border border-[#C5A059]/30 text-[#F3EFE6] px-6 py-4 font-cormorant text-xl focus:outline-none focus:border-[#C5A059] transition-colors placeholder:text-[#A8A296]/50"
@@ -77,7 +79,7 @@ export function Blog() {
               <div className="p-8 flex flex-col flex-grow">
                 <div className="flex justify-between items-center mb-4 font-poppins text-[10px] uppercase tracking-widest text-[#A8A296]">
                   <span>{post.date}</span>
-                  <span>By {post.author}</span>
+                  <span>{t.pages.blogBy} {post.author}</span>
                 </div>
                 
                 <h3 className="font-cinzel text-2xl text-[#F3EFE6] mb-4 group-hover:text-[#C5A059] transition-colors">
@@ -89,7 +91,7 @@ export function Blog() {
                 </p>
                 
                 <div className="mt-8 flex items-center gap-2 text-[#C5A059] font-poppins text-xs tracking-widest uppercase group-hover:translate-x-2 transition-transform">
-                  <span>Read Article</span>
+                  <span>{t.pages.blogReadArticle}</span>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </div>
               </div>
@@ -99,7 +101,7 @@ export function Blog() {
 
         {filteredPosts.length === 0 && (
           <div className="text-center py-20">
-            <p className="font-cormorant text-2xl text-[#A8A296]">No articles found matching your search.</p>
+            <p className="font-cormorant text-2xl text-[#A8A296]">{t.pages.blogEmpty}</p>
           </div>
         )}
       </main>

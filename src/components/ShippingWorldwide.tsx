@@ -1,34 +1,47 @@
-interface Flag {
-  src: string;
-  alt: string;
-}
+import { useLanguage } from '../i18n/LanguageContext';
 
 /**
  * Seção SHIPPING WORLDWIDE — logo após YOU DECIDE EVERY STONE EVERY DETAIL
  * - Fundo: fundo-shipping-worldwide.jpg (mármore preto com veios dourados)
  * - Mini-carrossel horizontal minimalista com as bandeirinhas dos países
  */
-const FLAGS: Flag[] = [
-  { src: '/PUBLIC/usa.png', alt: 'USA' },
-  { src: '/PUBLIC/portugal.png', alt: 'Portugal' },
-  { src: '/PUBLIC/spain.png', alt: 'Spain' },
-  { src: '/PUBLIC/france.png', alt: 'France' },
-  { src: '/PUBLIC/german.png', alt: 'Germany' },
-  { src: '/PUBLIC/mexico.png', alt: 'Mexico' },
-  { src: '/PUBLIC/colombia.png', alt: 'Colombia' },
-  { src: '/PUBLIC/guiana.png', alt: 'Guiana' },
-  { src: '/PUBLIC/qatar.png', alt: 'Qatar' },
-  { src: '/PUBLIC/israel.png', alt: 'Israel' },
-  { src: '/PUBLIC/russia.png', alt: 'Russia' },
-  { src: '/PUBLIC/china.png', alt: 'China' },
+const FLAG_SRCS: string[] = [
+  '/PUBLIC/usa.png',
+  '/PUBLIC/portugal.png',
+  '/PUBLIC/spain.png',
+  '/PUBLIC/france.png',
+  '/PUBLIC/german.png',
+  '/PUBLIC/mexico.png',
+  '/PUBLIC/colombia.png',
+  '/PUBLIC/guiana.png',
+  '/PUBLIC/qatar.png',
+  '/PUBLIC/israel.png',
+  '/PUBLIC/russia.png',
+  '/PUBLIC/china.png',
 ];
 
+const FLAG_ALT_KEYS = [
+  'shCountry1',
+  'shCountry2',
+  'shCountry3',
+  'shCountry4',
+  'shCountry5',
+  'shCountry6',
+  'shCountry7',
+  'shCountry8',
+  'shCountry9',
+  'shCountry10',
+  'shCountry11',
+  'shCountry12',
+] as const;
+
 export function ShippingWorldwide() {
+  const { t } = useLanguage();
   return (
     <section
       id="shipping"
       className="relative w-full overflow-hidden isolate bg-[#020202] text-[#EAE6DF]"
-      aria-label="Shipping worldwide"
+      aria-label={t.home.shAria}
     >
       {/* FUNDO — mármore preto com veios dourados */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-black">
@@ -54,12 +67,12 @@ export function ShippingWorldwide() {
           className="font-cinzel font-normal uppercase text-[#E6CA85]"
           style={{ fontSize: 'clamp(19px, 2.2vw, 27px)', letterSpacing: '0.32em' }}
         >
-          Shipping worldwide
+          {t.home.shTitle}
         </h2>
 
         {/* SUBTÍTULO */}
         <p className="mt-4 font-sans-luxury text-[12px] sm:text-[13px] tracking-wide text-[#F1ECE2]/95">
-          Your piece will arrive at its destination with all safety and guarantee.
+          {t.home.shSubtitle}
         </p>
 
         {/* ornamento dourado minimalista */}
@@ -80,11 +93,11 @@ export function ShippingWorldwide() {
           <div className="shipping-marquee-track flex w-max items-center">
             {[0, 1].map((half) => (
               <div key={half} className="flex items-center" aria-hidden={half === 1}>
-                {FLAGS.map((flag) => (
+                {FLAG_SRCS.map((src, i) => (
                   <img
-                    key={`${half}-${flag.src}`}
-                    src={flag.src}
-                    alt={half === 0 ? flag.alt : ''}
+                    key={`${half}-${src}`}
+                    src={src}
+                    alt={half === 0 ? t.home[FLAG_ALT_KEYS[i]] : ''}
                     draggable={false}
                     loading="lazy"
                     className="mx-3 sm:mx-4 w-11 h-11 sm:w-[52px] sm:h-[52px] object-contain select-none"

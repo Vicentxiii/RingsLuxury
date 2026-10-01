@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Clock, Instagram, Mail, MapPin, Phone } from 'lucide-react';
 import { GreekKeyBorder } from './OrnamentIcons';
+import { useLanguage } from '../i18n/LanguageContext';
 import contact from '../data/contact.json';
 import locationsData from '../data/locations.json';
 
@@ -20,22 +21,33 @@ import locationsData from '../data/locations.json';
  *   ficticios e brigavam com as localacoes reais (Miami, Sao Paulo), o que
  *   destoi qualquer sinal deNAP. Nao volte a declara-los sem um endereco real.
  */
-const COLLECTIONS = [
-  { to: '/luxury-rings', label: 'Luxury Rings' },
-  { to: '/emperor-rings', label: 'Emperor Rings' },
-  { to: '/gold-silver-rings', label: 'Gold & Silver Rings' },
-  { to: '/special-editions', label: 'Special Editions' },
-  { to: '/necklaces', label: 'Necklaces' },
-  { to: '/luxuryqueens', label: 'Luxury Queens' },
-];
+const COLLECTIONS_ROUTES = [
+  { to: '/luxury-rings', key: 'colLuxuryRings' },
+  { to: '/emperor-rings', key: 'colEmperorRings' },
+  { to: '/gold-silver-rings', key: 'colGoldSilver' },
+  { to: '/special-editions', key: 'colSpecialEditions' },
+  { to: '/necklaces', key: 'colNecklaces' },
+  { to: '/luxuryqueens', key: 'colLuxuryQueens' },
+] as const;
 
-const ATELIER = [
-  { to: '/jorge-uquillas', label: 'About Jorge Uquillas' },
-  { to: '/blog', label: "The Master's Journal" },
-  { to: '/courses', label: 'Engraving Courses' },
-];
+const ATELIER_ROUTES = [
+  { to: '/jorge-uquillas', key: 'atelierAbout' },
+  { to: '/blog', key: 'atelierJournal' },
+  { to: '/courses', key: 'atelierCourses' },
+] as const;
 
 export function Footer() {
+  const { t } = useLanguage();
+
+  const COLLECTIONS = COLLECTIONS_ROUTES.map((c) => ({
+    to: c.to,
+    label: t.footer[c.key],
+  }));
+
+  const ATELIER = ATELIER_ROUTES.map((a) => ({
+    to: a.to,
+    label: t.footer[a.key],
+  }));
   return (
     <footer
       id="main-footer"
@@ -99,8 +111,7 @@ export function Footer() {
             </div>
 
             <p className="font-cormorant text-base md:text-lg italic text-[#C2BDB2] max-w-sm leading-relaxed">
-              1/1 handcrafted 18k gold artisan rings with natural diamonds,
-              finished by master hand engraver Jorge Uquillas.
+              {t.footer.brandParagraph}
             </p>
 
             <div className="flex items-center gap-4 text-[10px] tracking-[0.25em] text-[#9A7B38] uppercase">
@@ -124,7 +135,7 @@ export function Footer() {
           {/* Coleções — links reais, não âncoras */}
           <nav className="md:col-span-3 space-y-4" aria-label="Collections">
             <h2 className="font-cinzel text-[11px] tracking-[0.35em] uppercase text-[#C5A059]">
-              Collections
+              {t.footer.collectionsHeading}
             </h2>
             <ul className="space-y-2.5 text-[11px] font-sans-luxury tracking-[0.2em] uppercase text-[#A8A296]">
               {COLLECTIONS.map((c) => (
@@ -140,7 +151,7 @@ export function Footer() {
           {/* Ateliê */}
           <nav className="md:col-span-2 space-y-4" aria-label="Atelier">
             <h2 className="font-cinzel text-[11px] tracking-[0.35em] uppercase text-[#C5A059]">
-              Atelier
+              {t.footer.atelierHeading}
             </h2>
             <ul className="space-y-2.5 text-[11px] font-sans-luxury tracking-[0.2em] uppercase text-[#A8A296]">
               {ATELIER.map((a) => (
@@ -156,7 +167,7 @@ export function Footer() {
           {/* Contato — NAP */}
           <div className="md:col-span-3 space-y-4">
             <h2 className="font-cinzel text-[11px] tracking-[0.35em] uppercase text-[#C5A059]">
-              Private Salon
+              {t.footer.privateSalonHeading}
             </h2>
 
             <ul className="space-y-3 text-xs text-[#A8A296] font-sans-luxury leading-relaxed">
@@ -196,7 +207,7 @@ export function Footer() {
                     <strong className="text-[#F3EFE6] font-cinzel">{loc.city}</strong>
                     {loc.district ? ` — ${loc.district}` : ''}
                     <br />
-                    <span className="text-[#9A7B38]">Visits under schedule</span>
+                    <span className="text-[#9A7B38]">{t.footer.visitsScheduled}</span>
                   </span>
                 </li>
               ))}
@@ -207,15 +218,15 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="pt-12 flex flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
           <div className="text-[10px] tracking-[0.3em] uppercase text-[#9A7B38]">
-            © MMXXVI RINGS LUXURY ATELIER — All Rights Reserved
+            {t.footer.bottomRights}
           </div>
 
           <div className="font-cinzel text-[10px] font-semibold tracking-[0.28em] uppercase text-[#C5A059] text-center">
-            HandCrafted 18k Gold • Handmade 18k Gold Rings
+            {t.footer.bottomTagline}
           </div>
 
           <div className="text-[10px] tracking-[0.3em] uppercase text-[#9A7B38]">
-            Handmade in Brazil
+            {t.footer.handmadeInBrazil}
           </div>
         </div>
 
@@ -227,9 +238,9 @@ export function Footer() {
             rel="noopener noreferrer"
             className="text-[9px] sm:text-[10px] uppercase tracking-[0.32em] text-[#9A7B38] hover:text-[#C5A059] transition-colors text-center"
           >
-            {contact.credit.prefix}{' '}
-            <span className="text-[#C5A059]">{contact.credit.name}</span>, {contact.credit.role}{' '}
-            from {contact.credit.from}
+            {t.footer.creditPrefix}{' '}
+            <span className="text-[#C5A059]">{contact.credit.name}</span>, {t.footer.creditRole}{' '}
+            {t.footer.creditFromWord} {t.footer.creditFrom}
           </a>
         </div>
       </div>

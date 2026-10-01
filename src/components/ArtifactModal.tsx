@@ -7,6 +7,7 @@ import {
   ArabesqueCorner,
   ArabesqueCrest,
 } from './OrnamentIcons';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export interface ArtifactData {
   numeral: string;
@@ -34,6 +35,7 @@ interface ArtifactModalProps {
 }
 
 export function ArtifactModal({ artifact, onClose, onRequestAcquisition }: ArtifactModalProps) {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState<'dossier' | 'provenance' | 'metallurgy'>('dossier');
 
   if (!artifact) return null;
@@ -67,7 +69,7 @@ export function ArtifactModal({ artifact, onClose, onRequestAcquisition }: Artif
               <AncientCoinMedallion className="w-8 h-8" />
               <div className="flex flex-col">
                 <span className="text-[9px] uppercase tracking-[0.38em] text-[#C5A059] font-medium">
-                  ARCHIVAL DOSSIER • PIECE N° {artifact.numeral}
+                  {t.home.amArchivePrefix}{artifact.numeral}
                 </span>
                 <span className="font-cinzel text-sm sm:text-base tracking-[0.25em] text-[#F3EFE6] font-medium">
                   {artifact.name}
@@ -110,8 +112,8 @@ export function ArtifactModal({ artifact, onClose, onRequestAcquisition }: Artif
             </div>
 
             <div className="mt-6 flex items-center justify-between text-[10px] tracking-[0.25em] text-[#9A7B38] uppercase">
-              <span>Hellenic Archive Ref: KL-{artifact.numeral}-88</span>
-              <span>Athens Haute Joaillerie</span>
+              <span>{t.home.amRefPrefix}{artifact.numeral}{t.home.amRefSuffix}</span>
+              <span>{t.home.amAthens}</span>
             </div>
           </div>
 
@@ -143,7 +145,7 @@ export function ArtifactModal({ artifact, onClose, onRequestAcquisition }: Artif
                       : 'text-[#EAE6DF]/50 hover:text-[#EAE6DF]'
                   }`}
                 >
-                  Curatorial Note
+                  {t.home.amTabDossier}
                   {activeTab === 'dossier' && (
                     <span className="absolute bottom-0 left-0 w-full h-px bg-[#C5A059]" />
                   )}
@@ -156,7 +158,7 @@ export function ArtifactModal({ artifact, onClose, onRequestAcquisition }: Artif
                       : 'text-[#EAE6DF]/50 hover:text-[#EAE6DF]'
                   }`}
                 >
-                  Mythos & Provenance
+                  {t.home.amTabProvenance}
                   {activeTab === 'provenance' && (
                     <span className="absolute bottom-0 left-0 w-full h-px bg-[#C5A059]" />
                   )}
@@ -169,7 +171,7 @@ export function ArtifactModal({ artifact, onClose, onRequestAcquisition }: Artif
                       : 'text-[#EAE6DF]/50 hover:text-[#EAE6DF]'
                   }`}
                 >
-                  Specifications
+                  {t.home.amTabSpecs}
                   {activeTab === 'metallurgy' && (
                     <span className="absolute bottom-0 left-0 w-full h-px bg-[#C5A059]" />
                   )}
@@ -187,7 +189,7 @@ export function ArtifactModal({ artifact, onClose, onRequestAcquisition }: Artif
                   </p>
                   <div className="p-4 bg-[#0A0A0A] border-l-2 border-[#C5A059]">
                     <span className="text-[10px] uppercase tracking-[0.25em] text-[#C5A059] block mb-1">
-                      Symbolism
+                      {t.home.amSymbolism}
                     </span>
                     <p className="text-xs text-[#C2BDB2] tracking-wide">
                       {artifact.symbolism}
@@ -200,18 +202,18 @@ export function ArtifactModal({ artifact, onClose, onRequestAcquisition }: Artif
                 <div className="space-y-4 text-xs text-[#C2BDB2] leading-relaxed animate-fadeIn">
                   <div className="border border-[#C5A059]/20 p-4 bg-[#0A0A0A]">
                     <span className="text-[10px] uppercase tracking-[0.3em] text-[#C5A059] block mb-1">
-                      Historical Genesis
+                      {t.home.amGenesisTitle}
                     </span>
                     <p>
-                      Inspired by ancient excavation treasures uncovered in classical Attica and the Peloponnese, re-imagined through high Baroque ceremonial sculptural symmetry.
+                      {t.home.amGenesisText}
                     </p>
                   </div>
                   <div className="border border-[#C5A059]/20 p-4 bg-[#0A0A0A]">
                     <span className="text-[10px] uppercase tracking-[0.3em] text-[#C5A059] block mb-1">
-                      Atelier Registration
+                      {t.home.amRegTitle}
                     </span>
                     <p>
-                      Hand-signed and micro-hallmarked by the Master Artisan with the Rings Luxury Athenian Owl seal. Accompanied by a bespoke black marble presentation chest.
+                      {t.home.amRegText}
                     </p>
                   </div>
                 </div>
@@ -221,7 +223,7 @@ export function ArtifactModal({ artifact, onClose, onRequestAcquisition }: Artif
                 <div className="grid grid-cols-2 gap-3 text-xs animate-fadeIn">
                   <div className="p-3 bg-[#0A0A0A] border border-[#C5A059]/20">
                     <span className="text-[9px] uppercase tracking-[0.2em] text-[#9A7B38] block">
-                      Metal Composition
+                      {t.home.amMetal}
                     </span>
                     <span className="font-cinzel text-sm text-[#F3EFE6]">
                       {artifact.specs.material}
@@ -229,7 +231,7 @@ export function ArtifactModal({ artifact, onClose, onRequestAcquisition }: Artif
                   </div>
                   <div className="p-3 bg-[#0A0A0A] border border-[#C5A059]/20">
                     <span className="text-[9px] uppercase tracking-[0.2em] text-[#9A7B38] block">
-                      Net Weight
+                      {t.home.amWeight}
                     </span>
                     <span className="font-cinzel text-sm text-[#F3EFE6]">
                       {artifact.specs.weight}
@@ -237,7 +239,7 @@ export function ArtifactModal({ artifact, onClose, onRequestAcquisition }: Artif
                   </div>
                   <div className="p-3 bg-[#0A0A0A] border border-[#C5A059]/20">
                     <span className="text-[9px] uppercase tracking-[0.2em] text-[#9A7B38] block">
-                      Stone Setting
+                      {t.home.amStones}
                     </span>
                     <span className="font-cinzel text-sm text-[#F3EFE6]">
                       {artifact.specs.gems}
@@ -245,7 +247,7 @@ export function ArtifactModal({ artifact, onClose, onRequestAcquisition }: Artif
                   </div>
                   <div className="p-3 bg-[#0A0A0A] border border-[#C5A059]/20">
                     <span className="text-[9px] uppercase tracking-[0.2em] text-[#9A7B38] block">
-                      Artisan Labor
+                      {t.home.amLabor}
                     </span>
                     <span className="font-cinzel text-sm text-[#F3EFE6]">
                       {artifact.specs.craftHours}
@@ -264,14 +266,14 @@ export function ArtifactModal({ artifact, onClose, onRequestAcquisition }: Artif
                 }}
                 className="flex-1 py-4.5 px-6 bg-[#C5A059] text-[#020202] hover:bg-[#E6CA85] font-cinzel text-xs font-semibold tracking-[0.3em] uppercase transition-all flex items-center justify-center gap-2 rounded-full shadow-[0_0_25px_rgba(197,160,89,0.3)] hover:scale-[1.02] cursor-pointer"
               >
-                <span>Request Private Acquisition</span>
+                <span>{t.home.amRequest}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
               <button
                 onClick={onClose}
                 className="py-4.5 px-8 border border-[#C5A059]/40 hover:border-[#C5A059] text-[#EAE6DF] hover:text-[#C5A059] font-cinzel text-xs tracking-[0.25em] uppercase transition-colors rounded-full cursor-pointer"
               >
-                Close Dossier
+                {t.home.amClose}
               </button>
             </div>
           </div>

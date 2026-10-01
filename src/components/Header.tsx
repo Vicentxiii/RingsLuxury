@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { AudioAtmosphere } from './AudioAtmosphere';
+import { LanguageFlags } from './LanguageFlags';
+import { useLanguage } from '../i18n/LanguageContext';
 import { StaggeredMenu, StaggeredMenuItem, StaggeredMenuSocialItem } from './StaggeredMenu';
 
 interface HeaderProps {
@@ -12,6 +14,7 @@ export function Header({ onOpenConsultation }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,53 +49,53 @@ export function Header({ onOpenConsultation }: HeaderProps) {
 
   const menuItems: StaggeredMenuItem[] = [
     {
-      label: 'HOME',
+      label: t.nav.home,
       ariaLabel: 'Return to introduction and temple of art',
       link: '/',
       onClick: (e) => handleNavigation(e, '/'),
     },
     {
-      label: 'LUXURY RINGS',
+      label: t.nav.luxuryRings,
       link: '/luxury-rings',
       onClick: (e) => handleNavigation(e, '/luxury-rings'),
     },
     {
-      label: 'EMPEROR RINGS',
+      label: t.nav.emperorRings,
       link: '/emperor-rings',
       onClick: (e) => handleNavigation(e, '/emperor-rings'),
     },
     {
-      label: 'SPECIAL EDITIONS',
+      label: t.nav.specialEditions,
       link: '/special-editions',
       onClick: (e) => handleNavigation(e, '/special-editions'),
     },
     {
-      label: 'GOLD-SILVER RINGS',
+      label: t.nav.goldSilverRings,
       link: '/gold-silver-rings',
       onClick: (e) => handleNavigation(e, '/gold-silver-rings'),
     },
     {
-      label: 'LUXURY QUEENS',
+      label: t.nav.luxuryQueens,
       link: '/luxuryqueens',
       onClick: (e) => handleNavigation(e, '/luxuryqueens'),
     },
     {
-      label: 'NECKLACES',
+      label: t.nav.necklaces,
       link: '/necklaces',
       onClick: (e) => handleNavigation(e, '/necklaces'),
     },
     {
-      label: 'COURSES',
+      label: t.nav.courses,
       link: '/courses',
       onClick: (e) => handleNavigation(e, '/courses'),
     },
     {
-      label: 'CONTACT',
-      link: '#contact',
-      onClick: (e) => handleNavigation(e, '#contact', true),
+      label: t.nav.contact,
+      link: '/contact',
+      onClick: (e) => handleNavigation(e, '/contact'),
     },
     {
-      label: 'BLOG',
+      label: t.nav.blog,
       link: '/blog',
       onClick: (e) => handleNavigation(e, '/blog'),
     }
@@ -147,7 +150,7 @@ export function Header({ onOpenConsultation }: HeaderProps) {
                 RINGS LUXURY
               </span>
               <span className="text-[7.5px] sm:text-[8.5px] uppercase tracking-[0.35em] text-[#9A7B38]">
-                Jorge Uquillas • HandCrafted 18k • Anéis Artesanais
+                {t.nav.logoSubtitle}
               </span>
             </div>
           </a>
@@ -155,6 +158,7 @@ export function Header({ onOpenConsultation }: HeaderProps) {
         extraHeaderActions={
           <div className="flex items-center gap-2 sm:gap-3">
             <AudioAtmosphere />
+            <LanguageFlags />
           </div>
         }
         items={menuItems}

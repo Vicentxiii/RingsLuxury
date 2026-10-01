@@ -1,5 +1,6 @@
 import { ExternalLink, MapPin } from 'lucide-react';
 import locationsData from '../data/locations.json';
+import { useLanguage } from '../i18n/LanguageContext';
 
 type Location = (typeof locationsData.locations)[number];
 
@@ -32,11 +33,12 @@ const mapsLink = (loc: Location): string =>
 const LOCATIONS = locationsData.locations;
 
 export function AtelierLocations() {
+  const { t } = useLanguage();
   return (
     <section
       id="locations"
       className="relative w-full overflow-hidden isolate bg-[#020202] text-[#EAE6DF]"
-      aria-label="Visits in the physical workshop under schedule"
+      aria-label={t.home.locAria}
     >
       {/* FUNDO — mesmo tratamento das secoes vizinhas */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-black">
@@ -60,12 +62,12 @@ export function AtelierLocations() {
           className="text-center font-cinzel font-normal uppercase text-[#E6CA85]"
           style={{ fontSize: 'clamp(16px, 2.1vw, 27px)', letterSpacing: '0.12em' }}
         >
-          Visits in the physical workshop under schedule
+          {t.home.locTitle}
         </h2>
 
         {/* SUBTÍTULO */}
         <p className="mt-3 text-center font-sans-luxury text-[12px] sm:text-[13px] tracking-wide text-[#F1ECE2]/85">
-          Private appointments in Miami and São Paulo.
+          {t.home.locSubtitle}
         </p>
 
         {/* ornamento dourado minimalista */}
@@ -102,10 +104,10 @@ export function AtelierLocations() {
                   href={mapsLink(loc)}
                   target="_blank"
                   rel="noopener nofollow"
-                  aria-label={`Open ${loc.label} in Google Maps`}
+                  aria-label={`${t.home.locOpenPrefix}${loc.label}${t.home.locOpenSuffix}`}
                   className="shrink-0 inline-flex items-center gap-1.5 text-[9px] uppercase tracking-[0.18em] text-[#9A7B38] hover:text-[#C5A059] transition-colors"
                 >
-                  Maps
+                  {t.home.locMapsLink}
                   <ExternalLink className="w-3 h-3" aria-hidden />
                 </a>
               </figcaption>
@@ -115,7 +117,7 @@ export function AtelierLocations() {
                 className="relative w-full overflow-hidden rounded-lg border border-[#C5A059]/40 bg-[#050505] shadow-[0_0_30px_rgba(197,160,89,0.10)] transition-all duration-500 group-hover:border-[#C5A059]/70 group-hover:shadow-[0_0_45px_rgba(197,160,89,0.20)] aspect-[16/10]"
               >
                 <iframe
-                  title={`Mapa — ${loc.label}, ${loc.city}`}
+                  title={`${t.home.locMapPrefix}${loc.label}, ${loc.city}`}
                   src={embedSrc(loc)}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"

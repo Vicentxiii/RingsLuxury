@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface Slide {
   src: string;
@@ -11,30 +12,19 @@ interface Slide {
  * - Fundo: Title Session Rings Luxury Background YOU DECIDE EVERY STONE EVERY DETAIL.png (com opacidade, predominantemente preto)
  * - Carrossel lateral com as fotos do ateliê / sketches do mestre
  */
-const SLIDES: Slide[] = [
-  {
-    src: '/PUBLIC/Rings Luxury Master Engraver Sketch 1.jpeg',
-    alt: 'Sketch 1 — hand engraver e anel heráldico do Master Engraver',
-  },
-  {
-    src: '/PUBLIC/Rings Luxury Master Engraver Sketch 2 site.jpeg',
-    alt: 'Sketch 2 — mão segurando anel heráldico sobre desenho',
-  },
-  {
-    src: '/PUBLIC/rings-luxury-master-engraver-site.jpeg',
-    alt: 'Anel gravado em estojo de madeira com pergaminho',
-  },
-  {
-    src: '/PUBLIC/Ringsluxury HandMade Engraver Master rings.jpeg',
-    alt: 'Anel de ouro com luva sobre esboço do mestre',
-  },
-  {
-    src: '/PUBLIC/Rings Luxury Master Engraver Sketch 2 site ringsluxury@gmail.com.jpeg',
-    alt: 'Collage — processo de gravação do anel heráldico',
-  },
+const SLIDE_SRCS: string[] = [
+  '/PUBLIC/Rings Luxury Master Engraver Sketch 1.jpeg',
+  '/PUBLIC/Rings Luxury Master Engraver Sketch 2 site.jpeg',
+  '/PUBLIC/rings-luxury-master-engraver-site.jpeg',
+  '/PUBLIC/Ringsluxury HandMade Engraver Master rings.jpeg',
+  '/PUBLIC/Rings Luxury Master Engraver Sketch 2 site ringsluxury@gmail.com.jpeg',
 ];
 
+const SLIDE_ALT_KEYS = ['ydAlt1', 'ydAlt2', 'ydAlt3', 'ydAlt4', 'ydAlt5'] as const;
+
 export function YouDecide() {
+  const { t } = useLanguage();
+  const SLIDES: Slide[] = SLIDE_SRCS.map((src, i) => ({ src, alt: t.home[SLIDE_ALT_KEYS[i]] }));
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -86,7 +76,7 @@ export function YouDecide() {
       id="you-decide"
       ref={sectionRef}
       className="relative w-full overflow-hidden isolate bg-[#020202] text-[#EAE6DF]"
-      aria-label="You decide every stone every detail"
+      aria-label={t.home.ydAria}
     >
       {/* FUNDO — foto do salão com opacidade, predominância preta */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-black">
@@ -113,22 +103,18 @@ export function YouDecide() {
               className="font-cormorant font-semibold uppercase leading-[1.08] text-[#C5A059]"
               style={{ fontSize: 'clamp(30px, 3.4vw, 46px)', letterSpacing: '0.04em' }}
             >
-              YOU DECIDE EVERY
+              {t.home.ydTitleA}
               <br />
-              <span className="text-[#C5A059]">STONE</span>{' '}
-              <span className="text-[#E6CA85]">EVERY DETAIL</span>
+              <span className="text-[#C5A059]">{t.home.ydTitleStone}</span>{' '}
+              <span className="text-[#E6CA85]">{t.home.ydTitleDetail}</span>
             </h2>
 
             <div className="mt-6 sm:mt-8 space-y-3 font-sans-luxury text-[#F1ECE2] max-w-[560px]">
               <p className="text-[12px] sm:text-[13px] leading-[1.75] text-[#EFE9DC]/95">
-                Upon confirmation of your payment, you will receive the serial number of your
-                powerful ring along with exact delivery dates (time upon request).
+                {t.home.ydText1}
               </p>
               <p className="text-[12px] sm:text-[13px] leading-[1.75] text-[#EFE9DC]/95">
-                First I make a mock sketch based on your ideas and details, so you can really see
-                what your exclusive jewelry will look like, subject to change or approval, we start
-                making it in the precious metal of your choice, and you follow the process during
-                the making of your masterpiece!
+                {t.home.ydText2}
               </p>
             </div>
           </div>
@@ -176,7 +162,7 @@ export function YouDecide() {
               {/* rodapé do card — contador */}
               <div className="flex items-center justify-between px-6 py-3.5 border-t border-[#C5A059]/20">
                 <span className="text-[9px] uppercase tracking-[0.32em] text-[#9A7B38]">
-                  ATELIER ARCHIVE
+                  {t.home.ydArchive}
                 </span>
                 <span className="text-[10px] font-cinzel tracking-[0.3em] text-[#C5A059]">
                   {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
@@ -187,14 +173,14 @@ export function YouDecide() {
             {/* setas laterais */}
             <button
               onClick={() => go(-1)}
-              aria-label="Foto anterior"
+              aria-label={t.home.ydPrev}
               className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 sm:-translate-x-1/3 z-20 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#0A0A0A]/90 border border-[#C5A059]/50 text-[#C5A059] hover:bg-[#C5A059] hover:text-[#020202] transition-all shadow-[0_0_18px_rgba(197,160,89,0.25)] flex items-center justify-center"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={() => go(1)}
-              aria-label="Próxima foto"
+              aria-label={t.home.ydNext}
               className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 sm:translate-x-1/3 z-20 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#0A0A0A]/90 border border-[#C5A059]/50 text-[#C5A059] hover:bg-[#C5A059] hover:text-[#020202] transition-all shadow-[0_0_18px_rgba(197,160,89,0.25)] flex items-center justify-center"
             >
               <ChevronRight className="w-5 h-5" />
@@ -206,7 +192,7 @@ export function YouDecide() {
                 <button
                   key={i}
                   onClick={() => setIndex(i)}
-                  aria-label={`Ir para foto ${i + 1}`}
+                  aria-label={`${t.home.ydGoToPhoto}${i + 1}`}
                   className={`h-[5px] rounded-full transition-all duration-500 ${
                     i === index ? 'w-7 bg-[#C5A059]' : 'w-[14px] bg-[#C5A059]/25 hover:bg-[#C5A059]/50'
                   }`}
@@ -220,7 +206,7 @@ export function YouDecide() {
         <div className="mt-12 sm:mt-14 flex justify-center">
           <img
             src="/PUBLIC/assinatura Jorge Uquillas Rings Luxury.png"
-            alt="Assinatura de Jorge Uquillas"
+            alt={t.home.ydSignatureAlt}
             draggable={false}
             className="w-[130px] sm:w-[150px] h-auto object-contain select-none will-change-[opacity,transform]"
             style={{ opacity: sigStyle.opacity, transform: `scale(${sigStyle.scale})` }}

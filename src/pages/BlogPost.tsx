@@ -4,8 +4,10 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
 import { blogPosts } from '../data/blogPosts';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export function BlogPost() {
+  const { t } = useLanguage();
   const { slug } = useParams<{ slug: string }>();
   const [post, setPost] = useState(blogPosts.find(p => p.slug === slug));
 
@@ -18,8 +20,8 @@ export function BlogPost() {
     return (
       <div className="min-h-screen bg-[#020202] text-[#EAE6DF] flex items-center justify-center font-cinzel">
         <div className="text-center">
-          <h1 className="text-4xl text-[#C5A059] mb-4">Article Not Found</h1>
-          <Link to="/blog" className="text-[#A8A296] hover:text-[#F3EFE6] underline">Return to Blog</Link>
+          <h1 className="text-4xl text-[#C5A059] mb-4">{t.pages.blogPostNotFound}</h1>
+          <Link to="/blog" className="text-[#A8A296] hover:text-[#F3EFE6] underline">{t.pages.blogPostReturnBlog}</Link>
         </div>
       </div>
     );
@@ -49,7 +51,7 @@ export function BlogPost() {
         <header className="mb-16 text-center">
           <Link to="/blog" className="inline-flex items-center gap-2 text-[#C5A059] font-poppins text-[10px] uppercase tracking-widest hover:text-[#F3EFE6] transition-colors mb-12">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-            Back to Journal
+            {t.pages.blogPostBack}
           </Link>
           
           <div className="mb-6">
@@ -65,7 +67,7 @@ export function BlogPost() {
           <div className="flex justify-center items-center gap-6 font-poppins text-xs uppercase tracking-widest text-[#A8A296]">
             <span>{post.date}</span>
             <span className="w-1 h-1 bg-[#C5A059] rounded-full" />
-            <span>By {post.author}</span>
+            <span>{t.pages.blogPostBy} {post.author}</span>
           </div>
         </header>
 
@@ -81,13 +83,13 @@ export function BlogPost() {
         />
 
         <div className="mt-20 pt-10 border-t border-[#C5A059]/20 text-center">
-           <h3 className="font-cinzel text-2xl text-[#F3EFE6] mb-6">Commission a Masterpiece</h3>
+           <h3 className="font-cinzel text-2xl text-[#F3EFE6] mb-6">{t.pages.blogPostCtaTitle}</h3>
            <button 
               onClick={() => handleOpenConsultation()}
               className="relative group/btn overflow-hidden border border-[#C5A059] px-12 py-4 bg-[#C5A059]/5 hover:bg-[#C5A059]/10 transition-colors inline-block"
             >
               <span className="relative font-poppins text-xs tracking-[0.2em] uppercase text-[#C5A059]">
-                Private Consultation
+                {t.pages.blogPostCtaButton}
               </span>
             </button>
         </div>

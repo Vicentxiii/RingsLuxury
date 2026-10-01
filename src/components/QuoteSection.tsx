@@ -1,7 +1,9 @@
 import React from 'react';
 import { LaurelWreath, AcanthusLeaf } from './OrnamentIcons';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export function QuoteSection() {
+  const { t } = useLanguage();
   return (
     <section
       id="quote"
@@ -34,10 +36,10 @@ export function QuoteSection() {
 
         {/* Centered Typography: "TIME CREATES HISTORY. THE MASTER CREATES LEGACY." */}
         <blockquote className="font-cormorant text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light italic tracking-[0.14em] text-[#F3EFE6] leading-tight mb-10 max-w-3xl mx-auto">
-          “TIME CREATES HISTORY.
+          {t.home.quLine1}
           <br />
           <span className="text-[#C5A059] font-normal not-italic font-cinzel text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-[0.22em] block mt-2">
-            THE MASTER ENGRAVER CREATES LEGACY.”
+            {t.home.quLine2}
           </span>
         </blockquote>
 

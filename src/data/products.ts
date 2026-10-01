@@ -25,6 +25,8 @@ export interface Product {
   price: string;
   priceNumber: number;
   description: string;
+  description_es?: string;
+  description_pt?: string;
   extendedHistory: string;
   symbolism: string;
   specs: ProductSpecs;
@@ -45,6 +47,8 @@ export const products: Product[] = [
     price: '$ 8,500.00',
     priceNumber: 8500,
     description: 'A singular masterpiece inspired by ancient imperial iconography. The colossal signet commands the presence of Roman Caesars.',
+    description_es: 'Una obra maestra singular inspirada en la iconografía imperial antigua. El colosal sello impone la presencia de los césares romanos.',
+    description_pt: 'Uma obra-prima singular inspirada na iconografia imperial antiga. O colossal sinete impõe a presença dos césares romanos.',
     extendedHistory: 'Forged in molten 18K antique gold alloyed to the exact metallurgical density of classical Roman coinage. The central seal features a hand-chiseled intaglio imperial eagle clutching an obsidian laurel branch, flanked by Corinthian volutes carved directly into the solid gold shoulders. Each stroke of the graver follows the lost-wax tradition of Hellenistic goldsmiths.',
     symbolism: 'Sovereignty, Stoic command, and the eternal continuity of empire.',
     specs: {
@@ -72,6 +76,8 @@ export const products: Product[] = [
     price: '$ 12,800.00',
     priceNumber: 12800,
     description: 'A monumental neckpiece echoing the sacred divine armor of Pallas Athena.',
+    description_es: 'Un monumental collar que evoca la sagrada armadura divina de Palas Atenea.',
+    description_pt: 'Um monumental colar que evoca a sagrada armadura divina de Palas Atena.',
     extendedHistory: 'Constructed from twenty-four interlocking articulated 22K gold plates, evoking classical hoplite scale armor. At its crux rests a micro-sculpted Medusa gorgoneion relief, framed by subtle emerald baguettes and antique matte gold burnishing. Articulation allows fluid movement like silk.',
     symbolism: 'Invincibility, divine intellect, and the shield against temporal decay.',
     specs: {
@@ -99,6 +105,8 @@ export const products: Product[] = [
     price: '$ 9,200.00',
     priceNumber: 9200,
     description: 'Sculptural botanical crown celebrating the sacred plant of Delphi and eternal poetry.',
+    description_es: 'Corona botánica escultórica que celebra la planta sagrada de Delfos y la poesía eterna.',
+    description_pt: 'Coroa botânica escultural que celebra a planta sagrada de Delfos e a poesia eterna.',
     extendedHistory: 'Twelve distinct, organic laurel leaves individually cast in lost-wax gold, each hand-engraved with micro-veins and adorned with dew-drop diamonds. Designed to rest upon the collarbone or crown with weightless mythological grace. The matte champagne gold whispers ancient sunlight.',
     symbolism: 'Victory, prophetic illumination, and the sacred harmony of the Muses.',
     specs: {
@@ -125,6 +133,8 @@ export const products: Product[] = [
     price: '$ 15,500.00',
     priceNumber: 15500,
     description: 'A baroque architectural cuff marrying classical Hellenistic cameos with heavy gold scrolls.',
+    description_es: 'Un brazalete arquitectónico barroco que une camafeos helenísticos clásicos con pesadas volutas de oro.',
+    description_pt: 'Uma pulseira arquitetônica barroca que une camafeus helenísticos clássicos a pesadas volutas de ouro.',
     extendedHistory: 'A towering black velvet wrist monument. Chiseled in heavy 22K gold with deep relief acanthus leaves, micro-sculpted mythological cherubs, and an ancient onyx cameo portraying the Pythia in prophetic trance. Weighs like a temple fragment from Delphi itself.',
     symbolism: 'The whisper of eternity, secret knowledge, and destiny.',
     specs: {
@@ -151,6 +161,8 @@ export const products: Product[] = [
     price: '$ 9,200.00',
     priceNumber: 9200,
     description: 'Hand-engraved using centuries-old techniques, a true testament to the artisan dedication on Mount Olympus.',
+    description_es: 'Grabado a mano con técnicas centenarias, un verdadero testimonio de la dedicación artesanal del Monte Olimpo.',
+    description_pt: 'Gravado à mão com técnicas centenárias, um verdadeiro testemunho da dedicação artesanal do Monte Olimpo.',
     extendedHistory: 'Each facet of Olympos Heritage is engraved under 10x magnification, reproducing the meander pattern of the Temple of Zeus. The interior band bears a secret inscription in ancient Greek, visible only to the wearer.',
     symbolism: 'Heritage, divine ancestry, and the mountain of the gods.',
     specs: {
@@ -177,6 +189,8 @@ export const products: Product[] = [
     price: '$ 12,000.00',
     priceNumber: 12000,
     description: 'Masterfully crafted by Jorge Uquillas, this masculine ring combines baroque grandeur with modern haute joaillerie.',
+    description_es: 'Magistralmente elaborado por Jorge Uquillas, este anillo masculino combina la grandeza barroca con la alta joyería moderna.',
+    description_pt: 'Magistralmente elaborado por Jorge Uquillas, este anel masculino combina a grandeza barroca com a alta joalheria moderna.',
     extendedHistory: 'The Emperor\'s Will bears a hidden imperial seal on its interior, revealed only when removed. Its shoulders are sculpted as miniature Corinthian columns, supporting a domed cognac diamond like a temple roof.',
     symbolism: 'Authority, willpower, and the weight of destiny.',
     specs: {
@@ -203,6 +217,8 @@ export const products: Product[] = [
     price: '$ 15,500.00',
     priceNumber: 15500,
     description: 'A heavy, commanding piece that speaks of power, heritage, and uncompromising luxury.',
+    description_es: 'Una pieza pesada e imponente que habla de poder, herencia y lujo sin concesiones.',
+    description_pt: 'Uma peça pesada e imponente que fala de poder, herança e luxo sem concessões.',
     extendedHistory: 'Cast in solid gold weighing more than a classical drachma hoard, The Golden Epoch features a sunken relief of Helios driving his quadriga. The patina is hand-applied over seven firings to achieve antique depth.',
     symbolism: 'Eternal power, solar divinity, and golden age prosperity.',
     specs: {
@@ -229,6 +245,8 @@ export const products: Product[] = [
     price: '$ 7,800.00',
     priceNumber: 7800,
     description: 'A bespoke signet style masterpiece reflecting the absolute pinnacle of Jorge Uquillas craft.',
+    description_es: 'Una obra maestra estilo sello a medida que refleja la cúspide absoluta del oficio de Jorge Uquillas.',
+    description_pt: 'Uma obra-prima estilo sinete sob medida que reflete o ápice absoluto do ofício de Jorge Uquillas.',
     extendedHistory: 'The Archon\'s Seal can be custom-engraved with family crest, initials or mythological totem. Its oval face is left intentionally blank in the atelier, awaiting the patron\'s legacy to be carved before delivery.',
     symbolism: 'Legacy, lineage, and personal legend.',
     specs: {
@@ -255,6 +273,8 @@ export const products: Product[] = [
     price: '$ 14,500.00',
     priceNumber: 14500,
     description: 'A breathtakingly elegant female ring, adorned with a rare pear-shaped diamond and intricate rose gold engravings.',
+    description_es: 'Un anillo femenino de elegancia impresionante, adornado con un raro diamante talla pera e intrincados grabados en oro rosa.',
+    description_pt: 'Um anel feminino de elegância impressionante, adornado com um raro diamante em forma de pera e intrincadas gravações em ouro rosé.',
     extendedHistory: 'The pear diamond of Aphrodite\'s Tear is set like a droplet suspended on rose gold waves, engraved with acanthus tendrils so fine they appear to move. Inspired by Botticelli\'s Venus emerging from the sea foam.',
     symbolism: 'Love, divine femininity, and the birth of beauty.',
     specs: {
@@ -281,6 +301,8 @@ export const products: Product[] = [
     price: '$ 18,200.00',
     priceNumber: 18200,
     description: 'Inspired by Byzantine royalty, this masterpiece features a stunning halo setting and delicate filigree.',
+    description_es: 'Inspirada en la realeza bizantina, esta obra maestra presenta un impresionante engaste halo y una delicada filigrana.',
+    description_pt: 'Inspirada na realeza bizantina, esta obra-prima apresenta uma deslumbrante cravação halo e uma delicada filigrana.',
     extendedHistory: 'Theodora\'s halo is composed of 48 micro-pavé diamonds surrounding a cushion-cut center, held by double claws shaped as imperial eagles. The gallery beneath replicates the dome of Hagia Sophia in miniature gold architecture.',
     symbolism: 'Byzantine splendor, empress grace, and sacred power.',
     specs: {
@@ -307,6 +329,8 @@ export const products: Product[] = [
     price: '$ 28,000.00',
     priceNumber: 28000,
     description: '"A fluid energy frozen in still, heavy bronze. Born of molten fire and creative will." — Jorge Uquillas',
+    description_es: '"Una energía fluida congelada en bronce quieto y pesado. Nacida del fuego fundido y la voluntad creadora." — Jorge Uquillas',
+    description_pt: '"Uma energia fluida congelada em bronze quieto e pesado. Nascida do fogo fundido e da vontade criadora." — Jorge Uquillas',
     extendedHistory: 'Laocoön is not a ring but a sculptural jewel — a bronze equestrian fragment where liquid bronze waves meet sapphire inlays. Exhibited in WebGL 360°, this piece bridges sculpture and haute joaillerie, destined for private collection display.',
     symbolism: 'Timeless struggle, heroic tragedy, and the triumph of form.',
     specs: {
@@ -334,6 +358,8 @@ export const products: Product[] = [
     price: '$ 22,000.00',
     priceNumber: 22000,
     description: 'A ring that could launch a thousand ships. Pure poetry in gold, featuring a magnificent center stone.',
+    description_es: 'Un anillo que podría lanzar mil barcos. Pura poesía en oro, con una magnífica piedra central.',
+    description_pt: 'Um anel que poderia lançar mil navios. Pura poesia em ouro, com uma magnífica pedra central.',
     extendedHistory: 'Helen\'s center oval diamond is elevated on a hidden halo, allowing light to enter from every angle, like the lanterns of Troy. The shank is chased with Trojan wave motifs that disappear into the finger.',
     symbolism: 'Irresistible beauty, mythic destiny, and timeless desire.',
     specs: {
@@ -360,6 +386,8 @@ export const products: Product[] = [
     price: '$ 12,000.00',
     priceNumber: 12000,
     description: 'A hand-engraved 18K gold signet carrying the Bitcoin sigil inside a pavé bezel, with a sculpted eagle worked across the shoulders. A 1/1 piece for those who treat code as heirloom.',
+    description_es: 'Un sello de oro 18k grabado a mano con el sigilo de Bitcoin en un bisel de pavé, con un águila esculpida en los hombros. Una pieza 1/1 para quienes tratan el código como herencia.',
+    description_pt: 'Um sinete em ouro 18k gravado à mão com o sigilo do Bitcoin em bisel de pavé, com uma águia esculpida nos ombros. Uma peça 1/1 para quem trata código como herança.',
     extendedHistory: 'Cast in solid 18K gold and finished entirely by hand at the atelier. The bezel is set with pavé diamonds framing the ₿ sigil, which is then chiseled by graver into the face of the signet alongside a stippled ground. The shoulders carry a modeled eagle, its feathers cut with the same hand engraver used on the master’s imperial pieces. No two strokes are repeated; the piece is finished only when the master signs it.',
     symbolism: 'Sovereignty, immutable record, and themarriage of ancient craft with decentralized trust.',
     specs: {

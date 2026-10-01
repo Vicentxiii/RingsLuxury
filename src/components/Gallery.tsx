@@ -8,6 +8,7 @@ import {
   ArabesqueCorner,
   ArabesqueCrest,
 } from './OrnamentIcons';
+import { useLanguage } from '../i18n/LanguageContext';
 
 // Rich luxury imagery
 import emperorRingImg from '../assets/images/emperor_ring_artifact_1789071924540.jpg';
@@ -28,55 +29,56 @@ interface GalleryItem {
 }
 
 export function Gallery() {
+  const { t } = useLanguage();
   const [activeItem, setActiveItem] = useState<GalleryItem | null>(null);
 
   const galleryItems: GalleryItem[] = [
     {
       id: 'g-1',
-      title: 'SOL INVICTUS SCULPTURAL SIGNET',
-      classification: 'Imperial Collection • No. 04',
-      year: 'Anno MMXXVI',
-      medium: 'Solid 18K Antique Gold, Obsidian & Cognac Diamond',
+      title: t.home.gal1Title,
+      classification: t.home.gal1Class,
+      year: t.home.gal1Year,
+      medium: t.home.gal1Medium,
       image: emperorRingImg,
       colSpan: 'lg:col-span-7',
       offsetY: 'lg:-translate-y-4',
     },
     {
       id: 'g-2',
-      title: 'THE PYTHIAN TORQUE OF DELPHI',
-      classification: 'Baroque Archival Treasure',
-      year: 'Anno MMXXV',
-      medium: '22K Chiseled Gold, Natural Cameo & Emeralds',
+      title: t.home.gal2Title,
+      classification: t.home.gal2Class,
+      year: t.home.gal2Year,
+      medium: t.home.gal2Medium,
       image: masterpieceCuffImg,
       colSpan: 'lg:col-span-5',
       offsetY: 'lg:translate-y-8',
     },
     {
       id: 'g-3',
-      title: 'THE SLEEPING NYMPH • HELLENISTIC MARBLE',
-      classification: 'Classical Sculpture Study',
-      year: 'IV Century B.C. Replica',
-      medium: 'Pentelic Marble in Chiaroscuro Night',
+      title: t.home.gal3Title,
+      classification: t.home.gal3Class,
+      year: t.home.gal3Year,
+      medium: t.home.gal3Medium,
       image: statueImg,
       colSpan: 'lg:col-span-4',
       offsetY: 'lg:translate-y-4',
     },
     {
       id: 'g-4',
-      title: 'THE MASTER’S GRAVER & GOLD FLAKES',
-      classification: 'Atelier Photographic Document',
-      year: 'Athens Workshop',
-      medium: 'Archival Platinum Print on Velvet',
+      title: t.home.gal4Title,
+      classification: t.home.gal4Class,
+      year: t.home.gal4Year,
+      medium: t.home.gal4Medium,
       image: artisanImg,
       colSpan: 'lg:col-span-4',
       offsetY: 'lg:-translate-y-8',
     },
     {
       id: 'g-5',
-      title: 'ENTABLATURE OF THE MIDNIGHT TEMPLE',
-      classification: 'Baroque Architectural Panorama',
-      year: 'Architectural Archive',
-      medium: 'Black Marble & Antique Gilded Capitals',
+      title: t.home.gal5Title,
+      classification: t.home.gal5Class,
+      year: t.home.gal5Year,
+      medium: t.home.gal5Medium,
       image: heroStatueImg,
       colSpan: 'lg:col-span-4',
       offsetY: 'lg:translate-y-6',
@@ -97,21 +99,21 @@ export function Gallery() {
           <div className="inline-flex items-center gap-2 mb-4">
             <AcanthusLeaf className="w-4 h-4 text-[#C5A059]" />
             <span className="text-[10px] uppercase tracking-[0.45em] text-[#C5A059] font-medium">
-              CURATORIAL SALON • CABINET OF CURIOSITIES
+              {t.home.galKicker}
             </span>
             <AcanthusLeaf className="w-4 h-4 text-[#C5A059] transform -scale-x-100" />
           </div>
 
           <h2 className="font-cinzel text-4xl sm:text-5xl md:text-6xl tracking-[0.18em] uppercase text-[#FBF9F5] font-light mb-4">
-            BAROQUE GALLERY
+            {t.home.galTitle}
           </h2>
 
           <p className="font-cormorant text-xl md:text-2xl tracking-[0.2em] italic text-[#C5A059] font-light uppercase mb-6">
-            THE PRIVATE SALON OF MASTERPIECES
+            {t.home.galSubtitle}
           </p>
 
           <p className="font-sans-luxury text-xs md:text-sm text-[#A8A296] tracking-[0.2em] uppercase max-w-xl mx-auto leading-relaxed">
-            Arranged according to 17th-century European Wunderkammer principles, where classical antiquities, Baroque architectural fragments, and contemporary high jewelry converse in perpetual nocturnal elegance.
+            {t.home.galIntro}
           </p>
 
           <GreekMeanderDivider className="mt-8 opacity-60" />
@@ -154,7 +156,7 @@ export function Gallery() {
                       className="px-6 py-2.5 border border-[#C5A059] bg-[#0A0A0A]/90 text-[#C5A059] text-[10px] uppercase font-cinzel tracking-[0.3em] flex items-center gap-2 hover:bg-[#C5A059] hover:text-[#020202] transition-all rounded-full"
                     >
                       <Maximize2 className="w-3.5 h-3.5" />
-                      <span>Inspect Artwork</span>
+                      <span>{t.home.galInspect}</span>
                     </button>
                   </div>
                 </div>

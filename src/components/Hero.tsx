@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface HeroProps {
   onEnterAtelier: () => void;
@@ -17,18 +18,19 @@ const YOUTUBE_ID = 'ieNPhZ4Vdss';
 const YOUTUBE_EMBED = `https://www.youtube.com/embed/${YOUTUBE_ID}?autoplay=1&mute=1&controls=0&loop=1&playlist=${YOUTUBE_ID}&playsinline=1&modestbranding=1&rel=0&iv_load_policy=3&showinfo=0&enablejsapi=0`;
 
 export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
+  const { t } = useLanguage();
   return (
     <section
       id="hero"
       className="relative w-full bg-[#020202] overflow-hidden flex items-center justify-center isolate"
       style={{ height: '92vh', minHeight: '560px', maxHeight: '900px' }}
-      aria-label="RINGS LUXURY by Jorge Uquillas — Hero"
+      aria-label={t.home.heroSectionAria}
     >
       {/* 1. VIDEO BACKGROUND - YouTube */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-[#040404]">
         <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none">
           <iframe
-            title="RINGS LUXURY — Atelier handcrafted background film"
+            title={t.home.heroVideoTitle}
             src={YOUTUBE_EMBED}
             className="absolute top-1/2 left-1/2 w-[420%] h-[420%] sm:w-[300%] sm:h-[300%] lg:w-[170%] lg:h-[170%] -translate-x-1/2 -translate-y-1/2 object-cover scale-[1.15]"
             style={{ border: 0, opacity: 1 }}
@@ -94,7 +96,7 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
               fontWeight: 300,
             }}
           >
-            WELCOME TO RINGS LUXURY
+            {t.home.heroWelcome}
           </span>
           <span
             className="font-cormorant font-light text-[#E9E2D6]/80 leading-none whitespace-nowrap"
@@ -105,7 +107,7 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
               fontWeight: 300,
             }}
           >
-            MASTER PIECES
+            {t.home.heroEyebrow2}
           </span>
         </h1>
       </div>
@@ -127,7 +129,7 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
         href="#masterpiece"
         className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 opacity-0 focus:opacity-100 focus:pointer-events-auto pointer-events-none text-[10px] tracking-[0.3em] text-[#C5A059] border border-[#C5A059]/40 px-4 py-2 rounded-full bg-black/60 backdrop-blur"
       >
-        Ver coleção
+        {t.home.heroViewCollection}
       </a>
     </section>
   );

@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface QuemSouEuProps {}
 
@@ -12,11 +13,12 @@ interface QuemSouEuProps {}
  */
 export function QuemSouEu({}: QuemSouEuProps) {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   return (
     <section
       id="quem-sou-eu"
       className="relative w-full bg-[#020202] overflow-hidden isolate"
-      aria-label="Jorge Uquillas — Master Engraver biography"
+      aria-label={t.home.quemAria}
     >
       {/* FUNDO — desfocado com blur como no print, liso sem textura */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-black">
@@ -53,7 +55,7 @@ export function QuemSouEu({}: QuemSouEuProps) {
             <div className="relative w-full max-w-[480px] sm:max-w-[540px] lg:max-w-[610px] xl:max-w-[640px]">
               <img
                 src="/PUBLIC/jorge-montagem-sobre-mim.webp"
-                alt="Jorge Uquillas — Master Engraver com anéis artesanais handcrafted ao redor"
+                alt={t.home.quemImageAlt}
                 className="w-full h-auto object-contain select-none"
                 draggable={false}
                 style={{ filter: 'drop-shadow(0 22px 48px rgba(0,0,0,0.72))' }}
@@ -81,28 +83,20 @@ export function QuemSouEu({}: QuemSouEuProps) {
             {/* Biografia — texto fiel ao print, liso sem bolinhas */}
             <div className="w-full text-left font-sans-luxury text-[#EDE8DB] leading-relaxed space-y-3.5">
               <p className="text-[11px] sm:text-[11.5px] leading-[1.72] text-[#EFE9DC]/95">
-                Jorge Uquillas is a renowned Designer and Artistic Engraver of jewelry of Colombian-Ecuadorian
-                origin, starting his art in a simple atelier in Bogota-Colombia, following the tradition of the
-                third generation of the family, learned his first techniques of engraving with the great Master
-                Ivan Uquillas (ECU-1996).
+                {t.home.quemBio1}
               </p>
               <p className="text-[11px] sm:text-[11.5px] leading-[1.72] text-[#EFE9DC]/95">
-                Over the years, seeking to improve his artistic skills Jorge Uquillas broadened his techniques and
-                knowledge of artistic engraving and designer in Europe, becoming one of the greatest exponents in
-                Artistic Designer and Engraver of World Jewelry in modern times.
+                {t.home.quemBio2}
               </p>
               <p className="text-[11px] sm:text-[11.5px] leading-[1.72] text-[#EFE9DC]/90">
-                Today based in Sao Paulo Brazil he is the only exponent of this type of work and perfection in the
-                whole country and one of the only ones in the continent...
+                {t.home.quemBio3}
               </p>
               <p className="text-[11px] sm:text-[11.5px] leading-[1.72] text-[#EFE9DC]/95">
-                With satisfied clients in more than 50 countries in the world, Rings Luxury is highly valued in the
-                luxury jewelry market. <br />
-                His unique and extremely detailed work has won him loyal clients who regularly order his works...
+                {t.home.quemBio4a} <br />
+                {t.home.quemBio4b}
               </p>
               <p className="text-[11px] sm:text-[11.5px] leading-[1.72] text-[#EFE9DC]/85">
-                Jorge Uquillas is a craftsman who has left his mark in the history of world jewelry, with a unique
-                and unparalleled work that captivates lovers of art and beauty.
+                {t.home.quemBio5}
               </p>
             </div>
 
@@ -123,7 +117,7 @@ export function QuemSouEu({}: QuemSouEuProps) {
                   className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-[#E6CA85]/20 to-transparent transition-transform duration-[900ms] ease-out group-hover:translate-x-full"
                 />
                 <span className="relative z-10 flex items-center gap-3">
-                  <span>About Jorge Uquillas</span>
+                  <span>{t.home.quemCta}</span>
                   <span className="transition-transform duration-500 group-hover:translate-x-1">
                     <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.4} />
                   </span>

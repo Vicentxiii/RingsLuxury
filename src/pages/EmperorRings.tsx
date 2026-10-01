@@ -3,6 +3,7 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
 import { Contact } from '../components/Contact';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface RingItem {
   src: string;
@@ -13,51 +14,6 @@ interface RingItem {
 
 const EMPEROR_BG = encodeURI('/PUBLIC/Fundo da seção EMPEROR RINGS site Rings Luxury.jpg');
 
-const RINGS: RingItem[] = [
-  {
-    src: encodeURI('/PUBLIC/Emperor Eraldic Ring 18k gold Monogram by Jorge Uquillas Rings Luxury.png'),
-    name: 'EMPEROR HERALDIC RING',
-    price: '$ 4,800.00',
-    alt: 'Emperor Heraldic Ring 18k gold by Jorge Uquillas',
-  },
-  {
-    src: encodeURI('/PUBLIC/Luxury rings collection anel Caveira  by Jorge Uquillas rings luxury.png'),
-    name: 'Rose Gold Pirate Skull Ring',
-    price: '$ 5,500.00',
-    alt: 'Rose Gold Pirate Skull Ring by Jorge Uquillas',
-  },
-  {
-    src: encodeURI('/PUBLIC/Lion Emperor Ring 18K gold by Jorge Uquillas Rings Luxury.png'),
-    name: 'Lion Emperor Ring',
-    price: '$ 4,800.00',
-    alt: 'Lion Emperor Ring 18k gold by Jorge Uquillas',
-  },
-  {
-    src: encodeURI('/PUBLIC/Emperor RING 18K gOLD monogram.png'),
-    name: 'Emperor Ring 18k Gold Monogram',
-    price: '$ 4,800.00',
-    alt: 'Emperor Ring 18k Gold Monogram by Jorge Uquillas',
-  },
-  {
-    src: encodeURI('/PUBLIC/KOI emperor Ring 18k rose Gold.png'),
-    name: 'KOI Emperor Ring 18k rose gold',
-    price: '$ 4,800.00',
-    alt: 'KOI Emperor Ring 18k rose gold by Jorge Uquillas',
-  },
-  {
-    src: encodeURI('/PUBLIC/Emperor Skull Ring 18k Gold by Jorge Uquillas Rings Luxury.png'),
-    name: 'Emperor Skull Ring 18k gold',
-    price: '$ 4,800.00',
-    alt: 'Emperor Skull Ring 18k gold by Jorge Uquillas',
-  },
-  {
-    src: encodeURI('/PUBLIC/Luxury Emperor Maçonic Ring by Jorge Uquillas Rings Luxury.png'),
-    name: 'Luxury Emperor Maçonic Ring',
-    price: '$ 4,800.00',
-    alt: 'Luxury Emperor Maçonic Ring by Jorge Uquillas',
-  },
-];
-
 function scrollToContact() {
   setTimeout(() => {
     const el = document.getElementById('contact');
@@ -66,12 +22,59 @@ function scrollToContact() {
 }
 
 export function EmperorRings() {
+  const { t } = useLanguage();
+
+  const RINGS: RingItem[] = [
+    {
+      src: encodeURI('/PUBLIC/Emperor Eraldic Ring 18k gold Monogram by Jorge Uquillas Rings Luxury.png'),
+      name: 'EMPEROR HERALDIC RING',
+      price: '$ 4,800.00',
+      alt: t.collections.altEmperor1,
+    },
+    {
+      src: encodeURI('/PUBLIC/Luxury rings collection anel Caveira  by Jorge Uquillas rings luxury.png'),
+      name: 'Rose Gold Pirate Skull Ring',
+      price: '$ 5,500.00',
+      alt: t.collections.altEmperor2,
+    },
+    {
+      src: encodeURI('/PUBLIC/Lion Emperor Ring 18K gold by Jorge Uquillas Rings Luxury.png'),
+      name: 'Lion Emperor Ring',
+      price: '$ 4,800.00',
+      alt: t.collections.altEmperor3,
+    },
+    {
+      src: encodeURI('/PUBLIC/Emperor RING 18K gOLD monogram.png'),
+      name: 'Emperor Ring 18k Gold Monogram',
+      price: '$ 4,800.00',
+      alt: t.collections.altEmperor4,
+    },
+    {
+      src: encodeURI('/PUBLIC/KOI emperor Ring 18k rose Gold.png'),
+      name: 'KOI Emperor Ring 18k rose gold',
+      price: '$ 4,800.00',
+      alt: t.collections.altEmperor5,
+    },
+    {
+      src: encodeURI('/PUBLIC/Emperor Skull Ring 18k Gold by Jorge Uquillas Rings Luxury.png'),
+      name: 'Emperor Skull Ring 18k gold',
+      price: '$ 4,800.00',
+      alt: t.collections.altEmperor6,
+    },
+    {
+      src: encodeURI('/PUBLIC/Luxury Emperor Maçonic Ring by Jorge Uquillas Rings Luxury.png'),
+      name: 'Luxury Emperor Maçonic Ring',
+      price: '$ 4,800.00',
+      alt: t.collections.altEmperor7,
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-black text-[#EAE6DF] font-sans-luxury relative overflow-x-hidden">
       <SEO
-        title="Emperor Rings — For Great Emperors | Jorge Uquillas"
-        description="Emperor Rings by Jorge Uquillas — Heraldic, Pirate Skull, Lion, Monogram, KOI, Skull and Maçonic 1/1 HandCrafted 18k gold rings."
-        keywords="RINGS LUXURY, Emperor Rings, For Great Emperors, Heraldic Ring, Lion Ring, Skull Ring, Maçonic Ring, 18k gold, Jorge Uquillas"
+        title={t.collections.seoEmperorTitle}
+        description={t.collections.seoEmperorDescription}
+        keywords={t.collections.seoEmperorKeywords}
       />
 
       <Header onOpenConsultation={() => scrollToContact()} />
@@ -97,7 +100,7 @@ export function EmperorRings() {
               className="font-cinzel font-normal uppercase text-white"
               style={{ fontSize: 'clamp(30px, 3.4vw, 50px)', letterSpacing: '0.1em' }}
             >
-              For Great Emperors
+              {t.collections.emperorTitle}
             </h1>
             {/* filete dourado com brilho central */}
             <div className="relative mx-auto mt-6 w-full max-w-[560px]" aria-hidden>
@@ -114,7 +117,7 @@ export function EmperorRings() {
                   type="button"
                   onClick={() => scrollToContact()}
                   className="w-full aspect-square flex items-center justify-center overflow-hidden cursor-pointer focus:outline-none"
-                  aria-label={`${ring.name} — inquire`}
+                  aria-label={`${ring.name} ${t.collections.inquireSuffix}`}
                 >
                   <img
                     src={ring.src}
@@ -137,7 +140,7 @@ export function EmperorRings() {
                   onClick={() => scrollToContact()}
                   className="mt-3 px-6 py-1.5 border border-white/25 hover:border-[#C5A059] rounded-full text-[11px] tracking-[0.12em] text-white/85 hover:text-[#E6CA85] transition-colors"
                 >
-                  Add to cart
+                  {t.collections.addToCart}
                 </button>
               </div>
             ))}

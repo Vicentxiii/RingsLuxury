@@ -1,10 +1,11 @@
 import React from 'react';
 import { ArrowRight, Feather } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface Piece {
   src: string;
   name: string;
-  alt: string;
+  altKey: 'featAlt1' | 'featAlt2' | 'featAlt3' | 'featAlt4' | 'featAlt5' | 'featAlt6' | 'featAlt7' | 'featAlt8';
 }
 
 /** Coleção Luxury Rings — anéis 1/1 HandCrafted em ouro 18k */
@@ -12,47 +13,46 @@ const PIECES: Piece[] = [
   {
     src: '/PUBLIC/Luxury%20rings%20collection%20anel%20Aguia%20ma%C3%A7onica%20by%20Jorge%20Uquillas%20rings%20luxury.png',
     name: 'Águia Masônica',
-    alt: 'Anel de ouro 18k Águia Masônica, by Jorge Uquillas',
+    altKey: 'featAlt1',
   },
   {
     src: '/PUBLIC/Luxury%20rings%20collection%20anel%20Caveira%20%20by%20Jorge%20Uquillas%20rings%20luxury.png',
     name: 'Caveira',
-    alt: 'Anel de ouro 18k Caveira com rubi, by Jorge Uquillas',
+    altKey: 'featAlt2',
   },
   {
     src: '/PUBLIC/Luxury%20rings%20collection%20anel%20caveira%20com%20diamantes%20by%20Jorge%20Uquillas%20rings%20luxury.png',
     name: 'Caveira com Diamantes',
-    alt: 'Anel de ouro 18k Caveira cravejada de diamantes, by Jorge Uquillas',
+    altKey: 'featAlt3',
   },
   {
     src: '/PUBLIC/Luxury%20rings%20collection%20anel%20Grau%2033%20by%20Jorge%20Uquillas%20rings%20luxury.png',
     name: 'Grau 33',
-    alt: 'Anel de ouro 18k Grau 33, by Jorge Uquillas',
+    altKey: 'featAlt4',
   },
   {
     src: '/PUBLIC/Luxury%20rings%20collection%20anel%20medusa%20by%20Jorge%20Uquillas%20rings%20luxury.png',
     name: 'Medusa',
-    alt: 'Anel de ouro 18k Medusa, by Jorge Uquillas',
+    altKey: 'featAlt5',
   },
   {
     src: '/PUBLIC/Luxury%20rings%20collection%20anel%20sinnet%20by%20Jorge%20Uquillas%20rings%20luxury.png',
     name: 'Sinnet',
-    alt: 'Anel de ouro 18k Sinnet, by Jorge Uquillas',
+    altKey: 'featAlt6',
   },
   {
     src: '/PUBLIC/Luxury%20rings%20collection%20anel%20Tempest%20by%20Jorge%20Uquillas%20rings%20luxury%20(2).png',
     name: 'Tempest',
-    alt: 'Anel de ouro 18k Tempest, by Jorge Uquillas',
+    altKey: 'featAlt7',
   },
   {
     src: '/PUBLIC/Luxury%20rings%20collection%20anel%20Tiger%20by%20Jorge%20Uquillas%20rings%20luxury.png',
     name: 'Tiger',
-    alt: 'Anel de ouro 18k Tiger, by Jorge Uquillas',
+    altKey: 'featAlt8',
   },
 ];
 
-const SUBTEXT =
-  'It represents power, dominance, authority, and ambition. This ring is considered to be a certain type representing power; powerful kings wore Lord rings on their ring finger!';
+const SUBTEXT_KEY = 'featSubtext' as const;
 
 function scrollToSection(id: string) {
   const el = document.getElementById(id);
@@ -111,11 +111,12 @@ function GoldButton({ label, onClick, variant = 'primary', icon }: GoldButtonPro
  * Layout 100% centralizado: kicker, título, subtítulo, marquee e botões.
  */
 export function FeaturedRing() {
+  const { t } = useLanguage();
   return (
     <section
       id="featured-ring"
       className="relative w-full bg-black overflow-hidden isolate"
-      aria-label="Luxury rings collection — 18k gold handcrafted rings by Jorge Uquillas"
+      aria-label={t.home.featSectionAria}
     >
       {/* sessão 100% preta — sem halo/flare */}
 
@@ -138,9 +139,9 @@ export function FeaturedRing() {
               textShadow: '0 2px 22px rgba(0,0,0,0.7)',
             }}
           >
-            18K Gold Ring of Power
+            {t.home.featTitle}
             <span className="mt-1.5 block text-[#C5A059]">
-              Handcrafted by Jorge Uquillas
+              {t.home.featSubtitle}
             </span>
           </h2>
 
@@ -165,7 +166,7 @@ export function FeaturedRing() {
             className="max-w-[640px] font-sans-luxury leading-[1.85] text-[#EFE9DC]/92"
             style={{ fontSize: 'clamp(12px, 0.95vw, 13.5px)' }}
           >
-            {SUBTEXT}
+            {t.home[SUBTEXT_KEY]}
           </p>
         </div>
       </div>
@@ -174,7 +175,7 @@ export function FeaturedRing() {
       <div
         className="ring-marquee relative z-10 w-full overflow-hidden"
         role="region"
-        aria-label="Coleção Luxury Rings em movimento contínuo"
+        aria-label={t.home.featMarqueeAria}
       >
         <div className="ring-marquee-track flex w-max items-center">
           {/* duas cópias idênticas = loop sem costura no -50% */}
@@ -187,7 +188,7 @@ export function FeaturedRing() {
                 >
                   <img
                     src={piece.src}
-                    alt={piece.alt}
+                    alt={t.home[piece.altKey]}
                     loading="lazy"
                     draggable={false}
                     className="w-full h-auto max-h-[260px] sm:max-h-[300px] object-contain select-none transition-transform duration-700 ease-out group-hover:scale-[1.1]"
@@ -234,13 +235,13 @@ export function FeaturedRing() {
       <div className="relative z-10 w-full max-w-[1180px] mx-auto px-5 sm:px-8 lg:px-10 pt-10 sm:pt-12 pb-16 sm:pb-20 lg:pb-24">
         <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center gap-3.5 sm:gap-4">
           <GoldButton
-            label="I'd like see more pieces"
+            label={t.home.featBtnMore}
             onClick={() => scrollToSection('masterpiece')}
             variant="primary"
             icon={<ArrowRight className="h-3.5 w-3.5" strokeWidth={1.4} />}
           />
           <GoldButton
-            label="I'd like a piece for me"
+            label={t.home.featBtnMine}
             onClick={() => scrollToSection('contact')}
             variant="ghost"
             icon={<Feather className="h-3.5 w-3.5" strokeWidth={1.4} />}

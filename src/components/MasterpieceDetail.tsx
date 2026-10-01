@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Sparkles, ZoomIn, Info, BadgeCheck, X } from 'lucide-react';
 import { GreekKeyBorder, GreekMeanderDivider, LaurelWreath, AcanthusLeaf } from './OrnamentIcons';
+import { useLanguage } from '../i18n/LanguageContext';
 
 /** Anel Kraken em ouro, rubis e diamantes — substitui a macro do cuff */
 const KRAKEN_IMG =
@@ -23,6 +24,7 @@ interface Hotspot {
 }
 
 export function MasterpieceDetail() {
+  const { t } = useLanguage();
   const [activeHotspot, setActiveHotspot] = useState<string>('hotspot-1');
   const [isZoomed, setIsZoomed] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -51,39 +53,35 @@ export function MasterpieceDetail() {
   const hotspots: Hotspot[] = [
     {
       id: 'hotspot-1',
-      title: 'Hand Engraving',
-      mini: 'Hand Engraver carved',
-      subtitle: 'Hand Engraver micro-chiseling',
-      description:
-        'Chiseled directly into solid gold under 40x magnification with hand-shaped steel hand engravers. Every tentacle scale catches ambient candlelight.',
+      title: t.home.mpHot1Title,
+      mini: t.home.mpHot1Mini,
+      subtitle: t.home.mpHot1Subtitle,
+      description: t.home.mpHot1Desc,
       pos: 'top-[56%] left-[67%]',
     },
     {
       id: 'hotspot-2',
-      title: '18k Gold',
-      mini: 'Solid 18k',
-      subtitle: 'Solid 18k gold body',
-      description:
-        'Cast and finished in solid 18k gold with a proprietary matte-satin antique recipe, polished to a mirror glow.',
+      title: t.home.mpHot2Title,
+      mini: t.home.mpHot2Mini,
+      subtitle: t.home.mpHot2Subtitle,
+      description: t.home.mpHot2Desc,
       pos: 'top-[24%] left-[54%]',
       tipLeft: true,
     },
     {
       id: 'hotspot-3',
-      title: 'MasterPiece',
-      mini: 'One of one',
-      subtitle: 'One of one',
-      description:
-        'The original wax matrix was incinerated in the lost-wax burnout. No mold or digital copy exists anywhere on earth.',
+      title: t.home.mpHot3Title,
+      mini: t.home.mpHot3Mini,
+      subtitle: t.home.mpHot3Subtitle,
+      description: t.home.mpHot3Desc,
       pos: 'top-[71%] left-[37%]',
     },
     {
       id: 'hotspot-4',
-      title: 'Rubis and Diamonds',
-      mini: 'Ruby + pavé',
-      subtitle: 'Ruby eyes & diamond pavé',
-      description:
-        'Glowing ruby eyes ringed by a hand-set diamond pavé — every stone placed one by one under the microscope.',
+      title: t.home.mpHot4Title,
+      mini: t.home.mpHot4Mini,
+      subtitle: t.home.mpHot4Subtitle,
+      description: t.home.mpHot4Desc,
       pos: 'top-[40%] left-[29%]',
     },
   ];
@@ -121,21 +119,21 @@ export function MasterpieceDetail() {
           <div className="inline-flex items-center gap-2 mb-4">
             <LaurelWreath className="w-4 h-4 text-[#C5A059]" />
             <span className="text-[10px] uppercase tracking-[0.45em] text-[#C5A059] font-medium">
-              MICROSCOPIC PROVENANCE • CLOSE EXAMINATION
+              {t.home.mpKicker}
             </span>
             <LaurelWreath className="w-4 h-4 text-[#C5A059] transform -scale-x-100" />
           </div>
 
           <h2 className="font-cinzel text-4xl sm:text-5xl md:text-6xl tracking-[0.18em] uppercase text-[#FBF9F5] font-light mb-4">
-            THE MASTERPIECE DETAIL
+            {t.home.mpTitle}
           </h2>
 
           <p className="font-cormorant text-xl md:text-2xl tracking-[0.2em] italic text-[#C5A059] font-light uppercase">
-            IMMERSION IN SACRED TEXTURE
+            {t.home.mpSubtitle}
           </p>
 
           <p className="font-sans-luxury text-xs md:text-sm text-[#A8A296] tracking-[0.2em] uppercase max-w-xl mx-auto mt-4 leading-relaxed">
-            Move across the monumental artifact to inspect microscopic engraving, antique gold grain, and hand-carved classical reliefs.
+            {t.home.mpIntro}
           </p>
         </div>
 
@@ -165,7 +163,7 @@ export function MasterpieceDetail() {
           >
             <img
               src={KRAKEN_IMG}
-              alt="Anel Kraken em ouro 18k com rubis e diamantes — macro das tentáculos e caveiras gravadas à mão por Jorge Uquillas"
+              alt={t.home.mpImageAlt}
               referrerPolicy="no-referrer"
               loading="lazy"
               className={`w-full h-full object-cover object-[50%_38%] filter contrast-[1.12] brightness-[0.95] transition-transform duration-700 ease-out ${
@@ -266,7 +264,7 @@ export function MasterpieceDetail() {
             {/* Museum Catalogue Reference */}
             <div className="hidden sm:block px-5 py-2 bg-[#020202]/90 border border-[#C5A059]/30 backdrop-blur-md pointer-events-auto rounded-full">
               <span className="text-[9px] uppercase tracking-[0.35em] text-[#E6CA85]">
-                PIECE UNIQUE • 18K GOLD KRAKEN RING — RUBIES & DIAMONDS
+                {t.home.mpCatalogue}
               </span>
             </div>
 
@@ -276,7 +274,7 @@ export function MasterpieceDetail() {
               className="ml-auto px-4 py-2 sm:px-5 sm:py-2.5 bg-[#050505]/95 border border-[#C5A059] hover:bg-[#C5A059] text-[#C5A059] hover:text-[#020202] text-[9px] sm:text-[10px] font-cinzel uppercase tracking-[0.25em] transition-all flex items-center gap-2 pointer-events-auto shadow-lg rounded-full"
             >
               <ZoomIn className="w-3.5 h-3.5" />
-              <span>{isZoomed ? 'Reset View' : 'Microscope Zoom 220%'}</span>
+              <span>{isZoomed ? t.home.mpZoomOut : t.home.mpZoomIn}</span>
             </button>
           </div>
         </div>
@@ -286,7 +284,7 @@ export function MasterpieceDetail() {
           <div className="mt-8 p-6 bg-[#060606] border border-[#C5A059]/30 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 animate-fadeIn">
             <div className="space-y-1">
               <span className="text-[9px] uppercase tracking-[0.35em] text-[#C5A059]">
-                SELECTED ARTIFACT ANNOTATION
+                {t.home.mpSelectedLabel}
               </span>
               <h4 className="font-cinzel text-xl tracking-[0.2em] text-[#F3EFE6] uppercase">
                 {hotspots.find((h) => h.id === activeHotspot)?.title}
@@ -308,10 +306,10 @@ export function MasterpieceDetail() {
               <BadgeCheck className="relative w-5 h-5 shrink-0" />
               <span className="relative flex flex-col gap-1">
                 <span className="text-[11px] uppercase tracking-[0.25em] font-cinzel font-semibold">
-                  All pieces coming with certificate
+                  {t.home.mpCertTitle}
                 </span>
                 <span className="text-[9px] uppercase tracking-[0.3em] text-[#020202]/70">
-                  Tap to view authenticity →
+                  {t.home.mpCertCta}
                 </span>
               </span>
             </button>
@@ -329,11 +327,11 @@ export function MasterpieceDetail() {
           className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8 animate-[fadeIn_0.35s_ease-out]"
           role="dialog"
           aria-modal="true"
-          aria-label="Certificate of authenticity"
+          aria-label={t.home.mpCertDialogAria}
         >
           {/* fundo totalmente desfocado */}
           <button
-            aria-label="Close certificate"
+            aria-label={t.home.mpCertCloseAria}
             onClick={() => setShowCert(false)}
             className="absolute inset-0 bg-black/75 backdrop-blur-2xl backdrop-saturate-150 cursor-zoom-out"
           />
@@ -345,7 +343,7 @@ export function MasterpieceDetail() {
             <div className="relative overflow-hidden rounded-none border border-white/15 bg-white/[0.06] shadow-[0_50px_140px_rgba(0,0,0,0.9)]">
               <img
                 src={CERT_IMG}
-                alt="Certificado de autenticidade Rings Luxury — Jorge Uquillas"
+                alt={t.home.mpCertAlt}
                 className="block w-full h-auto max-h-[82vh] object-contain"
               />
               {/* vidro — brilho */}
@@ -355,7 +353,7 @@ export function MasterpieceDetail() {
             {/* X quadrado em vidro */}
             <button
               onClick={() => setShowCert(false)}
-              aria-label="Fechar"
+              aria-label={t.home.mpCertCloseLabel}
               className="absolute top-3 right-3 w-9 h-9 rounded-none bg-black/40 backdrop-blur-md border border-white/20 text-white/85 flex items-center justify-center hover:bg-white/15 hover:text-white transition-all"
             >
               <X className="w-4 h-4" />

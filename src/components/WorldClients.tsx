@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, Pause, Play, Star } from 'lucide-react';
 import reviewsData from '../data/reviews.json';
+import { useLanguage } from '../i18n/LanguageContext';
 
 /**
  * Seção "WHAT PEOPLE SAY ABOUT RINGS LUXURY" — carrossel de depoimentos reais
@@ -22,6 +23,7 @@ const REVIEWS = reviewsData.reviews;
 const AUTOPLAY_MS = 7000;
 
 export function WorldClients() {
+  const { t } = useLanguage();
   const trackRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
   // Pausa explícita do usuário é independente da pausa temporária por
@@ -99,7 +101,7 @@ export function WorldClients() {
     <section
       id="world-clients"
       className="relative w-full overflow-hidden isolate bg-[#020202] text-[#EAE6DF]"
-      aria-label="What people say about Rings Luxury"
+      aria-label={t.home.wcAria}
     >
       {/* FUNDO — escultura dourada à direita, preto predominante */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-black">
@@ -125,14 +127,14 @@ export function WorldClients() {
           className="text-center font-cinzel font-normal uppercase text-[#E6CA85]"
           style={{ fontSize: 'clamp(18px, 2.4vw, 32px)', letterSpacing: '0.14em' }}
         >
-          What people say about Rings Luxury
+          {t.home.wcTitle}
         </h2>
 
         {/* BADGE 5-STAR GOOGLE */}
         <div className="mt-8 sm:mt-10 flex justify-center">
           <img
             src="/PUBLIC/Rings Luxury Google Reviews.webp"
-            alt="Avaliação 5 estrelas no Google — Rings Luxury by Jorge Uquillas"
+            alt={t.home.wcBadgeAlt}
             draggable={false}
             className="w-[150px] sm:w-[185px] h-auto object-contain select-none drop-shadow-[0_10px_30px_rgba(197,160,89,0.28)]"
             onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
@@ -151,7 +153,7 @@ export function WorldClients() {
           <button
             type="button"
             onClick={() => step(-1)}
-            aria-label="Avaliação anterior"
+            aria-label={t.home.wcPrev}
             className="hidden md:flex absolute left-0 lg:-left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-[#080808]/90 border border-[#C5A059]/40 hover:border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-[#020202] items-center justify-center transition-all shadow-[0_0_20px_rgba(0,0,0,0.6)] backdrop-blur-md"
           >
             <ChevronLeft className="w-5 h-5" />
@@ -159,7 +161,7 @@ export function WorldClients() {
           <button
             type="button"
             onClick={() => step(1)}
-            aria-label="Próxima avaliação"
+            aria-label={t.home.wcNext}
             className="hidden md:flex absolute right-0 lg:-right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-[#080808]/90 border border-[#C5A059]/40 hover:border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-[#020202] items-center justify-center transition-all shadow-[0_0_20px_rgba(0,0,0,0.6)] backdrop-blur-md"
           >
             <ChevronRight className="w-5 h-5" />
@@ -173,14 +175,14 @@ export function WorldClients() {
             style={{ scrollbarWidth: 'thin' }}
             role="group"
             aria-roledescription="carrossel"
-            aria-label="Avaliações de clientes no Google"
+            aria-label={t.home.wcCarouselAria}
           >
             {REVIEWS.map((r, i) => (
               <article
                 key={r.id}
                 className="w-full shrink-0 snap-center px-1 py-2 focus:outline-none"
                 aria-roledescription="slide"
-                aria-label={`${i + 1} de ${REVIEWS.length}`}
+                aria-label={`${i + 1} ${t.home.wcSlideOf} ${REVIEWS.length}`}
                 tabIndex={i === index ? 0 : -1}
                 aria-hidden={i !== index}
               >
@@ -190,7 +192,7 @@ export function WorldClients() {
                     {r.photo ? (
                       <img
                         src={r.photo}
-                        alt={r.name || 'Cliente Rings Luxury'}
+                        alt={r.name || t.home.wcClientFallback}
                         draggable={false}
                         loading="lazy"
                         className="w-full h-full object-cover"
@@ -237,7 +239,7 @@ export function WorldClients() {
                         <Star key={s} className="w-3.5 h-3.5 fill-[#C5A059] text-[#C5A059]" />
                       ))}
                     </span>
-                    <span className="sr-only">5 de 5 estrelas</span>
+                    <span className="sr-only">{t.home.wcStarsSr}</span>
                     {businessProfileUrl ? (
                       <a
                         href={businessProfileUrl}
@@ -245,7 +247,7 @@ export function WorldClients() {
                         rel="noopener nofollow"
                         className="text-[11px] uppercase tracking-[0.2em] text-[#9A7B38] hover:text-[#C5A059] transition-colors"
                       >
-                        Ver no {platform}
+                        {t.home.wcViewOn}{platform}
                       </a>
                     ) : null}
                   </div>
@@ -256,14 +258,14 @@ export function WorldClients() {
 
           {/* dots + play/pause */}
           <div className="mt-10 flex items-center justify-center gap-4">
-            <div className="flex items-center gap-2.5" role="tablist" aria-label="Escolher avaliação">
+            <div className="flex items-center gap-2.5" role="tablist" aria-label={t.home.wcChooseAria}>
               {REVIEWS.map((r, i) => (
                 <button
                   key={r.id}
                   type="button"
                   role="tab"
                   aria-selected={i === index}
-                  aria-label={`Avaliação de ${r.name}`}
+                  aria-label={`${t.home.wcReviewOf}${r.name}`}
                   onClick={() => goTo(i)}
                   className={`h-1.5 rounded-full transition-all duration-300 ${
                     i === index ? 'w-7 bg-[#C5A059]' : 'w-1.5 bg-[#C5A059]/30 hover:bg-[#C5A059]/60'
@@ -275,7 +277,7 @@ export function WorldClients() {
             <button
               type="button"
               onClick={() => setUserPaused((p) => !p)}
-              aria-label={userPaused ? 'Retomar rotação automática' : 'Pausar rotação automática'}
+              aria-label={userPaused ? t.home.wcResumeAuto : t.home.wcPauseAuto}
               className="w-8 h-8 rounded-full border border-[#C5A059]/30 text-[#C5A059] flex items-center justify-center hover:bg-[#C5A059] hover:text-[#020202] transition-colors shrink-0"
             >
               {userPaused ? <Play className="w-3.5 h-3.5" /> : <Pause className="w-3.5 h-3.5" />}
@@ -283,7 +285,7 @@ export function WorldClients() {
           </div>
 
           <p className="sr-only" aria-live="polite">
-            {active ? `Avaliação de ${active.name}: ${active.text}` : ''}
+            {active ? `${t.home.wcReviewOf}${active.name}: ${active.text}` : ''}
           </p>
         </div>
       </div>

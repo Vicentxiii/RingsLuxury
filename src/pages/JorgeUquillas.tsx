@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SEO } from '../components/SEO';
 import { Header } from '../components/Header';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export function JorgeUquillas() {
+  const { t } = useLanguage();
   const navigate = useNavigate();
   const [showPreloader, setShowPreloader] = useState(true);
   const [preloaderFading, setPreloaderFading] = useState(false);
@@ -31,9 +33,9 @@ export function JorgeUquillas() {
     <div className="w-full h-screen bg-[#020202] relative overflow-hidden">
       <Header onOpenConsultation={handleOpenConsultation} />
       <SEO
-        title="RINGS LUXURY by Jorge Uquillas — Laocoön Bronze Horse | HandCrafted Anéis Artesanais Ouro 18k"
-        description="RINGS LUXURY by Jorge Uquillas — Laocoön: Bronze and Time. Cavalo de bronze e anéis artesanais 1/1 HandCrafted em ouro 18k com diamantes, gravados com hand engraver. Handmade 18k gold diamond rings by master artisan Jorge Uquillas. Brasil • Miami."
-        keywords="Jorge Uquillas, RINGS LUXURY, Laocoön, Bronze Horse, anéis artesanais, HandCrafted, ouro 18k, handmade 18k gold diamond rings, hand engraver, anéis feitos à mão, atelier Brasil Miami"
+        title={t.pages.jorgeSeoTitle}
+        description={t.pages.jorgeSeoDescription}
+        keywords={t.pages.jorgeSeoKeywords}
         url="/jorge-uquillas"
       />
       {/* Iframe que carrega a experiência imersiva completa — pocket watch 3D */}
@@ -58,14 +60,14 @@ export function JorgeUquillas() {
               <span className="font-cinzel text-[10px] tracking-[0.32em] text-[#C5A059]">RL</span>
             </div>
             <div className="space-y-3">
-              <p className="font-cinzel text-[11px] tracking-[0.45em] uppercase text-[#E6CA85]">RINGS LUXURY • JORGE UQUILLAS</p>
-              <p className="font-cormorant text-2xl sm:text-3xl italic text-[#FBF9F5] tracking-[0.08em]">Lion Head</p>
-              <p className="font-sans-luxury text-[10px] tracking-[0.28em] uppercase text-[#9A7B38]">HandCrafted 18k • Anéis Artesanais • 3D</p>
+              <p className="font-cinzel text-[11px] tracking-[0.45em] uppercase text-[#E6CA85]">{t.pages.jorgePreloaderBrand}</p>
+              <p className="font-cormorant text-2xl sm:text-3xl italic text-[#FBF9F5] tracking-[0.08em]">{t.pages.jorgePreloaderPiece}</p>
+              <p className="font-sans-luxury text-[10px] tracking-[0.28em] uppercase text-[#9A7B38]">{t.pages.jorgePreloaderSub}</p>
             </div>
             <div className="w-48 h-px bg-gradient-to-r from-transparent via-[#C5A059]/50 to-transparent overflow-hidden">
               <div className="h-full bg-[#C5A059] animate-[shimmer_1.2s_ease-in-out_infinite]" style={{ width: '60%' }} />
             </div>
-            <p className="font-cinzel text-[9px] tracking-[0.35em] uppercase text-white/50">Carregando obra 3D — 5s</p>
+            <p className="font-cinzel text-[9px] tracking-[0.35em] uppercase text-white/50">{t.pages.jorgePreloaderLoading}</p>
           </div>
         </div>
       )}
@@ -73,7 +75,7 @@ export function JorgeUquillas() {
       {/* Fallback / Loader enquanto iframe carrega */}
       <noscript>
         <div className="absolute inset-0 flex items-center justify-center bg-[#020202] text-[#C5A059]">
-          Ative o JavaScript para visualizar a obra em 3D.
+          {t.pages.jorgeNoscript}
         </div>
       </noscript>
     </div>

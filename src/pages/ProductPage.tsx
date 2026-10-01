@@ -10,11 +10,13 @@ import { getProductBySlug, getRelatedProducts } from '../data/products';
 import { ArrowLeft, ChevronDown, Sparkles, Ruler, Award, Truck, ShieldCheck } from 'lucide-react';
 import { GreekMeanderDivider, AncientCoinMedallion } from '../components/OrnamentIcons';
 import { absoluteUrl, HAS_SITE_URL } from '../site.config';
+import { useLanguage } from '../i18n/LanguageContext';
 
 /** Fundo das páginas de produto. 2048x1080, escuro com veios dourados. */
 const PRODUCT_BG = '/PUBLIC/Fundo da pagina de produtos Jorge Uquillas Rings Luxury.jpg';
 
 export function ProductPage() {
+  const { t, lang } = useLanguage();
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const product = getProductBySlug(slug || '');
@@ -35,15 +37,15 @@ export function ProductPage() {
         <Header onOpenConsultation={() => {}} />
         <div className="flex-1 flex flex-col items-center justify-center px-6 py-32 text-center relative z-10">
           <AncientCoinMedallion className="w-16 h-16 mb-6 opacity-60" />
-          <h1 className="font-cinzel text-3xl tracking-[0.2em] uppercase text-[#F3EFE6] mb-4">Obra Não Encontrada</h1>
+          <h1 className="font-cinzel text-3xl tracking-[0.2em] uppercase text-[#F3EFE6] mb-4">{t.pages.productNotFoundTitle}</h1>
           <p className="font-cormorant text-lg italic text-[#A8A296] mb-8 max-w-md">
-            Esta peça não consta em nosso arquivo. Explore nossa coleção curatorial.
+            {t.pages.productNotFoundText}
           </p>
           <Link
             to="/"
             className="inline-flex items-center gap-3 px-8 py-4 bg-[#C5A059] text-[#020202] font-cinzel text-xs tracking-[0.3em] uppercase rounded-full hover:bg-[#E6CA85] transition-colors"
           >
-            <ArrowLeft className="w-4 h-4" /> Voltar ao Atelier
+            <ArrowLeft className="w-4 h-4" /> {t.pages.productNotFoundBack}
           </Link>
         </div>
         <Footer />
@@ -53,6 +55,7 @@ export function ProductPage() {
 
   const related = getRelatedProducts(product, 6);
   const categoryLink = product.categorySlug === 'luxuryqueens' ? '/luxuryqueens' : `/${product.categorySlug}`;
+  const localizedDescription = lang === 'es' ? (product.description_es ?? product.description) : lang === 'pt' ? (product.description_pt ?? product.description) : product.description;
 
   const openConsultation = (pieceName?: string) => {
     if (pieceName) setCommissionTarget(pieceName);
@@ -68,7 +71,7 @@ export function ProductPage() {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: `${product.name} — ${product.subname}`,
-    description: `${product.description} ${product.extendedHistory}`,
+    description: `${localizedDescription} ${product.extendedHistory}`,
     image: product.images,
     sku: product.sku,
     brand: { '@type': 'Brand', name: 'RINGS LUXURY — Jorge Uquillas' },
@@ -86,22 +89,22 @@ export function ProductPage() {
   // Linhas da tabela "Additional information". Tudo vem de product.specs —
   // nenhum valor hardcoded, para a ficha nunca divergir do cadastro.
   const infoRows: { label: string; value: string }[] = [
-    { label: 'Collor', value: product.specs.material },
-    { label: 'Size', value: product.specs.dimensions || 'Sob medida' },
-    { label: 'Weight', value: product.specs.weight },
-    { label: 'Gems', value: product.specs.gems },
-    { label: 'Craft Hours', value: product.specs.craftHours },
-    { label: 'Hallmark', value: product.specs.hallmark },
-    { label: 'Edition', value: product.specs.edition },
-    { label: 'Provenance', value: product.specs.provenance },
-    { label: 'Ref', value: product.sku },
+    { label: t.pages.productLabelCollor, value: product.specs.material },
+    { label: t.pages.productLabelSize, value: product.specs.dimensions || t.pages.productSizeCustom },
+    { label: t.pages.productLabelWeight, value: product.specs.weight },
+    { label: t.pages.productLabelGems, value: product.specs.gems },
+    { label: t.pages.productLabelCraftHours, value: product.specs.craftHours },
+    { label: t.pages.productLabelHallmark, value: product.specs.hallmark },
+    { label: t.pages.productLabelEdition, value: product.specs.edition },
+    { label: t.pages.productLabelProvenance, value: product.specs.provenance },
+    { label: t.pages.productLabelRef, value: product.sku },
   ];
 
   return (
     <div className="min-h-screen bg-[#020202] text-[#EAE6DF] selection:bg-[#C5A059] selection:text-[#020202] font-sans-luxury relative overflow-x-hidden">
       <SEO
         title={`${product.name} — ${product.subname}`}
-        description={`${product.description} ${product.extendedHistory.slice(0, 140)}...`}
+        description={`${localizedDescription} ${product.extendedHistory.slice(0, 140)}...`}
         keywords={`RINGS LUXURY, ${product.name}, ${product.category}, Jorge Uquillas, High Jewelry`}
         url={`/produto/${product.slug}`}
         image={product.images[0]}
@@ -127,7 +130,7 @@ export function ProductPage() {
         <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
           <nav className="flex flex-wrap items-center gap-2 text-[10px] tracking-[0.2em] text-[#9A7B38]" aria-label="Breadcrumb">
             <Link to="/" className="hover:text-[#C5A059] transition-colors">
-              Home
+              {t.pages.productBreadcrumbHome}
             </Link>
             <span className="text-[#C5A059]/40" aria-hidden>/</span>
             <Link to={categoryLink} className="hover:text-[#C5A059] transition-colors">
@@ -141,7 +144,7 @@ export function ProductPage() {
             onClick={() => navigate(-1)}
             className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-[#A8A296] hover:text-[#C5A059] transition-colors group"
           >
-            <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" aria-hidden /> Voltar
+            <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" aria-hidden /> {t.pages.productBack}
           </button>
         </div>
 
@@ -157,7 +160,7 @@ export function ProductPage() {
               />
               {product.featured && (
                 <span className="absolute top-3 left-0 inline-flex items-center gap-1.5 px-3 py-1 bg-[#C5A059] text-[#020202] text-[8px] uppercase tracking-[0.25em] font-semibold">
-                  <Sparkles className="w-3 h-3" aria-hidden /> Featured
+                  <Sparkles className="w-3 h-3" aria-hidden /> {t.pages.productFeatured}
                 </span>
               )}
             </div>
@@ -169,7 +172,7 @@ export function ProductPage() {
                   <button
                     key={idx}
                     onClick={() => setSelectedImage(idx)}
-                    aria-label={`Ver imagem ${idx + 1} de ${product.images.length}`}
+                    aria-label={`${t.pages.productThumbView} ${idx + 1} ${t.pages.productThumbOf} ${product.images.length}`}
                     aria-current={selectedImage === idx}
                     className={`w-[68px] h-[68px] sm:w-[76px] sm:h-[76px] overflow-hidden border transition-all bg-[#070707] ${
                       selectedImage === idx
@@ -204,7 +207,7 @@ export function ProductPage() {
                 onClick={() => openConsultation(pieceLabel)}
                 className="px-9 py-3.5 rounded-full bg-[#F3EFE6] text-[#020202] font-sans-luxury text-[13px] font-semibold tracking-wide hover:bg-white active:scale-[0.98] transition-all"
               >
-                Add to cart
+                {t.pages.productAddToCart}
               </button>
             </div>
 
@@ -221,7 +224,7 @@ export function ProductPage() {
             </button>
 
             <p className="mt-3 text-center text-[10px] uppercase tracking-[0.2em] text-[#9A7B38]">
-              {product.inStock ? '● Disponível' : '○ Sob Consulta'} • Frete e seguro inclusos
+              {product.inStock ? t.pages.productInStock : t.pages.productMadeToOrder} • {t.pages.productShippingIncluded}
             </p>
 
             {/* toggle */}
@@ -230,7 +233,7 @@ export function ProductPage() {
               aria-expanded={showInfo}
               className="mt-8 inline-flex items-center gap-2 px-4 py-2.5 rounded-[4px] border border-[#C5A059]/45 text-[11px] tracking-wide text-[#EAE6DF] hover:border-[#C5A059] hover:text-[#E6CA85] transition-colors"
             >
-              Additional information
+              {t.pages.productAdditionalInfo}
               <ChevronDown className={`w-3.5 h-3.5 text-[#C5A059] transition-transform ${showInfo ? 'rotate-180' : ''}`} aria-hidden />
             </button>
 
@@ -238,10 +241,10 @@ export function ProductPage() {
             {showInfo && (
               <div className="mt-7 animate-fadeIn">
                 <h2 className="font-cinzel font-normal text-[#E6CA85] text-xl sm:text-2xl mb-4">
-                  Additional information
+                  {t.pages.productAdditionalInfo}
                 </h2>
                 <table className="w-full border-collapse">
-                  <caption className="sr-only">Especificações de {product.name}</caption>
+                  <caption className="sr-only">{t.pages.productSpecsCaptionPrefix} {product.name}</caption>
                   <tbody>
                     {infoRows.map((row) => (
                       <tr key={row.label} className="border-b border-[#C5A059]/15 last:border-b-0">
@@ -264,13 +267,13 @@ export function ProductPage() {
             {/* selos */}
             <div className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[9px] uppercase tracking-[0.18em] text-[#9A7B38]">
               <span className="inline-flex items-center gap-1.5">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#C5A059]" aria-hidden /> Autenticidade vitalícia
+                <ShieldCheck className="w-3.5 h-3.5 text-[#C5A059]" aria-hidden /> {t.pages.productSealAuth}
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <Truck className="w-3.5 h-3.5 text-[#C5A059]" aria-hidden /> Envio segurado global
+                <Truck className="w-3.5 h-3.5 text-[#C5A059]" aria-hidden /> {t.pages.productSealShipping}
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <Ruler className="w-3.5 h-3.5 text-[#C5A059]" aria-hidden /> Medida sob encomenda
+                <Ruler className="w-3.5 h-3.5 text-[#C5A059]" aria-hidden /> {t.pages.productSealMeasure}
               </span>
             </div>
           </div>
@@ -284,13 +287,13 @@ export function ProductPage() {
             {product.name}
           </h2>
           <p className="font-cormorant text-lg sm:text-xl italic text-[#D8D2C4] leading-relaxed">
-            “{product.description}”
+            “{localizedDescription}”
           </p>
           <p className="mt-5 text-sm leading-relaxed text-[#A8A296]">{product.extendedHistory}</p>
           <div className="mt-8 inline-flex items-start gap-3 text-left max-w-md">
             <Sparkles className="w-4 h-4 text-[#C5A059] shrink-0 mt-0.5" aria-hidden />
             <p className="text-xs leading-relaxed text-[#C2BDB2]">
-              <span className="block text-[9px] uppercase tracking-[0.3em] text-[#C5A059] mb-1">Simbolismo</span>
+              <span className="block text-[9px] uppercase tracking-[0.3em] text-[#C5A059] mb-1">{t.pages.productSymbolism}</span>
               {product.symbolism}
             </p>
           </div>
@@ -301,36 +304,31 @@ export function ProductPage() {
             primeiro impacto visual para não competir com o layout do print. */}
         <section className="mt-14 md:mt-16 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="rounded-xl border border-[#C5A059]/25 bg-[#020202]/65 p-6">
-            <h2 className="font-cinzel text-[#C5A059] text-xs uppercase tracking-[0.3em] mb-4">Cuidados</h2>
+            <h2 className="font-cinzel text-[#C5A059] text-xs uppercase tracking-[0.3em] mb-4">{t.pages.productCareTitle}</h2>
             <div className="space-y-3 text-xs leading-relaxed text-[#A8A296]">
               <p>
-                <strong className="text-[#EAE6DF]">Conservação:</strong> guarde no estojo com sílica. Evite
-                perfume direto sobre a peça. Limpeza a seco com a flanela do atelier.
+                <strong className="text-[#EAE6DF]">{t.pages.productCareStoreTitle}</strong> {t.pages.productCareStoreText}
               </p>
               <p>
-                <strong className="text-[#EAE6DF]">Polimento vitalício</strong> mediante agendamento no atelier.
-                Banho de ródio para ouro branco incluso anualmente.
+                <strong className="text-[#EAE6DF]">{t.pages.productCarePolishTitle}</strong> {t.pages.productCarePolishText}
               </p>
               <p>
-                <strong className="text-[#EAE6DF]">Garantia:</strong> vitalícia contra defeito de fabricação.
-                Micro-ajustes e gravação adicional sob consulta.
+                <strong className="text-[#EAE6DF]">{t.pages.productCareWarrantyTitle}</strong> {t.pages.productCareWarrantyText}
               </p>
             </div>
           </div>
 
           <div className="rounded-xl border border-[#C5A059]/25 bg-[#020202]/65 p-6">
-            <h2 className="font-cinzel text-[#C5A059] text-xs uppercase tracking-[0.3em] mb-4">Entrega</h2>
+            <h2 className="font-cinzel text-[#C5A059] text-xs uppercase tracking-[0.3em] mb-4">{t.pages.productDeliveryTitle}</h2>
             <div className="space-y-3 text-xs leading-relaxed text-[#A8A296]">
               <p>
-                <strong className="text-[#EAE6DF]">Brasil &amp; América do Sul:</strong> 3-6 dias úteis, seguro
-                integral, caixa de mármore negro e embalagem externa neutra. Frete incluso acima de US$ 5.000.
+                <strong className="text-[#EAE6DF]">{t.pages.productDeliveryBrTitle}</strong> {t.pages.productDeliveryBrText}
               </p>
               <p>
-                <strong className="text-[#EAE6DF]">Global — Europa, EUA, Oriente Médio:</strong> 2-4 dias via
-                transportadora especializada, seguro integral até a entrega.
+                <strong className="text-[#EAE6DF]">{t.pages.productDeliveryGlobalTitle}</strong> {t.pages.productDeliveryGlobalText}
               </p>
               <p className="flex items-center gap-2 text-[10px] uppercase tracking-[0.15em] text-[#9A7B38]">
-                <Award className="w-3.5 h-3.5 text-[#C5A059]" aria-hidden /> Rastreamento e assinatura obrigatórios
+                <Award className="w-3.5 h-3.5 text-[#C5A059]" aria-hidden /> {t.pages.productDeliveryTrack}
               </p>
             </div>
           </div>
