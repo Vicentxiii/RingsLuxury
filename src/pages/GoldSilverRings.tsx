@@ -11,7 +11,7 @@ interface RingItem {
   alt: string;
 }
 
-const GOLDSILVER_BG = encodeURI('/PUBLIC/Fundo da seção Golden Silver Rings, Jorge Uquillas Rings Luxury.jpg');
+const GOLDSILVER_BG = encodeURI('/PUBLIC/Fundo da seção Gold silver rings 2.jpg');
 
 const RINGS: RingItem[] = [
   {
@@ -77,15 +77,28 @@ export function GoldSilverRings() {
       <Header onOpenConsultation={() => scrollToContact()} />
 
       <main className="relative w-full overflow-hidden">
-        {/* Busto ao fundo em tela cheia */}
+        {/* Mármore dourado ao fundo, um de cada lado — sempre visíveis */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden>
-          <img
-            src={GOLDSILVER_BG}
-            alt=""
-            draggable={false}
-            className="absolute inset-0 w-full h-full object-cover object-center select-none"
-            onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-          />
+          <div className="absolute inset-y-0 left-0 w-[30%] sm:w-[26%] overflow-hidden">
+            <img
+              src={GOLDSILVER_BG}
+              alt=""
+              draggable={false}
+              className="absolute inset-0 w-full h-full object-cover object-left select-none"
+              onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black" />
+          </div>
+          <div className="absolute inset-y-0 right-0 w-[30%] sm:w-[26%] overflow-hidden">
+            <img
+              src={GOLDSILVER_BG}
+              alt=""
+              draggable={false}
+              className="absolute inset-0 w-full h-full object-cover object-right select-none"
+              onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+            />
+            <div className="absolute inset-0 bg-gradient-to-l from-transparent to-black" />
+          </div>
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black" />
         </div>
 
