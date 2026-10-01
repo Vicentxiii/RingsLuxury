@@ -21,7 +21,7 @@ const PIECES: PieceItem[] = [
     alt: 'Luxury Queens Ring by Jorge Uquillas',
   },
   {
-    src: encodeURI('/PUBLIC/Colar de Safiras e diamantes by jORGE uQUILLAS rINGS lUXURY.png'),
+    src: encodeURI('/PUBLIC/Colar de Safiras e diamantes by jORGE uQUILLAS rINGS lUXURY 2 SEM FUNDO.png'),
     name: 'Sapphire and Diamond Necklace',
     price: '$ 150,000.00',
     alt: 'Sapphire and Diamond Necklace by Jorge Uquillas',
