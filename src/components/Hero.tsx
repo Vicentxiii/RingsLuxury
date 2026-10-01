@@ -19,6 +19,9 @@ const YOUTUBE_EMBED = `https://www.youtube.com/embed/${YOUTUBE_ID}?autoplay=1&mu
 
 export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
   const { t } = useLanguage();
+  // Fachada click-to-play: o iframe do YouTube (~1MB de JS) só carrega após
+  // o clique. Antes disso, capa estática + botão play. Melhora LCP/INP.
+  const [playVideo, setPlayVideo] = useState(false);
   return (
     <section
       id="hero"
@@ -26,25 +29,34 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
       style={{ height: '92vh', minHeight: '560px', maxHeight: '900px' }}
       aria-label={t.home.heroSectionAria}
     >
-      {/* 1. VIDEO BACKGROUND - YouTube */}
+      {/* 1. VIDEO BACKGROUND - YouTube com fachada (só carrega após o clique) */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-[#040404]">
-        <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none">
-          <iframe
-            title={t.home.heroVideoTitle}
-            src={YOUTUBE_EMBED}
-            className="absolute top-1/2 left-1/2 w-[420%] h-[420%] sm:w-[300%] sm:h-[300%] lg:w-[170%] lg:h-[170%] -translate-x-1/2 -translate-y-1/2 object-cover scale-[1.15]"
-            style={{ border: 0, opacity: 1 }}
-            allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-            allowFullScreen={false}
-            loading="eager"
-            referrerPolicy="strict-origin-when-cross-origin"
-          />
-        </div>
-        <div
-          className="absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat opacity-30"
-          style={{ backgroundImage: `url("${FALLBACK_COVER}")` }}
-          aria-hidden
-        />
+        {playVideo ? (
+          <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none">
+            <iframe
+              title={t.home.heroVideoTitle}
+              src={YOUTUBE_EMBED}
+              className="absolute top-1/2 left-1/2 w-[420%] h-[420%] sm:w-[300%] sm:h-[300%] lg:w-[170%] lg:h-[170%] -translate-x-1/2 -translate-y-1/2 object-cover scale-[1.15]"
+              style={{ border: 0, opacity: 1 }}
+              allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+              allowFullScreen={false}
+              loading="eager"
+              referrerPolicy="strict-origin-when-cross-origin"
+            />
+          </div>
+        ) : (
+          <button
+            type="button"
+            onClick={() => setPlayVideo(true)}
+            aria-label={t.home.heroVideoTitle}
+            className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat opacity-30 cursor-pointer group/video"
+            style={{ backgroundImage: `url("${FALLBACK_COVER}")` }}
+          >
+            <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full border border-[#C5A059]/60 bg-black/50 backdrop-blur flex items-center justify-center transition-transform group-hover/video:scale-110">
+              <span className="block w-0 h-0 border-y-[8px] border-y-transparent border-l-[12px] border-l-[#E6CA85] ml-1" aria-hidden />
+            </span>
+          </button>
+        )}
       </div>
 
       {/* 2. DARKEN OVERLAYS — AINDA MAIS CLARO */}

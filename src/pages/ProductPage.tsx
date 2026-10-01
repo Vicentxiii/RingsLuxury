@@ -6,6 +6,8 @@ import { SEO } from '../components/SEO';
 import { Contact } from '../components/Contact';
 import { ProductPaymentMethods } from '../components/ProductPaymentMethods';
 import { RelatedProductsCarousel } from '../components/RelatedProductsCarousel';
+import { Breadcrumbs } from '../components/Breadcrumbs';
+import { FAQ } from '../components/FAQ';
 import { getProductBySlug, getRelatedProducts } from '../data/products';
 import { ArrowLeft, ChevronDown, Sparkles, Ruler, Award, Truck, ShieldCheck } from 'lucide-react';
 import { GreekMeanderDivider, AncientCoinMedallion } from '../components/OrnamentIcons';
@@ -128,17 +130,13 @@ export function ProductPage() {
       <main className="relative z-10 w-full max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10 pt-28 md:pt-32 pb-16">
         {/* breadcrumb + voltar */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
-          <nav className="flex flex-wrap items-center gap-2 text-[10px] tracking-[0.2em] text-[#9A7B38]" aria-label="Breadcrumb">
-            <Link to="/" className="hover:text-[#C5A059] transition-colors">
-              {t.pages.productBreadcrumbHome}
-            </Link>
-            <span className="text-[#C5A059]/40" aria-hidden>/</span>
-            <Link to={categoryLink} className="hover:text-[#C5A059] transition-colors">
-              {product.category}
-            </Link>
-            <span className="text-[#C5A059]/40" aria-hidden>/</span>
-            <span className="text-[#C5A059]">{product.name}</span>
-          </nav>
+          <Breadcrumbs
+            items={[
+              { label: t.pages.productBreadcrumbHome, to: '/' },
+              { label: product.category, to: categoryLink },
+              { label: product.name },
+            ]}
+          />
 
           <button
             onClick={() => navigate(-1)}
@@ -338,6 +336,17 @@ export function ProductPage() {
         <div className="mt-16 md:mt-20">
           <ProductPaymentMethods />
         </div>
+
+        {/* FAQ do produto — agnóstico, igual em todas as peças */}
+        <FAQ
+          heading={t.pages.productFaqHeading}
+          items={[
+            { q: t.pages.productFaqQ1, a: t.pages.productFaqA1 },
+            { q: t.pages.productFaqQ2, a: t.pages.productFaqA2 },
+            { q: t.pages.productFaqQ3, a: t.pages.productFaqA3 },
+            { q: t.pages.productFaqQ4, a: t.pages.productFaqA4 },
+          ]}
+        />
 
         {/* RELACIONADOS */}
         <div className="mt-8 md:mt-12 border-t border-[#C5A059]/15 pt-4">

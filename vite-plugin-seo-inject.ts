@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { loadEnv, type HtmlTagDescriptor, type Plugin } from 'vite';
 
-const STATIC_ROUTES = ['/', '/luxury-rings', '/emperor-rings', '/special-editions', '/gold-silver-rings', '/necklaces', '/luxuryqueens', '/courses', '/blog'];
+const STATIC_ROUTES = ['/', '/luxury-rings', '/emperor-rings', '/special-editions', '/gold-silver-rings', '/necklaces', '/luxuryqueens', '/courses', '/blog', '/contact', '/luxury-rings-guide'];
 
 const buildRobots = (siteUrl: string) => `# ringsluxury.com
 User-agent: *

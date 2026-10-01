@@ -42,6 +42,19 @@ export function BlogPost() {
         keywords={`RINGS LUXURY, Jorge Uquillas, Blog, ${post.category}, Haute Joaillerie`}
         image={post.image}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BlogPosting',
+            headline: post.title,
+            image: post.image,
+            datePublished: post.dateISO,
+            author: { '@type': 'Person', name: post.author },
+          }),
+        }}
+      />
       
       <div className="fixed inset-0 film-grain pointer-events-none z-40 opacity-35" />
 
@@ -65,7 +78,7 @@ export function BlogPost() {
           </h1>
           
           <div className="flex justify-center items-center gap-6 font-poppins text-xs uppercase tracking-widest text-[#A8A296]">
-            <span>{post.date}</span>
+            <span><time dateTime={post.dateISO}>{post.date}</time></span>
             <span className="w-1 h-1 bg-[#C5A059] rounded-full" />
             <span>{t.pages.blogPostBy} {post.author}</span>
           </div>

@@ -6,44 +6,46 @@ const en = {
   // Page headings
   luxuryTitle: 'Luxury Rings',
   luxurySubtitle: 'Collection',
+  luxuryIntro: 'Every RINGS LUXURY ring is a one-of-one sculpture in solid 18k gold, hand-engraved with a burin and crowned with natural diamonds. No molds, no replicas: the original wax matrix is destroyed, so each piece exists only once. Browse the collection below — or read our buying guide to choose metal, stones and size with confidence.',
+  luxuryGuideLinkLabel: 'Read the luxury rings buying guide',
   emperorTitle: 'For Great Emperors',
   specialTitle: 'Special Editions',
   goldSilverTitle: 'Golden Silver Rings',
   queensTitle: 'Luxury Queens',
   necklacesTitle: 'Necklaces',
   // SEO — Luxury Rings
-  seoLuxuryTitle: 'Luxury Rings Collection — HandCrafted 18k Gold Rings by Jorge Uquillas',
+  seoLuxuryTitle: 'Luxury Rings — 18k Gold Collection',
   seoLuxuryDescription:
     'Luxury Rings Collection by Jorge Uquillas — Emperor, Bitcoin, Medusa, King Skull and Tiger 1/1 HandCrafted 18k gold rings with diamonds.',
   seoLuxuryKeywords:
     'RINGS LUXURY, Luxury Rings Collection, Emperor Ring, Bitcoin Ring, Medusa Ring, King Skull Ring, Tiger Ring, 18k gold, Jorge Uquillas',
   // SEO — Emperor Rings
-  seoEmperorTitle: 'Emperor Rings — For Great Emperors | Jorge Uquillas',
+  seoEmperorTitle: 'Emperor Rings — For Great Emperors',
   seoEmperorDescription:
     'Emperor Rings by Jorge Uquillas — Heraldic, Pirate Skull, Lion, Monogram, KOI, Skull and Maçonic 1/1 HandCrafted 18k gold rings.',
   seoEmperorKeywords:
     'RINGS LUXURY, Emperor Rings, For Great Emperors, Heraldic Ring, Lion Ring, Skull Ring, Maçonic Ring, 18k gold, Jorge Uquillas',
   // SEO — Special Editions
-  seoSpecialTitle: 'Special Editions — 1/1 HandCrafted Rings | Jorge Uquillas',
+  seoSpecialTitle: 'Special Editions — 1/1 Gold Rings',
   seoSpecialDescription:
-    'Special Editions by Jorge Uquillas — Tempest, Bitcoin, Skull, Tiger, DR Viotto, Medusa, Avengers, Kraken, Jesus, Monkey, Memento Mori and King Lion 1/1 HandCrafted 18k gold rings.',
+    'Special Editions by Jorge Uquillas — Tempest, Kraken, Jesus, Medusa and King Lion 1/1 HandCrafted 18k gold rings.',
   seoSpecialKeywords:
     'RINGS LUXURY, Special Editions, Tempest Ring, Kraken Ring, Jesus Ring, 18k gold, Jorge Uquillas',
   // SEO — Golden Silver Rings
-  seoGoldSilverTitle: 'Golden Silver Rings — Mixed Gold & Silver | Jorge Uquillas',
+  seoGoldSilverTitle: 'Gold & Silver Rings — 18k Atelier',
   seoGoldSilverDescription:
     'Golden Silver Rings by Jorge Uquillas — Wolf, Family Crest, Maçonic 33 Degrees, Templar and Mixed Luxury 1/1 HandCrafted gold and silver rings.',
   seoGoldSilverKeywords:
     'RINGS LUXURY, Golden Silver Rings, Wolf Ring, Maçonic Ring, Templar Ring, gold silver, Jorge Uquillas',
   // SEO — Luxury Queens
-  seoQueensTitle: 'Luxury Queens — Sapphire Necklace & Diamond Ring | Jorge Uquillas',
+  seoQueensTitle: 'Luxury Queens — Diamond Jewels',
   seoQueensDescription:
     'Luxury Queens by Jorge Uquillas — sapphire and diamond necklace and solitaire diamond ring, 1/1 HandCrafted haute joaillerie.',
   seoQueensKeywords: 'RINGS LUXURY, Luxury Queens, sapphire necklace, diamond ring, Jorge Uquillas',
   // SEO — Necklaces
-  seoNecklacesTitle: 'Necklaces — 1/1 HandCrafted 18k Gold | Jorge Uquillas',
+  seoNecklacesTitle: 'Necklaces — 18k Gold Handcrafted',
   seoNecklacesDescription:
-    'Necklaces by Jorge Uquillas — Panther, Rhino, Variable 18K Gold Chains, Medusa Full Diamonds, Lion, King Lion and Sapphire 1/1 HandCrafted 18k gold necklaces.',
+    'Necklaces by Jorge Uquillas — Panther, Rhino, Medusa, Lion and Sapphire 1/1 HandCrafted 18k gold necklaces.',
   seoNecklacesKeywords:
     'RINGS LUXURY, Necklaces, Panther Necklace, Rhino Necklace, Medusa Necklace, Lion Necklace, 18k gold, Jorge Uquillas',
   // Alt texts — Luxury Rings
@@ -148,44 +150,46 @@ const es: Record<Keys, string> = {
   // Page headings
   luxuryTitle: 'Anillos de Lujo',
   luxurySubtitle: 'Colección',
+  luxuryIntro: 'Cada anillo de RINGS LUXURY es una escultura única en oro macizo de 18k, grabada a mano con buril y coronada con diamantes naturales. Sin moldes ni réplicas: la matriz de cera original se destruye, así cada pieza existe una sola vez. Explora la colección — o lee nuestra guía de compra para elegir metal, piedras y talla con confianza.',
+  luxuryGuideLinkLabel: 'Leer la guía para comprar anillos de lujo',
   emperorTitle: 'Para Grandes Emperadores',
   specialTitle: 'Ediciones Especiales',
   goldSilverTitle: 'Anillos de Oro y Plata',
   queensTitle: 'Reinas de Lujo',
   necklacesTitle: 'Collares',
   // SEO — Luxury Rings
-  seoLuxuryTitle: 'Colección Anillos de Lujo — Anillos de Oro de 18k Hechos a Mano por Jorge Uquillas',
+  seoLuxuryTitle: 'Anillos de lujo — Colección 18k',
   seoLuxuryDescription:
     'Colección Anillos de Lujo por Jorge Uquillas — anillos artesanales 1/1 de oro de 18k Emperador, Bitcoin, Medusa, Calavera Real y Tigre con diamantes.',
   seoLuxuryKeywords:
     'RINGS LUXURY, Luxury Rings Collection, Emperor Ring, Bitcoin Ring, Medusa Ring, King Skull Ring, Tiger Ring, oro de 18k, Jorge Uquillas',
   // SEO — Emperor Rings
-  seoEmperorTitle: 'Anillos del Emperador — Para Grandes Emperadores | Jorge Uquillas',
+  seoEmperorTitle: 'Anillos del Emperador — Atelier',
   seoEmperorDescription:
     'Anillos del Emperador por Jorge Uquillas — anillos artesanales 1/1 de oro de 18k Heráldico, Calavera Pirata, León, Monograma, KOI, Calavera y Masónico.',
   seoEmperorKeywords:
     'RINGS LUXURY, Emperor Rings, For Great Emperors, Heraldic Ring, Lion Ring, Skull Ring, Maçonic Ring, oro de 18k, Jorge Uquillas',
   // SEO — Special Editions
-  seoSpecialTitle: 'Ediciones Especiales — Anillos Artesanales 1/1 | Jorge Uquillas',
+  seoSpecialTitle: 'Ediciones Especiales — Oro 18k',
   seoSpecialDescription:
-    'Ediciones Especiales por Jorge Uquillas — anillos artesanales 1/1 de oro de 18k Tempest, Bitcoin, Calavera, Tigre, DR Viotto, Medusa, Avengers, Kraken, Jesus, Monkey, Memento Mori y León Real.',
+    'Ediciones Especiales por Jorge Uquillas — anillos artesanales 1/1 en oro 18k Tempest, Kraken, Medusa, Jesus y León Real.',
   seoSpecialKeywords:
     'RINGS LUXURY, Special Editions, Tempest Ring, Kraken Ring, Jesus Ring, oro de 18k, Jorge Uquillas',
   // SEO — Golden Silver Rings
-  seoGoldSilverTitle: 'Anillos de Oro y Plata — Oro y Plata Combinados | Jorge Uquillas',
+  seoGoldSilverTitle: 'Anillos de Oro y Plata — 18k',
   seoGoldSilverDescription:
     'Anillos de Oro y Plata por Jorge Uquillas — anillos artesanales 1/1 de oro y plata Lobo, Escudo Familiar, Masónico 33 Grados, Templario y Mixtos de Lujo.',
   seoGoldSilverKeywords:
     'RINGS LUXURY, Golden Silver Rings, Wolf Ring, Maçonic Ring, Templar Ring, oro plata, Jorge Uquillas',
   // SEO — Luxury Queens
-  seoQueensTitle: 'Reinas de Lujo — Collar de Zafiros y Anillo de Diamantes | Jorge Uquillas',
+  seoQueensTitle: 'Reinas de Lujo — Joyas 18k',
   seoQueensDescription:
     'Reinas de Lujo por Jorge Uquillas — collar de zafiros y diamantes y anillo solitario de diamantes, alta joyería artesanal 1/1.',
   seoQueensKeywords: 'RINGS LUXURY, Luxury Queens, collar de zafiros, anillo de diamantes, Jorge Uquillas',
   // SEO — Necklaces
-  seoNecklacesTitle: 'Collares — Oro de 18k Artesanal 1/1 | Jorge Uquillas',
+  seoNecklacesTitle: 'Collares — Oro 18k Artesanal',
   seoNecklacesDescription:
-    'Collares por Jorge Uquillas — collares artesanales 1/1 de oro de 18k Pantera, Rinoceronte, Cadenas de Oro Variables 18k, Medusa Diamantes Completos, León, León Real y Zafiro.',
+    'Collares por Jorge Uquillas — collares artesanales 1/1 en oro 18k Pantera, Rinoceronte, Medusa, León y Zafiro.',
   seoNecklacesKeywords:
     'RINGS LUXURY, Necklaces, Panther Necklace, Rhino Necklace, Medusa Necklace, Lion Necklace, oro de 18k, Jorge Uquillas',
   // Alt texts — Luxury Rings (product names kept, only "by" translated)
@@ -288,44 +292,46 @@ const pt: Record<Keys, string> = {
   // Page headings
   luxuryTitle: 'Anéis de Luxo',
   luxurySubtitle: 'Coleção',
+  luxuryIntro: 'Cada anel da RINGS LUXURY é uma escultura única em ouro maciço 18k, gravada à mão com buril e coroada com diamantes naturais. Sem moldes nem réplicas: a matriz de cera original é destruída, por isso cada peça existe uma única vez. Explore a coleção — ou leia nosso guia de compra para escolher metal, pedras e medida com confiança.',
+  luxuryGuideLinkLabel: 'Ler o guia para comprar anéis de luxo',
   emperorTitle: 'Para Grandes Imperadores',
   specialTitle: 'Edições Especiais',
   goldSilverTitle: 'Anéis de Ouro e Prata',
   queensTitle: 'Rainhas de Luxo',
   necklacesTitle: 'Colares',
   // SEO — Luxury Rings
-  seoLuxuryTitle: 'Coleção Anéis de Luxo — Anéis Artesanais em Ouro 18k por Jorge Uquillas',
+  seoLuxuryTitle: 'Anéis de luxo — Coleção 18k',
   seoLuxuryDescription:
     'Coleção Anéis de Luxo por Jorge Uquillas — anéis artesanais 1/1 em ouro 18k Imperador, Bitcoin, Medusa, Caveira Real e Tigre com diamantes.',
   seoLuxuryKeywords:
     'RINGS LUXURY, Luxury Rings Collection, Emperor Ring, Bitcoin Ring, Medusa Ring, King Skull Ring, Tiger Ring, ouro 18k, Jorge Uquillas',
   // SEO — Emperor Rings
-  seoEmperorTitle: 'Anéis do Imperador — Para Grandes Imperadores | Jorge Uquillas',
+  seoEmperorTitle: 'Anéis do Imperador — Atelier',
   seoEmperorDescription:
     'Anéis do Imperador por Jorge Uquillas — anéis artesanais 1/1 em ouro 18k Heráldico, Caveira Pirata, Leão, Monograma, KOI, Caveira e Maçônico.',
   seoEmperorKeywords:
     'RINGS LUXURY, Emperor Rings, For Great Emperors, Heraldic Ring, Lion Ring, Skull Ring, Maçonic Ring, ouro 18k, Jorge Uquillas',
   // SEO — Special Editions
-  seoSpecialTitle: 'Edições Especiais — Anéis Artesanais 1/1 | Jorge Uquillas',
+  seoSpecialTitle: 'Edições Especiais — Ouro 18k',
   seoSpecialDescription:
-    'Edições Especiais por Jorge Uquillas — anéis artesanais 1/1 em ouro 18k Tempest, Bitcoin, Caveira, Tigre, DR Viotto, Medusa, Avengers, Kraken, Jesus, Monkey, Memento Mori e Leão Real.',
+    'Edições Especiais por Jorge Uquillas — anéis artesanais 1/1 em ouro 18k Tempest, Kraken, Medusa, Jesus e Leão Real.',
   seoSpecialKeywords:
     'RINGS LUXURY, Special Editions, Tempest Ring, Kraken Ring, Jesus Ring, ouro 18k, Jorge Uquillas',
   // SEO — Golden Silver Rings
-  seoGoldSilverTitle: 'Anéis de Ouro e Prata — Ouro e Prata Combinados | Jorge Uquillas',
+  seoGoldSilverTitle: 'Anéis de Ouro e Prata — 18k',
   seoGoldSilverDescription:
     'Anéis de Ouro e Prata por Jorge Uquillas — anéis artesanais 1/1 em ouro e prata Lobo, Brasão de Família, Maçônico 33 Graus, Templário e Mistos de Luxo.',
   seoGoldSilverKeywords:
     'RINGS LUXURY, Golden Silver Rings, Wolf Ring, Maçonic Ring, Templar Ring, ouro prata, Jorge Uquillas',
   // SEO — Luxury Queens
-  seoQueensTitle: 'Rainhas de Luxo — Colar de Safiras e Anel de Diamantes | Jorge Uquillas',
+  seoQueensTitle: 'Rainhas de Luxo — Joias 18k',
   seoQueensDescription:
     'Rainhas de Luxo por Jorge Uquillas — colar de safiras e diamantes e anel solitário de diamantes, alta joalheria artesanal 1/1.',
   seoQueensKeywords: 'RINGS LUXURY, Luxury Queens, colar de safiras, anel de diamantes, Jorge Uquillas',
   // SEO — Necklaces
-  seoNecklacesTitle: 'Colares — Ouro 18k Artesanal 1/1 | Jorge Uquillas',
+  seoNecklacesTitle: 'Colares — Ouro 18k Artesanal',
   seoNecklacesDescription:
-    'Colares por Jorge Uquillas — colares artesanais 1/1 em ouro 18k Pantera, Rinoceronte, Correntes de Ouro Variables 18k, Medusa Cravejada, Leão, Leão Real e Safira.',
+    'Colares por Jorge Uquillas — colares artesanais 1/1 em ouro 18k Pantera, Rinoceronte, Medusa, Leão e Safira.',
   seoNecklacesKeywords:
     'RINGS LUXURY, Necklaces, Panther Necklace, Rhino Necklace, Medusa Necklace, Lion Necklace, ouro 18k, Jorge Uquillas',
   // Alt texts — Luxury Rings (product names kept, only "by" translated)

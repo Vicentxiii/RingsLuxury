@@ -3,6 +3,8 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
 import { Contact } from '../components/Contact';
+import { Breadcrumbs } from '../components/Breadcrumbs';
+import { absoluteUrl } from '../site.config';
 import { useLanguage } from '../i18n/LanguageContext';
 
 interface PieceItem {
@@ -46,6 +48,22 @@ export function LuxuryQueens() {
         description={t.collections.seoQueensDescription}
         keywords={t.collections.seoQueensKeywords}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            name: `${t.collections.queensTitle} — RINGS LUXURY`,
+            numberOfItems: PIECES.length,
+            itemListElement: PIECES.map((piece, i) => ({
+              '@type': 'ListItem',
+              position: i + 1,
+              item: { '@type': 'Product', name: piece.name, image: absoluteUrl(piece.src) },
+            })),
+          }),
+        }}
+      />
 
       <Header onOpenConsultation={() => scrollToContact()} />
 
@@ -63,6 +81,9 @@ export function LuxuryQueens() {
         </div>
 
         <div className="relative z-10 max-w-[1500px] mx-auto px-6 sm:px-10 pt-36 sm:pt-44 pb-24">
+          <Breadcrumbs
+            items={[{ label: t.pages.productBreadcrumbHome, to: '/' }, { label: t.collections.queensTitle }]}
+          />
           {/* Título */}
           <div className="text-center mb-14 sm:mb-20">
             <h1

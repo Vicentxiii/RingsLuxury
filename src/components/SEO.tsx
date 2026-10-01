@@ -17,7 +17,7 @@ export function SEO({ title, description, keywords, url, image }: SEOProps) {
   const defaultImage = HAS_SITE_URL ? absoluteUrl('/og-image.jpg') : undefined;
   const ogImage = image || defaultImage;
 
-  const seoTitle = `${title} | RINGS LUXURY | JORGE UQUILLAS`;
+  const seoTitle = `${title} | RINGS LUXURY`;
 
   return (
     <Helmet>

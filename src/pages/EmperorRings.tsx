@@ -3,6 +3,8 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
 import { Contact } from '../components/Contact';
+import { Breadcrumbs } from '../components/Breadcrumbs';
+import { absoluteUrl } from '../site.config';
 import { useLanguage } from '../i18n/LanguageContext';
 
 interface RingItem {
@@ -76,6 +78,22 @@ export function EmperorRings() {
         description={t.collections.seoEmperorDescription}
         keywords={t.collections.seoEmperorKeywords}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            name: `${t.collections.emperorTitle} — RINGS LUXURY`,
+            numberOfItems: RINGS.length,
+            itemListElement: RINGS.map((ring, i) => ({
+              '@type': 'ListItem',
+              position: i + 1,
+              item: { '@type': 'Product', name: ring.name, image: absoluteUrl(ring.src) },
+            })),
+          }),
+        }}
+      />
 
       <Header onOpenConsultation={() => scrollToContact()} />
 
@@ -94,6 +112,9 @@ export function EmperorRings() {
         </div>
 
         <div className="relative z-10 max-w-[1700px] mx-auto px-6 sm:px-10 pt-36 sm:pt-44 pb-24">
+          <Breadcrumbs
+            items={[{ label: t.pages.productBreadcrumbHome, to: '/' }, { label: t.collections.emperorTitle }]}
+          />
           {/* Título */}
           <div className="text-center mb-14 sm:mb-20">
             <h1

@@ -5,6 +5,7 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
 import { AncientCoinMedallion } from '../components/OrnamentIcons';
+import { Breadcrumbs } from '../components/Breadcrumbs';
 import { useLanguage } from '../i18n/LanguageContext';
 
 const PARTICLE_COUNT = 550;
@@ -213,6 +214,9 @@ export function ContactPage() {
       />
 
       <main className="relative z-10 max-w-2xl mx-auto px-6 pt-36 sm:pt-44 pb-28 text-center">
+        <Breadcrumbs
+          items={[{ label: t.pages.productBreadcrumbHome, to: '/' }, { label: t.pages.contactPageTitle }]}
+        />
         <p className="font-poppins text-[10px] font-semibold uppercase tracking-[0.45em] text-[#C5A059] mb-4">
           {t.pages.contactPageKicker}
         </p>

@@ -1,8 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
 import { Contact } from '../components/Contact';
+import { Breadcrumbs } from '../components/Breadcrumbs';
+import { absoluteUrl } from '../site.config';
 import { useLanguage } from '../i18n/LanguageContext';
 
 interface RingItem {
@@ -64,6 +67,22 @@ export function LuxuryRings() {
         description={t.collections.seoLuxuryDescription}
         keywords={t.collections.seoLuxuryKeywords}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            name: `${t.collections.luxuryTitle} — RINGS LUXURY`,
+            numberOfItems: RINGS.length,
+            itemListElement: RINGS.map((ring, i) => ({
+              '@type': 'ListItem',
+              position: i + 1,
+              item: { '@type': 'Product', name: ring.name, image: absoluteUrl(ring.src) },
+            })),
+          }),
+        }}
+      />
 
       <Header onOpenConsultation={() => scrollToContact()} />
 
@@ -82,6 +101,9 @@ export function LuxuryRings() {
         </div>
 
         <div className="relative z-10 max-w-[1700px] mx-auto px-6 sm:px-10 pt-36 sm:pt-44 pb-24">
+          <Breadcrumbs
+            items={[{ label: t.pages.productBreadcrumbHome, to: '/' }, { label: t.collections.luxuryTitle }]}
+          />
           {/* Título */}
           <div className="text-center mb-14 sm:mb-20">
             <h1
@@ -100,6 +122,17 @@ export function LuxuryRings() {
               style={{ fontSize: 'clamp(15px, 1.5vw, 21px)', letterSpacing: '0.55em', textIndent: '0.55em' }}
             >
               {t.collections.luxurySubtitle}
+            </p>
+            <p className="mx-auto mt-8 max-w-2xl font-cormorant text-lg italic leading-relaxed text-[#C2BDB2]">
+              {t.collections.luxuryIntro}
+            </p>
+            <p className="mt-4">
+              <Link
+                to="/luxury-rings-guide"
+                className="font-cinzel text-[11px] uppercase tracking-[0.25em] text-[#C5A059] underline underline-offset-4 hover:text-[#E6CA85] transition-colors"
+              >
+                {t.collections.luxuryGuideLinkLabel} →
+              </Link>
             </p>
           </div>
 

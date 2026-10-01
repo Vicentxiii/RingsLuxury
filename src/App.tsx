@@ -8,13 +8,14 @@ import { SpecialEditions } from './pages/SpecialEditions';
 import { GoldSilverRings } from './pages/GoldSilverRings';
 import { LuxuryQueens } from './pages/LuxuryQueens';
 import { Courses } from './pages/Courses';
+import { NotFound } from './pages/NotFound';
 // WebGL pesado (three.js) — carrega só ao visitar /contact
 const ContactPage = lazy(() =>
   import('./pages/ContactPage').then((m) => ({ default: m.ContactPage })),
 );
 import { Blog } from './pages/Blog';
 import { BlogPost } from './pages/BlogPost';
-import { ProductPage } from './pages/ProductPage';
+import { LuxuryRingsGuide } from './pages/LuxuryRingsGuide';import { ProductPage } from './pages/ProductPage';
 import { JorgeUquillas } from './pages/JorgeUquillas';
 import { AudioProvider } from './context/AudioProvider';
 import { LanguageProvider } from './i18n/LanguageContext';
@@ -100,11 +101,12 @@ export default function App() {
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/blog" element={<Blog />} />
       <Route path="/blog/:slug" element={<BlogPost />} />
+      <Route path="/luxury-rings-guide" element={<LuxuryRingsGuide />} />
       <Route path="/produto/:slug" element={<ProductPage />} />
       <Route path="/product/:slug" element={<ProductPage />} />
       <Route path="/jorge-uquillas" element={<JorgeUquillas />} />
       <Route path="/jorgeuquillas" element={<JorgeUquillas />} />
-      <Route path="*" element={<Home />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
         </Suspense>
       </div>

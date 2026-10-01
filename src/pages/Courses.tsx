@@ -3,6 +3,7 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
 import { Contact } from '../components/Contact';
+import { Breadcrumbs } from '../components/Breadcrumbs';
 import { useLanguage } from '../i18n/LanguageContext';
 
 const ENROLLMENT_DEADLINE = new Date('2027-10-01T00:00:00');
@@ -131,6 +132,9 @@ export function Courses() {
       <Header onOpenConsultation={handleOpenConsultation} />
 
       <main className="max-w-5xl mx-auto px-6 py-20 relative z-10">
+        <Breadcrumbs
+          items={[{ label: t.pages.productBreadcrumbHome, to: '/' }, { label: t.pages.coursesTitle }]}
+        />
         <header className="text-center mb-20">
           <h2 className="font-poppins text-xs font-semibold uppercase tracking-[0.3em] text-[#C5A059] mb-4">
             {t.pages.coursesKicker}

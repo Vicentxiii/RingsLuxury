@@ -255,8 +255,8 @@ const en = {
   auEpic: "Epic",
   auNextTitle: "Próxima Faixa (Violoncelo & Cordas)",
   // ---- Home SEO ----
-  seoTitle: "RINGS LUXURY by Jorge Uquillas — HandCrafted 18k Gold Rings | Anéis Artesanais Feitos à Mão",
-  seoDescription: "RINGS LUXURY by Jorge Uquillas — Anéis artesanais 1/1 HandCrafted feitos à mão em ouro 18k com diamantes naturais, gravados com hand engraver. Handmade 18k gold diamond rings by master artisan Jorge Uquillas. Atelier Brasil • Miami • Athens — alta joalheria autoral.",
+  seoTitle: "Luxury Rings — Handcrafted 18k Gold",
+  seoDescription: "1/1 handcrafted luxury rings in 18k gold with natural diamonds, hand-engraved by Jorge Uquillas. Atelier Brazil • Miami • Athens.",
   seoKeywords: "RINGS LUXURY, JORGE UQUILLAS, anéis artesanais, HandCrafted, anéis feitos à mão ouro 18k, handmade 18k gold diamond rings, hand engraver, anel 1/1, atelier Brasil Miami, alta joalheria",
 } as const;
 
@@ -519,8 +519,8 @@ const es: Record<Keys, string> = {
   auEpic: "Epic",
   auNextTitle: "Siguiente pista (violonchelo y cuerdas)",
   // ---- Home SEO ----
-  seoTitle: "RINGS LUXURY by Jorge Uquillas — Anillos de oro 18K hechos a mano | Joyería artesanal",
-  seoDescription: "RINGS LUXURY by Jorge Uquillas — Anillos artesanales 1/1 hechos a mano en oro 18K con diamantes naturales, grabados con buril. Anillos de oro y diamantes hechos a mano por el maestro artesano Jorge Uquillas. Atelier Brasil • Miami • Atenas — alta joyería de autor.",
+  seoTitle: "Anillos de lujo — Oro 18k artesanal",
+  seoDescription: "Anillos de lujo 1/1 hechos a mano en oro 18k con diamantes naturales, grabados a mano por Jorge Uquillas. Atelier Brasil • Miami • Atenas.",
   seoKeywords: "RINGS LUXURY, JORGE UQUILLAS, anillos artesanales, hechos a mano, anillos de oro 18k hechos a mano, handmade 18k gold diamond rings, hand engraver, anillo 1/1, atelier Brasil Miami, alta joyería",
 };
 
@@ -781,8 +781,8 @@ const pt: Record<Keys, string> = {
   auEpic: "Epic",
   auNextTitle: "Próxima faixa (violoncelo e cordas)",
   // ---- Home SEO ----
-  seoTitle: "RINGS LUXURY by Jorge Uquillas — Anéis de ouro 18K feitos à mão | Joalheria artesanal",
-  seoDescription: "RINGS LUXURY by Jorge Uquillas — Anéis artesanais 1/1 feitos à mão em ouro 18K com diamantes naturais, gravados com buril. Anéis de ouro e diamantes feitos à mão pelo mestre artesão Jorge Uquillas. Atelier Brasil • Miami • Atenas — alta joalheria autoral.",
+  seoTitle: "Anéis de luxo — Ouro 18k artesanal",
+  seoDescription: "Anéis de luxo 1/1 feitos à mão em ouro 18k com diamantes naturais, gravados à mão por Jorge Uquillas. Atelier Brasil • Miami • Atenas.",
   seoKeywords: "RINGS LUXURY, JORGE UQUILLAS, anéis artesanais, feitos à mão, anéis de ouro 18k feitos à mão, handmade 18k gold diamond rings, hand engraver, anel 1/1, atelier Brasil Miami, alta joalheria",
 };
 
