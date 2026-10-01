@@ -53,7 +53,7 @@ export function LuxuryQueens() {
             src={QUEENS_BG}
             alt=""
             draggable={false}
-            className="absolute inset-0 w-full h-full object-cover object-center select-none"
+            className="absolute inset-0 w-full h-full object-cover object-center opacity-30 select-none"
             onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black" />
