@@ -84,7 +84,7 @@ export function GoldSilverRings() {
               src={GOLDSILVER_BG}
               alt=""
               draggable={false}
-              className="absolute inset-0 w-full h-full object-cover object-left opacity-[0.12] select-none"
+              className="absolute inset-0 w-full h-full object-cover object-left opacity-25 select-none"
               onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
             />
             <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black" />
@@ -94,7 +94,7 @@ export function GoldSilverRings() {
               src={GOLDSILVER_BG}
               alt=""
               draggable={false}
-              className="absolute inset-0 w-full h-full object-cover object-right opacity-[0.12] select-none"
+              className="absolute inset-0 w-full h-full object-cover object-right opacity-25 select-none"
               onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
             />
             <div className="absolute inset-0 bg-gradient-to-l from-transparent to-black" />
