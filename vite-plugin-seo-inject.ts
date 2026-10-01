@@ -2,18 +2,19 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { loadEnv, type HtmlTagDescriptor, type Plugin } from 'vite';
 
-const STATIC_ROUTES = ['/', '/luxury-rings', '/emperor-rings', '/special-editions', '/gold-silver-rings', '/necklaces', '/luxuryqueens', '/courses', '/blog', '/contact', '/luxury-rings-guide'];
+const STATIC_ROUTES = ['/', '/luxury-rings', '/emperor-rings', '/special-editions', '/gold-silver-rings', '/necklaces', '/luxuryqueens', '/courses', '/blog', '/contact', '/luxury-rings-guide', '/jorge-uquillas'];
 
 const buildRobots = (siteUrl: string) => `# ringsluxury.com
 User-agent: *
 Allow: /
 
-# Crawlers de IA / LLM — liberados explicitamente.
-# GPTBot e OAI-SearchBot: indexacao e busca do ChatGPT.
-# ClaudeBot e Claude-User: Anthropic.
-# PerplexityBot e Perplexity-User: Perplexity.
-# Google-Extended: Gemini. Applebot: Siri/Spotlight.
+# Crawlers de busca e IA — liberados explicitamente.
+# Googlebot/Bingbot: busca. GPTBot/OAI-SearchBot/ChatGPT-User: ChatGPT.
+# ClaudeBot/Claude-User/Claude-SearchBot: Anthropic. PerplexityBot/Perplexity-User: Perplexity.
+# Google-Extended: Gemini. Applebot/Applebot-Extended: Siri/Spotlight. CCBot: Common Crawl.
 User-agent: Googlebot
+Allow: /
+User-agent: Bingbot
 Allow: /
 User-agent: Google-Extended
 Allow: /
@@ -297,7 +298,16 @@ export function seoInject(): Plugin {
 
       const staticBlock: HtmlTagDescriptor = { tag: 'div', children: buildStaticBlock(data, locs, contact), injectTo: 'body' };
 
-      const tags: HtmlTagDescriptor[] = [jsFlag, noJsCss, ld, staticBlock];
+      // Resumo navegável só para quem está SEM JavaScript (crawlers simples,
+      // leitores, navegadores com JS desligado). Não é texto escondido: o
+      // <noscript> por definição só renderiza sem JS.
+      const noJsNav: HtmlTagDescriptor = {
+        tag: 'noscript',
+        children: `<nav aria-label="RINGS LUXURY sections" style="max-width:820px;margin:0 auto;padding:24px"><h1 style="color:#E6CA85;font-size:24px">RINGS LUXURY by Jorge Uquillas — Luxury Rings, handcrafted 18k gold</h1><p style="color:#8a8a8a">1/1 handcrafted 18k gold diamond rings, hand-engraved. Atelier Brazil, Miami, Athens.</p><ul>${STATIC_ROUTES.map((r) => `<li><a href="${r}" style="color:#C5A059">${r}</a></li>`).join('')}</ul></nav>`,
+        injectTo: 'body',
+      };
+
+      const tags: HtmlTagDescriptor[] = [jsFlag, noJsCss, ld, staticBlock, noJsNav];
 
       // O canonical do index.html tambem e gerado aqui, para nao duplicar a
       // regra de "so publica se houver dominio" em dois lugares.
@@ -317,7 +327,7 @@ export function seoInject(): Plugin {
      * para um host inexistente convida o Google a indexar URLs que nao
      * respondem.
      */
-    generateBundle() {
+    async generateBundle() {
       this.emitFile({ type: 'asset', fileName: 'robots.txt', source: buildRobots(siteUrl || 'https://SEU-DOMINIO.com') });
 
       if (!siteUrl) return;
@@ -340,6 +350,27 @@ ${urls.map((u) => `  <url><loc>${siteUrl}${u}</loc></url>`).join('\n')}
 `;
 
       this.emitFile({ type: 'asset', fileName: 'sitemap.xml', source: sitemap });
+
+      // IndexNow: avisa Bing/Yandex sobre as URLs a cada build de produção.
+      // A chave e verificada pelo arquivo public/<chave>.txt (vai para dist/).
+      // Falha de rede nunca quebra o build.
+      const INDEXNOW_KEY = 'd3c59e041d774eb193020a68ad60b6bd8626ae04b4f74983a6bebdddca56b4fd';
+      try {
+        const host = siteUrl.replace(/^https?:\/\//, '');
+        const res = await fetch('https://api.indexnow.org/indexnow.json', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            host,
+            key: INDEXNOW_KEY,
+            keyLocation: `${siteUrl}/${INDEXNOW_KEY}.txt`,
+            urlList: urls.map((u) => `${siteUrl}${u}`),
+          }),
+        });
+        console.log(`[seo-inject] IndexNow: ${res.status} (${urls.length} urls)`);
+      } catch {
+        console.log('[seo-inject] IndexNow: envio pulado (sem rede)');
+      }
     },
   };
 }
