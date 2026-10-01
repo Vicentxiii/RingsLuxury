@@ -11,7 +11,7 @@ interface RingItem {
   alt: string;
 }
 
-const GOLDSILVER_BG = encodeURI('/PUBLIC/Fundo da seção Gold silver rings 2.jpg');
+const GOLDSILVER_BG = encodeURI('/PUBLIC/Fundo da Seção Mixed Gold Rings 3 rings luxury Jorge Uquillas.png');
 
 const RINGS: RingItem[] = [
   {
