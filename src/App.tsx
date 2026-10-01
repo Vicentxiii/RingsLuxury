@@ -5,6 +5,7 @@ import { GalleryPage } from './pages/GalleryPage';
 import { LuxuryRings } from './pages/LuxuryRings';
 import { EmperorRings } from './pages/EmperorRings';
 import { SpecialEditions } from './pages/SpecialEditions';
+import { GoldSilverRings } from './pages/GoldSilverRings';
 import { LuxuryQueens } from './pages/LuxuryQueens';
 import { Courses } from './pages/Courses';
 import { Blog } from './pages/Blog';
@@ -85,7 +86,7 @@ export default function App() {
       <Route path="/luxury-rings" element={<LuxuryRings />} />
       <Route path="/emperor-rings" element={<EmperorRings />} />
       <Route path="/special-editions" element={<SpecialEditions />} />
-      <Route path="/gold-silver-rings" element={<GalleryPage title="Gold & Silver Rings" categorySlug="gold-silver-rings" />} />
+      <Route path="/gold-silver-rings" element={<GoldSilverRings />} />
       <Route path="/necklaces" element={<GalleryPage title="Necklaces" categorySlug="necklaces" />} />
       <Route path="/luxuryqueens" element={<LuxuryQueens />} />
       <Route path="/courses" element={<Courses />} />
