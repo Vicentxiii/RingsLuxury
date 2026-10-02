@@ -78,12 +78,12 @@ const en = {
   whyLabel4Line1: "WORLD WIDE",
   whyLabel4Line2: "SATISFIED COSTUMERS",
   // ---- Atelier ----
-  atKicker: "THE SACRED WORKSHOP • ATHÈNES",
+  atKicker: "THE SACRED WORKSHOP",
   atTitleA: "THE HAND OF",
   atRole: "Master Engraver",
   atQuote1: "\"Every masterpiece begins with an idea,",
   atQuote2: "but becomes eternal through the hand of master engraver Jorge Uquillas.\"",
-  atText: "Within the subterranean atelier of master engraver Jorge Uquillas, beneath the shadow of the Acropolis, ancient metallurgical rites converge with contemporary haute joaillerie. Here, no digital rapid-prototyping exists. Every curve is carved in beeswax by Jorge Uquillas; every laurel leaf is chased by his hand with 19th-century hardened steel gravers.",
+  atText: "Within the subterranean atelier of master engraver Jorge Uquillas, in a workshop where ancient metallurgical rites converge with contemporary haute joaillerie. Here, no digital rapid-prototyping exists. Every curve is carved in beeswax by Jorge Uquillas; every laurel leaf is chased by his hand with 19th-century hardened steel gravers.",
   atDisc1: "DISCIPLINE I",
   atDisc1Name: "Cire Perdue (Lost-Wax)",
   atDisc2: "DISCIPLINE II",
@@ -197,7 +197,7 @@ const en = {
   amArchivePrefix: "ARCHIVAL DOSSIER • PIECE N° ",
   amRefPrefix: "Hellenic Archive Ref: KL-",
   amRefSuffix: "-88",
-  amAthens: "Athens Haute Joaillerie",
+  amOrigin: "Rings Luxury Haute Joaillerie",
   amTabDossier: "Curatorial Note",
   amTabProvenance: "Mythos & Provenance",
   amTabSpecs: "Specifications",
@@ -231,7 +231,7 @@ const en = {
   gal3Medium: "Pentelic Marble in Chiaroscuro Night",
   gal4Title: "THE MASTER’S GRAVER & GOLD FLAKES",
   gal4Class: "Atelier Photographic Document",
-  gal4Year: "Athens Workshop",
+  gal4Year: "Atelier Workshop",
   gal4Medium: "Archival Platinum Print on Velvet",
   gal5Title: "ENTABLATURE OF THE MIDNIGHT TEMPLE",
   gal5Class: "Baroque Architectural Panorama",
@@ -256,7 +256,7 @@ const en = {
   auNextTitle: "Próxima Faixa (Violoncelo & Cordas)",
   // ---- Home SEO ----
   seoTitle: "Luxury Rings — Handcrafted 18k Gold",
-  seoDescription: "1/1 handcrafted luxury rings in 18k gold with natural diamonds, hand-engraved by Jorge Uquillas. Atelier Brazil • Miami • Athens.",
+  seoDescription: "1/1 handcrafted luxury rings in 18k gold with natural diamonds, hand-engraved by Jorge Uquillas. Atelier Brazil • Miami.",
 } as const;
 
 type Keys = keyof typeof en;
@@ -341,12 +341,12 @@ const es: Record<Keys, string> = {
   whyLabel4Line1: "EN TODO EL MUNDO",
   whyLabel4Line2: "CLIENTES SATISFECHOS",
   // ---- Atelier ----
-  atKicker: "EL TALLER SAGRADO • ATENAS",
+  atKicker: "EL TALLER SAGRADO",
   atTitleA: "LA MANO DE",
   atRole: "Maestro Grabador",
   atQuote1: "\"Toda obra maestra nace de una idea,",
   atQuote2: "pero se vuelve eterna por la mano del maestro grabador Jorge Uquillas.\"",
-  atText: "En el atelier subterráneo del maestro grabador Jorge Uquillas, bajo la sombra de la Acrópolis, antiguos ritos metalúrgicos convergen con la alta joyería contemporánea. Aquí no existe el prototipado digital rápido. Cada curva es esculpida en cera de abeja por Jorge Uquillas; cada hoja de laurel es cincelada por su mano con buriles de acero endurecido del siglo XIX.",
+  atText: "En el atelier subterráneo del maestro grabador Jorge Uquillas, en un taller donde antiguos ritos metalúrgicos convergen con la alta joyería contemporánea. Aquí no existe el prototipado digital rápido. Cada curva es esculpida en cera de abeja por Jorge Uquillas; cada hoja de laurel es cincelada por su mano con buriles de acero endurecido del siglo XIX.",
   atDisc1: "DISCIPLINA I",
   atDisc1Name: "Cire Perdue (Lost-Wax)",
   atDisc2: "DISCIPLINA II",
@@ -460,7 +460,7 @@ const es: Record<Keys, string> = {
   amArchivePrefix: "DOSSIER DE ARCHIVO • PIEZA N° ",
   amRefPrefix: "Ref. archivo helénico: KL-",
   amRefSuffix: "-88",
-  amAthens: "Athens Haute Joaillerie",
+  amOrigin: "Rings Luxury Haute Joaillerie",
   amTabDossier: "Nota curatorial",
   amTabProvenance: "Mito y procedencia",
   amTabSpecs: "Especificaciones",
@@ -494,7 +494,7 @@ const es: Record<Keys, string> = {
   gal3Medium: "Mármol pentélico en claroscuro nocturno",
   gal4Title: "EL BURIL DEL MAESTRO Y VIRUTAS DE ORO",
   gal4Class: "Documento fotográfico del atelier",
-  gal4Year: "Taller de Atenas",
+  gal4Year: "Taller del Atelier",
   gal4Medium: "Impresión platino de archivo sobre terciopelo",
   gal5Title: "ENTABLAMENTO DEL TEMPLO DE MEDIANOCHE",
   gal5Class: "Panorama arquitectónico barroco",
@@ -519,7 +519,7 @@ const es: Record<Keys, string> = {
   auNextTitle: "Siguiente pista (violonchelo y cuerdas)",
   // ---- Home SEO ----
   seoTitle: "Anillos de lujo — Oro 18k artesanal",
-  seoDescription: "Anillos de lujo 1/1 hechos a mano en oro 18k con diamantes naturales, grabados a mano por Jorge Uquillas. Atelier Brasil • Miami • Atenas.",
+  seoDescription: "Anillos de lujo 1/1 hechos a mano en oro 18k con diamantes naturales, grabados a mano por Jorge Uquillas. Atelier Brasil • Miami.",
 };
 
 const pt: Record<Keys, string> = {
@@ -602,12 +602,12 @@ const pt: Record<Keys, string> = {
   whyLabel4Line1: "NO MUNDO INTEIRO",
   whyLabel4Line2: "CLIENTES SATISFEITOS",
   // ---- Atelier ----
-  atKicker: "A OFICINA SAGRADA • ATENAS",
+  atKicker: "A OFICINA SAGRADA",
   atTitleA: "A MÃO DE",
   atRole: "Mestre Gravador",
   atQuote1: "\"Toda obra-prima nasce de uma ideia,",
   atQuote2: "mas se torna eterna pelas mãos do mestre gravador Jorge Uquillas.\"",
-  atText: "No atelier subterrâneo do mestre gravador Jorge Uquillas, sob a sombra da Acrópole, antigos ritos metalúrgicos convergem com a alta joalheria contemporânea. Aqui não existe prototipagem digital rápida. Cada curva é esculpida em cera de abelha por Jorge Uquillas; cada folha de louro é cinzelada por sua mão com buris de aço temperado do século XIX.",
+  atText: "No atelier subterrâneo do mestre gravador Jorge Uquillas, num atelier onde antigos ritos metalúrgicos convergem com a alta joalheria contemporânea. Aqui não existe prototipagem digital rápida. Cada curva é esculpida em cera de abelha por Jorge Uquillas; cada folha de louro é cinzelada por sua mão com buris de aço temperado do século XIX.",
   atDisc1: "DISCIPLINA I",
   atDisc1Name: "Cire Perdue (Lost-Wax)",
   atDisc2: "DISCIPLINA II",
@@ -721,7 +721,7 @@ const pt: Record<Keys, string> = {
   amArchivePrefix: "DOSSIÊ DE ARQUIVO • PEÇA N° ",
   amRefPrefix: "Ref. arquivo helênico: KL-",
   amRefSuffix: "-88",
-  amAthens: "Athens Haute Joaillerie",
+  amOrigin: "Rings Luxury Haute Joaillerie",
   amTabDossier: "Nota curatorial",
   amTabProvenance: "Mito e procedência",
   amTabSpecs: "Especificações",
@@ -755,7 +755,7 @@ const pt: Record<Keys, string> = {
   gal3Medium: "Mármore pentélico em claro-escuro noturno",
   gal4Title: "O BURIL DO MESTRE E LIMALHAS DE OURO",
   gal4Class: "Documento fotográfico do atelier",
-  gal4Year: "Oficina de Atenas",
+  gal4Year: "Oficina do Atelier",
   gal4Medium: "Impressão em platina de arquivo sobre veludo",
   gal5Title: "ENTABLAMENTO DO TEMPLO DA MEIA-NOITE",
   gal5Class: "Panorama arquitetônico barroco",
@@ -780,7 +780,7 @@ const pt: Record<Keys, string> = {
   auNextTitle: "Próxima faixa (violoncelo e cordas)",
   // ---- Home SEO ----
   seoTitle: "Anéis de luxo — Ouro 18k artesanal",
-  seoDescription: "Anéis de luxo 1/1 feitos à mão em ouro 18k com diamantes naturais, gravados à mão por Jorge Uquillas. Atelier Brasil • Miami • Atenas.",
+  seoDescription: "Anéis de luxo 1/1 feitos à mão em ouro 18k com diamantes naturais, gravados à mão por Jorge Uquillas. Atelier Brasil • Miami.",
 };
 
 export const homeTexts = { en, es, pt };

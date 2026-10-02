@@ -103,7 +103,6 @@ export function Header({ onOpenConsultation }: HeaderProps) {
 
   const socialItems: StaggeredMenuSocialItem[] = [
     { label: 'Place Vendôme', link: '#contact' },
-    { label: 'Athens Atelier', link: '#contact' },
     { label: 'Geneva Salon', link: '#contact' },
     { label: 'Instagram @ringsluxury', link: 'https://www.instagram.com/ringsluxury' },
   ];

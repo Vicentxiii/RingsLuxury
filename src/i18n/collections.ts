@@ -125,7 +125,7 @@ const en = {
   payAtelierDesc: 'Ajuste ou crédito integral',
   payDiscretion: 'Athenian Archival Discretion Guaranteed',
   payCopyright: '© MMXXVI RINGS LUXURY ATELIER',
-  payOffices: 'CNPJ 45.858.681/0001-61 • Athens • Paris • Geneva',
+  payOffices: 'CNPJ 45.858.681/0001-61 • Paris • Geneva',
   payDiscreet: 'Discreet Billing',
 } as const;
 
@@ -258,7 +258,7 @@ const es: Record<Keys, string> = {
   payAtelierDesc: 'Ajuste o crédito total',
   payDiscretion: 'Discreción de Archivo Ateniense Garantizada',
   payCopyright: '© MMXXVI RINGS LUXURY ATELIER',
-  payOffices: 'CNPJ 45.858.681/0001-61 • Atenas • París • Ginebra',
+  payOffices: 'CNPJ 45.858.681/0001-61 • París • Ginebra',
   payDiscreet: 'Facturación Discreta',
 };
 
@@ -389,7 +389,7 @@ const pt: Record<Keys, string> = {
   payAtelierDesc: 'Ajuste ou crédito integral',
   payDiscretion: 'Discrição Arquivística Ateniense Garantida',
   payCopyright: '© MMXXVI RINGS LUXURY ATELIER',
-  payOffices: 'CNPJ 45.858.681/0001-61 • Atenas • Paris • Genebra',
+  payOffices: 'CNPJ 45.858.681/0001-61 • Paris • Genebra',
   payDiscreet: 'Faturamento Discreto',
 };
 

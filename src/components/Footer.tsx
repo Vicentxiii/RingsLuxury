@@ -17,9 +17,10 @@ import locationsData from '../data/locations.json';
  * de SEO local e hoje nao existia em lugar nenhum do projeto.
  * - `sameAs` e schema vem de src/data/contact.json e src/data/locations.json,
  *   que o plugin de build tambem leem. Uma fonte, zero divergencia.
- * - Enderecos de Athens, Paris e Geneve foram REMOVIDOS. Eram placeholders
- *   ficticios e brigavam com as localacoes reais (Miami, Sao Paulo), o que
- *   destoi qualquer sinal deNAP. Nao volte a declara-los sem um endereco real.
+ * - Enderecos de cidades que nao sao atelier foram REMOVIDOS. Eram
+ *   placeholders ficticios e brigavam com as localacoes reais (Miami, Sao
+ *   Paulo), o que destoi qualquer sinal de NAP. Nao volte a declara-los sem
+ *   um endereco real.
  */
 const COLLECTIONS_ROUTES = [
   { to: '/luxury-rings', key: 'colLuxuryRings' },

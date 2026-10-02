@@ -361,8 +361,6 @@ export function ContactPage() {
           <span>São Paulo — Atelier</span>
           <span className="hidden sm:inline text-[#C5A059]/40" aria-hidden>•</span>
           <span>Miami — Atelier</span>
-          <span className="hidden sm:inline text-[#C5A059]/40" aria-hidden>•</span>
-          <span>Athens — Salon</span>
         </div>
       </main>
 

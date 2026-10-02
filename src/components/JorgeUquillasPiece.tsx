@@ -801,7 +801,7 @@ export function JorgeUquillasPiece({ onBackToAtelier, onOpenConsultation }: Jorg
             </p>
             <div className="jq-slide-desc jq-col-2 space-y-3">
               <p>
-                With over 1000 1/1 HandCrafted pieces already created — handmade 18k gold diamond rings engraved with hand engraver — Jorge Uquillas — RINGS LUXURY — has served clients worldwide, from São Paulo to Miami, Dubai to Athens. Each ring is a unique work, handmade without mold, eternalized in gold.
+                With over 1000 1/1 HandCrafted pieces already created — handmade 18k gold diamond rings engraved with hand engraver — Jorge Uquillas — RINGS LUXURY — has served clients worldwide, from São Paulo to Miami to Dubai. Each ring is a unique work, handmade without mold, eternalized in gold.
               </p>
               <a
                 href="https://www.instagram.com/ringsluxury"

@@ -113,7 +113,7 @@ export function ArtifactModal({ artifact, onClose, onRequestAcquisition }: Artif
 
             <div className="mt-6 flex items-center justify-between text-[10px] tracking-[0.25em] text-[#9A7B38] uppercase">
               <span>{t.home.amRefPrefix}{artifact.numeral}{t.home.amRefSuffix}</span>
-              <span>{t.home.amAthens}</span>
+              <span>{t.home.amOrigin}</span>
             </div>
           </div>
 

@@ -303,7 +303,7 @@ export function seoInject(): Plugin {
       // <noscript> por definição só renderiza sem JS.
       const noJsNav: HtmlTagDescriptor = {
         tag: 'noscript',
-        children: `<nav aria-label="RINGS LUXURY sections" style="max-width:820px;margin:0 auto;padding:24px"><h1 style="color:#E6CA85;font-size:24px">RINGS LUXURY by Jorge Uquillas — Luxury Rings, handcrafted 18k gold</h1><p style="color:#8a8a8a">1/1 handcrafted 18k gold diamond rings, hand-engraved. Atelier Brazil, Miami, Athens.</p><ul>${STATIC_ROUTES.map((r) => `<li><a href="${r}" style="color:#C5A059">${r}</a></li>`).join('')}</ul></nav>`,
+        children: `<nav aria-label="RINGS LUXURY sections" style="max-width:820px;margin:0 auto;padding:24px"><h1 style="color:#E6CA85;font-size:24px">RINGS LUXURY by Jorge Uquillas — Luxury Rings, handcrafted 18k gold</h1><p style="color:#8a8a8a">1/1 handcrafted 18k gold diamond rings, hand-engraved. Atelier Brazil, Miami.</p><ul>${STATIC_ROUTES.map((r) => `<li><a href="${r}" style="color:#C5A059">${r}</a></li>`).join('')}</ul></nav>`,
         injectTo: 'body',
       };
 
