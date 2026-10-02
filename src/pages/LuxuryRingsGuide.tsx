@@ -60,7 +60,6 @@ export function LuxuryRingsGuide() {
       <SEO
         title={t.pages.guideSeoTitle}
         description={t.pages.guideSeoDescription}
-        keywords={t.pages.guideSeoKeywords}
         url="/luxury-rings-guide"
       />
 

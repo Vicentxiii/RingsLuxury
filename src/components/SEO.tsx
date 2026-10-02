@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useLocation } from 'react-router-dom';
 import { absoluteUrl, HAS_SITE_URL } from '../site.config';
 
 interface SEOProps {
@@ -10,8 +11,16 @@ interface SEOProps {
   image?: string;
 }
 
-export function SEO({ title, description, keywords, url, image }: SEOProps) {
-  const canonical = url ? absoluteUrl(url) : absoluteUrl('/');
+export function SEO({ title, description, url, image }: SEOProps) {
+  const { pathname } = useLocation();
+
+  // Canonical por rota. Sem `url` explicito, usa a propria pathname da rota
+  // atual — antes o fallback era '/', o que fazia o Google tratar /luxury-rings,
+  // /blog, /courses e mais 5 paginas como duplicata da home.
+  const route = url ?? pathname;
+  // Normaliza barras: '/' na raiz, sem barra final nas demais rotas.
+  const path = route.length > 1 ? route.replace(/\/+$/, '') : '/';
+  const canonical = absoluteUrl(path);
   // Sem domínio configurado não há imagem absoluta confiável; og:image
   // apontando para um host errado é pior que omitir.
   const defaultImage = HAS_SITE_URL ? absoluteUrl('/og-image.jpg') : undefined;
@@ -23,7 +32,6 @@ export function SEO({ title, description, keywords, url, image }: SEOProps) {
     <Helmet>
       <title>{seoTitle}</title>
       <meta name="description" content={description} />
-      {keywords && <meta name="keywords" content={keywords} />}
 
       {/* Canonical por rota. Sem domínio definido, fica omitido de propósito. */}
       {HAS_SITE_URL && <link rel="canonical" href={canonical} />}

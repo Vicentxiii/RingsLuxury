@@ -39,7 +39,6 @@ export function BlogPost() {
       <SEO 
         title={post.title}
         description={post.excerpt}
-        keywords={`RINGS LUXURY, Jorge Uquillas, Blog, ${post.category}, Haute Joaillerie`}
         image={post.image}
       />
       <script

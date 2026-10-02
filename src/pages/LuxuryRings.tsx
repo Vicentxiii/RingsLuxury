@@ -65,7 +65,6 @@ export function LuxuryRings() {
       <SEO
         title={t.collections.seoLuxuryTitle}
         description={t.collections.seoLuxuryDescription}
-        keywords={t.collections.seoLuxuryKeywords}
       />
       <script
         type="application/ld+json"

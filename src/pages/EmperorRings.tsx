@@ -76,7 +76,6 @@ export function EmperorRings() {
       <SEO
         title={t.collections.seoEmperorTitle}
         description={t.collections.seoEmperorDescription}
-        keywords={t.collections.seoEmperorKeywords}
       />
       <script
         type="application/ld+json"

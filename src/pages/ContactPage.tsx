@@ -195,7 +195,6 @@ export function ContactPage() {
       <SEO
         title={t.pages.contactPageSeoTitle}
         description={t.pages.contactPageSeoDescription}
-        keywords={t.pages.contactPageSeoKeywords}
         url="/contact"
       />
 

@@ -2,7 +2,6 @@ const en = {
   // ---- Courses ----
   coursesSeoTitle: "COURSES",
   coursesSeoDescription: "Learn the ancient art of jewelry making and artistic engraving directly from Jorge Uquillas at the RINGS LUXURY Atelier.",
-  coursesSeoKeywords: "Jewelry Courses, Artistic Engraving, Jorge Uquillas, RINGS LUXURY Academy, Goldsmithing",
   coursesKicker: "The Atelier Academy",
   coursesTitle: "Artistic Engraving & Haute Joaillerie",
   coursesIntro: "Step into the sacred halls of the Rings Luxury Atelier. Learn the guarded secrets of monumental jewelry creation and hand-engraving directly from master goldsmith Jorge Uquillas.",
@@ -72,7 +71,6 @@ const en = {
   // ---- ContactPage ----
   contactPageSeoTitle: "Contact — Private Consultation",
   contactPageSeoDescription: "Contact the RINGS LUXURY atelier by Jorge Uquillas — private consultations for 1/1 HandCrafted 18k gold diamond commissions. Brazil • Miami • Athens.",
-  contactPageSeoKeywords: "RINGS LUXURY contact, Jorge Uquillas atelier, private consultation, handmade 18k gold rings",
   contactPageKicker: "Private Salon Admission",
   contactPageTitle: "Contact",
   contactPageSubtitle: "HandCrafted 18k gold, natural diamonds, master hand engraver",
@@ -92,7 +90,6 @@ const en = {
   // ---- Blog ----
   blogSeoTitle: "BLOG - Journal of Haute Joaillerie",
   blogSeoDescription: "Read the official RINGS LUXURY blog by Jorge Uquillas. Articles on the art of engraving, the price of gold, and ancient jewelry making.",
-  blogSeoKeywords: "RINGS LUXURY Blog, Jorge Uquillas, Artistic Engraving, Gold Price, Haute Joaillerie Journal",
   blogKicker: "The Master's Journal",
   blogTitle: "Chronicles of Craft",
   blogSearchPlaceholder: "Search the archives...",
@@ -158,7 +155,6 @@ const en = {
   // ---- JorgeUquillas ----
   jorgeSeoTitle: "Jorge Uquillas — Master Goldsmith",
   jorgeSeoDescription: "Jorge Uquillas — Laocoön bronze and 1/1 handcrafted 18k gold diamond rings, hand-engraved. Atelier Brazil • Miami.",
-  jorgeSeoKeywords: "Jorge Uquillas, RINGS LUXURY, Laocoön, Bronze Horse, anéis artesanais, HandCrafted, ouro 18k, handmade 18k gold diamond rings, hand engraver, anéis feitos à mão, atelier Brasil Miami",
   jorgePreloaderBrand: "RINGS LUXURY • JORGE UQUILLAS",
   jorgePreloaderPiece: "Lion Head",
   jorgePreloaderSub: "HandCrafted 18k • Anéis Artesanais • 3D",
@@ -174,7 +170,6 @@ const en = {
   // ---- Luxury Rings Guide (pillar) ----
   guideSeoTitle: "Luxury Rings Guide — Buying Tips",
   guideSeoDescription: "Luxury rings buying guide — ring types, 18k gold metals, diamonds and sizing advice from the RINGS LUXURY atelier.",
-  guideSeoKeywords: "luxury rings guide, how to buy a luxury ring, 18k gold ring, diamond ring guide, Jorge Uquillas",
   guideKicker: "The Atelier Guide",
   guideTitle: "How to Buy a Luxury Ring",
   guideIntro: "A luxury ring is a one-of-one jewel in solid precious metal, finished entirely by hand. This guide explains what defines one, compares ring types and metals, decodes the 4Cs of diamonds, and covers certificates, sizing and care — so you can commission with confidence.",
@@ -250,7 +245,6 @@ const es: Record<Keys, string> = {
   // ---- Courses ----
   coursesSeoTitle: "CURSOS",
   coursesSeoDescription: "Aprende el antiguo arte de la joyería y el grabado artístico directamente de Jorge Uquillas en el Atelier RINGS LUXURY.",
-  coursesSeoKeywords: "Cursos de Joyería, Grabado Artístico, Jorge Uquillas, Academia RINGS LUXURY, Orfebrería",
   coursesKicker: "La Academia del Atelier",
   coursesTitle: "Grabado Artístico y Alta Joyería",
   coursesIntro: "Entra en las salas sagradas del Atelier Rings Luxury. Aprende los secretos guardados de la creación de joyería monumental y el grabado a mano directamente del maestro orfebre Jorge Uquillas.",
@@ -320,7 +314,6 @@ const es: Record<Keys, string> = {
   // ---- ContactPage ----
   contactPageSeoTitle: "Contacto — Consulta Privada",
   contactPageSeoDescription: "Contacta el atelier RINGS LUXURY de Jorge Uquillas — consultas privadas para anillos 1/1 en oro 18k. Brasil • Miami • Atenas.",
-  contactPageSeoKeywords: "contacto RINGS LUXURY, atelier Jorge Uquillas, consulta privada, anillos de oro 18k hechos a mano",
   contactPageKicker: "Admisión al Salón Privado",
   contactPageTitle: "Contacto",
   contactPageSubtitle: "Oro 18k hecho a mano, diamantes naturales, maestro grabador a mano",
@@ -340,7 +333,6 @@ const es: Record<Keys, string> = {
   // ---- Blog ----
   blogSeoTitle: "BLOG - Diario de Alta Joyería",
   blogSeoDescription: "Lee el blog oficial de RINGS LUXURY por Jorge Uquillas. Artículos sobre el arte del grabado, el precio del oro y la joyería ancestral.",
-  blogSeoKeywords: "Blog RINGS LUXURY, Jorge Uquillas, Grabado Artístico, Precio del Oro, Diario de Alta Joyería",
   blogKicker: "El Diario del Maestro",
   blogTitle: "Crónicas del Oficio",
   blogSearchPlaceholder: "Buscar en los archivos...",
@@ -406,7 +398,6 @@ const es: Record<Keys, string> = {
   // ---- JorgeUquillas ----
   jorgeSeoTitle: "Jorge Uquillas — Maestro Orfebre",
   jorgeSeoDescription: "Jorge Uquillas — bronce Laocoön y anillos 1/1 en oro 18k con diamantes, grabados a mano. Brasil • Miami.",
-  jorgeSeoKeywords: "Jorge Uquillas, RINGS LUXURY, Laocoön, Caballo de Bronce, anillos artesanales, HandCrafted, oro 18k, handmade 18k gold diamond rings, hand engraver, anillos hechos a mano, atelier Brasil Miami",
   jorgePreloaderBrand: "RINGS LUXURY • JORGE UQUILLAS",
   jorgePreloaderPiece: "Cabeza de León",
   jorgePreloaderSub: "HandCrafted 18k • Anillos Artesanales • 3D",
@@ -422,7 +413,6 @@ const es: Record<Keys, string> = {
   // ---- Luxury Rings Guide (pillar) ----
   guideSeoTitle: "Guía de anillos de lujo — Compra",
   guideSeoDescription: "Guía para comprar anillos de lujo — tipos de anillos, metales en oro 18k, diamantes y tallas, por el atelier RINGS LUXURY.",
-  guideSeoKeywords: "guía anillos de lujo, cómo comprar un anillo de lujo, anillo oro 18k, guía anillo diamantes, Jorge Uquillas",
   guideKicker: "La Guía del Atelier",
   guideTitle: "Cómo Comprar un Anillo de Lujo",
   guideIntro: "Un anillo de lujo es una joya única en metal precioso macizo, terminada por completo a mano. Esta guía explica qué lo define, compara tipos de anillos y metales, descifra las 4C de los diamantes y cubre certificados, tallas y cuidado — para que encargues con confianza.",
@@ -496,7 +486,6 @@ const pt: Record<Keys, string> = {
   // ---- Courses ----
   coursesSeoTitle: "CURSOS",
   coursesSeoDescription: "Aprenda a antiga arte da joalheria e da gravação artística diretamente com Jorge Uquillas no Atelier RINGS LUXURY.",
-  coursesSeoKeywords: "Cursos de Joalheria, Gravação Artística, Jorge Uquillas, Academia RINGS LUXURY, Ourivesaria",
   coursesKicker: "A Academia do Atelier",
   coursesTitle: "Gravação Artística e Alta Joalheria",
   coursesIntro: "Entre nos salões sagrados do Atelier Rings Luxury. Aprenda os segredos guardados da criação de joias monumentais e da gravação à mão diretamente com o mestre ourives Jorge Uquillas.",
@@ -566,7 +555,6 @@ const pt: Record<Keys, string> = {
   // ---- ContactPage ----
   contactPageSeoTitle: "Contato — Consulta Privada",
   contactPageSeoDescription: "Fale com o atelier RINGS LUXURY de Jorge Uquillas — consultas privadas para anéis 1/1 em ouro 18k. Brasil • Miami • Atenas.",
-  contactPageSeoKeywords: "contato RINGS LUXURY, atelier Jorge Uquillas, consulta privada, anéis em ouro 18k feitos à mão",
   contactPageKicker: "Admissão ao Salão Privado",
   contactPageTitle: "Contato",
   contactPageSubtitle: "Ouro 18k feito à mão, diamantes naturais, mestre gravador à mão",
@@ -586,7 +574,6 @@ const pt: Record<Keys, string> = {
   // ---- Blog ----
   blogSeoTitle: "BLOG - Diário da Alta Joalheria",
   blogSeoDescription: "Leia o blog oficial da RINGS LUXURY por Jorge Uquillas. Artigos sobre a arte da gravação, o preço do ouro e a joalheria ancestral.",
-  blogSeoKeywords: "Blog RINGS LUXURY, Jorge Uquillas, Gravação Artística, Preço do Ouro, Diário da Alta Joalheria",
   blogKicker: "O Diário do Mestre",
   blogTitle: "Crônicas do Ofício",
   blogSearchPlaceholder: "Pesquisar nos arquivos...",
@@ -652,7 +639,6 @@ const pt: Record<Keys, string> = {
   // ---- JorgeUquillas ----
   jorgeSeoTitle: "Jorge Uquillas — Mestre Ourives",
   jorgeSeoDescription: "Jorge Uquillas — bronze Laocoön e anéis 1/1 em ouro 18k com diamantes, gravados à mão. Brasil • Miami.",
-  jorgeSeoKeywords: "Jorge Uquillas, RINGS LUXURY, Laocoön, Cavalo de Bronze, anéis artesanais, HandCrafted, ouro 18k, handmade 18k gold diamond rings, hand engraver, anéis feitos à mão, atelier Brasil Miami",
   jorgePreloaderBrand: "RINGS LUXURY • JORGE UQUILLAS",
   jorgePreloaderPiece: "Cabeça de Leão",
   jorgePreloaderSub: "HandCrafted 18k • Anéis Artesanais • 3D",
@@ -668,7 +654,6 @@ const pt: Record<Keys, string> = {
   // ---- Luxury Rings Guide (pillar) ----
   guideSeoTitle: "Guia de anéis de luxo — Compra",
   guideSeoDescription: "Guia para comprar anéis de luxo — tipos de anéis, metais em ouro 18k, diamantes e medidas, pelo atelier RINGS LUXURY.",
-  guideSeoKeywords: "guia anéis de luxo, como comprar anel de luxo, anel ouro 18k, guia anel diamantes, Jorge Uquillas",
   guideKicker: "O Guia do Atelier",
   guideTitle: "Como Comprar um Anel de Luxo",
   guideIntro: "Um anel de luxo é uma joia única em metal precioso maciço, terminada por completo à mão. Este guia explica o que o define, compara tipos de anéis e metais, decifra os 4Cs dos diamantes e cobre certificados, medidas e cuidado — para você encomendar com confiança.",

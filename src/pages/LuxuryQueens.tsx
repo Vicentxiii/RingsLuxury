@@ -46,7 +46,6 @@ export function LuxuryQueens() {
       <SEO
         title={t.collections.seoQueensTitle}
         description={t.collections.seoQueensDescription}
-        keywords={t.collections.seoQueensKeywords}
       />
       <script
         type="application/ld+json"

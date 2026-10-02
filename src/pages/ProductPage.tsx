@@ -17,6 +17,25 @@ import { useLanguage } from '../i18n/LanguageContext';
 /** Fundo das páginas de produto. 2048x1080, escuro com veios dourados. */
 const PRODUCT_BG = '/PUBLIC/Fundo da pagina de produtos Jorge Uquillas Rings Luxury.jpg';
 
+/**
+ * Corta `text` em no máximo `max` caracteres, sempre em fronteira de palavra.
+ * Se o texto já cabe, devolve intacto. Se não cabe, recua até o último espaço
+ * anterior ao limite e acrescenta reticências (mantendo o total ≤ max, para o
+ * Google não truncar de novo).
+ */
+function truncateAtWord(text: string, max: number): string {
+  const clean = text.replace(/\s+/g, ' ').trim();
+  if (clean.length <= max) return clean;
+
+  const hardCut = clean.slice(0, max);
+  const lastSpace = hardCut.lastIndexOf(' ');
+  // Se a primeira "palavra" sozinha já estoura o limite, corta no limite mesmo
+  // e tira a reticência — não há fronteira de palavra a respeitar.
+  const cut = lastSpace > max / 2 ? hardCut.slice(0, lastSpace) : hardCut;
+
+  return `${cut.replace(/[\s,;:.\-–—]+$/, '')}…`;
+}
+
 export function ProductPage() {
   const { t, lang } = useLanguage();
   const { slug } = useParams<{ slug: string }>();
@@ -102,12 +121,18 @@ export function ProductPage() {
     { label: t.pages.productLabelRef, value: product.sku },
   ];
 
+// Meta description: usa a descrição inteira da peça (no idioma ativo),
+  // cortada em fronteira de palavra. Antes concatenava
+  // `extendedHistory.slice(0, 140) + '...'`, o que produzia texto de 175-200
+  // caracteres truncado no meio da palavra - o Google corta de novo e exibe
+  // lixo. Aqui o limite e 155, com reticencias so quando o corte e necessario.
+  const metaDescription = truncateAtWord(localizedDescription, 155);
+
   return (
-    <div className="min-h-screen bg-[#020202] text-[#EAE6DF] selection:bg-[#C5A059] selection:text-[#020202] font-sans-luxury relative overflow-x-hidden">
+<div className="min-h-screen bg-[#020202] text-[#EAE6DF] selection:bg-[#C5A059] selection:text-[#020202] font-sans-luxury relative overflow-x-hidden">
       <SEO
         title={`${product.name} — ${product.subname}`}
-        description={`${localizedDescription} ${product.extendedHistory.slice(0, 140)}...`}
-        keywords={`RINGS LUXURY, ${product.name}, ${product.category}, Jorge Uquillas, High Jewelry`}
+        description={metaDescription}
         url={`/produto/${product.slug}`}
         image={product.images[0]}
       />

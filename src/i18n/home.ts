@@ -257,7 +257,6 @@ const en = {
   // ---- Home SEO ----
   seoTitle: "Luxury Rings — Handcrafted 18k Gold",
   seoDescription: "1/1 handcrafted luxury rings in 18k gold with natural diamonds, hand-engraved by Jorge Uquillas. Atelier Brazil • Miami • Athens.",
-  seoKeywords: "RINGS LUXURY, JORGE UQUILLAS, anéis artesanais, HandCrafted, anéis feitos à mão ouro 18k, handmade 18k gold diamond rings, hand engraver, anel 1/1, atelier Brasil Miami, alta joalheria",
 } as const;
 
 type Keys = keyof typeof en;
@@ -521,7 +520,6 @@ const es: Record<Keys, string> = {
   // ---- Home SEO ----
   seoTitle: "Anillos de lujo — Oro 18k artesanal",
   seoDescription: "Anillos de lujo 1/1 hechos a mano en oro 18k con diamantes naturales, grabados a mano por Jorge Uquillas. Atelier Brasil • Miami • Atenas.",
-  seoKeywords: "RINGS LUXURY, JORGE UQUILLAS, anillos artesanales, hechos a mano, anillos de oro 18k hechos a mano, handmade 18k gold diamond rings, hand engraver, anillo 1/1, atelier Brasil Miami, alta joyería",
 };
 
 const pt: Record<Keys, string> = {
@@ -783,7 +781,6 @@ const pt: Record<Keys, string> = {
   // ---- Home SEO ----
   seoTitle: "Anéis de luxo — Ouro 18k artesanal",
   seoDescription: "Anéis de luxo 1/1 feitos à mão em ouro 18k com diamantes naturais, gravados à mão por Jorge Uquillas. Atelier Brasil • Miami • Atenas.",
-  seoKeywords: "RINGS LUXURY, JORGE UQUILLAS, anéis artesanais, feitos à mão, anéis de ouro 18k feitos à mão, handmade 18k gold diamond rings, hand engraver, anel 1/1, atelier Brasil Miami, alta joalheria",
 };
 
 export const homeTexts = { en, es, pt };

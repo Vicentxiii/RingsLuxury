@@ -138,11 +138,14 @@ export function EpicPreloader({ isExiting }: EpicPreloaderProps) {
 
         {/* Tipografia - escala menor no mobile */}
         <div className="mt-5 sm:mt-7 flex flex-col items-center shrink-0">
-          <h1 className="font-cinzel text-[16px] sm:text-[22px] md:text-[26px] tracking-[0.32em] sm:tracking-[0.42em] text-[#FBF9F5] font-light flex items-center gap-2 sm:gap-3">
+          {/* div, não h1: o preloader é global e o <h1> aqui duplicava o
+              único H1 de cada página. Estilos de fonte preservados — o
+              navegador herda de div, então o className segue valendo. */}
+          <div className="font-cinzel text-[16px] sm:text-[22px] md:text-[26px] tracking-[0.32em] sm:tracking-[0.42em] text-[#FBF9F5] font-light flex items-center gap-2 sm:gap-3">
             RINGS
             <span className="w-1 h-1 rounded-full bg-[#C5A059] shadow-[0_0_8px_rgba(197,160,89,0.8)] animate-[pulse_1.2s_ease-in-out_infinite] hidden sm:inline-block" />
             LUXURY
-          </h1>
+          </div>
           <div className="mt-1.5 sm:mt-2 flex items-center gap-2 sm:gap-3 opacity-90">
             <span className="h-px w-5 sm:w-8 bg-gradient-to-r from-transparent to-[#C5A059]/60" />
             <p className="text-[7.5px] sm:text-[10px] tracking-[0.28em] sm:tracking-[0.38em] uppercase text-[#C5A059] font-medium whitespace-nowrap">

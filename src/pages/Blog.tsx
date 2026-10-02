@@ -29,7 +29,6 @@ export function Blog() {
       <SEO 
         title={t.pages.blogSeoTitle}
         description={t.pages.blogSeoDescription}
-        keywords={t.pages.blogSeoKeywords}
       />
       
       <div className="fixed inset-0 film-grain pointer-events-none z-40 opacity-35" />

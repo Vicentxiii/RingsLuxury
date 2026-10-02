@@ -38,7 +38,6 @@ export function GalleryPage({ title, categorySlug }: GalleryPageProps) {
       <SEO 
         title={title}
         description={`Explore the exclusive ${title} collection by Jorge Uquillas. Cinematic luxury and Ancient Greek monumental art combined into haute joaillerie. Prices start at $5000.`}
-        keywords={`RINGS LUXURY, JORGE UQUILLAS, ${title}, High Jewelry, Custom Jewelry`}
       />
       
       <div className="fixed inset-0 film-grain pointer-events-none z-40 opacity-35" />

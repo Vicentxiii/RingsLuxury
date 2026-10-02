@@ -124,7 +124,6 @@ export function Courses() {
       <SEO 
         title={t.pages.coursesSeoTitle}
         description={t.pages.coursesSeoDescription}
-        keywords={t.pages.coursesSeoKeywords}
       />
       
       <div className="fixed inset-0 film-grain pointer-events-none z-40 opacity-35" />

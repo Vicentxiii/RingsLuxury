@@ -76,7 +76,6 @@ export function Necklaces() {
       <SEO
         title={t.collections.seoNecklacesTitle}
         description={t.collections.seoNecklacesDescription}
-        keywords={t.collections.seoNecklacesKeywords}
       />
       <script
         type="application/ld+json"

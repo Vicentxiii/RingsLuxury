@@ -46,7 +46,6 @@ export function Home() {
       <SEO 
         title={t.home.seoTitle} 
         description={t.home.seoDescription}
-        keywords={t.home.seoKeywords}
       />
       {/* Universal Film Grain — DESATIVADO na Hero para ficar liso/elegante (removidas bolinhas) */}
       {/* <div className="fixed inset-0 film-grain pointer-events-none z-40 opacity-35" /> */}

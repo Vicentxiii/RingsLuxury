@@ -35,7 +35,6 @@ export function JorgeUquillas() {
       <SEO
         title={t.pages.jorgeSeoTitle}
         description={t.pages.jorgeSeoDescription}
-        keywords={t.pages.jorgeSeoKeywords}
         url="/jorge-uquillas"
       />
       {/* Iframe que carrega a experiência imersiva completa — pocket watch 3D */}

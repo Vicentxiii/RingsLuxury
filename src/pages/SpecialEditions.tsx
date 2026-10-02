@@ -106,7 +106,6 @@ export function SpecialEditions() {
       <SEO
         title={t.collections.seoSpecialTitle}
         description={t.collections.seoSpecialDescription}
-        keywords={t.collections.seoSpecialKeywords}
       />
       <script
         type="application/ld+json"

@@ -76,7 +76,6 @@ export function GoldSilverRings() {
       <SEO
         title={t.collections.seoGoldSilverTitle}
         description={t.collections.seoGoldSilverDescription}
-        keywords={t.collections.seoGoldSilverKeywords}
       />
       <script
         type="application/ld+json"
