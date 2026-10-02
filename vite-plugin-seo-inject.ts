@@ -309,11 +309,12 @@ export function seoInject(): Plugin {
 
       const tags: HtmlTagDescriptor[] = [jsFlag, noJsCss, ld, staticBlock, noJsNav];
 
-      // O canonical do index.html tambem e gerado aqui, para nao duplicar a
-      // regra de "so publica se houver dominio" em dois lugares.
-      if (siteUrl) {
-        tags.push({ tag: 'link', attrs: { rel: 'canonical', href: `${siteUrl}/` }, injectTo: 'head' });
-      }
+      // Nao emitimos canonical aqui. O index.html e servido para TODA rota via
+      // rewrite (vercel.json), entao um canonical fixo de '/' no HTML estatico
+      // declarava /luxury-rings, /blog e todas as outras como duplicata da
+      // home. O canonical por rota e emitido em runtime pelo <SEO>, que deriva
+      // da pathname. Crawlers que nao executam JS ficam sem canonical — que e
+      // o estado neutro correto — em vez de receberem um errado.
 
       return tags;
     },
