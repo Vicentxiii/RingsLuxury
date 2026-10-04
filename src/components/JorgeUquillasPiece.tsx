@@ -819,7 +819,7 @@ export function JorgeUquillasPiece({ onBackToAtelier, onOpenConsultation }: Jorg
         {/* Slide 2 Image Mask — Foto Jorge Uquillas — larger & lower on desktop */}
         <div className="slide-image-mask" id="jq-slide-2-img">
           <img
-            src="/PUBLIC/Captura%20de%20tela%202026-09-12%20185443.png"
+            src="/PUBLIC/Captura%20de%20tela%202026-09-12%20185443.webp"
             alt="Jorge Uquillas — RINGS LUXURY HandCrafted — handmade 18k gold diamond rings"
             referrerPolicy="no-referrer"
           />

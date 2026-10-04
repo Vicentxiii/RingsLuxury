@@ -4,7 +4,7 @@ import { useLanguage } from '../i18n/LanguageContext';
 
 const ATELIER_VIDEO = '/PUBLIC/atelier-video-monograma-maconico-templarios.mp4';
 const AGUIA_IMG =
-  '/PUBLIC/Luxury%20rings%20collection%20anel%20Aguia%20ma%C3%A7onica%20by%20Jorge%20Uquillas%20rings%20luxury.png';
+  '/PUBLIC/Luxury%20rings%20collection%20anel%20Aguia%20ma%C3%A7onica%20by%20Jorge%20Uquillas%20rings%20luxury.webp';
 
 export function Atelier() {
   const { t } = useLanguage();

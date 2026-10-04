@@ -15,7 +15,7 @@ import { absoluteUrl, HAS_SITE_URL } from '../site.config';
 import { useLanguage } from '../i18n/LanguageContext';
 
 /** Fundo das páginas de produto. 2048x1080, escuro com veios dourados. */
-const PRODUCT_BG = '/PUBLIC/Fundo da pagina de produtos Jorge Uquillas Rings Luxury.jpg';
+const PRODUCT_BG = '/PUBLIC/Fundo da pagina de produtos Jorge Uquillas Rings Luxury.webp';
 
 /**
  * Corta `text` em no máximo `max` caracteres, sempre em fronteira de palavra.

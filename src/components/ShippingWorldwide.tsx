@@ -6,18 +6,18 @@ import { useLanguage } from '../i18n/LanguageContext';
  * - Mini-carrossel horizontal minimalista com as bandeirinhas dos países
  */
 const FLAG_SRCS: string[] = [
-  '/PUBLIC/usa.png',
-  '/PUBLIC/portugal.png',
-  '/PUBLIC/spain.png',
-  '/PUBLIC/france.png',
-  '/PUBLIC/german.png',
-  '/PUBLIC/mexico.png',
-  '/PUBLIC/colombia.png',
-  '/PUBLIC/guiana.png',
-  '/PUBLIC/qatar.png',
-  '/PUBLIC/israel.png',
-  '/PUBLIC/russia.png',
-  '/PUBLIC/china.png',
+  '/PUBLIC/usa.webp',
+  '/PUBLIC/portugal.webp',
+  '/PUBLIC/spain.webp',
+  '/PUBLIC/france.webp',
+  '/PUBLIC/german.webp',
+  '/PUBLIC/mexico.webp',
+  '/PUBLIC/colombia.webp',
+  '/PUBLIC/guiana.webp',
+  '/PUBLIC/qatar.webp',
+  '/PUBLIC/israel.webp',
+  '/PUBLIC/russia.webp',
+  '/PUBLIC/china.webp',
 ];
 
 const FLAG_ALT_KEYS = [
@@ -46,7 +46,7 @@ export function ShippingWorldwide() {
       {/* FUNDO — mármore preto com veios dourados */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-black">
         <img
-          src="/PUBLIC/fundo-shipping-worldwide.jpg"
+          src="/PUBLIC/fundo-shipping-worldwide.webp"
           alt=""
           draggable={false}
           className="absolute inset-0 w-full h-full object-cover object-center opacity-[0.8] scale-[1.06]"

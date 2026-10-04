@@ -12,7 +12,7 @@ export function QuoteSection() {
       {/* Fundo — imagem de fundo da seção Jorge Uquillas Rings Luxury */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden>
         <img
-          src="/PUBLIC/Imagem%20de%20fundo%20de%20se%C3%A7%C3%A3o%20Jorge%20uquillas%20Rings%20Luxury.jpg"
+          src="/PUBLIC/Imagem%20de%20fundo%20de%20se%C3%A7%C3%A3o%20Jorge%20uquillas%20Rings%20Luxury.webp"
           alt=""
           draggable={false}
           className="absolute inset-0 w-full h-full object-cover object-center select-none"
@@ -59,7 +59,7 @@ export function QuoteSection() {
             <div className="absolute -bottom-1 -right-1 w-2.5 h-2.5 border-b border-r border-[#C5A059]" aria-hidden />
             <div className="overflow-hidden bg-[#020202]">
               <img
-                src={encodeURI('/PUBLIC/Master engraver Jorge Uquillas seção Creating legacy.jpg')}
+                src={encodeURI('/PUBLIC/Master engraver Jorge Uquillas seção Creating legacy.webp')}
                 alt={t.home.quPhotoAlt}
                 loading="lazy"
                 draggable={false}

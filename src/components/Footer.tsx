@@ -60,7 +60,7 @@ export function Footer() {
       {/* Imagem de fundo do rodapé — 30% de opacidade */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden>
         <img
-          src="/PUBLIC/Fundo%20do%20rodap%C3%A9%20Rings%20Luxury%20Jorge%20Uquillas%20aneis%20feitos%20a%20mao.jpg"
+          src="/PUBLIC/Fundo%20do%20rodap%C3%A9%20Rings%20Luxury%20Jorge%20Uquillas%20aneis%20feitos%20a%20mao.webp"
           alt=""
           draggable={false}
           className="absolute inset-0 w-full h-full object-cover object-center opacity-[0.12] select-none"
@@ -82,14 +82,14 @@ export function Footer() {
           <div className="md:col-span-4 space-y-6">
             <div className="flex items-center gap-3">
               <img
-                src="/PUBLIC/logo-cortado.png"
+                src="/PUBLIC/logo-cortado.webp"
                 alt="RINGS LUXURY by Jorge Uquillas"
                 className="w-auto h-14 md:h-16 object-contain select-none shrink-0"
                 draggable={false}
                 onError={(e) => {
                   const target = e.currentTarget;
-                  if (!target.src.includes('logo-cortado.webp')) {
-                    target.src = '/PUBLIC/logo-cortado.webp';
+                  if (!target.src.includes('logo-cortado.png')) {
+                    target.src = '/PUBLIC/logo-cortado.png';
                   } else if (!target.src.includes('logo.svg')) {
                     target.src = '/logo.svg';
                   }

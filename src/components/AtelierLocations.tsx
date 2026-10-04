@@ -43,7 +43,7 @@ export function AtelierLocations() {
       {/* FUNDO — mesmo tratamento das secoes vizinhas */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-black">
         <img
-          src="/PUBLIC/Sessao-clientes-rings-luxury-site-2026.jpg"
+          src="/PUBLIC/Sessao-clientes-rings-luxury-site-2026.webp"
           alt=""
           draggable={false}
           className="absolute inset-0 w-full h-full object-cover object-center opacity-[0.35] scale-[1.06]"

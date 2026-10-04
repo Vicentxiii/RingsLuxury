@@ -16,7 +16,7 @@ interface RingItem {
   slug: string;
 }
 
-const LION_BG = encodeURI('/PUBLIC/Background do site rings luxury seção LUXURY RINGS.jpg');
+const LION_BG = encodeURI('/PUBLIC/Background do site rings luxury seção LUXURY RINGS.webp');
 
 function scrollToContact() {
   setTimeout(() => {
@@ -30,35 +30,35 @@ export function LuxuryRings() {
 
   const RINGS: RingItem[] = [
     {
-      src: encodeURI('/PUBLIC/Emperor RING 18K gOLD monogram.png'),
+      src: encodeURI('/PUBLIC/Emperor RING 18K gOLD monogram.webp'),
       name: 'Emperor Ring 18k Gold Monogram',
       price: '$ 4,800.00',
       alt: t.collections.altLuxury1,
       slug: 'emperor-ring-18k-gold-monogram-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Anel  Luxury Rings de bitcoin engravado a mao by jorge uquilas rings luxury.png'),
+      src: encodeURI('/PUBLIC/Anel  Luxury Rings de bitcoin engravado a mao by jorge uquilas rings luxury.webp'),
       name: 'Bitcoin Ring Especial Edition',
       price: '$ 9,800.00',
       alt: t.collections.altLuxury2,
       slug: 'bitcoin-ring-especial-edition-18k-gold-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Luxury rings collection anel medusa by Jorge Uquillas rings luxury.png'),
+      src: encodeURI('/PUBLIC/Luxury rings collection anel medusa by Jorge Uquillas rings luxury.webp'),
       name: 'Medusa Ring Especial Edition with diamonds',
       price: '$ 9,800.00',
       alt: t.collections.altLuxury3,
       slug: 'medusa-ring-especial-edition-diamonds-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Luxury rings collection anel caveira com diamantes by Jorge Uquillas rings luxury.png'),
+      src: encodeURI('/PUBLIC/Luxury rings collection anel caveira com diamantes by Jorge Uquillas rings luxury.webp'),
       name: 'King Skull Ring 18 With Diamonds Especial Edition',
       price: '$ 9,800.00',
       alt: t.collections.altLuxury4,
       slug: 'king-skull-ring-18k-diamonds-especial-edition-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Luxury rings collection anel Tiger by Jorge Uquillas rings luxury.png'),
+      src: encodeURI('/PUBLIC/Luxury rings collection anel Tiger by Jorge Uquillas rings luxury.webp'),
       name: 'Tiger Ring 18k Gold',
       price: t.collections.priceUponRequest,
       alt: t.collections.altLuxury5,

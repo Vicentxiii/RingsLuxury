@@ -16,50 +16,50 @@ interface Piece {
 /** Coleção Luxury Rings — anéis 1/1 HandCrafted em ouro 18k */
 const PIECES: Piece[] = [
   {
-    src: '/PUBLIC/Luxury%20rings%20collection%20anel%20Aguia%20ma%C3%A7onica%20by%20Jorge%20Uquillas%20rings%20luxury.png',
+    src: '/PUBLIC/Luxury%20rings%20collection%20anel%20Aguia%20ma%C3%A7onica%20by%20Jorge%20Uquillas%20rings%20luxury.webp',
     name: 'Águia Masônica',
     altKey: 'featAlt1',
     to: '/produto/luxury-emperor-masonic-ring-jorge-uquillas',
   },
   {
-    src: '/PUBLIC/Luxury%20rings%20collection%20anel%20Caveira%20%20by%20Jorge%20Uquillas%20rings%20luxury.png',
+    src: '/PUBLIC/Luxury%20rings%20collection%20anel%20Caveira%20%20by%20Jorge%20Uquillas%20rings%20luxury.webp',
     name: 'Caveira',
     altKey: 'featAlt2',
     to: '/produto/rose-gold-pirate-skull-ring-jorge-uquillas',
   },
   {
-    src: '/PUBLIC/Luxury%20rings%20collection%20anel%20caveira%20com%20diamantes%20by%20Jorge%20Uquillas%20rings%20luxury.png',
+    src: '/PUBLIC/Luxury%20rings%20collection%20anel%20caveira%20com%20diamantes%20by%20Jorge%20Uquillas%20rings%20luxury.webp',
     name: 'Caveira com Diamantes',
     altKey: 'featAlt3',
     to: '/produto/king-skull-ring-18k-diamonds-especial-edition-jorge-uquillas',
   },
   {
-    src: '/PUBLIC/Luxury%20rings%20collection%20anel%20Grau%2033%20by%20Jorge%20Uquillas%20rings%20luxury.png',
+    src: '/PUBLIC/Luxury%20rings%20collection%20anel%20Grau%2033%20by%20Jorge%20Uquillas%20rings%20luxury.webp',
     name: 'Grau 33',
     altKey: 'featAlt4',
     to: '/produto/mixed-masonic-33-degrees-gold-silver-ring-jorge-uquillas',
   },
   {
-    src: '/PUBLIC/Luxury%20rings%20collection%20anel%20medusa%20by%20Jorge%20Uquillas%20rings%20luxury.png',
+    src: '/PUBLIC/Luxury%20rings%20collection%20anel%20medusa%20by%20Jorge%20Uquillas%20rings%20luxury.webp',
     name: 'Medusa',
     altKey: 'featAlt5',
     to: '/produto/medusa-ring-especial-edition-diamonds-jorge-uquillas',
   },
   {
-    src: '/PUBLIC/Luxury%20rings%20collection%20anel%20sinnet%20by%20Jorge%20Uquillas%20rings%20luxury.png',
+    src: '/PUBLIC/Luxury%20rings%20collection%20anel%20sinnet%20by%20Jorge%20Uquillas%20rings%20luxury.webp',
     name: 'Sinnet',
     altKey: 'featAlt6',
     to: '/produto/emperor-heraldic-ring-18k-gold-jorge-uquillas',
     zoom: 'scale-[1.55] group-hover:scale-[1.7]',
   },
   {
-    src: '/PUBLIC/Luxury%20rings%20collection%20anel%20Tempest%20by%20Jorge%20Uquillas%20rings%20luxury%20(2).png',
+    src: '/PUBLIC/Luxury%20rings%20collection%20anel%20Tempest%20by%20Jorge%20Uquillas%20rings%20luxury%20(2).webp',
     name: 'Tempest',
     altKey: 'featAlt7',
     to: '/produto/tempest-ring-especial-edition-jorge-uquillas',
   },
   {
-    src: '/PUBLIC/Luxury%20rings%20collection%20anel%20Tiger%20by%20Jorge%20Uquillas%20rings%20luxury.png',
+    src: '/PUBLIC/Luxury%20rings%20collection%20anel%20Tiger%20by%20Jorge%20Uquillas%20rings%20luxury.webp',
     name: 'Tiger',
     altKey: 'featAlt8',
     to: '/produto/tiger-ring-18k-gold-jorge-uquillas',

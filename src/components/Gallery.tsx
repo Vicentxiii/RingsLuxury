@@ -11,11 +11,11 @@ import {
 import { useLanguage } from '../i18n/LanguageContext';
 
 // Rich luxury imagery
-import emperorRingImg from '../assets/images/emperor_ring_artifact_1789071924540.jpg';
-import masterpieceCuffImg from '../assets/images/masterpiece_macro_cuff_1789071946040.jpg';
-import statueImg from '../assets/images/statue_darkness_eternal_1789071956592.jpg';
-import artisanImg from '../assets/images/artisan_hands_engrave_1789071934811.jpg';
-import heroStatueImg from '../assets/images/hero_statue_temple_1789071913515.jpg';
+import emperorRingImg from '../assets/images/emperor_ring_artifact_1789071924540.webp';
+import masterpieceCuffImg from '../assets/images/masterpiece_macro_cuff_1789071946040.webp';
+import statueImg from '../assets/images/statue_darkness_eternal_1789071956592.webp';
+import artisanImg from '../assets/images/artisan_hands_engrave_1789071934811.webp';
+import heroStatueImg from '../assets/images/hero_statue_temple_1789071913515.webp';
 
 interface GalleryItem {
   id: string;

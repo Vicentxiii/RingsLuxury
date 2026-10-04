@@ -4,15 +4,15 @@ import { GreekKeyBorder, GreekMeanderDivider, LaurelWreath } from './OrnamentIco
 import { useLanguage } from '../i18n/LanguageContext';
 
 // Craftsmanship imagery — 5 fotos novas da pasta public (ordem: Design → Eternize)
-const DESIGN_IMG = '/PUBLIC/Design%20of%20ring%20by%20rings%20luxury.jpg';
+const DESIGN_IMG = '/PUBLIC/Design%20of%20ring%20by%20rings%20luxury.webp';
 const SCULPT_IMG =
-  '/PUBLIC/Sculpt%20by%20rings%20luxury%20master%20Hand%20Engraver%20Jorge%20Uquillas.jpg';
+  '/PUBLIC/Sculpt%20by%20rings%20luxury%20master%20Hand%20Engraver%20Jorge%20Uquillas.webp';
 const ENGRAVE_IMG =
-  '/PUBLIC/Engraving%20Ring%20by%20Jorge%20Uquillas%20the%20master%20Engraver%20Rings%20Luxury.jpeg';
+  '/PUBLIC/Engraving%20Ring%20by%20Jorge%20Uquillas%20the%20master%20Engraver%20Rings%20Luxury.webp';
 const POLISH_IMG =
-  '/PUBLIC/Rings%20luxury%20polindo%20anel%20Master%20Engraver%20Jorge%20Uquillas.png';
+  '/PUBLIC/Rings%20luxury%20polindo%20anel%20Master%20Engraver%20Jorge%20Uquillas.webp';
 const ETERNIZE_IMG =
-  '/PUBLIC/Anel%20de%20ouro%2018K%20eternizado%20com%20Cera%20e%20SELO%20by%20Rings%20Luxury%20Jorge%20Uquillas.jpeg';
+  '/PUBLIC/Anel%20de%20ouro%2018K%20eternizado%20com%20Cera%20e%20SELO%20by%20Rings%20Luxury%20Jorge%20Uquillas.webp';
 
 
 interface CraftStage {

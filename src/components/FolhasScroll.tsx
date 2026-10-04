@@ -149,7 +149,7 @@ export function FolhasScroll() {
       {/* FOLHA 2 — canto direito da seção — desce em diagonal para o meio e some */}
       <img
         ref={leaf2Ref}
-        src="/PUBLIC/folha-scroll-2.png"
+        src="/PUBLIC/folha-scroll-2.webp"
         alt=""
         draggable={false}
         className="absolute select-none"

@@ -106,7 +106,7 @@ export function WorldClients() {
       {/* FUNDO — escultura dourada à direita, preto predominante */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-black">
         <img
-          src="/PUBLIC/Sessao-clientes-rings-luxury-site-2026.jpg"
+          src="/PUBLIC/Sessao-clientes-rings-luxury-site-2026.webp"
           alt=""
           draggable={false}
           className="absolute inset-0 w-full h-full object-cover object-right opacity-[0.85]"

@@ -16,7 +16,7 @@ interface RingItem {
   slug: string;
 }
 
-const GOLDSILVER_BG = encodeURI('/PUBLIC/Fundo da Seção Mixed Gold Rings 3 rings luxury Jorge Uquillas.png');
+const GOLDSILVER_BG = encodeURI('/PUBLIC/Fundo da Seção Mixed Gold Rings 3 rings luxury Jorge Uquillas.webp');
 
 function scrollToContact() {
   setTimeout(() => {
@@ -30,49 +30,49 @@ export function GoldSilverRings() {
 
   const RINGS: RingItem[] = [
     {
-      src: encodeURI('/PUBLIC/Mixed Luxury Gold Ring by rings Luxury Jorge Uquillas.png'),
+      src: encodeURI('/PUBLIC/Mixed Luxury Gold Ring by rings Luxury Jorge Uquillas.webp'),
       name: 'Mixed Luxury Gold Ring',
       price: '$ 3,500.00',
       alt: t.collections.altGoldSilver1,
       slug: 'mixed-luxury-gold-ring-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Wolf Silver Ring by Jorge Uquillas Rings Luxury.png'),
+      src: encodeURI('/PUBLIC/Wolf Silver Ring by Jorge Uquillas Rings Luxury.webp'),
       name: 'Wolf Silver Ring',
       price: '$ 1,500.00',
       alt: t.collections.altGoldSilver2,
       slug: 'wolf-silver-ring-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Family Crest Silver Ring By rings Luxury Jorge Uquillas.png'),
+      src: encodeURI('/PUBLIC/Family Crest Silver Ring By rings Luxury Jorge Uquillas.webp'),
       name: 'Family Crest Silver Ring',
       price: '$ 1,500.00',
       alt: t.collections.altGoldSilver3,
       slug: 'family-crest-silver-ring-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Miced Maçonic 33 Degrees Gold Silver Ring by Rings Luxury Jorge Uquillas.png'),
+      src: encodeURI('/PUBLIC/Miced Maçonic 33 Degrees Gold Silver Ring by Rings Luxury Jorge Uquillas.webp'),
       name: 'Mixed Maçonic 33 Degrees Gold Silver Ring',
       price: '$ 3,500.00',
       alt: t.collections.altGoldSilver4,
       slug: 'mixed-masonic-33-degrees-gold-silver-ring-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Miced Gold-Silver ring Family Crest by Jorge uquillas Rings Luxury.png'),
+      src: encodeURI('/PUBLIC/Miced Gold-Silver ring Family Crest by Jorge uquillas Rings Luxury.webp'),
       name: 'Mixed Gold-Silver Family Crest Ring',
       price: '$ 3,500.00',
       alt: t.collections.altGoldSilver5,
       slug: 'mixed-gold-silver-family-crest-ring-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Mixed Templar Gold Silver Ring 18k by Jorge Uquillas Rings Luxury.png'),
+      src: encodeURI('/PUBLIC/Mixed Templar Gold Silver Ring 18k by Jorge Uquillas Rings Luxury.webp'),
       name: 'Mixed Templar Gold Silver Ring 18k',
       price: '$ 3,500.00',
       alt: t.collections.altGoldSilver6,
       slug: 'mixed-templar-gold-silver-ring-18k-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Miced Gold-Silver ring Family Crest by Jorge uquillas Rings Luxury with number.png'),
+      src: encodeURI('/PUBLIC/Miced Gold-Silver ring Family Crest by Jorge uquillas Rings Luxury with number.webp'),
       name: 'Mixed Gold-Silver Ring Family Crest',
       price: '$ 3,500.00',
       alt: t.collections.altGoldSilver7,

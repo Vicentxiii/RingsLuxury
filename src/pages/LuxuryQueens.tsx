@@ -16,7 +16,7 @@ interface PieceItem {
   slug: string;
 }
 
-const QUEENS_BG = encodeURI('/PUBLIC/Seção Luxury Queens by Jorge Uquillas Rings Luxury.jpg');
+const QUEENS_BG = encodeURI('/PUBLIC/Seção Luxury Queens by Jorge Uquillas Rings Luxury.webp');
 
 function scrollToContact() {
   setTimeout(() => {
@@ -30,14 +30,14 @@ export function LuxuryQueens() {
 
   const PIECES: PieceItem[] = [
     {
-      src: encodeURI('/PUBLIC/Anel Luxury Queens Rings Luxury by Jorge Uquillas.png'),
+      src: encodeURI('/PUBLIC/Anel Luxury Queens Rings Luxury by Jorge Uquillas.webp'),
       name: 'Luxury Queens Ring',
       price: '$ 15,000.00',
       alt: t.collections.altQueens1,
       slug: 'luxury-queens-ring-jorge-uquillas-rings-luxury',
     },
     {
-      src: encodeURI('/PUBLIC/Colar de Safiras e diamantes by jORGE uQUILLAS rINGS lUXURY 2 SEM FUNDO.png'),
+      src: encodeURI('/PUBLIC/Colar de Safiras e diamantes by jORGE uQUILLAS rINGS lUXURY 2 SEM FUNDO.webp'),
       name: 'Sapphire and Diamond Necklace',
       price: '$ 150,000.00',
       alt: t.collections.altQueens2,

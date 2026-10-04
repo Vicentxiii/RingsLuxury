@@ -47,7 +47,7 @@ export function WhyChoose() {
             <div className="flex flex-col items-center text-center w-full max-w-[150px]">
               <div className="w-[96px] h-[96px] sm:w-[108px] sm:h-[108px] lg:w-[118px] lg:h-[118px] flex items-center justify-center">
                 <img
-                  src="/PUBLIC/why-100-handmade.png"
+                  src="/PUBLIC/why-100-handmade.webp"
                   alt={t.home.whyAlt1}
                   className="w-full h-full object-contain select-none"
                   draggable={false}
@@ -63,7 +63,7 @@ export function WhyChoose() {
             <div className="flex flex-col items-center text-center w-full max-w-[150px]">
               <div className="w-[96px] h-[96px] sm:w-[108px] sm:h-[108px] lg:w-[118px] lg:h-[118px] flex items-center justify-center">
                 <img
-                  src="/PUBLIC/why-best-gold.png"
+                  src="/PUBLIC/why-best-gold.webp"
                   alt={t.home.whyAlt2}
                   className="w-full h-full object-contain select-none"
                   draggable={false}
@@ -79,7 +79,7 @@ export function WhyChoose() {
             <div className="flex flex-col items-center text-center w-full max-w-[150px]">
               <div className="w-[96px] h-[96px] sm:w-[108px] sm:h-[108px] lg:w-[118px] lg:h-[118px] flex items-center justify-center">
                 <img
-                  src="/PUBLIC/why-lifetime.png"
+                  src="/PUBLIC/why-lifetime.webp"
                   alt={t.home.whyAlt3}
                   className="w-full h-full object-contain select-none"
                   draggable={false}
@@ -99,7 +99,7 @@ export function WhyChoose() {
             <div className="flex flex-col items-center text-center w-full max-w-[150px]">
               <div className="w-[96px] h-[96px] sm:w-[108px] sm:h-[108px] lg:w-[118px] lg:h-[118px] flex items-center justify-center">
                 <img
-                  src="/PUBLIC/why-satisfied.png"
+                  src="/PUBLIC/why-satisfied.webp"
                   alt={t.home.whyAlt4}
                   className="w-full h-full object-contain select-none"
                   draggable={false}

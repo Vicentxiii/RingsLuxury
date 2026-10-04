@@ -16,7 +16,7 @@ interface RingItem {
   slug: string;
 }
 
-const SPECIAL_BG = encodeURI('/PUBLIC/Fundo da seção ESPECIAL EDITION rings luxury Jorge Uquillas.jpg');
+const SPECIAL_BG = encodeURI('/PUBLIC/Fundo da seção ESPECIAL EDITION rings luxury Jorge Uquillas.webp');
 
 function scrollToContact() {
   setTimeout(() => {
@@ -30,84 +30,84 @@ export function SpecialEditions() {
 
   const RINGS: RingItem[] = [
     {
-      src: encodeURI('/PUBLIC/Luxury rings collection anel Tempest by Jorge Uquillas rings luxury (2).png'),
+      src: encodeURI('/PUBLIC/Luxury rings collection anel Tempest by Jorge Uquillas rings luxury (2).webp'),
       name: 'Tempest Ring Especial Edition',
       price: t.collections.priceUponRequest,
       alt: t.collections.altSpecial1,
       slug: 'tempest-ring-especial-edition-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Anel  Luxury Rings de bitcoin engravado a mao by jorge uquilas rings luxury.png'),
+      src: encodeURI('/PUBLIC/Anel  Luxury Rings de bitcoin engravado a mao by jorge uquilas rings luxury.webp'),
       name: 'Bitcoin Ring Especial Edition',
       price: '$ 9,800.00',
       alt: t.collections.altSpecial2,
       slug: 'bitcoin-ring-especial-edition-18k-gold-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Luxury rings collection anel caveira com diamantes by Jorge Uquillas rings luxury.png'),
+      src: encodeURI('/PUBLIC/Luxury rings collection anel caveira com diamantes by Jorge Uquillas rings luxury.webp'),
       name: 'King Skull Ring 18 With Diamonds Especial Edition',
       price: '$ 9,800.00',
       alt: t.collections.altSpecial3,
       slug: 'king-skull-ring-18k-diamonds-especial-edition-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Tiger Ring Especial Edition by Rings Luxury Jorge Uquillas.png'),
+      src: encodeURI('/PUBLIC/Tiger Ring Especial Edition by Rings Luxury Jorge Uquillas.webp'),
       name: 'Tiger Ring Especial Edition',
       price: t.collections.priceUponRequest,
       alt: t.collections.altSpecial4,
       slug: 'tiger-ring-especial-edition-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Anel Rings Luxury para DR Viotto by Jorge Uquillas.png'),
+      src: encodeURI('/PUBLIC/Anel Rings Luxury para DR Viotto by Jorge Uquillas.webp'),
       name: 'DR Viotto Ring',
       price: t.collections.priceUponRequest,
       alt: t.collections.altSpecial5,
       slug: 'dr-viotto-ring-jorge-uquillas-rings-luxury',
     },
     {
-      src: encodeURI('/PUBLIC/medusa rings 18k gold with diamonds by Rings Luxuru Jorge Uquillas.png'),
+      src: encodeURI('/PUBLIC/medusa rings 18k gold with diamonds by Rings Luxuru Jorge Uquillas.webp'),
       name: 'Medusa Rings 18k Gold with Diamonds',
       price: t.collections.priceUponRequest,
       alt: t.collections.altSpecial6,
       slug: 'medusa-rings-18k-gold-diamonds-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Avengers Rings By Jorge Uquillas Rings Luxury 18k Gold.png'),
+      src: encodeURI('/PUBLIC/Avengers Rings By Jorge Uquillas Rings Luxury 18k Gold.webp'),
       name: 'Avengers Rings 18k Gold',
       price: t.collections.priceUponRequest,
       alt: t.collections.altSpecial7,
       slug: 'avengers-rings-18k-gold-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Anel Kraken Especial Edition by Rings Luxury Jorge Uquillas.png'),
+      src: encodeURI('/PUBLIC/Anel Kraken Especial Edition by Rings Luxury Jorge Uquillas.webp'),
       name: 'Kraken Especial Edition Ring',
       price: t.collections.priceUponRequest,
       alt: t.collections.altSpecial8,
       slug: 'kraken-especial-edition-ring-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Jesus Ring 18K with diamonds By Rings Luxury Jorge Uquillas.png'),
+      src: encodeURI('/PUBLIC/Jesus Ring 18K with diamonds By Rings Luxury Jorge Uquillas.webp'),
       name: 'Jesus Ring 18k with Diamonds',
       price: t.collections.priceUponRequest,
       alt: t.collections.altSpecial9,
       slug: 'jesus-ring-18k-diamonds-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Monkey Ring 18k gold with Diamonds by Jorge Uquillas rings Luxury.png'),
+      src: encodeURI('/PUBLIC/Monkey Ring 18k gold with Diamonds by Jorge Uquillas rings Luxury.webp'),
       name: 'Monkey Ring 18k Gold with Diamonds',
       price: t.collections.priceUponRequest,
       alt: t.collections.altSpecial10,
       slug: 'monkey-ring-18k-gold-diamonds-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Memento Mori by Jorge uquillas, rings Luxury.png'),
+      src: encodeURI('/PUBLIC/Memento Mori by Jorge uquillas, rings Luxury.webp'),
       name: 'Memento Mori Ring',
       price: t.collections.priceUponRequest,
       alt: t.collections.altSpecial11,
       slug: 'memento-mori-ring-jorge-uquillas-rings-luxury',
     },
     {
-      src: encodeURI('/PUBLIC/King Lion Ring with DIamonds by Jorge Uquillas Rings Luxury.png'),
+      src: encodeURI('/PUBLIC/King Lion Ring with DIamonds by Jorge Uquillas Rings Luxury.webp'),
       name: 'King Lion Ring with Diamonds',
       price: t.collections.priceUponRequest,
       alt: t.collections.altSpecial12,

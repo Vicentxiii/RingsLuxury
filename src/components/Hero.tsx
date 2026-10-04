@@ -14,8 +14,9 @@ const OLD_HERO_COMPOSITE = encodeURI(
 const FALLBACK_COVER = OLD_HERO_COMPOSITE;
 
 const YOUTUBE_ID = 'ieNPhZ4Vdss';
-// autoplay mudo em loop, sem controles, sem relacionados, modest branding
-const YOUTUBE_EMBED = `https://www.youtube.com/embed/${YOUTUBE_ID}?autoplay=1&mute=1&controls=0&loop=1&playlist=${YOUTUBE_ID}&playsinline=1&modestbranding=1&rel=0&iv_load_policy=3&showinfo=0&enablejsapi=0`;
+// autoplay mudo em loop, sem controles, sem relacionados, modest branding.
+// disablekb/fs/cc: esconde ao máximo o chrome do player (teclado, fullscreen, legendas).
+const YOUTUBE_EMBED = `https://www.youtube.com/embed/${YOUTUBE_ID}?autoplay=1&mute=1&controls=0&loop=1&playlist=${YOUTUBE_ID}&playsinline=1&modestbranding=1&rel=0&iv_load_policy=3&showinfo=0&enablejsapi=0&disablekb=1&fs=0&cc_load_policy=0`;
 
 export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
   const { t } = useLanguage();
@@ -24,6 +25,9 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
   // No mobile (toque) o vídeo entra em autoplay direto: iOS/Android liberam
   // autoplay mudo com playsinline, e sem isso o fundo ficava parado no iPhone.
   const [playVideo, setPlayVideo] = useState(false);
+  // Véu anti-chrome: cobre o iframe até o vídeo arrancar (quando o YouTube
+  // exibe título/barra), depois dissolve sozinho. Toque também revela.
+  const [videoReady, setVideoReady] = useState(false);
   useEffect(() => {
     try {
       if (window.matchMedia('(pointer: coarse)').matches) setPlayVideo(true);
@@ -51,6 +55,19 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
               allowFullScreen={false}
               loading="eager"
               referrerPolicy="strict-origin-when-cross-origin"
+              onLoad={() => {
+                window.setTimeout(() => setVideoReady(true), 1800);
+              }}
+            />
+            {/* capa que esconde a UI do player no arranque; dissolve sozinha */}
+            <div
+              aria-hidden
+              onClick={() => setVideoReady(true)}
+              className={`absolute inset-0 bg-[#040404] bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${videoReady ? 'opacity-0' : 'opacity-100'}`}
+              style={{
+                backgroundImage: `url("${FALLBACK_COVER}")`,
+                pointerEvents: videoReady ? 'none' : 'auto',
+              }}
             />
           </div>
         ) : (
