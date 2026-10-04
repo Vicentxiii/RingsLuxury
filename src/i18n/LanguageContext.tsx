@@ -11,7 +11,7 @@ interface LanguageValue {
 
 const LanguageContext = createContext<LanguageValue | undefined>(undefined);
 
-const STORAGE_KEY = 'rl-lang';
+const STORAGE_KEY = 'rl-lang-v2';
 
 function isLang(v: unknown): v is Lang {
   return v === 'en' || v === 'es' || v === 'pt';

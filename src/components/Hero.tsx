@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 
 interface HeroProps {
@@ -21,7 +21,16 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
   const { t } = useLanguage();
   // Fachada click-to-play: o iframe do YouTube (~1MB de JS) só carrega após
   // o clique. Antes disso, capa estática + botão play. Melhora LCP/INP.
+  // No mobile (toque) o vídeo entra em autoplay direto: iOS/Android liberam
+  // autoplay mudo com playsinline, e sem isso o fundo ficava parado no iPhone.
   const [playVideo, setPlayVideo] = useState(false);
+  useEffect(() => {
+    try {
+      if (window.matchMedia('(pointer: coarse)').matches) setPlayVideo(true);
+    } catch {
+      /* ignore */
+    }
+  }, []);
   return (
     <section
       id="hero"

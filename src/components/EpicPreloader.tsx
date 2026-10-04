@@ -114,21 +114,24 @@ export function EpicPreloader({ isExiting }: EpicPreloaderProps) {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[100px] sm:w-[280px] sm:h-[130px] bg-[#C5A059]/[0.03] blur-[55px] sm:blur-[65px] rounded-full pointer-events-none opacity-[0.12] sm:opacity-[0.15]" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140px] h-[60px] sm:w-[200px] sm:h-[90px] bg-[#E6CA85]/[0.02] blur-[30px] sm:blur-[40px] rounded-full pointer-events-none opacity-[0.18]" />
           
+          {/* Logo leve (47KB) com preload no index.html: aparece de cara, sem ícone quebrado.
+              O webp anterior (logo-novo-high-resolution) não existia: dava 404 e caía num PNG de 20MB. */}
           <img
-            src="/PUBLIC/logo-novo-high-resolution.webp"
+            src="/PUBLIC/logo-cortado.webp"
             alt="Rings Luxury"
+            fetchPriority="high"
+            decoding="async"
+            width={370}
+            height={370}
             className="relative w-[118px] sm:w-[148px] md:w-[168px] lg:w-[185px] h-auto object-contain select-none max-w-[68vw] max-h-[32dvh]"
             style={{ filter: 'drop-shadow(0 0 14px rgba(197,160,89,0.14)) drop-shadow(0 6px 22px rgba(0,0,0,0.9))' }}
             draggable={false}
             onError={(e) => {
               const target = e.currentTarget;
-              // fallback chain se webp falhar -> PNG high-res original (transparente) -> /PUBLIC/logo.png -> /logo.svg
-              if (!target.src.includes('LOGO%20NOVO') && !target.dataset.triedHighRes) {
-                target.dataset.triedHighRes = '1';
-                target.src = encodeURI('/PUBLIC/LOGO NOVO HIGH RESOLUTION.png');
-              } else if (!target.src.includes('logo.png') && !target.dataset.triedPng) {
+              // fallback chain curta, arquivos pequenos -> PNG (227KB) -> SVG (3KB)
+              if (!target.src.includes('logo-cortado.png') && !target.dataset.triedPng) {
                 target.dataset.triedPng = '1';
-                target.src = '/PUBLIC/logo.png';
+                target.src = '/PUBLIC/logo-cortado.png';
               } else if (!target.src.includes('logo.svg')) {
                 target.src = '/logo.svg';
               }
