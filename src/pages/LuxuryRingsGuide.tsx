@@ -50,9 +50,9 @@ export function LuxuryRingsGuide() {
     { to: '/necklaces', label: t.pages.guideLinkNecklaces },
     { to: '/courses', label: t.pages.guideLinkCourses },
     { to: '/contact', label: t.pages.guideLinkContact },
-    { to: '/produto/the-emperor-signet-sovereign-power', label: t.pages.guideLinkP1 },
-    { to: '/produto/emperors-will-imperial-ring', label: t.pages.guideLinkP2 },
-    { to: '/produto/bitcoin-signet-hand-engraved-18k', label: t.pages.guideLinkP3 },
+    { to: '/produto/emperor-ring-18k-gold-monogram-jorge-uquillas', label: t.pages.guideLinkP1 },
+    { to: '/produto/lion-emperor-ring-18k-gold-jorge-uquillas', label: t.pages.guideLinkP2 },
+    { to: '/produto/bitcoin-ring-especial-edition-18k-gold-jorge-uquillas', label: t.pages.guideLinkP3 },
   ];
 
   return (

@@ -13,6 +13,7 @@ interface RingItem {
   name: string;
   price: string;
   alt: string;
+  slug: string;
 }
 
 const LION_BG = encodeURI('/PUBLIC/Background do site rings luxury seção LUXURY RINGS.jpg');
@@ -33,30 +34,35 @@ export function LuxuryRings() {
       name: 'Emperor Ring 18k Gold Monogram',
       price: '$ 4,800.00',
       alt: t.collections.altLuxury1,
+      slug: 'emperor-ring-18k-gold-monogram-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/Anel  Luxury Rings de bitcoin engravado a mao by jorge uquilas rings luxury.png'),
       name: 'Bitcoin Ring Especial Edition',
       price: '$ 9,800.00',
       alt: t.collections.altLuxury2,
+      slug: 'bitcoin-ring-especial-edition-18k-gold-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/Luxury rings collection anel medusa by Jorge Uquillas rings luxury.png'),
       name: 'Medusa Ring Especial Edition with diamonds',
       price: '$ 9,800.00',
       alt: t.collections.altLuxury3,
+      slug: 'medusa-ring-especial-edition-diamonds-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/Luxury rings collection anel caveira com diamantes by Jorge Uquillas rings luxury.png'),
       name: 'King Skull Ring 18 With Diamonds Especial Edition',
       price: '$ 9,800.00',
       alt: t.collections.altLuxury4,
+      slug: 'king-skull-ring-18k-diamonds-especial-edition-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/Luxury rings collection anel Tiger by Jorge Uquillas rings luxury.png'),
       name: 'Tiger Ring 18k Gold',
       price: t.collections.priceUponRequest,
       alt: t.collections.altLuxury5,
+      slug: 'tiger-ring-18k-gold-jorge-uquillas',
     },
   ];
 
@@ -138,11 +144,11 @@ export function LuxuryRings() {
           {/* Grade de anéis */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-x-8 gap-y-14">
             {RINGS.map((ring) => (
-              <button
+              <Link
                 key={ring.src}
-                type="button"
-                onClick={() => scrollToContact()}
+                to={`/produto/${ring.slug}`}
                 className="group flex flex-col items-center text-center cursor-pointer focus:outline-none"
+                aria-label={`${ring.name} — ver peça`}
               >
                 <div className="w-full aspect-square flex items-center justify-center overflow-hidden">
                   <img
@@ -155,13 +161,16 @@ export function LuxuryRings() {
                     onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                   />
                 </div>
-                <p className="mt-2 min-h-[44px] flex items-start justify-center text-[13px] leading-[1.5] text-white/90 max-w-[260px]">
+                <p className="mt-2 min-h-[44px] flex items-start justify-center text-[13px] leading-[1.5] text-white/90 max-w-[260px] group-hover:text-[#E6CA85] transition-colors">
                   {ring.name}
                 </p>
                 <p className="mt-2 font-cinzel text-[15px] tracking-[0.08em] text-[#E6CA85]">
                   {ring.price}
                 </p>
-              </button>
+                <span className="mt-3 inline-block px-6 py-1.5 border border-white/25 group-hover:border-[#C5A059] rounded-full text-[11px] tracking-[0.12em] text-white/85 group-hover:text-[#E6CA85] transition-colors">
+                  {t.collections.addToCart}
+                </span>
+              </Link>
             ))}
           </div>
         </div>

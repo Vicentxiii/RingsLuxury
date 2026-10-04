@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
@@ -12,6 +13,7 @@ interface NecklaceItem {
   name: string;
   price: string;
   alt: string;
+  slug: string;
 }
 
 const NECKLACES_BG = encodeURI('/PUBLIC/Dobra da pagina Necklaces site Rings Luxury by Jorge Uquillas.jpg');
@@ -32,42 +34,49 @@ export function Necklaces() {
       name: 'Panther Necklace',
       price: '$ 22,500.00',
       alt: t.collections.altNecklace1,
+      slug: 'panther-necklace-18k-gold-citrin-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/Rhino NeckLace 18k gold with Diamonds by Rings Luxury Jorege Uquillas.png'),
       name: 'Rhino Necklace',
       price: '$ 150,000.00',
       alt: t.collections.altNecklace2,
+      slug: 'rhino-necklace-18k-gold-diamonds-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/Variable 18K gold Chains By Jorge Uquillas Rings Luxury.png'),
       name: 'Variable 18K Gold Chains 18mm',
       price: '$ 0.00',
       alt: t.collections.altNecklace3,
+      slug: 'variable-18k-gold-chains-18mm-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/Medusa Necklace Full Diamonds 18 Gold by Jorge Uquillas Rings Luxury.png'),
       name: 'Medusa Necklace Full Diamonds 18k gold',
       price: '$ 112,000.00',
       alt: t.collections.altNecklace4,
+      slug: 'medusa-necklace-full-diamonds-18k-gold-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/Lion NeckLace 18K gold by Rings Luxury.png'),
       name: 'Lion Necklace 18k gold',
       price: '$ 22,000.00',
       alt: t.collections.altNecklace5,
+      slug: 'lion-necklace-18k-gold-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/King Lion NeckLace By Rings Luxury Jorge uquillas.png'),
       name: 'King Lion Necklace',
       price: t.collections.priceUponRequest,
       alt: t.collections.altNecklace6,
+      slug: 'king-lion-necklace-jorge-uquillas-rings-luxury',
     },
     {
       src: encodeURI('/PUBLIC/Colar de Safiras e diamantes by jORGE uQUILLAS rINGS lUXURY 2 SEM FUNDO.png'),
       name: 'Sapphire and Diamond Necklace',
       price: t.collections.priceUponRequest,
       alt: t.collections.altNecklace7,
+      slug: 'sapphire-diamond-necklace-jorge-uquillas-rings-luxury',
     },
   ];
 
@@ -145,11 +154,10 @@ export function Necklaces() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-14">
             {NECKLACES.map((necklace) => (
               <div key={necklace.src} className="group flex flex-col items-center text-center">
-                <button
-                  type="button"
-                  onClick={() => scrollToContact()}
+                <Link
+                  to={`/produto/${necklace.slug}`}
                   className="w-full aspect-square flex items-center justify-center overflow-hidden cursor-pointer focus:outline-none"
-                  aria-label={`${necklace.name} ${t.collections.inquireSuffix}`}
+                  aria-label={`${necklace.name} — ver peça`}
                 >
                   <img
                     src={necklace.src}
@@ -160,20 +168,19 @@ export function Necklaces() {
                     style={{ filter: 'drop-shadow(0 24px 40px rgba(0,0,0,0.9))' }}
                     onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                   />
-                </button>
+                </Link>
                 <p className="mt-2 min-h-[40px] flex items-start justify-center text-[12px] leading-[1.5] text-white/90 max-w-[260px]">
                   {necklace.name}
                 </p>
                 <p className="mt-1.5 font-cinzel text-[14px] tracking-[0.08em] text-[#E6CA85]">
                   {necklace.price}
                 </p>
-                <button
-                  type="button"
-                  onClick={() => scrollToContact()}
+                <Link
+                  to={`/produto/${necklace.slug}`}
                   className="mt-3 px-6 py-1.5 border border-white/25 hover:border-[#C5A059] rounded-full text-[11px] tracking-[0.12em] text-white/85 hover:text-[#E6CA85] transition-colors"
                 >
                   {t.collections.addToCart}
-                </button>
+                </Link>
               </div>
             ))}
           </div>

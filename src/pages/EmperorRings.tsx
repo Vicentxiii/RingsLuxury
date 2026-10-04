@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
@@ -12,6 +13,7 @@ interface RingItem {
   name: string;
   price: string;
   alt: string;
+  slug: string;
 }
 
 const EMPEROR_BG = encodeURI('/PUBLIC/Fundo da seção EMPEROR RINGS site Rings Luxury.jpg');
@@ -32,42 +34,49 @@ export function EmperorRings() {
       name: 'EMPEROR HERALDIC RING',
       price: '$ 4,800.00',
       alt: t.collections.altEmperor1,
+      slug: 'emperor-heraldic-ring-18k-gold-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/Luxury rings collection anel Caveira  by Jorge Uquillas rings luxury.png'),
       name: 'Rose Gold Pirate Skull Ring',
       price: '$ 5,500.00',
       alt: t.collections.altEmperor2,
+      slug: 'rose-gold-pirate-skull-ring-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/Lion Emperor Ring 18K gold by Jorge Uquillas Rings Luxury.png'),
       name: 'Lion Emperor Ring',
       price: '$ 4,800.00',
       alt: t.collections.altEmperor3,
+      slug: 'lion-emperor-ring-18k-gold-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/Emperor RING 18K gOLD monogram.png'),
       name: 'Emperor Ring 18k Gold Monogram',
       price: '$ 4,800.00',
       alt: t.collections.altEmperor4,
+      slug: 'emperor-ring-18k-gold-monogram-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/KOI emperor Ring 18k rose Gold.png'),
       name: 'KOI Emperor Ring 18k rose gold',
       price: '$ 4,800.00',
       alt: t.collections.altEmperor5,
+      slug: 'koi-emperor-ring-18k-rose-gold-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/Emperor Skull Ring 18k Gold by Jorge Uquillas Rings Luxury.png'),
       name: 'Emperor Skull Ring 18k gold',
       price: '$ 4,800.00',
       alt: t.collections.altEmperor6,
+      slug: 'emperor-skull-ring-18k-gold-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/Luxury Emperor Maçonic Ring by Jorge Uquillas Rings Luxury.png'),
       name: 'Luxury Emperor Maçonic Ring',
       price: '$ 4,800.00',
       alt: t.collections.altEmperor7,
+      slug: 'luxury-emperor-masonic-ring-jorge-uquillas',
     },
   ];
 
@@ -133,11 +142,10 @@ export function EmperorRings() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-14">
             {RINGS.map((ring) => (
               <div key={ring.src} className="group flex flex-col items-center text-center">
-                <button
-                  type="button"
-                  onClick={() => scrollToContact()}
+                <Link
+                  to={`/produto/${ring.slug}`}
                   className="w-full aspect-square flex items-center justify-center overflow-hidden cursor-pointer focus:outline-none"
-                  aria-label={`${ring.name} ${t.collections.inquireSuffix}`}
+                  aria-label={`${ring.name} — ver peça`}
                 >
                   <img
                     src={ring.src}
@@ -148,20 +156,19 @@ export function EmperorRings() {
                     style={{ filter: 'drop-shadow(0 24px 40px rgba(0,0,0,0.9))' }}
                     onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                   />
-                </button>
+                </Link>
                 <p className="mt-2 min-h-[40px] flex items-start justify-center text-[12px] leading-[1.5] text-white/90 max-w-[260px]">
                   {ring.name}
                 </p>
                 <p className="mt-1.5 font-cinzel text-[14px] tracking-[0.08em] text-[#E6CA85]">
                   {ring.price}
                 </p>
-                <button
-                  type="button"
-                  onClick={() => scrollToContact()}
+                <Link
+                  to={`/produto/${ring.slug}`}
                   className="mt-3 px-6 py-1.5 border border-white/25 hover:border-[#C5A059] rounded-full text-[11px] tracking-[0.12em] text-white/85 hover:text-[#E6CA85] transition-colors"
                 >
                   {t.collections.addToCart}
-                </button>
+                </Link>
               </div>
             ))}
           </div>

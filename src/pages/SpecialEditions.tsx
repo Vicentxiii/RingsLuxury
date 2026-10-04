@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
@@ -12,6 +13,7 @@ interface RingItem {
   name: string;
   price: string;
   alt: string;
+  slug: string;
 }
 
 const SPECIAL_BG = encodeURI('/PUBLIC/Fundo da seção ESPECIAL EDITION rings luxury Jorge Uquillas.jpg');
@@ -32,72 +34,84 @@ export function SpecialEditions() {
       name: 'Tempest Ring Especial Edition',
       price: t.collections.priceUponRequest,
       alt: t.collections.altSpecial1,
+      slug: 'tempest-ring-especial-edition-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/Anel  Luxury Rings de bitcoin engravado a mao by jorge uquilas rings luxury.png'),
       name: 'Bitcoin Ring Especial Edition',
       price: '$ 9,800.00',
       alt: t.collections.altSpecial2,
+      slug: 'bitcoin-ring-especial-edition-18k-gold-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/Luxury rings collection anel caveira com diamantes by Jorge Uquillas rings luxury.png'),
       name: 'King Skull Ring 18 With Diamonds Especial Edition',
       price: '$ 9,800.00',
       alt: t.collections.altSpecial3,
+      slug: 'king-skull-ring-18k-diamonds-especial-edition-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/Tiger Ring Especial Edition by Rings Luxury Jorge Uquillas.png'),
       name: 'Tiger Ring Especial Edition',
       price: t.collections.priceUponRequest,
       alt: t.collections.altSpecial4,
+      slug: 'tiger-ring-especial-edition-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/Anel Rings Luxury para DR Viotto by Jorge Uquillas.png'),
       name: 'DR Viotto Ring',
       price: t.collections.priceUponRequest,
       alt: t.collections.altSpecial5,
+      slug: 'dr-viotto-ring-jorge-uquillas-rings-luxury',
     },
     {
       src: encodeURI('/PUBLIC/medusa rings 18k gold with diamonds by Rings Luxuru Jorge Uquillas.png'),
       name: 'Medusa Rings 18k Gold with Diamonds',
       price: t.collections.priceUponRequest,
       alt: t.collections.altSpecial6,
+      slug: 'medusa-rings-18k-gold-diamonds-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/Avengers Rings By Jorge Uquillas Rings Luxury 18k Gold.png'),
       name: 'Avengers Rings 18k Gold',
       price: t.collections.priceUponRequest,
       alt: t.collections.altSpecial7,
+      slug: 'avengers-rings-18k-gold-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/Anel Kraken Especial Edition by Rings Luxury Jorge Uquillas.png'),
       name: 'Kraken Especial Edition Ring',
       price: t.collections.priceUponRequest,
       alt: t.collections.altSpecial8,
+      slug: 'kraken-especial-edition-ring-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/Jesus Ring 18K with diamonds By Rings Luxury Jorge Uquillas.png'),
       name: 'Jesus Ring 18k with Diamonds',
       price: t.collections.priceUponRequest,
       alt: t.collections.altSpecial9,
+      slug: 'jesus-ring-18k-diamonds-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/Monkey Ring 18k gold with Diamonds by Jorge Uquillas rings Luxury.png'),
       name: 'Monkey Ring 18k Gold with Diamonds',
       price: t.collections.priceUponRequest,
       alt: t.collections.altSpecial10,
+      slug: 'monkey-ring-18k-gold-diamonds-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/Memento Mori by Jorge uquillas, rings Luxury.png'),
       name: 'Memento Mori Ring',
       price: t.collections.priceUponRequest,
       alt: t.collections.altSpecial11,
+      slug: 'memento-mori-ring-jorge-uquillas-rings-luxury',
     },
     {
       src: encodeURI('/PUBLIC/King Lion Ring with DIamonds by Jorge Uquillas Rings Luxury.png'),
       name: 'King Lion Ring with Diamonds',
       price: t.collections.priceUponRequest,
       alt: t.collections.altSpecial12,
+      slug: 'king-lion-ring-diamonds-jorge-uquillas',
     },
   ];
 
@@ -175,11 +189,10 @@ export function SpecialEditions() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-14">
             {RINGS.map((ring) => (
               <div key={ring.src} className="group flex flex-col items-center text-center">
-                <button
-                  type="button"
-                  onClick={() => scrollToContact()}
+                <Link
+                  to={`/produto/${ring.slug}`}
                   className="w-full aspect-square flex items-center justify-center overflow-hidden cursor-pointer focus:outline-none"
-                  aria-label={`${ring.name} ${t.collections.inquireSuffix}`}
+                  aria-label={`${ring.name} — ver peça`}
                 >
                   <img
                     src={ring.src}
@@ -190,20 +203,19 @@ export function SpecialEditions() {
                     style={{ filter: 'drop-shadow(0 24px 40px rgba(0,0,0,0.9))' }}
                     onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                   />
-                </button>
+                </Link>
                 <p className="mt-2 min-h-[40px] flex items-start justify-center text-[12px] leading-[1.5] text-white/90 max-w-[260px]">
                   {ring.name}
                 </p>
                 <p className="mt-1.5 font-cinzel text-[14px] tracking-[0.08em] text-[#E6CA85]">
                   {ring.price}
                 </p>
-                <button
-                  type="button"
-                  onClick={() => scrollToContact()}
+                <Link
+                  to={`/produto/${ring.slug}`}
                   className="mt-3 px-6 py-1.5 border border-white/25 hover:border-[#C5A059] rounded-full text-[11px] tracking-[0.12em] text-white/85 hover:text-[#E6CA85] transition-colors"
                 >
                   {t.collections.addToCart}
-                </button>
+                </Link>
               </div>
             ))}
           </div>

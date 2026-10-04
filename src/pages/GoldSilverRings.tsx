@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
@@ -12,6 +13,7 @@ interface RingItem {
   name: string;
   price: string;
   alt: string;
+  slug: string;
 }
 
 const GOLDSILVER_BG = encodeURI('/PUBLIC/Fundo da Seção Mixed Gold Rings 3 rings luxury Jorge Uquillas.png');
@@ -32,42 +34,49 @@ export function GoldSilverRings() {
       name: 'Mixed Luxury Gold Ring',
       price: '$ 3,500.00',
       alt: t.collections.altGoldSilver1,
+      slug: 'mixed-luxury-gold-ring-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/Wolf Silver Ring by Jorge Uquillas Rings Luxury.png'),
       name: 'Wolf Silver Ring',
       price: '$ 1,500.00',
       alt: t.collections.altGoldSilver2,
+      slug: 'wolf-silver-ring-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/Family Crest Silver Ring By rings Luxury Jorge Uquillas.png'),
       name: 'Family Crest Silver Ring',
       price: '$ 1,500.00',
       alt: t.collections.altGoldSilver3,
+      slug: 'family-crest-silver-ring-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/Miced Maçonic 33 Degrees Gold Silver Ring by Rings Luxury Jorge Uquillas.png'),
       name: 'Mixed Maçonic 33 Degrees Gold Silver Ring',
       price: '$ 3,500.00',
       alt: t.collections.altGoldSilver4,
+      slug: 'mixed-masonic-33-degrees-gold-silver-ring-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/Miced Gold-Silver ring Family Crest by Jorge uquillas Rings Luxury.png'),
       name: 'Mixed Gold-Silver Family Crest Ring',
       price: '$ 3,500.00',
       alt: t.collections.altGoldSilver5,
+      slug: 'mixed-gold-silver-family-crest-ring-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/Mixed Templar Gold Silver Ring 18k by Jorge Uquillas Rings Luxury.png'),
       name: 'Mixed Templar Gold Silver Ring 18k',
       price: '$ 3,500.00',
       alt: t.collections.altGoldSilver6,
+      slug: 'mixed-templar-gold-silver-ring-18k-jorge-uquillas',
     },
     {
       src: encodeURI('/PUBLIC/Miced Gold-Silver ring Family Crest by Jorge uquillas Rings Luxury with number.png'),
       name: 'Mixed Gold-Silver Ring Family Crest',
       price: '$ 3,500.00',
       alt: t.collections.altGoldSilver7,
+      slug: 'mixed-gold-silver-ring-family-crest-numbered-jorge-uquillas',
     },
   ];
 
@@ -145,11 +154,10 @@ export function GoldSilverRings() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-14">
             {RINGS.map((ring) => (
               <div key={ring.src} className="group flex flex-col items-center text-center">
-                <button
-                  type="button"
-                  onClick={() => scrollToContact()}
+                <Link
+                  to={`/produto/${ring.slug}`}
                   className="w-full aspect-square flex items-center justify-center overflow-hidden cursor-pointer focus:outline-none"
-                  aria-label={`${ring.name} ${t.collections.inquireSuffix}`}
+                  aria-label={`${ring.name} — ver peça`}
                 >
                   <img
                     src={ring.src}
@@ -160,20 +168,19 @@ export function GoldSilverRings() {
                     style={{ filter: 'drop-shadow(0 24px 40px rgba(0,0,0,0.9))' }}
                     onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                   />
-                </button>
+                </Link>
                 <p className="mt-2 min-h-[40px] flex items-start justify-center text-[12px] leading-[1.5] text-white/90 max-w-[260px]">
                   {ring.name}
                 </p>
                 <p className="mt-1.5 font-cinzel text-[14px] tracking-[0.08em] text-[#E6CA85]">
                   {ring.price}
                 </p>
-                <button
-                  type="button"
-                  onClick={() => scrollToContact()}
+                <Link
+                  to={`/produto/${ring.slug}`}
                   className="mt-3 px-6 py-1.5 border border-white/25 hover:border-[#C5A059] rounded-full text-[11px] tracking-[0.12em] text-white/85 hover:text-[#E6CA85] transition-colors"
                 >
                   {t.collections.addToCart}
-                </button>
+                </Link>
               </div>
             ))}
           </div>

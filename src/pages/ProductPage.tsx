@@ -100,7 +100,10 @@ export function ProductPage() {
     offers: {
       '@type': 'Offer',
       priceCurrency: 'USD',
-      price: product.priceNumber,
+      // Peças "Price Upon Request" (priceNumber 0): omite o preço do
+      // JSON-LD em vez de publicar "$0" — preço inventado ou zerado
+      // é dado estruturado enganoso e passível de ação manual.
+      ...(product.priceNumber > 0 ? { price: product.priceNumber } : {}),
       availability: product.inStock ? 'https://schema.org/InStock' : 'https://schema.org/PreOrder',
       // Só com domínio definido: sem ele não existe URL absoluta para a oferta.
       ...(HAS_SITE_URL ? { url: absoluteUrl(`/produto/${product.slug}`) } : {}),
@@ -144,7 +147,7 @@ export function ProductPage() {
           src={PRODUCT_BG}
           alt=""
           draggable={false}
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover opacity-[0.13]"
         />
         {/* véu para o texto do card ganhar contraste sobre a foto */}
         <div className="absolute inset-0 bg-[#020202]/45" />
@@ -342,14 +345,9 @@ export function ProductPage() {
           </div>
 
           <div className="rounded-xl border border-[#C5A059]/25 bg-[#020202]/65 p-6">
-            <h2 className="font-cinzel text-[#C5A059] text-xs uppercase tracking-[0.3em] mb-4">{t.pages.productDeliveryTitle}</h2>
+            <h2 className="font-cinzel text-[#C5A059] text-xs uppercase tracking-[0.3em] mb-4">🌍 {t.pages.productDeliveryTitle}</h2>
             <div className="space-y-3 text-xs leading-relaxed text-[#A8A296]">
-              <p>
-                <strong className="text-[#EAE6DF]">{t.pages.productDeliveryBrTitle}</strong> {t.pages.productDeliveryBrText}
-              </p>
-              <p>
-                <strong className="text-[#EAE6DF]">{t.pages.productDeliveryGlobalTitle}</strong> {t.pages.productDeliveryGlobalText}
-              </p>
+              <p>{t.pages.productDeliveryWorldText}</p>
               <p className="flex items-center gap-2 text-[10px] uppercase tracking-[0.15em] text-[#9A7B38]">
                 <Award className="w-3.5 h-3.5 text-[#C5A059]" aria-hidden /> {t.pages.productDeliveryTrack}
               </p>

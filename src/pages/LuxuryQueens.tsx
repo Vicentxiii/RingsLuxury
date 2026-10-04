@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
@@ -12,6 +13,7 @@ interface PieceItem {
   name: string;
   price: string;
   alt: string;
+  slug: string;
 }
 
 const QUEENS_BG = encodeURI('/PUBLIC/Seção Luxury Queens by Jorge Uquillas Rings Luxury.jpg');
@@ -32,12 +34,14 @@ export function LuxuryQueens() {
       name: 'Luxury Queens Ring',
       price: '$ 15,000.00',
       alt: t.collections.altQueens1,
+      slug: 'luxury-queens-ring-jorge-uquillas-rings-luxury',
     },
     {
       src: encodeURI('/PUBLIC/Colar de Safiras e diamantes by jORGE uQUILLAS rINGS lUXURY 2 SEM FUNDO.png'),
       name: 'Sapphire and Diamond Necklace',
       price: '$ 150,000.00',
       alt: t.collections.altQueens2,
+      slug: 'sapphire-diamond-necklace-jorge-uquillas-rings-luxury',
     },
   ];
 
@@ -102,11 +106,10 @@ export function LuxuryQueens() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-14 max-w-[1100px] mx-auto">
             {PIECES.map((piece) => (
               <div key={piece.src} className="group flex flex-col items-center text-center">
-                <button
-                  type="button"
-                  onClick={() => scrollToContact()}
+                <Link
+                  to={`/produto/${piece.slug}`}
                   className="w-full h-[260px] sm:h-[300px] flex items-center justify-center overflow-hidden cursor-pointer focus:outline-none"
-                  aria-label={`${piece.name} ${t.collections.inquireSuffix}`}
+                  aria-label={`${piece.name} — ver peça`}
                 >
                   <img
                     src={piece.src}
@@ -117,20 +120,19 @@ export function LuxuryQueens() {
                     style={{ filter: 'drop-shadow(0 24px 40px rgba(0,0,0,0.9))' }}
                     onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                   />
-                </button>
+                </Link>
                 <p className="mt-2 min-h-[40px] flex items-start justify-center text-[13px] leading-[1.5] text-white/90 max-w-[280px]">
                   {piece.name}
                 </p>
                 <p className="mt-2 font-cinzel text-[15px] tracking-[0.08em] text-[#E6CA85]">
                   {piece.price}
                 </p>
-                <button
-                  type="button"
-                  onClick={() => scrollToContact()}
+                <Link
+                  to={`/produto/${piece.slug}`}
                   className="mt-3 px-6 py-1.5 border border-white/25 hover:border-[#C5A059] rounded-full text-[11px] tracking-[0.12em] text-white/85 hover:text-[#E6CA85] transition-colors"
                 >
                   {t.collections.addToCart}
-                </button>
+                </Link>
               </div>
             ))}
           </div>

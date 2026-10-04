@@ -61,8 +61,8 @@ export function ProductPaymentMethods() {
               ))}
             </div>
 
-            {/* Pix / Boleto / Wire */}
-            <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {/* Pix / Wire */}
+            <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="flex items-center gap-3 p-3 bg-[#C5A059]/10 border border-[#C5A059]/30">
                 <div className="w-8 h-8 rounded-full bg-[#C5A059] flex items-center justify-center text-[#020202] font-cinzel text-[9px] font-bold">
                   PIX
@@ -70,15 +70,6 @@ export function ProductPaymentMethods() {
                 <div>
                   <span className="block font-cinzel text-xs tracking-widest text-[#F3EFE6]">PIX</span>
                   <span className="block text-[9px] tracking-widest uppercase text-[#9A7B38]">{t.collections.payPixNote}</span>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 p-3 bg-[#050505] border border-[#C5A059]/20">
-                <div className="w-8 h-8 rounded-full border border-[#C5A059]/40 flex items-center justify-center">
-                  <span className="font-cinzel text-[7px] tracking-widest text-[#C5A059]">BOLETO</span>
-                </div>
-                <div>
-                  <span className="block font-cinzel text-xs tracking-widest text-[#F3EFE6]">{t.collections.payBoleto}</span>
-                  <span className="block text-[9px] tracking-widest uppercase text-[#9A7B38]">{t.collections.payBoletoNote}</span>
                 </div>
               </div>
               <div className="flex items-center gap-3 p-3 bg-[#050505] border border-[#C5A059]/20">
