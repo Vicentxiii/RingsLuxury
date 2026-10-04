@@ -133,7 +133,7 @@ export function Header({ onOpenConsultation }: HeaderProps) {
             <img
               src="/PUBLIC/logo-cortado.webp"
               alt="RINGS LUXURY by Jorge Uquillas — Anéis artesanais HandCrafted ouro 18k"
-              className="w-9 h-9 sm:w-10 sm:h-10 object-contain select-none shrink-0"
+              className="w-8 h-8 sm:w-10 sm:h-10 object-contain select-none shrink-0"
               draggable={false}
               onError={(e) => {
                 const target = e.currentTarget;
@@ -145,7 +145,7 @@ export function Header({ onOpenConsultation }: HeaderProps) {
               }}
             />
             <div className="flex flex-col">
-              <span className="font-cinzel text-sm sm:text-base md:text-lg font-semibold tracking-[0.28em] text-[#F3EFE6] group-hover:text-[#C5A059] transition-colors duration-500">
+              <span className="font-cinzel text-[11px] tracking-[0.2em] sm:text-sm sm:tracking-[0.28em] md:text-lg font-semibold text-[#F3EFE6] group-hover:text-[#C5A059] transition-colors duration-500">
                 RINGS LUXURY
               </span>
               <span className="text-[7.5px] sm:text-[8.5px] uppercase tracking-[0.35em] text-[#9A7B38]">
@@ -155,8 +155,11 @@ export function Header({ onOpenConsultation }: HeaderProps) {
           </a>
         }
         extraHeaderActions={
-          <div className="flex items-center gap-2 sm:gap-3">
-            <AudioAtmosphere />
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+            {/* Pill de áudio só no desktop: no mobile ela sai da header (vira flutuante no canto inferior esquerdo) */}
+            <span className="hidden sm:block">
+              <AudioAtmosphere />
+            </span>
             <LanguageFlags />
           </div>
         }
@@ -170,6 +173,14 @@ export function Header({ onOpenConsultation }: HeaderProps) {
         changeMenuColorOnOpen={true}
         closeOnClickAway={true}
       />
+
+      {/* Player mobile: fixo no canto inferior esquerdo, fora da header */}
+      <div
+        className="sm:hidden fixed left-4 z-[55]"
+        style={{ bottom: 'max(1rem, env(safe-area-inset-bottom))' }}
+      >
+        <AudioAtmosphere />
+      </div>
     </>
   );
 }
