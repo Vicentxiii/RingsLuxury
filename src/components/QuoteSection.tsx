@@ -9,7 +9,7 @@ export function QuoteSection() {
       id="quote"
       className="relative w-full py-40 md:py-56 bg-[#020202] text-[#EAE6DF] flex flex-col items-center justify-center overflow-hidden"
     >
-      {/* Fundo — imagem de fundo da seção Jorge Uquillas Rings Luxury */}
+      {/* Fundo, imagem de fundo da seção Jorge Uquillas Rings Luxury */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden>
         <img
           src="/PUBLIC/Imagem%20de%20fundo%20de%20se%C3%A7%C3%A3o%20Jorge%20uquillas%20Rings%20Luxury.webp"
@@ -50,7 +50,7 @@ export function QuoteSection() {
           <div className="h-px w-16 md:w-24 bg-gradient-to-l from-transparent to-[#C5A059]" />
         </div>
 
-        {/* Master engraver — Creating legacy */}
+        {/* Master engraver, Creating legacy */}
         <figure className="mt-12 max-w-md mx-auto">
           <div className="relative border border-[#C5A059]/40 bg-[#070707] p-2.5 shadow-[0_25px_80px_rgba(0,0,0,0.9)]">
             <div className="absolute -top-1 -left-1 w-2.5 h-2.5 border-t border-l border-[#C5A059]" aria-hidden />

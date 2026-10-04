@@ -37,10 +37,10 @@ export function JorgeUquillas() {
         description={t.pages.jorgeSeoDescription}
         url="/jorge-uquillas"
       />
-      {/* Iframe que carrega a experiência imersiva completa — pocket watch 3D */}
+      {/* Iframe que carrega a experiência imersiva completa, pocket watch 3D */}
       <iframe
         src="/jorge-uquillas.html"
-        title="RINGS LUXURY by Jorge Uquillas — Laocoön Bronze Horse 3D — Anéis artesanais HandCrafted ouro 18k"
+        title="RINGS LUXURY by Jorge Uquillas, Laocoön Bronze Horse 3D, Anéis artesanais HandCrafted ouro 18k"
         className="w-full h-full border-0"
         allow="autoplay; fullscreen"
         loading="eager"

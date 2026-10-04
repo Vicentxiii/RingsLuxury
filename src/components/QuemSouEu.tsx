@@ -5,7 +5,7 @@ import { useLanguage } from '../i18n/LanguageContext';
 interface QuemSouEuProps {}
 
 /**
- * Seção SOBRE MIM — fiel ao print enviado
+ * Seção SOBRE MIM, fiel ao print enviado
  * - Fundo: /PUBLIC/fundo-quem-sou-eu.webp (preto com partículas douradas)
  * - Montagem: /PUBLIC/jorge-montagem-sobre-mim.webp (Jorge + 4 anéis + glow)
  * - Arabesco: /PUBLIC/arabesco-quem-sou-eu.webp (linha dourada com ornamento)
@@ -20,9 +20,9 @@ export function QuemSouEu({}: QuemSouEuProps) {
       className="relative w-full bg-[#020202] overflow-hidden isolate"
       aria-label={t.home.quemAria}
     >
-      {/* FUNDO — desfocado com blur como no print, liso sem textura */}
+      {/* FUNDO, desfocado com blur como no print, liso sem textura */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-black">
-        {/* FADE SUPERIOR — dissolve o corte com o hero acima */}
+        {/* FADE SUPERIOR, dissolve o corte com o hero acima */}
         <div className="absolute top-0 left-0 w-full h-[140px] sm:h-[180px] bg-gradient-to-b from-[#020202] to-transparent pointer-events-none" aria-hidden />
         <img
           src="/PUBLIC/fundo-quem-sou-eu.webp"
@@ -32,7 +32,7 @@ export function QuemSouEu({}: QuemSouEuProps) {
           style={{ filter: 'blur(3.5px)', WebkitFilter: 'blur(3.5px)' }}
           onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
         />
-        {/* véu muito leve só para garantir contraste do texto — liso */}
+        {/* véu muito leve só para garantir contraste do texto, liso */}
         <div className="absolute inset-0 bg-[#020202]/14" aria-hidden />
         {/* vinheta suave nas bordas */}
         <div
@@ -43,14 +43,14 @@ export function QuemSouEu({}: QuemSouEuProps) {
           }}
           aria-hidden
         />
-        {/* FADE INFERIOR — esconde o corte entre esta seção e a próxima */}
+        {/* FADE INFERIOR, esconde o corte entre esta seção e a próxima */}
         <div className="absolute bottom-0 left-0 w-full h-[140px] sm:h-[180px] lg:h-[220px] bg-gradient-to-b from-transparent to-[#020202] pointer-events-none" aria-hidden />
       </div>
 
-      {/* CONTEÚDO — 2 colunas */}
+      {/* CONTEÚDO, 2 colunas */}
       <div className="relative z-10 w-full max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-10 py-16 sm:py-20 lg:py-[110px]">
         <div className="grid grid-cols-1 lg:grid-cols-[1.08fr_0.92fr] gap-8 lg:gap-10 xl:gap-14 items-center">
-          {/* ESQUERDA — Montagem Jorge + anéis */}
+          {/* ESQUERDA, Montagem Jorge + anéis */}
           <div className="order-1 flex justify-center lg:justify-end items-center">
             <div className="relative w-full max-w-[480px] sm:max-w-[540px] lg:max-w-[610px] xl:max-w-[640px]">
               <img
@@ -64,9 +64,9 @@ export function QuemSouEu({}: QuemSouEuProps) {
             </div>
           </div>
 
-          {/* DIREITA — Texto */}
+          {/* DIREITA, Texto */}
           <div className="order-2 flex flex-col items-center lg:items-center text-center lg:text-center max-w-[560px] mx-auto lg:mx-0 lg:pr-2">
-            {/* Nome — grande, duas linhas, sem arabesco */}
+            {/* Nome, grande, duas linhas, sem arabesco */}
             <h2
               className="font-cinzel font-normal text-[#F5F0E6] leading-[1.02] tracking-[0.03em] mt-1.5 mb-8"
               style={{
@@ -80,7 +80,7 @@ export function QuemSouEu({}: QuemSouEuProps) {
               UQUILLAS
             </h2>
 
-            {/* Biografia — texto fiel ao print, liso sem bolinhas */}
+            {/* Biografia, texto fiel ao print, liso sem bolinhas */}
             <div className="w-full text-left font-sans-luxury text-[#EDE8DB] leading-relaxed space-y-3.5">
               <p className="text-[11px] sm:text-[11.5px] leading-[1.72] text-[#EFE9DC]/95">
                 {t.home.quemBio1}
@@ -100,7 +100,7 @@ export function QuemSouEu({}: QuemSouEuProps) {
               </p>
             </div>
 
-            {/* CTA — experiência 3D / about */}
+            {/* CTA, experiência 3D / about */}
             <div className="w-full mt-8 flex justify-center lg:justify-start">
               <button
                 type="button"

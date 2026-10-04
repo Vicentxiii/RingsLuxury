@@ -3,7 +3,7 @@ import { Sparkles, ZoomIn, Info, BadgeCheck, X } from 'lucide-react';
 import { GreekKeyBorder, GreekMeanderDivider, LaurelWreath, AcanthusLeaf } from './OrnamentIcons';
 import { useLanguage } from '../i18n/LanguageContext';
 
-/** Anel Kraken em ouro, rubis e diamantes — substitui a macro do cuff */
+/** Anel Kraken em ouro, rubis e diamantes, substitui a macro do cuff */
 const KRAKEN_IMG =
   '/PUBLIC/Anel%20Kraken%20feito%20em%20ouro%20Rubis%20e%20diamantes%20y%20Jorge%20Uquillas%20Rings%20Luxury.webp';
 
@@ -13,11 +13,11 @@ const CERT_IMG =
 interface Hotspot {
   id: string;
   title: string;
-  /** mini descrição — poucos caracteres, condizente com o título */
+  /** mini descrição, poucos caracteres, condizente com o título */
   mini: string;
   subtitle: string;
   description: string;
-  /** classes literais de posição (mobile + sm) — Tailwind precisa do texto literal */
+  /** classes literais de posição (mobile + sm), Tailwind precisa do texto literal */
   pos: string;
   /** true = etiqueta abre para a direita do dot (não cobre o anel) */
   tipLeft?: boolean;
@@ -108,7 +108,7 @@ export function MasterpieceDetail() {
 
   // Dots abrem para os lados no hover (liberam o anel) e voltam ao sair
   const [scattered, setScattered] = useState(false);
-  // Vetores para fora do centro do anel (47,43) — distância ~52px
+  // Vetores para fora do centro do anel (47,43), distância ~52px
   const SCATTER_VEC = [
     { x: 44, y: 28 },
     { x: 18, y: -49 },
@@ -198,7 +198,7 @@ export function MasterpieceDetail() {
               }}
             />
 
-            {/* Hotspots — espaçam para os lados no hover, voltam ao sair */}
+            {/* Hotspots, espaçam para os lados no hover, voltam ao sair */}
             {!isZoomed &&
               hotspots.map((hs, idx) => {
                 const isSelected = activeHotspot === hs.id;
@@ -230,7 +230,7 @@ export function MasterpieceDetail() {
                           isSelected ? 'animate-ping [animation-duration:2.2s]' : 'hidden group-hover:block group-hover:animate-ping group-hover:[animation-duration:2.2s]'
                         }`}
                       />
-                      {/* dot central — 10px */}
+                      {/* dot central, 10px */}
                       <span
                         className={`relative w-2.5 h-2.5 rounded-full border flex items-center justify-center transition-all shadow-[0_0_10px_rgba(197,160,89,0.8)] ${
                           isSelected
@@ -244,7 +244,7 @@ export function MasterpieceDetail() {
                           }`}
                         />
                       </span>
-                      {/* palavra clicável — mesmo botão do dot.
+                      {/* palavra clicável, mesmo botão do dot.
                           No mobile fica oculta até o dot ser tocado (só o selecionado revela);
                           no desktop (sm+) sempre visível como antes. */}
                       <span
@@ -331,7 +331,7 @@ export function MasterpieceDetail() {
         <GreekKeyBorder className="w-full h-1" />
       </div>
 
-      {/* Certificate Modal — glass 3D, somente o certificado */}
+      {/* Certificate Modal, glass 3D, somente o certificado */}
       {showCert && (
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8 animate-[fadeIn_0.35s_ease-out]"
@@ -356,7 +356,7 @@ export function MasterpieceDetail() {
                 alt={t.home.mpCertAlt}
                 className="block w-full h-auto max-h-[82vh] object-contain"
               />
-              {/* vidro — brilho */}
+              {/* vidro, brilho */}
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.16] via-transparent via-35% to-transparent" />
               <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
             </div>

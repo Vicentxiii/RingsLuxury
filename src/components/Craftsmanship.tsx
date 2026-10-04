@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowRight, Compass, Shield, Sparkles, Feather } from 'lucid
 import { GreekKeyBorder, GreekMeanderDivider, LaurelWreath } from './OrnamentIcons';
 import { useLanguage } from '../i18n/LanguageContext';
 
-// Craftsmanship imagery — 5 fotos novas da pasta public (ordem: Design → Eternize)
+// Craftsmanship imagery, 5 fotos novas da pasta public (ordem: Design → Eternize)
 const DESIGN_IMG = '/PUBLIC/Design%20of%20ring%20by%20rings%20luxury.webp';
 const SCULPT_IMG =
   '/PUBLIC/Sculpt%20by%20rings%20luxury%20master%20Hand%20Engraver%20Jorge%20Uquillas.webp';
@@ -152,7 +152,7 @@ export function Craftsmanship() {
                 {stage.title}
               </span>
 
-              {/* Active Indicator Bar — só no desktop */}
+              {/* Active Indicator Bar, só no desktop */}
               {activeStageIndex === idx && (
                 <div className="absolute -bottom-8 left-0 w-full hidden sm:flex items-center justify-center">
                   <div className="w-full h-px bg-[#C5A059]" />

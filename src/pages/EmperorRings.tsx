@@ -92,7 +92,7 @@ export function EmperorRings() {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'ItemList',
-            name: `${t.collections.emperorTitle} — RINGS LUXURY`,
+            name: `${t.collections.emperorTitle}, RINGS LUXURY`,
             numberOfItems: RINGS.length,
             itemListElement: RINGS.map((ring, i) => ({
               '@type': 'ListItem',
@@ -106,7 +106,7 @@ export function EmperorRings() {
       <Header onOpenConsultation={() => scrollToContact()} />
 
       <main className="relative w-full overflow-hidden">
-        {/* Imperador ao fundo, lado direito — inteiro, 12% de opacidade */}
+        {/* Imperador ao fundo, lado direito, inteiro, 12% de opacidade */}
         <div className="absolute inset-y-0 right-0 h-full pointer-events-none" aria-hidden>
           <img
             src={EMPEROR_BG}
@@ -145,7 +145,7 @@ export function EmperorRings() {
                 <Link
                   to={`/produto/${ring.slug}`}
                   className="w-full aspect-square flex items-center justify-center overflow-hidden cursor-pointer focus:outline-none"
-                  aria-label={`${ring.name} — ver peça`}
+                  aria-label={`${ring.name}, ver peça`}
                 >
                   <img
                     src={ring.src}

@@ -7,7 +7,7 @@ import contact from '../data/contact.json';
 import locationsData from '../data/locations.json';
 
 /**
- * Rodapé — principal bloco de entity signal do site.
+ * Rodapé, principal bloco de entity signal do site.
  *
  * Decisões de SEO aqui:
  * - Links para PÁGINAS reais via react-router (`/luxury-rings`, `/blog`, ...).
@@ -56,8 +56,8 @@ export function Footer() {
       itemScope
       itemType="https://schema.org/Organization"
     >
-      {/* Sem textura — preto puro */}
-      {/* Imagem de fundo do rodapé — 30% de opacidade */}
+      {/* Sem textura, preto puro */}
+      {/* Imagem de fundo do rodapé, 30% de opacidade */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden>
         <img
           src="/PUBLIC/Fundo%20do%20rodap%C3%A9%20Rings%20Luxury%20Jorge%20Uquillas%20aneis%20feitos%20a%20mao.webp"
@@ -68,7 +68,7 @@ export function Footer() {
         />
       </div>
 
-      {/* Degradê preto forte no final — letras ficam por cima */}
+      {/* Degradê preto forte no final, letras ficam por cima */}
       <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black via-black/85 to-transparent pointer-events-none" aria-hidden />
 
       {/* Monumental Greek Key Border Header */}
@@ -133,7 +133,7 @@ export function Footer() {
             </a>
           </div>
 
-          {/* Coleções — links reais, não âncoras */}
+          {/* Coleções, links reais, não âncoras */}
           <nav className="md:col-span-3 space-y-4" aria-label="Collections">
             <h2 className="font-cinzel text-[11px] tracking-[0.35em] uppercase text-[#C5A059]">
               {t.footer.collectionsHeading}
@@ -165,7 +165,7 @@ export function Footer() {
             </ul>
           </nav>
 
-          {/* Contato — NAP */}
+          {/* Contato, NAP */}
           <div className="md:col-span-3 space-y-4">
             <h2 className="font-cinzel text-[11px] tracking-[0.35em] uppercase text-[#C5A059]">
               {t.footer.privateSalonHeading}
@@ -206,7 +206,7 @@ export function Footer() {
                   <MapPin className="w-3.5 h-3.5 text-[#C5A059] shrink-0 mt-0.5" aria-hidden />
                   <span>
                     <strong className="text-[#F3EFE6] font-cinzel">{loc.city}</strong>
-                    {loc.district ? ` — ${loc.district}` : ''}
+                    {loc.district ? `, ${loc.district}` : ''}
                     <br />
                     <span className="text-[#9A7B38]">{t.footer.visitsScheduled}</span>
                   </span>
@@ -231,9 +231,9 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Crédito de criação — dois links: autor e empresa */}
-        <div className="pt-10 flex justify-center">
-          <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.32em] text-[#9A7B38] text-center">
+        {/* Crédito de criação, dois links: autor e empresa */}
+        <div className="pt-8 flex justify-center">
+          <p className="text-[7px] sm:text-[8px] uppercase tracking-[0.28em] text-[#9A7B38]/80 text-center">
             {t.footer.creditPrefix}{' '}
             <a
               href={contact.credit.url}

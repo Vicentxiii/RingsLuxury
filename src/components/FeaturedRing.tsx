@@ -13,7 +13,7 @@ interface Piece {
   zoom?: string;
 }
 
-/** Coleção Luxury Rings — anéis 1/1 HandCrafted em ouro 18k */
+/** Coleção Luxury Rings, anéis 1/1 HandCrafted em ouro 18k */
 const PIECES: Piece[] = [
   {
     src: '/PUBLIC/Luxury%20rings%20collection%20anel%20Aguia%20ma%C3%A7onica%20by%20Jorge%20Uquillas%20rings%20luxury.webp',
@@ -115,7 +115,7 @@ function GoldButton({ label, onClick, variant = 'primary', icon }: GoldButtonPro
 }
 
 /**
- * Seção da coleção Luxury Rings — faixa infinita com os anéis 1/1 em ouro 18k.
+ * Seção da coleção Luxury Rings, faixa infinita com os anéis 1/1 em ouro 18k.
  * Fica logo após "The Masterpiece Detail" na home.
  * Layout 100% centralizado: kicker, título, subtítulo, marquee e botões.
  */
@@ -135,7 +135,7 @@ export function FeaturedRing() {
       className="relative w-full bg-black overflow-hidden isolate"
       aria-label={t.home.featSectionAria}
     >
-      {/* sessão 100% preta — sem halo/flare */}
+      {/* sessão 100% preta, sem halo/flare */}
 
       {/* CABEÇALHO CENTRALIZADO */}
       <div className="relative z-10 w-full max-w-[1180px] mx-auto px-5 sm:px-8 lg:px-10 pt-16 sm:pt-20 lg:pt-24 pb-10 sm:pb-12">
@@ -162,7 +162,7 @@ export function FeaturedRing() {
             </span>
           </h2>
 
-          {/* filetes + losango — substitui o arabesco raster */}
+          {/* filetes + losango, substitui o arabesco raster */}
           <div
             aria-hidden
             className="mt-6 mb-5 flex w-full max-w-[420px] items-center justify-center gap-3"
@@ -188,7 +188,7 @@ export function FeaturedRing() {
         </div>
       </div>
 
-      {/* CARROSSEL — swipe com snap suave; cada anel abre a página do produto */}
+      {/* CARROSSEL, swipe com snap suave; cada anel abre a página do produto */}
       <div className="relative z-10 w-full">
         <div
           ref={trackRef}
@@ -201,7 +201,7 @@ export function FeaturedRing() {
             <Link
               key={piece.src}
               to={piece.to}
-              aria-label={`${piece.name} — ver peça`}
+              aria-label={`${piece.name}, ver peça`}
               className="group relative shrink-0 snap-center w-[220px] sm:w-[260px] lg:w-[300px] px-5 sm:px-7 flex flex-col items-center justify-center bg-transparent border-0 focus:outline-none"
             >
               <img

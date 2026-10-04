@@ -8,7 +8,7 @@ interface Slide {
 }
 
 /**
- * Seção "YOU DECIDE EVERY STONE EVERY DETAIL" — logo após WHY CHOOSE RINGS LUXURY?
+ * Seção "YOU DECIDE EVERY STONE EVERY DETAIL", logo após WHY CHOOSE RINGS LUXURY?
  * - Fundo: Title Session Rings Luxury Background YOU DECIDE EVERY STONE EVERY DETAIL.png (com opacidade, predominantemente preto)
  * - Carrossel lateral com as fotos do ateliê / sketches do mestre
  */
@@ -38,7 +38,7 @@ export function YouDecide() {
     return () => clearInterval(t);
   }, [paused, total]);
 
-  // ASSINATURA — revela com o scroll (0 -> 100%), dá zoom ao descer e some perto da seção de baixo
+  // ASSINATURA, revela com o scroll (0 -> 100%), dá zoom ao descer e some perto da seção de baixo
   const [sigStyle, setSigStyle] = useState({ opacity: 0, scale: 1 });
   useEffect(() => {
     let ticking = false;
@@ -78,7 +78,7 @@ export function YouDecide() {
       className="relative w-full overflow-hidden isolate bg-[#020202] text-[#EAE6DF]"
       aria-label={t.home.ydAria}
     >
-      {/* FUNDO — foto do salão com opacidade, predominância preta */}
+      {/* FUNDO, foto do salão com opacidade, predominância preta */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-black">
         <img
           src="/PUBLIC/Title Session Rings Luxury Background YOU DECIDE EVERY STONE EVERY DETAIL.webp"
@@ -94,7 +94,7 @@ export function YouDecide() {
         <div className="absolute bottom-0 left-0 w-full h-[120px] sm:h-[160px] bg-gradient-to-t from-[#020202] to-transparent pointer-events-none" aria-hidden />
       </div>
 
-      {/* CONTEÚDO — 2 colunas: texto à esquerda, carrossel à direita */}
+      {/* CONTEÚDO, 2 colunas: texto à esquerda, carrossel à direita */}
       <div className="relative z-10 w-full max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10 py-16 sm:py-20 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.92fr] gap-10 lg:gap-14 xl:gap-20 items-center">
           {/* TEXTO */}
@@ -159,7 +159,7 @@ export function YouDecide() {
                 />
               </div>
 
-              {/* rodapé do card — contador */}
+              {/* rodapé do card, contador */}
               <div className="flex items-center justify-between px-6 py-3.5 border-t border-[#C5A059]/20">
                 <span className="text-[9px] uppercase tracking-[0.32em] text-[#9A7B38]">
                   {t.home.ydArchive}
@@ -202,7 +202,7 @@ export function YouDecide() {
           </div>
         </div>
 
-        {/* ASSINATURA JORGE UQUILLAS — no meio da seção, revela com o scroll */}
+        {/* ASSINATURA JORGE UQUILLAS, no meio da seção, revela com o scroll */}
         <div className="mt-12 sm:mt-14 flex justify-center">
           <img
             src="/PUBLIC/assinatura Jorge Uquillas Rings Luxury.webp"

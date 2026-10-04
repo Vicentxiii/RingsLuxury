@@ -169,7 +169,7 @@ export function FlippingWordSwap({
   );
 }
 
-// Auto-cycling version for 3+ words — reuses same flip animation but cycles automatically
+// Auto-cycling version for 3+ words, reuses same flip animation but cycles automatically
 export interface AutoFlippingWordsProps {
   words: string[];
   duration?: number;

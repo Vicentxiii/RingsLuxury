@@ -91,7 +91,7 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
     const hasSavedTime = initialTime !== null && !isNaN(initialTime) && initialTime > 0.5 && initialTime < 1e6;
     const targetTime = hasSavedTime ? initialTime! : startAt;
 
-    // NUNCA autoplay — só toca se usuário clicar no botão de música
+    // NUNCA autoplay, só toca se usuário clicar no botão de música
     // mesmo que sessionStorage diga que estava tocando, exige clique novamente
     const shouldAttemptPlay = false;
     // const shouldAttemptPlay = wasPlaying === true; // <- use esta linha se quiser retomar após reload

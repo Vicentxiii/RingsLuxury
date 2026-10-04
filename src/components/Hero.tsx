@@ -5,7 +5,7 @@ interface HeroProps {
   onEnterAtelier: () => void;
 }
 
-// Imagem composta da HERO antiga (Odin esquerda + Medusa direita) — 2048x1080
+// Imagem composta da HERO antiga (Odin esquerda + Medusa direita), 2048x1080
 const OLD_HERO_COMPOSITE = encodeURI(
   '/PUBLIC/Medusa e Odim capa do site rings luxury by Jorge Uquillas.webp'
 );
@@ -85,7 +85,7 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
         )}
       </div>
 
-      {/* 2. DARKEN OVERLAYS — AINDA MAIS CLARO */}
+      {/* 2. DARKEN OVERLAYS, AINDA MAIS CLARO */}
       <div className="absolute inset-0 z-10 bg-[#020202]/07" aria-hidden />
       <div
         className="absolute inset-0 z-10 pointer-events-none"
@@ -100,7 +100,7 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
       <div className="absolute inset-y-0 left-0 w-[10%] z-10 bg-gradient-to-r from-[#020202]/14 via-[#020202]/03 to-transparent pointer-events-none hidden sm:block" aria-hidden />
       <div className="absolute inset-y-0 right-0 w-[10%] z-10 bg-gradient-to-l from-[#020202]/14 via-[#020202]/03 to-transparent pointer-events-none hidden sm:block" aria-hidden />
 
-      {/* 3. COMPOSITE ODIN + MEDUSA por cima do video — liso sem textura */}
+      {/* 3. COMPOSITE ODIN + MEDUSA por cima do video, liso sem textura */}
       <div className="absolute inset-0 z-20 pointer-events-none select-none overflow-hidden" aria-hidden>
         <img
           src={OLD_HERO_COMPOSITE}
@@ -116,13 +116,13 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
         <div className="absolute inset-0 shadow-[inset_0_0_40px_rgba(0,0,0,0.12)]" />
       </div>
 
-      {/* 4. FADE PRETO NA BASE — dissolve o corte entre o hero e a próxima seção */}
+      {/* 4. FADE PRETO NA BASE, dissolve o corte entre o hero e a próxima seção */}
       <div
         className="absolute inset-x-0 bottom-0 h-[28%] z-[25] pointer-events-none bg-gradient-to-t from-[#020202] via-[#020202]/70 to-transparent"
         aria-hidden
       />
 
-      {/* 5. TEXTO CENTRAL — WELCOME TO RINGS LUXURY / MASTER PIECES */}
+      {/* 5. TEXTO CENTRAL, WELCOME TO RINGS LUXURY / MASTER PIECES */}
       <div className="relative z-30 w-full max-w-6xl mx-auto px-6 flex flex-col items-center justify-center text-center pointer-events-none">
         <h1 className="flex flex-col items-center gap-3 sm:gap-4">
           <span

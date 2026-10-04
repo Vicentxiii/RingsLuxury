@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef } from 'react';
 
 /**
- * Folhas douradas — aparecem SÓ na segunda seção (QUEM SOU EU)
+ * Folhas douradas, aparecem SÓ na segunda seção (QUEM SOU EU)
  * - Nascem nos cantos laterais da seção, descem em diagonal para o meio e somem
  * - Nunca ficam em cima do texto
  * - Fluidez mobile: escreve transform/opacity direto no DOM via refs (zero
@@ -37,7 +37,7 @@ export function FolhasScroll() {
       const h = el.offsetHeight;
       // começa a aparecer quando a seção entra (40% da viewport já visível)
       const start = top - window.innerHeight * 0.52;
-      // termina antes da terceira seção — 88% da altura da QuemSouEu
+      // termina antes da terceira seção, 88% da altura da QuemSouEu
       const end = top + h * 0.88;
       rangeRef.current = { start: Math.max(0, start), end };
     };
@@ -127,7 +127,7 @@ export function FolhasScroll() {
       aria-hidden
       style={{ opacity: 0, transition: 'opacity 0.22s linear' }}
     >
-      {/* FOLHA 1 — canto esquerdo da seção — desce em diagonal para o meio e some */}
+      {/* FOLHA 1, canto esquerdo da seção, desce em diagonal para o meio e some */}
       <img
         ref={leaf1Ref}
         src="/PUBLIC/folha-scroll-1.webp"
@@ -146,7 +146,7 @@ export function FolhasScroll() {
         onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
       />
 
-      {/* FOLHA 2 — canto direito da seção — desce em diagonal para o meio e some */}
+      {/* FOLHA 2, canto direito da seção, desce em diagonal para o meio e some */}
       <img
         ref={leaf2Ref}
         src="/PUBLIC/folha-scroll-2.webp"

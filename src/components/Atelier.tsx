@@ -26,7 +26,7 @@ export function Atelier() {
               </span>
             </div>
 
-            {/* Large Typography: THE HAND OF JORGE UQUILLAS — letra única */}
+            {/* Large Typography: THE HAND OF JORGE UQUILLAS, letra única */}
             <h2
               id="atelier-heading"
               className="font-cinzel text-2xl sm:text-3xl md:text-4xl tracking-[0.16em] uppercase text-[#FBF9F5] font-light leading-[1.25]"
@@ -103,7 +103,7 @@ export function Atelier() {
                 />
               </div>
 
-              {/* Caption SEO — peça real: maçônico 18k com citrino */}
+              {/* Caption SEO, peça real: maçônico 18k com citrino */}
               <div className="mt-3 flex items-center justify-center text-center text-[9px] uppercase tracking-[0.3em] text-[#9A7B38]">
                 <span>{t.home.atCaptionMono}</span>
               </div>

@@ -57,7 +57,7 @@ export function LuxuryQueens() {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'ItemList',
-            name: `${t.collections.queensTitle} — RINGS LUXURY`,
+            name: `${t.collections.queensTitle}, RINGS LUXURY`,
             numberOfItems: PIECES.length,
             itemListElement: PIECES.map((piece, i) => ({
               '@type': 'ListItem',
@@ -109,7 +109,7 @@ export function LuxuryQueens() {
                 <Link
                   to={`/produto/${piece.slug}`}
                   className="w-full h-[260px] sm:h-[300px] flex items-center justify-center overflow-hidden cursor-pointer focus:outline-none"
-                  aria-label={`${piece.name} — ver peça`}
+                  aria-label={`${piece.name}, ver peça`}
                 >
                   <img
                     src={piece.src}

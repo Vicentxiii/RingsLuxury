@@ -47,10 +47,10 @@ export function Home() {
         title={t.home.seoTitle} 
         description={t.home.seoDescription}
       />
-      {/* Universal Film Grain — DESATIVADO na Hero para ficar liso/elegante (removidas bolinhas) */}
+      {/* Universal Film Grain, DESATIVADO na Hero para ficar liso/elegante (removidas bolinhas) */}
       {/* <div className="fixed inset-0 film-grain pointer-events-none z-40 opacity-35" /> */}
 
-      {/* Folhas douradas com parallax no scroll — laterais, somem elegante */}
+      {/* Folhas douradas com parallax no scroll, laterais, somem elegante */}
       <FolhasScroll />
 
       {/* Navigation Header */}
@@ -63,34 +63,34 @@ export function Home() {
         {/* I. Cinematic Hero */}
         <Hero onEnterAtelier={handleEnterAtelier} />
 
-        {/* I.1 — SOBRE MIM / QUEM SOU EU — montagem Jorge Uquillas by @vicenteczar.dev */}
+        {/* I.1, SOBRE MIM / QUEM SOU EU, montagem Jorge Uquillas by @vicenteczar.dev */}
         <QuemSouEu />
 
-        {/* I.1.2 — THE MASTERPIECE DETAIL / MICROSCOPIC PROVENANCE — logo após a biografia */}
+        {/* I.1.2, THE MASTERPIECE DETAIL / MICROSCOPIC PROVENANCE, logo após a biografia */}
         <MasterpieceDetail />
 
-        {/* I.1.1 — ANEL DE OURO 18K EM DESTAQUE — abaixo da peça em microscopic examination */}
+        {/* I.1.1, ANEL DE OURO 18K EM DESTAQUE, abaixo da peça em microscopic examination */}
         <FeaturedRing />
 
-        {/* I.2 — WHY CHOOSE RINGS LUXURY? — terceira seção fiel ao print */}
+        {/* I.2, WHY CHOOSE RINGS LUXURY?, terceira seção fiel ao print */}
         <WhyChoose />
 
-        {/* IV. The Atelier: The Hand of the Master — logo abaixo do WHY CHOOSE */}
+        {/* IV. The Atelier: The Hand of the Master, logo abaixo do WHY CHOOSE */}
         <Atelier />
 
-        {/* I.3 — YOU DECIDE EVERY STONE EVERY DETAIL — com carrossel do ateliê */}
+        {/* I.3, YOU DECIDE EVERY STONE EVERY DETAIL, com carrossel do ateliê */}
         <YouDecide />
 
-        {/* V. Craftsmanship: Five Sacred Stages — logo abaixo do YOU DECIDE */}
+        {/* V. Craftsmanship: Five Sacred Stages, logo abaixo do YOU DECIDE */}
         <Craftsmanship />
 
-        {/* I.4 — SHIPPING WORLDWIDE — mini-carrossel de bandeiras */}
+        {/* I.4, SHIPPING WORLDWIDE, mini-carrossel de bandeiras */}
         <ShippingWorldwide />
 
-        {/* I.5 — WHAT PEOPLE SAY ABOUT RINGS LUXURY — provas sociais Google */}
+        {/* I.5, WHAT PEOPLE SAY ABOUT RINGS LUXURY, provas sociais Google */}
         <WorldClients />
 
-        {/* I.6 — VISITS IN THE PHYSICAL WORKSHOP UNDER SCHEDULE — Miami + São Paulo */}
+        {/* I.6, VISITS IN THE PHYSICAL WORKSHOP UNDER SCHEDULE, Miami + São Paulo */}
         <AtelierLocations />
 
         {/* IX. Sententia Aurea Quote */}

@@ -8,7 +8,7 @@ const buildRobots = (siteUrl: string) => `# ringsluxury.com
 User-agent: *
 Allow: /
 
-# Crawlers de busca e IA — liberados explicitamente.
+# Crawlers de busca e IA, liberados explicitamente.
 # Googlebot/Bingbot: busca. GPTBot/OAI-SearchBot/ChatGPT-User: ChatGPT.
 # ClaudeBot/Claude-User/Claude-SearchBot: Anthropic. PerplexityBot/Perplexity-User: Perplexity.
 # Google-Extended: Gemini. Applebot/Applebot-Extended: Siri/Spotlight. CCBot: Common Crawl.
@@ -145,7 +145,7 @@ const buildGraph = (data: ReviewsData, siteUrl: string, locs: LocationsData, con
       '@type': 'Organization',
       ...(hasSite ? { '@id': orgId, url: siteUrl } : {}),
       name: 'RINGS LUXURY by Jorge Uquillas',
-      description: 'Atelier de alta joalheria HandCrafted. Anéis 1/1 feitos à mão em ouro 18k com diamantes naturais, gravados com buril por Jorge Uquillas.',
+      description: 'Atelier de alta joalheria HandCrafted. Anéis 1/1 feitos à mão em ouro 18k com diamantes naturais, gravados com hand engraver por Jorge Uquillas.',
       founder: { '@type': 'Person', name: 'Jorge Uquillas' },
       email: contact.email,
       telephone: contact.phone,
@@ -163,7 +163,7 @@ const buildGraph = (data: ReviewsData, siteUrl: string, locs: LocationsData, con
         availableLanguage: ['pt', 'en', 'es'],
       },
       // Endereco so entra com dado real. 'address' esta null em locations.json
-      // ate confirmacao — declarar endereco ficticio e o caminho mais curto
+      // ate confirmacao, declarar endereco ficticio e o caminho mais curto
       // para acao manual do Google.
       ...(locs.locations.some((l) => l.address)
         ? { address: locs.locations.filter((l) => l.address).map((l) => ({ '@type': 'PostalAddress', streetAddress: l.address as string, addressLocality: l.city, addressRegion: l.region as string, addressCountry: l.countryCode })) }
@@ -229,7 +229,7 @@ const buildStaticBlock = (data: ReviewsData, locs: LocationsData, contact: Conta
 
   // Os iframes do Google Maps nao sao legiveis por crawlers nem por IAs: o
   // conteudo fica em google.com. Por isso os locais entram como texto aqui.
-  // So entram dados confirmados — sem 'address', que ainda e null.
+  // So entram dados confirmados, sem 'address', que ainda e null.
   const places = locs.locations
     .map((l) => {
       const where = [l.district, l.city, l.region, l.country].filter(Boolean).join(', ');
@@ -265,7 +265,7 @@ export function seoInject(): Plugin {
     name: 'ringsluxury-seo-inject',
     configResolved(config) {
       root = config.root;
-      // loadEnv le .env, .env.production etc. — mesma fonte que o
+      // loadEnv le .env, .env.production etc., mesma fonte que o
       // import.meta.env usado no app, entao nunca divergem.
       const env = loadEnv(config.mode, config.root, 'VITE_');
       siteUrl = (env.VITE_SITE_URL ?? '').trim().replace(/\/+$/, '');
@@ -303,7 +303,7 @@ export function seoInject(): Plugin {
       // <noscript> por definição só renderiza sem JS.
       const noJsNav: HtmlTagDescriptor = {
         tag: 'noscript',
-        children: `<nav aria-label="RINGS LUXURY sections" style="max-width:820px;margin:0 auto;padding:24px"><h1 style="color:#E6CA85;font-size:24px">RINGS LUXURY by Jorge Uquillas — Luxury Rings, handcrafted 18k gold</h1><p style="color:#8a8a8a">1/1 handcrafted 18k gold diamond rings, hand-engraved. Atelier Brazil, Miami.</p><ul>${STATIC_ROUTES.map((r) => `<li><a href="${r}" style="color:#C5A059">${r}</a></li>`).join('')}</ul></nav>`,
+        children: `<nav aria-label="RINGS LUXURY sections" style="max-width:820px;margin:0 auto;padding:24px"><h1 style="color:#E6CA85;font-size:24px">RINGS LUXURY by Jorge Uquillas, Luxury Rings, handcrafted 18k gold</h1><p style="color:#8a8a8a">1/1 handcrafted 18k gold diamond rings, hand-engraved. Atelier Brazil, Miami.</p><ul>${STATIC_ROUTES.map((r) => `<li><a href="${r}" style="color:#C5A059">${r}</a></li>`).join('')}</ul></nav>`,
         injectTo: 'body',
       };
 
@@ -313,8 +313,8 @@ export function seoInject(): Plugin {
       // rewrite (vercel.json), entao um canonical fixo de '/' no HTML estatico
       // declarava /luxury-rings, /blog e todas as outras como duplicata da
       // home. O canonical por rota e emitido em runtime pelo <SEO>, que deriva
-      // da pathname. Crawlers que nao executam JS ficam sem canonical — que e
-      // o estado neutro correto — em vez de receberem um errado.
+      // da pathname. Crawlers que nao executam JS ficam sem canonical, que e
+      // o estado neutro correto, em vez de receberem um errado.
 
       return tags;
     },
@@ -322,7 +322,7 @@ export function seoInject(): Plugin {
     /**
      * robots.txt e sitemap.xml gerados em build para ficarem sempre em sync
      * com products.ts / blogPosts.ts. Nao emitimos <lastmod> porque nao temos
-     * data confiavel de modificacao — omitir e melhor do que inventar.
+     * data confiavel de modificacao, omitir e melhor do que inventar.
      *
      * O sitemap so e emitido com dominio configurado: publicar <loc> apontando
      * para um host inexistente convida o Google a indexar URLs que nao

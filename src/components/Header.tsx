@@ -102,8 +102,8 @@ export function Header({ onOpenConsultation }: HeaderProps) {
   ];
 
   const socialItems: StaggeredMenuSocialItem[] = [
-    { label: 'Place Vendôme', link: '#contact' },
-    { label: 'Geneva Salon', link: '#contact' },
+    { label: 'Miami', link: '#contact' },
+    { label: 'São Paulo Brasil', link: '#contact' },
     { label: 'Instagram @ringsluxury', link: 'https://www.instagram.com/ringsluxury' },
   ];
 
@@ -132,7 +132,7 @@ export function Header({ onOpenConsultation }: HeaderProps) {
           >
             <img
               src="/PUBLIC/logo-cortado.webp"
-              alt="RINGS LUXURY by Jorge Uquillas — Anéis artesanais HandCrafted ouro 18k"
+              alt="RINGS LUXURY by Jorge Uquillas, Anéis artesanais HandCrafted ouro 18k"
               className="w-8 h-8 sm:w-10 sm:h-10 object-contain select-none shrink-0"
               draggable={false}
               onError={(e) => {

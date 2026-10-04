@@ -21,7 +21,7 @@ const mapsLink = (loc: Location): string =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(loc.mapQuery)}`;
 
 /**
- * Seção VISITS IN THE PHYSICAL WORKSHOP UNDER SCHEDULE — logo apos
+ * Seção VISITS IN THE PHYSICAL WORKSHOP UNDER SCHEDULE, logo apos
  * WHAT PEOPLE SAY ABOUT RINGS LUXURY (Home.tsx I.5).
  * - Dois mapas empilhados: Miami (Brickell) e Sao Paulo
  * - Fundo: ateliê escuro desfocado, mesma linguagem das secoes vizinhas
@@ -40,7 +40,7 @@ export function AtelierLocations() {
       className="relative w-full overflow-hidden isolate bg-[#020202] text-[#EAE6DF]"
       aria-label={t.home.locAria}
     >
-      {/* FUNDO — mesmo tratamento das secoes vizinhas */}
+      {/* FUNDO, mesmo tratamento das secoes vizinhas */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-black">
         <img
           src="/PUBLIC/Sessao-clientes-rings-luxury-site-2026.webp"
@@ -77,7 +77,7 @@ export function AtelierLocations() {
           <span className="h-px w-16 sm:w-24 bg-gradient-to-l from-transparent to-[#C5A059]/80" />
         </div>
 
-        {/* MAPAS — lado a lado no desktop, empilhados no mobile.
+        {/* MAPAS, lado a lado no desktop, empilhados no mobile.
             Proporção contida de propósito: a versão anterior (16/10 empilhado)
             ocupava ~1540px de altura e empurrava a página inteira. Assim os dois
             cabem numa faixa só e a seção não domina a experiência. */}
@@ -90,7 +90,7 @@ export function AtelierLocations() {
                   <MapPin className="w-3.5 h-3.5 text-[#C5A059] shrink-0" aria-hidden />
                   <span className="min-w-0">
                     <span className="block font-cinzel text-[12px] sm:text-[13px] uppercase tracking-[0.18em] text-[#E6CA85] truncate">
-                      {[loc.label, loc.district].filter(Boolean).join(' — ')}
+                      {[loc.label, loc.district].filter(Boolean).join(', ')}
                     </span>
                     <span className="block text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-[#9A7B38] truncate">
                       {[loc.city, loc.region, loc.country].filter(Boolean).join(', ')}
@@ -98,7 +98,7 @@ export function AtelierLocations() {
                   </span>
                 </span>
 
-                {/* link de saída — o iframe prende o usuário; isto dá a saída
+                {/* link de saída, o iframe prende o usuário; isto dá a saída
                     e funciona mesmo sem JavaScript */}
                 <a
                   href={mapsLink(loc)}

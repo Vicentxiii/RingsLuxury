@@ -9,7 +9,7 @@ import { GoldSilverRings } from './pages/GoldSilverRings';
 import { LuxuryQueens } from './pages/LuxuryQueens';
 import { Courses } from './pages/Courses';
 import { NotFound } from './pages/NotFound';
-// WebGL pesado (three.js) — carrega só ao visitar /contact
+// WebGL pesado (three.js), carrega só ao visitar /contact
 const ContactPage = lazy(() =>
   import('./pages/ContactPage').then((m) => ({ default: m.ContactPage })),
 );

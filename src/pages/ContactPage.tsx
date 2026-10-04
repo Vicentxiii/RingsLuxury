@@ -34,7 +34,7 @@ export function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [bookingCode, setBookingCode] = useState('');
 
-  // Golden dust — WebGL, pure black, mouse-reactive
+  // Golden dust, WebGL, pure black, mouse-reactive
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -200,7 +200,7 @@ export function ContactPage() {
 
       <Header onOpenConsultation={scrollToForm} />
 
-      {/* WebGL golden dust — fixed, pure black, behind everything */}
+      {/* WebGL golden dust, fixed, pure black, behind everything */}
       <canvas
         ref={canvasRef}
         aria-hidden
@@ -356,11 +356,11 @@ export function ContactPage() {
           )}
         </div>
 
-        {/* Ateliers — minimal */}
+        {/* Ateliers, minimal */}
         <div className="mt-14 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8 text-[10px] uppercase tracking-[0.3em] text-[#9A7B38]">
-          <span>São Paulo — Atelier</span>
+          <span>São Paulo, Atelier</span>
           <span className="hidden sm:inline text-[#C5A059]/40" aria-hidden>•</span>
-          <span>Miami — Atelier</span>
+          <span>Miami, Atelier</span>
         </div>
       </main>
 

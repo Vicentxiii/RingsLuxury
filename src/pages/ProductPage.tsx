@@ -9,7 +9,7 @@ import { RelatedProductsCarousel } from '../components/RelatedProductsCarousel';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { FAQ } from '../components/FAQ';
 import { getProductBySlug, getRelatedProducts } from '../data/products';
-import { ArrowLeft, ChevronDown, Sparkles, Ruler, Award, Truck, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, ChevronDown, Sparkles, Ruler, Award, Truck, ShieldCheck, ShoppingBag, Lock } from 'lucide-react';
 import { GreekMeanderDivider, AncientCoinMedallion } from '../components/OrnamentIcons';
 import { absoluteUrl, HAS_SITE_URL } from '../site.config';
 import { useLanguage } from '../i18n/LanguageContext';
@@ -30,10 +30,10 @@ function truncateAtWord(text: string, max: number): string {
   const hardCut = clean.slice(0, max);
   const lastSpace = hardCut.lastIndexOf(' ');
   // Se a primeira "palavra" sozinha já estoura o limite, corta no limite mesmo
-  // e tira a reticência — não há fronteira de palavra a respeitar.
+  // e tira a reticência, não há fronteira de palavra a respeitar.
   const cut = lastSpace > max / 2 ? hardCut.slice(0, lastSpace) : hardCut;
 
-  return `${cut.replace(/[\s,;:.\-–—]+$/, '')}…`;
+  return `${cut.replace(/[\s,;:.\-–,]+$/, '')}…`;
 }
 
 export function ProductPage() {
@@ -86,22 +86,22 @@ export function ProductPage() {
     }, 100);
   };
 
-  const pieceLabel = `${product.name} — ${product.subname} (${product.sku})`;
+  const pieceLabel = `${product.name}, ${product.subname} (${product.sku})`;
 
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Product',
-    name: `${product.name} — ${product.subname}`,
+    name: `${product.name}, ${product.subname}`,
     description: `${localizedDescription} ${product.extendedHistory}`,
     image: product.images,
     sku: product.sku,
-    brand: { '@type': 'Brand', name: 'RINGS LUXURY — Jorge Uquillas' },
+    brand: { '@type': 'Brand', name: 'RINGS LUXURY, Jorge Uquillas' },
     material: product.specs.material,
     offers: {
       '@type': 'Offer',
       priceCurrency: 'USD',
       // Peças "Price Upon Request" (priceNumber 0): omite o preço do
-      // JSON-LD em vez de publicar "$0" — preço inventado ou zerado
+      // JSON-LD em vez de publicar "$0", preço inventado ou zerado
       // é dado estruturado enganoso e passível de ação manual.
       ...(product.priceNumber > 0 ? { price: product.priceNumber } : {}),
       availability: product.inStock ? 'https://schema.org/InStock' : 'https://schema.org/PreOrder',
@@ -110,7 +110,7 @@ export function ProductPage() {
     },
   };
 
-  // Linhas da tabela "Additional information". Tudo vem de product.specs —
+  // Linhas da tabela "Additional information". Tudo vem de product.specs,
   // nenhum valor hardcoded, para a ficha nunca divergir do cadastro.
   const infoRows: { label: string; value: string }[] = [
     { label: t.pages.productLabelCollor, value: product.specs.material },
@@ -134,14 +134,14 @@ export function ProductPage() {
   return (
 <div className="min-h-screen bg-[#020202] text-[#EAE6DF] selection:bg-[#C5A059] selection:text-[#020202] font-sans-luxury relative overflow-x-hidden">
       <SEO
-        title={`${product.name} — ${product.subname}`}
+        title={`${product.name}, ${product.subname}`}
         description={metaDescription}
         url={`/produto/${product.slug}`}
         image={product.images[0]}
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      {/* FUNDO — foto fixa em todas as páginas de produto */}
+      {/* FUNDO, foto fixa em todas as páginas de produto */}
       <div className="fixed inset-0 z-0 overflow-hidden bg-black pointer-events-none" aria-hidden>
         <img
           src={PRODUCT_BG}
@@ -174,14 +174,14 @@ export function ProductPage() {
           </button>
         </div>
 
-        {/* GRID — galeria à esquerda, card de compra à direita */}
+        {/* GRID, galeria à esquerda, card de compra à direita */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
           {/* GALERIA */}
           <div className="flex flex-col items-center">
             <div className="relative w-full max-w-[560px]">
               <img
                 src={product.images[selectedImage]}
-                alt={`${product.name} — ${product.subname}`}
+                alt={`${product.name}, ${product.subname}`}
                 className="w-full h-auto object-contain max-h-[62vh] mx-auto drop-shadow-[0_24px_60px_rgba(0,0,0,0.85)]"
               />
               {product.featured && (
@@ -214,73 +214,87 @@ export function ProductPage() {
           </div>
 
           {/* CARD DE COMPRA */}
-          <div className="rounded-2xl border border-[#C5A059]/45 bg-[#020202]/72 backdrop-blur-md shadow-[0_28px_70px_rgba(0,0,0,0.75)] p-6 sm:p-8 lg:p-9">
+          <div className="relative overflow-hidden rounded-[24px] border border-white/10 bg-gradient-to-b from-[#0C0A06] via-[#060505] to-[#020202] backdrop-blur-xl shadow-[0_32px_80px_rgba(0,0,0,0.8),0_0_0_1px_rgba(197,160,89,0.08),inset_0_1px_0_rgba(255,255,255,0.06)] p-6 sm:p-8 lg:p-9">
+            {/* hairline gold topo */}
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#C5A059]/70 to-transparent" aria-hidden />
+            <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-[#C5A059]/10 blur-3xl pointer-events-none" aria-hidden />
+
+            <p className="text-[10px] uppercase tracking-[0.32em] text-[#9A7B38]">
+              {product.category} • {product.sku}
+            </p>
             <h1
-              className="font-cinzel font-normal text-[#E6CA85] leading-tight"
-              style={{ fontSize: 'clamp(24px, 3.4vw, 38px)', letterSpacing: '0.01em' }}
+              className="mt-2 font-cinzel font-normal text-[#F5EDD8] leading-[1.05]"
+              style={{ fontSize: 'clamp(26px, 3.4vw, 38px)', letterSpacing: '0.01em' }}
             >
               {product.name}
             </h1>
-            <p className="font-cormorant italic text-[#C2BDB2] text-base sm:text-lg mt-1.5">{product.subname}</p>
+            <p className="font-cormorant italic text-[#C5A059] text-lg sm:text-xl mt-1">{product.subname}</p>
 
-            <p className="mt-6 font-cinzel text-xl sm:text-2xl tracking-[0.12em] text-[#F3EFE6]">{product.price}</p>
+            {/* Descrição da peça logo abaixo do título */}
+            <p className="mt-4 font-cormorant text-[17px] sm:text-lg leading-relaxed text-[#D8D2C4] border-l-2 border-[#C5A059]/50 pl-4">
+              {localizedDescription}
+            </p>
 
-            {/* Add to cart — não há e-commerce no projeto; este botão abre a
-                consulta privada, que é o equivalente do "add to cart" para
-                uma peça 1/1 sob encomenda. */}
-            <div className="mt-7 flex justify-center">
+            <div className="my-6 h-px bg-gradient-to-r from-transparent via-[#C5A059]/30 to-transparent" aria-hidden />
+
+            <div className="flex flex-wrap items-end justify-between gap-3">
+              <p className="font-cinzel text-2xl sm:text-[28px] tracking-[0.08em] text-[#F3EFE6]">{product.price}</p>
+              <p className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em] text-[#9A7B38]">
+                <span className={`w-1.5 h-1.5 rounded-full ${product.inStock ? 'bg-emerald-400' : 'bg-[#C5A059]'}`} aria-hidden />
+                {product.inStock ? t.pages.productInStock : t.pages.productMadeToOrder}
+              </p>
+            </div>
+
+            {/* Add to cart + PayPal na mesma linha no desktop */}
+            <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
               <button
                 onClick={() => openConsultation(pieceLabel)}
-                className="px-9 py-3.5 rounded-full bg-[#F3EFE6] text-[#020202] font-sans-luxury text-[13px] font-semibold tracking-wide hover:bg-white active:scale-[0.98] transition-all"
+                className="group h-[52px] rounded-full bg-gradient-to-r from-[#9A7B38] via-[#E6CA85] to-[#C5A059] text-[#020202] font-sans-luxury text-[12px] font-bold uppercase tracking-[0.18em] hover:brightness-110 hover:shadow-[0_8px_32px_rgba(197,160,89,0.35)] active:scale-[0.98] transition-all inline-flex items-center justify-center gap-2"
               >
+                <ShoppingBag className="w-4 h-4" aria-hidden />
                 {t.pages.productAddToCart}
+              </button>
+
+              <button
+                onClick={() => openConsultation(`${pieceLabel}, pagamento via PayPal`)}
+                className="h-[52px] rounded-full bg-[#FFC439] hover:bg-[#FFD84D] hover:shadow-[0_8px_32px_rgba(255,196,57,0.3)] active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+              >
+                <span className="font-sans-luxury text-[20px] font-bold tracking-tight text-[#003087]">
+                  Pay<span className="italic">Pal</span>
+                </span>
               </button>
             </div>
 
-            {/* PayPal — ATENÇÃO: sem credenciais de PayPal no projeto, este
-                botão não processa pagamento. Conecte o PayPal Checkout ou
-                substitua pelo meio de pagamento real antes de publicar. */}
-            <button
-              onClick={() => openConsultation(`${pieceLabel} — pagamento via PayPal`)}
-              className="mt-3 w-full py-3.5 rounded-[4px] bg-[#FFC439] hover:bg-[#FFB72B] active:scale-[0.995] transition-all flex items-center justify-center"
-            >
-              <span className="font-sans-luxury text-[19px] font-bold tracking-tight text-[#003087]">
-                Pay<span className="italic">Pal</span>
-              </span>
-            </button>
-
-            <p className="mt-3 text-center text-[10px] uppercase tracking-[0.2em] text-[#9A7B38]">
-              {product.inStock ? t.pages.productInStock : t.pages.productMadeToOrder} • {t.pages.productShippingIncluded}
+            <p className="mt-4 flex items-center justify-center gap-2 text-[10px] uppercase tracking-[0.18em] text-[#9A7B38]">
+              <Lock className="w-3 h-3 text-[#C5A059]" aria-hidden />
+              {t.pages.productShippingIncluded} • {t.pages.productSealAuth}
             </p>
 
             {/* toggle */}
             <button
               onClick={() => setShowInfo((v) => !v)}
               aria-expanded={showInfo}
-              className="mt-8 inline-flex items-center gap-2 px-4 py-2.5 rounded-[4px] border border-[#C5A059]/45 text-[11px] tracking-wide text-[#EAE6DF] hover:border-[#C5A059] hover:text-[#E6CA85] transition-colors"
+              className="mt-6 w-full inline-flex items-center justify-between gap-2 px-5 py-3.5 rounded-2xl border border-white/10 bg-white/[0.03] text-[11px] uppercase tracking-[0.2em] text-[#EAE6DF] hover:border-[#C5A059]/50 hover:bg-white/[0.05] transition-colors"
             >
               {t.pages.productAdditionalInfo}
-              <ChevronDown className={`w-3.5 h-3.5 text-[#C5A059] transition-transform ${showInfo ? 'rotate-180' : ''}`} aria-hidden />
+              <ChevronDown className={`w-4 h-4 text-[#C5A059] transition-transform duration-300 ${showInfo ? 'rotate-180' : ''}`} aria-hidden />
             </button>
 
             {/* tabela */}
             {showInfo && (
-              <div className="mt-7 animate-fadeIn">
-                <h2 className="font-cinzel font-normal text-[#E6CA85] text-xl sm:text-2xl mb-4">
-                  {t.pages.productAdditionalInfo}
-                </h2>
+              <div className="mt-5 animate-fadeIn rounded-2xl border border-white/[0.07] bg-black/30 p-5">
                 <table className="w-full border-collapse">
                   <caption className="sr-only">{t.pages.productSpecsCaptionPrefix} {product.name}</caption>
                   <tbody>
                     {infoRows.map((row) => (
-                      <tr key={row.label} className="border-b border-[#C5A059]/15 last:border-b-0">
+                      <tr key={row.label} className="border-b border-white/[0.06] last:border-b-0">
                         <th
                           scope="row"
-                          className="text-left align-top py-3 pr-3 w-[34%] font-sans-luxury text-[11px] uppercase tracking-[0.12em] text-[#EAE6DF]"
+                          className="text-left align-top py-2.5 pr-3 w-[34%] font-sans-luxury text-[10px] uppercase tracking-[0.14em] text-[#9A7B38]"
                         >
                           {row.label}
                         </th>
-                        <td className="py-3 pl-4 border-l border-[#C5A059]/15 align-top font-cormorant italic text-[13px] sm:text-sm text-[#C2BDB2]">
+                        <td className="py-2.5 pl-4 align-top font-cormorant text-[15px] text-[#E8E2D5]">
                           {row.value}
                         </td>
                       </tr>
@@ -291,7 +305,7 @@ export function ProductPage() {
             )}
 
             {/* selos */}
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[9px] uppercase tracking-[0.18em] text-[#9A7B38]">
+            <div className="mt-6 pt-5 border-t border-white/[0.07] flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[9px] uppercase tracking-[0.18em] text-[#9A7B38]">
               <span className="inline-flex items-center gap-1.5">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#C5A059]" aria-hidden /> {t.pages.productSealAuth}
               </span>
@@ -305,7 +319,7 @@ export function ProductPage() {
           </div>
         </div>
 
-        {/* NARRATIVA — o copy longo fica abaixo do grid: some do primeiro
+        {/* NARRATIVA, o copy longo fica abaixo do grid: some do primeiro
             impacto visual (o layout do print) e continua no HTML para SEO. */}
         <section className="mt-16 md:mt-20 max-w-3xl mx-auto text-center">
           <GreekMeanderDivider className="opacity-30 mb-8" />
@@ -325,7 +339,7 @@ export function ProductPage() {
           </div>
         </section>
 
-        {/* CUIDADOS & ENTREGA — o print não tem abas, mas este conteúdo
+        {/* CUIDADOS & ENTREGA, o print não tem abas, mas este conteúdo
             existia e é necessário para conversão e para SEO. Fica abaixo do
             primeiro impacto visual para não competir com o layout do print. */}
         <section className="mt-14 md:mt-16 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -360,7 +374,7 @@ export function ProductPage() {
           <ProductPaymentMethods />
         </div>
 
-        {/* FAQ do produto — agnóstico, igual em todas as peças */}
+        {/* FAQ do produto, agnóstico, igual em todas as peças */}
         <FAQ
           heading={t.pages.productFaqHeading}
           items={[

@@ -728,7 +728,7 @@ export function JorgeUquillasPiece({ onBackToAtelier, onOpenConsultation }: Jorg
 
       {/* Cinematic container */}
       <div className="jq-cinematic-container">
-        {/* Header — Laocoön removido, RINGS LUXURY centralizado */}
+        {/* Header, Laocoön removido, RINGS LUXURY centralizado */}
         <div className="relative flex justify-between items-center w-full z-20 pointer-events-auto py-5">
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center text-center pointer-events-none">
             <div className="text-[11px] tracking-[4px] uppercase text-[#E6CA85] font-['Outfit'] whitespace-nowrap">
@@ -777,7 +777,7 @@ export function JorgeUquillasPiece({ onBackToAtelier, onOpenConsultation }: Jorg
             <button
               onClick={() => {
                 if (onOpenConsultation) {
-                  onOpenConsultation('Jorge Uquillas: Laocoön — Bronze and Time');
+                  onOpenConsultation('Jorge Uquillas: Laocoön, Bronze and Time');
                 } else {
                   onBackToAtelier();
                 }
@@ -790,7 +790,7 @@ export function JorgeUquillasPiece({ onBackToAtelier, onOpenConsultation }: Jorg
           </div>
         </div>
 
-        {/* Slide 1 — English */}
+        {/* Slide 1, English */}
         <div className="jq-slide" id="jq-slide-1">
           <h2 className="jq-slide-title" style={{ fontSize: '62px', lineHeight: '1.05' }}>
             Discover the story<br />of Jorge Uquillas
@@ -801,7 +801,7 @@ export function JorgeUquillasPiece({ onBackToAtelier, onOpenConsultation }: Jorg
             </p>
             <div className="jq-slide-desc jq-col-2 space-y-3">
               <p>
-                With over 1000 1/1 HandCrafted pieces already created — handmade 18k gold diamond rings engraved with hand engraver — Jorge Uquillas — RINGS LUXURY — has served clients worldwide, from São Paulo to Miami to Dubai. Each ring is a unique work, handmade without mold, eternalized in gold.
+                With over 1000 1/1 HandCrafted pieces already created, handmade 18k gold diamond rings engraved with hand engraver, Jorge Uquillas, RINGS LUXURY, has served clients worldwide, from São Paulo to Miami to Dubai. Each ring is a unique work, handmade without mold, eternalized in gold.
               </p>
               <a
                 href="https://www.instagram.com/ringsluxury"
@@ -816,22 +816,22 @@ export function JorgeUquillasPiece({ onBackToAtelier, onOpenConsultation }: Jorg
           </div>
         </div>
 
-        {/* Slide 2 Image Mask — Foto Jorge Uquillas — larger & lower on desktop */}
+        {/* Slide 2 Image Mask, Foto Jorge Uquillas, larger & lower on desktop */}
         <div className="slide-image-mask" id="jq-slide-2-img">
           <img
             src="/PUBLIC/Captura%20de%20tela%202026-09-12%20185443.webp"
-            alt="Jorge Uquillas — RINGS LUXURY HandCrafted — handmade 18k gold diamond rings"
+            alt="Jorge Uquillas, RINGS LUXURY HandCrafted, handmade 18k gold diamond rings"
             referrerPolicy="no-referrer"
           />
         </div>
 
-        {/* Slide 2 — JORGE UQUILLAS English */}
+        {/* Slide 2, JORGE UQUILLAS English */}
         <div className="jq-slide" id="jq-slide-2">
           <h2 className="jq-slide-title">
             JORGE<br />UQUILLAS
           </h2>
           <p className="jq-slide-desc" style={{ fontSize: '14px', lineHeight: '1.75' }}>
-            Jorge Uquillas is a renowned Designer and Artistic Engraver of jewelry of Colombian-Ecuadorian origin. He started in a simple atelier in Bogota, following the third-generation family tradition with Master Ivan Uquillas (ECU-1996). He perfected techniques in Europe, becoming one of the greatest exponents in hand engraving of modern world jewelry. Today based in São Paulo, Brazil, he is the only exponent of this level in the country and one of the only ones on the continent — with clients in more than 50 countries, RINGS LUXURY is highly valued in luxury. 1/1 HandCrafted handmade 18k gold diamond rings engraved with hand engraver.
+            Jorge Uquillas is a renowned Designer and Artistic Engraver of jewelry of Colombian-Ecuadorian origin. He started in a simple atelier in Bogota, following the third-generation family tradition with Master Ivan Uquillas (ECU-1996). He perfected techniques in Europe, becoming one of the greatest exponents in hand engraving of modern world jewelry. Today based in São Paulo, Brazil, he is the only exponent of this level in the country and one of the only ones on the continent, with clients in more than 50 countries, RINGS LUXURY is highly valued in luxury. 1/1 HandCrafted handmade 18k gold diamond rings engraved with hand engraver.
           </p>
         </div>
 

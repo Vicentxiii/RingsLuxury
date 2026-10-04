@@ -10,7 +10,7 @@ export function EpicPreloader({ isExiting }: EpicPreloaderProps) {
   const { t } = useLanguage();
   const [progress, setProgress] = useState(0);
 
-  // Progress visível em 4s — animação contínua e suave, realística
+  // Progress visível em 4s, animação contínua e suave, realística
   useEffect(() => {
     const start = performance.now();
     const duration = 4000;
@@ -32,7 +32,7 @@ export function EpicPreloader({ isExiting }: EpicPreloaderProps) {
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  // Anel aleatório do catálogo a cada visita — SÓ anéis com foto PNG real
+  // Anel aleatório do catálogo a cada visita, SÓ anéis com foto PNG real
   // do atelier (images[0] em /PUBLIC/). Fora: fotos genéricas/Unsplash,
   // artesão trabalhando e colares (id 043). Sempre peça real do Jorge.
   const featuredPiece = useMemo(() => {
@@ -121,7 +121,7 @@ export function EpicPreloader({ isExiting }: EpicPreloaderProps) {
 
       {/* Conteúdo central - adaptado mobile */}
       <div className={`relative z-10 flex flex-col items-center text-center px-4 sm:px-6 transition-all duration-700 ease-out max-h-[100dvh] overflow-hidden py-6 ${isExiting ? 'scale-95 opacity-0 blur-[8px]' : 'scale-100 opacity-100 blur-0'}`}>
-        {/* Anel em destaque — peça real do catálogo, sorteada a cada visita */}
+        {/* Anel em destaque, peça real do catálogo, sorteada a cada visita */}
         <div className="relative flex items-center justify-center shrink-0">
           {/* Halo atrás do WEBP - deixado bem mais sutil */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[100px] sm:w-[280px] sm:h-[130px] bg-[#C5A059]/[0.03] blur-[55px] sm:blur-[65px] rounded-full pointer-events-none opacity-[0.12] sm:opacity-[0.15]" />
@@ -149,7 +149,7 @@ export function EpicPreloader({ isExiting }: EpicPreloaderProps) {
         {/* Tipografia - escala menor no mobile */}
         <div className="mt-5 sm:mt-7 flex flex-col items-center shrink-0">
           {/* div, não h1: o preloader é global e o <h1> aqui duplicava o
-              único H1 de cada página. Estilos de fonte preservados — o
+              único H1 de cada página. Estilos de fonte preservados, o
               navegador herda de div, então o className segue valendo. */}
           <div className="font-cinzel text-[16px] sm:text-[22px] md:text-[26px] tracking-[0.32em] sm:tracking-[0.42em] text-[#FBF9F5] font-light flex items-center gap-2 sm:gap-3">
             RINGS

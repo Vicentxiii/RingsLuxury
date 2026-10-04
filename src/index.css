@@ -96,7 +96,7 @@ button:not(.not-rounded) {
   border-radius: 9999px;
 }
 
-/* Mini-carrossel horizontal de bandeiras — Shipping Worldwide */
+/* Mini-carrossel horizontal de bandeiras, Shipping Worldwide */
 @keyframes shipping-marquee {
   from {
     transform: translateX(0);
@@ -115,7 +115,7 @@ button:not(.not-rounded) {
   animation-play-state: paused;
 }
 
-/* Marquee de anéis — FeaturedRing: faixa infinita em loop lento */
+/* Marquee de anéis, FeaturedRing: faixa infinita em loop lento */
 @keyframes ring-marquee {
   from {
     transform: translateX(0);

@@ -1,7 +1,7 @@
 import { useLanguage } from '../i18n/LanguageContext';
 
 /**
- * Seção SHIPPING WORLDWIDE — logo após YOU DECIDE EVERY STONE EVERY DETAIL
+ * Seção SHIPPING WORLDWIDE, logo após YOU DECIDE EVERY STONE EVERY DETAIL
  * - Fundo: fundo-shipping-worldwide.jpg (mármore preto com veios dourados)
  * - Mini-carrossel horizontal minimalista com as bandeirinhas dos países
  */
@@ -43,7 +43,7 @@ export function ShippingWorldwide() {
       className="relative w-full overflow-hidden isolate bg-[#020202] text-[#EAE6DF]"
       aria-label={t.home.shAria}
     >
-      {/* FUNDO — mármore preto com veios dourados */}
+      {/* FUNDO, mármore preto com veios dourados */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-black">
         <img
           src="/PUBLIC/fundo-shipping-worldwide.webp"
@@ -82,7 +82,7 @@ export function ShippingWorldwide() {
           <span className="h-px w-16 sm:w-24 bg-gradient-to-l from-transparent to-[#C5A059]/80" />
         </div>
 
-        {/* CARROSSEL DE BANDEIRAS — swipe suave com snap (deslize com o dedo) */}
+        {/* CARROSSEL DE BANDEIRAS, swipe suave com snap (deslize com o dedo) */}
         <div
           className="relative mt-8 sm:mt-10 overflow-x-auto snap-x snap-mandatory scroll-smooth"
           style={{

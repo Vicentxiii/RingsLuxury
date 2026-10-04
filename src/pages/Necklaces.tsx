@@ -92,7 +92,7 @@ export function Necklaces() {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'ItemList',
-            name: `${t.collections.necklacesTitle} — RINGS LUXURY`,
+            name: `${t.collections.necklacesTitle}, RINGS LUXURY`,
             numberOfItems: NECKLACES.length,
             itemListElement: NECKLACES.map((necklace, i) => ({
               '@type': 'ListItem',
@@ -106,7 +106,7 @@ export function Necklaces() {
       <Header onOpenConsultation={() => scrollToContact()} />
 
       <main className="relative w-full overflow-hidden">
-        {/* Dobra ao fundo, um de cada lado — sempre visíveis */}
+        {/* Dobra ao fundo, um de cada lado, sempre visíveis */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden>
           <div className="absolute inset-y-0 left-0 w-[30%] sm:w-[26%] overflow-hidden">
             <img
@@ -157,7 +157,7 @@ export function Necklaces() {
                 <Link
                   to={`/produto/${necklace.slug}`}
                   className="w-full aspect-square flex items-center justify-center overflow-hidden cursor-pointer focus:outline-none"
-                  aria-label={`${necklace.name} — ver peça`}
+                  aria-label={`${necklace.name}, ver peça`}
                 >
                   <img
                     src={necklace.src}

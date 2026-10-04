@@ -78,7 +78,7 @@ export function LuxuryRings() {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'ItemList',
-            name: `${t.collections.luxuryTitle} — RINGS LUXURY`,
+            name: `${t.collections.luxuryTitle}, RINGS LUXURY`,
             numberOfItems: RINGS.length,
             itemListElement: RINGS.map((ring, i) => ({
               '@type': 'ListItem',
@@ -148,7 +148,7 @@ export function LuxuryRings() {
                 key={ring.src}
                 to={`/produto/${ring.slug}`}
                 className="group flex flex-col items-center text-center cursor-pointer focus:outline-none"
-                aria-label={`${ring.name} — ver peça`}
+                aria-label={`${ring.name}, ver peça`}
               >
                 <div className="w-full aspect-square flex items-center justify-center overflow-hidden">
                   <img

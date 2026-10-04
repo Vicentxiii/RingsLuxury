@@ -1,5 +1,5 @@
 {
-  "$comment": "Dados de contato em UM lugar só. Rodapé, JSON-LD e bloco estático de build leem daqui — é o que garante NAP consistente (o sinal mais forte de SEO local). CONFERIR antes de publicar: estes dados vieram do rodapé do site antigo e há conflito no email, marcado abaixo.",
+  "$comment": "Dados de contato em UM lugar só. Rodapé, JSON-LD e bloco estático de build leem daqui, é o que garante NAP consistente (o sinal mais forte de SEO local). CONFERIR antes de publicar: estes dados vieram do rodapé do site antigo e há conflito no email, marcado abaixo.",
   "phone": "+5511977240777",
   "phoneDisplay": "+55 11 97724-0777",
   "email": "uquillasartjewells@gmail.com",

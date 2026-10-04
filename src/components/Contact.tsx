@@ -8,13 +8,13 @@ interface ContactProps {
   onClearPreselectedPiece?: () => void;
 }
 
-// Campos de peça/interesse removidos — props mantidas por compatibilidade com as páginas.
+// Campos de peça/interesse removidos, props mantidas por compatibilidade com as páginas.
 export function Contact({}: ContactProps) {
   const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    city: 'Miami — Atelier',
+    city: 'Miami, Atelier',
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -46,7 +46,7 @@ export function Contact({}: ContactProps) {
             <LaurelWreath className="w-4 h-4 text-[#C5A059] transform -scale-x-100" />
           </div>
 
-          {/* Title: SEO — Jorge Uquillas. No mobile o nome fica numa linha só. */}
+          {/* Title: SEO, Jorge Uquillas. No mobile o nome fica numa linha só. */}
           <h2
             id="contact-title"
             className="font-cinzel text-[26px] sm:text-5xl md:text-6xl tracking-[0.18em] uppercase text-[#FBF9F5] font-light mb-4"
@@ -139,9 +139,9 @@ export function Contact({}: ContactProps) {
                   onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                   className="w-full bg-[#080808] text-[#F3EFE6] font-cinzel text-sm tracking-wider focus:outline-none cursor-pointer"
                 >
-                  <option value="Miami — Atelier">Miami — Atelier</option>
-                  <option value="São Paulo — Atelier">São Paulo — Atelier</option>
-                  <option value="Colombia — Atelier">Colombia — Atelier</option>
+                  <option value="Miami, Atelier">Miami, Atelier</option>
+                  <option value="São Paulo, Atelier">São Paulo, Atelier</option>
+                  <option value="Colombia, Atelier">Colombia, Atelier</option>
                 </select>
               </div>
 

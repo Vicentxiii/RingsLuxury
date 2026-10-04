@@ -1,7 +1,7 @@
 import { useLanguage } from '../i18n/LanguageContext';
 
 /**
- * Seção WHY CHOOSE RINGS LUXURY? — fiel ao print, SEO com título literal (sem imagem TITLE)
+ * Seção WHY CHOOSE RINGS LUXURY?, fiel ao print, SEO com título literal (sem imagem TITLE)
  * - Fundo: why-bg.webp
  * - 4 ícones: why-100-handmade, why-best-gold, why-lifetime, why-satisfied
  */
@@ -13,18 +13,18 @@ export function WhyChoose() {
       className="relative w-full bg-black overflow-hidden isolate border-b border-[#C5A059]/35"
       aria-label={t.home.whyAria}
     >
-      {/* FUNDO — preto puro igual à seção de cima */}
+      {/* FUNDO, preto puro igual à seção de cima */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-black" />
 
       {/* CONTEÚDO */}
       <div className="relative z-10 w-full max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10 pt-10 sm:pt-12 lg:pt-[42px] pb-12 sm:pb-14 lg:pb-[44px]">
-        {/* TÍTULO — 100% texto literal para SEO, sem imagem TITLE */}
+        {/* TÍTULO, 100% texto literal para SEO, sem imagem TITLE */}
         <div className="flex flex-col items-center justify-center text-center">
           <h2 className="font-cinzel font-normal tracking-[0.06em] uppercase flex items-baseline gap-[0.35em] text-[20px] sm:text-[24px] lg:text-[26px]">
             <span className="text-[#F2ECE0]">{t.home.whyTitleA}</span>
             <span className="text-[#C5A059] italic font-cormorant font-medium tracking-[0.04em]">RINGS LUXURY?</span>
           </h2>
-          {/* Linha ornamental dourada abaixo do título — replica a do print sem usar a imagem TITLE */}
+          {/* Linha ornamental dourada abaixo do título, replica a do print sem usar a imagem TITLE */}
           <div className="relative mt-3 w-full max-w-[640px] flex items-center justify-center gap-3">
             <span className="hidden sm:block text-[#C5A059]/90 text-[16px] leading-none select-none" aria-hidden>
               ❧
@@ -41,9 +41,9 @@ export function WhyChoose() {
             <span className="text-[#C5A059]/70 text-[10px] tracking-[0.2em]">⟡</span>
           </div>
 
-          {/* ÍCONES — 4 colunas */}
+          {/* ÍCONES, 4 colunas */}
           <div className="mt-9 sm:mt-11 lg:mt-[38px] w-full max-w-[860px] grid grid-cols-2 lg:grid-cols-4 gap-y-9 gap-x-6 sm:gap-x-8 lg:gap-x-10 items-start justify-items-center">
-            {/* 100% HAND MADE — hand engraver */}
+            {/* 100% HAND MADE, hand engraver */}
             <div className="flex flex-col items-center text-center w-full max-w-[150px]">
               <div className="w-[96px] h-[96px] sm:w-[108px] sm:h-[108px] lg:w-[118px] lg:h-[118px] flex items-center justify-center">
                 <img
@@ -59,7 +59,7 @@ export function WhyChoose() {
               </span>
             </div>
 
-            {/* BEST GOLD QUALITY — 18K Au */}
+            {/* BEST GOLD QUALITY, 18K Au */}
             <div className="flex flex-col items-center text-center w-full max-w-[150px]">
               <div className="w-[96px] h-[96px] sm:w-[108px] sm:h-[108px] lg:w-[118px] lg:h-[118px] flex items-center justify-center">
                 <img
@@ -75,7 +75,7 @@ export function WhyChoose() {
               </span>
             </div>
 
-            {/* LIFETIME WARRANTY — QUALITY IS EVERYTHING */}
+            {/* LIFETIME WARRANTY, QUALITY IS EVERYTHING */}
             <div className="flex flex-col items-center text-center w-full max-w-[150px]">
               <div className="w-[96px] h-[96px] sm:w-[108px] sm:h-[108px] lg:w-[118px] lg:h-[118px] flex items-center justify-center">
                 <img
@@ -91,7 +91,7 @@ export function WhyChoose() {
                 <br />
                 {t.home.whyLabel3Line2}
               </span>
-              {/* observa-se no print “QUALITY IS EVERTHING” com quebra — mantido fiel, mas corrigido visualmente */}
+              {/* observa-se no print “QUALITY IS EVERTHING” com quebra, mantido fiel, mas corrigido visualmente */}
               <span className="sr-only">{t.home.whySrLifetime}</span>
             </div>
 
@@ -116,7 +116,7 @@ export function WhyChoose() {
         </div>
       </div>
 
-      {/* BORDA INFERIOR DOURADA com pico central — como no print */}
+      {/* BORDA INFERIOR DOURADA com pico central, como no print */}
       <div className="absolute bottom-0 left-0 w-full h-px bg-[#C5A059]/70" aria-hidden />
       <div
         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[22px] h-[6px] bg-[#C5A059] pointer-events-none"

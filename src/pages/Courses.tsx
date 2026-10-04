@@ -150,7 +150,7 @@ export function Courses() {
         <div className="space-y-8">
           {courseModules.map((mod) => (
             <div key={mod.id} className="relative group overflow-hidden border border-[#C5A059]/20 bg-[#050505]/80 backdrop-blur-sm p-8 md:p-12 transition-all hover:border-[#C5A059]/60">
-              {/* Foto de fundo do módulo — design intacto, só adiciona a imagem atrás do conteúdo */}
+              {/* Foto de fundo do módulo, design intacto, só adiciona a imagem atrás do conteúdo */}
               <img
                 src={mod.image}
                 alt=""

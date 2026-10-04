@@ -92,7 +92,7 @@ export function GoldSilverRings() {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'ItemList',
-            name: `${t.collections.goldSilverTitle} — RINGS LUXURY`,
+            name: `${t.collections.goldSilverTitle}, RINGS LUXURY`,
             numberOfItems: RINGS.length,
             itemListElement: RINGS.map((ring, i) => ({
               '@type': 'ListItem',
@@ -106,7 +106,7 @@ export function GoldSilverRings() {
       <Header onOpenConsultation={() => scrollToContact()} />
 
       <main className="relative w-full overflow-hidden">
-        {/* Mármore dourado ao fundo, um de cada lado — sempre visíveis */}
+        {/* Mármore dourado ao fundo, um de cada lado, sempre visíveis */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden>
           <div className="absolute inset-y-0 left-0 w-[30%] sm:w-[26%] overflow-hidden">
             <img
@@ -157,7 +157,7 @@ export function GoldSilverRings() {
                 <Link
                   to={`/produto/${ring.slug}`}
                   className="w-full aspect-square flex items-center justify-center overflow-hidden cursor-pointer focus:outline-none"
-                  aria-label={`${ring.name} — ver peça`}
+                  aria-label={`${ring.name}, ver peça`}
                 >
                   <img
                     src={ring.src}

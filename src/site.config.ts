@@ -1,5 +1,5 @@
 /**
- * Domínio do site — fonte única.
+ * Domínio do site, fonte única.
  *
  * Vazio por padrão de propósito: enquanto o domínio não estiver registrado,
  * nenhum canonical, sitemap ou URL absoluta é publicado. Publicar um

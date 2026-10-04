@@ -15,7 +15,7 @@ export function SEO({ title, description, url, image }: SEOProps) {
   const { pathname } = useLocation();
 
   // Canonical por rota. Sem `url` explicito, usa a propria pathname da rota
-  // atual — antes o fallback era '/', o que fazia o Google tratar /luxury-rings,
+  // atual, antes o fallback era '/', o que fazia o Google tratar /luxury-rings,
   // /blog, /courses e mais 5 paginas como duplicata da home.
   const route = url ?? pathname;
   // Normaliza barras: '/' na raiz, sem barra final nas demais rotas.
@@ -43,14 +43,14 @@ export function SEO({ title, description, url, image }: SEOProps) {
       <meta property="og:description" content={description} />
       {ogImage && <meta property="og:image" content={ogImage} />}
 
-      {/* Twitter — usa name=, não property= (property é ignorado aqui) */}
+      {/* Twitter, usa name=, não property= (property é ignorado aqui) */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:url" content={canonical} />
       <meta name="twitter:title" content={seoTitle} />
       <meta name="twitter:description" content={description} />
       {ogImage && <meta name="twitter:image" content={ogImage} />}
 
-      {/* Schema.org for Google — HandCrafted anéis artesanais */}
+      {/* Schema.org for Google, HandCrafted anéis artesanais */}
       <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",

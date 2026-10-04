@@ -4,7 +4,7 @@ import reviewsData from '../data/reviews.json';
 import { useLanguage } from '../i18n/LanguageContext';
 
 /**
- * Seção "WHAT PEOPLE SAY ABOUT RINGS LUXURY" — carrossel de depoimentos reais
+ * Seção "WHAT PEOPLE SAY ABOUT RINGS LUXURY", carrossel de depoimentos reais
  * - Fundo: Sessao-clientes-rings-luxury-site-2026.jpg (escultura dourada à direita)
  * - Badge: Rings Luxury Google Reviews.webp (5-STAR RATING Google)
  * - Clientes: fotos reais enviadas em public/PUBLIC (Rings Luxury Google Reviews client 1-5.png)
@@ -63,7 +63,7 @@ export function WorldClients() {
     const el = trackRef.current;
     if (!el) return;
     // Se o índice já é o refletido pelo scroll, a mudança veio do próprio
-    // usuário arrastando — não reposicionar.
+    // usuário arrastando, não reposicionar.
     if (Math.round(el.scrollLeft / el.clientWidth) === index) return;
     el.scrollTo({ left: index * el.clientWidth, behavior: 'smooth' });
   }, [index]);
@@ -103,7 +103,7 @@ export function WorldClients() {
       className="relative w-full overflow-hidden isolate bg-[#020202] text-[#EAE6DF]"
       aria-label={t.home.wcAria}
     >
-      {/* FUNDO — escultura dourada à direita, preto predominante */}
+      {/* FUNDO, escultura dourada à direita, preto predominante */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-black">
         <img
           src="/PUBLIC/Sessao-clientes-rings-luxury-site-2026.webp"
@@ -170,7 +170,7 @@ export function WorldClients() {
             <ChevronRight className="w-5 h-5" />
           </button>
 
-          {/* track — cada slide = 100% da largura, snap por slide */}
+          {/* track, cada slide = 100% da largura, snap por slide */}
           <div
             ref={trackRef}
             onScroll={onScroll}
@@ -221,7 +221,7 @@ export function WorldClients() {
                     &ldquo;
                   </span>
 
-                  {/* copy — sem microdata aqui de propósito: o bloco estático
+                  {/* copy, sem microdata aqui de propósito: o bloco estático
                       de build já declara Review itemscope completos. Duplicar
                       marcaria o mesmo review duas vezes no HTML renderizado. */}
                   <p className="mt-1 font-cormorant italic text-[#E8E3D6] leading-[1.65] text-[17px] sm:text-[20px] lg:text-[22px]">
