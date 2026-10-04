@@ -25,7 +25,15 @@ interface Hotspot {
 
 export function MasterpieceDetail() {
   const { t } = useLanguage();
-  const [activeHotspot, setActiveHotspot] = useState<string>('hotspot-1');
+  // No mobile (toque) nenhum dot começa revelado: os textos só aparecem ao tocar.
+  // No desktop mantém o primeiro selecionado como antes.
+  const [activeHotspot, setActiveHotspot] = useState<string | null>(() =>
+    typeof window !== 'undefined' &&
+    typeof window.matchMedia === 'function' &&
+    window.matchMedia('(pointer: coarse)').matches
+      ? null
+      : 'hotspot-1',
+  );
   const [isZoomed, setIsZoomed] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const RING_CENTER = { x: 47, y: 43 };
@@ -236,9 +244,11 @@ export function MasterpieceDetail() {
                           }`}
                         />
                       </span>
-                      {/* palavra clicável — mesmo botão do dot */}
+                      {/* palavra clicável — mesmo botão do dot.
+                          No mobile fica oculta até o dot ser tocado (só o selecionado revela);
+                          no desktop (sm+) sempre visível como antes. */}
                       <span
-                        className={`absolute bottom-full mb-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border px-4 py-2 backdrop-blur-md shadow-[0_6px_20px_rgba(0,0,0,0.85)] transition-all cursor-pointer ${
+                        className={`${isSelected ? '' : 'hidden sm:block'} absolute bottom-full mb-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border px-4 py-2 backdrop-blur-md shadow-[0_6px_20px_rgba(0,0,0,0.85)] transition-all cursor-pointer ${
                           isSelected
                             ? 'bg-[#C5A059] border-[#E6CA85]'
                             : 'bg-[#020202]/85 border-[#C5A059]/40 group-hover:border-[#C5A059]/80'
@@ -329,11 +339,11 @@ export function MasterpieceDetail() {
           aria-modal="true"
           aria-label={t.home.mpCertDialogAria}
         >
-          {/* fundo totalmente desfocado */}
+          {/* fundo leve, sem a bola preta: só o modal quadrado em destaque */}
           <button
             aria-label={t.home.mpCertCloseAria}
             onClick={() => setShowCert(false)}
-            className="absolute inset-0 bg-black/75 backdrop-blur-2xl backdrop-saturate-150 cursor-zoom-out"
+            className="absolute inset-0 bg-black/30 backdrop-blur-sm cursor-zoom-out"
           />
           {/* palco 3D */}
           <div

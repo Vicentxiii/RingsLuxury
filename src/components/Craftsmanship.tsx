@@ -132,28 +132,29 @@ export function Craftsmanship() {
           <GreekMeanderDivider className="mt-8 opacity-60" />
         </div>
 
-        {/* Horizontal Stepper Indicator */}
-        <div className="flex items-center justify-between border-b border-[#C5A059]/25 pb-8 mb-16 overflow-x-auto gap-4">
+        {/* Stepper: lista vertical refinada no mobile, horizontal no desktop */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4 border-b border-[#C5A059]/25 pb-6 sm:pb-8 mb-12 sm:mb-16 sm:overflow-x-auto">
           {stages.map((stage, idx) => (
             <button
               key={stage.numeral}
               onClick={() => handleSelectStage(idx)}
-              className={`flex flex-col items-center flex-1 min-w-[120px] transition-all duration-300 relative group pb-2 ${
+              aria-current={activeStageIndex === idx}
+              className={`flex flex-row sm:flex-col items-center sm:items-center gap-3 sm:gap-0 w-full sm:flex-1 min-w-0 sm:min-w-[120px] px-4 sm:px-0 py-3 sm:py-0 sm:pb-2 text-left sm:text-center border-l-2 sm:border-l-0 transition-all duration-300 relative group ${
                 activeStageIndex === idx
-                  ? 'text-[#C5A059]'
-                  : 'text-[#EAE6DF]/40 hover:text-[#EAE6DF]'
+                  ? 'border-[#C5A059] bg-[#C5A059]/[0.07] text-[#C5A059]'
+                  : 'border-transparent text-[#EAE6DF]/40 hover:text-[#EAE6DF]'
               }`}
             >
-              <span className="font-cormorant text-3xl md:text-4xl italic leading-none mb-1">
+              <span className="font-cormorant text-2xl sm:text-3xl md:text-4xl italic leading-none sm:mb-1 shrink-0 w-10 sm:w-auto text-center">
                 {stage.numeral}
               </span>
-              <span className="font-cinzel text-xs tracking-[0.3em] uppercase font-semibold">
+              <span className="font-cinzel text-[11px] sm:text-xs tracking-[0.22em] sm:tracking-[0.3em] uppercase font-semibold">
                 {stage.title}
               </span>
 
-              {/* Active Indicator Bar */}
+              {/* Active Indicator Bar — só no desktop */}
               {activeStageIndex === idx && (
-                <div className="absolute -bottom-8 left-0 w-full flex items-center justify-center">
+                <div className="absolute -bottom-8 left-0 w-full hidden sm:flex items-center justify-center">
                   <div className="w-full h-px bg-[#C5A059]" />
                   <div className="absolute w-2 h-2 rotate-45 bg-[#C5A059]" />
                 </div>
@@ -187,7 +188,7 @@ export function Craftsmanship() {
               </div>
 
               {/* Stage Badge */}
-              <div className="absolute top-8 left-8 px-4 py-1.5 bg-[#020202]/90 border border-[#C5A059]/40 backdrop-blur-md">
+              <div className="absolute top-4 left-4 sm:top-8 sm:left-8 px-4 py-1.5 bg-[#020202]/90 border border-[#C5A059]/40 backdrop-blur-md">
                 <span className="text-[10px] uppercase tracking-[0.35em] text-[#C5A059]">
                   {t.home.crPhase} {currentStage.numeral} • {currentStage.duration}
                 </span>
@@ -199,7 +200,7 @@ export function Craftsmanship() {
           <div className="lg:col-span-5 flex flex-col justify-between space-y-6">
             <div className="space-y-4">
               <div className="flex items-center gap-3">
-                <span className="font-cormorant text-5xl text-[#C5A059] italic font-light leading-none">
+                <span className="font-cormorant text-4xl sm:text-5xl text-[#C5A059] italic font-light leading-none">
                   {currentStage.numeral}
                 </span>
                 <div className="h-8 w-px bg-[#C5A059]/40" />
@@ -208,7 +209,7 @@ export function Craftsmanship() {
                 </span>
               </div>
 
-              <h3 className="font-cinzel text-3xl md:text-4xl tracking-[0.2em] uppercase text-[#FBF9F5]">
+              <h3 className="font-cinzel text-2xl sm:text-3xl md:text-4xl tracking-[0.2em] uppercase text-[#FBF9F5]">
                 {currentStage.title}
               </h3>
 

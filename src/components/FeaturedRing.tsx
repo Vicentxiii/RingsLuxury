@@ -1,11 +1,14 @@
-import React from 'react';
-import { ArrowRight, Feather } from 'lucide-react';
+import React, { useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { ArrowRight, ChevronLeft, ChevronRight, Feather } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
 
 interface Piece {
   src: string;
   name: string;
   altKey: 'featAlt1' | 'featAlt2' | 'featAlt3' | 'featAlt4' | 'featAlt5' | 'featAlt6' | 'featAlt7' | 'featAlt8';
+  /** rota /produto/:slug da peça real no catálogo */
+  to: string;
 }
 
 /** Coleção Luxury Rings — anéis 1/1 HandCrafted em ouro 18k */
@@ -14,50 +17,53 @@ const PIECES: Piece[] = [
     src: '/PUBLIC/Luxury%20rings%20collection%20anel%20Aguia%20ma%C3%A7onica%20by%20Jorge%20Uquillas%20rings%20luxury.png',
     name: 'Águia Masônica',
     altKey: 'featAlt1',
+    to: '/produto/luxury-emperor-masonic-ring-jorge-uquillas',
   },
   {
     src: '/PUBLIC/Luxury%20rings%20collection%20anel%20Caveira%20%20by%20Jorge%20Uquillas%20rings%20luxury.png',
     name: 'Caveira',
     altKey: 'featAlt2',
+    to: '/produto/rose-gold-pirate-skull-ring-jorge-uquillas',
   },
   {
     src: '/PUBLIC/Luxury%20rings%20collection%20anel%20caveira%20com%20diamantes%20by%20Jorge%20Uquillas%20rings%20luxury.png',
     name: 'Caveira com Diamantes',
     altKey: 'featAlt3',
+    to: '/produto/king-skull-ring-18k-diamonds-especial-edition-jorge-uquillas',
   },
   {
     src: '/PUBLIC/Luxury%20rings%20collection%20anel%20Grau%2033%20by%20Jorge%20Uquillas%20rings%20luxury.png',
     name: 'Grau 33',
     altKey: 'featAlt4',
+    to: '/produto/mixed-masonic-33-degrees-gold-silver-ring-jorge-uquillas',
   },
   {
     src: '/PUBLIC/Luxury%20rings%20collection%20anel%20medusa%20by%20Jorge%20Uquillas%20rings%20luxury.png',
     name: 'Medusa',
     altKey: 'featAlt5',
+    to: '/produto/medusa-ring-especial-edition-diamonds-jorge-uquillas',
   },
   {
     src: '/PUBLIC/Luxury%20rings%20collection%20anel%20sinnet%20by%20Jorge%20Uquillas%20rings%20luxury.png',
     name: 'Sinnet',
     altKey: 'featAlt6',
+    to: '/produto/emperor-heraldic-ring-18k-gold-jorge-uquillas',
   },
   {
     src: '/PUBLIC/Luxury%20rings%20collection%20anel%20Tempest%20by%20Jorge%20Uquillas%20rings%20luxury%20(2).png',
     name: 'Tempest',
     altKey: 'featAlt7',
+    to: '/produto/tempest-ring-especial-edition-jorge-uquillas',
   },
   {
     src: '/PUBLIC/Luxury%20rings%20collection%20anel%20Tiger%20by%20Jorge%20Uquillas%20rings%20luxury.png',
     name: 'Tiger',
     altKey: 'featAlt8',
+    to: '/produto/tiger-ring-18k-gold-jorge-uquillas',
   },
 ];
 
 const SUBTEXT_KEY = 'featSubtext' as const;
-
-function scrollToSection(id: string) {
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
 
 interface GoldButtonProps {
   label: string;
@@ -112,6 +118,14 @@ function GoldButton({ label, onClick, variant = 'primary', icon }: GoldButtonPro
  */
 export function FeaturedRing() {
   const { t } = useLanguage();
+  const navigate = useNavigate();
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  const scrollTrack = (dir: 1 | -1) => {
+    const el = trackRef.current;
+    if (!el) return;
+    el.scrollBy({ left: dir * el.clientWidth * 0.8, behavior: 'smooth' });
+  };
   return (
     <section
       id="featured-ring"
@@ -171,46 +185,63 @@ export function FeaturedRing() {
         </div>
       </div>
 
-      {/* MARQUEE — faixa infinita em loop lento, 5+ anéis visíveis */}
-      <div
-        className="ring-marquee relative z-10 w-full overflow-hidden"
-        role="region"
-        aria-label={t.home.featMarqueeAria}
-      >
-        <div className="ring-marquee-track flex w-max items-center">
-          {/* duas cópias idênticas = loop sem costura no -50% */}
-          {[0, 1].map((copy) => (
-            <div key={copy} className="flex items-center" aria-hidden={copy === 1}>
-              {PIECES.map((piece) => (
-                <figure
-                  key={`${copy}-${piece.src}`}
-                  className="group relative shrink-0 w-[220px] sm:w-[260px] lg:w-[300px] px-5 sm:px-7 flex flex-col items-center justify-center bg-transparent border-0"
-                >
-                  <img
-                    src={piece.src}
-                    alt={t.home[piece.altKey]}
-                    loading="lazy"
-                    draggable={false}
-                    className="w-full h-auto max-h-[260px] sm:max-h-[300px] object-contain select-none transition-transform duration-700 ease-out group-hover:scale-[1.1]"
-                    style={{
-                      filter:
-                        'brightness(1) contrast(1.08) drop-shadow(0 18px 30px rgba(0,0,0,0.9))',
-                    }}
-                    onError={(e) =>
-                      ((e.currentTarget as HTMLImageElement).style.display = 'none')
-                    }
-                  />
-                  <figcaption
-                    className="mt-2 text-center font-cinzel uppercase text-[#C5A059]/85 transition-colors duration-500 group-hover:text-[#E6CA85]"
-                    style={{ fontSize: 'clamp(8.5px, 0.68vw, 10px)', letterSpacing: '0.26em' }}
-                  >
-                    {piece.name}
-                  </figcaption>
-                </figure>
-              ))}
-            </div>
+      {/* CARROSSEL — swipe com snap suave; cada anel abre a página do produto */}
+      <div className="relative z-10 w-full">
+        <div
+          ref={trackRef}
+          role="region"
+          aria-label={t.home.featMarqueeAria}
+          className="flex items-center gap-2 sm:gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth px-5 sm:px-8 lg:px-10 pb-2"
+          style={{ scrollbarWidth: 'thin' }}
+        >
+          {PIECES.map((piece) => (
+            <Link
+              key={piece.src}
+              to={piece.to}
+              aria-label={`${piece.name} — ver peça`}
+              className="group relative shrink-0 snap-center w-[220px] sm:w-[260px] lg:w-[300px] px-5 sm:px-7 flex flex-col items-center justify-center bg-transparent border-0 focus:outline-none"
+            >
+              <img
+                src={piece.src}
+                alt={t.home[piece.altKey]}
+                loading="lazy"
+                draggable={false}
+                className="w-full h-auto max-h-[260px] sm:max-h-[300px] object-contain select-none transition-transform duration-700 ease-out group-hover:scale-[1.1]"
+                style={{
+                  filter:
+                    'brightness(1) contrast(1.08) drop-shadow(0 18px 30px rgba(0,0,0,0.9))',
+                }}
+                onError={(e) =>
+                  ((e.currentTarget as HTMLImageElement).style.display = 'none')
+                }
+              />
+              <span
+                className="mt-2 text-center font-cinzel uppercase text-[#C5A059]/85 transition-colors duration-500 group-hover:text-[#E6CA85]"
+                style={{ fontSize: 'clamp(8.5px, 0.68vw, 10px)', letterSpacing: '0.26em' }}
+              >
+                {piece.name}
+              </span>
+            </Link>
           ))}
         </div>
+
+        {/* setas discretas (desktop e mobile) */}
+        <button
+          type="button"
+          onClick={() => scrollTrack(-1)}
+          aria-label="Previous"
+          className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full border border-[#C5A059]/40 bg-black/70 backdrop-blur text-[#C5A059] hidden sm:flex items-center justify-center hover:bg-[#C5A059] hover:text-[#020202] transition-colors"
+        >
+          <ChevronLeft className="w-4 h-4" />
+        </button>
+        <button
+          type="button"
+          onClick={() => scrollTrack(1)}
+          aria-label="Next"
+          className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full border border-[#C5A059]/40 bg-black/70 backdrop-blur text-[#C5A059] hidden sm:flex items-center justify-center hover:bg-[#C5A059] hover:text-[#020202] transition-colors"
+        >
+          <ChevronRight className="w-4 h-4" />
+        </button>
 
         {/* FADES PRETOS NAS DUAS EXTREMIDADES */}
         <div
@@ -236,13 +267,13 @@ export function FeaturedRing() {
         <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center gap-3.5 sm:gap-4">
           <GoldButton
             label={t.home.featBtnMore}
-            onClick={() => scrollToSection('masterpiece')}
+            onClick={() => navigate('/luxury-rings')}
             variant="primary"
             icon={<ArrowRight className="h-3.5 w-3.5" strokeWidth={1.4} />}
           />
           <GoldButton
             label={t.home.featBtnMine}
-            onClick={() => scrollToSection('contact')}
+            onClick={() => navigate('/contact')}
             variant="ghost"
             icon={<Feather className="h-3.5 w-3.5" strokeWidth={1.4} />}
           />

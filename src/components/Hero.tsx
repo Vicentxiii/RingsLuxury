@@ -45,7 +45,7 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
             <iframe
               title={t.home.heroVideoTitle}
               src={YOUTUBE_EMBED}
-              className="absolute top-1/2 left-1/2 w-[420%] h-[420%] sm:w-[300%] sm:h-[300%] lg:w-[170%] lg:h-[170%] -translate-x-1/2 -translate-y-1/2 object-cover scale-[1.15]"
+              className="absolute top-1/2 left-1/2 w-[420%] h-[420%] sm:w-[300%] sm:h-[300%] lg:w-[170%] lg:h-[170%] -translate-x-1/2 -translate-y-1/2 object-cover scale-[1.15] brightness-[1.35] contrast-[1.05] sm:brightness-100 sm:contrast-100"
               style={{ border: 0, opacity: 1 }}
               allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
               allowFullScreen={false}
@@ -89,8 +89,8 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
           src={OLD_HERO_COMPOSITE}
           alt=""
           draggable={false}
-          className="absolute inset-0 w-full h-full object-cover object-center scale-[1.12]"
-          style={{ objectPosition: 'center center', opacity: 0.84 }}
+          className="absolute inset-0 w-full h-full object-cover object-center scale-[1.12] opacity-60 sm:opacity-[0.84]"
+          style={{ objectPosition: 'center center' }}
           onError={(e) => {
             (e.currentTarget as HTMLImageElement).style.display = 'none';
           }}
