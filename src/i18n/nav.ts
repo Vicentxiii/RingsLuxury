@@ -75,9 +75,9 @@ const footerEn = {
   bottomTagline: 'HandCrafted 18k Gold • Handmade 18k Gold Rings',
   handmadeInBrazil: 'Handmade in Brazil',
   creditPrefix: 'Site created by',
-  creditRole: 'Digital Artisano',
+  creditRole: 'an Digital Artisan',
   creditFromWord: 'from',
-  creditFrom: 'Transcend Digital',
+  creditFrom: 'Transcent Digital',
 } as const;
 
 type FooterKeys = keyof typeof footerEn;
@@ -102,9 +102,9 @@ const footerEs: Record<FooterKeys, string> = {
   bottomTagline: 'Oro de 18k Hecho a Mano • Anillos de Oro de 18k Hechos a Mano',
   handmadeInBrazil: 'Hecho a mano en Brasil',
   creditPrefix: 'Sitio creado por',
-  creditRole: 'Artesano Digital',
+  creditRole: 'an Digital Artisan',
   creditFromWord: 'de',
-  creditFrom: 'Transcend Digital',
+  creditFrom: 'Transcent Digital',
 };
 
 const footerPt: Record<FooterKeys, string> = {
@@ -127,9 +127,9 @@ const footerPt: Record<FooterKeys, string> = {
   bottomTagline: 'Ouro 18k Artesanal • Anéis Artesanais em Ouro 18k',
   handmadeInBrazil: 'Feito à mão no Brasil',
   creditPrefix: 'Site criado por',
-  creditRole: 'Artesão Digital',
+  creditRole: 'an Digital Artisan',
   creditFromWord: 'da',
-  creditFrom: 'Transcend Digital',
+  creditFrom: 'Transcent Digital',
 };
 
 export const footerTexts = { en: footerEn, es: footerEs, pt: footerPt };

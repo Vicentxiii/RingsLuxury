@@ -231,18 +231,28 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Crédito de criação — link de volta ao portfólio */}
+        {/* Crédito de criação — dois links: autor e empresa */}
         <div className="pt-10 flex justify-center">
-          <a
-            href={contact.credit.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[9px] sm:text-[10px] uppercase tracking-[0.32em] text-[#9A7B38] hover:text-[#C5A059] transition-colors text-center"
-          >
+          <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.32em] text-[#9A7B38] text-center">
             {t.footer.creditPrefix}{' '}
-            <span className="text-[#C5A059]">{contact.credit.name}</span>, {t.footer.creditRole}{' '}
-            {t.footer.creditFromWord} {t.footer.creditFrom}
-          </a>
+            <a
+              href={contact.credit.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#F3EFE6] hover:text-[#C5A059] transition-colors"
+            >
+              {contact.credit.name}
+            </a>
+            , {t.footer.creditRole} {t.footer.creditFromWord}{' '}
+            <a
+              href={contact.credit.companyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#F3EFE6] hover:text-[#C5A059] transition-colors"
+            >
+              {t.footer.creditFrom}
+            </a>
+          </p>
         </div>
       </div>
 

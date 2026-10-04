@@ -9,6 +9,8 @@ interface Piece {
   altKey: 'featAlt1' | 'featAlt2' | 'featAlt3' | 'featAlt4' | 'featAlt5' | 'featAlt6' | 'featAlt7' | 'featAlt8';
   /** rota /produto/:slug da peça real no catálogo */
   to: string;
+  /** zoom extra p/ fotos cuja peça saiu pequena no enquadramento (ex: Sinnet) */
+  zoom?: string;
 }
 
 /** Coleção Luxury Rings — anéis 1/1 HandCrafted em ouro 18k */
@@ -48,6 +50,7 @@ const PIECES: Piece[] = [
     name: 'Sinnet',
     altKey: 'featAlt6',
     to: '/produto/emperor-heraldic-ring-18k-gold-jorge-uquillas',
+    zoom: 'scale-[1.55] group-hover:scale-[1.7]',
   },
   {
     src: '/PUBLIC/Luxury%20rings%20collection%20anel%20Tempest%20by%20Jorge%20Uquillas%20rings%20luxury%20(2).png',
@@ -206,7 +209,7 @@ export function FeaturedRing() {
                 alt={t.home[piece.altKey]}
                 loading="lazy"
                 draggable={false}
-                className="w-full h-auto max-h-[260px] sm:max-h-[300px] object-contain select-none transition-transform duration-700 ease-out group-hover:scale-[1.1]"
+                className={`w-full h-auto max-h-[260px] sm:max-h-[300px] object-contain select-none transition-transform duration-700 ease-out ${piece.zoom ?? 'group-hover:scale-[1.1]'}`}
                 style={{
                   filter:
                     'brightness(1) contrast(1.08) drop-shadow(0 18px 30px rgba(0,0,0,0.9))',

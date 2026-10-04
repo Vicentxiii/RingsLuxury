@@ -46,12 +46,15 @@ export function Contact({}: ContactProps) {
             <LaurelWreath className="w-4 h-4 text-[#C5A059] transform -scale-x-100" />
           </div>
 
-          {/* Title: SEO — Jorge Uquillas */}
+          {/* Title: SEO — Jorge Uquillas. No mobile o nome fica numa linha só. */}
           <h2
             id="contact-title"
-            className="font-cinzel text-4xl sm:text-5xl md:text-6xl tracking-[0.18em] uppercase text-[#FBF9F5] font-light mb-4"
+            className="font-cinzel text-[26px] sm:text-5xl md:text-6xl tracking-[0.18em] uppercase text-[#FBF9F5] font-light mb-4"
           >
-            {t.pages.contactTitle}
+            {t.pages.contactTitle.split('•')[0]}•{' '}
+            <span className="whitespace-nowrap sm:whitespace-normal">
+              {t.pages.contactTitle.split('•')[1]}
+            </span>
           </h2>
 
           {/* Subtitle: Anéis artesanais HandCrafted */}

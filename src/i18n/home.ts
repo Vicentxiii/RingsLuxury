@@ -90,9 +90,9 @@ const en = {
   atDisc2Name: "Intaglio & Hand Engraving",
   atDisc3: "DISCIPLINE III",
   atDisc3Name: "Agate Burnishing",
-  atVideoAria: "Anel Rings Luxury — anel monograma maçônico templários, by Jorge Uquillas",
-  atCaptionFilm: "ATELIER FILM — LOOP",
-  atCaptionMono: "MONOGRAMA MAÇÔNICO • TEMPLÁRIOS",
+  atVideoAria: "Maçonic 18k gold Ring with big Citrine Gem, by Jorge Uquillas",
+  atCaptionFilm: "",
+  atCaptionMono: "Maçonic 18k gold Ring with big Citrine Gem, by Jorge Uquillas",
   atAguiaAlt: "Anel Águia Maçônica em ouro 18k — by Jorge Uquillas",
   // ---- YouDecide ----
   ydAria: "You decide every stone every detail",
@@ -170,6 +170,8 @@ const en = {
   // ---- WorldClients (UI chrome only; testimonials stay in original language) ----
   wcAria: "What people say about Rings Luxury",
   wcTitle: "What people say about Rings Luxury",
+  wcTitleTop: "What people say about",
+  wcTitleBottom: "Rings Luxury",
   wcBadgeAlt: "Avaliação 5 estrelas no Google — Rings Luxury by Jorge Uquillas",
   wcPrev: "Avaliação anterior",
   wcNext: "Próxima avaliação",
@@ -193,6 +195,7 @@ const en = {
   // ---- QuoteSection ----
   quLine1: "“TIME CREATES HISTORY.",
   quLine2: "THE MASTER ENGRAVER CREATES LEGACY.”",
+  quPhotoAlt: "Master hand engraver Jorge Uquillas — Creating legacy",
   // ---- ArtifactModal (UI chrome only; artifact data stays dynamic) ----
   amArchivePrefix: "ARCHIVAL DOSSIER • PIECE N° ",
   amRefPrefix: "Hellenic Archive Ref: KL-",
@@ -353,9 +356,9 @@ const es: Record<Keys, string> = {
   atDisc2Name: "Intaglio y grabado a mano",
   atDisc3: "DISCIPLINA III",
   atDisc3Name: "Pulido con ágata",
-  atVideoAria: "Anillo Rings Luxury — anillo monograma masónico templario, by Jorge Uquillas",
-  atCaptionFilm: "VIDEO DEL ATELIER — LOOP",
-  atCaptionMono: "MONOGRAMA MASÓNICO • TEMPLARIOS",
+  atVideoAria: "Anillo Rings Luxury — anillo monograma maçónico con gran citrino, por Jorge Uquillas",
+  atCaptionFilm: "",
+  atCaptionMono: "Anillo maçónico de oro 18k con gran gema citrina, por Jorge Uquillas",
   atAguiaAlt: "Anillo Águia Masônica en oro 18k — by Jorge Uquillas",
   // ---- YouDecide ----
   ydAria: "Tú decides cada piedra, cada detalle",
@@ -433,6 +436,8 @@ const es: Record<Keys, string> = {
   // ---- WorldClients ----
   wcAria: "Lo que dicen de Rings Luxury",
   wcTitle: "Lo que dicen de Rings Luxury",
+  wcTitleTop: "Lo que dicen de",
+  wcTitleBottom: "Rings Luxury",
   wcBadgeAlt: "Calificación de 5 estrellas en Google — Rings Luxury by Jorge Uquillas",
   wcPrev: "Reseña anterior",
   wcNext: "Reseña siguiente",
@@ -456,6 +461,7 @@ const es: Record<Keys, string> = {
   // ---- QuoteSection ----
   quLine1: "“EL TIEMPO CREA LA HISTORIA.",
   quLine2: "EL MAESTRO GRABADOR CREA EL LEGADO.”",
+  quPhotoAlt: "Maestro grabador a mano Jorge Uquillas — Creando el legado",
   // ---- ArtifactModal ----
   amArchivePrefix: "DOSSIER DE ARCHIVO • PIEZA N° ",
   amRefPrefix: "Ref. archivo helénico: KL-",
@@ -614,9 +620,9 @@ const pt: Record<Keys, string> = {
   atDisc2Name: "Entalhe e gravação à mão",
   atDisc3: "DISCIPLINA III",
   atDisc3Name: "Brunimento com ágata",
-  atVideoAria: "Anel Rings Luxury — anel monograma maçônico templários, by Jorge Uquillas",
-  atCaptionFilm: "FILME DO ATELIER — LOOP",
-  atCaptionMono: "MONOGRAMA MAÇÔNICO • TEMPLÁRIOS",
+  atVideoAria: "Anel Rings Luxury — anel monograma maçônico com grande citrino, por Jorge Uquillas",
+  atCaptionFilm: "",
+  atCaptionMono: "Anel maçônico de ouro 18k com grande gema de citrino, por Jorge Uquillas",
   atAguiaAlt: "Anel Águia Maçônica em ouro 18k — by Jorge Uquillas",
   // ---- YouDecide ----
   ydAria: "Você decide cada pedra, cada detalhe",
@@ -694,6 +700,8 @@ const pt: Record<Keys, string> = {
   // ---- WorldClients ----
   wcAria: "O que dizem sobre a Rings Luxury",
   wcTitle: "O que dizem sobre a Rings Luxury",
+  wcTitleTop: "O que dizem sobre a",
+  wcTitleBottom: "Rings Luxury",
   wcBadgeAlt: "Avaliação 5 estrelas no Google — Rings Luxury by Jorge Uquillas",
   wcPrev: "Avaliação anterior",
   wcNext: "Próxima avaliação",
@@ -717,6 +725,7 @@ const pt: Record<Keys, string> = {
   // ---- QuoteSection ----
   quLine1: "“O TEMPO CRIA A HISTÓRIA.",
   quLine2: "O MESTRE GRAVADOR CRIA O LEGADO.”",
+  quPhotoAlt: "Mestre gravador à mão Jorge Uquillas — Criando o legado",
   // ---- ArtifactModal ----
   amArchivePrefix: "DOSSIÊ DE ARQUIVO • PEÇA N° ",
   amRefPrefix: "Ref. arquivo helênico: KL-",

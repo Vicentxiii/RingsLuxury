@@ -82,29 +82,26 @@ export function ShippingWorldwide() {
           <span className="h-px w-16 sm:w-24 bg-gradient-to-l from-transparent to-[#C5A059]/80" />
         </div>
 
-        {/* MINI-CARROSSEL DE BANDEIRAS — só as bandeirinhas, horizontal, minimalista */}
+        {/* CARROSSEL DE BANDEIRAS — swipe suave com snap (deslize com o dedo) */}
         <div
-          className="shipping-marquee relative mt-8 sm:mt-10 overflow-hidden"
+          className="relative mt-8 sm:mt-10 overflow-x-auto snap-x snap-mandatory scroll-smooth"
           style={{
+            scrollbarWidth: 'none',
             maskImage: 'linear-gradient(to right, transparent, black 12%, black 88%, transparent)',
             WebkitMaskImage: 'linear-gradient(to right, transparent, black 12%, black 88%, transparent)',
           }}
         >
-          <div className="shipping-marquee-track flex w-max items-center">
-            {[0, 1].map((half) => (
-              <div key={half} className="flex items-center" aria-hidden={half === 1}>
-                {FLAG_SRCS.map((src, i) => (
-                  <img
-                    key={`${half}-${src}`}
-                    src={src}
-                    alt={half === 0 ? t.home[FLAG_ALT_KEYS[i]] : ''}
-                    draggable={false}
-                    loading="lazy"
-                    className="mx-3 sm:mx-4 w-11 h-11 sm:w-[52px] sm:h-[52px] object-contain select-none"
-                    onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-                  />
-                ))}
-              </div>
+          <div className="flex w-max items-center px-6">
+            {FLAG_SRCS.map((src, i) => (
+              <img
+                key={src}
+                src={src}
+                alt={t.home[FLAG_ALT_KEYS[i]]}
+                draggable={false}
+                loading="lazy"
+                className="mx-3 sm:mx-4 w-11 h-11 sm:w-[52px] sm:h-[52px] object-contain select-none snap-center shrink-0"
+                onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+              />
             ))}
           </div>
         </div>

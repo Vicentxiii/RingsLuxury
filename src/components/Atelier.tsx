@@ -103,9 +103,8 @@ export function Atelier() {
                 />
               </div>
 
-              {/* Caption */}
-              <div className="mt-3 flex items-center justify-between text-[9px] uppercase tracking-[0.3em] text-[#9A7B38]">
-                <span>{t.home.atCaptionFilm}</span>
+              {/* Caption SEO — peça real: maçônico 18k com citrino */}
+              <div className="mt-3 flex items-center justify-center text-center text-[9px] uppercase tracking-[0.3em] text-[#9A7B38]">
                 <span>{t.home.atCaptionMono}</span>
               </div>
             </div>

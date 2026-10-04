@@ -49,6 +49,26 @@ export function QuoteSection() {
           <LaurelWreath className="w-6 h-6 text-[#C5A059]" />
           <div className="h-px w-16 md:w-24 bg-gradient-to-l from-transparent to-[#C5A059]" />
         </div>
+
+        {/* Master engraver — Creating legacy */}
+        <figure className="mt-12 max-w-md mx-auto">
+          <div className="relative border border-[#C5A059]/40 bg-[#070707] p-2.5 shadow-[0_25px_80px_rgba(0,0,0,0.9)]">
+            <div className="absolute -top-1 -left-1 w-2.5 h-2.5 border-t border-l border-[#C5A059]" aria-hidden />
+            <div className="absolute -top-1 -right-1 w-2.5 h-2.5 border-t border-r border-[#C5A059]" aria-hidden />
+            <div className="absolute -bottom-1 -left-1 w-2.5 h-2.5 border-b border-l border-[#C5A059]" aria-hidden />
+            <div className="absolute -bottom-1 -right-1 w-2.5 h-2.5 border-b border-r border-[#C5A059]" aria-hidden />
+            <div className="overflow-hidden bg-[#020202]">
+              <img
+                src={encodeURI('/PUBLIC/Master engraver Jorge Uquillas seção Creating legacy.jpg')}
+                alt={t.home.quPhotoAlt}
+                loading="lazy"
+                draggable={false}
+                className="w-full h-auto object-cover select-none"
+                onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+              />
+            </div>
+          </div>
+        </figure>
       </div>
     </section>
   );

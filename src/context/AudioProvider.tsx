@@ -18,22 +18,6 @@ export const DARK_TRACKS: DarkTrack[] = [
     src: '/audio/a-hero-within.mp3',
     startAt: 6,
   },
-  {
-    id: 'dark-cello',
-    name: 'Cello Suite Prélude',
-    composer: 'J.S. Bach',
-    genre: 'Violoncelo Solo Dark',
-    src: '/audio/dark-cello.mp3',
-    startAt: 0,
-  },
-  {
-    id: 'dark-cinematic',
-    name: 'Darkest Child',
-    composer: 'Kevin MacLeod',
-    genre: 'Violoncelo & Cordas Sombrias',
-    src: '/audio/dark-cinematic.mp3',
-    startAt: 0,
-  },
 ];
 
 interface AudioContextValue {
@@ -41,7 +25,6 @@ interface AudioContextValue {
   trackIndex: number;
   currentTrack: DarkTrack;
   togglePlay: () => void;
-  nextTrack: (e?: React.MouseEvent) => void;
 }
 
 const AudioCtx = createContext<AudioContextValue | null>(null);
@@ -353,17 +336,11 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  const nextTrack = useCallback((e?: React.MouseEvent) => {
-    e?.stopPropagation();
-    setTrackIndex((prev) => (prev + 1) % DARK_TRACKS.length);
-  }, []);
-
   const value: AudioContextValue = {
     isPlaying,
     trackIndex,
     currentTrack: DARK_TRACKS[trackIndex],
     togglePlay,
-    nextTrack,
   };
 
   return <AudioCtx.Provider value={value}>{children}</AudioCtx.Provider>;

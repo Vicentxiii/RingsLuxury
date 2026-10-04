@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
+import { products } from '../data/products';
 
 interface EpicPreloaderProps {
   isExiting: boolean;
@@ -31,7 +32,19 @@ export function EpicPreloader({ isExiting }: EpicPreloaderProps) {
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  // Partículas amarelas flutuantes - memo para não recriar
+  // Anel aleatório do catálogo a cada visita — SÓ anéis com foto PNG real
+  // do atelier (images[0] em /PUBLIC/). Fora: fotos genéricas/Unsplash,
+  // artesão trabalhando e colares (id 043). Sempre peça real do Jorge.
+  const featuredPiece = useMemo(() => {
+    const pool = products.filter(
+      (p) =>
+        p.images[0]?.startsWith('/PUBLIC/') &&
+        p.categorySlug !== 'necklaces' &&
+        p.id !== '043',
+    );
+    const list = pool.length ? pool : products;
+    return list[Math.floor(Math.random() * list.length)];
+  }, []);
   const particles = useMemo(() => {
     return Array.from({ length: 55 }, (_, i) => ({
       id: i,
@@ -108,7 +121,7 @@ export function EpicPreloader({ isExiting }: EpicPreloaderProps) {
 
       {/* Conteúdo central - adaptado mobile */}
       <div className={`relative z-10 flex flex-col items-center text-center px-4 sm:px-6 transition-all duration-700 ease-out max-h-[100dvh] overflow-hidden py-6 ${isExiting ? 'scale-95 opacity-0 blur-[8px]' : 'scale-100 opacity-100 blur-0'}`}>
-        {/* Logo WEBP puro - bem menor, sem bola, fundo transparente partículas atrás */}
+        {/* Anel em destaque — peça real do catálogo, sorteada a cada visita */}
         <div className="relative flex items-center justify-center shrink-0">
           {/* Halo atrás do WEBP - deixado bem mais sutil */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[100px] sm:w-[280px] sm:h-[130px] bg-[#C5A059]/[0.03] blur-[55px] sm:blur-[65px] rounded-full pointer-events-none opacity-[0.12] sm:opacity-[0.15]" />
@@ -116,27 +129,21 @@ export function EpicPreloader({ isExiting }: EpicPreloaderProps) {
           
           {/* Logo leve (47KB) com preload no index.html: aparece de cara, sem ícone quebrado.
               O webp anterior (logo-novo-high-resolution) não existia: dava 404 e caía num PNG de 20MB. */}
-          <img
-            src="/PUBLIC/logo-cortado.webp"
-            alt="Rings Luxury"
-            fetchPriority="high"
-            decoding="async"
-            width={370}
-            height={370}
-            className="relative w-[118px] sm:w-[148px] md:w-[168px] lg:w-[185px] h-auto object-contain select-none max-w-[68vw] max-h-[32dvh]"
-            style={{ filter: 'drop-shadow(0 0 14px rgba(197,160,89,0.14)) drop-shadow(0 6px 22px rgba(0,0,0,0.9))' }}
-            draggable={false}
-            onError={(e) => {
-              const target = e.currentTarget;
-              // fallback chain curta, arquivos pequenos -> PNG (227KB) -> SVG (3KB)
-              if (!target.src.includes('logo-cortado.png') && !target.dataset.triedPng) {
-                target.dataset.triedPng = '1';
-                target.src = '/PUBLIC/logo-cortado.png';
-              } else if (!target.src.includes('logo.svg')) {
-                target.src = '/logo.svg';
-              }
-            }}
-          />
+          {featuredPiece && (
+            <img
+              key={featuredPiece.id}
+              src={featuredPiece.images[0]}
+              alt={featuredPiece.name}
+              fetchPriority="high"
+              decoding="async"
+              draggable={false}
+              className="relative w-[150px] sm:w-[190px] md:w-[210px] h-auto object-contain select-none max-w-[68vw] max-h-[32dvh] animate-[epicRingIn_1s_ease-out]"
+              style={{ filter: 'drop-shadow(0 0 22px rgba(197,160,89,0.28)) drop-shadow(0 18px 44px rgba(0,0,0,0.9))' }}
+              onError={(e) => {
+                ((e.currentTarget as HTMLImageElement).style.display = 'none');
+              }}
+            />
+          )}
         </div>
 
         {/* Tipografia - escala menor no mobile */}
@@ -223,6 +230,10 @@ export function EpicPreloader({ isExiting }: EpicPreloaderProps) {
           0% { opacity: 0; transform: translateX(-40px) skewX(-12deg); }
           50% { opacity: 1; }
           100% { opacity: 0; transform: translateX(40px) skewX(-12deg); }
+        }
+        @keyframes epicRingIn {
+          0% { opacity: 0; transform: scale(0.92) translateY(10px); }
+          100% { opacity: 1; transform: scale(1) translateY(0); }
         }
         @keyframes spin { to { transform: rotate(360deg); } }
         @keyframes spin_reverse { to { transform: rotate(-360deg); } }

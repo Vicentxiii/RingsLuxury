@@ -1,11 +1,12 @@
 import React from 'react';
-import { Music, SkipForward } from 'lucide-react';
+import { Music } from 'lucide-react';
 import { useAudio } from '../context/AudioProvider';
 import { useLanguage } from '../i18n/LanguageContext';
 
 export function AudioAtmosphere() {
   const { t } = useLanguage();
-  const { isPlaying, currentTrack, togglePlay, nextTrack } = useAudio();
+  // Faixa única épica: o botão pausa e retoma do ponto onde parou.
+  const { isPlaying, currentTrack, togglePlay } = useAudio();
 
   return (
     <div className="flex items-center gap-2">
@@ -27,33 +28,22 @@ export function AudioAtmosphere() {
               <span className="w-1 bg-[#C5A059] rounded-full animate-[pulse_0.7s_ease-in-out_infinite_0.4s] h-2" />
             </div>
             <span className="text-[#C5A059] font-medium hidden sm:inline">
-              {currentTrack.id === 'a-hero-within' ? `${currentTrack.name} • ${t.home.auEpic}` : `${t.home.auCelloPrefix}${currentTrack.name}`}
+              {`${currentTrack.name} • ${t.home.auEpic}`}
             </span>
             <span className="text-[#C5A059] font-medium sm:hidden">
-              {currentTrack.id === 'a-hero-within' ? t.home.auEpicOn : t.home.auCelloOn}
+              {t.home.auEpicOn}
             </span>
           </>
         ) : (
           <>
             <Music className="w-3.5 h-3.5 text-[#C5A059] group-hover:scale-110 transition-transform" />
             <span className="hidden sm:inline">
-              {currentTrack.id === 'a-hero-within' ? `${t.home.auEpicPrefix}${currentTrack.name}` : t.home.auCelloDark}
+              {`${t.home.auEpicPrefix}${currentTrack.name}`}
             </span>
-            <span className="sm:hidden">{currentTrack.id === 'a-hero-within' ? t.home.auEpic : t.home.auCello}</span>
+            <span className="sm:hidden">{t.home.auEpic}</span>
           </>
         )}
       </button>
-
-      {/* Skip to Next Dark Track */}
-      {isPlaying && (
-        <button
-          onClick={nextTrack}
-          title={t.home.auNextTitle}
-          className="p-2 rounded-full border border-[#C5A059]/40 bg-[#070707]/80 hover:bg-[#C5A059]/20 hover:border-[#C5A059] text-[#C5A059] transition-all"
-        >
-          <SkipForward className="w-3 h-3" />
-        </button>
-      )}
     </div>
   );
 }

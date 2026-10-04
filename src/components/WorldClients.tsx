@@ -122,12 +122,15 @@ export function WorldClients() {
 
       {/* CONTEÚDO */}
       <div className="relative z-10 w-full max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10 py-20 sm:py-24 lg:py-28">
-        {/* TÍTULO */}
+        {/* TÍTULO em duas linhas */}
         <h2
           className="text-center font-cinzel font-normal uppercase text-[#E6CA85]"
           style={{ fontSize: 'clamp(18px, 2.4vw, 32px)', letterSpacing: '0.14em' }}
         >
-          {t.home.wcTitle}
+          <span className="block text-[0.62em] tracking-[0.3em] text-[#C5A059]">
+            {t.home.wcTitleTop}
+          </span>
+          <span className="mt-2 block">{t.home.wcTitleBottom}</span>
         </h2>
 
         {/* BADGE 5-STAR GOOGLE */}
