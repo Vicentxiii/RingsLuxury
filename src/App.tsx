@@ -16,9 +16,11 @@ const ContactPage = lazy(() =>
 import { Blog } from './pages/Blog';
 import { BlogPost } from './pages/BlogPost';
 import { LuxuryRingsGuide } from './pages/LuxuryRingsGuide';import { ProductPage } from './pages/ProductPage';
+import { CartPage } from './pages/CartPage';
 import { JorgeUquillas } from './pages/JorgeUquillas';
 import { AudioProvider } from './context/AudioProvider';
 import { LanguageProvider } from './i18n/LanguageContext';
+import { CartProvider } from './context/CartContext';
 import { EpicPreloader } from './components/EpicPreloader';
 
 export default function App() {
@@ -69,6 +71,7 @@ export default function App() {
   return (
     <AudioProvider>
       <LanguageProvider>
+      <CartProvider>
       {showPreloader && <EpicPreloader isExiting={!isPreloading} />}
       <div
         className={
@@ -104,12 +107,14 @@ export default function App() {
       <Route path="/luxury-rings-guide" element={<LuxuryRingsGuide />} />
       <Route path="/produto/:slug" element={<ProductPage />} />
       <Route path="/product/:slug" element={<ProductPage />} />
+      <Route path="/cart" element={<CartPage />} />
       <Route path="/jorge-uquillas" element={<JorgeUquillas />} />
       <Route path="/jorgeuquillas" element={<JorgeUquillas />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
         </Suspense>
       </div>
+      </CartProvider>
       </LanguageProvider>
     </AudioProvider>
   );

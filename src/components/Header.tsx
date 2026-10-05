@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { ShoppingBag } from 'lucide-react';
 import { AudioAtmosphere } from './AudioAtmosphere';
 import { LanguageFlags } from './LanguageFlags';
 import { useLanguage } from '../i18n/LanguageContext';
+import { useCart } from '../context/CartContext';
 import { StaggeredMenu, StaggeredMenuItem, StaggeredMenuSocialItem } from './StaggeredMenu';
 
 interface HeaderProps {
@@ -15,6 +17,7 @@ export function Header({ onOpenConsultation }: HeaderProps) {
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useLanguage();
+  const { count } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -98,6 +101,11 @@ export function Header({ onOpenConsultation }: HeaderProps) {
       label: t.nav.blog,
       link: '/blog',
       onClick: (e) => handleNavigation(e, '/blog'),
+    },
+    {
+      label: t.nav.cart,
+      link: '/cart',
+      onClick: (e) => handleNavigation(e, '/cart'),
     }
   ];
 
@@ -160,6 +168,18 @@ export function Header({ onOpenConsultation }: HeaderProps) {
             <span className="hidden sm:block">
               <AudioAtmosphere />
             </span>
+            <button
+              onClick={() => navigate('/cart')}
+              aria-label={t.nav.cart}
+              className="relative w-9 h-9 rounded-full border border-[#C5A059]/40 hover:border-[#C5A059] hover:bg-[#C5A059]/10 flex items-center justify-center transition-colors"
+            >
+              <ShoppingBag className="w-4 h-4 text-[#C5A059]" aria-hidden />
+              {count > 0 && (
+                <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-[#C5A059] text-[#020202] text-[10px] font-bold flex items-center justify-center">
+                  {count > 9 ? '9+' : count}
+                </span>
+              )}
+            </button>
             <LanguageFlags />
           </div>
         }

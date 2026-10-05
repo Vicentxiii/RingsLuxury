@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Product } from '../data/products';
+import { taglineFor } from '../data/relatedTaglines';
 import { AcanthusLeaf, GreekMeanderDivider } from './OrnamentIcons';
 import { useLanguage } from '../i18n/LanguageContext';
 
@@ -153,9 +154,11 @@ export function RelatedProductsCarousel({ products, title, subtitle }: RelatedPr
               to={`/produto/${p.slug}`}
               aria-hidden={i >= products.length}
               tabIndex={i >= products.length ? -1 : undefined}
-              className="group shrink-0 w-[205px] sm:w-[228px] md:w-[248px] flex flex-col rounded-[20px] bg-gradient-to-b from-[#0D0B07] to-[#060505] border border-white/10 hover:border-[#C5A059]/45 transition-all duration-500 overflow-hidden hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(0,0,0,0.7),0_0_30px_rgba(197,160,89,0.12)]"
+              className="group relative shrink-0 w-[205px] sm:w-[228px] md:w-[248px] flex flex-col rounded-[20px] bg-gradient-to-b from-[#0D0B07] to-[#060505] border border-white/10 hover:border-[#C5A059]/45 transition-all duration-500 overflow-hidden hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(0,0,0,0.7),0_0_30px_rgba(197,160,89,0.12)]"
               style={{ scrollSnapAlign: 'center' }}
             >
+              {/* filete dourado no topo do card */}
+              <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#C5A059]/60 to-transparent z-10" aria-hidden />
               {/* image: anel menor, elegante, contido */}
               <div className="relative aspect-square overflow-hidden flex items-center justify-center bg-[radial-gradient(circle_at_50%_38%,rgba(197,160,89,0.16),transparent_62%)] p-7">
                 <img
@@ -166,23 +169,21 @@ export function RelatedProductsCarousel({ products, title, subtitle }: RelatedPr
                   className="w-[88%] h-[88%] object-contain drop-shadow-[0_18px_28px_rgba(0,0,0,0.8)] opacity-90 group-hover:opacity-100 group-hover:scale-[1.06] transition-all duration-700 ease-out select-none"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#060505] via-transparent to-transparent opacity-70 pointer-events-none" />
-                {/* preço curto: badge no canto. Preço longo
-                    ("Price Upon Request"): pequeno abaixo da categoria. */}
-                {p.price.length <= 12 && (
-                  <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/70 border border-[#C5A059]/25 backdrop-blur-sm">
-                    <span className="font-cinzel text-[11px] tracking-wider text-[#E6CA85]">{p.price}</span>
-                  </div>
-                )}
-                {/* categoria + preço longo abaixo dela */}
-                <div className="absolute top-3 right-3 flex flex-col items-end gap-1.5">
-                  <div className="px-2 py-1 rounded-full bg-gradient-to-r from-[#E6CA85] to-[#C5A059] shadow">
-                    <span className="text-[7px] uppercase tracking-[0.18em] font-bold text-[#020202]">{p.category}</span>
-                  </div>
-                  {p.price.length > 12 && (
-                    <div className="px-2 py-1 rounded-full bg-black/70 border border-[#C5A059]/25 backdrop-blur-sm max-w-[118px]">
-                      <span className="block font-cinzel text-[8px] tracking-[0.1em] uppercase text-[#E6CA85] text-right leading-snug">{p.price}</span>
+                {/* selos topo: preço ao lado da categoria, dupla centralizada
+                    no card, leading-none para o texto assentar no centro */}
+                <div className="absolute top-2.5 left-0 right-0 z-10 flex items-center justify-center gap-1 px-2">
+                  {p.priceNumber > 0 ? (
+                    <div className="inline-flex items-center px-2 py-1 rounded-full bg-black/70 border border-[#C5A059]/25 backdrop-blur-sm whitespace-nowrap">
+                      <span className="font-cinzel text-[10px] tracking-wider leading-none text-[#E6CA85]">{p.price}</span>
+                    </div>
+                  ) : (
+                    <div className="inline-flex items-center px-1.5 py-1 rounded-full bg-black/70 border border-[#C5A059]/25 backdrop-blur-sm whitespace-nowrap">
+                      <span className="font-cinzel text-[7px] uppercase tracking-[0.06em] leading-none text-[#E6CA85]">{p.price}</span>
                     </div>
                   )}
+                  <div className="inline-flex items-center px-1.5 py-1 rounded-full bg-gradient-to-r from-[#E6CA85] to-[#C5A059] shadow whitespace-nowrap">
+                    <span className="text-[6.5px] uppercase tracking-[0.1em] leading-none font-bold text-[#020202]">{p.category}</span>
+                  </div>
                 </div>
                 {/* hover view */}
                 <div className="absolute inset-0 bg-[#020202]/45 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
@@ -195,7 +196,8 @@ export function RelatedProductsCarousel({ products, title, subtitle }: RelatedPr
               {/* edition row */}
               <div className="px-4 pt-3 flex justify-between items-center gap-2">
                 <span className="text-[7.5px] uppercase tracking-[0.24em] text-[#E6CA85]/80 truncate">{p.specs.edition}</span>
-                <span className={`shrink-0 text-[7.5px] uppercase tracking-widest px-2 py-0.5 rounded-full border ${p.inStock ? 'border-emerald-500/40 text-emerald-400 bg-emerald-500/10' : 'border-red-500/40 text-red-400'}`}>
+                <span className={`shrink-0 inline-flex items-center gap-1 text-[7.5px] uppercase tracking-widest px-2 py-0.5 rounded-full border ${p.inStock ? 'border-emerald-500/40 text-emerald-400 bg-emerald-500/10' : 'border-red-500/40 text-red-400'}`}>
+                  <span className={`w-1 h-1 rounded-full ${p.inStock ? 'bg-emerald-400' : 'bg-red-400'}`} aria-hidden />
                   {p.inStock ? t.collections.relatedAvailable : t.collections.relatedOnRequest}
                 </span>
               </div>
@@ -206,8 +208,15 @@ export function RelatedProductsCarousel({ products, title, subtitle }: RelatedPr
                 <h3 className="font-cinzel text-[15px] tracking-[0.12em] uppercase text-[#F3EFE6] group-hover:text-[#E6CA85] transition-colors mt-1 line-clamp-1">
                   {p.name}
                 </h3>
-                <p className="font-cormorant text-[13px] leading-relaxed text-[#A8A296] line-clamp-2 mt-1.5 flex-grow">
-                  {lang === 'es' ? (p.description_es ?? p.description) : lang === 'pt' ? (p.description_pt ?? p.description) : p.description}
+                {/* preço em destaque no corpo do card */}
+                {p.priceNumber > 0 && (
+                  <p className="mt-1.5 font-cinzel text-[15px] tracking-[0.12em] text-[#E6CA85] drop-shadow-[0_0_12px_rgba(197,160,89,0.35)]">
+                    {p.price}
+                  </p>
+                )}
+                {/* tagline curta e poderosa: poucas palavras, nunca corta */}
+                <p className="font-cormorant italic text-[13.5px] leading-snug text-[#D8D2C4] mt-1.5 flex-grow">
+                  {taglineFor(p.slug, lang)}
                 </p>
                 <div className="mt-3 pt-3 border-t border-white/[0.07] flex items-center justify-between">
                   <span className="text-[9px] uppercase tracking-[0.25em] text-[#C5A059] flex items-center gap-1.5">

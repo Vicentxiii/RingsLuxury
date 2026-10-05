@@ -258,7 +258,7 @@ export const products: Product[] = [
       gems: 'Sob consulta',
       craftHours: 'Dozens of hours, hand engraver',
       provenance: 'Rings Luxury Atelier, São Paulo, Jorge Uquillas',
-      edition: 'Especial Edition • One of One',
+      edition: 'Special Edition • One of One',
       dimensions: 'Sob medida',
       hallmark: 'Owl of Athena • 750 • J.Uquillas',
     },
@@ -286,7 +286,7 @@ export const products: Product[] = [
       gems: 'Natural diamonds, pavé, sob consulta',
       craftHours: 'Dozens of hours, hand engraver',
       provenance: 'Rings Luxury Atelier, São Paulo, Jorge Uquillas',
-      edition: 'Especial Edition • One of One',
+      edition: 'Special Edition • One of One',
       dimensions: 'Sob medida',
       hallmark: 'Owl of Athena • 750 • J.Uquillas',
     },
@@ -314,7 +314,7 @@ export const products: Product[] = [
       gems: 'Natural diamonds, pavé, sob consulta',
       craftHours: 'Dozens of hours, hand engraver',
       provenance: 'Rings Luxury Atelier, São Paulo, Jorge Uquillas',
-      edition: 'Especial Edition • One of One',
+      edition: 'Special Edition • One of One',
       dimensions: 'Sob medida',
       hallmark: 'Owl of Athena • 750 • J.Uquillas',
     },
@@ -538,7 +538,7 @@ export const products: Product[] = [
       gems: 'Sob consulta',
       craftHours: 'Dozens of hours, hand engraver',
       provenance: 'Rings Luxury Atelier, São Paulo, Jorge Uquillas',
-      edition: 'Especial Edition • One of One',
+      edition: 'Special Edition • One of One',
       dimensions: 'Sob medida',
       hallmark: 'Owl of Athena • 750 • J.Uquillas',
     },
@@ -566,7 +566,7 @@ export const products: Product[] = [
       gems: 'Sob consulta',
       craftHours: 'Dozens of hours, hand engraver',
       provenance: 'Rings Luxury Atelier, São Paulo, Jorge Uquillas',
-      edition: 'Especial Edition • One of One',
+      edition: 'Special Edition • One of One',
       dimensions: 'Sob medida',
       hallmark: 'Owl of Athena • 750 • J.Uquillas',
     },
@@ -594,7 +594,7 @@ export const products: Product[] = [
       gems: 'Sob consulta',
       craftHours: 'Dozens of hours, hand engraver',
       provenance: 'Rings Luxury Atelier, São Paulo, Jorge Uquillas',
-      edition: 'Especial Edition • One of One',
+      edition: 'Special Edition • One of One',
       dimensions: 'Sob medida',
       hallmark: 'Owl of Athena • 750 • J.Uquillas',
     },
@@ -622,7 +622,7 @@ export const products: Product[] = [
       gems: 'Natural diamonds, sob consulta',
       craftHours: 'Dozens of hours, hand engraver',
       provenance: 'Rings Luxury Atelier, São Paulo, Jorge Uquillas',
-      edition: 'Especial Edition • One of One',
+      edition: 'Special Edition • One of One',
       dimensions: 'Sob medida',
       hallmark: 'Owl of Athena • 750 • J.Uquillas',
     },
@@ -650,7 +650,7 @@ export const products: Product[] = [
       gems: 'Sob consulta',
       craftHours: 'Dozens of hours, hand engraver',
       provenance: 'Rings Luxury Atelier, São Paulo, Jorge Uquillas',
-      edition: 'Especial Edition • One of One',
+      edition: 'Special Edition • One of One',
       dimensions: 'Sob medida',
       hallmark: 'Owl of Athena • 750 • J.Uquillas',
     },
@@ -678,7 +678,7 @@ export const products: Product[] = [
       gems: 'Sob consulta',
       craftHours: 'Dozens of hours, hand engraver',
       provenance: 'Rings Luxury Atelier, São Paulo, Jorge Uquillas',
-      edition: 'Especial Edition • One of One',
+      edition: 'Special Edition • One of One',
       dimensions: 'Sob medida',
       hallmark: 'Owl of Athena • 750 • J.Uquillas',
     },
@@ -706,7 +706,7 @@ export const products: Product[] = [
       gems: 'Natural diamonds, sob consulta',
       craftHours: 'Dozens of hours, hand engraver',
       provenance: 'Rings Luxury Atelier, São Paulo, Jorge Uquillas',
-      edition: 'Especial Edition • One of One',
+      edition: 'Special Edition • One of One',
       dimensions: 'Sob medida',
       hallmark: 'Owl of Athena • 750 • J.Uquillas',
     },
@@ -734,7 +734,7 @@ export const products: Product[] = [
       gems: 'Natural diamonds, sob consulta',
       craftHours: 'Dozens of hours, hand engraver',
       provenance: 'Rings Luxury Atelier, São Paulo, Jorge Uquillas',
-      edition: 'Especial Edition • One of One',
+      edition: 'Special Edition • One of One',
       dimensions: 'Sob medida',
       hallmark: 'Owl of Athena • 750 • J.Uquillas',
     },
@@ -762,7 +762,7 @@ export const products: Product[] = [
       gems: 'Sob consulta',
       craftHours: 'Dozens of hours, hand engraver',
       provenance: 'Rings Luxury Atelier, São Paulo, Jorge Uquillas',
-      edition: 'Especial Edition • One of One',
+      edition: 'Special Edition • One of One',
       dimensions: 'Sob medida',
       hallmark: 'Owl of Athena • 750 • J.Uquillas',
     },
@@ -790,7 +790,7 @@ export const products: Product[] = [
       gems: 'Natural diamonds, sob consulta',
       craftHours: 'Dozens of hours, hand engraver',
       provenance: 'Rings Luxury Atelier, São Paulo, Jorge Uquillas',
-      edition: 'Especial Edition • One of One',
+      edition: 'Special Edition • One of One',
       dimensions: 'Sob medida',
       hallmark: 'Owl of Athena • 750 • J.Uquillas',
     },
@@ -1250,4 +1250,28 @@ export function getProductsByCategory(categorySlug: string): Product[] {
 
 export function formatPrice(priceNumber: number): string {
   return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'USD' }).format(priceNumber);
+}
+
+/**
+ * Localiza os valores da ficha técnica (specs) sem duplicar o catálogo.
+ * Os specs são cadastrados uma vez (com trechos em PT como "Sob medida"
+/ "sob consulta") e traduzidos em tempo de render conforme o idioma.
+ * Nomes próprios, medidas, quilates e "hand engraver" ficam intactos.
+ */
+export function localizeSpecValue(value: string, lang: 'en' | 'es' | 'pt'): string {
+  if (!value || lang === 'pt') return value;
+  if (lang === 'en') {
+    return value
+      .replace(/Sob medida/g, 'Made to measure')
+      .replace(/Sob consulta/g, 'Upon request')
+      .replace(/sob consulta/g, 'upon request')
+      .replace(/Dezenas de horas/g, 'Dozens of hours')
+      .replace(/Centenas de horas/g, 'Hundreds of hours');
+  }
+  return value
+    .replace(/Sob medida/g, 'A medida')
+    .replace(/Sob consulta/g, 'Bajo consulta')
+    .replace(/sob consulta/g, 'bajo consulta')
+    .replace(/Dozens of hours/g, 'Decenas de horas')
+    .replace(/Hundreds of hours/g, 'Cientos de horas');
 }

@@ -8,11 +8,12 @@ import { ProductPaymentMethods } from '../components/ProductPaymentMethods';
 import { RelatedProductsCarousel } from '../components/RelatedProductsCarousel';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { FAQ } from '../components/FAQ';
-import { getProductBySlug, getRelatedProducts } from '../data/products';
+import { getProductBySlug, getRelatedProducts, localizeSpecValue } from '../data/products';
 import { ArrowLeft, ChevronDown, Sparkles, Ruler, Award, Truck, ShieldCheck, ShoppingBag, Lock } from 'lucide-react';
 import { GreekMeanderDivider, AncientCoinMedallion } from '../components/OrnamentIcons';
 import { absoluteUrl, HAS_SITE_URL } from '../site.config';
 import { useLanguage } from '../i18n/LanguageContext';
+import { useCart } from '../context/CartContext';
 
 /** Fundo das páginas de produto. 2048x1080, escuro com veios dourados. */
 const PRODUCT_BG = '/PUBLIC/Fundo da pagina de produtos Jorge Uquillas Rings Luxury.webp';
@@ -40,6 +41,7 @@ export function ProductPage() {
   const { t, lang } = useLanguage();
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
+  const { add } = useCart();
   const product = getProductBySlug(slug || '');
 
   const [selectedImage, setSelectedImage] = useState(0);
@@ -112,15 +114,18 @@ export function ProductPage() {
 
   // Linhas da tabela "Additional information". Tudo vem de product.specs,
   // nenhum valor hardcoded, para a ficha nunca divergir do cadastro.
+  // Os valores passam por localizeSpecValue para não exibir PT fixo
+  // ("Sob medida", "sob consulta") quando o idioma é EN ou ES.
+  const spec = (v: string) => localizeSpecValue(v, lang);
   const infoRows: { label: string; value: string }[] = [
-    { label: t.pages.productLabelCollor, value: product.specs.material },
-    { label: t.pages.productLabelSize, value: product.specs.dimensions || t.pages.productSizeCustom },
-    { label: t.pages.productLabelWeight, value: product.specs.weight },
-    { label: t.pages.productLabelGems, value: product.specs.gems },
-    { label: t.pages.productLabelCraftHours, value: product.specs.craftHours },
-    { label: t.pages.productLabelHallmark, value: product.specs.hallmark },
-    { label: t.pages.productLabelEdition, value: product.specs.edition },
-    { label: t.pages.productLabelProvenance, value: product.specs.provenance },
+    { label: t.pages.productLabelCollor, value: spec(product.specs.material) },
+    { label: t.pages.productLabelSize, value: product.specs.dimensions ? spec(product.specs.dimensions) : t.pages.productSizeCustom },
+    { label: t.pages.productLabelWeight, value: spec(product.specs.weight) },
+    { label: t.pages.productLabelGems, value: spec(product.specs.gems) },
+    { label: t.pages.productLabelCraftHours, value: spec(product.specs.craftHours) },
+    { label: t.pages.productLabelHallmark, value: spec(product.specs.hallmark) },
+    { label: t.pages.productLabelEdition, value: spec(product.specs.edition) },
+    { label: t.pages.productLabelProvenance, value: spec(product.specs.provenance) },
     { label: t.pages.productLabelRef, value: product.sku },
   ];
 
@@ -245,10 +250,14 @@ export function ProductPage() {
               </p>
             </div>
 
-            {/* Add to cart + PayPal na mesma linha no desktop */}
+            {/* Add to cart de verdade: adiciona ao carrinho e abre a página /cart.
+                PayPal abre a consulta privada com a peça pré-selecionada. */}
             <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
               <button
-                onClick={() => openConsultation(pieceLabel)}
+                onClick={() => {
+                  if (product) add(product.slug);
+                  navigate('/cart');
+                }}
                 className="group h-[52px] rounded-full bg-gradient-to-r from-[#9A7B38] via-[#E6CA85] to-[#C5A059] text-[#020202] font-sans-luxury text-[12px] font-bold uppercase tracking-[0.18em] hover:brightness-110 hover:shadow-[0_8px_32px_rgba(197,160,89,0.35)] active:scale-[0.98] transition-all inline-flex items-center justify-center gap-2"
               >
                 <ShoppingBag className="w-4 h-4" aria-hidden />
