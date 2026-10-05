@@ -1230,9 +1230,15 @@ export function getProductBySlug(slug: string): Product | undefined {
 }
 
 export function getRelatedProducts(product: Product, limit = 4): Product[] {
+  // Só peças reais no carrossel: exclui placeholders de teste (007-012),
+  // que usam imagem Unsplash / sapato / escultura em bronze e quebram o layout.
+  // Também exclui qualquer peça cuja primeira imagem seja externa (http).
+  const PLACEHOLDER_IDS = new Set(['007', '008', '009', '010', '011', '012']);
+  const isRealPiece = (p: Product) =>
+    !PLACEHOLDER_IDS.has(p.id) && !p.images[0]?.startsWith('http');
   // Prioriza mesma categoria, depois complementa
-  const sameCategory = products.filter((p) => p.categorySlug === product.categorySlug && p.id !== product.id);
-  const others = products.filter((p) => p.categorySlug !== product.categorySlug && p.id !== product.id);
+  const sameCategory = products.filter((p) => p.categorySlug === product.categorySlug && p.id !== product.id && isRealPiece(p));
+  const others = products.filter((p) => p.categorySlug !== product.categorySlug && p.id !== product.id && isRealPiece(p));
   const pooled = [...sameCategory, ...others];
   // embaralha levemente mas mantém determinismo por id para não piscar
   return pooled.slice(0, limit);

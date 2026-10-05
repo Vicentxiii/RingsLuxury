@@ -74,7 +74,7 @@ export function ProductPage() {
     );
   }
 
-  const related = getRelatedProducts(product, 6);
+  const related = getRelatedProducts(product, 12);
   const categoryLink = product.categorySlug === 'luxuryqueens' ? '/luxuryqueens' : `/${product.categorySlug}`;
   const localizedDescription = lang === 'es' ? (product.description_es ?? product.description) : lang === 'pt' ? (product.description_pt ?? product.description) : product.description;
 
