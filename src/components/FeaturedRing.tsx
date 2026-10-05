@@ -190,12 +190,13 @@ export function FeaturedRing() {
 
       {/* CARROSSEL, swipe com snap suave; cada anel abre a página do produto */}
       <div className="relative z-10 w-full">
+        <style>{`.no-scrollbar::-webkit-scrollbar{display:none}.no-scrollbar{scrollbar-width:none;-ms-overflow-style:none}`}</style>
         <div
           ref={trackRef}
           role="region"
           aria-label={t.home.featMarqueeAria}
-          className="flex items-center gap-2 sm:gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth px-5 sm:px-8 lg:px-10 pb-2"
-          style={{ scrollbarWidth: 'thin' }}
+          className="no-scrollbar flex items-center gap-2 sm:gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth px-5 sm:px-8 lg:px-10 pb-2"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' as React.CSSProperties['msOverflowStyle'] }}
         >
           {PIECES.map((piece) => (
             <Link
@@ -228,22 +229,22 @@ export function FeaturedRing() {
           ))}
         </div>
 
-        {/* setas discretas (desktop e mobile) */}
+        {/* setas laterais desktop */}
         <button
           type="button"
           onClick={() => scrollTrack(-1)}
           aria-label="Previous"
-          className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full border border-[#C5A059]/40 bg-black/70 backdrop-blur text-[#C5A059] hidden sm:flex items-center justify-center hover:bg-[#C5A059] hover:text-[#020202] transition-colors"
+          className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 lg:w-14 lg:h-14 rounded-full border border-[#C5A059]/60 bg-black/80 backdrop-blur text-[#E6CA85] hidden md:flex items-center justify-center shadow-[0_8px_30px_rgba(0,0,0,0.6)] hover:bg-[#C5A059] hover:text-[#020202] hover:border-[#C5A059] hover:scale-105 transition-all duration-300"
         >
-          <ChevronLeft className="w-4 h-4" />
+          <ChevronLeft className="w-5 h-5 lg:w-6 lg:h-6" />
         </button>
         <button
           type="button"
           onClick={() => scrollTrack(1)}
           aria-label="Next"
-          className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full border border-[#C5A059]/40 bg-black/70 backdrop-blur text-[#C5A059] hidden sm:flex items-center justify-center hover:bg-[#C5A059] hover:text-[#020202] transition-colors"
+          className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 lg:w-14 lg:h-14 rounded-full border border-[#C5A059]/60 bg-black/80 backdrop-blur text-[#E6CA85] hidden md:flex items-center justify-center shadow-[0_8px_30px_rgba(0,0,0,0.6)] hover:bg-[#C5A059] hover:text-[#020202] hover:border-[#C5A059] hover:scale-105 transition-all duration-300"
         >
-          <ChevronRight className="w-4 h-4" />
+          <ChevronRight className="w-5 h-5 lg:w-6 lg:h-6" />
         </button>
 
         {/* FADES PRETOS NAS DUAS EXTREMIDADES */}

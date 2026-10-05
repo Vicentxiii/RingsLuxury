@@ -32,16 +32,12 @@ export function EpicPreloader({ isExiting }: EpicPreloaderProps) {
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  // Anel aleatório do catálogo a cada visita, SÓ anéis com foto PNG real
-  // do atelier (images[0] em /PUBLIC/). Fora: fotos genéricas/Unsplash,
-  // artesão trabalhando e colares (id 043). Sempre peça real do Jorge.
+  // Anel/peça aleatória do catálogo a cada visita, SÓ peças com foto real
+  // do atelier (images[0] em /PUBLIC/). Fora: fotos genéricas/Unsplash.
+  // Inclui Luxury Rings, Emperor, Special Editions, Gold & Silver,
+  // Luxury Queens e Necklaces — todas as peças reais do Jorge.
   const featuredPiece = useMemo(() => {
-    const pool = products.filter(
-      (p) =>
-        p.images[0]?.startsWith('/PUBLIC/') &&
-        p.categorySlug !== 'necklaces' &&
-        p.id !== '043',
-    );
+    const pool = products.filter((p) => p.images[0]?.startsWith('/PUBLIC/'));
     const list = pool.length ? pool : products;
     return list[Math.floor(Math.random() * list.length)];
   }, []);

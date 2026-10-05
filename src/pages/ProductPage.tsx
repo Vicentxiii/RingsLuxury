@@ -46,12 +46,12 @@ export function ProductPage() {
 
   const [selectedImage, setSelectedImage] = useState(0);
   const [commissionTarget, setCommissionTarget] = useState<string>('');
-  const [showInfo, setShowInfo] = useState(true);
+  const [showInfo, setShowInfo] = useState(false);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setSelectedImage(0);
-    setShowInfo(true);
+    setShowInfo(false);
   }, [slug]);
 
   if (!product) {
