@@ -1,17 +1,19 @@
 import { useEffect, useMemo, useRef } from 'react';
 
 /**
- * Folhas douradas, aparecem SÓ na segunda seção (QUEM SOU EU)
+ * Folhas douradas, aparecem na seção QUEM SOU EU (Jorge Uquillas)
  * - Nascem nos cantos laterais da seção, descem em diagonal para o meio e somem
  * - Nunca ficam em cima do texto
- * - Fluidez mobile: escreve transform/opacity direto no DOM via refs (zero
- *   re-render por frame) e no toque simplifica (só translate, sem giro/sway
- *   nem drop-shadow, que são o que trava o scroll no iPhone)
+ * - Arquitetura em 2 camadas para rodar liso no mobile:
+ *   outer DIV = scroll/parallax via JS (translate3d, GPU puro)
+ *   inner IMG = giro no próprio eixo via CSS animation (compositor thread,
+ *   não trava o scroll no iPhone, funciona igual mobile + desktop)
+ * - Zero re-render por frame (escreve direto no DOM via refs)
  */
 export function FolhasScroll() {
   const wrapRef = useRef<HTMLDivElement>(null);
-  const leaf1Ref = useRef<HTMLImageElement>(null);
-  const leaf2Ref = useRef<HTMLImageElement>(null);
+  const leaf1Ref = useRef<HTMLDivElement>(null);
+  const leaf2Ref = useRef<HTMLDivElement>(null);
   const rangeRef = useRef({ start: 0, end: 1600 });
   const rafRef = useRef(0);
   const tickingRef = useRef(false);
@@ -26,10 +28,6 @@ export function FolhasScroll() {
   );
 
   useEffect(() => {
-    const coarse =
-      typeof window.matchMedia === 'function' &&
-      window.matchMedia('(pointer: coarse)').matches;
-
     const calcRange = () => {
       const el = document.getElementById('quem-sou-eu');
       if (!el) return;
@@ -71,26 +69,17 @@ export function FolhasScroll() {
       const tY = local * 520; // queda até embaixo
       const tX = local * 170; // abertura diagonal
 
-      if (coarse) {
-        // mobile: só translate (GPU puro, sem repaint de sombra/giro)
-        wrap.style.opacity = op <= 0.02 ? '0' : '1';
-        l1.style.opacity = String(op);
-        l2.style.opacity = String(op * 0.96);
-        l1.style.transform = `translate3d(${tX * 0.45}px, ${tY}px, 0)`;
-        l2.style.transform = `translate3d(${-tX * 0.45}px, ${tY * 0.92}px, 0)`;
-      } else {
-        // desktop: coreografia completa com giro e flutuação
-        const r1 = local * 540;
-        const r2 = -local * 480;
-        const sway1 = Math.sin(local * Math.PI * 3) * 30;
-        const sway2 = Math.sin(local * Math.PI * 3 + Math.PI) * 30;
-        const scale = 1 - local * 0.1;
-        wrap.style.opacity = op <= 0.02 ? '0' : '1';
-        l1.style.opacity = String(op);
-        l2.style.opacity = String(op * 0.96);
-        l1.style.transform = `translate3d(${tX * 0.45 + sway1}px, ${tY}px, 0) rotate(${r1}deg) scale(${scale})`;
-        l2.style.transform = `translate3d(${-tX * 0.45 + sway2}px, ${tY * 0.92}px, 0) rotate(${r2}deg) scale(${scale})`;
-      }
+      // translate + sway leve via JS (barato, GPU puro, igual mobile/desktop)
+      // o giro no próprio eixo fica por conta do CSS (.folha-spin) no IMG interno,
+      // por isso roda suave até no iPhone sem travar o scroll
+      const sway1 = Math.sin(local * Math.PI * 3) * 22;
+      const sway2 = Math.sin(local * Math.PI * 3 + Math.PI) * 22;
+      const scale = 1 - local * 0.08;
+      wrap.style.opacity = op <= 0.02 ? '0' : '1';
+      l1.style.opacity = String(op);
+      l2.style.opacity = String(op * 0.96);
+      l1.style.transform = `translate3d(${tX * 0.45 + sway1}px, ${tY}px, 0) scale(${scale})`;
+      l2.style.transform = `translate3d(${-tX * 0.45 + sway2}px, ${tY * 0.92}px, 0) scale(${scale})`;
     };
 
     const onScroll = () => {
@@ -128,42 +117,50 @@ export function FolhasScroll() {
       style={{ opacity: 0, transition: 'opacity 0.22s linear' }}
     >
       {/* FOLHA 1, canto esquerdo da seção, desce em diagonal para o meio e some */}
-      <img
+      <div
         ref={leaf1Ref}
-        src="/PUBLIC/folha-scroll-1.webp"
-        alt=""
-        draggable={false}
-        className="absolute select-none"
+        className="absolute"
         style={{
           top: '26%',
           left: 'max(14px, 2.5vw)',
           width: '76px',
-          height: 'auto',
           opacity: 0,
           transform: 'translateZ(0)',
-          filter: leafFilter,
+          willChange: 'transform, opacity',
         }}
-        onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-      />
+      >
+        <img
+          src="/PUBLIC/folha-scroll-1.webp"
+          alt=""
+          draggable={false}
+          className="folha-spin block w-full h-auto select-none"
+          style={{ filter: leafFilter }}
+          onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+        />
+      </div>
 
       {/* FOLHA 2, canto direito da seção, desce em diagonal para o meio e some */}
-      <img
+      <div
         ref={leaf2Ref}
-        src="/PUBLIC/folha-scroll-2.webp"
-        alt=""
-        draggable={false}
-        className="absolute select-none"
+        className="absolute"
         style={{
           top: '32%',
           right: 'max(14px, 2.5vw)',
           width: '88px',
-          height: 'auto',
           opacity: 0,
           transform: 'translateZ(0)',
-          filter: leafFilter,
+          willChange: 'transform, opacity',
         }}
-        onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-      />
+      >
+        <img
+          src="/PUBLIC/folha-scroll-2.webp"
+          alt=""
+          draggable={false}
+          className="folha-spin-rev block w-full h-auto select-none"
+          style={{ filter: leafFilter }}
+          onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+        />
+      </div>
     </div>
   );
 }

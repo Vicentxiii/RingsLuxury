@@ -134,11 +134,48 @@ button:not(.not-rounded) {
   animation-play-state: paused;
 }
 
+/* Folhas douradas Jorge Uquillas: giro no próprio eixo, suave, GPU puro.
+   O scroll/parallax fica no DIV externo via JS, o giro fica no IMG interno
+   via CSS (compositor thread) — por isso roda liso no mobile sem travar. */
+@keyframes folha-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes folha-spin-rev {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.folha-spin {
+  animation: folha-spin 9s linear infinite;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+.folha-spin-rev {
+  animation: folha-spin-rev 12s linear infinite;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .shipping-marquee-track {
     animation: none;
   }
   .ring-marquee-track {
+    animation: none;
+  }
+  .folha-spin,
+  .folha-spin-rev {
     animation: none;
   }
 }

@@ -1,5 +1,5 @@
 import React, { Suspense, lazy, useEffect, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { Necklaces } from './pages/Necklaces';
 import { LuxuryRings } from './pages/LuxuryRings';
@@ -22,6 +22,20 @@ import { AudioProvider } from './context/AudioProvider';
 import { LanguageProvider } from './i18n/LanguageContext';
 import { CartProvider } from './context/CartContext';
 import { EpicPreloader } from './components/EpicPreloader';
+
+/** Sempre abre a nova rota do início (topo), mobile + desktop.
+ * Sem isso o React Router mantém o scroll anterior e a página
+ * abre lá no rodapé. Instantâneo, sem animação smooth que mostraria
+ * o footer passando. */
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, [pathname]);
+  return null;
+}
 
 export default function App() {
   const [isPreloading, setIsPreloading] = useState(true);
@@ -91,6 +105,7 @@ export default function App() {
               }
         }
       >
+        <ScrollToTop />
         <Suspense fallback={<div className="min-h-screen bg-black" />}>
         <Routes>
       <Route path="/" element={<Home />} />

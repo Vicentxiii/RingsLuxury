@@ -63,14 +63,14 @@ export function Home() {
         {/* I. Cinematic Hero */}
         <Hero onEnterAtelier={handleEnterAtelier} />
 
-        {/* I.1, SOBRE MIM / QUEM SOU EU, montagem Jorge Uquillas by @vicenteczar.dev */}
-        <QuemSouEu />
-
-        {/* I.1.2, THE MASTERPIECE DETAIL / MICROSCOPIC PROVENANCE, logo após a biografia */}
+        {/* II. THE MASTERPIECE DETAIL / MICROSCOPIC PROVENANCE, segunda seção logo após a hero */}
         <MasterpieceDetail />
 
-        {/* I.1.1, ANEL DE OURO 18K EM DESTAQUE, abaixo da peça em microscopic examination */}
+        {/* III. 18K GOLD RING OF POWER, logo após a segunda seção */}
         <FeaturedRing />
+
+        {/* IV. SOBRE MIM / QUEM SOU EU, bio JORGE UQUILLAS, após o anel */}
+        <QuemSouEu />
 
         {/* I.2, WHY CHOOSE RINGS LUXURY?, terceira seção fiel ao print */}
         <WhyChoose />

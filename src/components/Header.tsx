@@ -45,8 +45,16 @@ export function Header({ onOpenConsultation }: HeaderProps) {
         if (el) el.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
-      navigate(path);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (location.pathname !== path) {
+        navigate(path);
+        // instantâneo: abre do início, sem passar pelo rodapé no smooth
+        requestAnimationFrame(() => {
+          window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+          document.documentElement.scrollTop = 0;
+        });
+      } else {
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+      }
     }
   };
 
