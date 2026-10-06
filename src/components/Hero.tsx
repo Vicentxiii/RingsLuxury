@@ -20,20 +20,14 @@ const YOUTUBE_EMBED = `https://www.youtube.com/embed/${YOUTUBE_ID}?autoplay=1&mu
 
 export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
   const { t } = useLanguage();
-  // Fachada click-to-play: o iframe do YouTube (~1MB de JS) só carrega após
-  // o clique. Antes disso, capa estática + botão play. Melhora LCP/INP.
-  // No mobile (toque) o vídeo entra em autoplay direto: iOS/Android liberam
-  // autoplay mudo com playsinline, e sem isso o fundo ficava parado no iPhone.
+  // Autoplay ao entrar: o iframe carrega mutado (mute=1 + playsinline),
+  // liberado em desktop e mobile. A capa dissolve sozinha (videoReady).
   const [playVideo, setPlayVideo] = useState(false);
   // Véu anti-chrome: cobre o iframe até o vídeo arrancar (quando o YouTube
   // exibe título/barra), depois dissolve sozinho. Toque também revela.
   const [videoReady, setVideoReady] = useState(false);
   useEffect(() => {
-    try {
-      if (window.matchMedia('(pointer: coarse)').matches) setPlayVideo(true);
-    } catch {
-      /* ignore */
-    }
+    setPlayVideo(true);
   }, []);
   return (
     <section
