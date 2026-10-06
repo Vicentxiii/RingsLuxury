@@ -8,6 +8,10 @@ import heroStatueImg from '../assets/images/hero_statue_temple_1789071913515.web
 export const RING_SHAPE_FORM_IMG = encodeURI('/PUBLIC/Desenho ilustrando forma dos aneis by Jorge Uquillas.png');
 /** Forma dos anéis redondos, sem diamantes */
 export const ROUND_SHAPE_NO_DIAMONDS_IMG = encodeURI('/PUBLIC/Forma dos aneis redondos , sem diamantes, by Rings Luxury.jpg');
+/** Certificado de autenticidade — incluído na galeria de TODOS os produtos */
+export const CERTIFICATE_IMG = encodeURI('/PUBLIC/NOVO CERTIFICADO DE AUTHENTICIDADE JORGE UQUILLAS HAND ENGRAVER.webp');
+/** Caixa + sacola que acompanha os anéis — incluída na galeria de TODOS os produtos */
+export const BOX_IMG = encodeURI('/PUBLIC/Foto da caixa que vem os aneis, Rings Luxury Jorge Uquillas.jpg');
 
 export interface ProductSpecs {
   material: string;
@@ -1229,6 +1233,11 @@ export const products: Product[] = [
     inStock: true,
   },
 ];
+
+for (const p of products) {
+  if (!p.images.includes(CERTIFICATE_IMG)) p.images.push(CERTIFICATE_IMG);
+  if (!p.images.includes(BOX_IMG)) p.images.push(BOX_IMG);
+}
 
 export function getProductBySlug(slug: string): Product | undefined {
   return products.find((p) => p.slug === slug);

@@ -8,8 +8,8 @@ import { ProductPaymentMethods } from '../components/ProductPaymentMethods';
 import { RelatedProductsCarousel } from '../components/RelatedProductsCarousel';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { FAQ } from '../components/FAQ';
-import { getProductBySlug, getRelatedProducts, localizeSpecValue } from '../data/products';
-import { ArrowLeft, ChevronDown, Sparkles, Ruler, Award, Truck, ShieldCheck, ShoppingBag, Lock } from 'lucide-react';
+import { getProductBySlug, getRelatedProducts, localizeSpecValue, CERTIFICATE_IMG, BOX_IMG } from '../data/products';
+import { ArrowLeft, ChevronDown, Sparkles, Ruler, Award, Truck, ShieldCheck, ShoppingBag, Lock, BadgeCheck } from 'lucide-react';
 import { GreekMeanderDivider, AncientCoinMedallion } from '../components/OrnamentIcons';
 import { absoluteUrl, HAS_SITE_URL } from '../site.config';
 import { useLanguage } from '../i18n/LanguageContext';
@@ -194,26 +194,51 @@ export function ProductPage() {
                   <Sparkles className="w-3 h-3" aria-hidden /> {t.pages.productFeatured}
                 </span>
               )}
+              {product.images[selectedImage] === CERTIFICATE_IMG && (
+                <span className="absolute bottom-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1.5 px-4 py-1.5 bg-[#C5A059] text-[#020202] text-[9px] uppercase tracking-[0.25em] font-semibold rounded-full shadow-lg whitespace-nowrap">
+                  <BadgeCheck className="w-3.5 h-3.5" aria-hidden /> {t.home.mpCertTitle}
+                </span>
+              )}
+              {product.images[selectedImage] === BOX_IMG && (
+                <span className="absolute bottom-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1.5 px-4 py-1.5 bg-[#C5A059] text-[#020202] text-[9px] uppercase tracking-[0.25em] font-semibold rounded-full shadow-lg whitespace-nowrap">
+                  <BadgeCheck className="w-3.5 h-3.5" aria-hidden /> Box
+                </span>
+              )}
             </div>
 
-            {/* miniaturas */}
+            {/* miniaturas — inclui certificado + caixa (últimas fotos) */}
             {product.images.length > 1 && (
-              <div className="mt-6 flex justify-center gap-3">
-                {product.images.slice(0, 4).map((img, idx) => (
+              <div className="mt-6 flex flex-wrap justify-center gap-3">
+                {product.images.slice(0, 7).map((img, idx) => {
+                  const isCert = img === CERTIFICATE_IMG;
+                  const isBox = img === BOX_IMG;
+                  return (
                   <button
                     key={idx}
                     onClick={() => setSelectedImage(idx)}
-                    aria-label={`${t.pages.productThumbView} ${idx + 1} ${t.pages.productThumbOf} ${product.images.length}`}
+                    aria-label={isCert ? `${t.pages.productThumbView} ${idx + 1} ${t.pages.productThumbOf} ${product.images.length} — certificado` : isBox ? `${t.pages.productThumbView} ${idx + 1} ${t.pages.productThumbOf} ${product.images.length} — caixa` : `${t.pages.productThumbView} ${idx + 1} ${t.pages.productThumbOf} ${product.images.length}`}
                     aria-current={selectedImage === idx}
-                    className={`w-[68px] h-[68px] sm:w-[76px] sm:h-[76px] overflow-hidden border transition-all bg-[#070707] ${
+                    title={isCert ? t.home.mpCertTitle : undefined}
+                    className={`relative w-[68px] h-[68px] sm:w-[76px] sm:h-[76px] overflow-hidden border transition-all bg-[#070707] ${
                       selectedImage === idx
                         ? 'border-[#C5A059] shadow-[0_0_18px_rgba(197,160,89,0.3)]'
                         : 'border-[#C5A059]/25 hover:border-[#C5A059]/60'
                     }`}
                   >
-                    <img src={img} alt="" className="w-full h-full object-cover" />
+                    <img src={img} alt={isCert ? t.home.mpCertAlt : isBox ? 'Caixa e sacola Rings Luxury by Jorge Uquillas' : ''} className="w-full h-full object-cover" loading="lazy" />
+                    {isCert && (
+                      <span className="absolute bottom-0 inset-x-0 flex items-center justify-center gap-1 bg-[#C5A059]/95 py-0.5 text-[7px] font-bold uppercase tracking-[0.14em] text-[#020202]">
+                        <BadgeCheck className="w-2.5 h-2.5" aria-hidden /> Cert
+                      </span>
+                    )}
+                    {isBox && (
+                      <span className="absolute bottom-0 inset-x-0 flex items-center justify-center gap-1 bg-[#C5A059]/95 py-0.5 text-[7px] font-bold uppercase tracking-[0.14em] text-[#020202]">
+                        <BadgeCheck className="w-2.5 h-2.5" aria-hidden /> Box
+                      </span>
+                    )}
                   </button>
-                ))}
+                  );
+                })}
               </div>
             )}
           </div>

@@ -82,14 +82,14 @@ export function Footer() {
           <div className="md:col-span-4 space-y-6">
             <div className="flex items-center gap-3">
               <img
-                src="/PUBLIC/logo-cortado.webp"
+                src="/PUBLIC/logo-original.webp"
                 alt="RINGS LUXURY by Jorge Uquillas"
                 className="w-auto h-14 md:h-16 object-contain select-none shrink-0"
                 draggable={false}
                 onError={(e) => {
                   const target = e.currentTarget;
-                  if (!target.src.includes('logo-cortado.png')) {
-                    target.src = '/PUBLIC/logo-cortado.png';
+                  if (!target.src.includes('logo-original.webp')) {
+                    target.src = '/PUBLIC/logo-cortado.webp';
                   } else if (!target.src.includes('logo.svg')) {
                     target.src = '/logo.svg';
                   }

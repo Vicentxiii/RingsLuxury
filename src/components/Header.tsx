@@ -147,14 +147,14 @@ export function Header({ onOpenConsultation }: HeaderProps) {
             className="group flex items-center gap-3 text-left focus:outline-none transition-transform hover:scale-[1.02]"
           >
             <img
-              src="/PUBLIC/logo-cortado.webp"
+              src="/PUBLIC/logo-original.webp"
               alt="RINGS LUXURY by Jorge Uquillas, Anéis artesanais HandCrafted ouro 18k"
               className="w-8 h-8 sm:w-10 sm:h-10 object-contain select-none shrink-0"
               draggable={false}
               onError={(e) => {
                 const target = e.currentTarget;
-                if (!target.src.includes('logo-cortado.png') && !target.src.includes('Logo%20cortado')) {
-                  target.src = '/PUBLIC/logo-cortado.png';
+                if (!target.src.includes('logo-original.webp')) {
+                  target.src = '/PUBLIC/logo-cortado.webp';
                 } else if (!target.src.includes('logo.svg')) {
                   target.src = '/logo.svg';
                 }
