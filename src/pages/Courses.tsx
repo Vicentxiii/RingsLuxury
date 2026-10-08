@@ -4,6 +4,7 @@ import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
 import { Contact } from '../components/Contact';
 import { Breadcrumbs } from '../components/Breadcrumbs';
+import { GoldenParticles } from '../components/GoldenParticles';
 import { useLanguage } from '../i18n/LanguageContext';
 
 const ENROLLMENT_DEADLINE = new Date('2027-10-01T00:00:00');
@@ -127,6 +128,13 @@ export function Courses() {
       />
       
       <div className="fixed inset-0 film-grain pointer-events-none z-40 opacity-35" />
+
+      {/* Poeira dourada elegante — flutua e reage ao mouse */}
+      <div className="absolute inset-0 z-[1] overflow-hidden" aria-hidden>
+        <GoldenParticles density={110} className="h-full w-full opacity-90" />
+        {/* Halo central sutil para profundidade */}
+        <div className="absolute top-[8%] left-1/2 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(197,160,89,0.07),transparent_65%)] blur-2xl" />
+      </div>
 
       <Header onOpenConsultation={handleOpenConsultation} />
 
