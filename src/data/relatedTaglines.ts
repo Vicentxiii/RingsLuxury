@@ -80,6 +80,11 @@ export const relatedTaglines: Record<string, Tagline> = {
     es: 'Depredador supremo en oro noble macizo de 18k, rayas de furia dorada',
     pt: 'Predador supremo em ouro nobre maciço 18k, listras de fúria dourada',
   },
+  'cheeta-ring-big-rubi-diamond-18k-gold-jorge-uquillas': {
+    en: 'Golden huntress crowned with a big ruby burning beside a diamond',
+    es: 'Cazadora dorada coronada con un gran rubí ardiendo junto a un diamante',
+    pt: 'Caçadora dourada coroada com um grande rubi ardendo ao lado de um diamante',
+  },
   'dr-viotto-ring-jorge-uquillas-rings-luxury': {
     en: 'A private legend commissioned in solid 18k noble gold',
     es: 'Una leyenda privada encargada en oro noble macizo de 18k',

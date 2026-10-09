@@ -9,7 +9,7 @@ import { RelatedProductsCarousel } from '../components/RelatedProductsCarousel';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { FAQ } from '../components/FAQ';
 import { getProductBySlug, getRelatedProducts, localizeSpecValue, CERTIFICATE_IMG, BOX_IMG } from '../data/products';
-import { ArrowLeft, ChevronDown, Sparkles, Ruler, Award, Truck, ShieldCheck, ShoppingBag, Lock, BadgeCheck } from 'lucide-react';
+import { ArrowLeft, ChevronDown, Sparkles, Ruler, Award, Truck, ShieldCheck, ShoppingBag, Lock, BadgeCheck, Play } from 'lucide-react';
 import { GreekMeanderDivider, AncientCoinMedallion } from '../components/OrnamentIcons';
 import { absoluteUrl, HAS_SITE_URL } from '../site.config';
 import { useLanguage } from '../i18n/LanguageContext';
@@ -17,6 +17,11 @@ import { useCart } from '../context/CartContext';
 
 /** Fundo das páginas de produto. 2048x1080, escuro com veios dourados. */
 const PRODUCT_BG = '/PUBLIC/Fundo da pagina de produtos Jorge Uquillas Rings Luxury.webp';
+
+/** Detecta item de vídeo da galeria (mp4/webm/mov). */
+function isVideoSrc(src: string) {
+  return /\.(mp4|webm|mov)(\?|#|$)/i.test(src);
+}
 
 /**
  * Corta `text` em no máximo `max` caracteres, sempre em fronteira de palavra.
@@ -184,11 +189,25 @@ export function ProductPage() {
           {/* GALERIA */}
           <div className="flex flex-col items-center">
             <div className="relative w-full max-w-[560px]">
-              <img
-                src={product.images[selectedImage]}
-                alt={`${product.name}, ${product.subname}`}
-                className="w-full h-auto object-contain max-h-[62vh] mx-auto drop-shadow-[0_24px_60px_rgba(0,0,0,0.85)]"
-              />
+              {isVideoSrc(product.images[selectedImage]) ? (
+                <video
+                  key={product.images[selectedImage]}
+                  src={product.images[selectedImage]}
+                  controls
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  className="w-full h-auto max-h-[62vh] mx-auto drop-shadow-[0_24px_60px_rgba(0,0,0,0.85)]"
+                />
+              ) : (
+                <img
+                  src={product.images[selectedImage]}
+                  alt={`${product.name}, ${product.subname}`}
+                  className="w-full h-auto object-contain max-h-[62vh] mx-auto drop-shadow-[0_24px_60px_rgba(0,0,0,0.85)]"
+                />
+              )}
               {product.featured && (
                 <span className="absolute top-3 left-0 inline-flex items-center gap-1.5 px-3 py-1 bg-[#C5A059] text-[#020202] text-[8px] uppercase tracking-[0.25em] font-semibold">
                   <Sparkles className="w-3 h-3" aria-hidden /> {t.pages.productFeatured}
@@ -212,6 +231,7 @@ export function ProductPage() {
                 {product.images.slice(0, 7).map((img, idx) => {
                   const isCert = img === CERTIFICATE_IMG;
                   const isBox = img === BOX_IMG;
+                  const isVideo = isVideoSrc(img);
                   return (
                   <button
                     key={idx}
@@ -225,7 +245,18 @@ export function ProductPage() {
                         : 'border-[#C5A059]/25 hover:border-[#C5A059]/60'
                     }`}
                   >
-                    <img src={img} alt={isCert ? t.home.mpCertAlt : isBox ? 'Caixa e sacola Rings Luxury by Jorge Uquillas' : ''} className="w-full h-full object-cover" loading="lazy" />
+                    {isVideo ? (
+                      <video src={img} muted playsInline preload="metadata" className="w-full h-full object-cover" aria-hidden />
+                    ) : (
+                      <img src={img} alt={isCert ? t.home.mpCertAlt : isBox ? 'Caixa e sacola Rings Luxury by Jorge Uquillas' : ''} className="w-full h-full object-cover" loading="lazy" />
+                    )}
+                    {isVideo && (
+                      <span className="absolute inset-0 flex items-center justify-center bg-black/30">
+                        <span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#C5A059]/95">
+                          <Play className="w-3.5 h-3.5 text-[#020202] ml-0.5" aria-hidden />
+                        </span>
+                      </span>
+                    )}
                     {isCert && (
                       <span className="absolute bottom-0 inset-x-0 flex items-center justify-center gap-1 bg-[#C5A059]/95 py-0.5 text-[7px] font-bold uppercase tracking-[0.14em] text-[#020202]">
                         <BadgeCheck className="w-2.5 h-2.5" aria-hidden /> Cert

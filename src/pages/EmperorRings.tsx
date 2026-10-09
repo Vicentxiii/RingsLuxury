@@ -17,6 +17,7 @@ interface RingItem {
 }
 
 const EMPEROR_BG = encodeURI('/PUBLIC/Fundo da seção EMPEROR RINGS site Rings Luxury.webp');
+const SEPARATOR_IMG = encodeURI('/PUBLIC/Seaparador 2 Rings Luxury Jorge Uquillas.webp');
 
 function scrollToContact() {
   setTimeout(() => {
@@ -107,12 +108,12 @@ export function EmperorRings() {
 
       <main className="relative w-full overflow-hidden">
         {/* Imperador ao fundo, lado direito, inteiro, 12% de opacidade */}
-        <div className="absolute inset-y-0 right-0 h-full pointer-events-none" aria-hidden>
+        <div className="absolute top-0 right-0 h-[340px] w-[75%] sm:inset-y-0 sm:h-full sm:w-auto overflow-hidden pointer-events-none" aria-hidden>
           <img
             src={EMPEROR_BG}
             alt=""
             draggable={false}
-            className="h-full w-auto object-contain opacity-[0.12] select-none"
+            className="h-full w-full sm:w-auto object-cover sm:object-contain object-top opacity-[0.12] select-none"
             onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
           />
           <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-black" />
@@ -124,22 +125,27 @@ export function EmperorRings() {
             items={[{ label: t.pages.productBreadcrumbHome, to: '/' }, { label: t.collections.emperorTitle }]}
           />
           {/* Título */}
-          <div className="text-center mb-14 sm:mb-20">
+          <div className="text-center mb-20 sm:mb-20">
             <h1
               className="font-cinzel font-normal uppercase text-white"
               style={{ fontSize: 'clamp(30px, 3.4vw, 50px)', letterSpacing: '0.1em' }}
             >
               {t.collections.emperorTitle}
             </h1>
-            {/* filete dourado com brilho central */}
-            <div className="relative mx-auto mt-6 w-full max-w-[560px]" aria-hidden>
-              <div className="h-px w-full bg-gradient-to-r from-transparent via-[#C5A059] to-transparent" />
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-[3px] bg-[#E6CA85] blur-[3px] rounded-full" />
-            </div>
+            {/* separador Rings Luxury */}
+            <img
+              src={SEPARATOR_IMG}
+              alt=""
+              aria-hidden
+              draggable={false}
+              loading="eager"
+              className="mx-auto -mt-2 mb-6 sm:-mt-14 sm:mb-12 w-full max-w-[720px] h-auto object-contain select-none"
+              onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+            />
           </div>
 
           {/* Grade de anéis */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-14">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-20 sm:gap-y-14">
             {RINGS.map((ring) => (
               <div key={ring.src} className="group flex flex-col items-center text-center">
                 <Link
@@ -157,15 +163,15 @@ export function EmperorRings() {
                     onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                   />
                 </Link>
-                <p className="mt-2 min-h-[40px] flex items-start justify-center text-[12px] leading-[1.5] text-white/90 max-w-[260px]">
+                <p className="mt-4 sm:mt-2 min-h-[40px] flex items-start justify-center text-[12px] leading-[1.5] text-white/90 max-w-[260px]">
                   {ring.name}
                 </p>
-                <p className="mt-1.5 font-cinzel text-[14px] tracking-[0.08em] text-[#E6CA85]">
+                <p className="mt-3 sm:mt-1.5 font-cinzel text-[14px] tracking-[0.08em] text-[#E6CA85]">
                   {ring.price}
                 </p>
                 <Link
                   to={`/produto/${ring.slug}`}
-                  className="mt-3 px-6 py-1.5 border border-white/25 hover:border-[#C5A059] rounded-full text-[11px] tracking-[0.12em] text-white/85 hover:text-[#E6CA85] transition-colors"
+                  className="mt-5 sm:mt-3 px-6 py-1.5 border border-white/25 hover:border-[#C5A059] rounded-full text-[11px] tracking-[0.12em] text-white/85 hover:text-[#E6CA85] transition-colors"
                 >
                   {t.collections.addToCart}
                 </Link>

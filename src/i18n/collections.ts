@@ -64,6 +64,7 @@ const en = {
   altSpecial10: 'Monkey Ring 18k Gold with Diamonds by Jorge Uquillas',
   altSpecial11: 'Memento Mori Ring by Jorge Uquillas',
   altSpecial12: 'King Lion Ring with Diamonds by Jorge Uquillas',
+  altSpecial13: 'Cheeta Ring with Big Rubi Diamond 18k Gold by Jorge Uquillas',
   // Alt texts, Golden Silver Rings
   altGoldSilver1: 'Mixed Luxury Gold Ring by Jorge Uquillas',
   altGoldSilver2: 'Wolf Silver Ring by Jorge Uquillas',
@@ -195,6 +196,7 @@ const es: Record<Keys, string> = {
   altSpecial10: 'Monkey Ring 18k Gold with Diamonds por Jorge Uquillas',
   altSpecial11: 'Memento Mori Ring por Jorge Uquillas',
   altSpecial12: 'King Lion Ring with Diamonds por Jorge Uquillas',
+  altSpecial13: 'Cheeta Ring with Big Rubi Diamond 18k Gold por Jorge Uquillas',
   // Alt texts, Golden Silver Rings
   altGoldSilver1: 'Mixed Luxury Gold Ring por Jorge Uquillas',
   altGoldSilver2: 'Wolf Silver Ring por Jorge Uquillas',
@@ -324,6 +326,7 @@ const pt: Record<Keys, string> = {
   altSpecial10: 'Monkey Ring 18k Gold with Diamonds por Jorge Uquillas',
   altSpecial11: 'Memento Mori Ring por Jorge Uquillas',
   altSpecial12: 'King Lion Ring with Diamonds por Jorge Uquillas',
+  altSpecial13: 'Cheeta Ring with Big Rubi Diamond 18k Gold por Jorge Uquillas',
   // Alt texts, Golden Silver Rings
   altGoldSilver1: 'Mixed Luxury Gold Ring por Jorge Uquillas',
   altGoldSilver2: 'Wolf Silver Ring por Jorge Uquillas',

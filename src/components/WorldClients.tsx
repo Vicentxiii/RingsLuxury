@@ -5,7 +5,7 @@ import { useLanguage } from '../i18n/LanguageContext';
 
 /**
  * Seção "WHAT PEOPLE SAY ABOUT RINGS LUXURY", carrossel de depoimentos reais
- * - Fundo: Sessao-clientes-rings-luxury-site-2026.jpg (escultura dourada à direita)
+ * - Fundo: Sessao-clientes-rings-luxury-site-2026.webp (escultura dourada à direita)
  * - Badge: Rings Luxury Google Reviews.webp (5-STAR RATING Google)
  * - Clientes: fotos reais enviadas em public/PUBLIC (Rings Luxury Google Reviews client 1-5.png)
  *

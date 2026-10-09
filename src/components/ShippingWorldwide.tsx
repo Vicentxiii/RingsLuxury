@@ -2,7 +2,7 @@ import { useLanguage } from '../i18n/LanguageContext';
 
 /**
  * Seção SHIPPING WORLDWIDE, logo após YOU DECIDE EVERY STONE EVERY DETAIL
- * - Fundo: fundo-shipping-worldwide.jpg (mármore preto com veios dourados)
+ * - Fundo: fundo-shipping-worldwide.webp (mármore preto com veios dourados)
  * - Mini-carrossel horizontal minimalista com as bandeirinhas dos países
  */
 const FLAG_SRCS: string[] = [

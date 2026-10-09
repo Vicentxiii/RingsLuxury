@@ -9,7 +9,7 @@ interface Slide {
 
 /**
  * Seção "YOU DECIDE EVERY STONE EVERY DETAIL", logo após WHY CHOOSE RINGS LUXURY?
- * - Fundo: Title Session Rings Luxury Background YOU DECIDE EVERY STONE EVERY DETAIL.png (com opacidade, predominantemente preto)
+ * - Fundo: Title Session Rings Luxury Background YOU DECIDE EVERY STONE EVERY DETAIL.webp (com opacidade, predominantemente preto)
  * - Carrossel lateral com as fotos do ateliê / sketches do mestre
  */
 const SLIDE_SRCS: string[] = [

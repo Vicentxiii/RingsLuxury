@@ -17,6 +17,8 @@ interface RingItem {
 }
 
 const LION_BG = encodeURI('/PUBLIC/Background do site rings luxury seção LUXURY RINGS.webp');
+const LION_BG_MOBILE = encodeURI('/PUBLIC/Fundo da pagina luxury rings MOBILE.webp');
+const SEPARATOR_IMG = encodeURI('/PUBLIC/Seaparador 2 Rings Luxury Jorge Uquillas.webp');
 
 function scrollToContact() {
   setTimeout(() => {
@@ -93,12 +95,19 @@ export function LuxuryRings() {
 
       <main className="relative w-full overflow-hidden">
         {/* Leão ao fundo, lado esquerdo */}
-        <div className="absolute inset-y-0 left-0 w-full sm:w-[38%] pointer-events-none" aria-hidden>
+        <div className="absolute inset-x-0 top-0 h-[380px] sm:inset-y-0 sm:left-0 sm:right-auto sm:h-auto sm:w-[38%] pointer-events-none" aria-hidden>
+          <img
+            src={LION_BG_MOBILE}
+            alt=""
+            draggable={false}
+            className="absolute inset-0 w-full h-full object-cover object-top opacity-70 sm:hidden"
+            onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+          />
           <img
             src={LION_BG}
             alt=""
             draggable={false}
-            className="absolute inset-0 w-full h-full object-cover object-left"
+            className="absolute inset-0 w-full h-full object-cover object-center opacity-70 sm:object-left sm:opacity-100 hidden sm:block"
             onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-black" />
@@ -110,28 +119,33 @@ export function LuxuryRings() {
             items={[{ label: t.pages.productBreadcrumbHome, to: '/' }, { label: t.collections.luxuryTitle }]}
           />
           {/* Título */}
-          <div className="text-center mb-14 sm:mb-20">
+          <div className="text-center mb-20 sm:mb-20">
             <h1
               className="font-cinzel font-normal uppercase text-white"
               style={{ fontSize: 'clamp(34px, 4vw, 58px)', letterSpacing: '0.12em' }}
             >
               {t.collections.luxuryTitle}
             </h1>
-            {/* filete dourado com brilho central */}
-            <div className="relative mx-auto mt-6 mb-6 w-full max-w-[560px]" aria-hidden>
-              <div className="h-px w-full bg-gradient-to-r from-transparent via-[#C5A059] to-transparent" />
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-[3px] bg-[#E6CA85] blur-[3px] rounded-full" />
-            </div>
+            {/* separador Rings Luxury */}
+            <img
+              src={SEPARATOR_IMG}
+              alt=""
+              aria-hidden
+              draggable={false}
+              loading="eager"
+              className="mx-auto -mt-2 mb-6 sm:-mt-14 sm:mb-12 w-full max-w-[720px] h-auto object-contain select-none"
+              onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+            />
             <p
               className="font-cinzel font-normal uppercase text-[#E8E2D4]"
               style={{ fontSize: 'clamp(15px, 1.5vw, 21px)', letterSpacing: '0.55em', textIndent: '0.55em' }}
             >
               {t.collections.luxurySubtitle}
             </p>
-            <p className="mx-auto mt-8 max-w-2xl font-cormorant text-lg italic leading-relaxed text-[#C2BDB2]">
+            <p className="mx-auto mt-10 sm:mt-8 max-w-2xl font-cormorant text-lg italic leading-relaxed text-[#C2BDB2]">
               {t.collections.luxuryIntro}
             </p>
-            <p className="mt-4">
+            <p className="mt-6 sm:mt-4">
               <Link
                 to="/luxury-rings-guide"
                 className="font-cinzel text-[11px] uppercase tracking-[0.25em] text-[#C5A059] underline underline-offset-4 hover:text-[#E6CA85] transition-colors"
@@ -142,7 +156,7 @@ export function LuxuryRings() {
           </div>
 
           {/* Grade de anéis */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-x-8 gap-y-14">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-x-8 gap-y-20 sm:gap-y-14">
             {RINGS.map((ring) => (
               <Link
                 key={ring.src}
@@ -161,13 +175,13 @@ export function LuxuryRings() {
                     onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                   />
                 </div>
-                <p className="mt-2 min-h-[44px] flex items-start justify-center text-[13px] leading-[1.5] text-white/90 max-w-[260px] group-hover:text-[#E6CA85] transition-colors">
+                <p className="mt-4 sm:mt-2 min-h-[44px] flex items-start justify-center text-[13px] leading-[1.5] text-white/90 max-w-[260px] group-hover:text-[#E6CA85] transition-colors">
                   {ring.name}
                 </p>
-                <p className="mt-2 font-cinzel text-[15px] tracking-[0.08em] text-[#E6CA85]">
+                <p className="mt-3 sm:mt-2 font-cinzel text-[15px] tracking-[0.08em] text-[#E6CA85]">
                   {ring.price}
                 </p>
-                <span className="mt-3 inline-block px-6 py-1.5 border border-white/25 group-hover:border-[#C5A059] rounded-full text-[11px] tracking-[0.12em] text-white/85 group-hover:text-[#E6CA85] transition-colors">
+                <span className="mt-5 sm:mt-3 inline-block px-6 py-1.5 border border-white/25 group-hover:border-[#C5A059] rounded-full text-[11px] tracking-[0.12em] text-white/85 group-hover:text-[#E6CA85] transition-colors">
                   {t.collections.addToCart}
                 </span>
               </Link>
