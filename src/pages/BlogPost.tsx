@@ -4,6 +4,7 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
 import { blogPosts } from '../data/blogPosts';
+import { absoluteUrl } from '../site.config';
 import { useLanguage } from '../i18n/LanguageContext';
 
 export function BlogPost() {
@@ -39,7 +40,7 @@ export function BlogPost() {
       <SEO 
         title={post.title}
         description={post.excerpt}
-        image={post.image}
+        image={absoluteUrl(post.image)}
       />
       <script
         type="application/ld+json"
@@ -48,7 +49,7 @@ export function BlogPost() {
             '@context': 'https://schema.org',
             '@type': 'BlogPosting',
             headline: post.title,
-            image: post.image,
+            image: absoluteUrl(post.image),
             datePublished: post.dateISO,
             author: { '@type': 'Person', name: post.author },
           }),

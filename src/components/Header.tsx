@@ -101,6 +101,11 @@ export function Header({ onOpenConsultation }: HeaderProps) {
       onClick: (e) => handleNavigation(e, '/courses'),
     },
     {
+      label: t.nav.gallery,
+      link: '/gallery',
+      onClick: (e) => handleNavigation(e, '/gallery'),
+    },
+    {
       label: t.nav.contact,
       link: '/contact',
       onClick: (e) => handleNavigation(e, '/contact'),

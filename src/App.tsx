@@ -15,6 +15,7 @@ const ContactPage = lazy(() =>
 );
 import { Blog } from './pages/Blog';
 import { BlogPost } from './pages/BlogPost';
+import { Gallery } from './pages/Gallery';
 import { LuxuryRingsGuide } from './pages/LuxuryRingsGuide';import { ProductPage } from './pages/ProductPage';
 import { CartPage } from './pages/CartPage';
 import { JorgeUquillas } from './pages/JorgeUquillas';
@@ -119,6 +120,7 @@ export default function App() {
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/blog" element={<Blog />} />
       <Route path="/blog/:slug" element={<BlogPost />} />
+      <Route path="/gallery" element={<Gallery />} />
       <Route path="/luxury-rings-guide" element={<LuxuryRingsGuide />} />
       <Route path="/produto/:slug" element={<ProductPage />} />
       <Route path="/product/:slug" element={<ProductPage />} />

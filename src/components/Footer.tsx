@@ -33,6 +33,7 @@ const COLLECTIONS_ROUTES = [
 
 const ATELIER_ROUTES = [
   { to: '/jorge-uquillas', key: 'atelierAbout' },
+  { to: '/gallery', key: 'atelierGallery' },
   { to: '/blog', key: 'atelierJournal' },
   { to: '/courses', key: 'atelierCourses' },
 ] as const;
