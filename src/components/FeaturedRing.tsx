@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight, Feather } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
@@ -6,7 +6,7 @@ import { useLanguage } from '../i18n/LanguageContext';
 interface Piece {
   src: string;
   name: string;
-  altKey: 'featAlt1' | 'featAlt2' | 'featAlt3' | 'featAlt4' | 'featAlt5' | 'featAlt6' | 'featAlt7' | 'featAlt8';
+  altKey: 'featAlt1' | 'featAlt2' | 'featAlt3' | 'featAlt4' | 'featAlt5' | 'featAlt6' | 'featAlt7' | 'featAlt8' | 'featAlt9' | 'featAlt10' | 'featAlt11' | 'featAlt12' | 'featAlt13';
   /** rota /produto/:slug da peça real no catálogo */
   to: string;
   /** zoom extra p/ fotos cuja peça saiu pequena no enquadramento (ex: Sinnet) */
@@ -63,6 +63,36 @@ const PIECES: Piece[] = [
     name: 'Tiger',
     altKey: 'featAlt8',
     to: '/produto/tiger-ring-18k-gold-jorge-uquillas',
+  },
+  {
+    src: '/PUBLIC/Mixed%20Luxury%20Gold%20Ring%20by%20rings%20Luxury%20Jorge%20Uquillas.webp',
+    name: 'Mixed Luxury Gold',
+    altKey: 'featAlt9',
+    to: '/produto/mixed-luxury-gold-ring-jorge-uquillas',
+  },
+  {
+    src: '/PUBLIC/Miced%20Ma%C3%A7onic%2033%20Degrees%20Gold%20Silver%20Ring%20by%20Rings%20Luxury%20Jorge%20Uquillas.webp',
+    name: 'Mixed Maçonic 33',
+    altKey: 'featAlt10',
+    to: '/produto/mixed-masonic-33-degrees-gold-silver-ring-jorge-uquillas',
+  },
+  {
+    src: '/PUBLIC/Mixed%20Templar%20Gold%20Silver%20Ring%2018k%20by%20Jorge%20Uquillas%20Rings%20Luxury.webp',
+    name: 'Mixed Templar',
+    altKey: 'featAlt11',
+    to: '/produto/mixed-templar-gold-silver-ring-18k-jorge-uquillas',
+  },
+  {
+    src: '/PUBLIC/Miced%20Gold-Silver%20ring%20Family%20Crest%20by%20Jorge%20uquillas%20Rings%20Luxury.webp',
+    name: 'Family Crest Bicolor',
+    altKey: 'featAlt12',
+    to: '/produto/mixed-gold-silver-family-crest-ring-jorge-uquillas',
+  },
+  {
+    src: '/PUBLIC/Miced%20Gold-Silver%20ring%20Family%20Crest%20by%20Jorge%20uquillas%20Rings%20Luxury%20with%20number.webp',
+    name: 'Crest Numerada',
+    altKey: 'featAlt13',
+    to: '/produto/mixed-gold-silver-ring-family-crest-numbered-jorge-uquillas',
   },
 ];
 
@@ -123,12 +153,84 @@ export function FeaturedRing() {
   const { t } = useLanguage();
   const navigate = useNavigate();
   const trackRef = useRef<HTMLDivElement>(null);
+  const pausedRef = useRef(false);
+  const resumeTimer = useRef<number>(0);
+
+  // Lista duplicada para looping eterno e invisível (2ª cópia idêntica).
+  const loopPieces = [...PIECES, ...PIECES];
+
+  const pauseTemp = () => {
+    pausedRef.current = true;
+    window.clearTimeout(resumeTimer.current);
+    resumeTimer.current = window.setTimeout(() => { pausedRef.current = false; }, 5000);
+  };
+  const pauseHold = () => {
+    pausedRef.current = true;
+    window.clearTimeout(resumeTimer.current);
+  };
+  const resume = () => {
+    window.clearTimeout(resumeTimer.current);
+    pausedRef.current = false;
+  };
 
   const scrollTrack = (dir: 1 | -1) => {
     const el = trackRef.current;
     if (!el) return;
+    // Pausa o autoplay por 8s para o deslize da seta completar sem briga.
+    pausedRef.current = true;
+    window.clearTimeout(resumeTimer.current);
+    resumeTimer.current = window.setTimeout(() => { pausedRef.current = false; }, 8000);
     el.scrollBy({ left: dir * el.clientWidth * 0.8, behavior: 'smooth' });
   };
+
+  // Autoplay suave da esquerda para a direita (scrollLeft diminuindo).
+  // Atribuição direta por frame (sem snap e sem "smooth" do CSS) = movimento
+  // contínuo, sem trancos. Ao chegar no início, soma um período exato e continua.
+  // NOTA: sem scroll-snap aqui de propósito — o snap do navegador corrige o
+  // scroll a cada frame e congela o deslize (parece "parado").
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    const count = PIECES.length;
+    const measure = () => {
+      const first = el.children[0] as HTMLElement | undefined;
+      const second = el.children[count] as HTMLElement | undefined;
+      return first && second ? second.offsetLeft - first.offsetLeft : 0;
+    };
+    // Começa no início da 2ª cópia para ter margem à esquerda.
+    // Posiciona de imediato + reconfere após o layout assentar (fontes/imagens).
+    const initial = measure();
+    if (initial > 0) el.scrollLeft = initial;
+    const settle = requestAnimationFrame(() => {
+      const p = measure();
+      if (p > 0) el.scrollLeft = p;
+    });
+    let raf = 0;
+    let last = performance.now();
+    const PX_PER_MS = 0.055; // ~55px/s, visível mas elegante
+    const frame = (now: number) => {
+      const dt = Math.min(now - last, 64);
+      last = now;
+      if (!pausedRef.current && document.visibilityState === 'visible') {
+        const period = measure();
+        const max = el.scrollWidth - el.clientWidth;
+        if (period > 0 && max > 0) {
+          el.scrollLeft -= PX_PER_MS * dt;
+          // Chegou no início: avança um período exato (conteúdo idêntico).
+          if (el.scrollLeft <= 0) el.scrollLeft += period;
+          // Segurança: se o usuário arrastar até o fim, normaliza.
+          else if (el.scrollLeft >= max - 1) el.scrollLeft -= period;
+        }
+      }
+      raf = requestAnimationFrame(frame);
+    };
+    raf = requestAnimationFrame(frame);
+    return () => {
+      cancelAnimationFrame(raf);
+      cancelAnimationFrame(settle);
+      window.clearTimeout(resumeTimer.current);
+    };
+  }, []);
   return (
     <section
       id="featured-ring"
@@ -188,22 +290,29 @@ export function FeaturedRing() {
         </div>
       </div>
 
-      {/* CARROSSEL, swipe com snap suave; cada anel abre a página do produto */}
+      {/* CARROSSEL autoplay suave esquerda → direita; cada anel abre a página do produto */}
       <div className="relative z-10 w-full">
         <style>{`.no-scrollbar::-webkit-scrollbar{display:none}.no-scrollbar{scrollbar-width:none;-ms-overflow-style:none}`}</style>
         <div
           ref={trackRef}
           role="region"
           aria-label={t.home.featMarqueeAria}
-          className="no-scrollbar flex items-center gap-2 sm:gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth px-5 sm:px-8 lg:px-10 pb-2"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' as React.CSSProperties['msOverflowStyle'] }}
+          onMouseEnter={pauseHold}
+          onMouseLeave={resume}
+          onPointerDown={pauseTemp}
+          onTouchStart={pauseTemp}
+          onWheel={pauseTemp}
+          className="no-scrollbar flex items-center gap-2 sm:gap-4 overflow-x-auto px-5 sm:px-8 lg:px-10 pb-2 cursor-grab active:cursor-grabbing"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' as React.CSSProperties['msOverflowStyle'], WebkitOverflowScrolling: 'touch', scrollBehavior: 'auto' }}
         >
-          {PIECES.map((piece) => (
+          {loopPieces.map((piece, i) => (
             <Link
-              key={piece.src}
+              key={`${piece.src}-${i}`}
               to={piece.to}
+              aria-hidden={i >= PIECES.length}
+              tabIndex={i >= PIECES.length ? -1 : undefined}
               aria-label={`${piece.name}, ver peça`}
-              className="group relative shrink-0 snap-center w-[220px] sm:w-[260px] lg:w-[300px] px-5 sm:px-7 flex flex-col items-center justify-center bg-transparent border-0 focus:outline-none"
+              className="group relative shrink-0 w-[220px] sm:w-[260px] lg:w-[300px] px-5 sm:px-7 flex flex-col items-center justify-center bg-transparent border-0 focus:outline-none"
             >
               <img
                 src={piece.src}

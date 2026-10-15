@@ -199,7 +199,7 @@ export function Header({ onOpenConsultation }: HeaderProps) {
         items={menuItems}
         socialItems={socialItems}
         displaySocials={true}
-        displayItemNumbering={true}
+        displayItemNumbering={false}
         menuButtonColor="#C5A059"
         openMenuButtonColor="#C5A059"
         accentColor="#C5A059"

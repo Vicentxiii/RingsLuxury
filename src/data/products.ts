@@ -1256,7 +1256,7 @@ export const products: Product[] = [
       dimensions: 'Sob medida',
       hallmark: 'Owl of Athena • 750 • J.Uquillas',
     },
-    images: [encodeURI('/PUBLIC/Anel Cheeta By Jorge Uquillas with Big Rubi Diamond 18k Gold Rings Luxury.webp')],
+    images: [encodeURI('/PUBLIC/Anel Cheeta By Jorge Uquillas with Big Rubi Diamond 18k Gold Rings Luxury.webp'), encodeURI('/PUBLIC/Anel Chetta by Rings Luxury Jorge Uquillas  (1).jpg'), encodeURI('/PUBLIC/Anel Chetta by Rings Luxury Jorge Uquillas  (2).jpg'), encodeURI('/PUBLIC/Anel Chetta by Rings Luxury Jorge Uquillas  (3).jpg'), encodeURI('/PUBLIC/Anel Chetta by Rings Luxury Jorge Uquillas  (4).jpg'), encodeURI('/PUBLIC/Anel Chetta by Rings Luxury Jorge Uquillas (5).jpg'), encodeURI('/PUBLIC/Anel Chetta by Rings Luxury Jorge Uquillas (6).jpg'), encodeURI('/PUBLIC/Anel Chetta by Rings Luxury Jorge Uquillas (7).jpg'), encodeURI('/PUBLIC/Anel Chetta Proocesso by Rings Luxury Jorge Uquillas.jpg'), encodeURI('/PUBLIC/Anel Chetta Proocesso by Rings Luxury Jorge Uquillas  (1).jpg'), encodeURI('/PUBLIC/Anel Chetta Proocesso by Rings Luxury Jorge Uquillas  (2).jpg'), encodeURI('/PUBLIC/Anel Chetta Proocesso by Rings Luxury Jorge Uquillas  (3).jpg')],
     sku: 'RL-SPE-035',
     inStock: true,
   },

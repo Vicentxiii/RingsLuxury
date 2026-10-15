@@ -137,6 +137,30 @@ const SHOTS: ProductionShot[] = [
     caption: 'Ready for delivery, production 17',
     productSlug: 'mixed-luxury-gold-ring-jorge-uquillas',
   },
+  {
+    src: encodeURI('/PUBLIC/Anel Chetta Proocesso by Rings Luxury Jorge Uquillas.jpg'),
+    alt: 'Cheeta ring hand-engraving process by Jorge Uquillas, Rings Luxury atelier proof',
+    caption: 'Cheeta process, hand-engraving proof',
+    productSlug: 'cheeta-ring-big-rubi-diamond-18k-gold-jorge-uquillas',
+  },
+  {
+    src: encodeURI('/PUBLIC/Anel Chetta Proocesso by Rings Luxury Jorge Uquillas  (1).jpg'),
+    alt: 'Cheeta ring hand-engraving process by Jorge Uquillas (1), Rings Luxury atelier proof',
+    caption: 'Cheeta process, atelier bench proof',
+    productSlug: 'cheeta-ring-big-rubi-diamond-18k-gold-jorge-uquillas',
+  },
+  {
+    src: encodeURI('/PUBLIC/Anel Chetta Proocesso by Rings Luxury Jorge Uquillas  (2).jpg'),
+    alt: 'Cheeta ring hand-engraving process by Jorge Uquillas (2), Rings Luxury atelier proof',
+    caption: 'Cheeta process, burin work proof',
+    productSlug: 'cheeta-ring-big-rubi-diamond-18k-gold-jorge-uquillas',
+  },
+  {
+    src: encodeURI('/PUBLIC/Anel Chetta Proocesso by Rings Luxury Jorge Uquillas  (3).jpg'),
+    alt: 'Cheeta ring hand-engraving process by Jorge Uquillas (3), Rings Luxury atelier proof',
+    caption: 'Cheeta process, final handwork proof',
+    productSlug: 'cheeta-ring-big-rubi-diamond-18k-gold-jorge-uquillas',
+  },
 ];
 
 function scrollToContact() {
