@@ -61,7 +61,7 @@ export function Footer() {
       {/* Imagem de fundo do rodapé, 30% de opacidade */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden>
         <img
-          src="/PUBLIC/Fundo%20do%20rodap%C3%A9%20Rings%20Luxury%20Jorge%20Uquillas%20aneis%20feitos%20a%20mao.webp"
+          src="/PUBLIC/fundo-do-rodape-rings-luxury-jorge-uquillas-aneis-feitos-a-mao.webp"
           alt=""
           draggable={false}
           className="absolute inset-0 w-full h-full object-cover object-center opacity-[0.12] select-none"

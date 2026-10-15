@@ -16,8 +16,8 @@ interface NecklaceItem {
   slug: string;
 }
 
-const NECKLACES_BG = encodeURI('/PUBLIC/Dobra da pagina Necklaces site Rings Luxury by Jorge Uquillas.webp');
-const SEPARATOR_IMG = encodeURI('/PUBLIC/Seaparador 2 Rings Luxury Jorge Uquillas.webp');
+const NECKLACES_BG = encodeURI('/PUBLIC/dobra-da-pagina-necklaces-site-rings-luxury-by-jorge-uquillas.webp');
+const SEPARATOR_IMG = encodeURI('/PUBLIC/seaparador-2-rings-luxury-jorge-uquillas.webp');
 
 function scrollToContact() {
   setTimeout(() => {
@@ -31,49 +31,49 @@ export function Necklaces() {
 
   const NECKLACES: NecklaceItem[] = [
     {
-      src: encodeURI('/PUBLIC/Panther Necklace by  Jorge Uquillas Rings Luxury 18K gold with Citrin.webp'),
+      src: encodeURI('/PUBLIC/panther-necklace-by-jorge-uquillas-rings-luxury-18k-gold-with-citrine.webp'),
       name: 'Panther Necklace',
       price: '$ 22,500.00',
       alt: t.collections.altNecklace1,
       slug: 'panther-necklace-18k-gold-citrin-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Rhino NeckLace 18k gold with Diamonds by Rings Luxury Jorege Uquillas.webp'),
+      src: encodeURI('/PUBLIC/rhino-necklace-18k-gold-with-diamonds-by-rings-luxury-jorge-uquillas.webp'),
       name: 'Rhino Necklace',
       price: '$ 150,000.00',
       alt: t.collections.altNecklace2,
       slug: 'rhino-necklace-18k-gold-diamonds-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Variable 18K gold Chains By Jorge Uquillas Rings Luxury.webp'),
+      src: encodeURI('/PUBLIC/variable-18k-gold-chains-by-jorge-uquillas-rings-luxury.webp'),
       name: 'Variable 18K Gold Chains 18mm',
       price: '$ 0.00',
       alt: t.collections.altNecklace3,
       slug: 'variable-18k-gold-chains-18mm-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Medusa Necklace Full Diamonds 18 Gold by Jorge Uquillas Rings Luxury.webp'),
+      src: encodeURI('/PUBLIC/medusa-necklace-full-diamonds-18-gold-by-jorge-uquillas-rings-luxury.webp'),
       name: 'Medusa Necklace Full Diamonds 18k gold',
       price: '$ 112,000.00',
       alt: t.collections.altNecklace4,
       slug: 'medusa-necklace-full-diamonds-18k-gold-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Lion NeckLace 18K gold by Rings Luxury.webp'),
+      src: encodeURI('/PUBLIC/lion-necklace-18k-gold-by-rings-luxury.webp'),
       name: 'Lion Necklace 18k gold',
       price: '$ 22,000.00',
       alt: t.collections.altNecklace5,
       slug: 'lion-necklace-18k-gold-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/King Lion NeckLace By Rings Luxury Jorge uquillas.webp'),
+      src: encodeURI('/PUBLIC/king-lion-necklace-by-rings-luxury-jorge-uquillas.webp'),
       name: 'King Lion Necklace',
       price: t.collections.priceUponRequest,
       alt: t.collections.altNecklace6,
       slug: 'king-lion-necklace-jorge-uquillas-rings-luxury',
     },
     {
-      src: encodeURI('/PUBLIC/Colar de Safiras e diamantes by jORGE uQUILLAS rINGS lUXURY 2 SEM FUNDO.webp'),
+      src: encodeURI('/PUBLIC/colar-de-safiras-e-diamantes-by-jorge-uquillas-rings-luxury-2-sem-fundo.webp'),
       name: 'Sapphire and Diamond Necklace',
       price: t.collections.priceUponRequest,
       alt: t.collections.altNecklace7,

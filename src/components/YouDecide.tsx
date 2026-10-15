@@ -9,15 +9,15 @@ interface Slide {
 
 /**
  * Seção "YOU DECIDE EVERY STONE EVERY DETAIL", logo após WHY CHOOSE RINGS LUXURY?
- * - Fundo: Title Session Rings Luxury Background YOU DECIDE EVERY STONE EVERY DETAIL.webp (com opacidade, predominantemente preto)
+ * - Fundo: title-session-rings-luxury-background-you-decide-every-stone-every-detail.webp (com opacidade, predominantemente preto)
  * - Carrossel lateral com as fotos do ateliê / sketches do mestre
  */
 const SLIDE_SRCS: string[] = [
-  '/PUBLIC/Rings Luxury Master Engraver Sketch 1.webp',
-  '/PUBLIC/Rings Luxury Master Engraver Sketch 2 site.webp',
+  '/PUBLIC/rings-luxury-master-engraver-sketch-1.webp',
+  '/PUBLIC/rings-luxury-master-engraver-sketch-2-site.webp',
   '/PUBLIC/rings-luxury-master-engraver-site.webp',
-  '/PUBLIC/Ringsluxury HandMade Engraver Master rings.webp',
-  '/PUBLIC/Rings Luxury Master Engraver Sketch 2 site ringsluxury@gmail.com.webp',
+  '/PUBLIC/ringsluxury-handmade-engraver-master-rings.webp',
+  '/PUBLIC/rings-luxury-master-engraver-sketch-2-site-ringsluxury@gmail-com.webp',
 ];
 
 const SLIDE_ALT_KEYS = ['ydAlt1', 'ydAlt2', 'ydAlt3', 'ydAlt4', 'ydAlt5'] as const;
@@ -81,7 +81,7 @@ export function YouDecide() {
       {/* FUNDO, foto do salão com opacidade, predominância preta */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-black">
         <img
-          src="/PUBLIC/Title Session Rings Luxury Background YOU DECIDE EVERY STONE EVERY DETAIL.webp"
+          src="/PUBLIC/title-session-rings-luxury-background-you-decide-every-stone-every-detail.webp"
           alt=""
           draggable={false}
           className="absolute inset-0 w-full h-full object-cover object-center opacity-[0.42]"
@@ -205,7 +205,7 @@ export function YouDecide() {
         {/* ASSINATURA JORGE UQUILLAS, no meio da seção, revela com o scroll */}
         <div className="mt-12 sm:mt-14 flex justify-center">
           <img
-            src="/PUBLIC/assinatura Jorge Uquillas Rings Luxury.webp"
+            src="/PUBLIC/assinatura-jorge-uquillas-rings-luxury.webp"
             alt={t.home.ydSignatureAlt}
             draggable={false}
             className="w-[130px] sm:w-[150px] h-auto object-contain select-none will-change-[opacity,transform]"

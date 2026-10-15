@@ -16,8 +16,8 @@ interface RingItem {
   slug: string;
 }
 
-const EMPEROR_BG = encodeURI('/PUBLIC/Fundo da seção EMPEROR RINGS site Rings Luxury.webp');
-const SEPARATOR_IMG = encodeURI('/PUBLIC/Seaparador 2 Rings Luxury Jorge Uquillas.webp');
+const EMPEROR_BG = encodeURI('/PUBLIC/fundo-da-secao-emperor-rings-site-rings-luxury.webp');
+const SEPARATOR_IMG = encodeURI('/PUBLIC/seaparador-2-rings-luxury-jorge-uquillas.webp');
 
 function scrollToContact() {
   setTimeout(() => {
@@ -31,49 +31,49 @@ export function EmperorRings() {
 
   const RINGS: RingItem[] = [
     {
-      src: encodeURI('/PUBLIC/Emperor Eraldic Ring 18k gold Monogram by Jorge Uquillas Rings Luxury.webp'),
+      src: encodeURI('/PUBLIC/emperor-heraldic-ring-18k-gold-monogram-by-jorge-uquillas-rings-luxury.webp'),
       name: 'EMPEROR HERALDIC RING',
       price: '$ 4,800.00',
       alt: t.collections.altEmperor1,
       slug: 'emperor-heraldic-ring-18k-gold-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Luxury rings collection anel Caveira  by Jorge Uquillas rings luxury.webp'),
+      src: encodeURI('/PUBLIC/luxury-rings-collection-anel-caveira-by-jorge-uquillas-rings-luxury.webp'),
       name: 'Rose Gold Pirate Skull Ring',
       price: '$ 5,500.00',
       alt: t.collections.altEmperor2,
       slug: 'rose-gold-pirate-skull-ring-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Lion Emperor Ring 18K gold by Jorge Uquillas Rings Luxury.webp'),
+      src: encodeURI('/PUBLIC/lion-emperor-ring-18k-gold-by-jorge-uquillas-rings-luxury.webp'),
       name: 'Lion Emperor Ring',
       price: '$ 4,800.00',
       alt: t.collections.altEmperor3,
       slug: 'lion-emperor-ring-18k-gold-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Emperor RING 18K gOLD monogram.webp'),
+      src: encodeURI('/PUBLIC/emperor-ring-18k-gold-monogram.webp'),
       name: 'Emperor Ring 18k Gold Monogram',
       price: '$ 4,800.00',
       alt: t.collections.altEmperor4,
       slug: 'emperor-ring-18k-gold-monogram-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/KOI emperor Ring 18k rose Gold.webp'),
+      src: encodeURI('/PUBLIC/koi-emperor-ring-18k-rose-gold.webp'),
       name: 'KOI Emperor Ring 18k rose gold',
       price: '$ 4,800.00',
       alt: t.collections.altEmperor5,
       slug: 'koi-emperor-ring-18k-rose-gold-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Emperor Skull Ring 18k Gold by Jorge Uquillas Rings Luxury.webp'),
+      src: encodeURI('/PUBLIC/emperor-skull-ring-18k-gold-by-jorge-uquillas-rings-luxury.webp'),
       name: 'Emperor Skull Ring 18k gold',
       price: '$ 4,800.00',
       alt: t.collections.altEmperor6,
       slug: 'emperor-skull-ring-18k-gold-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Luxury Emperor Maçonic Ring by Jorge Uquillas Rings Luxury.webp'),
+      src: encodeURI('/PUBLIC/luxury-emperor-maconic-ring-by-jorge-uquillas-rings-luxury.webp'),
       name: 'Luxury Emperor Maçonic Ring',
       price: '$ 4,800.00',
       alt: t.collections.altEmperor7,

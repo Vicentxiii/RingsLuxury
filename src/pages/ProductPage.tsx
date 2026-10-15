@@ -16,7 +16,7 @@ import { useLanguage } from '../i18n/LanguageContext';
 import { useCart } from '../context/CartContext';
 
 /** Fundo das páginas de produto. 2048x1080, escuro com veios dourados. */
-const PRODUCT_BG = '/PUBLIC/Fundo da pagina de produtos Jorge Uquillas Rings Luxury.webp';
+const PRODUCT_BG = '/PUBLIC/fundo-da-pagina-de-produtos-jorge-uquillas-rings-luxury.webp';
 
 /** Detecta item de vídeo da galeria (mp4/webm/mov). */
 function isVideoSrc(src: string) {
@@ -248,7 +248,7 @@ export function ProductPage() {
                     {isVideo ? (
                       <video src={img} muted playsInline preload="metadata" className="w-full h-full object-cover" aria-hidden />
                     ) : (
-                      <img src={img} alt={isCert ? t.home.mpCertAlt : isBox ? 'Caixa e sacola Rings Luxury by Jorge Uquillas' : ''} className="w-full h-full object-cover" loading="lazy" />
+                      <img src={img} alt={isCert ? t.home.mpCertAlt : isBox ? 'Caixa e sacola Rings Luxury by Jorge Uquillas' : `${product.name}, ${product.subname}, foto ${idx + 1}`} className="w-full h-full object-cover" loading="lazy" />
                     )}
                     {isVideo && (
                       <span className="absolute inset-0 flex items-center justify-center bg-black/30">

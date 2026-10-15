@@ -321,8 +321,8 @@ export function seoInject(): Plugin {
 
     /**
      * robots.txt e sitemap.xml gerados em build para ficarem sempre em sync
-     * com products.ts / blogPosts.ts. Nao emitimos <lastmod> porque nao temos
-     * data confiavel de modificacao, omitir e melhor do que inventar.
+     * com products.ts / blogPosts.ts. <lastmod> = data do build: após
+     * renomeações e publicações, sinaliza frescor e provoca recrawl.
      *
      * O sitemap so e emitido com dominio configurado: publicar <loc> apontando
      * para um host inexistente convida o Google a indexar URLs que nao
@@ -344,9 +344,10 @@ export function seoInject(): Plugin {
         ...slugs('src/data/blogPosts.ts').map((s) => `/blog/${s}`),
       ];
 
+      const today = new Date().toISOString().slice(0, 10);
       const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map((u) => `  <url><loc>${siteUrl}${u}</loc></url>`).join('\n')}
+${urls.map((u) => `  <url><loc>${siteUrl}${u}</loc><lastmod>${today}</lastmod></url>`).join('\n')}
 </urlset>
 `;
 

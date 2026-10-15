@@ -20,6 +20,10 @@ function isLang(v: unknown): v is Lang {
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Lang>(() => {
     try {
+      // ?lang= tem prioridade: torna as URLs de idioma reais, compartilháveis
+      // e rastreáveis (base do hreflang no <SEO>).
+      const param = new URLSearchParams(window.location.search).get('lang');
+      if (isLang(param)) return param;
       const stored = localStorage.getItem(STORAGE_KEY);
       if (isLang(stored)) return stored;
     } catch {
@@ -40,6 +44,19 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       /* ignore */
     }
     document.documentElement.lang = lang;
+    // Espelha o idioma na URL (?lang=) sem recarregar, para o link ativo
+    // ser compartilhável e bater com o hreflang. EN usa URL limpa.
+    try {
+      const url = new URL(window.location.href);
+      if (lang === 'en') {
+        url.searchParams.delete('lang');
+      } else {
+        url.searchParams.set('lang', lang);
+      }
+      window.history.replaceState(null, '', url);
+    } catch {
+      /* ignore */
+    }
   }, [lang]);
 
   const value = useMemo<LanguageValue>(

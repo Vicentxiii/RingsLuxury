@@ -5,8 +5,8 @@ import { useLanguage } from '../i18n/LanguageContext';
 
 /**
  * Seção "WHAT PEOPLE SAY ABOUT RINGS LUXURY", carrossel de depoimentos reais
- * - Fundo: Sessao-clientes-rings-luxury-site-2026.webp (escultura dourada à direita)
- * - Badge: Rings Luxury Google Reviews.webp (5-STAR RATING Google)
+ * - Fundo: sessao-clientes-rings-luxury-site-2026.webp (escultura dourada à direita)
+ * - Badge: rings-luxury-google-reviews.webp (5-STAR RATING Google)
  * - Clientes: fotos reais enviadas em public/PUBLIC (Rings Luxury Google Reviews client 1-5.png)
  *
  * Fonte de dados: src/data/reviews.json (fonte única, compartilhada com o
@@ -106,7 +106,7 @@ export function WorldClients() {
       {/* FUNDO, escultura dourada à direita, preto predominante */}
       <div className="absolute inset-0 z-0 overflow-hidden bg-black">
         <img
-          src="/PUBLIC/Sessao-clientes-rings-luxury-site-2026.webp"
+          src="/PUBLIC/sessao-clientes-rings-luxury-site-2026.webp"
           alt=""
           draggable={false}
           className="absolute inset-0 w-full h-full object-cover object-right opacity-[0.85]"
@@ -136,7 +136,7 @@ export function WorldClients() {
         {/* BADGE 5-STAR GOOGLE */}
         <div className="mt-8 sm:mt-10 flex justify-center">
           <img
-            src="/PUBLIC/Rings Luxury Google Reviews.webp"
+            src="/PUBLIC/rings-luxury-google-reviews.webp"
             alt={t.home.wcBadgeAlt}
             draggable={false}
             className="w-[150px] sm:w-[185px] h-auto object-contain select-none drop-shadow-[0_10px_30px_rgba(197,160,89,0.28)]"

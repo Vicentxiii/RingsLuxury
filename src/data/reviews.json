@@ -3,14 +3,14 @@
   "source": {
     "$comment": "Preencher com o link real do Perfil do Google. Enquanto for null, o plugin NÃO emite 'publisher: Google' (atribuição não verificável é violação de spam do Google).",
     "platform": "Google",
-    "businessProfileUrl": null,
+    "businessProfileUrl": "https://share.google/U3vLJbvdUMSo8xNIX",
     "placeId": null
   },
   "reviews": [
     {
       "id": "r-1",
       "name": "Silvio Gomez",
-      "photo": "/PUBLIC/Rings Luxury Google Reviews client 1.webp",
+      "photo": "/PUBLIC/rings-luxury-google-reviews-client-1.webp",
       "initial": "",
       "rating": 5,
       "date": null,
@@ -19,7 +19,7 @@
     {
       "id": "r-2",
       "name": "Tommy Chan",
-      "photo": "/PUBLIC/Rings Luxury Google Reviews CLIENT 2.webp",
+      "photo": "/PUBLIC/rings-luxury-google-reviews-client-2.webp",
       "initial": "",
       "rating": 5,
       "date": null,
@@ -28,7 +28,7 @@
     {
       "id": "r-3",
       "name": "Gerson Mella Filho",
-      "photo": "/PUBLIC/Rings Luxury Google Reviews Client 3.webp",
+      "photo": "/PUBLIC/rings-luxury-google-reviews-client-3.webp",
       "initial": "",
       "rating": 5,
       "date": null,
@@ -37,7 +37,7 @@
     {
       "id": "r-4",
       "name": "Lilian Ferro Duarte",
-      "photo": "/PUBLIC/Rings Luxury Google Reviews Client 4.webp",
+      "photo": "/PUBLIC/rings-luxury-google-reviews-client-4.webp",
       "initial": "",
       "rating": 5,
       "date": null,
@@ -55,7 +55,7 @@
     {
       "id": "r-6",
       "name": "Alexandre Ribeiro",
-      "photo": "/PUBLIC/Rings Luxury Google Reviews Client 5.webp",
+      "photo": "/PUBLIC/rings-luxury-google-reviews-client-5.webp",
       "initial": "",
       "rating": 5,
       "date": null,

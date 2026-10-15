@@ -16,7 +16,7 @@ export const blogPosts = [
       <p>Every stroke requires absolute focus. A single millimeter of deviation can alter the expression of a carved face or the flow of a floral motif. At Rings Luxury, we employ the same techniques used during the Renaissance, ensuring that each piece carries the warmth of the human hand.</p>
 
       <figure style="margin:32px 0;">
-        <img src="/PUBLIC/Engraving%20Ring%20by%20Jorge%20Uquillas%20the%20master%20Engraver%20Rings%20Luxury.webp" alt="Hand engraver burin cutting a gold signet ring by Jorge Uquillas, Rings Luxury atelier" loading="lazy" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        <img src="/PUBLIC/engraving-ring-by-jorge-uquillas-the-master-engraver-rings-luxury.webp" alt="Hand engraver burin cutting a gold signet ring by Jorge Uquillas, Rings Luxury atelier" loading="lazy" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
         <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">The burin meets solid 18k gold</figcaption>
       </figure>
       
@@ -24,7 +24,7 @@ export const blogPosts = [
       <p>Engraving is what elevates a piece of jewelry from a mere accessory to a work of art. It is the soul of haute joaillerie. When you wear an engraved ring by Jorge Uquillas, you are wearing hundreds of hours of absolute dedication.</p>
 
       <figure style="margin:32px 0;">
-        <img src="/PUBLIC/Produce%2018k%20Gold%20Ring,%20Jorge%20Uquillas%20Rings%20Luxury%20Hand%20Engraving%20Image%20For%20Gallery%20(4).jpg" alt="Produce 18k gold ring deep relief sculpted by hand, Jorge Uquillas Rings Luxury hand engraving" loading="lazy" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        <img src="/PUBLIC/produce-18k-gold-ring-jorge-uquillas-rings-luxury-hand-engraving-image-for-gallery-4-2.jpg" alt="Produce 18k gold ring deep relief sculpted by hand, Jorge Uquillas Rings Luxury hand engraving" loading="lazy" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
         <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">Deep relief, cut stroke by stroke</figcaption>
       </figure>
     `
@@ -37,7 +37,7 @@ export const blogPosts = [
     date: 'September 28, 2026',
     dateISO: '2026-09-28',
     author: 'Jorge Uquillas',
-    image: encodeURI('/PUBLIC/Ringsluxury HandMade Engraver Master rings.webp'),
+    image: encodeURI('/PUBLIC/ringsluxury-handmade-engraver-master-rings.webp'),
     excerpt: 'Jewelry making is an ancient, millennial art. Explore how Ancient Greek monumental sculpture influences our modern haute joaillerie designs.',
     content: `
       <p>The origins of jewelry are rooted in the dawn of civilization. From the gold masks of Mycenae to the intricate granulation of the Etruscans, the art of adornment has always been tied to power, divinity, and eternal beauty.</p>
@@ -46,7 +46,7 @@ export const blogPosts = [
       <p>Our designs draw heavily from Ancient Greek architecture and Hellenistic sculpture. The dynamic tension seen in statues like the Laocoön group is translated into the curves and settings of our rings. We do not just make jewelry; we sculpt miniature monuments.</p>
 
       <figure style="margin:32px 0;">
-        <img src="/PUBLIC/Sculpt%20by%20rings%20luxury%20master%20Hand%20Engraver%20Jorge%20Uquillas.webp" alt="Hand sculpting stages of a skull signet ring in gold by master hand engraver Jorge Uquillas" loading="lazy" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        <img src="/PUBLIC/sculpt-by-rings-luxury-master-hand-engraver-jorge-uquillas.webp" alt="Hand sculpting stages of a skull signet ring in gold by master hand engraver Jorge Uquillas" loading="lazy" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
         <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">From sketch to sculpture, stages of a signet</figcaption>
       </figure>
       
@@ -54,7 +54,7 @@ export const blogPosts = [
       <p>In a world of mass production, keeping these ancient techniques alive is our rebellion and our sacred duty. The fire in our atelier burns with the same intensity as those in ancient Athens.</p>
 
       <figure style="margin:32px 0;">
-        <img src="/PUBLIC/Lion%20Emperor%20Ring%2018K%20gold%20by%20Jorge%20Uquillas%20Rings%20Luxury.webp" alt="Lion Emperor ring in 18k gold with hand-engraved mane by Jorge Uquillas, Rings Luxury" loading="lazy" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        <img src="/PUBLIC/lion-emperor-ring-18k-gold-by-jorge-uquillas-rings-luxury.webp" alt="Lion Emperor ring in 18k gold with hand-engraved mane by Jorge Uquillas, Rings Luxury" loading="lazy" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
         <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">The Lion Emperor, antiquity on the finger</figcaption>
       </figure>
     `
@@ -67,7 +67,7 @@ export const blogPosts = [
     date: 'September 15, 2026',
     dateISO: '2026-09-15',
     author: 'Jorge Uquillas',
-    image: encodeURI('/PUBLIC/Anel de ouro 18K eternizado com Cera e SELO by Rings Luxury Jorge Uquillas.webp'),
+    image: encodeURI('/PUBLIC/anel-de-ouro-18k-eternizado-com-cera-e-selo-by-rings-luxury-jorge-uquillas.webp'),
     excerpt: 'Gold is the currency of kings and the canvas of jewelers. An exclusive look into how gold is valued, its purity, and why it remains the ultimate symbol of wealth.',
     content: `
       <p>Gold has captivated humanity for millennia. It is incorruptible, radiant, and exceedingly rare. But how is its true value determined in the realm of high jewelry?</p>
@@ -76,7 +76,7 @@ export const blogPosts = [
       <p>While 24k gold is pure, it is too soft for enduring jewelry. At Rings Luxury, we exclusively use 18k gold,the perfect alchemy of 75% pure gold mixed with alloys like copper and silver to provide strength without sacrificing the majestic luster.</p>
 
       <figure style="margin:32px 0;">
-        <img src="/PUBLIC/Emperor%20RING%2018K%20gOLD%20monogram.webp" alt="Emperor ring monogram in solid 18k gold by Jorge Uquillas, Rings Luxury" loading="lazy" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        <img src="/PUBLIC/emperor-ring-18k-gold-monogram.webp" alt="Emperor ring monogram in solid 18k gold by Jorge Uquillas, Rings Luxury" loading="lazy" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
         <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">Solid 18k gold, the atelier standard</figcaption>
       </figure>
       
@@ -84,7 +84,7 @@ export const blogPosts = [
       <p>The price of gold fluctuates daily on global markets, driven by economics and scarcity. However, the value of a Rings Luxury piece transcends the raw weight of the metal; the true value lies in the monumental craftsmanship applied to it.</p>
 
       <figure style="margin:32px 0;">
-        <img src="/PUBLIC/Mixed%20Luxury%20Gold%20Ring%20by%20rings%20Luxury%20Jorge%20Uquillas.webp" alt="Mixed luxury gold ring fusing yellow rose and white 18k golds by Jorge Uquillas" loading="lazy" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        <img src="/PUBLIC/mixed-luxury-gold-ring-by-rings-luxury-jorge-uquillas.webp" alt="Mixed luxury gold ring fusing yellow rose and white 18k golds by Jorge Uquillas" loading="lazy" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
         <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">Yellow, rose and white 18k golds fused in one band</figcaption>
       </figure>
     `
@@ -97,7 +97,7 @@ export const blogPosts = [
     date: 'August 30, 2026',
     dateISO: '2026-08-30',
     author: 'Jorge Uquillas',
-    image: encodeURI('/PUBLIC/Master engraver Jorge Uquillas seção Creating legacy.webp'),
+    image: encodeURI('/PUBLIC/master-engraver-jorge-uquillas-secao-creating-legacy.webp'),
     excerpt: 'A curated journey through some of the most iconic, bespoke rings crafted by master goldsmith Jorge Uquillas.',
     content: `
       <p>Every piece created by Jorge Uquillas is a singular entity, possessing its own soul and narrative. Today, we open the vault to examine a few of his most monumental creations.</p>
@@ -106,7 +106,7 @@ export const blogPosts = [
       <p>A ring that took over 300 hours to engrave. Featuring a massive center diamond flanked by intricate Corinthian columns carved directly into the 18k gold band.</p>
 
       <figure style="margin:32px 0;">
-        <img src="/PUBLIC/Emperor%20Skull%20Ring%2018k%20Gold%20by%20Jorge%20Uquillas%20Rings%20Luxury.webp" alt="Emperor skull ring in 18k gold hand-engraved by Jorge Uquillas, Rings Luxury masterpiece" loading="lazy" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        <img src="/PUBLIC/emperor-skull-ring-18k-gold-by-jorge-uquillas-rings-luxury.webp" alt="Emperor skull ring in 18k gold hand-engraved by Jorge Uquillas, Rings Luxury masterpiece" loading="lazy" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
         <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">The Emperor Skull, sovereign memento mori</figcaption>
       </figure>
       
@@ -114,7 +114,7 @@ export const blogPosts = [
       <p>Inspired by the famous Greek sculpture, this ring captures the dynamic struggle and emotion in pure gold, utilizing advanced repoussé techniques that are rarely seen today.</p>
 
       <figure style="margin:32px 0;">
-        <img src="/PUBLIC/Processo%20do%20anel%20Tempest%20by%20Jorge%20Uquillas%20Rings%20Luxury.webp" alt="Tempest ring storm waves production process in solid gold by Jorge Uquillas" loading="lazy" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        <img src="/PUBLIC/processo-do-anel-tempest-by-jorge-uquillas-rings-luxury.webp" alt="Tempest ring storm waves production process in solid gold by Jorge Uquillas" loading="lazy" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
         <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">The Tempest taking shape in the atelier</figcaption>
       </figure>
     `
@@ -127,7 +127,7 @@ export const blogPosts = [
     date: 'August 10, 2026',
     dateISO: '2026-08-10',
     author: 'Jorge Uquillas',
-    image: encodeURI('/PUBLIC/Colocando diamante na JOIA rings Luxury Course.webp'),
+    image: encodeURI('/PUBLIC/colocando-diamante-na-joia-rings-luxury-course.webp'),
     excerpt: 'Beyond the 4 Cs. Discover how we select the most exquisite, structurally perfect diamonds to crown our monumental rings.',
     content: `
       <p>A diamond is born from chaos and immense pressure, yet it represents the ultimate order and clarity. While the industry standard focuses on the 4 Cs (Cut, Color, Clarity, Carat), we look for something more.</p>
@@ -136,7 +136,7 @@ export const blogPosts = [
       <p>We select stones based on their 'fire',the way they interact with light. A perfectly cut diamond will command the room, drawing the eye and amplifying the gold that surrounds it.</p>
 
       <figure style="margin:32px 0;">
-        <img src="/PUBLIC/Luxury%20rings%20collection%20anel%20medusa%20by%20Jorge%20Uquillas%20rings%20luxury.webp" alt="Medusa serpent ring in 18k gold with natural diamonds by Jorge Uquillas, Rings Luxury" loading="lazy" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        <img src="/PUBLIC/luxury-rings-collection-anel-medusa-by-jorge-uquillas-rings-luxury.webp" alt="Medusa serpent ring in 18k gold with natural diamonds by Jorge Uquillas, Rings Luxury" loading="lazy" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
         <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">The Medusa, diamond fire in solid gold</figcaption>
       </figure>
       
@@ -144,7 +144,7 @@ export const blogPosts = [
       <p>A stone must suit its setting. We do not just place a diamond on a ring; we build a golden temple around the diamond, ensuring that the metal and the gem are in perfect, eternal harmony.</p>
 
       <figure style="margin:32px 0;">
-        <img src="/PUBLIC/Produce%2018k%20Gold%20Ring,%20Jorge%20Uquillas%20Rings%20Luxury%20Hand%20Engraving%20Image%20For%20Gallery%20(5).jpg" alt="Natural diamond setting stage on 18k gold ring production by Jorge Uquillas" loading="lazy" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        <img src="/PUBLIC/produce-18k-gold-ring-jorge-uquillas-rings-luxury-hand-engraving-image-for-gallery-5-2.jpg" alt="Natural diamond setting stage on 18k gold ring production by Jorge Uquillas" loading="lazy" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
         <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">Diamonds seated one by one, by hand</figcaption>
       </figure>
     `
@@ -173,7 +173,7 @@ export const blogPosts = [
       <p>In both ateliers, Brazil and Miami, the ritual is identical: <strong>handmade rings, 18k gold (75% pure gold), hand-selected natural diamonds, hand-engraver engraving</strong> and agate-burnished finishing. Jorge Uquillas does not outsource. He holds the hand engraver. He pushes the gold. He signs.</p>
 
       <figure style="margin:32px 0;">
-        <img src="/PUBLIC/Rings%20luxury%20polindo%20anel%20Master%20Engraver%20Jorge%20Uquillas.webp" alt="Master hand engraver Jorge Uquillas hand polishing an engraved 18k gold ring in the atelier" loading="lazy" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        <img src="/PUBLIC/rings-luxury-polindo-anel-master-engraver-jorge-uquillas.webp" alt="Master hand engraver Jorge Uquillas hand polishing an engraved 18k gold ring in the atelier" loading="lazy" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
         <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">Final hand polish in the atelier</figcaption>
       </figure>
 
@@ -190,7 +190,7 @@ export const blogPosts = [
       <p>Hand-engraved jewelry is going extinct. Few masters still cut solid gold by hand. Jorge Uquillas, with ateliers in Brazil and Miami, keeps the lineage alive. While brands stamp molds, Jorge Uquillas sculpts. While others glue stones, he seats every diamond in prongs carved from the 18k gold itself. That is why a handmade ring by Jorge Uquillas does not shine, it <em>breathes</em>.</p>
 
       <figure style="margin:32px 0;">
-        <img src="/PUBLIC/Cliente%20com%20o%20Tiger%20Ring%20no%20Dedo.webp" alt="Client wearing the Tiger ring in 18k gold by Jorge Uquillas, Rings Luxury atelier" loading="lazy" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        <img src="/PUBLIC/cliente-com-o-tiger-ring-no-dedo.webp" alt="Client wearing the Tiger ring in 18k gold by Jorge Uquillas, Rings Luxury atelier" loading="lazy" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
         <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">The Tiger ring, worn by its patron</figcaption>
       </figure>
 

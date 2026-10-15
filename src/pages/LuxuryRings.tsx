@@ -16,9 +16,9 @@ interface RingItem {
   slug: string;
 }
 
-const LION_BG = encodeURI('/PUBLIC/Background do site rings luxury seção LUXURY RINGS.webp');
-const LION_BG_MOBILE = encodeURI('/PUBLIC/Fundo da pagina luxury rings MOBILE.webp');
-const SEPARATOR_IMG = encodeURI('/PUBLIC/Seaparador 2 Rings Luxury Jorge Uquillas.webp');
+const LION_BG = encodeURI('/PUBLIC/background-do-site-rings-luxury-secao-luxury-rings.webp');
+const LION_BG_MOBILE = encodeURI('/PUBLIC/fundo-da-pagina-luxury-rings-mobile.webp');
+const SEPARATOR_IMG = encodeURI('/PUBLIC/seaparador-2-rings-luxury-jorge-uquillas.webp');
 
 function scrollToContact() {
   setTimeout(() => {
@@ -32,35 +32,35 @@ export function LuxuryRings() {
 
   const RINGS: RingItem[] = [
     {
-      src: encodeURI('/PUBLIC/Emperor RING 18K gOLD monogram.webp'),
+      src: encodeURI('/PUBLIC/emperor-ring-18k-gold-monogram.webp'),
       name: 'Emperor Ring 18k Gold Monogram',
       price: '$ 4,800.00',
       alt: t.collections.altLuxury1,
       slug: 'emperor-ring-18k-gold-monogram-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Anel  Luxury Rings de bitcoin engravado a mao by jorge uquilas rings luxury.webp'),
+      src: encodeURI('/PUBLIC/anel-luxury-rings-de-bitcoin-engravado-a-mao-by-jorge-uquillas-rings-luxury.webp'),
       name: 'Bitcoin Ring Especial Edition',
       price: '$ 9,800.00',
       alt: t.collections.altLuxury2,
       slug: 'bitcoin-ring-especial-edition-18k-gold-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Luxury rings collection anel medusa by Jorge Uquillas rings luxury.webp'),
+      src: encodeURI('/PUBLIC/luxury-rings-collection-anel-medusa-by-jorge-uquillas-rings-luxury.webp'),
       name: 'Medusa Ring Especial Edition with diamonds',
       price: '$ 9,800.00',
       alt: t.collections.altLuxury3,
       slug: 'medusa-ring-especial-edition-diamonds-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Luxury rings collection anel caveira com diamantes by Jorge Uquillas rings luxury.webp'),
+      src: encodeURI('/PUBLIC/luxury-rings-collection-anel-caveira-com-diamantes-by-jorge-uquillas-rings-luxury.webp'),
       name: 'King Skull Ring 18 With Diamonds Especial Edition',
       price: '$ 9,800.00',
       alt: t.collections.altLuxury4,
       slug: 'king-skull-ring-18k-diamonds-especial-edition-jorge-uquillas',
     },
     {
-      src: encodeURI('/PUBLIC/Luxury rings collection anel Tiger by Jorge Uquillas rings luxury.webp'),
+      src: encodeURI('/PUBLIC/luxury-rings-collection-anel-tiger-by-jorge-uquillas-rings-luxury.webp'),
       name: 'Tiger Ring 18k Gold',
       price: t.collections.priceUponRequest,
       alt: t.collections.altLuxury5,

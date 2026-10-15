@@ -21,7 +21,7 @@ import {
   Truck,
 } from 'lucide-react';
 
-const CART_BG = '/PUBLIC/Fundo da pagina de produtos Jorge Uquillas Rings Luxury.webp';
+const CART_BG = '/PUBLIC/fundo-da-pagina-de-produtos-jorge-uquillas-rings-luxury.webp';
 
 export function CartPage() {
   const { t, lang } = useLanguage();
@@ -33,7 +33,7 @@ export function CartPage() {
 
   return (
     <div className="min-h-screen bg-[#020202] text-[#EAE6DF] selection:bg-[#C5A059] selection:text-[#020202] font-sans-luxury relative overflow-x-hidden">
-      <SEO title={t.pages.cartSeoTitle} description={t.pages.cartSeoDescription} url="/cart" />
+      <SEO title={t.pages.cartSeoTitle} description={t.pages.cartSeoDescription} url="/cart" noindex />
 
       {/* FUNDO, mesma foto das páginas de produto */}
       <div className="fixed inset-0 z-0 overflow-hidden bg-black pointer-events-none" aria-hidden>

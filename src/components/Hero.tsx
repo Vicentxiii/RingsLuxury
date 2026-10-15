@@ -7,7 +7,7 @@ interface HeroProps {
 
 // Imagem composta da HERO antiga (Odin esquerda + Medusa direita), 2048x1080
 const OLD_HERO_COMPOSITE = encodeURI(
-  '/PUBLIC/Medusa e Odim capa do site rings luxury by Jorge Uquillas.webp'
+  '/PUBLIC/medusa-e-odim-capa-do-site-rings-luxury-by-jorge-uquillas.webp'
 );
 
 // Fallback estático caso o embed do YouTube não carregue / bloqueie

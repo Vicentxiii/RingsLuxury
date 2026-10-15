@@ -35,7 +35,7 @@
       ]
     },
     {
-      "source": "/BingSiteAuth.xml",
+      "source": "/bingsiteauth.xml",
       "headers": [
         { "key": "Content-Type", "value": "application/xml; charset=utf-8" }
       ]

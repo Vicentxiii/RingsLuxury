@@ -77,7 +77,7 @@ export function Courses() {
       description: t.pages.coursesMod1Desc,
       duration: t.pages.coursesMod1Duration,
       level: t.pages.coursesMod1Level,
-      image: encodeURI('/PUBLIC/Image do curso Modulo 1 by Jorge Uquillas Card 1.webp'),
+      image: encodeURI('/PUBLIC/image-do-curso-modulo-1-by-jorge-uquillas-card-1.webp'),
     },
     {
       id: "02",
@@ -85,7 +85,7 @@ export function Courses() {
       description: t.pages.coursesMod2Desc,
       duration: t.pages.coursesMod2Duration,
       level: t.pages.coursesMod2Level,
-      image: encodeURI('/PUBLIC/Artistic Engravinn Fundamentals By Jore Uquillas Rings Luxury 2026.webp'),
+      image: encodeURI('/PUBLIC/artistic-engraving-fundamentals-by-jorge-uquillas-rings-luxury-2026.webp'),
     },
     {
       id: "03",
@@ -93,7 +93,7 @@ export function Courses() {
       description: t.pages.coursesMod3Desc,
       duration: t.pages.coursesMod3Duration,
       level: t.pages.coursesMod3Level,
-      image: encodeURI('/PUBLIC/Course Rings Luxury BY jORGE uQUILLAS mixing metals.webp'),
+      image: encodeURI('/PUBLIC/course-rings-luxury-by-jorge-uquillas-mixing-metals.webp'),
     },
     {
       id: "04",
@@ -101,7 +101,7 @@ export function Courses() {
       description: t.pages.coursesMod4Desc,
       duration: t.pages.coursesMod4Duration,
       level: t.pages.coursesMod4Level,
-      image: encodeURI('/PUBLIC/Colocando diamante na JOIA rings Luxury Course.webp'),
+      image: encodeURI('/PUBLIC/colocando-diamante-na-joia-rings-luxury-course.webp'),
     },
     {
       id: "05",
@@ -109,7 +109,7 @@ export function Courses() {
       description: t.pages.coursesMod5Desc,
       duration: t.pages.coursesMod5Duration,
       level: t.pages.coursesMod5Level,
-      image: encodeURI('/PUBLIC/Design of ring by rings luxury.webp'),
+      image: encodeURI('/PUBLIC/design-of-ring-by-rings-luxury.webp'),
     }
   ];
 

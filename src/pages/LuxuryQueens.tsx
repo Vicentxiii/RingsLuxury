@@ -16,8 +16,8 @@ interface PieceItem {
   slug: string;
 }
 
-const QUEENS_BG = encodeURI('/PUBLIC/Seção Luxury Queens by Jorge Uquillas Rings Luxury.webp');
-const SEPARATOR_IMG = encodeURI('/PUBLIC/Seaparador 2 Rings Luxury Jorge Uquillas.webp');
+const QUEENS_BG = encodeURI('/PUBLIC/secao-luxury-queens-by-jorge-uquillas-rings-luxury.webp');
+const SEPARATOR_IMG = encodeURI('/PUBLIC/seaparador-2-rings-luxury-jorge-uquillas.webp');
 
 function scrollToContact() {
   setTimeout(() => {
@@ -31,14 +31,14 @@ export function LuxuryQueens() {
 
   const PIECES: PieceItem[] = [
     {
-      src: encodeURI('/PUBLIC/Anel Luxury Queens Rings Luxury by Jorge Uquillas.webp'),
+      src: encodeURI('/PUBLIC/anel-luxury-queens-rings-luxury-by-jorge-uquillas.webp'),
       name: 'Luxury Queens Ring',
       price: '$ 15,000.00',
       alt: t.collections.altQueens1,
       slug: 'luxury-queens-ring-jorge-uquillas-rings-luxury',
     },
     {
-      src: encodeURI('/PUBLIC/Colar de Safiras e diamantes by jORGE uQUILLAS rINGS lUXURY 2 SEM FUNDO.webp'),
+      src: encodeURI('/PUBLIC/colar-de-safiras-e-diamantes-by-jorge-uquillas-rings-luxury-2-sem-fundo.webp'),
       name: 'Sapphire and Diamond Necklace',
       price: '$ 150,000.00',
       alt: t.collections.altQueens2,

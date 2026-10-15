@@ -5,10 +5,10 @@ import { useLanguage } from '../i18n/LanguageContext';
 
 /** Anel Kraken em ouro, rubis e diamantes, substitui a macro do cuff */
 const KRAKEN_IMG =
-  '/PUBLIC/Anel%20Kraken%20feito%20em%20ouro%20Rubis%20e%20diamantes%20y%20Jorge%20Uquillas%20Rings%20Luxury.webp';
+  '/PUBLIC/anel-kraken-feito-em-ouro-ruby-e-diamantes-y-jorge-uquillas-rings-luxury.webp';
 
 const CERT_IMG =
-  '/PUBLIC/NOVO%20CERTIFICADO%20DE%20AUTHENTICIDADE%20JORGE%20UQUILLAS%20HAND%20ENGRAVER.webp';
+  '/PUBLIC/novo-certificado-de-autenticidade-jorge-uquillas-hand-engraver.webp';
 
 interface Hotspot {
   id: string;

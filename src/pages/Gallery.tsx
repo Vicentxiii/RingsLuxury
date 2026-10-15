@@ -11,12 +11,12 @@ import { useLanguage } from '../i18n/LanguageContext';
 
 // Capa da galeria: banner panorâmico no topo da página.
 const GALLERY_COVER_IMG = encodeURI(
-  '/PUBLIC/Capa da foto Galeria Rings Luxury Jorge Uquillas.jpeg',
+  '/PUBLIC/capa-da-foto-galeria-rings-luxury-jorge-uquillas.jpg',
 );
 const GALLERY_COVER_ALT =
   'Capa da galeria Rings Luxury, anéis artesanais em ouro 18k gravados à mão por Jorge Uquillas';
 const HERO_WORK_IMG = encodeURI(
-  '/PUBLIC/Rings luxury polindo anel Master Engraver Jorge Uquillas.webp',
+  '/PUBLIC/rings-luxury-polindo-anel-master-engraver-jorge-uquillas.webp',
 );
 const HERO_WORK_ALT =
   'Master hand engraver Jorge Uquillas polishing a hand-engraved 18k gold ring at the bench, RINGS LUXURY atelier';
@@ -42,142 +42,142 @@ interface ProductionShot {
 
 const SHOTS: ProductionShot[] = [
   {
-    src: encodeURI('/PUBLIC/Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery.webp'),
+    src: encodeURI('/PUBLIC/produce-18k-gold-ring-jorge-uquillas-rings-luxury-hand-engraving-image-for-gallery.webp'),
     alt: 'Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery, masterpiece in solid gold',
     caption: 'Hand-engraved 18k gold, master proof',
     productSlug: 'emperor-ring-18k-gold-monogram-jorge-uquillas',
   },
   {
-    src: encodeURI('/PUBLIC/Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (1).jpg'),
+    src: encodeURI('/PUBLIC/produce-18k-gold-ring-jorge-uquillas-rings-luxury-hand-engraving-image-for-gallery-1-2.jpg'),
     alt: 'Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (1), burin cutting relief in gold',
     caption: 'Burin cutting relief, production 01',
     productSlug: 'lion-emperor-ring-18k-gold-jorge-uquillas',
   },
   {
-    src: encodeURI('/PUBLIC/Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (1).jpeg'),
+    src: encodeURI('/PUBLIC/produce-18k-gold-ring-jorge-uquillas-rings-luxury-hand-engraving-image-for-gallery-1.jpg'),
     alt: 'Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (1b), microscope engraving detail',
     caption: 'Microscope engraving detail, production 02',
   },
   {
-    src: encodeURI('/PUBLIC/Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (2).jpg'),
+    src: encodeURI('/PUBLIC/produce-18k-gold-ring-jorge-uquillas-rings-luxury-hand-engraving-image-for-gallery-2-2.jpg'),
     alt: 'Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (2), sculpted band in solid 18k gold',
     caption: 'Sculpted band taking shape, production 03',
     productSlug: 'bitcoin-ring-especial-edition-18k-gold-jorge-uquillas',
   },
   {
-    src: encodeURI('/PUBLIC/Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (2).jpeg'),
+    src: encodeURI('/PUBLIC/produce-18k-gold-ring-jorge-uquillas-rings-luxury-hand-engraving-image-for-gallery-2.jpg'),
     alt: 'Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (2b), hand-chased texture close-up',
     caption: 'Hand-chased texture, production 04',
   },
   {
-    src: encodeURI('/PUBLIC/Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (3).jpg'),
+    src: encodeURI('/PUBLIC/produce-18k-gold-ring-jorge-uquillas-rings-luxury-hand-engraving-image-for-gallery-3-2.jpg'),
     alt: 'Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (3), engraved crest before diamond setting',
     caption: 'Engraved crest before stones, production 05',
     productSlug: 'medusa-ring-especial-edition-diamonds-jorge-uquillas',
   },
   {
-    src: encodeURI('/PUBLIC/Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (3).jpeg'),
+    src: encodeURI('/PUBLIC/produce-18k-gold-ring-jorge-uquillas-rings-luxury-hand-engraving-image-for-gallery-3.jpg'),
     alt: 'Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (3b), atelier bench handwork',
     caption: 'Atelier bench handwork, production 06',
   },
   {
-    src: encodeURI('/PUBLIC/Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (4).jpg'),
+    src: encodeURI('/PUBLIC/produce-18k-gold-ring-jorge-uquillas-rings-luxury-hand-engraving-image-for-gallery-4-2.jpg'),
     alt: 'Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (4), deep relief sculpted by hand',
     caption: 'Deep relief sculpt, production 07',
     productSlug: 'tempest-ring-especial-edition-jorge-uquillas',
   },
   {
-    src: encodeURI('/PUBLIC/Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (4).jpeg'),
+    src: encodeURI('/PUBLIC/produce-18k-gold-ring-jorge-uquillas-rings-luxury-hand-engraving-image-for-gallery-4.jpg'),
     alt: 'Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (4b), fine line engraving in 18k gold',
     caption: 'Fine line engraving, production 08',
   },
   {
-    src: encodeURI('/PUBLIC/Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (5).jpg'),
+    src: encodeURI('/PUBLIC/produce-18k-gold-ring-jorge-uquillas-rings-luxury-hand-engraving-image-for-gallery-5-2.jpg'),
     alt: 'Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (5), natural diamond setting stage',
     caption: 'Diamond setting stage, production 09',
     productSlug: 'king-skull-ring-18k-diamonds-especial-edition-jorge-uquillas',
   },
   {
-    src: encodeURI('/PUBLIC/Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (5).jpeg'),
+    src: encodeURI('/PUBLIC/produce-18k-gold-ring-jorge-uquillas-rings-luxury-hand-engraving-image-for-gallery-5.jpg'),
     alt: 'Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (5b), hand finishing under magnification',
     caption: 'Hand finishing, production 10',
   },
   {
-    src: encodeURI('/PUBLIC/Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (6).jpg'),
+    src: encodeURI('/PUBLIC/produce-18k-gold-ring-jorge-uquillas-rings-luxury-hand-engraving-image-for-gallery-6-2.jpg'),
     alt: 'Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (6), monumental relief in solid gold',
     caption: 'Monumental relief, production 11',
     productSlug: 'koi-emperor-ring-18k-rose-gold-jorge-uquillas',
   },
   {
-    src: encodeURI('/PUBLIC/Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (6).jpeg'),
+    src: encodeURI('/PUBLIC/produce-18k-gold-ring-jorge-uquillas-rings-luxury-hand-engraving-image-for-gallery-6.jpg'),
     alt: 'Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (6b), engraver refining the volume',
     caption: 'Volume refinement, production 12',
   },
   {
-    src: encodeURI('/PUBLIC/Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (7).jpg'),
+    src: encodeURI('/PUBLIC/produce-18k-gold-ring-jorge-uquillas-rings-luxury-hand-engraving-image-for-gallery-7.jpg'),
     alt: 'Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (7), hand polish on 18k gold ring',
     caption: 'Hand polish, production 13',
   },
   {
-    src: encodeURI('/PUBLIC/Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (8).jpg'),
+    src: encodeURI('/PUBLIC/produce-18k-gold-ring-jorge-uquillas-rings-luxury-hand-engraving-image-for-gallery-8.jpg'),
     alt: 'Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (8), finished engraving proof',
     caption: 'Finished engraving proof, production 14',
     productSlug: 'tiger-ring-especial-edition-jorge-uquillas',
   },
   {
-    src: encodeURI('/PUBLIC/Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (9).jpg'),
+    src: encodeURI('/PUBLIC/produce-18k-gold-ring-jorge-uquillas-rings-luxury-hand-engraving-image-for-gallery-9.jpg'),
     alt: 'Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (9), hallmark and final detail',
     caption: 'Hallmark and final detail, production 15',
   },
   {
-    src: encodeURI('/PUBLIC/Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (10).jpg'),
+    src: encodeURI('/PUBLIC/produce-18k-gold-ring-jorge-uquillas-rings-luxury-hand-engraving-image-for-gallery-10.jpg'),
     alt: 'Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (10), one-of-one atelier piece',
     caption: 'One-of-one atelier piece, production 16',
   },
   {
-    src: encodeURI('/PUBLIC/Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (11).jpg'),
+    src: encodeURI('/PUBLIC/produce-18k-gold-ring-jorge-uquillas-rings-luxury-hand-engraving-image-for-gallery-11.jpg'),
     alt: 'Produce 18k Gold Ring, Jorge Uquillas Rings Luxury Hand Engraving Image For Gallery (11), ready for private commission delivery',
     caption: 'Ready for delivery, production 17',
     productSlug: 'mixed-luxury-gold-ring-jorge-uquillas',
   },
   {
-    src: encodeURI('/PUBLIC/Anel Chetta Proocesso by Rings Luxury Jorge Uquillas.jpg'),
+    src: encodeURI('/PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas.jpg'),
     alt: 'Cheeta ring hand-engraving process by Jorge Uquillas, Rings Luxury atelier proof',
     caption: 'Cheeta process, hand-engraving proof',
     productSlug: 'cheeta-ring-big-rubi-diamond-18k-gold-jorge-uquillas',
   },
   {
-    src: encodeURI('/PUBLIC/Anel Chetta Proocesso by Rings Luxury Jorge Uquillas  (1).jpg'),
+    src: encodeURI('/PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-1.jpg'),
     alt: 'Cheeta ring hand-engraving process by Jorge Uquillas (1), Rings Luxury atelier proof',
     caption: 'Cheeta process, atelier bench proof',
     productSlug: 'cheeta-ring-big-rubi-diamond-18k-gold-jorge-uquillas',
   },
   {
-    src: encodeURI('/PUBLIC/Anel Chetta Proocesso by Rings Luxury Jorge Uquillas  (2).jpg'),
+    src: encodeURI('/PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-2.jpg'),
     alt: 'Cheeta ring hand-engraving process by Jorge Uquillas (2), Rings Luxury atelier proof',
     caption: 'Cheeta process, burin work proof',
     productSlug: 'cheeta-ring-big-rubi-diamond-18k-gold-jorge-uquillas',
   },
   {
-    src: encodeURI('/PUBLIC/Anel Chetta Proocesso by Rings Luxury Jorge Uquillas  (3).jpg'),
+    src: encodeURI('/PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-3.jpg'),
     alt: 'Cheeta ring hand-engraving process by Jorge Uquillas (3), Rings Luxury atelier proof',
     caption: 'Cheeta process, final handwork proof',
     productSlug: 'cheeta-ring-big-rubi-diamond-18k-gold-jorge-uquillas',
   },
   {
-    src: encodeURI('/PUBLIC/Anel Chetta Proocesso by Rings Luxury Jorge Uquillas  (5).jpg'),
+    src: encodeURI('/PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-5.jpg'),
     alt: 'Cheeta ring hand-engraving process by Jorge Uquillas (5), Rings Luxury atelier proof',
     caption: 'Cheeta process, bench proof 05',
     productSlug: 'cheeta-ring-big-rubi-diamond-18k-gold-jorge-uquillas',
   },
   {
-    src: encodeURI('/PUBLIC/Anel Chetta Proocesso by Rings Luxury Jorge Uquillas  (6).jpg'),
+    src: encodeURI('/PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-6.jpg'),
     alt: 'Cheeta ring hand-engraving process by Jorge Uquillas (6), Rings Luxury atelier proof',
     caption: 'Cheeta process, bench proof 06',
     productSlug: 'cheeta-ring-big-rubi-diamond-18k-gold-jorge-uquillas',
   },
   {
-    src: encodeURI('/PUBLIC/Anel Chetta Proocesso by Rings Luxury Jorge Uquillas  (7).jpg'),
+    src: encodeURI('/PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-7.jpg'),
     alt: 'Cheeta ring hand-engraving process by Jorge Uquillas (7), Rings Luxury atelier proof',
     caption: 'Cheeta process, bench proof 07',
     productSlug: 'cheeta-ring-big-rubi-diamond-18k-gold-jorge-uquillas',

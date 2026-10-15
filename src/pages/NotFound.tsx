@@ -14,6 +14,7 @@ export function NotFound() {
         title={t.pages.notFoundSeoTitle}
         description={t.pages.notFoundSeoDescription}
         url="/404"
+        noindex
       />
       <Header onOpenConsultation={() => {}} />
       <main className="flex-1 flex flex-col items-center justify-center px-6 py-32 text-center relative z-10">
