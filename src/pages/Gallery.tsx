@@ -9,9 +9,12 @@ import { GoldenParticles } from '../components/GoldenParticles';
 import { absoluteUrl } from '../site.config';
 import { useLanguage } from '../i18n/LanguageContext';
 
-// Hero do topo: o mestre literalmente trabalhando, mãos no esmeril.
-// Foto escura e cinematográfica, no clima do site. Prova de handmade
-// de verdade, não posada.
+// Capa da galeria: banner panorâmico no topo da página.
+const GALLERY_COVER_IMG = encodeURI(
+  '/PUBLIC/Capa da foto Galeria Rings Luxury Jorge Uquillas.jpeg',
+);
+const GALLERY_COVER_ALT =
+  'Capa da galeria Rings Luxury, anéis artesanais em ouro 18k gravados à mão por Jorge Uquillas';
 const HERO_WORK_IMG = encodeURI(
   '/PUBLIC/Rings luxury polindo anel Master Engraver Jorge Uquillas.webp',
 );
@@ -161,6 +164,24 @@ const SHOTS: ProductionShot[] = [
     caption: 'Cheeta process, final handwork proof',
     productSlug: 'cheeta-ring-big-rubi-diamond-18k-gold-jorge-uquillas',
   },
+  {
+    src: encodeURI('/PUBLIC/Anel Chetta Proocesso by Rings Luxury Jorge Uquillas  (5).jpg'),
+    alt: 'Cheeta ring hand-engraving process by Jorge Uquillas (5), Rings Luxury atelier proof',
+    caption: 'Cheeta process, bench proof 05',
+    productSlug: 'cheeta-ring-big-rubi-diamond-18k-gold-jorge-uquillas',
+  },
+  {
+    src: encodeURI('/PUBLIC/Anel Chetta Proocesso by Rings Luxury Jorge Uquillas  (6).jpg'),
+    alt: 'Cheeta ring hand-engraving process by Jorge Uquillas (6), Rings Luxury atelier proof',
+    caption: 'Cheeta process, bench proof 06',
+    productSlug: 'cheeta-ring-big-rubi-diamond-18k-gold-jorge-uquillas',
+  },
+  {
+    src: encodeURI('/PUBLIC/Anel Chetta Proocesso by Rings Luxury Jorge Uquillas  (7).jpg'),
+    alt: 'Cheeta ring hand-engraving process by Jorge Uquillas (7), Rings Luxury atelier proof',
+    caption: 'Cheeta process, bench proof 07',
+    productSlug: 'cheeta-ring-big-rubi-diamond-18k-gold-jorge-uquillas',
+  },
 ];
 
 function scrollToContact() {
@@ -210,6 +231,28 @@ export function Gallery() {
         <div className="absolute top-[6%] left-1/2 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(197,160,89,0.08),transparent_65%)] blur-2xl" />
       </div>
       <Header onOpenConsultation={scrollToContact} />
+
+      {/* Capa da galeria no topo: opacidade reduzida + fade embaixo
+          derretendo para o fundo da página */}
+      <div className="relative w-full overflow-hidden">
+        <img
+          src={GALLERY_COVER_IMG}
+          alt={GALLERY_COVER_ALT}
+          loading="eager"
+          width={1280}
+          height={480}
+          className="w-full h-[220px] sm:h-[300px] md:h-[360px] object-cover opacity-40"
+          onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#020202] via-[#020202]/25 to-transparent"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#020202]/80 via-transparent to-transparent"
+        />
+      </div>
 
       <main className="max-w-7xl mx-auto px-6 py-20 relative z-10">
         <Breadcrumbs
