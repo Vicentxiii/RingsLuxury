@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { SEO } from '../components/SEO';
 import { Header } from '../components/Header';
 import { useLanguage } from '../i18n/LanguageContext';
+import { absoluteUrl, HAS_SITE_URL } from '../site.config';
 
 export function JorgeUquillas() {
   const { t } = useLanguage();
@@ -37,6 +38,29 @@ export function JorgeUquillas() {
         description={t.pages.jorgeSeoDescription}
         url="/jorge-uquillas"
       />
+      {/* Person E-E-A-T: sem isso o Google/IAs veem só um iframe vazio.
+          sameAs entra com o Instagram confirmado; demais perfis entram
+          quando você me passar as URLs oficiais. */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Person',
+            name: 'Jorge Uquillas',
+            jobTitle: 'Master Goldsmith and Hand Engraver',
+            description: t.pages.jorgeSeoDescription,
+            ...(HAS_SITE_URL ? { url: absoluteUrl('/jorge-uquillas') } : {}),
+            worksFor: { '@type': 'Organization', name: 'RINGS LUXURY by Jorge Uquillas' },
+            knowsAbout: ['Hand engraving', 'Haute joaillerie', 'Lost-wax casting', '18k gold', 'Diamond setting'],
+            sameAs: ['https://www.instagram.com/ringsluxury'],
+          }),
+        }}
+      />
+      {/* H1 para SEO/leitores de tela: invisível, não muda o visual imersivo */}
+      <h1 className="sr-only">
+        Jorge Uquillas, Master Goldsmith — 1/1 handcrafted 18k gold diamond rings, hand-engraved. Atelier Brazil • Miami.
+      </h1>
       {/* Iframe que carrega a experiência imersiva completa, pocket watch 3D */}
       <iframe
         src="/jorge-uquillas.html"
@@ -74,7 +98,11 @@ export function JorgeUquillas() {
       {/* Fallback / Loader enquanto iframe carrega */}
       <noscript>
         <div className="absolute inset-0 flex items-center justify-center bg-[#020202] text-[#C5A059]">
-          {t.pages.jorgeNoscript}
+          <div style={{ maxWidth: 640, padding: 24, textAlign: 'center' }}>
+            <h1 style={{ fontSize: 22, marginBottom: 12 }}>Jorge Uquillas, Master Goldsmith — RINGS LUXURY</h1>
+            <p style={{ fontSize: 14, color: '#A8A296' }}>{t.pages.jorgeSeoDescription}</p>
+            <p style={{ fontSize: 14, marginTop: 12 }}>{t.pages.jorgeNoscript}</p>
+          </div>
         </div>
       </noscript>
     </div>

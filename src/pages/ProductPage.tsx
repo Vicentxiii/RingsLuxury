@@ -100,10 +100,12 @@ export function ProductPage() {
     '@type': 'Product',
     name: `${product.name}, ${product.subname}`,
     description: `${localizedDescription} ${product.extendedHistory}`,
-    image: product.images,
+    // Imagens absolutas: relativo quebra validação do Product no Google.
+    image: product.images.map((src) => (src.startsWith('http') ? src : absoluteUrl(src))),
     sku: product.sku,
     brand: { '@type': 'Brand', name: 'RINGS LUXURY, Jorge Uquillas' },
     material: product.specs.material,
+    category: product.category,
     offers: {
       '@type': 'Offer',
       priceCurrency: 'USD',
@@ -112,8 +114,10 @@ export function ProductPage() {
       // é dado estruturado enganoso e passível de ação manual.
       ...(product.priceNumber > 0 ? { price: product.priceNumber } : {}),
       availability: product.inStock ? 'https://schema.org/InStock' : 'https://schema.org/PreOrder',
+      itemCondition: 'https://schema.org/NewCondition',
       // Só com domínio definido: sem ele não existe URL absoluta para a oferta.
       ...(HAS_SITE_URL ? { url: absoluteUrl(`/produto/${product.slug}`) } : {}),
+      seller: { '@type': 'Organization', name: 'RINGS LUXURY by Jorge Uquillas' },
     },
   };
 

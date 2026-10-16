@@ -4,6 +4,7 @@ const en = {
   heroVideoTitle: "RINGS LUXURY, Atelier handcrafted background film",
   heroWelcome: "WELCOME TO RINGS LUXURY",
   heroEyebrow2: "MASTER PIECES",
+  heroH1Keyword: "Luxury Rings, Handcrafted 18k Gold by Jorge Uquillas",
   heroViewCollection: "Ver coleção",
   // ---- QuemSouEu ----
   quemAria: "Jorge Uquillas, Master Engraver biography",
@@ -275,6 +276,7 @@ const es: Record<Keys, string> = {
   heroVideoTitle: "RINGS LUXURY, Video artesanal de fondo del atelier",
   heroWelcome: "BIENVENIDOS A RINGS LUXURY",
   heroEyebrow2: "OBRAS MAESTRAS",
+  heroH1Keyword: "Anillos de lujo, oro 18k artesanal por Jorge Uquillas",
   heroViewCollection: "Ver la colección",
   // ---- QuemSouEu ----
   quemAria: "Jorge Uquillas, Biografía del Master Engraver",
@@ -544,6 +546,7 @@ const pt: Record<Keys, string> = {
   heroVideoTitle: "RINGS LUXURY, Filme artesanal de fundo do atelier",
   heroWelcome: "BEM-VINDOS À RINGS LUXURY",
   heroEyebrow2: "OBRAS-PRIMAS",
+  heroH1Keyword: "Anéis de luxo, ouro 18k artesanal por Jorge Uquillas",
   heroViewCollection: "Ver coleção",
   // ---- QuemSouEu ----
   quemAria: "Jorge Uquillas, Biografia do Master Engraver",

@@ -1,5 +1,5 @@
 import React, { Suspense, lazy, useEffect, useState } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { Necklaces } from './pages/Necklaces';
 import { LuxuryRings } from './pages/LuxuryRings';
@@ -126,7 +126,7 @@ export default function App() {
       <Route path="/product/:slug" element={<ProductPage />} />
       <Route path="/cart" element={<CartPage />} />
       <Route path="/jorge-uquillas" element={<JorgeUquillas />} />
-      <Route path="/jorgeuquillas" element={<JorgeUquillas />} />
+      <Route path="/jorgeuquillas" element={<Navigate to="/jorge-uquillas" replace />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
         </Suspense>

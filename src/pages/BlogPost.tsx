@@ -40,7 +40,13 @@ export function BlogPost() {
       <SEO 
         title={post.title}
         description={post.excerpt}
+        url={`/blog/${post.slug}`}
         image={absoluteUrl(post.image)}
+        imageAlt={post.title}
+        publishedTime={post.dateISO}
+        modifiedTime={post.dateISO}
+        author={post.author}
+        articleSection={post.category}
       />
       <script
         type="application/ld+json"
@@ -49,9 +55,14 @@ export function BlogPost() {
             '@context': 'https://schema.org',
             '@type': 'BlogPosting',
             headline: post.title,
+            description: post.excerpt,
             image: absoluteUrl(post.image),
             datePublished: post.dateISO,
-            author: { '@type': 'Person', name: post.author },
+            dateModified: post.dateISO,
+            author: { '@type': 'Person', name: post.author, url: absoluteUrl('/jorge-uquillas') },
+            publisher: { '@type': 'Organization', name: 'RINGS LUXURY by Jorge Uquillas' },
+            mainEntityOfPage: absoluteUrl(`/blog/${post.slug}`),
+            inLanguage: 'en',
           }),
         }}
       />

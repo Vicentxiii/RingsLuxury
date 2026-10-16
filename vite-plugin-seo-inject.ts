@@ -7,6 +7,8 @@ const STATIC_ROUTES = ['/', '/luxury-rings', '/emperor-rings', '/special-edition
 const buildRobots = (siteUrl: string) => `# ringsluxury.com
 User-agent: *
 Allow: /
+Disallow: /cart
+Disallow: /404
 
 # Crawlers de busca e IA, liberados explicitamente.
 # Googlebot/Bingbot: busca. GPTBot/OAI-SearchBot/ChatGPT-User: ChatGPT.
@@ -338,24 +340,28 @@ export function seoInject(): Plugin {
         return [...src.matchAll(/^\s*slug:\s*'([^']+)'/gm)].map((m) => m[1]);
       };
 
-      const urls = [
+      const baseUrls = [
         ...STATIC_ROUTES,
         ...slugs('src/data/products.ts').map((s) => `/produto/${s}`),
         ...slugs('src/data/blogPosts.ts').map((s) => `/blog/${s}`),
       ];
 
+      // hreflang é client-side (pós-JS): o Google descobre ES/PT mais rápido
+      // se as variantes ?lang= também estiverem no sitemap. EN limpo + es + pt.
+      const urls = baseUrls.flatMap((u) => (u === '/' ? [u, '/?lang=es', '/?lang=pt'] : [u, `${u}?lang=es`, `${u}?lang=pt`]));
+
       const today = new Date().toISOString().slice(0, 10);
+      const escXml = (s: string) => s.replace(/&/g, '&amp;');
       const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map((u) => `  <url><loc>${siteUrl}${u}</loc><lastmod>${today}</lastmod></url>`).join('\n')}
+${urls.map((u) => `  <url><loc>${escXml(`${siteUrl}${u}`)}</loc><lastmod>${today}</lastmod></url>`).join('\n')}
 </urlset>
 `;
 
       this.emitFile({ type: 'asset', fileName: 'sitemap.xml', source: sitemap });
 
-      // IndexNow: avisa Bing/Yandex sobre as URLs a cada build de produção.
-      // A chave e verificada pelo arquivo public/<chave>.txt (vai para dist/).
-      // Falha de rede nunca quebra o build.
+      // IndexNow: só canônicas (sem ?lang=): Bing rejeita query params com 400.
+      // As variantes ?lang= ficam no sitemap para descoberta via Google.
       const INDEXNOW_KEY = 'd3c59e041d774eb193020a68ad60b6bd8626ae04b4f74983a6bebdddca56b4fd';
       try {
         const host = siteUrl.replace(/^https?:\/\//, '');
@@ -366,10 +372,10 @@ ${urls.map((u) => `  <url><loc>${siteUrl}${u}</loc><lastmod>${today}</lastmod></
             host,
             key: INDEXNOW_KEY,
             keyLocation: `${siteUrl}/${INDEXNOW_KEY}.txt`,
-            urlList: urls.map((u) => `${siteUrl}${u}`),
+            urlList: baseUrls.map((u) => `${siteUrl}${u}`),
           }),
         });
-        console.log(`[seo-inject] IndexNow: ${res.status} (${urls.length} urls)`);
+        console.log(`[seo-inject] IndexNow: ${res.status} (${baseUrls.length} urls)`);
       } catch {
         console.log('[seo-inject] IndexNow: envio pulado (sem rede)');
       }

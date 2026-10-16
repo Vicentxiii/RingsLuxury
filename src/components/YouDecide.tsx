@@ -17,7 +17,7 @@ const SLIDE_SRCS: string[] = [
   '/PUBLIC/rings-luxury-master-engraver-sketch-2-site.webp',
   '/PUBLIC/rings-luxury-master-engraver-site.webp',
   '/PUBLIC/ringsluxury-handmade-engraver-master-rings.webp',
-  '/PUBLIC/rings-luxury-master-engraver-sketch-2-site-ringsluxury@gmail-com.webp',
+  '/PUBLIC/rings-luxury-master-engraver-sketch-2.webp',
 ];
 
 const SLIDE_ALT_KEYS = ['ydAlt1', 'ydAlt2', 'ydAlt3', 'ydAlt4', 'ydAlt5'] as const;

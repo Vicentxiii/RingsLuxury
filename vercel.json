@@ -6,6 +6,16 @@
       "has": [{ "type": "host", "value": "ringsluxuryart.com" }],
       "destination": "https://www.ringsluxuryart.com/$1",
       "permanent": true
+    },
+    {
+      "source": "/product/:slug",
+      "destination": "/produto/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/jorgeuquillas",
+      "destination": "/jorge-uquillas",
+      "permanent": true
     }
   ],
   "rewrites": [
@@ -31,6 +41,13 @@
       "source": "/sitemap.xml",
       "headers": [
         { "key": "Content-Type", "value": "application/xml; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=3600, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/robots.txt",
+      "headers": [
+        { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
         { "key": "Cache-Control", "value": "public, max-age=3600, must-revalidate" }
       ]
     },

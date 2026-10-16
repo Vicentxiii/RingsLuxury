@@ -15,8 +15,9 @@ const FALLBACK_COVER = OLD_HERO_COMPOSITE;
 
 const YOUTUBE_ID = 'ieNPhZ4Vdss';
 // autoplay mudo em loop, sem controles, sem relacionados, modest branding.
+// Começa em 1:11 (71s) — momento em que já está gravando o anel.
 // disablekb/fs/cc: esconde ao máximo o chrome do player (teclado, fullscreen, legendas).
-const YOUTUBE_EMBED = `https://www.youtube.com/embed/${YOUTUBE_ID}?autoplay=1&mute=1&controls=0&loop=1&playlist=${YOUTUBE_ID}&playsinline=1&modestbranding=1&rel=0&iv_load_policy=3&showinfo=0&enablejsapi=0&disablekb=1&fs=0&cc_load_policy=0`;
+const YOUTUBE_EMBED = `https://www.youtube.com/embed/${YOUTUBE_ID}?autoplay=1&mute=1&controls=0&loop=1&playlist=${YOUTUBE_ID}&playsinline=1&modestbranding=1&rel=0&iv_load_policy=3&showinfo=0&enablejsapi=0&disablekb=1&fs=0&cc_load_policy=0&start=71`;
 
 export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
   const { t } = useLanguage();
@@ -140,6 +141,19 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
             }}
           >
             {t.home.heroEyebrow2}
+          </span>
+          {/* H1 keyword: frase visível curta com o termo que o cliente busca.
+              Mantém o visual luxo e entrega relevância para Google/IAs. */}
+          <span
+            className="font-cormorant italic text-[#C5A059]/90 leading-snug max-w-2xl text-balance"
+            style={{
+              fontSize: 'clamp(11px, 1.4vw, 15px)',
+              letterSpacing: '0.08em',
+              textShadow: '0 1px 12px rgba(0,0,0,0.9)',
+              fontWeight: 400,
+            }}
+          >
+            {t.home.heroH1Keyword}
           </span>
         </h1>
       </div>
