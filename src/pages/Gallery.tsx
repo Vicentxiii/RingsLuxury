@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
+import { ResponsiveImg } from '../components/ResponsiveImg';
 import { Contact } from '../components/Contact';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { GoldenParticles } from '../components/GoldenParticles';
@@ -235,12 +236,12 @@ export function Gallery() {
       {/* Capa da galeria no topo: opacidade reduzida + fade embaixo
           derretendo para o fundo da página */}
       <div className="relative w-full overflow-hidden">
-        <img
+        <ResponsiveImg
           src={GALLERY_COVER_IMG}
           alt={GALLERY_COVER_ALT}
-          loading="eager"
-          decoding="async"
-          width={1280}
+          priority
+                    width={1280}
+          sizes="100vw"
           height={480}
           className="w-full h-[220px] sm:h-[300px] md:h-[360px] object-cover opacity-40"
           onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
@@ -273,12 +274,12 @@ export function Gallery() {
           <div className="w-px h-16 bg-gradient-to-b from-[#C5A059] to-transparent mx-auto mt-8" />
           {/* Mestre trabalhando de verdade: mãos no esmeril */}
           <figure className="relative mx-auto mt-10 max-w-3xl overflow-hidden border border-[#C5A059]/20 bg-black/40">
-            <img
+            <ResponsiveImg
               src={HERO_WORK_IMG}
               alt={HERO_WORK_ALT}
-              loading="eager"
-              decoding="async"
-              width={1200}
+              priority
+                            width={1200}
+              sizes="(max-width: 768px) 100vw, 768px"
               height={800}
               className="w-full h-auto object-cover"
               onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
@@ -339,13 +340,13 @@ export function Gallery() {
               >
                 <div className="relative aspect-[4/5] overflow-hidden bg-[#050505]">
                   <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-transparent to-transparent z-10 opacity-60 pointer-events-none" />
-                  <img
+                  <ResponsiveImg
                     src={shot.src}
                     alt={shot.alt}
-                    loading={i === 0 ? 'eager' : 'lazy'}
-                    decoding="async"
+                    priority={i === 0}
                     width={800}
                     height={1000}
+                    sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 31vw"
                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-85 group-hover:opacity-100"
                     onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                   />

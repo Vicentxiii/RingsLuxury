@@ -5,12 +5,19 @@ dist
 .DS_Store
 
 # Variantes de imagem geradas por `npm run images:optimize`.
-# Sao artefato de BUILD, nao fonte: ~150 arquivos binarios que nao podem ir
-# para o historico do git. O Vercel tem `npm run images:optimize` no build,
-# entao elas existem no deploy sem nunca entrar no repositorio.
-public/PUBLIC/**/*-800.webp
-public/PUBLIC/**/*-1400.webp
-public/PUBLIC/**/*-2400.webp
-public/PUBLIC/**/*-800.avif
-public/PUBLIC/**/*-1400.avif
-public/PUBLIC/**/*-2400.avif
+# Sao artefato de BUILD, nao fonte: ~200 arquivos binarios que nao podem entrar
+# no historico do git. O build da Vercel roda o otimizador + o manifesto, entao
+# elas existem no deploy sem nunca passar pelo repositorio.
+#
+# Dois padroes, um por quantidade de digitos, porque o glob do git NAO tem
+# quantificador: `*-[0-9]+.webp` exigiria um "+" LITERAL no nome do arquivo.
+# A largura original (variante 1:1) muda por foto -- 1242, 1080, 2100... --
+# entao cobre-se 3 e 4 digitos.
+#
+# Sem espaco no padrao de proposito: um diretorio com espaco no nome (ex:
+# "Fotos para Post no Blog") nao casa com o glob, e o gitignore nao tem como
+# escapar espacos.
+*-[0-9][0-9][0-9].webp
+*-[0-9][0-9][0-9][0-9].webp
+*-[0-9][0-9][0-9].avif
+*-[0-9][0-9][0-9][0-9].avif

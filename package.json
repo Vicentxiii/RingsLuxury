@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
-    "build": "node scripts/optimize-images.mjs --dir PUBLIC --widths 800,1400,2400 && vite build",
+    "build": "node scripts/optimize-images.mjs --dir PUBLIC --widths 800,1400,2400 && node scripts/build-image-manifest.mjs && vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit",

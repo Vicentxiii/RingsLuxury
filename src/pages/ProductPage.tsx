@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
-import { LuxuryImage } from '../components/LuxuryImage';
+import { ResponsiveImg } from '../components/ResponsiveImg';
 import { Contact } from '../components/Contact';
 import { ProductPaymentMethods } from '../components/ProductPaymentMethods';
 import { RelatedProductsCarousel } from '../components/RelatedProductsCarousel';
@@ -173,7 +173,7 @@ export function ProductPage() {
             sem fetchpriority, disputando banda com a imagem do produto (LCP)
             para exibir algo a 13% de opacidade. */}
         <div className="fixed inset-0 z-0 overflow-hidden bg-black pointer-events-none" aria-hidden>
-          <LuxuryImage
+          <ResponsiveImg
             src={PRODUCT_BG}
             alt=""
             width={1920}
@@ -230,12 +230,13 @@ export function ProductPage() {
                   de perder a corrida para o logo e de saltar o layout (CLS).
                   So a PRIMEIRA imagem recebe priority: as demais, nao.
                 */
-                <LuxuryImage
+                <ResponsiveImg
                   src={product.images[selectedImage]}
                   alt={`${product.name}, ${product.subname}`}
                   width={1400}
                   height={1400}
                   priority={selectedImage === 0}
+                  sizes="(max-width: 1024px) 92vw, 560px"
                   className="w-full h-auto object-contain max-h-[62vh] mx-auto drop-shadow-[0_24px_60px_rgba(0,0,0,0.85)]"
                 />
               )}
@@ -279,11 +280,12 @@ export function ProductPage() {
                     {isVideo ? (
                       <video src={img} muted playsInline preload="metadata" className="w-full h-full object-cover" aria-hidden />
                     ) : (
-                      <LuxuryImage
+                      <ResponsiveImg
                         src={img}
                         alt={isCert ? t.home.mpCertAlt : isBox ? 'Caixa e sacola Rings Luxury by Jorge Uquillas' : `${product.name}, ${product.subname}, foto ${idx + 1}`}
                         width={152}
                         height={152}
+                        sizes="76px"
                         className="w-full h-full object-cover"
                       />
                     )}
