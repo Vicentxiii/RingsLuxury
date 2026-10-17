@@ -73,9 +73,9 @@ export function LuxuryRingsGuide() {
         />
 
         <header className="text-center mb-16">
-          <h2 className="font-poppins text-xs font-semibold uppercase tracking-[0.3em] text-[#C5A059] mb-4">
+          <p className="font-poppins text-xs font-semibold uppercase tracking-[0.3em] text-[#C5A059] mb-4">
             {t.pages.guideKicker}
-          </h2>
+          </p>
           <h1 className="font-cinzel text-4xl md:text-5xl font-medium tracking-wide text-[#F3EFE6] mb-8">
             {t.pages.guideTitle}
           </h1>

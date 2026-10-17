@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Clock, Instagram, Mail, MapPin, Phone } from 'lucide-react';
+import { Clock, Mail, MapPin, Phone } from 'lucide-react';
 import { GreekKeyBorder } from './OrnamentIcons';
 import { useLanguage } from '../i18n/LanguageContext';
 import contact from '../data/contact.json';
@@ -36,7 +36,40 @@ const ATELIER_ROUTES = [
   { to: '/gallery', key: 'atelierGallery' },
   { to: '/blog', key: 'atelierJournal' },
   { to: '/courses', key: 'atelierCourses' },
+  { to: '/faq', key: 'atelierFaq' },
 ] as const;
+
+/** Politicas: o sinal de confianca nº1 de auditoria de e-commerce. */
+const POLICY_ROUTES = [
+  { to: '/shipping', label: 'Shipping and Insurance' },
+  { to: '/returns', label: 'Returns and Custom Work' },
+  { to: '/warranty', label: 'Lifetime Warranty' },
+  { to: '/terms', label: 'Terms of Sale' },
+  { to: '/privacy', label: 'Privacy Policy' },
+] as const;
+
+/**
+ * Redes sociais derivadas de contact.sameAs.
+ *
+ * `short` e o texto visivel do botao; `icon` vai em sr-only, porque um icone de
+ * rede social nao tem nome acessivel proprio e o botao precisa dizer qual
+ * plataforma e. O perfil do Google nao aparece como botao (e um link curto de
+ * compartilhamento, nao um perfil navegavel), mas continua no sameAs do schema.
+ */
+const SOCIAL_LINKS = (contact.sameAs ?? [])
+  .filter((url) => /instagram|youtube|facebook|tiktok|linkedin/i.test(url))
+  .map((url) => {
+    const label = /instagram/i.test(url)
+      ? 'Instagram'
+      : /youtube/i.test(url)
+        ? 'YouTube'
+        : /facebook/i.test(url)
+          ? 'Facebook'
+          : /tiktok/i.test(url)
+            ? 'TikTok'
+            : 'LinkedIn';
+    return { href: url, label, short: label };
+  });
 
 export function Footer() {
   const { t } = useLanguage();
@@ -122,16 +155,27 @@ export function Footer() {
               <span>Miami</span>
             </div>
 
-            <a
-              href="https://www.instagram.com/ringsluxury"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Rings Luxury on Instagram"
-              className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#C5A059]/40 hover:border-[#C5A059] text-[#C5A059] hover:text-[#E6CA85] hover:bg-[#C5A059]/10 rounded-full font-sans-luxury text-[11px] font-medium tracking-[0.2em] uppercase transition-all"
-                >
-              <Instagram className="w-3.5 h-3.5" />
-              <span>Instagram @ringsluxury</span>
-            </a>
+            {/*
+                Redes sociais. Os botoes sao gerados a partir de contact.sameAs,
+                que e a MESMA lista que vai no JSON-LD: um perfil novo entra nos
+                dois lugares de uma vez, sem risco de o botao existir e o schema
+                nao declarar (ou o contrario).
+              */}
+            <ul className="flex flex-wrap items-center gap-3">
+              {SOCIAL_LINKS.map((s) => (
+                <li key={s.label}>
+                  <a
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Rings Luxury on ${s.label}`}
+                    className="inline-flex items-center gap-2 px-4 py-2 border border-[#C5A059]/40 hover:border-[#C5A059] text-[#C5A059] hover:text-[#E6CA85] hover:bg-[#C5A059]/10 rounded-full font-sans-luxury text-[11px] font-medium tracking-[0.2em] uppercase transition-all"
+                  >
+                    <span>{s.short}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Coleções, links reais, não âncoras */}
@@ -219,6 +263,19 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="pt-12 flex flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
+          <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 order-last md:order-first">
+            {POLICY_ROUTES.map((p) => (
+              <li key={p.to}>
+                <Link
+                  to={p.to}
+                  className="text-[10px] tracking-[0.2em] uppercase text-[#A8A296] hover:text-[#C5A059] transition-colors"
+                >
+                  {p.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
           <div className="text-[10px] tracking-[0.3em] uppercase text-[#9A7B38]">
             {t.footer.bottomRights}
           </div>
@@ -234,7 +291,7 @@ export function Footer() {
 
         {/* Crédito de criação, dois links: autor e empresa */}
         <div className="pt-8 flex justify-center">
-          <p className="text-[7px] sm:text-[8px] uppercase tracking-[0.28em] text-[#9A7B38]/80 text-center">
+          <p className="text-[8px] sm:text-[9px] uppercase tracking-[0.28em] text-[#9A7B38] text-center">
             {t.footer.creditPrefix}{' '}
             <a
               href={contact.credit.url}

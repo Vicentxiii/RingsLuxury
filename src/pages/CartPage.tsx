@@ -150,7 +150,7 @@ export function CartPage() {
                                 onClick={() => setQty(l.slug, l.qty - 1)}
                                 disabled={l.qty <= 1}
                                 aria-label="−"
-                                className="w-8 h-8 rounded-full flex items-center justify-center text-[#E6CA85] hover:bg-[#C5A059]/15 disabled:opacity-30 transition-colors"
+                                className="w-11 h-11 rounded-full flex items-center justify-center text-[#E6CA85] hover:bg-[#C5A059]/15 disabled:opacity-30 transition-colors"
                               >
                                 <Minus className="w-3.5 h-3.5" aria-hidden />
                               </button>
@@ -159,7 +159,7 @@ export function CartPage() {
                                 onClick={() => setQty(l.slug, l.qty + 1)}
                                 disabled={l.qty >= max}
                                 aria-label="+"
-                                className="w-8 h-8 rounded-full flex items-center justify-center text-[#E6CA85] hover:bg-[#C5A059]/15 disabled:opacity-30 transition-colors"
+                                className="w-11 h-11 rounded-full flex items-center justify-center text-[#E6CA85] hover:bg-[#C5A059]/15 disabled:opacity-30 transition-colors"
                               >
                                 <Plus className="w-3.5 h-3.5" aria-hidden />
                               </button>
@@ -172,7 +172,7 @@ export function CartPage() {
                       <button
                         onClick={() => remove(l.slug)}
                         aria-label={t.pages.cartRemove}
-                        className="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center text-[#A8A296] hover:text-red-400 hover:bg-white/5 transition-colors"
+                        className="absolute top-3 right-3 w-11 h-11 rounded-full flex items-center justify-center text-[#A8A296] hover:text-red-400 hover:bg-white/5 transition-colors"
                       >
                         <Trash2 className="w-4 h-4" aria-hidden />
                       </button>

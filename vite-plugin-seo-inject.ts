@@ -2,9 +2,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { loadEnv, type HtmlTagDescriptor, type Plugin } from 'vite';
 
-const STATIC_ROUTES = ['/', '/luxury-rings', '/emperor-rings', '/special-editions', '/gold-silver-rings', '/necklaces', '/luxuryqueens', '/courses', '/gallery', '/blog', '/contact', '/luxury-rings-guide', '/jorge-uquillas'];
+// Rotas estaticas do SPA. Alimenta 3 lugares ao mesmo tempo: o <noscript> de
+// navegacao para crawlers sem JS, o sitemap.xml e o IndexNow do build.
+// Paginas de politica entram aqui de proposito: sao as URLs que o Google usa
+// para avaliar confianca de e-commerce, e nao podem faltar do sitemap.
+const STATIC_ROUTES = ['/', '/luxury-rings', '/emperor-rings', '/special-editions', '/gold-silver-rings', '/necklaces', '/luxuryqueens', '/courses', '/gallery', '/blog', '/faq', '/contact', '/luxury-rings-guide', '/jorge-uquillas', '/privacy', '/terms', '/shipping', '/returns', '/warranty'];
 
-const buildRobots = (siteUrl: string) => `# ringsluxury.com
+const buildRobots = (siteUrl: string) => `# ringsluxuryart.com
 User-agent: *
 Allow: /
 Disallow: /cart
@@ -46,6 +50,9 @@ Allow: /
 # Bloqueados: rastreadores sem valor para o site.
 User-agent: Bytespider
 Disallow: /
+
+# Guia de leitura para LLMs (GEO). crawlers de IA procuram este header.
+Llms-Txt: ${siteUrl}/llms.txt
 
 Sitemap: ${siteUrl}/sitemap.xml
 `;
@@ -90,6 +97,9 @@ type ContactData = {
   email: string;
   hours: { days: string[]; opens: string; closes: string; display: string; displayDays: string };
   credit: { prefix: string; name: string; role: string; from: string; url: string };
+  sameAs?: string[];
+  keywords?: string;
+  logo?: string;
 };
 
 const readReviews = (root: string): ReviewsData =>
@@ -123,6 +133,7 @@ const buildGraph = (data: ReviewsData, siteUrl: string, locs: LocationsData, con
   const abs = (p: string) => (hasSite ? `${siteUrl}${p}` : p);
 
   const { days, opens, closes } = contact.hours;
+  const sameAs = contact.sameAs ?? [];
 
   const node: Record<string, unknown>[] = [
     {
@@ -130,7 +141,9 @@ const buildGraph = (data: ReviewsData, siteUrl: string, locs: LocationsData, con
       ...(hasSite ? { '@id': abs('/#website') } : {}),
       ...(hasSite ? { url: siteUrl } : {}),
       name: 'RINGS LUXURY by Jorge Uquillas',
-      inLanguage: 'pt-BR',
+      // EN e o idioma padrao do site (index.html lang="en"). Antes era 'pt-BR'
+      // e contradizia o HTML, confundindo o Google sobre o idioma principal.
+      inLanguage: ['en', 'es', 'pt'],
       ...(hasSite ? { publisher: { '@id': orgId } } : {}),
       // SearchAction exige URL absoluta, entao so existe com dominio.
       ...(hasSite
@@ -147,13 +160,25 @@ const buildGraph = (data: ReviewsData, siteUrl: string, locs: LocationsData, con
       '@type': 'Organization',
       ...(hasSite ? { '@id': orgId, url: siteUrl } : {}),
       name: 'RINGS LUXURY by Jorge Uquillas',
+      legalName: 'RINGS LUXURY by Jorge Uquillas',
+      // alternateName amarra as grafias da marca que aparecem no site, para o
+      // Google nao tratar cada uma como empresa distinta.
+      alternateName: ['RINGS LUXURY', 'Rings Luxury', 'RINGS LUXURY ATELIER'],
       description: 'Atelier de alta joalheria HandCrafted. Anéis 1/1 feitos à mão em ouro 18k com diamantes naturais, gravados com hand engraver por Jorge Uquillas.',
+      ...(hasSite
+        ? {
+            // `logo` e obrigatorio numa entidade de negocio. A auditoria apontou
+            // "Faltam: logo"; agora vem de contact.json, uma fonte so.
+            logo: abs(contact.logo ?? '/PUBLIC/logo-novo-rings-luxury.webp'),
+            image: abs('/PUBLIC/logo-novo-rings-luxury.webp'),
+          }
+        : {}),
       founder: { '@type': 'Person', name: 'Jorge Uquillas' },
       email: contact.email,
       telephone: contact.phone,
       openingHoursSpecification: {
         '@type': 'OpeningHoursSpecification',
-        dayOfWeek: [...days],
+        dayOfWeek: days.map((d) => `https://schema.org/${d}`),
         opens,
         closes,
       },
@@ -164,18 +189,56 @@ const buildGraph = (data: ReviewsData, siteUrl: string, locs: LocationsData, con
         email: contact.email,
         availableLanguage: ['pt', 'en', 'es'],
       },
+      priceRange: '$$$$',
+      currenciesAccepted: 'USD, BRL',
       // Endereco so entra com dado real. 'address' esta null em locations.json
       // ate confirmacao, declarar endereco ficticio e o caminho mais curto
       // para acao manual do Google.
       ...(locs.locations.some((l) => l.address)
         ? { address: locs.locations.filter((l) => l.address).map((l) => ({ '@type': 'PostalAddress', streetAddress: l.address as string, addressLocality: l.city, addressRegion: l.region as string, addressCountry: l.countryCode })) }
         : {}),
-      sameAs: ['https://www.instagram.com/ringsluxury'],
+      ...(hasSite ? { location: locs.locations.map((l) => ({ '@id': abs(`/#atelier-${l.id}`) })) } : {}),
+      // Politicas existem como paginas reais (/returns, /shipping, /warranty):
+      // sao o sinal de confianca nº1 de uma auditoria de e-commerce.
+      ...(hasSite
+        ? { hasMerchantReturnPolicy: abs('/returns'), hasShippingPolicy: abs('/shipping'), hasWarranty: abs('/warranty') }
+        : {}),
+      sameAs,
+      ...(contact.keywords ? { keywords: contact.keywords } : {}),
     },
     // aggregateRating no Organization NAO gera estrela no SERP: o Google ignora
     // markup auto-referente para a propria empresa. Fica aqui de proposito porque
     // crawlers de IA leem JSON-LD cru e nao executam JS.
     { ...(hasSite ? { '@id': orgId } : {}), aggregateRating: buildAggregate(reviews) },
+    // Um no de loja por atelie. Sem 'address' em locations.json ainda declara
+    // cidade/regiao/país: melhor que nenhum no para SEO local e para a IA
+    // responder "onde fica a Rings Luxury".
+    ...locs.locations.map((l) => ({
+      '@type': 'JewelryStore',
+      ...(hasSite ? { '@id': abs(`/#atelier-${l.id}`) } : {}),
+      name: l.label,
+      ...(hasSite ? { parentOrganization: { '@id': orgId }, url: abs('/contact') } : {}),
+      address: {
+        '@type': 'PostalAddress',
+        ...(l.address ? { streetAddress: l.address } : {}),
+        ...(l.district && !l.address ? { streetAddress: l.district } : {}),
+        addressLocality: l.city,
+        ...(l.region ? { addressRegion: l.region } : {}),
+        addressCountry: l.countryCode,
+      },
+      telephone: contact.phone,
+      email: contact.email,
+      priceRange: '$$$$',
+      currenciesAccepted: 'USD, BRL',
+      openingHoursSpecification: {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: days.map((d) => `https://schema.org/${d}`),
+        opens,
+        closes,
+      },
+      areaServed: { '@type': 'City', name: l.city },
+      sameAs,
+    })),
     {
       '@type': 'ItemList',
       ...(hasSite ? { '@id': abs('/#reviews') } : {}),
@@ -189,7 +252,11 @@ const buildGraph = (data: ReviewsData, siteUrl: string, locs: LocationsData, con
           reviewRating: { '@type': 'Rating', ratingValue: r.rating, bestRating: 5, worstRating: 1 },
           reviewBody: r.text,
           author: { '@type': 'Person', name: r.name },
-          itemReviewed: { '@type': 'Organization', name: 'RINGS LUXURY by Jorge Uquillas' },
+          // itemReviewed por @id resolve para o no Organization deste mesmo
+          // grafo; com nome solto, o review ficava orfao.
+          itemReviewed: hasSite
+            ? { '@id': orgId }
+            : { '@type': 'Organization', name: 'RINGS LUXURY by Jorge Uquillas' },
         };
         // So emitir data com a data real. O padrao anterior fabricava
         // 2026-09-01 para os 6 reviews, o que e violacao de spam do Google.
@@ -239,12 +306,45 @@ const buildStaticBlock = (data: ReviewsData, locs: LocationsData, contact: Conta
     })
     .join('\n');
 
+  // Fatos numericos em texto puro. Motivo: crawlers de IA e o bloco estatico
+  // nao inferem nada de layout; um "<li>18k gold = 75% pure gold</li>" e lido
+  // e citavel, enquanto a frase dentro de um card com imagem vira nada.
+  // Todos estes numeros JA aparecem em texto no site (pages.ts guideB2,
+  // productDeliveryWorldText, blogPosts.ts, /warranty), nada foi inventado.
+  const facts = [
+    '18k gold = 75% pure gold, cast solid, never plated',
+    '1/1 one-of-one pieces: the original wax matrix is destroyed after casting, so no replica can exist',
+    '90 to 140 hours of hand engraving per ring, cut with tempered-steel hand gravers, never laser',
+    'Hand-selected natural diamonds, set one by one under the microscope',
+    'Made to order in 60 days from the first 50% payment',
+    'Lifetime warranty covering manufacturing defects, plus annual polishing by appointment',
+    'Fully insured door-to-door delivery worldwide, tracked with mandatory signature, free over US$ 5,000',
+    'Archival folio, certificate of authenticity and master hallmark leave with every piece',
+    'Clients in 50+ countries; private consultations in São Paulo (Avenida Paulista, Brazil) and Miami (Brickell, Florida, USA)',
+  ];
+
+  const policies = [
+    { href: '/privacy', label: 'Privacy Policy' },
+    { href: '/terms', label: 'Terms of Sale' },
+    { href: '/shipping', label: 'Shipping and Insurance' },
+    { href: '/returns', label: 'Returns and Custom Work' },
+    { href: '/warranty', label: 'Lifetime Warranty' },
+  ];
+
   return `<section class="seo-static-reviews" aria-labelledby="seo-reviews-heading" style="max-width:820px;margin:0 auto;padding:40px 24px">
     <h2 id="seo-reviews-heading" style="color:#E6CA85;font-size:22px;text-transform:uppercase;letter-spacing:.14em">What people say about Rings Luxury</h2>
     <p style="color:#8a8a8a;font-size:14px;margin:8px 0 28px">${avg} out of 5 &middot; ${reviews.length} verified client reviews</p>
     <ul style="list-style:none;padding:0;margin:0">
 ${items}
     </ul>${cta}
+    <h2 style="color:#E6CA85;font-size:20px;text-transform:uppercase;letter-spacing:.14em;margin-top:40px">RINGS LUXURY in facts</h2>
+    <ul style="list-style:none;padding:0;margin:0">
+${facts.map((f) => `      <li style="margin-bottom:8px">${esc(f)}</li>`).join('\n')}
+    </ul>
+    <h2 style="color:#E6CA85;font-size:20px;text-transform:uppercase;letter-spacing:.14em;margin-top:40px">Policies and guarantees</h2>
+    <ul style="list-style:none;padding:0;margin:0">
+${policies.map((p) => `      <li style="margin-bottom:8px"><a href="${p.href}" style="color:#C5A059">${esc(p.label)}</a></li>`).join('\n')}
+    </ul>
     <h2 style="color:#E6CA85;font-size:20px;text-transform:uppercase;letter-spacing:.14em;margin-top:40px">Visits in the physical workshop under schedule</h2>
     <p style="color:#8a8a8a;font-size:14px;margin:8px 0 20px">Private appointments by appointment.</p>
     <ul style="list-style:none;padding:0;margin:0">

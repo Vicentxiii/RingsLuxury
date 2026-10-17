@@ -39,6 +39,7 @@ export function MasterpieceDetail() {
   const RING_CENTER = { x: 47, y: 43 };
   const [lensPos, setLensPos] = useState(RING_CENTER);
   const [showCert, setShowCert] = useState(false);
+  const certDialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -55,6 +56,20 @@ export function MasterpieceDetail() {
     document.body.style.overflow = showCert ? 'hidden' : '';
     return () => {
       document.body.style.overflow = '';
+    };
+  }, [showCert]);
+
+  // Move focus into the certificate dialog on open and restore it to the
+  // trigger on close (WCAG 2.4.3 Focus Order).
+  useEffect(() => {
+    if (!showCert) return;
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    const firstFocusable = certDialogRef.current?.querySelector<HTMLElement>(
+      'button, [href], [tabindex]:not([tabindex="-1"])'
+    );
+    firstFocusable?.focus();
+    return () => {
+      previouslyFocused?.focus();
     };
   }, [showCert]);
 
@@ -132,7 +147,10 @@ export function MasterpieceDetail() {
             <LaurelWreath className="w-4 h-4 text-[#C5A059] transform -scale-x-100" />
           </div>
 
-          <h2 className="font-cinzel text-4xl sm:text-5xl md:text-6xl tracking-[0.18em] uppercase text-[#FBF9F5] font-light mb-4">
+          <h2
+            id="obra-prima"
+            className="font-cinzel text-4xl sm:text-5xl md:text-6xl tracking-[0.18em] uppercase text-[#FBF9F5] font-light mb-4 scroll-mt-28"
+          >
             {t.home.mpTitle}
           </h2>
 
@@ -215,9 +233,10 @@ export function MasterpieceDetail() {
                       style={{ transform: `translate(${sx}px, ${sy}px)` }}
                     >
                     <button
+                      type="button"
                       onClick={() => setActiveHotspot(hs.id)}
                       aria-label={hs.title}
-                      className="group relative flex items-center justify-center w-6 h-6 cursor-pointer focus:outline-none"
+                      className="group relative flex items-center justify-center w-11 h-11 -m-2.5 cursor-pointer focus:outline-none"
                     >
                       {/* halo sutil */}
                       <span
@@ -296,9 +315,9 @@ export function MasterpieceDetail() {
               <span className="text-[9px] uppercase tracking-[0.35em] text-[#C5A059]">
                 {t.home.mpSelectedLabel}
               </span>
-              <h4 className="font-cinzel text-xl tracking-[0.2em] text-[#F3EFE6] uppercase">
+              <h3 className="font-cinzel text-xl tracking-[0.2em] text-[#F3EFE6] uppercase">
                 {hotspots.find((h) => h.id === activeHotspot)?.title}
-              </h4>
+              </h3>
               <p className="font-sans-luxury text-xs text-[#A8A296] tracking-wider max-w-3xl leading-relaxed">
                 {hotspots.find((h) => h.id === activeHotspot)?.description}
               </p>
@@ -334,6 +353,7 @@ export function MasterpieceDetail() {
       {/* Certificate Modal, glass 3D, somente o certificado */}
       {showCert && (
         <div
+          ref={certDialogRef}
           className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8 animate-[fadeIn_0.35s_ease-out]"
           role="dialog"
           aria-modal="true"
@@ -341,6 +361,7 @@ export function MasterpieceDetail() {
         >
           {/* fundo leve, sem a bola preta: só o modal quadrado em destaque */}
           <button
+            type="button"
             aria-label={t.home.mpCertCloseAria}
             onClick={() => setShowCert(false)}
             className="absolute inset-0 bg-black/30 backdrop-blur-sm cursor-zoom-out"
@@ -362,6 +383,7 @@ export function MasterpieceDetail() {
             </div>
             {/* X quadrado em vidro */}
             <button
+              type="button"
               onClick={() => setShowCert(false)}
               aria-label={t.home.mpCertCloseLabel}
               className="absolute top-3 right-3 w-9 h-9 rounded-none bg-black/40 backdrop-blur-md border border-white/20 text-white/85 flex items-center justify-center hover:bg-white/15 hover:text-white transition-all"

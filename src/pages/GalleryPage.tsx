@@ -46,9 +46,9 @@ export function GalleryPage({ title, categorySlug }: GalleryPageProps) {
 
       <main className="max-w-7xl mx-auto px-6 py-20 relative z-10">
         <header className="text-center mb-24">
-          <h2 className="font-poppins text-xs font-semibold uppercase tracking-[0.3em] text-[#C5A059] mb-4">
+          <p className="font-poppins text-xs font-semibold uppercase tracking-[0.3em] text-[#C5A059] mb-4">
             {t.pages.galleryKicker}
-          </h2>
+          </p>
           <h1 className="font-cinzel text-4xl md:text-6xl font-medium tracking-wide text-[#F3EFE6] mb-8">
             {title}
           </h1>

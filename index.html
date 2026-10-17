@@ -38,6 +38,13 @@
     <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png?v=6" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=6" />
     <link rel="shortcut icon" href="/favicon.png?v=6" />
+    <!-- Guia de LLMs (GEO). Declarar o arquivo como "alternate" e o que permite
+         a um crawler de IA descubrir o resumo estructurado da empresa antes mesmo
+         de renderizar a pagina. O mesmo caminho e anunciado no robots.txt. -->
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM guide, RINGS LUXURY" />
+    <meta name="author" content="Jorge Uquillas" />
+    <meta name="geo.region" content="US-FL, BR-SP" />
+    <meta name="geo.placename" content="Miami, São Paulo" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <!-- Preloader/Logo LCP: o logo novo da header/preloader com prioridade maxima, sem isso o logo so comeca a baixar apos o bundle React, gerando icone quebrado no preloader. -->

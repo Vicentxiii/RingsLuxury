@@ -20,7 +20,10 @@ export function WhyChoose() {
       <div className="relative z-10 w-full max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10 pt-10 sm:pt-12 lg:pt-[42px] pb-12 sm:pb-14 lg:pb-[44px]">
         {/* TÍTULO, 100% texto literal para SEO, sem imagem TITLE */}
         <div className="flex flex-col items-center justify-center text-center">
-          <h2 className="font-cinzel font-normal tracking-[0.06em] uppercase flex items-baseline gap-[0.35em] text-[20px] sm:text-[24px] lg:text-[26px]">
+          <h2
+            id="por-que-rings-luxury"
+            className="font-cinzel font-normal tracking-[0.06em] uppercase flex items-baseline gap-[0.35em] text-[20px] sm:text-[24px] lg:text-[26px] scroll-mt-28"
+          >
             <span className="text-[#F2ECE0]">{t.home.whyTitleA}</span>
             <span className="text-[#C5A059] italic font-cormorant font-medium tracking-[0.04em]">RINGS LUXURY?</span>
           </h2>
@@ -49,6 +52,8 @@ export function WhyChoose() {
                 <img
                   src="/PUBLIC/why-100-handmade.webp"
                   alt={t.home.whyAlt1}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-contain select-none"
                   draggable={false}
                   onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
@@ -65,6 +70,8 @@ export function WhyChoose() {
                 <img
                   src="/PUBLIC/why-best-gold.webp"
                   alt={t.home.whyAlt2}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-contain select-none"
                   draggable={false}
                   onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
@@ -81,6 +88,8 @@ export function WhyChoose() {
                 <img
                   src="/PUBLIC/why-lifetime.webp"
                   alt={t.home.whyAlt3}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-contain select-none"
                   draggable={false}
                   onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
@@ -101,6 +110,8 @@ export function WhyChoose() {
                 <img
                   src="/PUBLIC/why-satisfied.webp"
                   alt={t.home.whyAlt4}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-contain select-none"
                   draggable={false}
                   onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}

@@ -127,15 +127,15 @@ export function LuxuryQueens() {
                     onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                   />
                 </Link>
-                <p className="mt-4 sm:mt-2 min-h-[40px] flex items-start justify-center text-[13px] leading-[1.5] text-white/90 max-w-[280px]">
+                <h2 className="mt-4 sm:mt-2 min-h-[40px] flex items-start justify-center text-[13px] font-normal leading-[1.5] text-white/90 max-w-[280px]">
                   {piece.name}
-                </p>
+                </h2>
                 <p className="mt-3 sm:mt-2 font-cinzel text-[15px] tracking-[0.08em] text-[#E6CA85]">
                   {piece.price}
                 </p>
                 <Link
                   to={`/produto/${piece.slug}`}
-                  className="mt-5 sm:mt-3 px-6 py-1.5 border border-white/25 hover:border-[#C5A059] rounded-full text-[11px] tracking-[0.12em] text-white/85 hover:text-[#E6CA85] transition-colors"
+                  className="mt-5 sm:mt-3 px-6 py-1.5 border border-white/45 hover:border-[#C5A059] rounded-full text-[11px] tracking-[0.12em] text-white/85 hover:text-[#E6CA85] transition-colors"
                 >
                   {t.collections.addToCart}
                 </Link>

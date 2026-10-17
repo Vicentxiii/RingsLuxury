@@ -385,6 +385,19 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     };
   }, [closeOnClickAway, open, closeMenu]);
 
+  // Close the menu with Escape (WCAG 2.1.2) and return focus to the toggle.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' || e.key === 'Esc') {
+        closeMenu();
+        toggleBtnRef.current?.focus();
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open, closeMenu]);
+
   return (
     <div
       className={(className ? className + ' ' : '') + 'staggered-menu-wrapper' + (isFixed ? ' fixed-wrapper' : '')}
@@ -405,13 +418,13 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       </div>
 
       <header className="staggered-menu-header" aria-label="Main navigation header">
-        <div className="sm-logo" aria-label="Logo">
+        <div className="sm-logo">
           {customLogo ? (
             customLogo
           ) : logoUrl ? (
             <img
               src={logoUrl}
-              alt="Logo"
+              alt="Rings Luxury by Jorge Uquillas logo"
               className="sm-logo-img"
               draggable={false}
               width={110}
@@ -450,7 +463,13 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         </div>
       </header>
 
-      <aside id="staggered-menu-panel" ref={panelRef} className="staggered-menu-panel" aria-hidden={!open}>
+      <nav
+        id="staggered-menu-panel"
+        ref={panelRef}
+        aria-label="Main"
+        className="staggered-menu-panel"
+        aria-hidden={!open}
+      >
         <div className="sm-panel-inner">
           <div className="space-y-6">
             <div className="flex items-center justify-between pb-3 border-b border-[#C5A059]/20">
@@ -493,8 +512,8 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
           </div>
 
           {displaySocials && socialItems && socialItems.length > 0 && (
-            <div className="sm-socials" aria-label="Social links">
-              <h3 className="sm-socials-title">Salons & Inquiries</h3>
+            <div className="sm-socials" role="group" aria-label="Social links">
+              <p className="sm-socials-title">Salons &amp; Inquiries</p>
               <ul className="sm-socials-list" role="list">
                 {socialItems.map((s, i) => (
                   <li key={s.label + i} className="sm-socials-item">
@@ -507,7 +526,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             </div>
           )}
         </div>
-      </aside>
+      </nav>
     </div>
   );
 };

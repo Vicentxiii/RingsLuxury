@@ -178,4 +178,23 @@ button:not(.not-rounded) {
   .folha-spin-rev {
     animation: none;
   }
+  html {
+    scroll-behavior: auto !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Foco visivel global: WCAG 2.4.7. Sem isto, todo `focus:outline-none` do site
+   deixava o elemento sem indicador de foco para quem navega por teclado. */
+:focus-visible {
+  outline: 2px solid #E6CA85;
+  outline-offset: 3px;
+  border-radius: 2px;
 }

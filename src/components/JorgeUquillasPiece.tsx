@@ -899,6 +899,8 @@ export function JorgeUquillasPiece({ onBackToAtelier, onOpenConsultation }: Jorg
       <canvas
         ref={canvasRef}
         id="webgl"
+        role="img"
+        aria-label="Animated 3D gold ring sculpture slowly rotating against a dark background"
         className="fixed top-0 left-0 w-full h-full z-[1] outline-none"
       />
     </div>

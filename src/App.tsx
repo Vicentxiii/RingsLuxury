@@ -15,6 +15,8 @@ const ContactPage = lazy(() =>
 );
 import { Blog } from './pages/Blog';
 import { BlogPost } from './pages/BlogPost';
+import { FaqPage } from './pages/FaqPage';
+import { PolicyPage } from './pages/PolicyPage';
 import { Gallery } from './pages/Gallery';
 import { LuxuryRingsGuide } from './pages/LuxuryRingsGuide';import { ProductPage } from './pages/ProductPage';
 import { CartPage } from './pages/CartPage';
@@ -120,6 +122,11 @@ export default function App() {
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/blog" element={<Blog />} />
       <Route path="/blog/:slug" element={<BlogPost />} />
+      {/* FAQ mestre: respostas diretas, alvo de citacao por Google e IA. */}
+      <Route path="/faq" element={<FaqPage />} />
+      {/* Politicas: sinal de confianca de e-commerce + exigencia legal
+          (LGPD/GDPR/CCPA). Textos em src/data/policies.ts. */}
+      <Route path="/:policy(privacy|terms|shipping|returns|warranty)" element={<PolicyPage />} />
       <Route path="/gallery" element={<Gallery />} />
       <Route path="/luxury-rings-guide" element={<LuxuryRingsGuide />} />
       <Route path="/produto/:slug" element={<ProductPage />} />

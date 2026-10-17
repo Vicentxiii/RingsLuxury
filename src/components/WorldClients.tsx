@@ -97,6 +97,10 @@ export function WorldClients() {
   const active = REVIEWS[index];
   const { businessProfileUrl, platform } = reviewsData.source;
 
+  // Média e total saem dos próprios reviews, nunca de número escrito à mão:
+  // o badge 5-STAR é imagem, então sem este texto o agregado não existe no DOM.
+  const avgRating = (REVIEWS.reduce((sum, r) => sum + r.rating, 0) / REVIEWS.length).toFixed(1);
+
   return (
     <section
       id="world-clients"
@@ -108,6 +112,8 @@ export function WorldClients() {
         <img
           src="/PUBLIC/sessao-clientes-rings-luxury-site-2026.webp"
           alt=""
+          loading="lazy"
+          decoding="async"
           draggable={false}
           className="absolute inset-0 w-full h-full object-cover object-right opacity-[0.85]"
           onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
@@ -124,7 +130,8 @@ export function WorldClients() {
       <div className="relative z-10 w-full max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10 py-20 sm:py-24 lg:py-28">
         {/* TÍTULO em duas linhas */}
         <h2
-          className="text-center font-cinzel font-normal uppercase text-[#E6CA85]"
+          id="clientes"
+          className="text-center font-cinzel font-normal uppercase text-[#E6CA85] scroll-mt-28"
           style={{ fontSize: 'clamp(18px, 2.4vw, 32px)', letterSpacing: '0.14em' }}
         >
           <span className="block text-[0.62em] tracking-[0.3em] text-[#C5A059]">
@@ -138,11 +145,21 @@ export function WorldClients() {
           <img
             src="/PUBLIC/rings-luxury-google-reviews.webp"
             alt={t.home.wcBadgeAlt}
+            loading="lazy"
+            decoding="async"
             draggable={false}
             className="w-[150px] sm:w-[185px] h-auto object-contain select-none drop-shadow-[0_10px_30px_rgba(197,160,89,0.28)]"
             onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
           />
         </div>
+
+        {/* Média "5.0" e contagem de reviews como TEXTO, não só no badge em
+            imagem. Fica sr-only de propósito: some do layout (o desenho atual
+            não muda) mas continua no texto acessível e no que buscadores e IAs
+            extraem da página. O rótulo vem do i18n, os números dos dados. */}
+        <p className="sr-only">
+          {avgRating} / 5 · {REVIEWS.length} · {t.home.wcCarouselAria}
+        </p>
 
         {/* CARROSSEL */}
         <div
@@ -183,11 +200,13 @@ export function WorldClients() {
             {REVIEWS.map((r, i) => (
               <article
                 key={r.id}
+                id={`wc-slide-${r.id}`}
+                role="tabpanel"
+                aria-labelledby={`wc-tab-${r.id}`}
                 className="w-full shrink-0 snap-center px-1 py-2 focus:outline-none"
                 aria-roledescription="slide"
                 aria-label={`${i + 1} ${t.home.wcSlideOf} ${REVIEWS.length}`}
                 tabIndex={i === index ? 0 : -1}
-                aria-hidden={i !== index}
               >
                 <div className="max-w-[720px] mx-auto flex flex-col items-center text-center px-2">
                   {/* avatar */}
@@ -198,6 +217,7 @@ export function WorldClients() {
                         alt={r.name || t.home.wcClientFallback}
                         draggable={false}
                         loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover"
                         onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                       />
@@ -267,13 +287,21 @@ export function WorldClients() {
                   key={r.id}
                   type="button"
                   role="tab"
+                  id={`wc-tab-${r.id}`}
+                  aria-controls={`wc-slide-${r.id}`}
                   aria-selected={i === index}
                   aria-label={`${t.home.wcReviewOf}${r.name}`}
                   onClick={() => goTo(i)}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
-                    i === index ? 'w-7 bg-[#C5A059]' : 'w-1.5 bg-[#C5A059]/30 hover:bg-[#C5A059]/60'
-                  }`}
-                />
+                  // min 24x24 hit area around the visual 6px bar (WCAG 2.5.8)
+                  className={`p-2 -m-2 rounded-full ${i === index ? '' : 'hover:bg-[#C5A059]/10'}`}
+                >
+                  <span
+                    aria-hidden="true"
+                    className={`block h-1.5 rounded-full transition-all duration-300 ${
+                      i === index ? 'w-7 bg-[#C5A059]' : 'w-1.5 bg-[#C5A059]/30 hover:bg-[#C5A059]/60'
+                    }`}
+                  />
+                </button>
               ))}
             </div>
 
@@ -281,13 +309,13 @@ export function WorldClients() {
               type="button"
               onClick={() => setUserPaused((p) => !p)}
               aria-label={userPaused ? t.home.wcResumeAuto : t.home.wcPauseAuto}
-              className="w-8 h-8 rounded-full border border-[#C5A059]/30 text-[#C5A059] flex items-center justify-center hover:bg-[#C5A059] hover:text-[#020202] transition-colors shrink-0"
+              className="w-11 h-11 rounded-full border border-[#C5A059]/30 text-[#C5A059] flex items-center justify-center hover:bg-[#C5A059] hover:text-[#020202] transition-colors shrink-0"
             >
               {userPaused ? <Play className="w-3.5 h-3.5" /> : <Pause className="w-3.5 h-3.5" />}
             </button>
           </div>
 
-          <p className="sr-only" aria-live="polite">
+          <p className="sr-only" aria-live="off">
             {active ? `${t.home.wcReviewOf}${active.name}: ${active.text}` : ''}
           </p>
         </div>

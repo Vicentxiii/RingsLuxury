@@ -45,6 +45,8 @@ export function AtelierLocations() {
         <img
           src="/PUBLIC/sessao-clientes-rings-luxury-site-2026.webp"
           alt=""
+          loading="lazy"
+          decoding="async"
           draggable={false}
           className="absolute inset-0 w-full h-full object-cover object-center opacity-[0.35] scale-[1.06]"
           style={{ filter: 'blur(6px)', WebkitFilter: 'blur(6px)' }}
@@ -59,7 +61,8 @@ export function AtelierLocations() {
       <div className="relative z-10 w-full max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10 py-16 sm:py-20 lg:py-24">
         {/* TÍTULO */}
         <h2
-          className="text-center font-cinzel font-normal uppercase text-[#E6CA85]"
+          id="atelieis"
+          className="text-center font-cinzel font-normal uppercase text-[#E6CA85] scroll-mt-28"
           style={{ fontSize: 'clamp(16px, 2.1vw, 27px)', letterSpacing: '0.12em' }}
         >
           {t.home.locTitle}

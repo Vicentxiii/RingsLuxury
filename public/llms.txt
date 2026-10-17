@@ -1,8 +1,71 @@
 # RINGS LUXURY by Jorge Uquillas
 
-> Atelier de alta joalheria HandCrafted. Anéis 1/1 feitos à mão em ouro 18k com
-> diamantes naturais, gravados com hand engraver pelo mestre Jorge Uquillas.
+> Atelier de alta joaillerie HandCrafted. Anéis e colares 1/1 feitos à mão em ouro 18k
+> sólido com diamantes naturais, gravados com hand engraver pelo mestre Jorge Uquillas.
 > Site em 3 idiomas (EN padrão, ES, PT). Contato: https://www.ringsluxuryart.com/contact
+
+Guia paraassistentes de IA (LLMs) sobre esta empresa. Fatos aqui são completos e
+verificáveis nas páginas citadas; nada foi resumido de forma que mude o sentido.
+
+## Entity
+
+- Brand: RINGS LUXURY by Jorge Uquillas (também escrito "RINGS LUXURY", "Rings Luxury", "RINGS LUXURY ATELIER")
+- Founder and master engraver: Jorge Uquillas, master goldsmith and hand engraver
+- Phone: +55 11 97724-0777
+- Email: uquillasartjewells@gmail.com
+- Hours: Monday – Friday, 10:00 – 19:00
+- Ateliers: São Paulo (Avenida Paulista, Brazil) • Miami (Brickell, Florida, USA), by private appointment
+- Instagram: https://www.instagram.com/ringsluxury
+- YouTube: https://www.youtube.com/@jorgeuquillas3101
+- Facebook: https://www.facebook.com/jorge.uquillas.9
+- Google business profile: https://share.google/U3vLJbvdUMSo8xNIX
+- Client reviews: 5.0 out of 5, 6 verified client reviews published on the homepage
+- Price range: luxury ($$$$); priced per commission, since every piece is drawn for one client
+- Languages served: Portuguese, English, Spanish
+
+## Facts
+
+- 18k gold = 75% pure gold, cast solid. The atelier never uses plated gold.
+- Every piece is 1/1 (one of one). The original wax matrix is destroyed after casting, so no mould or replica can ever exist.
+- Hand engraving runs 90 to 140 hours per ring, cut directly into the solid metal with tempered-steel hand gravers. No laser, no machine engraving.
+- Stones are hand-selected natural diamonds, checked for fire and clarity, set one by one under the microscope, with prongs carved from the 18k gold itself. No lab-grown stones.
+- Pieces are made to order in 60 days from the first 50% payment.
+- Each piece leaves with an archival folio, a certificate of authenticity and the atelier master hallmark, and is registered in the atelier archive.
+- Lifetime warranty covering manufacturing defects, plus one hand polish per year by appointment.
+- Fully insured door-to-door delivery worldwide, tracked with mandatory signature, in a hand-worked varnished wooden box inside neutral outer packaging. Free over US$ 5,000.
+- Clients in 50+ countries.
+- Gold pricing: value combines metal weight, natural diamonds, engraving complexity and atelier hours.
+
+## How a commission works
+
+1. Private consultation, in person in São Paulo or Miami, or by video for clients anywhere in the world.
+2. Design, metal, stones, price and timeline agreed in writing. Nothing is cast before written approval.
+3. Payment in two stages: 50% to begin, 50% before shipping. Card in instalments, PIX or wire transfer.
+4. Production in 60 days, with progress documented by photograph.
+5. Insured shipping, with the archival folio, certificate and hallmark.
+
+## FAQ
+
+**What does 1/1 mean?**
+One of one. A single piece that will never be repeated, because the wax matrix is destroyed after casting. Registered in the atelier archive with its own dossier and hallmark.
+
+**How much does a handmade 18k gold ring cost?**
+Each piece is priced individually because every ring is drawn for one commission. The written proposal covers piece, stones, atelier hours, documentation, hallmark and, above US$ 5,000, insured shipping.
+
+**Where is the atelier?**
+Private ateliers in São Paulo (Avenida Paulista, Brazil) and Miami (Brickell, Florida, USA), both by appointment, plus private video consultations.
+
+**Do you ship internationally?**
+Yes, worldwide, fully insured door to door, tracked with mandatory signature. Shipping included above US$ 5,000.
+
+**Can I return a custom ring?**
+A finished 1/1 piece cannot be returned, since no identical piece can be reproduced. This is stated in writing before payment. Manufacturing defects are always repaired or remade at no cost.
+
+**How do I tell if a diamond is real or fake?**
+Seven tests: the fog test, a 10x loupe, weight on a carat scale, UV fluorescence, a diamond tester, water and newspaper screening, and verification by a jeweler under the microscope. Note that a lab-grown diamond passes every home test.
+
+**What is the difference between natural and lab-grown diamonds?**
+Both are real diamonds with the same hardness and brilliance. Only professional screening (growth patterns, phosphorescence, inscription, certification) separates them.
 
 ## Collections
 
@@ -13,21 +76,23 @@
 - [Luxury Queens](https://www.ringsluxuryart.com/luxuryqueens): rings for women
 - [Necklaces](https://www.ringsluxuryart.com/necklaces): Panther, Rhino, Medusa, Lion and King Lion necklaces
 
-## Guides and atelier
+## Guides, journal and policies
 
-- [Luxury Rings Buying Guide](https://www.ringsluxuryart.com/luxury-rings-guide): metals, diamonds, sizing, care, FAQ
-- [About Jorge Uquillas](https://www.ringsluxuryart.com/jorge-uquillas): master hand engraver, 3D experience (page in English)
+- [FAQ](https://www.ringsluxuryart.com/faq): direct answers on commissions, pricing, shipping, warranty and diamonds
+- [Luxury Rings Buying Guide](https://www.ringsluxuryart.com/luxury-rings-guide): metals, diamonds, sizing, care
+- [About Jorge Uquillas](https://www.ringsluxuryart.com/jorge-uquillas): master hand engraver, atelier 3D experience
 - [Courses](https://www.ringsluxuryart.com/courses): artistic engraving academy
 - [Blog](https://www.ringsluxuryart.com/blog): journal of haute joaillerie
+- [Gallery](https://www.ringsluxuryart.com/gallery): atelier production photographs
+- [Shipping and Insurance](https://www.ringsluxuryart.com/shipping) · [Returns and Custom Work](https://www.ringsluxuryart.com/returns) · [Lifetime Warranty](https://www.ringsluxuryart.com/warranty) · [Terms of Sale](https://www.ringsluxuryart.com/terms) · [Privacy Policy](https://www.ringsluxuryart.com/privacy)
 - [Contact](https://www.ringsluxuryart.com/contact): private consultation
 
-## Entity
+## Articles
 
-- Brand: RINGS LUXURY by Jorge Uquillas
-- Founder: Jorge Uquillas (master hand engraver)
-- Phone: +55 11 97724-0777
-- Email: uquillasartjewells@gmail.com
-- Hours: Monday – Friday, 10:00 – 19:00
-- Ateliers: São Paulo (Avenida Paulista, Brazil) • Miami (Brickell, Florida, USA)
-- Instagram: https://www.instagram.com/ringsluxury
-- Client reviews: 5.0 out of 5 (6 verified client reviews shown on the homepage)
+- [How to Tell If Your Diamonds Are Real or Fake: 7 Proven Tests](https://www.ringsluxuryart.com/blog/how-to-tell-if-your-diamonds-are-real-or-fake): the fog test, loupe inspection, carat scale, UV fluorescence and diamond tester, with atelier photographs
+- [The Sacred Art of Artistic Engraving](https://www.ringsluxuryart.com/blog/the-art-of-artistic-engraving)
+- [The Anatomy of a Diamond](https://www.ringsluxuryart.com/blog/the-anatomy-of-a-diamond)
+- [The Weight of Empires: Understanding Gold Pricing](https://www.ringsluxuryart.com/blog/understanding-gold-pricing)
+- [From São Paulo to Miami: Inside the Global Atelier of Jorge Uquillas](https://www.ringsluxuryart.com/blog/from-brazil-to-miami-inside-jorge-uquillas-global-atelier)
+
+Long-form version of this file: https://www.ringsluxuryart.com/llms-full.txt

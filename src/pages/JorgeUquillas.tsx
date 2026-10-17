@@ -4,9 +4,11 @@ import { SEO } from '../components/SEO';
 import { Header } from '../components/Header';
 import { useLanguage } from '../i18n/LanguageContext';
 import { absoluteUrl, HAS_SITE_URL } from '../site.config';
+import contact from '../data/contact.json';
+import locationsData from '../data/locations.json';
 
 export function JorgeUquillas() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const navigate = useNavigate();
   const [showPreloader, setShowPreloader] = useState(true);
   const [preloaderFading, setPreloaderFading] = useState(false);
@@ -38,22 +40,64 @@ export function JorgeUquillas() {
         description={t.pages.jorgeSeoDescription}
         url="/jorge-uquillas"
       />
-      {/* Person E-E-A-T: sem isso o Google/IAs veem só um iframe vazio.
-          sameAs entra com o Instagram confirmado; demais perfis entram
-          quando você me passar as URLs oficiais. */}
+      {/*
+          E-E-A-T. Sem isso o Google e as IAs veem so um iframe vazio: nenhuma
+          biografia, nenhuma credencial, nenhuma prova de quem fez a peça.
+
+          `ExpertPerson` e o tipo certo (subtipo de Person) para alguem cuja
+          autoridade expert e o argumento de venda. O `hasCredential` fica
+          vazio de proposito: so entra com titulo/ano REAL, credencial inventada
+          e exatamente o tipo de coisa que derruba Confianca quando被发现.
+        */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             '@context': 'https://schema.org',
-            '@type': 'Person',
-            name: 'Jorge Uquillas',
-            jobTitle: 'Master Goldsmith and Hand Engraver',
-            description: t.pages.jorgeSeoDescription,
-            ...(HAS_SITE_URL ? { url: absoluteUrl('/jorge-uquillas') } : {}),
-            worksFor: { '@type': 'Organization', name: 'RINGS LUXURY by Jorge Uquillas' },
-            knowsAbout: ['Hand engraving', 'Haute joaillerie', 'Lost-wax casting', '18k gold', 'Diamond setting'],
-            sameAs: ['https://www.instagram.com/ringsluxury'],
+            '@graph': [
+              {
+                '@type': 'AboutPage',
+                ...(HAS_SITE_URL ? { '@id': `${absoluteUrl('/jorge-uquillas')}#webpage` } : {}),
+                ...(HAS_SITE_URL ? { url: absoluteUrl('/jorge-uquillas') } : {}),
+                name: 'Jorge Uquillas, master goldsmith and hand engraver',
+                inLanguage: lang,
+                ...(HAS_SITE_URL
+                  ? { isPartOf: { '@id': `${absoluteUrl('/')}#website` }, about: { '@id': `${absoluteUrl('/jorge-uquillas')}#jorge` } }
+                  : {}),
+              },
+              {
+                '@type': ['Person', 'ExpertPerson'],
+                ...(HAS_SITE_URL ? { '@id': `${absoluteUrl('/jorge-uquillas')}#jorge` } : {}),
+                name: 'Jorge Uquillas',
+                jobTitle: 'Master Goldsmith and Hand Engraver',
+                description: t.pages.jorgeSeoDescription,
+                ...(HAS_SITE_URL ? { url: absoluteUrl('/jorge-uquillas') } : {}),
+                ...(HAS_SITE_URL ? { image: absoluteUrl('/PUBLIC/rings-luxury-master-engraver-site.webp') } : {}),
+                worksFor: HAS_SITE_URL
+                  ? { '@id': `${absoluteUrl('/')}#organization` }
+                  : { '@type': 'Organization', name: 'RINGS LUXURY by Jorge Uquillas' },
+                // Fatos do maker, todos publicados no site: os dois atelieis e a
+                // clientela em 50+ paises.
+                worksLocation: HAS_SITE_URL
+                  ? locationsData.locations.map((l) => ({
+                      '@type': 'Place',
+                      name: l.label,
+                      address: { '@type': 'PostalAddress', addressLocality: l.city, addressCountry: l.countryCode },
+                    }))
+                  : [],
+                knowsAbout: [
+                  'Hand engraving',
+                  'Haute joaillerie',
+                  'Lost-wax casting',
+                  'High-relief sculpting in gold',
+                  '18k gold',
+                  'Natural diamond setting',
+                  'Agate burnishing',
+                ],
+                knowsLanguage: ['pt', 'es', 'en'],
+                sameAs: contact.sameAs,
+              },
+            ],
           }),
         }}
       />
@@ -62,6 +106,47 @@ export function JorgeUquillas() {
         Jorge Uquillas, Master Goldsmith — 1/1 handcrafted 18k gold diamond rings, hand-engraved. Atelier Brazil • Miami.
       </h1>
       {/* Iframe que carrega a experiência imersiva completa, pocket watch 3D */}
+      {/*
+          Corpo visivel fora do iframe, com sr-only para nao alterar o design.
+          A pagina e 100% um iframe 3D: para o Google, para as IAs e para quem
+          desliga JS/3D, este texto e a UNICA bio legivel que existe. Sem ele,
+          a pagina de autoria do maker (o principal ativo de E-E-A-T do site)
+          nao tinha uma unica frase de conteudo.
+        */}
+      <div className="sr-only">
+        <h2>Who is Jorge Uquillas</h2>
+        <p>
+          Jorge Uquillas is a master goldsmith and hand engraver, founder of RINGS LUXURY, with
+          private ateliers in São Paulo (Avenida Paulista, Brazil) and Miami (Brickell, Florida,
+          USA). He is known for 1/1 handmade 18k gold diamond rings engraved with hand gravers,
+          running 90 to 140 hours of hand engraving per piece, with hand-selected natural
+          diamonds set one by one under the microscope.
+        </p>
+        <h2>His technique</h2>
+        <p>
+          Jorge Uquillas holds the hand engraver himself: the engraving is cut directly into the
+          solid metal with tempered-steel gravers, never by laser or machine, and every piece
+          leaves with a master hallmark, an archival folio and a certificate of authenticity.
+          The original wax matrix is destroyed after casting, so no client piece can ever be
+          reproduced.
+        </p>
+        <h2>Teaching</h2>
+        <p>
+          He teaches the same discipline at the atelier academy, in a program of design,
+          artistic engraving fundamentals, the alchemy of metals, advanced gem setting and the
+          final masterpiece.
+        </p>
+        <h2>Clients and consultations</h2>
+        <p>
+          Clients in 50+ countries are received in person at the São Paulo and Miami ateliers, or
+          by private video consultation.
+        </p>
+        <p>
+          <a href="/blog">Journal of the atelier</a> · <a href="/faq">Frequently asked questions</a>{' '}
+          · <a href="/contact">Request a private consultation</a>
+        </p>
+      </div>
+
       <iframe
         src="/jorge-uquillas.html"
         title="RINGS LUXURY by Jorge Uquillas, Laocoön Bronze Horse 3D, Anéis artesanais HandCrafted ouro 18k"
@@ -99,7 +184,6 @@ export function JorgeUquillas() {
       <noscript>
         <div className="absolute inset-0 flex items-center justify-center bg-[#020202] text-[#C5A059]">
           <div style={{ maxWidth: 640, padding: 24, textAlign: 'center' }}>
-            <h1 style={{ fontSize: 22, marginBottom: 12 }}>Jorge Uquillas, Master Goldsmith — RINGS LUXURY</h1>
             <p style={{ fontSize: 14, color: '#A8A296' }}>{t.pages.jorgeSeoDescription}</p>
             <p style={{ fontSize: 14, marginTop: 12 }}>{t.pages.jorgeNoscript}</p>
           </div>

@@ -100,7 +100,8 @@ export function YouDecide() {
           {/* TEXTO */}
           <div className="flex flex-col">
             <h2
-              className="font-cormorant font-semibold uppercase leading-[1.08] text-[#C5A059]"
+              id="voce-decide"
+              className="font-cormorant font-semibold uppercase leading-[1.08] text-[#C5A059] scroll-mt-28"
               style={{ fontSize: 'clamp(30px, 3.4vw, 46px)', letterSpacing: '0.04em' }}
             >
               {t.home.ydTitleA}
@@ -191,12 +192,20 @@ export function YouDecide() {
               {SLIDES.map((_, i) => (
                 <button
                   key={i}
+                  type="button"
                   onClick={() => setIndex(i)}
                   aria-label={`${t.home.ydGoToPhoto}${i + 1}`}
-                  className={`h-[5px] rounded-full transition-all duration-500 ${
-                    i === index ? 'w-7 bg-[#C5A059]' : 'w-[14px] bg-[#C5A059]/25 hover:bg-[#C5A059]/50'
-                  }`}
-                />
+                  aria-current={i === index ? 'true' : undefined}
+                  // min 24x24 hit area around the visual 5px bar (WCAG 2.5.8)
+                  className={`p-2 -m-2 rounded-full ${i === index ? '' : 'hover:bg-[#C5A059]/10'}`}
+                >
+                  <span
+                    aria-hidden="true"
+                    className={`block h-[5px] rounded-full transition-all duration-500 ${
+                      i === index ? 'w-7 bg-[#C5A059]' : 'w-[14px] bg-[#C5A059]/25 hover:bg-[#C5A059]/50'
+                    }`}
+                  />
+                </button>
               ))}
             </div>
           </div>

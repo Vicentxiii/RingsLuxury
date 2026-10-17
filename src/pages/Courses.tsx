@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
@@ -27,6 +27,7 @@ export function Courses() {
   const [email, setEmail] = useState('');
   const [emailSubmitted, setEmailSubmitted] = useState(false);
   const [timeLeft, setTimeLeft] = useState(getTimeLeft);
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   const handleOpenConsultation = () => {
     const contactElem = document.getElementById('contact');
@@ -62,6 +63,20 @@ export function Courses() {
     return () => {
       document.body.style.overflow = prevOverflow;
       window.removeEventListener('keydown', onKey);
+    };
+  }, [isModalOpen]);
+
+  // Move focus into the dialog on open and restore it to the trigger on close (WCAG 2.4.3)
+  useEffect(() => {
+    if (!isModalOpen) return;
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    const node = dialogRef.current;
+    const firstFocusable = node?.querySelector<HTMLElement>(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    (firstFocusable ?? node)?.focus();
+    return () => {
+      previouslyFocused?.focus();
     };
   }, [isModalOpen]);
 
@@ -143,9 +158,9 @@ export function Courses() {
           items={[{ label: t.pages.productBreadcrumbHome, to: '/' }, { label: t.pages.coursesTitle }]}
         />
         <header className="text-center mb-20">
-          <h2 className="font-poppins text-xs font-semibold uppercase tracking-[0.3em] text-[#C5A059] mb-4">
+          <p className="font-poppins text-xs font-semibold uppercase tracking-[0.3em] text-[#C5A059] mb-4">
             {t.pages.coursesKicker}
-          </h2>
+          </p>
           <h1 className="font-cinzel text-4xl md:text-5xl font-medium tracking-wide text-[#F3EFE6] mb-8">
             {t.pages.coursesTitle}
           </h1>
@@ -176,9 +191,9 @@ export function Courses() {
               
               <div className="relative z-10 grid md:grid-cols-4 gap-8 items-center">
                 <div className="md:col-span-3">
-                  <h3 className="font-cinzel text-2xl text-[#F3EFE6] mb-4 group-hover:text-[#C5A059] transition-colors">
+                  <h2 className="font-cinzel text-2xl text-[#F3EFE6] mb-4 group-hover:text-[#C5A059] transition-colors">
                     {mod.title}
-                  </h3>
+                  </h2>
                   <p className="font-cormorant text-[#A8A296] text-lg md:text-xl leading-relaxed">
                     {mod.description}
                   </p>
@@ -186,11 +201,11 @@ export function Courses() {
                 
                 <div className="md:col-span-1 flex flex-col gap-2 md:items-end border-t md:border-t-0 md:border-l border-[#C5A059]/10 pt-4 md:pt-0 md:pl-8">
                   <div>
-                    <span className="block font-poppins text-[10px] uppercase tracking-widest text-[#C5A059]/70 mb-1">{t.pages.coursesDurationLabel}</span>
+                    <span className="block font-poppins text-[10px] uppercase tracking-widest text-[#C5A059]/85 mb-1">{t.pages.coursesDurationLabel}</span>
                     <span className="font-cinzel text-[#F3EFE6]">{mod.duration}</span>
                   </div>
                   <div className="mt-2">
-                    <span className="block font-poppins text-[10px] uppercase tracking-widest text-[#C5A059]/70 mb-1">{t.pages.coursesLevelLabel}</span>
+                    <span className="block font-poppins text-[10px] uppercase tracking-widest text-[#C5A059]/85 mb-1">{t.pages.coursesLevelLabel}</span>
                     <span className="font-cinzel text-[#F3EFE6]">{mod.level}</span>
                   </div>
                 </div>
@@ -200,7 +215,8 @@ export function Courses() {
         </div>
 
         <div className="mt-24 text-center">
-           <button 
+           <button
+              type="button"
               onClick={openModal}
               className="relative group/btn overflow-hidden border border-[#C5A059] px-12 py-5 bg-[#C5A059]/5 hover:bg-[#C5A059]/10 transition-colors"
             >
@@ -224,7 +240,11 @@ export function Courses() {
             onClick={closeModal}
             aria-hidden
           />
-          <div className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto bg-[#080808] border border-[#C5A059]/40 shadow-[0_30px_90px_rgba(0,0,0,0.95)] p-8 sm:p-10 text-center">
+          <div
+            ref={dialogRef}
+            tabIndex={-1}
+            className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto bg-[#080808] border border-[#C5A059]/40 shadow-[0_30px_90px_rgba(0,0,0,0.95)] p-8 sm:p-10 text-center"
+          >
             {/* Classical Frame Corner Brackets */}
             <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#C5A059]" aria-hidden />
             <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#C5A059]" aria-hidden />
@@ -255,7 +275,7 @@ export function Courses() {
             <p className="font-poppins text-[10px] uppercase tracking-[0.3em] text-[#9A7B38] mb-3">
               {t.pages.coursesModalDeadline}
             </p>
-            <div className="grid grid-cols-4 gap-2 sm:gap-3 mb-6" role="timer" aria-label={t.pages.coursesModalTimerAria}>
+            <div className="grid grid-cols-4 gap-2 sm:gap-3 mb-6" role="timer" aria-live="off" aria-atomic="true" aria-label={t.pages.coursesModalTimerAria}>
               {countdownUnits.map((unit) => (
                 <div
                   key={unit.label}
@@ -290,13 +310,16 @@ export function Courses() {
                 </label>
                 <input
                   id="academy-email"
+                  name="email"
                   type="email"
+                  autoComplete="email"
+                  aria-label="Your e-mail"
                   required
                   autoFocus
                   placeholder={t.pages.coursesModalEmailPlaceholder}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-transparent border-b border-[#C5A059]/30 focus:border-[#C5A059] transition-colors pb-2 text-[#F3EFE6] font-cinzel text-base tracking-wider placeholder-[#444] focus:outline-none"
+                  className="w-full bg-transparent border-b border-[#C5A059]/30 focus:border-[#C5A059] transition-colors pb-2 text-[#F3EFE6] font-cinzel text-base tracking-wider placeholder-[#6B6862] focus:outline-none"
                 />
                 <button
                   type="submit"
@@ -306,7 +329,11 @@ export function Courses() {
                 </button>
               </form>
             ) : (
-              <div className="mt-6 border border-[#C5A059]/30 bg-[#C5A059]/5 px-6 py-6">
+              <div
+                role="status"
+                aria-live="polite"
+                className="mt-6 border border-[#C5A059]/30 bg-[#C5A059]/5 px-6 py-6"
+              >
                 <p className="font-cinzel text-lg text-[#E6CA85] mb-2">{t.pages.coursesModalSuccessTitle}</p>
                 <p className="font-cormorant italic text-[#C2BDB2] text-base leading-relaxed">
                   {t.pages.coursesModalSuccessThanks} <span className="text-[#F3EFE6] not-italic">{email}</span> {t.pages.coursesModalSuccessBody}

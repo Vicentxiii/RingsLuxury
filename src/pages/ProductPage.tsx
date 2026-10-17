@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
+import { LuxuryImage } from '../components/LuxuryImage';
 import { Contact } from '../components/Contact';
 import { ProductPaymentMethods } from '../components/ProductPaymentMethods';
 import { RelatedProductsCarousel } from '../components/RelatedProductsCarousel';
@@ -145,27 +146,44 @@ export function ProductPage() {
   // lixo. Aqui o limite e 155, com reticencias so quando o corte e necessario.
   const metaDescription = truncateAtWord(localizedDescription, 155);
 
+  /*
+    Title de produto: precisa caber em ~60 caracteres, porque o <SEO> acrescenta
+    " | RINGS LUXURY" (15). "Nome, subtitulo" estourava isso nas pecas com
+    subtitulo longo e o Google cortava no meio do nome. Aqui o titulo e montado
+    com prioridade: nome da peca, material, diamante, e a marca entra como
+    sufixo curto. Se ainda assim passar de 58, corta em fronteira de palavra.
+  */
+  const productTitle = truncateAtWord(
+    product.name.includes('18K') ? `${product.name} by Jorge Uquillas` : `${product.name}, 18k Gold Ring by Jorge Uquillas`,
+    58,
+  );
+
   return (
 <div className="min-h-screen bg-[#020202] text-[#EAE6DF] selection:bg-[#C5A059] selection:text-[#020202] font-sans-luxury relative overflow-x-hidden">
       <SEO
-        title={`${product.name}, ${product.subname}`}
+        title={productTitle}
         description={metaDescription}
         url={`/produto/${product.slug}`}
         image={product.images[0]}
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      {/* FUNDO, foto fixa em todas as páginas de produto */}
-      <div className="fixed inset-0 z-0 overflow-hidden bg-black pointer-events-none" aria-hidden>
-        <img
-          src={PRODUCT_BG}
-          alt=""
-          draggable={false}
-          className="absolute inset-0 w-full h-full object-cover opacity-[0.13]"
-        />
-        {/* véu para o texto do card ganhar contraste sobre a foto */}
-        <div className="absolute inset-0 bg-[#020202]/45" />
-      </div>
+      {/* FUNDO, foto fixa em todas as páginas de produto.
+            Decorativa: aria-hidden, prioridade BAIXA e lazy. Antes era uma <img>
+            sem fetchpriority, disputando banda com a imagem do produto (LCP)
+            para exibir algo a 13% de opacidade. */}
+        <div className="fixed inset-0 z-0 overflow-hidden bg-black pointer-events-none" aria-hidden>
+          <LuxuryImage
+            src={PRODUCT_BG}
+            alt=""
+            width={1920}
+            height={1080}
+            decorative
+            className="absolute inset-0 w-full h-full object-cover opacity-[0.13]"
+          />
+          {/* véu para o texto do card ganhar contraste sobre a foto */}
+          <div className="absolute inset-0 bg-[#020202]/45" />
+        </div>
 
       <Header onOpenConsultation={() => openConsultation()} />
 
@@ -206,9 +224,18 @@ export function ProductPage() {
                   className="w-full h-auto max-h-[62vh] mx-auto drop-shadow-[0_24px_60px_rgba(0,0,0,0.85)]"
                 />
               ) : (
-                <img
+                /*
+                  Imagem principal do produto = elemento LCP desta pagina.
+                  fetchpriority="high" + width/height sao o que impede o navegador
+                  de perder a corrida para o logo e de saltar o layout (CLS).
+                  So a PRIMEIRA imagem recebe priority: as demais, nao.
+                */
+                <LuxuryImage
                   src={product.images[selectedImage]}
                   alt={`${product.name}, ${product.subname}`}
+                  width={1400}
+                  height={1400}
+                  priority={selectedImage === 0}
                   className="w-full h-auto object-contain max-h-[62vh] mx-auto drop-shadow-[0_24px_60px_rgba(0,0,0,0.85)]"
                 />
               )}
@@ -252,7 +279,13 @@ export function ProductPage() {
                     {isVideo ? (
                       <video src={img} muted playsInline preload="metadata" className="w-full h-full object-cover" aria-hidden />
                     ) : (
-                      <img src={img} alt={isCert ? t.home.mpCertAlt : isBox ? 'Caixa e sacola Rings Luxury by Jorge Uquillas' : `${product.name}, ${product.subname}, foto ${idx + 1}`} className="w-full h-full object-cover" loading="lazy" />
+                      <LuxuryImage
+                        src={img}
+                        alt={isCert ? t.home.mpCertAlt : isBox ? 'Caixa e sacola Rings Luxury by Jorge Uquillas' : `${product.name}, ${product.subname}, foto ${idx + 1}`}
+                        width={152}
+                        height={152}
+                        className="w-full h-full object-cover"
+                      />
                     )}
                     {isVideo && (
                       <span className="absolute inset-0 flex items-center justify-center bg-black/30">

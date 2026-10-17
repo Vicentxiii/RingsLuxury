@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { X, Shield, Sparkles, Gem, Clock, ArrowRight } from 'lucide-react';
 import {
   LaurelWreath,
@@ -37,11 +37,43 @@ interface ArtifactModalProps {
 export function ArtifactModal({ artifact, onClose, onRequestAcquisition }: ArtifactModalProps) {
   const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState<'dossier' | 'provenance' | 'metallurgy'>('dossier');
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  // Escape closes the dialog, body scroll is locked while it is open, and focus
+  // moves into the dialog on open and back to the trigger on close (WCAG 2.1.2 / 2.4.3).
+  useEffect(() => {
+    if (!artifact) return;
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const firstFocusable = dialogRef.current?.querySelector<HTMLElement>(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    firstFocusable?.focus();
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' || e.key === 'Esc') onClose();
+    };
+    window.addEventListener('keydown', onKey);
+
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener('keydown', onKey);
+      previouslyFocused?.focus();
+    };
+  }, [artifact, onClose]);
 
   if (!artifact) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-8 bg-[#020202]/95 backdrop-blur-2xl animate-fadeIn overflow-y-auto">
+    <div
+      ref={dialogRef}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="artifact-modal-title"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-8 bg-[#020202]/95 backdrop-blur-2xl animate-fadeIn overflow-y-auto"
+    >
       {/* Outer Glow Halo & Backlight */}
       <div className="relative w-full max-w-5xl my-auto">
         <div className="absolute -inset-1.5 rounded-[36px] bg-gradient-to-b from-[#C5A059]/40 via-transparent to-[#C5A059]/30 blur-2xl opacity-75 pointer-events-none" />
@@ -78,7 +110,9 @@ export function ArtifactModal({ artifact, onClose, onRequestAcquisition }: Artif
             </div>
 
             <button
+              type="button"
               onClick={onClose}
+              aria-label="Close"
               className="p-2.5 text-[#EAE6DF]/70 hover:text-[#020202] transition-all border border-[#C5A059]/40 hover:border-[#C5A059] bg-[#0A0A0A] hover:bg-[#C5A059] rounded-full shadow-[0_0_15px_rgba(197,160,89,0.2)]"
             >
               <X className="w-5 h-5" />
@@ -102,6 +136,7 @@ export function ArtifactModal({ artifact, onClose, onRequestAcquisition }: Artif
                 src={artifact.image}
                 alt={artifact.name}
                 referrerPolicy="no-referrer"
+                decoding="async"
                 className="w-full h-80 sm:h-96 md:h-[420px] object-cover filter contrast-105"
               />
 
@@ -126,7 +161,7 @@ export function ArtifactModal({ artifact, onClose, onRequestAcquisition }: Artif
                   {artifact.numeral}
                 </span>
                 <div>
-                  <h3 className="font-cinzel text-2xl md:text-3xl tracking-[0.18em] text-[#FBF9F5] uppercase">
+                  <h3 id="artifact-modal-title" className="font-cinzel text-2xl md:text-3xl tracking-[0.18em] text-[#FBF9F5] uppercase">
                     {artifact.name}
                   </h3>
                   <p className="font-sans-luxury text-[11px] tracking-[0.3em] uppercase text-[#9A7B38]">
@@ -136,8 +171,13 @@ export function ArtifactModal({ artifact, onClose, onRequestAcquisition }: Artif
               </div>
 
               {/* Tab Navigation */}
-              <div className="flex border-b border-[#C5A059]/20 my-6">
+              <div className="flex border-b border-[#C5A059]/20 my-6" role="tablist" aria-label="Artifact details">
                 <button
+                  type="button"
+                  role="tab"
+                  id="artifact-tab-dossier"
+                  aria-controls="artifact-panel-dossier"
+                  aria-selected={activeTab === 'dossier'}
                   onClick={() => setActiveTab('dossier')}
                   className={`pb-2.5 text-[11px] tracking-[0.25em] uppercase font-medium mr-6 transition-colors relative ${
                     activeTab === 'dossier'
@@ -151,6 +191,11 @@ export function ArtifactModal({ artifact, onClose, onRequestAcquisition }: Artif
                   )}
                 </button>
                 <button
+                  type="button"
+                  role="tab"
+                  id="artifact-tab-provenance"
+                  aria-controls="artifact-panel-provenance"
+                  aria-selected={activeTab === 'provenance'}
                   onClick={() => setActiveTab('provenance')}
                   className={`pb-2.5 text-[11px] tracking-[0.25em] uppercase font-medium mr-6 transition-colors relative ${
                     activeTab === 'provenance'
@@ -164,6 +209,11 @@ export function ArtifactModal({ artifact, onClose, onRequestAcquisition }: Artif
                   )}
                 </button>
                 <button
+                  type="button"
+                  role="tab"
+                  id="artifact-tab-metallurgy"
+                  aria-controls="artifact-panel-metallurgy"
+                  aria-selected={activeTab === 'metallurgy'}
                   onClick={() => setActiveTab('metallurgy')}
                   className={`pb-2.5 text-[11px] tracking-[0.25em] uppercase font-medium transition-colors relative ${
                     activeTab === 'metallurgy'
@@ -180,7 +230,7 @@ export function ArtifactModal({ artifact, onClose, onRequestAcquisition }: Artif
 
               {/* Tab Contents */}
               {activeTab === 'dossier' && (
-                <div className="space-y-4 animate-fadeIn">
+                <div role="tabpanel" id="artifact-panel-dossier" aria-labelledby="artifact-tab-dossier" tabIndex={0} className="space-y-4 animate-fadeIn">
                   <p className="font-cormorant text-lg md:text-xl italic text-[#D8D2C4] leading-relaxed">
                     "{artifact.description}"
                   </p>
@@ -199,7 +249,7 @@ export function ArtifactModal({ artifact, onClose, onRequestAcquisition }: Artif
               )}
 
               {activeTab === 'provenance' && (
-                <div className="space-y-4 text-xs text-[#C2BDB2] leading-relaxed animate-fadeIn">
+                <div role="tabpanel" id="artifact-panel-provenance" aria-labelledby="artifact-tab-provenance" tabIndex={0} className="space-y-4 text-xs text-[#C2BDB2] leading-relaxed animate-fadeIn">
                   <div className="border border-[#C5A059]/20 p-4 bg-[#0A0A0A]">
                     <span className="text-[10px] uppercase tracking-[0.3em] text-[#C5A059] block mb-1">
                       {t.home.amGenesisTitle}
@@ -220,7 +270,7 @@ export function ArtifactModal({ artifact, onClose, onRequestAcquisition }: Artif
               )}
 
               {activeTab === 'metallurgy' && (
-                <div className="grid grid-cols-2 gap-3 text-xs animate-fadeIn">
+                <div role="tabpanel" id="artifact-panel-metallurgy" aria-labelledby="artifact-tab-metallurgy" tabIndex={0} className="grid grid-cols-2 gap-3 text-xs animate-fadeIn">
                   <div className="p-3 bg-[#0A0A0A] border border-[#C5A059]/20">
                     <span className="text-[9px] uppercase tracking-[0.2em] text-[#9A7B38] block">
                       {t.home.amMetal}
@@ -260,6 +310,7 @@ export function ArtifactModal({ artifact, onClose, onRequestAcquisition }: Artif
             {/* Action Bar */}
             <div className="pt-6 border-t border-[#C5A059]/25 flex flex-col sm:flex-row gap-4">
               <button
+                type="button"
                 onClick={() => {
                   onClose();
                   onRequestAcquisition(artifact.name);
@@ -270,6 +321,7 @@ export function ArtifactModal({ artifact, onClose, onRequestAcquisition }: Artif
                 <ArrowRight className="w-4 h-4" />
               </button>
               <button
+                type="button"
                 onClick={onClose}
                 className="py-4.5 px-8 border border-[#C5A059]/40 hover:border-[#C5A059] text-[#EAE6DF] hover:text-[#C5A059] font-cinzel text-xs tracking-[0.25em] uppercase transition-colors rounded-full cursor-pointer"
               >

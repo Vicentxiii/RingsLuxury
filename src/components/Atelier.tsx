@@ -29,7 +29,7 @@ export function Atelier() {
             {/* Large Typography: THE HAND OF JORGE UQUILLAS, letra única */}
             <h2
               id="atelier-heading"
-              className="font-cinzel text-2xl sm:text-3xl md:text-4xl tracking-[0.16em] uppercase text-[#FBF9F5] font-light leading-[1.25]"
+              className="font-cinzel text-2xl sm:text-3xl md:text-4xl tracking-[0.16em] uppercase text-[#FBF9F5] font-light leading-[1.25] scroll-mt-28"
             >
               {t.home.atTitleA}
               <br />
@@ -46,6 +46,11 @@ export function Atelier() {
               {t.home.atQuote1}
               <br />
               {t.home.atQuote2}
+              <footer className="mt-4 not-italic">
+                <cite className="font-cinzel text-[10px] sm:text-xs not-italic uppercase tracking-[0.35em] text-[#C5A059]">
+                  Jorge Uquillas
+                </cite>
+              </footer>
             </blockquote>
 
             <p className="font-sans-luxury text-xs sm:text-sm text-[#A8A296] leading-relaxed tracking-wider">

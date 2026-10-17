@@ -97,12 +97,15 @@ export function Contact({}: ContactProps) {
                 </label>
                 <input
                   id="client-name"
+                  name="name"
                   type="text"
+                  autoComplete="name"
+                  aria-label="Your name"
                   required
                   placeholder={t.pages.contactFormNamePlaceholder}
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full bg-transparent text-[#F3EFE6] font-cinzel text-base tracking-wider placeholder-[#444] focus:outline-none"
+                  className="w-full bg-transparent text-[#F3EFE6] font-cinzel text-base tracking-wider placeholder-[#6B6862] focus:outline-none"
                 />
               </div>
 
@@ -116,12 +119,15 @@ export function Contact({}: ContactProps) {
                 </label>
                 <input
                   id="client-email"
+                  name="email"
                   type="email"
+                  autoComplete="email"
+                  aria-label="Your e-mail"
                   required
                   placeholder={t.pages.contactFormEmailPlaceholder}
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full bg-transparent text-[#F3EFE6] font-cinzel text-base tracking-wider placeholder-[#444] focus:outline-none"
+                  className="w-full bg-transparent text-[#F3EFE6] font-cinzel text-base tracking-wider placeholder-[#6B6862] focus:outline-none"
                 />
               </div>
 
@@ -135,6 +141,9 @@ export function Contact({}: ContactProps) {
                 </label>
                 <select
                   id="client-city"
+                  name="city"
+                  autoComplete="address-level2"
+                  aria-label="Preferred salon location"
                   value={formData.city}
                   onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                   className="w-full bg-[#080808] text-[#F3EFE6] font-cinzel text-sm tracking-wider focus:outline-none cursor-pointer"
@@ -172,7 +181,11 @@ export function Contact({}: ContactProps) {
           </form>
         ) : (
           /* Aristocratic Archival Confirmation State */
-          <div className="p-8 md:p-14 bg-[#080808] border border-[#C5A059] shadow-[0_30px_90px_rgba(197,160,89,0.25)] text-center animate-fadeIn">
+          <div
+            role="status"
+            aria-live="polite"
+            className="p-8 md:p-14 bg-[#080808] border border-[#C5A059] shadow-[0_30px_90px_rgba(197,160,89,0.25)] text-center animate-fadeIn"
+          >
             <div className="inline-flex items-center justify-center mb-6">
               <AncientCoinMedallion className="w-16 h-16" />
             </div>
@@ -210,6 +223,7 @@ export function Contact({}: ContactProps) {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <button
+                type="button"
                 onClick={() => {
                   setSubmitted(false);
                 }}

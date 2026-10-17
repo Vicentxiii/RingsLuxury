@@ -17,6 +17,12 @@ const ETERNIZE_IMG =
 
 interface CraftStage {
   numeral: string;
+  /**
+   * id estável e curto do <li>, derivado do título da etapa em inglês
+   * (kebab-case). Fica literal de propósito: o título vem do i18n e muda
+   * com o idioma, mas o id não pode mudar junto.
+   */
+  slug: string;
   title: string;
   subtitle: string;
   duration: string;
@@ -36,6 +42,7 @@ export function Craftsmanship() {
   const stages: CraftStage[] = [
     {
       numeral: 'I',
+      slug: 'design',
       title: t.home.crStage1Title,
       subtitle: t.home.crStage1Subtitle,
       duration: t.home.crStage1Duration,
@@ -46,6 +53,7 @@ export function Craftsmanship() {
     },
     {
       numeral: 'II',
+      slug: 'sculpt',
       title: t.home.crStage2Title,
       subtitle: t.home.crStage2Subtitle,
       duration: t.home.crStage2Duration,
@@ -56,6 +64,7 @@ export function Craftsmanship() {
     },
     {
       numeral: 'III',
+      slug: 'engrave',
       title: t.home.crStage3Title,
       subtitle: t.home.crStage3Subtitle,
       duration: t.home.crStage3Duration,
@@ -66,6 +75,7 @@ export function Craftsmanship() {
     },
     {
       numeral: 'IV',
+      slug: 'polish',
       title: t.home.crStage4Title,
       subtitle: t.home.crStage4Subtitle,
       duration: t.home.crStage4Duration,
@@ -76,6 +86,7 @@ export function Craftsmanship() {
     },
     {
       numeral: 'V',
+      slug: 'eternize',
       title: t.home.crStage5Title,
       subtitle: t.home.crStage5Subtitle,
       duration: t.home.crStage5Duration,
@@ -85,8 +96,6 @@ export function Craftsmanship() {
       image: ETERNIZE_IMG,
     },
   ];
-
-  const currentStage = stages[activeStageIndex];
 
   // Auto-play leve: 2.5s por fase, pausa no hover, para definitivo no clique
   useEffect(() => {
@@ -121,7 +130,10 @@ export function Craftsmanship() {
             <LaurelWreath className="w-4 h-4 text-[#C5A059] transform -scale-x-100" />
           </div>
 
-          <h2 className="font-cinzel text-4xl sm:text-5xl md:text-6xl tracking-[0.16em] uppercase text-[#FBF9F5] font-light mb-4">
+          <h2
+            id="oficio"
+            className="font-cinzel text-4xl sm:text-5xl md:text-6xl tracking-[0.16em] uppercase text-[#FBF9F5] font-light mb-4 scroll-mt-28"
+          >
             {t.home.crTitle}
           </h2>
 
@@ -139,10 +151,11 @@ export function Craftsmanship() {
               key={stage.numeral}
               onClick={() => handleSelectStage(idx)}
               aria-current={activeStageIndex === idx}
+              aria-controls={stage.slug}
               className={`flex flex-row sm:flex-col items-center sm:items-center gap-3 sm:gap-0 w-full sm:flex-1 min-w-0 sm:min-w-[120px] px-4 sm:px-0 py-3 sm:py-0 sm:pb-2 text-left sm:text-center border-l-2 sm:border-l-0 transition-all duration-300 relative group ${
                 activeStageIndex === idx
                   ? 'border-[#C5A059] bg-[#C5A059]/[0.07] text-[#C5A059]'
-                  : 'border-transparent text-[#EAE6DF]/40 hover:text-[#EAE6DF]'
+                  : 'border-transparent text-[#EAE6DF]/70 hover:text-[#EAE6DF]'
               }`}
             >
               <span className="font-cormorant text-2xl sm:text-3xl md:text-4xl italic leading-none sm:mb-1 shrink-0 w-10 sm:w-auto text-center">
@@ -163,108 +176,128 @@ export function Craftsmanship() {
           ))}
         </div>
 
-        {/* Stage Presentation Showcase */}
-        <div
+        {/* As 5 etapas viram uma <ol> de verdade: lista ordenada e o formato que
+            buscadores e IAs leem melhor para "como funciona / quanto tempo demora".
+            Cada <li> tem id estavel, o h3 do titulo da etapa fica dentro dele e o
+            texto vem logo abaixo. Visual identico ao de antes: so a etapa ativa
+            fica visivel (hidden = display:none), entao grid, imagens e autoplay de
+            2,5s continuam exatamente iguais. */}
+        <ol
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center"
+          className="flex flex-col gap-12 lg:gap-16"
         >
-          {/* Left: Stage Visual */}
-          <div className="lg:col-span-7 relative group">
-            <div className="relative border border-[#C5A059]/40 bg-[#070707] p-3 md:p-5 shadow-[0_25px_80px_rgba(0,0,0,0.9)]">
-              <div className="absolute -top-1 -left-1 w-2.5 h-2.5 border-t border-l border-[#C5A059]" />
-              <div className="absolute -top-1 -right-1 w-2.5 h-2.5 border-t border-r border-[#C5A059]" />
-              <div className="absolute -bottom-1 -left-1 w-2.5 h-2.5 border-b border-l border-[#C5A059]" />
-              <div className="absolute -bottom-1 -right-1 w-2.5 h-2.5 border-b border-r border-[#C5A059]" />
+          {stages.map((stage, idx) => (
+            <li
+              key={stage.numeral}
+              id={stage.slug}
+              className={
+                activeStageIndex === idx
+                  ? 'grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center'
+                  : 'hidden'
+              }
+            >
+              {/* Left: Stage Visual */}
+              <div className="lg:col-span-7 relative group">
+                <div className="relative border border-[#C5A059]/40 bg-[#070707] p-3 md:p-5 shadow-[0_25px_80px_rgba(0,0,0,0.9)]">
+                  <div className="absolute -top-1 -left-1 w-2.5 h-2.5 border-t border-l border-[#C5A059]" />
+                  <div className="absolute -top-1 -right-1 w-2.5 h-2.5 border-t border-r border-[#C5A059]" />
+                  <div className="absolute -bottom-1 -left-1 w-2.5 h-2.5 border-b border-l border-[#C5A059]" />
+                  <div className="absolute -bottom-1 -right-1 w-2.5 h-2.5 border-b border-r border-[#C5A059]" />
 
-              <div className="aspect-[16/10] overflow-hidden bg-[#020202]">
-                <img
-                  src={currentStage.image}
-                  alt={currentStage.title}
-                  referrerPolicy="no-referrer"
-                  loading="lazy"
-                  className="w-full h-full object-cover filter contrast-[1.12] brightness-95 transition-transform duration-1000 group-hover:scale-105"
-                />
+                  <div className="aspect-[16/10] overflow-hidden bg-[#020202]">
+                    <img
+                      src={stage.image}
+                      alt={stage.title}
+                      referrerPolicy="no-referrer"
+                      loading="lazy"
+                      decoding="async"
+                      width={800}
+                      height={500}
+                      className="w-full h-full object-cover filter contrast-[1.12] brightness-95 transition-transform duration-1000 group-hover:scale-105"
+                    />
+                  </div>
+
+                  {/* Stage Badge */}
+                  <div className="absolute top-4 left-4 sm:top-8 sm:left-8 px-4 py-1.5 bg-[#020202]/90 border border-[#C5A059]/40 backdrop-blur-md">
+                    <span className="text-[10px] uppercase tracking-[0.35em] text-[#C5A059]">
+                      {t.home.crPhase} {stage.numeral} • {stage.duration}
+                    </span>
+                  </div>
+                </div>
               </div>
 
-              {/* Stage Badge */}
-              <div className="absolute top-4 left-4 sm:top-8 sm:left-8 px-4 py-1.5 bg-[#020202]/90 border border-[#C5A059]/40 backdrop-blur-md">
-                <span className="text-[10px] uppercase tracking-[0.35em] text-[#C5A059]">
-                  {t.home.crPhase} {currentStage.numeral} • {currentStage.duration}
-                </span>
+              {/* Right: Stage Detail & Ritual */}
+              <div className="lg:col-span-5 flex flex-col justify-between space-y-6">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <span className="font-cormorant text-4xl sm:text-5xl text-[#C5A059] italic font-light leading-none">
+                      {stage.numeral}
+                    </span>
+                    <div className="h-8 w-px bg-[#C5A059]/40" />
+                    <span className="text-[10px] uppercase tracking-[0.35em] text-[#9A7B38]">
+                      {t.home.crProtocol}
+                    </span>
+                  </div>
+
+                  <h3 className="font-cinzel text-2xl sm:text-3xl md:text-4xl tracking-[0.2em] uppercase text-[#FBF9F5]">
+                    {stage.title}
+                  </h3>
+
+                  <p className="font-cormorant text-lg italic text-[#C5A059] tracking-wider">
+                    {stage.subtitle}
+                  </p>
+
+                  <p className="font-sans-luxury text-xs text-[#A8A296] leading-relaxed tracking-wider pt-2">
+                    {stage.description}
+                  </p>
+                </div>
+
+                {/* Ritual & Tool Boxes */}
+                <div className="space-y-3 pt-4 border-t border-[#C5A059]/20 text-xs">
+                  <div className="p-3.5 bg-[#070707] border-l-2 border-[#C5A059]">
+                    <span className="text-[9px] uppercase tracking-[0.25em] text-[#C5A059] block mb-1 font-semibold">
+                      {t.home.crRitualLabel}
+                    </span>
+                    <span className="text-[#C2BDB2]">{stage.ritual}</span>
+                  </div>
+
+                  <div className="p-3.5 bg-[#070707] border-l-2 border-[#C5A059]/50">
+                    <span className="text-[9px] uppercase tracking-[0.25em] text-[#9A7B38] block mb-1 font-semibold">
+                      {t.home.crInstrumentLabel}
+                    </span>
+                    <span className="text-[#C2BDB2]">{stage.tool}</span>
+                  </div>
+                </div>
+
+                {/* Stepper Controls */}
+                <div className="flex items-center justify-between pt-6 border-t border-[#C5A059]/20">
+                  <button
+                    disabled={activeStageIndex === 0}
+                    onClick={() => handleSelectStage(Math.max(0, activeStageIndex - 1))}
+                    className="flex items-center gap-2 text-xs font-cinzel tracking-[0.25em] uppercase text-[#EAE6DF]/60 hover:text-[#C5A059] disabled:opacity-20 disabled:pointer-events-none transition-colors"
+                  >
+                    <ArrowLeft className="w-4 h-4" />
+                    <span>{t.home.crPrev}</span>
+                  </button>
+
+                  <span className="text-[10px] tracking-[0.3em] text-[#9A7B38]">
+                    {activeStageIndex + 1} / {stages.length}
+                  </span>
+
+                  <button
+                    disabled={activeStageIndex === stages.length - 1}
+                    onClick={() => handleSelectStage(Math.min(stages.length - 1, activeStageIndex + 1))}
+                    className="flex items-center gap-2 text-xs font-cinzel tracking-[0.25em] uppercase text-[#C5A059] hover:text-[#E6CA85] disabled:opacity-20 disabled:pointer-events-none transition-colors"
+                  >
+                    <span>{t.home.crNext}</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
-            </div>
-          </div>
-
-          {/* Right: Stage Detail & Ritual */}
-          <div className="lg:col-span-5 flex flex-col justify-between space-y-6">
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <span className="font-cormorant text-4xl sm:text-5xl text-[#C5A059] italic font-light leading-none">
-                  {currentStage.numeral}
-                </span>
-                <div className="h-8 w-px bg-[#C5A059]/40" />
-                <span className="text-[10px] uppercase tracking-[0.35em] text-[#9A7B38]">
-                  {t.home.crProtocol}
-                </span>
-              </div>
-
-              <h3 className="font-cinzel text-2xl sm:text-3xl md:text-4xl tracking-[0.2em] uppercase text-[#FBF9F5]">
-                {currentStage.title}
-              </h3>
-
-              <p className="font-cormorant text-lg italic text-[#C5A059] tracking-wider">
-                {currentStage.subtitle}
-              </p>
-
-              <p className="font-sans-luxury text-xs text-[#A8A296] leading-relaxed tracking-wider pt-2">
-                {currentStage.description}
-              </p>
-            </div>
-
-            {/* Ritual & Tool Boxes */}
-            <div className="space-y-3 pt-4 border-t border-[#C5A059]/20 text-xs">
-              <div className="p-3.5 bg-[#070707] border-l-2 border-[#C5A059]">
-                <span className="text-[9px] uppercase tracking-[0.25em] text-[#C5A059] block mb-1 font-semibold">
-                  {t.home.crRitualLabel}
-                </span>
-                <span className="text-[#C2BDB2]">{currentStage.ritual}</span>
-              </div>
-
-              <div className="p-3.5 bg-[#070707] border-l-2 border-[#C5A059]/50">
-                <span className="text-[9px] uppercase tracking-[0.25em] text-[#9A7B38] block mb-1 font-semibold">
-                  {t.home.crInstrumentLabel}
-                </span>
-                <span className="text-[#C2BDB2]">{currentStage.tool}</span>
-              </div>
-            </div>
-
-            {/* Stepper Controls */}
-            <div className="flex items-center justify-between pt-6 border-t border-[#C5A059]/20">
-              <button
-                disabled={activeStageIndex === 0}
-                onClick={() => handleSelectStage(Math.max(0, activeStageIndex - 1))}
-                className="flex items-center gap-2 text-xs font-cinzel tracking-[0.25em] uppercase text-[#EAE6DF]/60 hover:text-[#C5A059] disabled:opacity-20 disabled:pointer-events-none transition-colors"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                <span>{t.home.crPrev}</span>
-              </button>
-
-              <span className="text-[10px] tracking-[0.3em] text-[#9A7B38]">
-                {activeStageIndex + 1} / {stages.length}
-              </span>
-
-              <button
-                disabled={activeStageIndex === stages.length - 1}
-                onClick={() => handleSelectStage(Math.min(stages.length - 1, activeStageIndex + 1))}
-                className="flex items-center gap-2 text-xs font-cinzel tracking-[0.25em] uppercase text-[#C5A059] hover:text-[#E6CA85] disabled:opacity-20 disabled:pointer-events-none transition-colors"
-              >
-                <span>{t.home.crNext}</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-        </div>
+            </li>
+          ))}
+        </ol>
       </div>
 
       <div className="w-full mt-24 opacity-25">

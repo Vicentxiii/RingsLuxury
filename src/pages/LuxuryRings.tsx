@@ -175,13 +175,13 @@ export function LuxuryRings() {
                     onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
                   />
                 </div>
-                <p className="mt-4 sm:mt-2 min-h-[44px] flex items-start justify-center text-[13px] leading-[1.5] text-white/90 max-w-[260px] group-hover:text-[#E6CA85] transition-colors">
+                <h2 className="mt-4 sm:mt-2 min-h-[44px] flex items-start justify-center text-[13px] font-normal leading-[1.5] text-white/90 max-w-[260px] group-hover:text-[#E6CA85] transition-colors">
                   {ring.name}
-                </p>
+                </h2>
                 <p className="mt-3 sm:mt-2 font-cinzel text-[15px] tracking-[0.08em] text-[#E6CA85]">
                   {ring.price}
                 </p>
-                <span className="mt-5 sm:mt-3 inline-block px-6 py-1.5 border border-white/25 group-hover:border-[#C5A059] rounded-full text-[11px] tracking-[0.12em] text-white/85 group-hover:text-[#E6CA85] transition-colors">
+                <span className="mt-5 sm:mt-3 inline-block px-6 py-1.5 border border-white/45 group-hover:border-[#C5A059] rounded-full text-[11px] tracking-[0.12em] text-white/85 group-hover:text-[#E6CA85] transition-colors">
                   {t.collections.addToCart}
                 </span>
               </Link>

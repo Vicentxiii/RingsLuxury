@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Maximize2, X, Sparkles } from 'lucide-react';
 import {
   GreekKeyBorder,
@@ -31,6 +31,31 @@ interface GalleryItem {
 export function Gallery() {
   const { t } = useLanguage();
   const [activeItem, setActiveItem] = useState<GalleryItem | null>(null);
+  const lightboxRef = useRef<HTMLDivElement>(null);
+
+  // Escape closes the lightbox, body scroll is locked while it is open, and focus
+  // moves into the viewer on open and back to the trigger on close (WCAG 2.1.2 / 2.4.3).
+  useEffect(() => {
+    if (!activeItem) return;
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    lightboxRef.current
+      ?.querySelector<HTMLElement>('button, [href], [tabindex]:not([tabindex="-1"])')
+      ?.focus();
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' || e.key === 'Esc') setActiveItem(null);
+    };
+    window.addEventListener('keydown', onKey);
+
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener('keydown', onKey);
+      previouslyFocused?.focus();
+    };
+  }, [activeItem]);
 
   const galleryItems: GalleryItem[] = [
     {
@@ -146,12 +171,16 @@ export function Gallery() {
                     alt={item.title}
                     referrerPolicy="no-referrer"
                     loading="lazy"
+                    decoding="async"
+                    width={800}
+                    height={550}
                     className="w-full h-full object-cover filter contrast-[1.1] brightness-[0.92] group-hover:scale-105 group-hover:brightness-100 transition-all duration-1000 ease-out"
                   />
 
                   {/* Hover Overlay with Curatorial Inspection Button */}
                   <div className="absolute inset-0 bg-[#020202]/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center p-6">
                     <button
+                      type="button"
                       onClick={() => setActiveItem(item)}
                       className="px-6 py-2.5 border border-[#C5A059] bg-[#0A0A0A]/90 text-[#C5A059] text-[10px] uppercase font-cinzel tracking-[0.3em] flex items-center gap-2 hover:bg-[#C5A059] hover:text-[#020202] transition-all rounded-full"
                     >
@@ -186,7 +215,13 @@ export function Gallery() {
 
       {/* Lightbox / High-Res Inspection Modal with Futuristic Rounded Shell & Arabesques */}
       {activeItem && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-8 bg-[#020202]/95 backdrop-blur-2xl animate-fadeIn overflow-y-auto">
+        <div
+          ref={lightboxRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Image viewer"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-8 bg-[#020202]/95 backdrop-blur-2xl animate-fadeIn overflow-y-auto"
+        >
           {/* Ambient Glow */}
           <div className="relative w-full max-w-4xl my-auto">
             <div className="absolute -inset-1.5 rounded-[36px] bg-gradient-to-b from-[#C5A059]/35 via-transparent to-[#C5A059]/25 blur-2xl opacity-75 pointer-events-none" />
@@ -207,7 +242,9 @@ export function Gallery() {
               </div>
 
               <button
+                type="button"
                 onClick={() => setActiveItem(null)}
+                aria-label="Close image viewer"
                 className="absolute top-5 right-5 z-40 p-2.5 text-[#EAE6DF]/70 hover:text-[#020202] border border-[#C5A059]/40 hover:border-[#C5A059] bg-[#0A0A0A] hover:bg-[#C5A059] rounded-full transition-all shadow-[0_0_15px_rgba(197,160,89,0.2)]"
               >
                 <X className="w-5 h-5" />
@@ -219,6 +256,7 @@ export function Gallery() {
                     src={activeItem.image}
                     alt={activeItem.title}
                     referrerPolicy="no-referrer"
+                    decoding="async"
                     className="max-h-[55vh] object-contain filter contrast-105 rounded-xl"
                   />
                 </div>

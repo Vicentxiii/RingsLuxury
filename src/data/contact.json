@@ -4,12 +4,26 @@
   "phoneDisplay": "+55 11 97724-0777",
   "email": "uquillasartjewells@gmail.com",
   "hours": {
-    "days": ["Monday", "Friday"],
+    "$comment": "days precisa ser a lista COMPLETA de dias uteis. Estava [Monday, Friday], que o Google lia como 'so segunda e sexta', contradizendo displayDays. graph.org e Google aceitam strings simples, mas URLs https://schema.org/ sao mais Robustas (D24).",
+    "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
     "opens": "10:00",
     "closes": "19:00",
     "display": "10:00 – 19:00",
     "displayDays": "Monday – Friday"
   },
+  "$sameAsComment": "Perfis oficiais do negocio, confirmados pelo proprio Jorge. sameAs e o sinal mais forte de identidade para o Google (Knowledge Panel): e ele que liga o site aos perfis e prova que a empresa existe fora do proprio dominio. Fonte unica: SEO.tsx, vite-plugin-seo-inject.ts, Footer.tsx e llms.txt leem daqui. NAO inventar perfil que nao exista.",
+  "sameAs": [
+    "https://www.instagram.com/ringsluxury",
+    "https://www.youtube.com/@jorgeuquillas3101",
+    "https://www.facebook.com/jorge.uquillas.9",
+    "https://share.google/U3vLJbvdUMSo8xNIX"
+  ],
+  "$sameAsPending": [
+    "LinkedIn / Pinterest / TikTok do Jorge Uquillas: nenhum encontrado no codigo. Preencher quando ele fornecer."
+  ],
+  "$keywordsComment": "Keywords do negocio (entity-level). Termos que descrevem O QUE a empresa e, nao a pagina. Mantido aqui para o JSON-LD de SEO.tsx ler junto com o NAP.",
+  "keywords": "RINGS LUXURY, Jorge Uquillas, HandCrafted jewelry, handmade 18k gold diamond rings, hand engraving, hand engraver, haute joaillerie, one of one ring, natural diamonds, aneis artesanais, ourivesaria, master goldsmith",
+  "logo": "/PUBLIC/logo-novo-rings-luxury.webp",
   "credit": {
     "prefix": "Site created by",
     "name": "Vicente Czar",

@@ -165,6 +165,9 @@ export function RelatedProductsCarousel({ products, title, subtitle }: RelatedPr
                   src={p.images[0]}
                   alt={p.name}
                   loading="lazy"
+                  decoding="async"
+                  width={400}
+                  height={400}
                   draggable={false}
                   className="w-[88%] h-[88%] object-contain drop-shadow-[0_18px_28px_rgba(0,0,0,0.8)] opacity-90 group-hover:opacity-100 group-hover:scale-[1.06] transition-all duration-700 ease-out select-none"
                 />
@@ -236,7 +239,7 @@ export function RelatedProductsCarousel({ products, title, subtitle }: RelatedPr
           <button
             aria-label={t.collections.relatedPrev}
             onClick={() => scroll('left')}
-            className="w-10 h-10 rounded-full border border-[#C5A059]/30 text-[#C5A059] flex items-center justify-center active:bg-[#C5A059] active:text-[#020202] transition-colors"
+            className="w-11 h-11 rounded-full border border-[#C5A059]/30 text-[#C5A059] flex items-center justify-center active:bg-[#C5A059] active:text-[#020202] transition-colors"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
@@ -244,7 +247,7 @@ export function RelatedProductsCarousel({ products, title, subtitle }: RelatedPr
           <button
             aria-label={t.collections.relatedNext}
             onClick={() => scroll('right')}
-            className="w-10 h-10 rounded-full border border-[#C5A059]/30 text-[#C5A059] flex items-center justify-center active:bg-[#C5A059] active:text-[#020202] transition-colors"
+            className="w-11 h-11 rounded-full border border-[#C5A059]/30 text-[#C5A059] flex items-center justify-center active:bg-[#C5A059] active:text-[#020202] transition-colors"
           >
             <ChevronRight className="w-4 h-4" />
           </button>

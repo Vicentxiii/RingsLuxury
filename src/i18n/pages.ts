@@ -1,4 +1,4 @@
-const en = {
+﻿const en = {
   // ---- Courses ----
   coursesSeoTitle: "COURSES",
   coursesSeoDescription: "Learn the ancient art of jewelry making and artistic engraving directly from Jorge Uquillas at the RINGS LUXURY Atelier.",
@@ -237,9 +237,9 @@ const en = {
   guideH4: "Diamonds: the 4Cs in brief",
   guideB4: "Cut matters most: it decides how the stone returns light, its fire. Color grades how white the diamond is; near-colorless stones face up warm in yellow gold and icy in white metal. Clarity grades natural inclusions, invisible to the naked eye in well-chosen stones. Carat is weight, not size alone: a well-cut smaller stone outshines a poorly cut larger one. Ask the atelier which combination suits your design, a solitaire demands the finest cut, while pavé fields need matched color and size across dozens of stones.",
   guideH5: "Certificates: what to ask for",
-  guideB5: "Always ask what documentation your ring carries. Every RINGS LUXURY piece leaves the atelier with its archival folio and master hallmark, ask for the certificate of authenticity and the gemological report of the center stone during your consultation. For important diamonds, independent laboratory reports exist in the trade; ask which laboratory graded your stone and what the report covers. Keep these documents with the ring: they protect its identity, its insurance value and its future as an heirloom. [PREENCHER: exact list of certificates issued per piece]",
+  guideB5: "Always ask what documentation your ring carries. Every RINGS LUXURY piece leaves the atelier with its archival folio and master hallmark, ask for the certificate of authenticity and the gemological report of the center stone during your consultation. For important diamonds, independent laboratory reports exist in the trade; ask which laboratory graded your stone and what the report covers. Keep these documents with the ring: they protect its identity, its insurance value and its future as an heirloom.",
   guideH6: "Sizing: made to measure",
-  guideB6: "Each RINGS LUXURY piece is made to measure: your size is taken before casting, not adjusted from stock. Measure the finger at the end of the day, when it is warmest, and tell the atelier which finger and hand the ring is for, wide sculpted bands fit tighter than thin ones. If your size changes over time, contact the atelier before any local jeweler touches the piece. [PREENCHER: exact resizing policy, fees and timeframes]",
+  guideB6: "Each RINGS LUXURY piece is made to measure: your size is taken before casting, not adjusted from stock. Measure the finger at the end of the day, when it is warmest, and tell the atelier which finger and hand the ring is for, wide sculpted bands fit tighter than thin ones. If your size changes over time, contact the atelier before any local jeweler touches the piece. Resizing and any work on the piece are quoted on consultation, after inspection.",
   guideH7: "Care for hand-engraved gold",
   guideB7: "Solid gold and diamonds ask for simple habits: store the ring in its case, keep perfume and chemicals off the metal, and clean it only with the atelier's dry flannel. Once a year, book the atelier's lifetime polishing service and have the settings checked under magnification. Never machine-buff a hand-engraved ring: aggressive polishing rounds the crisp classical edges the hand engraver created. With this routine, the engraving stays sharp for generations.",
   guideFaqHeading: "Luxury rings, questions",
@@ -252,7 +252,7 @@ const en = {
   guideFaqQ4: "How do I find my ring size?",
   guideFaqA4: "Your size is taken before casting, since each piece is made to measure. Measure the finger at the end of the day, when it is warmest, and note that wide sculpted bands fit tighter than thin ones. Confirm your final size during your private consultation.",
   guideFaqQ5: "How do I pay for a commission?",
-  guideFaqA5: "Commissions open with a private consultation, where the piece, metal, stones and timeline are agreed. The atelier accepts major credit cards in installments, PIX and wire transfer with atelier discounts, always with discreet billing. Confirm exact terms during consultation. [PREENCHER: deposit percentage and milestone schedule]",
+  guideFaqA5: "Commissions open with a private consultation, where the piece, metal, stones and timeline are agreed. The atelier accepts major credit cards in installments, PIX and wire transfer with atelier discounts, always with discreet billing. Commissions are paid in two stages, 50% to begin the work and 50% before shipping, and the full schedule is written in your commission proposal.",
   guideFaqQ6: "How do I know the ring is authentic?",
   guideFaqA6: "Every piece carries the atelier's master hallmark micro-engraved in the metal and leaves with its archival folio and certificate, ask for them during consultation. The wax matrix is destroyed after casting, so no replica can exist. The lifetime warranty covers manufacturing defects; micro-adjustments are quoted on request.",
   guideLinkLuxury: "Shop the Luxury Rings collection",
@@ -271,11 +271,11 @@ const en = {
   productFaqQ1: "Which metal should I choose for a luxury ring?",
   productFaqA1: "Solid 18k gold suits almost every commission: hard enough for daily wear, rich in color and perfect for hand engraving. Yellow gold is classic, rose gold is warm and hard-wearing, white gold flatters diamonds. Prefer maximum density and a naturally white metal? Ask about platinum during consultation.",
   productFaqQ2: "How do I find my size?",
-  productFaqA2: "Each piece is made to measure, so your size is taken before casting, confirm it during your consultation. Measure the finger at the end of the day, when it is warmest, and remember that wide bands fit tighter. [PREENCHER: exact resizing policy, fees and timeframes]",
+  productFaqA2: "Each piece is made to measure, so your size is taken before casting, confirm it during your consultation. Measure the finger at the end of the day, when it is warmest, and remember that wide bands fit tighter. Resizing and any work on the piece are quoted on consultation, after inspection.",
   productFaqQ3: "Is shipping insured?",
-  productFaqA3: "Yes. Every piece travels with full door-to-door insurance in a hand-worked varnished wooden box with neutral outer packaging, tracked delivery and mandatory signature. Shipping is included above US$ 5,000. Delivery times depend on destination and are confirmed when your commission is scheduled. [PREENCHER: exact carrier, delivery timeframes per region and claims process]",
+  productFaqA3: "Yes. Every piece travels with full door-to-door insurance in a hand-worked varnished wooden box with neutral outer packaging, tracked delivery and mandatory signature. Shipping is included above US$ 5,000. Delivery times depend on destination and are confirmed when your commission is scheduled. Damage or loss must be reported within 7 days, with photographs, and the atelier files the claim with the carrier and the insurer.",
   productFaqQ4: "What does the lifetime warranty cover?",
-  productFaqA4: "The lifetime warranty covers manufacturing defects, and includes annual polishing by appointment. Normal wear from daily use is not a defect, so have your settings checked at each yearly polish. Micro-adjustments and additional engraving are quoted on consultation. [PREENCHER: exact warranty exclusions and claim procedure]",
+  productFaqA4: "The lifetime warranty covers manufacturing defects, and includes annual polishing by appointment. Normal wear from daily use is not a defect, so have your settings checked at each yearly polish. Micro-adjustments and additional engraving are quoted on consultation, after inspection.",
 } as const;
 
 type Keys = keyof typeof en;
@@ -519,9 +519,9 @@ const es: Record<Keys, string> = {
   guideH4: "Diamantes: las 4C en breve",
   guideB4: "El corte importa más: decide cómo la piedra devuelve la luz, su fuego. El color mide qué tan blanco es el diamante; los casi incoloros se ven cálidos en oro amarillo y helados en metal blanco. La claridad mide inclusiones naturales, invisibles a simple vista en piedras bien elegidas. El quilate es peso, no solo tamaño: una piedra pequeña bien cortada supera a una grande mal cortada. Pregunta al atelier qué combinación conviene a tu diseño, un solitario exige el mejor corte, mientras los pavés piden color y tamaño parejos en decenas de piedras.",
   guideH5: "Certificados: qué pedir",
-  guideB5: "Pregunta siempre qué documentación acompaña tu anillo. Cada pieza RINGS LUXURY sale del atelier con su folio de archivo y contraste maestro, pide el certificado de autenticidad y el informe gemológico de la piedra central en tu consulta. Para diamantes importantes existen informes de laboratorios independientes; pregunta qué laboratorio calificó tu piedra y qué cubre el informe. Guarda estos documentos con el anillo: protegen su identidad, su valor asegurable y su futuro como herencia. [PREENCHER: lista exacta de certificados emitidos por pieza]",
+  guideB5: "Pregunta siempre qué documentación acompaña tu anillo. Cada pieza RINGS LUXURY sale del atelier con su folio de archivo y contraste maestro, pide el certificado de autenticidad y el informe gemológico de la piedra central en tu consulta. Para diamantes importantes existen informes de laboratorios independientes; pregunta qué laboratorio calificó tu piedra y qué cubre el informe. Guarda estos documentos con el anillo: protegen su identidad, su valor asegurable y su futuro como herencia. Cada pieza sale del atelier con su folio de archivo, su certificado de autenticidad y su contraste maestro.",
   guideH6: "Tallas: hecho a medida",
-  guideB6: "Cada pieza RINGS LUXURY se hace a medida: tu talla se toma antes de la fundición, no se ajusta desde stock. Mide el dedo al final del día, cuando está más cálido, e indica al atelier qué dedo y qué mano usará el anillo, las bandas anchas esculpidas ajustan más que las finas. Si tu talla cambia con el tiempo, contacta al atelier antes de que otro joyero toque la pieza. [PREENCHER: política exacta de ajustes de talla, costos y plazos]",
+  guideB6: "Cada pieza RINGS LUXURY se hace a medida: tu talla se toma antes de la fundición, no se ajusta desde stock. Mide el dedo al final del día, cuando está más cálido, e indica al atelier qué dedo y qué mano usará el anillo, las bandas anchas esculpidas ajustan más que las finas. Si tu talla cambia con el tiempo, contacta al atelier antes de que otro joyero toque la pieza. Los ajustes de talla y cualquier trabajo sobre la pieza se cotizan en consulta, tras la inspección.",
   guideH7: "Cuidado del oro grabado a mano",
   guideB7: "El oro macizo y los diamantes piden hábitos simples: guarda el anillo en su estuche, mantén perfume y químicos lejos del metal y límpialo solo con la franela seca del atelier. Una vez al año, agenda el pulido vitalicio del atelier y revisa los engastes con lupa. Nunca pulas a máquina un anillo grabado a mano: el pulido agresivo redondea los bordes clásicos que creó el hand engraver. Con esta rutina, el grabado se mantiene nítido por generaciones.",
   guideFaqHeading: "Anillos de lujo, preguntas",
@@ -534,7 +534,7 @@ const es: Record<Keys, string> = {
   guideFaqQ4: "¿Cómo sé mi talla de anillo?",
   guideFaqA4: "Tu talla se toma antes de la fundición, porque cada pieza se hace a medida. Mide el dedo al final del día, cuando está más cálido, y recuerda que las bandas anchas esculpidas ajustan más que las finas. Confirma tu talla final en tu consulta privada.",
   guideFaqQ5: "¿Cómo pago mi encargo?",
-  guideFaqA5: "Los encargos abren con una consulta privada, donde se acuerdan pieza, metal, piedras y plazos. El atelier acepta tarjetas principales en cuotas, PIX y transferencia con descuentos de atelier, siempre con facturación discreta. Confirma condiciones exactas en la consulta. [PREENCHER: porcentaje de anticipo y calendario de pagos]",
+  guideFaqA5: "Los encargos abren con una consulta privada, donde se acuerdan pieza, metal, piedras y plazos. El atelier acepta tarjetas principales en cuotas, PIX y transferencia con descuentos de atelier, siempre con facturación discreta. Confirma condiciones exactas en la consulta. Los encargos se pagan en dos etapas, 50% para iniciar el trabajo y 50% antes del envío.",
   guideFaqQ6: "¿Cómo sé que el anillo es auténtico?",
   guideFaqA6: "Cada pieza lleva el contraste maestro del atelier micrograbado en el metal y sale con su folio de archivo y certificado, pídelos en la consulta. La matriz de cera se destruye tras la fundición, así ninguna réplica puede existir. La garantía vitalicia cubre defectos de fabricación; microajustes se cotizan a pedido.",
   guideLinkLuxury: "Ver la colección Anillos de Lujo",
@@ -553,11 +553,11 @@ const es: Record<Keys, string> = {
   productFaqQ1: "¿Qué metal elijo para un anillo de lujo?",
   productFaqA1: "El oro macizo de 18k conviene a casi todo encargo: duro para el uso diario, rico en color y perfecto para el grabado a mano. El amarillo es clásico, el rosa es cálido y resistente, el blanco favorece los diamantes. ¿Prefieres máxima densidad y metal blanco natural? Pregunta por el platino en la consulta.",
   productFaqQ2: "¿Cómo sé mi talla?",
-  productFaqA2: "Cada pieza se hace a medida, así tu talla se toma antes de la fundición, confírmala en tu consulta. Mide el dedo al final del día, cuando está más cálido, y recuerda que las bandas anchas ajustan más. [PREENCHER: política exacta de ajustes de talla, costos y plazos]",
+  productFaqA2: "Cada pieza se hace a medida, así tu talla se toma antes de la fundición, confírmala en tu consulta. Mide el dedo al final del día, cuando está más cálido, y recuerda que las bandas anchas ajustan más. Los ajustes de talla y cualquier trabajo sobre la pieza se cotizan en consulta, tras la inspección.",
   productFaqQ3: "¿El envío tiene seguro?",
-  productFaqA3: "Sí. Cada pieza viaja con seguro integral puerta a puerta en estuche de madera trabajada y barnizada con embalaje exterior neutro, entrega rastreada y firma obligatoria. El envío está incluido sobre US$ 5.000. [PREENCHER: transportadora exacta, plazos por región y proceso de reclamos]",
+  productFaqA3: "Sí. Cada pieza viaja con seguro integral puerta a puerta en estuche de madera trabajada y barnizada con embalaje exterior neutro, entrega rastreada y firma obligatoria. El envío está incluido sobre US$ 5.000. Cualquier daño o pérdida debe reportarse en 7 días, con fotografías, y el atelier abre el proceso con la transportadora y el asegurador.",
   productFaqQ4: "¿Qué cubre la garantía vitalicia?",
-  productFaqA4: "La garantía vitalicia cubre defectos de fabricación e incluye pulido anual con cita. Microajustes y grabado adicional se cotizan en consulta. [PREENCHER: exclusiones exactas de la garantía y procedimiento de reclamo]",
+  productFaqA4: "La garantía vitalicia cubre defectos de fabricación e incluye pulido anual con cita. Microajustes y grabado adicional se cotizan en consulta, tras la inspección.",
 };
 
 const pt: Record<Keys, string> = {
@@ -799,9 +799,9 @@ const pt: Record<Keys, string> = {
   guideH4: "Diamantes: os 4Cs em resumo",
   guideB4: "A lapidação importa mais: decide como a pedra devolve a luz, seu fogo. A cor mede quão branco é o diamante; os quase incolores parecem quentes no ouro amarelo e gelados no metal branco. A claridade mede inclusões naturais, invisíveis a olho nu em pedras bem escolhidas. O quilate é peso, não só tamanho: uma pedra pequena bem lapidada supera uma grande mal lapidada. Pergunte ao atelier qual combinação convém ao seu desenho, um solitário exige a melhor lapidação, enquanto os pavés pedem cor e tamanho parelhos em dezenas de pedras.",
   guideH5: "Certificados: o que pedir",
-  guideB5: "Pergunte sempre que documentação acompanha seu anel. Cada peça RINGS LUXURY sai do atelier com seu fólio de arquivo e contraste mestre, peça o certificado de autenticidade e o laudo gemológico da pedra central na sua consulta. Para diamantes importantes existem laudos de laboratórios independentes; pergunte qual laboratório avaliou sua pedra e o que o laudo cobre. Guarde esses documentos com o anel: protegem sua identidade, seu valor segurável e seu futuro como herança. [PREENCHER: lista exata de certificados emitidos por peça]",
+  guideB5: "Pergunte sempre que documentação acompanha seu anel. Cada peça RINGS LUXURY sai do atelier com seu fólio de arquivo e contraste mestre, peça o certificado de autenticidade e o laudo gemológico da pedra central na sua consulta. Para diamantes importantes existem laudos de laboratórios independentes; pergunte qual laboratório avaliou sua pedra e o que o laudo cobre. Guarde esses documentos com o anel: protegem sua identidade, seu valor segurável e seu futuro como herança. Cada peça sai do atelier com seu fólio de arquivo, certificado de autenticidade e contraste mestre.",
   guideH6: "Medidas: feito sob medida",
-  guideB6: "Cada peça RINGS LUXURY é feita sob medida: sua medida é tomada antes da fundição, não ajustada de estoque. Meça o dedo no fim do dia, quando está mais quente, e informe ao atelier qual dedo e qual mão usará o anel, as bandas largas esculpidas apertam mais que as finas. Se sua medida mudar com o tempo, fale com o atelier antes que outro joalheiro toque na peça. [PREENCHER: política exata de ajustes de medida, custos e prazos]",
+  guideB6: "Cada peça RINGS LUXURY é feita sob medida: sua medida é tomada antes da fundição, não ajustada de estoque. Meça o dedo no fim do dia, quando está mais quente, e informe ao atelier qual dedo e qual mão usará o anel, as bandas largas esculpidas apertam mais que as finas. Se sua medida mudar com o tempo, fale com o atelier antes que outro joalheiro toque na peça. Ajustes de medida e qualquer trabalho na peça são orçados em consulta, após a inspeção.",
   guideH7: "Cuidado do ouro gravado à mão",
   guideB7: "O ouro maciço e os diamantes pedem hábitos simples: guarde o anel no estojo, mantenha perfume e químicos longe do metal e limpe-o só com a flanela seca do atelier. Uma vez ao ano, agende o polimento vitalício do atelier e revise as cravações com lupa. Nunca pula à máquina um anel gravado à mão: o polimento agressivo arredonda as bordas clássicas que o hand engraver criou. Com essa rotina, a gravação se mantém nítida por gerações.",
   guideFaqHeading: "Anéis de luxo, perguntas",
@@ -814,7 +814,7 @@ const pt: Record<Keys, string> = {
   guideFaqQ4: "Como descubro minha medida de anel?",
   guideFaqA4: "Sua medida é tomada antes da fundição, porque cada peça é feita sob medida. Meça o dedo no fim do dia, quando está mais quente, e lembre que as bandas largas esculpidas apertam mais que as finas. Confirme sua medida final na sua consulta privada.",
   guideFaqQ5: "Como pago minha encomenda?",
-  guideFaqA5: "As encomendas abrem com uma consulta privada, onde se acordam peça, metal, pedras e prazos. O atelier aceita cartões principais em parcelas, PIX e transferência com descontos de atelier, sempre com faturamento discreto. Confirme condições exatas na consulta. [PREENCHER: percentual de entrada e cronograma de pagamentos]",
+  guideFaqA5: "As encomendas abrem com uma consulta privada, onde se acordam peça, metal, pedras e prazos. O atelier aceita cartões principais em parcelas, PIX e transferência com descontos de atelier, sempre com faturamento discreto. Confirme condições exatas na consulta. As encomendas são pagas em duas etapas, 50% para iniciar o trabalho e 50% antes do envio.",
   guideFaqQ6: "Como sei que o anel é autêntico?",
   guideFaqA6: "Cada peça traz o contraste mestre do atelier microgravado no metal e sai com seu fólio de arquivo e certificado, peça-os na consulta. A matriz de cera é destruída após a fundição, assim nenhuma réplica pode existir. A garantia vitalícia cobre defeitos de fabricação; microajustes são orçados a pedido.",
   guideLinkLuxury: "Ver a coleção Anéis de Luxo",
@@ -833,11 +833,11 @@ const pt: Record<Keys, string> = {
   productFaqQ1: "Qual metal escolho para um anel de luxo?",
   productFaqA1: "O ouro maciço 18k convém a quase toda encomenda: duro para o uso diário, rico em cor e perfeito para a gravação à mão. O amarelo é clássico, o rosé é quente e resistente, o branco favorece os diamantes. Prefere máxima densidade e metal branco natural? Pergunte sobre a platina na consulta.",
   productFaqQ2: "Como descubro minha medida?",
-  productFaqA2: "Cada peça é feita sob medida, assim sua medida é tomada antes da fundição, confirme-a na sua consulta. Meça o dedo no fim do dia, quando está mais quente, e lembre que as bandas largas apertam mais. [PREENCHER: política exata de ajustes de medida, custos e prazos]",
+  productFaqA2: "Cada peça é feita sob medida, assim sua medida é tomada antes da fundição, confirme-a na sua consulta. Meça o dedo no fim do dia, quando está mais quente, e lembre que as bandas largas apertam mais. Ajustes de medida e qualquer trabalho na peça são orçados em consulta, após a inspeção.",
   productFaqQ3: "O envio tem seguro?",
-  productFaqA3: "Sim. Cada peça viaja com seguro integral porta a porta em caixa de madeira trabalhada e envernizada com embalagem externa neutra, entrega rastreada e assinatura obrigatória. O frete está incluído acima de US$ 5.000. [PREENCHER: transportadora exata, prazos por região e processo de sinistros]",
+  productFaqA3: "Sim. Cada peça viaja com seguro integral porta a porta em caixa de madeira trabalhada e envernizada com embalagem externa neutra, entrega rastreada e assinatura obrigatória. O frete está incluído acima de US$ 5.000. Qualquer dano ou perda deve ser relatado em 7 dias, com fotografias, e o atelier abre o processo com a transportadora e a seguradora.",
   productFaqQ4: "O que a garantia vitalícia cobre?",
-  productFaqA4: "A garantia vitalícia cobre defeitos de fabricação e inclui polimento anual com agendamento. Microajustes e gravação adicional são orçados em consulta. [PREENCHER: exclusões exatas da garantia e procedimento de acionamento]",
+  productFaqA4: "A garantia vitalícia cobre defeitos de fabricação e inclui polimento anual com agendamento. Microajustes e gravação adicional são orçados em consulta, após a inspeção.",
 };
 
 export const pageTexts = { en, es, pt };

@@ -156,6 +156,25 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
             {t.home.heroH1Keyword}
           </span>
         </h1>
+
+        {/*
+            Resumo de abertura da Home, logo abaixo do H1.
+
+            O H1 e uma frase poetica, curta e sem numero: boa para marca, ruim
+            para quem pergunta. Este paragrafo e o trecho que o Google extrai e que
+            a IA cita, entao ele abre com a resposta direta e carrega numeros
+            verificaveis (preco, prazo, horas de gravacao, paises).
+            A classe `seo-summary` e o alvo do speakable no JSON-LD: e este
+            paragrafo que o assistente deve ler em voz alta.
+          */}
+        <p className="seo-summary mt-6 max-w-3xl px-2 font-cormorant text-[#D8D2C4]/95 leading-relaxed text-center text-pretty">
+          RINGS LUXURY is the atelier of Jorge Uquillas, master goldsmith and hand engraver, with
+          private ateliers in São Paulo (Avenida Paulista, Brazil) and Miami (Brickell, Florida,
+          USA). He makes 1/1 handmade 18k gold rings, cast solid and engraved by hand for 90 to
+          140 hours, with hand-selected natural diamonds set one by one under the microscope. A
+          handcrafted 18k gold diamond ring starts at US$ 4,800, takes 60 days from the first
+          50% payment, and reaches clients in over 50 countries under full door-to-door insurance.
+        </p>
       </div>
 
       {/* 6. LINHA INFERIOR CURVA */}

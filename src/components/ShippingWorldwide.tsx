@@ -64,7 +64,8 @@ export function ShippingWorldwide() {
       <div className="relative z-10 w-full max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10 py-28 sm:py-36 lg:py-44 text-center">
         {/* TÍTULO */}
         <h2
-          className="font-cinzel font-normal uppercase text-[#E6CA85]"
+          id="envio-mundial"
+          className="font-cinzel font-normal uppercase text-[#E6CA85] scroll-mt-28"
           style={{ fontSize: 'clamp(19px, 2.2vw, 27px)', letterSpacing: '0.32em' }}
         >
           {t.home.shTitle}
@@ -99,6 +100,9 @@ export function ShippingWorldwide() {
                 alt={t.home[FLAG_ALT_KEYS[i]]}
                 draggable={false}
                 loading="lazy"
+                decoding="async"
+                width={52}
+                height={52}
                 className="mx-3 sm:mx-4 w-11 h-11 sm:w-[52px] sm:h-[52px] object-contain select-none snap-center shrink-0"
                 onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
               />

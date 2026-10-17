@@ -11,15 +11,20 @@ import { Atelier } from '../components/Atelier';
 import { Craftsmanship } from '../components/Craftsmanship';
 import { MasterpieceDetail } from '../components/MasterpieceDetail';
 import { QuoteSection } from '../components/QuoteSection';
+import { HomeDirectAnswers } from '../components/HomeDirectAnswers';
 import { WorldClients } from '../components/WorldClients';
 import { AtelierLocations } from '../components/AtelierLocations';
 import { Contact } from '../components/Contact';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
+import { absoluteUrl, HAS_SITE_URL } from '../site.config';
 import { useLanguage } from '../i18n/LanguageContext';
 
+/** Ultima revisao editorial da Home, mostrada e declarada no JSON-LD. */
+const PAGE_UPDATED = '2026-10-17';
+
 export function Home() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [commissionTarget, setCommissionTarget] = useState<string>('');
 
   const handleOpenConsultation = (pieceName?: string) => {
@@ -46,6 +51,38 @@ export function Home() {
       <SEO 
         title={t.home.seoTitle} 
         description={t.home.seoDescription}
+      />
+      {/*
+        WebPage da Home, com autoria, data e speakable.
+
+        - `author` + `dateModified`: sem assinatura e sem data, o texto nao tem
+          quem responda por ele e o buscador nao sabe se ainda vale. Entre duas
+          paginas equivalentes, a que traz data recente e citada primeiro.
+        - `speakable` com cssSelector: sem isso o assistente escolhe sozinho o
+          que ler em voz alta e quase sempre le o titulo. `.seo-summary` e o
+          paragrafo de abertura da Hero, que tem a resposta curta da pagina.
+      */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebPage',
+            ...(HAS_SITE_URL ? { '@id': `${absoluteUrl('/')}#webpage` } : {}),
+            ...(HAS_SITE_URL ? { url: absoluteUrl('/') } : {}),
+            name: t.home.seoTitle,
+            description: t.home.seoDescription,
+            inLanguage: lang,
+            datePublished: '2026-01-15',
+            dateModified: PAGE_UPDATED,
+            author: HAS_SITE_URL
+              ? { '@id': `${absoluteUrl('/jorge-uquillas')}#jorge` }
+              : { '@type': 'Person', name: 'Jorge Uquillas' },
+            publisher: HAS_SITE_URL ? { '@id': `${absoluteUrl('/')}#organization` } : undefined,
+            speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.seo-summary'] },
+            mainEntity: HAS_SITE_URL ? { '@id': `${absoluteUrl('/')}#organization` } : undefined,
+          }),
+        }}
       />
       {/* Universal Film Grain, DESATIVADO na Hero para ficar liso/elegante (removidas bolinhas) */}
       {/* <div className="fixed inset-0 film-grain pointer-events-none z-40 opacity-35" /> */}
@@ -95,6 +132,11 @@ export function Home() {
 
         {/* IX. Sententia Aurea Quote */}
         <QuoteSection />
+
+        {/* IX.2, RESPOSTAS DIRETAS: perguntas do cliente em titulo, com numeros
+            reais. Fecha a home antes do formulario de contato porque e aqui que
+            as objecoes ficam resolvidas antes de pedir a encomenda. */}
+        <HomeDirectAnswers />
 
         {/* XI. Contact & Private Salon Admissions */}
         <Contact

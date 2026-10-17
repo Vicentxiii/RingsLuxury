@@ -318,6 +318,7 @@ export function FeaturedRing() {
                 src={piece.src}
                 alt={t.home[piece.altKey]}
                 loading="lazy"
+                decoding="async"
                 draggable={false}
                 className={`w-full h-auto max-h-[260px] sm:max-h-[300px] object-contain select-none transition-transform duration-700 ease-out ${piece.zoom ?? 'group-hover:scale-[1.1]'}`}
                 style={{

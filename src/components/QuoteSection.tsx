@@ -7,6 +7,7 @@ export function QuoteSection() {
   return (
     <section
       id="quote"
+      aria-labelledby="sentenca"
       className="relative w-full py-40 md:py-56 bg-[#020202] text-[#EAE6DF] flex flex-col items-center justify-center overflow-hidden"
     >
       {/* Fundo, imagem de fundo da seção Jorge Uquillas Rings Luxury */}
@@ -29,19 +30,30 @@ export function QuoteSection() {
       {/* Large Negative Space Centered Composition */}
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
         <div className="mb-8 opacity-40">
-          <span className="text-[9px] uppercase tracking-[0.5em] text-[#9A7B38]">
+          <h2 id="sentenca" className="text-[9px] uppercase tracking-[0.5em] text-[#9A7B38] scroll-mt-28">
             SENTENTIA AUREA
-          </span>
+          </h2>
         </div>
 
-        {/* Centered Typography: "TIME CREATES HISTORY. THE MASTER CREATES LEGACY." */}
-        <blockquote className="font-cormorant text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light italic tracking-[0.14em] text-[#F3EFE6] leading-tight mb-10 max-w-3xl mx-auto">
-          {t.home.quLine1}
-          <br />
-          <span className="text-[#C5A059] font-normal not-italic font-cinzel text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-[0.22em] block mt-2">
-            {t.home.quLine2}
-          </span>
-        </blockquote>
+        {/* Citação atribuída no padrão canônico: <figure> + <blockquote> +
+            <figcaption> com o <cite> do autor. O mb-10 saiu do blockquote e
+            foi para a figure, e o mt-6 do cite se manteve, então o
+            espaçamento entre citação, autor e ornamento é idêntico. */}
+        <figure className="mb-10">
+          {/* Centered Typography: "TIME CREATES HISTORY. THE MASTER CREATES LEGACY." */}
+          <blockquote className="font-cormorant text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light italic tracking-[0.14em] text-[#F3EFE6] leading-tight max-w-3xl mx-auto">
+            {t.home.quLine1}
+            <br />
+            <span className="text-[#C5A059] font-normal not-italic font-cinzel text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-[0.22em] block mt-2">
+              {t.home.quLine2}
+            </span>
+          </blockquote>
+          <figcaption>
+            <cite className="mt-6 block font-cinzel text-[10px] sm:text-[11px] not-italic uppercase tracking-[0.35em] text-[#9A7B38]">
+              Jorge Uquillas
+            </cite>
+          </figcaption>
+        </figure>
 
         {/* Small antique-gold ornament underneath */}
         <div className="flex items-center justify-center gap-3 opacity-85">

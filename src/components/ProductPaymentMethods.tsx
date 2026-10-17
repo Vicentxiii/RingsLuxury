@@ -137,7 +137,7 @@ export function ProductPaymentMethods() {
           </div>
         </div>
 
-        <div className="mt-7 flex flex-wrap items-center justify-center gap-3 text-[8px] uppercase tracking-[0.3em] text-[#9A7B38]/80">
+        <div className="mt-7 flex flex-wrap items-center justify-center gap-3 text-[8px] uppercase tracking-[0.3em] text-[#9A7B38]">
           <span>{t.collections.payCopyright}</span>
           <span className="w-1 h-1 bg-[#C5A059]/40 rounded-full" />
           <span>{t.collections.payOffices}</span>

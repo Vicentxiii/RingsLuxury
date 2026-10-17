@@ -86,13 +86,19 @@ export function LanguageFlags() {
             aria-label={label}
             title={title}
             aria-pressed={active}
-            className={`w-[22px] h-[22px] rounded-full overflow-hidden border transition-all duration-300 ${
-              active
-                ? 'border-[#C5A059] shadow-[0_0_8px_rgba(197,160,89,0.8)] opacity-100'
-                : 'border-white/20 hover:border-white/50 opacity-70 hover:opacity-100'
-            }`}
+            // 44x44 hit area (WCAG 2.5.5 / 2.5.8) kept visually identical via negative margin.
+            className="-m-[11px] p-[11px] bg-transparent border-0"
           >
-            <Flag />
+            <span
+              aria-hidden="true"
+              className={`block w-[22px] h-[22px] rounded-full overflow-hidden border transition-all duration-300 ${
+                active
+                  ? 'border-[#C5A059] shadow-[0_0_8px_rgba(197,160,89,0.8)] opacity-100'
+                  : 'border-white/20 hover:border-white/50 opacity-70 hover:opacity-100'
+              }`}
+            >
+              <Flag />
+            </span>
           </button>
         );
       })}

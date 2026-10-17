@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { absoluteUrl, HAS_SITE_URL } from '../site.config';
 
 export interface Crumb {
@@ -8,9 +8,15 @@ export interface Crumb {
 }
 
 export function Breadcrumbs({ items }: { items: Crumb[] }) {
+  const { pathname } = useLocation();
+  // O mesmo @id usado pela WebPage em <SEO>, para o BreadcrumbList ficar
+  // ligado a pagina por referencia em vez de virar um no solto no grafo.
+  const nodeId = HAS_SITE_URL ? `${absoluteUrl(pathname)}#breadcrumb` : undefined;
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
+    ...(nodeId ? { '@id': nodeId } : {}),
     itemListElement: items.map((c, i) => ({
       '@type': 'ListItem',
       position: i + 1,

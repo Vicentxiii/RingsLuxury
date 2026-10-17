@@ -56,6 +56,8 @@ export function QuemSouEu({}: QuemSouEuProps) {
               <img
                 src="/PUBLIC/jorge-montagem-sobre-mim.webp"
                 alt={t.home.quemImageAlt}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-auto object-contain select-none"
                 draggable={false}
                 style={{ filter: 'drop-shadow(0 22px 48px rgba(0,0,0,0.72))' }}
@@ -68,7 +70,8 @@ export function QuemSouEu({}: QuemSouEuProps) {
           <div className="order-2 flex flex-col items-center lg:items-center text-center lg:text-center max-w-[560px] mx-auto lg:mx-0 lg:pr-2">
             {/* Nome, grande, duas linhas, sem arabesco */}
             <h2
-              className="font-cinzel font-normal text-[#F5F0E6] leading-[1.02] tracking-[0.03em] mt-1.5 mb-8"
+              id="sobre"
+              className="font-cinzel font-normal text-[#F5F0E6] leading-[1.02] tracking-[0.03em] mt-1.5 mb-8 scroll-mt-28"
               style={{
                 fontSize: 'clamp(40px, 4.6vw, 68px)',
                 letterSpacing: '0.04em',
