@@ -280,13 +280,26 @@ export const blogPosts = [
       { q: 'How do you tell a natural diamond from lab-grown?', a: 'You cannot tell by eye alone. Both are real diamonds with identical hardness and brilliance. Only advanced screening (growth patterns, phosphorescence, inscription, certification) distinguishes them. RINGS LUXURY by Jorge Uquillas works exclusively with hand-selected natural diamonds.' },
       { q: 'What is the most reliable fake diamond test?', a: 'No single at-home test is 100%. The reliable combination is: weight consistency on a carat scale + loupe inspection (sharp facet edges, natural inclusions) + diamond tester beep + professional verification. When in doubt, bring the piece to a master goldsmith for microscopic examination.' },
     ],
+    /*
+      Fotos do post em <picture> com srcset.
+
+      As 3 imagens eram PNG de ate 2 MB cada (4,9 MB no post inteiro) e apareciam
+      em tela cheia. Agora o celular baixa a variante de 800w (~30-60 KB) e so telas
+      grandes carregam a de largura original (~50-100 KB). Total: 4,9 MB -> 0,4 MB.
+
+      As variantes sao geradas por `npm run images:optimize`. O sufixo de largura
+      (`-800`, `-1242`) e o nome do arquivo original, entao o padrao e deterministico.
+    */
     content: `
       <p><strong>How to tell if your diamonds are real or fake?</strong> If you searched <em>"how to know if my diamond is real"</em>, <em>"real vs fake diamond test"</em> or <em>"diamond tester test"</em>, this guide by master goldsmith <strong>Jorge Uquillas, founder of RINGS LUXURY</strong>, shows you exactly what jewelers check — with real photos from our atelier bench.</p>
 
       <p>A real <strong>natural diamond</strong> is billions of years old, cut by hand to release fire. A fake — <strong>cubic zirconia (CZ), moissanite, glass, or synthetic spinel</strong> — imitates the sparkle but fails under heat, weight, light and magnification. Here are the <strong>7 proven tests</strong>, from quick at-home checks to the professional <strong>diamond tester work-test</strong> we perform on every <strong>handmade 18k gold ring and bracelet by Jorge Uquillas</strong>.</p>
 
       <figure style="margin:32px 0;">
-        <img src="/PUBLIC/Fotos%20para%20Post%20no%20Blog/how-to-tell-if-diamonds-are-real-or-fake-natural-diamonds-on-scale-by-jorge-uquillas-rings-luxury-1.png" alt="Natural diamonds weighed on carat scale at RINGS LUXURY atelier — how to tell if diamonds are real or fake by Jorge Uquillas" loading="lazy" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        <picture>
+          <source type="image/webp" srcset="/PUBLIC/Fotos%20para%20Post%20no%20Blog/how-to-tell-if-diamonds-are-real-or-fake-natural-diamonds-on-scale-by-jorge-uquillas-rings-luxury-1-800.webp 800w, /PUBLIC/Fotos%20para%20Post%20no%20Blog/how-to-tell-if-diamonds-are-real-or-fake-natural-diamonds-on-scale-by-jorge-uquillas-rings-luxury-1-1242.webp 1242w" sizes="(max-width: 768px) 92vw, 720px" />
+          <img src="/PUBLIC/Fotos%20para%20Post%20no%20Blog/how-to-tell-if-diamonds-are-real-or-fake-natural-diamonds-on-scale-by-jorge-uquillas-rings-luxury-1.png" alt="Natural diamonds weighed on carat scale at RINGS LUXURY atelier — how to tell if diamonds are real or fake by Jorge Uquillas" loading="lazy" decoding="async" width="1242" height="1656" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        </picture>
         <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">Natural diamonds on the carat scale — weight never lies</figcaption>
       </figure>
 
@@ -303,7 +316,10 @@ export const blogPosts = [
       <p>Under long-wave UV light, <strong>25–35% of natural diamonds glow blue</strong> — a fingerprint of trace boron and nitrogen from their formation deep in the earth. In our atelier test below, a <strong>1.06 carat natural diamond fluoresces intense blue</strong> under the UV lamp. CZ usually glows chalky yellow-green or not at all; moissanite glows greenish-gray or orange. <strong>Important:</strong> no glow does not mean fake — most fine white diamonds are inert. Fluorescence is supporting evidence, never the verdict alone.</p>
 
       <figure style="margin:32px 0;">
-        <img src="/PUBLIC/Fotos%20para%20Post%20no%20Blog/how-to-tell-if-diamonds-are-real-or-fake-natural-diamond-fluorescence-test-1-06-carat-by-jorge-uquillas-2.png" alt="1.06 carat natural diamond glowing blue under UV fluorescence test by Jorge Uquillas — real vs fake diamond test" loading="lazy" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        <picture>
+          <source type="image/webp" srcset="/PUBLIC/Fotos%20para%20Post%20no%20Blog/how-to-tell-if-diamonds-are-real-or-fake-natural-diamond-fluorescence-test-1-06-carat-by-jorge-uquillas-2-800.webp 800w, /PUBLIC/Fotos%20para%20Post%20no%20Blog/how-to-tell-if-diamonds-are-real-or-fake-natural-diamond-fluorescence-test-1-06-carat-by-jorge-uquillas-2-1242.webp 1242w" sizes="(max-width: 768px) 92vw, 720px" />
+          <img src="/PUBLIC/Fotos%20para%20Post%20no%20Blog/how-to-tell-if-diamonds-are-real-or-fake-natural-diamond-fluorescence-test-1-06-carat-by-jorge-uquillas-2.png" alt="1.06 carat natural diamond glowing blue under UV fluorescence test by Jorge Uquillas — real vs fake diamond test" loading="lazy" decoding="async" width="1242" height="1656" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        </picture>
         <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">1.06 ct natural diamond — intense blue fluorescence under UV</figcaption>
       </figure>
 
@@ -311,7 +327,10 @@ export const blogPosts = [
       <p>A <strong>diamond tester measures thermal conductivity</strong> — diamonds conduct heat unlike any imitation. A real diamond screams BEEP instantly. Below, Jorge Uquillas tests every stone of an <strong>18k gold tennis bracelet</strong> one by one: blue-lit stones conduct like diamond; dead stones would stay silent. <strong>Warning:</strong> old single-probe testers confuse <strong>moissanite with diamond</strong>. Professional jewelers use dual thermal + electrical testers. If your stone passes the tester but you still doubt, read test 7.</p>
 
       <figure style="margin:32px 0;">
-        <img src="/PUBLIC/Fotos%20para%20Post%20no%20Blog/how-to-tell-if-diamonds-are-real-or-fake-diamond-tester-work-test-tennis-bracelet-by-jorge-uquillas-3.png" alt="Diamond tester work-test on 18k gold tennis bracelet with natural diamonds glowing blue — Jorge Uquillas RINGS LUXURY" loading="lazy" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        <picture>
+          <source type="image/webp" srcset="/PUBLIC/Fotos%20para%20Post%20no%20Blog/how-to-tell-if-diamonds-are-real-or-fake-diamond-tester-work-test-tennis-bracelet-by-jorge-uquillas-3-800.webp 800w, /PUBLIC/Fotos%20para%20Post%20no%20Blog/how-to-tell-if-diamonds-are-real-or-fake-diamond-tester-work-test-tennis-bracelet-by-jorge-uquillas-3-1242.webp 1242w" sizes="(max-width: 768px) 92vw, 720px" />
+          <img src="/PUBLIC/Fotos%20para%20Post%20no%20Blog/how-to-tell-if-diamonds-are-real-or-fake-diamond-tester-work-test-tennis-bracelet-by-jorge-uquillas-3.png" alt="Diamond tester work-test on 18k gold tennis bracelet with natural diamonds glowing blue — Jorge Uquillas RINGS LUXURY" loading="lazy" decoding="async" width="1242" height="1656" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        </picture>
         <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">Work-test: every diamond verified on the tester</figcaption>
       </figure>
 

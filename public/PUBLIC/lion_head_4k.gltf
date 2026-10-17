@@ -67,19 +67,19 @@
   ],
   "images": [
     {
-      "mimeType": "image/jpeg",
+      "mimeType": "image/webp",
       "name": "lion_head_nor_gl",
-      "uri": "textures/lion_head_nor_gl_4k.jpg"
+      "uri": "textures/lion_head_nor_gl_4k-2400.webp"
     },
     {
-      "mimeType": "image/jpeg",
+      "mimeType": "image/webp",
       "name": "lion_head_diff",
-      "uri": "textures/lion_head_diff_4k.jpg"
+      "uri": "textures/lion_head_diff_4k-2400.webp"
     },
     {
-      "mimeType": "image/jpeg",
+      "mimeType": "image/webp",
       "name": "lion_head_metal-lion_head_rough",
-      "uri": "textures/lion_head_arm_4k.jpg"
+      "uri": "textures/lion_head_arm_4k-2400.webp"
     }
   ],
   "accessors": [

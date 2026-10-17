@@ -27,6 +27,7 @@
  *     { type: 'image/webp', srcSet: '/PUBLIC/x-800.webp 800w, /PUBLIC/x-1400.webp 1400w' },
  *   ]}
  */
+import { existsSync } from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
@@ -53,6 +54,36 @@ const SKIP_BELOW = 120 * 1024;
 
 const SOURCE_EXT = new Set(['.jpg', '.jpeg', '.png']);
 
+/*
+ * AVIF depende de como o libvips foi compilado no binario instalado. O pacote
+ * padrao do sharp nao SEMPRE vem com AVIF, e um `<source type="image/avif">`
+ * apontando para arquivo inexistente QUEBRA a imagem no navegador: ele escolhe
+ * o primeiro <source> que consegue parsear e nao ha fallback para o <img>.
+ * Descobrimos o que existe de verdade, em vez de assumir.
+ *
+ * Esta declaracao vem DEPOIS de QUALITY e AVIF_QUALITY de proposito: `const` nao
+ * tem hoisting de valor, e ler QUALITY aqui lancaria ReferenceError.
+ */
+const AVAILABLE = {
+  avif: Boolean(sharp.format?.avif?.output),
+  webp: Boolean(sharp.format?.webp?.output),
+};
+
+/** Se nao houver AVIF, gera so WebP e avisa uma vez. */
+const FORMATS = [
+  ...(AVAILABLE.avif ? [{ ext: 'avif', quality: AVIF_QUALITY, effort: 6 }] : []),
+  ...(AVAILABLE.webp ? [{ ext: 'webp', quality: QUALITY, effort: 5 }] : []),
+];
+
+if (FORMATS.length === 0) {
+  console.error('Este build do sharp nao tem webp nem avif. Nada a fazer.');
+  process.exit(1);
+}
+if (!AVAILABLE.avif) {
+  console.log('AVIF indisponivel neste build do sharp: gerando WebP apenas.');
+  console.log('Para habilitar AVIF: npm i -D @img/sharp-wasm-avif\n');
+}
+
 const kb = (n) => `${(n / 1024).toFixed(0)} KB`;
 
 async function* walk(dir) {
@@ -78,30 +109,35 @@ async function optimizeOne(file) {
   const meta = await image.metadata();
   const originalWidth = meta.width ?? 1600;
 
-  // Nao gera variante maior que o original: e bytes jogados fora.
-  const widths = WIDTHS.filter((w) => w < originalWidth);
-  if (widths.length === 0) widths.push(originalWidth);
+  /*
+    Lista de larguras a gerar.
+
+    Regra: nunca ampliar (bytes jogados fora) e SEMPRE incluir a largura original
+    como variante 1:1. Sem essa variante, uma foto de 1080px so receberia a de
+    800px e ficaria suave em tela retina, num site cuja venda e a imagem.
+  */
+  const widths = new Set(WIDTHS.filter((w) => w < originalWidth));
+  widths.add(originalWidth);
+  const widthList = [...widths].sort((a, b) => a - b);
 
   const before = stat.size;
   let after = 0;
   const produced = [];
 
-  for (const width of widths) {
-    const pipeline = sharp(file, { failOn: 'none' }).rotate().resize({
+  for (const width of widthList) {
+    const base = sharp(file, { failOn: 'none' }).rotate().resize({
       width,
       withoutEnlargement: true,
       fit: 'inside',
     });
 
-    const avif = `${stem}-${width}.avif`;
-    const webp = `${stem}-${width}.webp`;
-
-    await pipeline.clone().avif({ quality: AVIF_QUALITY, effort: 6 }).toFile(avif);
-    await pipeline.clone().webp({ quality: QUALITY, effort: 5 }).toFile(avif.replace(/\.avif$/, '.webp'));
-
-    const [a, w] = await Promise.all([fs.stat(avif), fs.stat(avif.replace(/\.avif$/, '.webp'))]);
-    after += a.size + w.size;
-    produced.push(`${base}-${width}.{avif,webp}`);
+    for (const fmt of FORMATS) {
+      const out = `${stem}-${width}.${fmt.ext}`;
+      await base.clone()[fmt.ext]({ quality: fmt.quality, effort: fmt.effort }).toFile(out);
+      const st = await fs.stat(out);
+      after += st.size;
+      produced.push(`${path.basename(out)} ${kb(st.size)}`);
+    }
   }
 
   return { file: path.relative(ROOT, file), before, after, originalWidth, produced };
@@ -109,13 +145,16 @@ async function optimizeOne(file) {
 
 async function main() {
   const startDir = DIR ? path.join(ROOT, DIR) : ROOT;
-  if (!fs.existsSync(startDir)) {
+  // `node:fs/promises` nao tem existsSync (e so assincrono): vem de `node:fs`.
+  if (!existsSync(startDir)) {
     console.error(`Pasta nao encontrada: ${startDir}`);
     process.exit(1);
   }
 
-  console.log(`Otimizando imagens em public/${DIR} -> larguras ${widths.join(', ')}`);
-  console.log(`Qualidade: webp ${QUALITY} / avif ${AVIF_QUALITY}\n`);
+  console.log(`Otimizando imagens em public/${DIR} -> larguras ${WIDTHS.join(', ')}`);
+  console.log(
+    `Formatos: ${FORMATS.map((f) => `${f.ext} q${f.quality}`).join(', ')} · pulando ate ${kb(SKIP_BELOW)}\n`,
+  );
 
   let totalBefore = 0;
   let totalAfter = 0;

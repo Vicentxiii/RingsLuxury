@@ -3,3 +3,14 @@ dist
 .env.local
 .env
 .DS_Store
+
+# Variantes de imagem geradas por `npm run images:optimize`.
+# Sao artefato de BUILD, nao fonte: ~150 arquivos binarios que nao podem ir
+# para o historico do git. O Vercel tem `npm run images:optimize` no build,
+# entao elas existem no deploy sem nunca entrar no repositorio.
+public/PUBLIC/**/*-800.webp
+public/PUBLIC/**/*-1400.webp
+public/PUBLIC/**/*-2400.webp
+public/PUBLIC/**/*-800.avif
+public/PUBLIC/**/*-1400.avif
+public/PUBLIC/**/*-2400.avif
