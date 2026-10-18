@@ -149,7 +149,7 @@ export function Header({ onOpenConsultation }: HeaderProps) {
             href="/"
             id="brand-logo"
             onClick={(e) => handleNavigation(e, '/')}
-            className="group flex items-center gap-3 text-left focus:outline-none transition-transform hover:scale-[1.02]"
+            className="group flex items-center gap-2 sm:gap-3 min-w-0 text-left focus:outline-none transition-transform hover:scale-[1.02]"
           >
             <img
               src="/PUBLIC/logo-novo-rings-luxury.webp"
@@ -165,11 +165,11 @@ export function Header({ onOpenConsultation }: HeaderProps) {
                 }
               }}
             />
-            <div className="flex flex-col">
-              <span className="font-cinzel text-[11px] tracking-[0.2em] sm:text-sm sm:tracking-[0.28em] md:text-lg font-semibold text-[#F3EFE6] group-hover:text-[#C5A059] transition-colors duration-500">
+            <div className="flex flex-col min-w-0">
+              <span className="font-cinzel text-[11px] tracking-[0.2em] truncate sm:text-sm sm:tracking-[0.28em] md:text-lg font-semibold text-[#F3EFE6] group-hover:text-[#C5A059] transition-colors duration-500">
                 RINGS LUXURY
               </span>
-              <span className="text-[7.5px] sm:text-[8.5px] uppercase tracking-[0.35em] text-[#9A7B38]">
+              <span className="hidden sm:block text-[8.5px] uppercase tracking-[0.35em] text-[#9A7B38] truncate">
                 {t.nav.logoSubtitle}
               </span>
             </div>
