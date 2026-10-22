@@ -53,7 +53,9 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
     trackIndexRef.current = trackIndex;
   }, [trackIndex]);
 
-  // Initialize audio element once - persists across route changes
+  // Cria o elemento de áudio, mas NÃO define src nem chama load().
+  // preload="none" + src vazio = zero bytes de áudio na primeira visita.
+  // O arquivo só é baixado quando o visitante clica no botão de som.
   useEffect(() => {
     if (hasInitializedRef.current) return;
     hasInitializedRef.current = true;
@@ -61,91 +63,22 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
     const audio = new Audio();
     audio.loop = true;
     audio.volume = 0.5;
-    audio.preload = 'auto';
+    audio.preload = 'none';
     audioRef.current = audio;
 
-    // Restore from sessionStorage if available (survives SPA navigation + reload)
+    // Restaura apenas a faixa escolhida; o play continua exigindo clique.
     let initialTrack = 0;
-    let initialTime: number | null = null;
-    let wasPlaying: boolean | null = null;
     try {
       const savedTrack = sessionStorage.getItem('rl-audio-track');
-      const savedTime = sessionStorage.getItem('rl-audio-time');
-      const savedPlaying = sessionStorage.getItem('rl-audio-playing');
       if (savedTrack !== null) initialTrack = parseInt(savedTrack, 10) || 0;
-      if (savedTime !== null) initialTime = parseFloat(savedTime);
-      if (savedPlaying !== null) wasPlaying = savedPlaying === 'true';
     } catch {}
 
-    // clamp track index
     if (initialTrack < 0 || initialTrack >= DARK_TRACKS.length || isNaN(initialTrack)) {
       initialTrack = 0;
     }
     if (initialTrack !== 0) {
       setTrackIndex(initialTrack);
       trackIndexRef.current = initialTrack;
-    }
-
-    const track = DARK_TRACKS[initialTrack] ?? DARK_TRACKS[0];
-    const startAt = track.startAt ?? 6;
-    const hasSavedTime = initialTime !== null && !isNaN(initialTime) && initialTime > 0.5 && initialTime < 1e6;
-    const targetTime = hasSavedTime ? initialTime! : startAt;
-
-    // NUNCA autoplay, só toca se usuário clicar no botão de música
-    // mesmo que sessionStorage diga que estava tocando, exige clique novamente
-    const shouldAttemptPlay = false;
-    // const shouldAttemptPlay = wasPlaying === true; // <- use esta linha se quiser retomar após reload
-
-    audio.src = encodeURI(track.src);
-    audio.load();
-
-    const tryPlay = (seekTime: number) => {
-      try {
-        audio.currentTime = seekTime;
-      } catch {}
-      audio
-        .play()
-        .then(() => {
-          setIsPlaying(true);
-          try {
-            sessionStorage.setItem('rl-audio-playing', 'true');
-          } catch {}
-        })
-        .catch((err) => {
-          console.warn('Audio bloqueado até clique no botão:', err);
-          setIsPlaying(false);
-          try {
-            sessionStorage.setItem('rl-audio-playing', 'false');
-          } catch {}
-        });
-    };
-
-    const handleLoaded = () => {
-      if (shouldAttemptPlay) {
-        let seek = targetTime;
-        try {
-          if (!isNaN(audio.duration) && audio.duration > 0 && seek >= audio.duration) {
-            seek = startAt;
-          }
-          if (!hasSavedTime) seek = startAt;
-        } catch {}
-        tryPlay(seek);
-      } else {
-        try {
-          audio.currentTime = hasSavedTime ? targetTime : startAt;
-        } catch {}
-        setIsPlaying(false);
-        try {
-          sessionStorage.setItem('rl-audio-playing', 'false');
-        } catch {}
-      }
-    };
-
-    if (audio.readyState >= 1) {
-      handleLoaded();
-    } else {
-      audio.addEventListener('loadedmetadata', handleLoaded, { once: true });
-      audio.addEventListener('canplay', handleLoaded, { once: true });
     }
 
     const onTimeUpdate = () => {

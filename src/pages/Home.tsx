@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Header } from '../components/Header';
 import { Hero } from '../components/Hero';
+import { HomeFilm } from '../components/HomeFilm';
 import { QuemSouEu } from '../components/QuemSouEu';
 import { FeaturedRing } from '../components/FeaturedRing';
 import { WhyChoose } from '../components/WhyChoose';
@@ -100,7 +101,10 @@ export function Home() {
         {/* I. Cinematic Hero */}
         <Hero onEnterAtelier={handleEnterAtelier} />
 
-        {/* II. THE MASTERPIECE DETAIL / MICROSCOPIC PROVENANCE, segunda seção logo após a hero */}
+        {/* I.2 The film: player sob demanda, logo abaixo da hero */}
+        <HomeFilm />
+
+        {/* II. THE MASTERPIECE DETAIL / MICROSCOPIC PROVENANCE, logo após o filme */}
         <MasterpieceDetail />
 
         {/* III. 18K GOLD RING OF POWER, logo após a segunda seção */}

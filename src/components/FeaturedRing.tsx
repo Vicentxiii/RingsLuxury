@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight, Feather } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
+import { ResponsiveImg } from './ResponsiveImg';
 
 interface Piece {
   src: string;
@@ -314,12 +315,10 @@ export function FeaturedRing() {
               aria-label={`${piece.name}, ver peça`}
               className="group relative shrink-0 w-[220px] sm:w-[260px] lg:w-[300px] px-5 sm:px-7 flex flex-col items-center justify-center bg-transparent border-0 focus:outline-none"
             >
-              <img
+              <ResponsiveImg
                 src={piece.src}
                 alt={t.home[piece.altKey]}
-                loading="lazy"
-                decoding="async"
-                draggable={false}
+                sizes="(max-width: 640px) 220px, (max-width: 1024px) 260px, 300px"
                 className={`w-full h-auto max-h-[260px] sm:max-h-[300px] object-contain select-none transition-transform duration-700 ease-out ${piece.zoom ?? 'group-hover:scale-[1.1]'}`}
                 style={{
                   filter:

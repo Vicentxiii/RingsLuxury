@@ -7,6 +7,7 @@ import { Contact } from '../components/Contact';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { absoluteUrl } from '../site.config';
 import { useLanguage } from '../i18n/LanguageContext';
+import { ResponsiveImg } from '../components/ResponsiveImg';
 
 interface RingItem {
   src: string;
@@ -96,17 +97,25 @@ export function LuxuryRings() {
       <main className="relative w-full overflow-hidden">
         {/* Leão ao fundo, lado esquerdo */}
         <div className="absolute inset-x-0 top-0 h-[380px] sm:inset-y-0 sm:left-0 sm:right-auto sm:h-auto sm:w-[38%] pointer-events-none" aria-hidden>
-          <img
+          <ResponsiveImg
             src={LION_BG_MOBILE}
             alt=""
-            draggable={false}
+            decorative
+            priority
+            sizes="100vw"
+            width={900}
+            height={600}
             className="absolute inset-0 w-full h-full object-cover object-top opacity-70 sm:hidden"
             onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
           />
-          <img
+          <ResponsiveImg
             src={LION_BG}
             alt=""
-            draggable={false}
+            decorative
+            priority
+            sizes="38vw"
+            width={1200}
+            height={1600}
             className="absolute inset-0 w-full h-full object-cover object-center opacity-70 sm:object-left sm:opacity-100 hidden sm:block"
             onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
           />

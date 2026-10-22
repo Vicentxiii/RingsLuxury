@@ -7,6 +7,7 @@ import { Contact } from '../components/Contact';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { absoluteUrl } from '../site.config';
 import { useLanguage } from '../i18n/LanguageContext';
+import { ResponsiveImg } from '../components/ResponsiveImg';
 
 interface NecklaceItem {
   src: string;
@@ -110,20 +111,27 @@ export function Necklaces() {
         {/* Dobra ao fundo, um de cada lado, sempre visíveis */}
         <div className="absolute inset-x-0 top-0 h-[320px] sm:inset-0 sm:h-auto pointer-events-none" aria-hidden>
           <div className="absolute left-0 top-0 h-full w-[38%] sm:w-[26%] overflow-hidden">
-            <img
+            <ResponsiveImg
               src={NECKLACES_BG}
               alt=""
-              draggable={false}
+              decorative
+              priority
+              sizes="26vw"
+              width={900}
+              height={1200}
               className="absolute inset-0 w-full h-full object-cover object-left opacity-25 select-none"
               onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
             />
             <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black" />
           </div>
           <div className="absolute right-0 top-0 h-full w-[38%] sm:w-[26%] overflow-hidden">
-            <img
+            <ResponsiveImg
               src={NECKLACES_BG}
               alt=""
-              draggable={false}
+              decorative
+              sizes="26vw"
+              width={900}
+              height={1200}
               className="absolute inset-0 w-full h-full object-cover object-right opacity-25 select-none"
               onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
             />

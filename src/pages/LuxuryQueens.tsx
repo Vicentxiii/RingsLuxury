@@ -7,6 +7,7 @@ import { Contact } from '../components/Contact';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { absoluteUrl } from '../site.config';
 import { useLanguage } from '../i18n/LanguageContext';
+import { ResponsiveImg } from '../components/ResponsiveImg';
 
 interface PieceItem {
   src: string;
@@ -74,10 +75,14 @@ export function LuxuryQueens() {
       <main className="relative w-full overflow-hidden">
         {/* Medusa ao fundo, lado direito */}
         <div className="absolute inset-x-0 top-0 h-[340px] sm:inset-0 sm:h-auto pointer-events-none" aria-hidden>
-          <img
+          <ResponsiveImg
             src={QUEENS_BG}
             alt=""
-            draggable={false}
+            decorative
+            priority
+            sizes="100vw"
+            width={1600}
+            height={900}
             className="absolute inset-0 w-full h-full object-cover object-top opacity-20 sm:object-center sm:opacity-30 select-none"
             onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
           />

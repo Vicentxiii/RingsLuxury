@@ -7,6 +7,7 @@ import { Contact } from '../components/Contact';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { absoluteUrl } from '../site.config';
 import { useLanguage } from '../i18n/LanguageContext';
+import { ResponsiveImg } from '../components/ResponsiveImg';
 
 interface RingItem {
   src: string;
@@ -109,10 +110,14 @@ export function EmperorRings() {
       <main className="relative w-full overflow-hidden">
         {/* Imperador ao fundo, lado direito, inteiro, 12% de opacidade */}
         <div className="absolute top-0 right-0 h-[340px] w-[75%] sm:inset-y-0 sm:h-full sm:w-auto overflow-hidden pointer-events-none" aria-hidden>
-          <img
+          <ResponsiveImg
             src={EMPEROR_BG}
             alt=""
-            draggable={false}
+            decorative
+            priority
+            sizes="(max-width: 640px) 75vw, 40vw"
+            width={1200}
+            height={1600}
             className="h-full w-full sm:w-auto object-cover sm:object-contain object-top opacity-[0.12] select-none"
             onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
           />

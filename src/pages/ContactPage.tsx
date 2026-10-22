@@ -10,6 +10,7 @@ import { useLanguage } from '../i18n/LanguageContext';
 import { absoluteUrl, HAS_SITE_URL } from '../site.config';
 import contact from '../data/contact.json';
 import reviewsData from '../data/reviews.json';
+import { track } from '../lib/analytics';
 
 const PARTICLE_COUNT = 550;
 
@@ -126,7 +127,21 @@ export function ContactPage() {
     const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 60);
     camera.position.set(0, 0, 7);
 
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+    // WebGL é opcional: em navegador sem GPU, headless, economia de bateria ou
+    // bloqueio de driver, a página continua completa, só sem a poeira dourada.
+    // Antes, a exceção do construtor derrubava o componente inteiro no build.
+    const hasWebGL = Boolean(canvas.getContext('webgl2') || canvas.getContext('webgl'));
+    if (!hasWebGL) {
+      canvas.style.display = 'none';
+      return;
+    }
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+    } catch {
+      canvas.style.display = 'none';
+      return;
+    }
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
@@ -260,6 +275,10 @@ export function ContactPage() {
     const randomHex = Math.floor(Math.random() * 89999 + 10000).toString(16).toUpperCase();
     setBookingCode(`KL-MMXXVI-${randomHex}`);
     setSubmitted(true);
+    track('generate_lead', {
+      form: 'contact',
+      method: 'private_consultation',
+    });
   };
 
   const scrollToForm = () => {

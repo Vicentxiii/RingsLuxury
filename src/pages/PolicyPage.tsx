@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
@@ -32,7 +32,12 @@ const slugify = (text: string) =>
     .replace(/(^-|-$)/g, '');
 
 export function PolicyPage() {
-  const { slug } = useParams<{ slug: string }>();
+  // A rota usa o param `:policy`, mas o componente nasceu esperando `:slug`.
+  // Ler os dois evita a página cair em "Policy not found" (era o que acontecia
+  // em /privacy, /terms, /shipping, /returns e /warranty).
+  const params = useParams<{ policy?: string; slug?: string }>();
+  const { pathname } = useLocation();
+  const slug = params.policy ?? params.slug ?? pathname.replace(/^\/+|\/+$/g, '');
   const policy = slug ? policyBySlug(slug) : undefined;
 
   const handleOpenConsultation = () => {

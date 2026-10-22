@@ -15,6 +15,7 @@ import { GreekMeanderDivider, AncientCoinMedallion } from '../components/Ornamen
 import { absoluteUrl, HAS_SITE_URL } from '../site.config';
 import { useLanguage } from '../i18n/LanguageContext';
 import { useCart } from '../context/CartContext';
+import { track } from '../lib/analytics';
 
 /** Fundo das páginas de produto. 2048x1080, escuro com veios dourados. */
 const PRODUCT_BG = '/PUBLIC/fundo-da-pagina-de-produtos-jorge-uquillas-rings-luxury.webp';
@@ -59,6 +60,17 @@ export function ProductPage() {
     setSelectedImage(0);
     setShowInfo(false);
   }, [slug]);
+
+  useEffect(() => {
+    if (!product) return;
+    track('view_item', {
+      item_id: product.slug,
+      item_name: product.name,
+      item_category: product.category,
+      price: product.priceNumber,
+      currency: 'USD',
+    });
+  }, [product?.slug]);
 
   if (!product) {
     return (
@@ -147,14 +159,50 @@ export function ProductPage() {
   const metaDescription = truncateAtWord(localizedDescription, 155);
 
   /*
+    Conteúdo longo e único por peça. A ficha já tem material, peso, gemas,
+    horas de trabalho e edição; aqui esses dados viram texto editorial para
+    a página não competir com dezenas de outras com o mesmo parágrafo curto.
+  */
+  const craftCopy =
+    lang === 'es'
+      ? {
+          title: 'Hecho a mano en el atelier',
+          body: `Esta pieza se trabaja en ${spec(product.specs.material)} y pesa ${spec(product.specs.weight)}. El grabado y el modelado a mano requieren ${spec(product.specs.craftHours)} de trabajo antes de que la piedra principal — ${spec(product.specs.gems)} — quede engastada. La edición es ${spec(product.specs.edition)}: no existe una segunda igual.`,
+          provenance: `Cada anillo sale del atelier de Jorge Uquillas con certificado de autenticidad, sello ${spec(product.specs.hallmark)} y acabado revisado a mano. La pieza se envía asegurada y con seguimiento; el ajuste de talla y el mantenimiento se acuerdan directamente con el atelier.`,
+        }
+      : lang === 'pt'
+        ? {
+            title: 'Feito à mão no ateliê',
+            body: `Esta peça é trabalhada em ${spec(product.specs.material)} e pesa ${spec(product.specs.weight)}. A gravação e a modelagem à mão exigem ${spec(product.specs.craftHours)} de trabalho antes de a pedra principal — ${spec(product.specs.gems)} — ser assentada. A edição é ${spec(product.specs.edition)}: não existe uma segunda igual.`,
+            provenance: `Cada anel sai do ateliê de Jorge Uquillas com certificado de autenticidade, marca ${spec(product.specs.hallmark)} e acabamento revisado à mão. A peça é enviada segurada e com rastreio; ajuste de aro e manutenção são tratados diretamente com o ateliê.`,
+          }
+        : {
+            title: 'Made by hand in the atelier',
+            body: `This piece is worked in ${spec(product.specs.material)} and weighs ${spec(product.specs.weight)}. The hand engraving and sculpting require ${spec(product.specs.craftHours)} of work before the principal stone — ${spec(product.specs.gems)} — is set. The edition is ${spec(product.specs.edition)}: a second identical piece does not exist.`,
+            provenance: `Every ring leaves Jorge Uquillas' atelier with a certificate of authenticity, the ${spec(product.specs.hallmark)} hallmark and a hand-checked finish. It ships fully insured and tracked; resizing and future maintenance are arranged directly with the atelier.`,
+          };
+
+
+  /*
     Title de produto: precisa caber em ~60 caracteres, porque o <SEO> acrescenta
     " | RINGS LUXURY" (15). "Nome, subtitulo" estourava isso nas pecas com
     subtitulo longo e o Google cortava no meio do nome. Aqui o titulo e montado
     com prioridade: nome da peca, material, diamante, e a marca entra como
     sufixo curto. Se ainda assim passar de 58, corta em fronteira de palavra.
   */
+  const pieceType =
+    product.categorySlug === 'necklaces' || /NECKLACE/i.test(product.name) ? 'Necklace' : 'Ring';
+  // Não anunciar "18k Gold" em peça de prata. O título precisa bater com a
+  // ficha e com o schema Product; antes o Wolf/Family Crest de prata apareciam
+  // no Google como anel de ouro 18k.
+  const isSilverOnly = /SILVER/i.test(product.name) && !/GOLD/i.test(product.name);
+  const isMixedMetal = /GOLD[\s-]+SILVER|SILVER[\s-]+GOLD/i.test(product.name);
+  const metalLabel = isSilverOnly ? '' : isMixedMetal ? 'Gold & Silver' : '18k Gold';
+  const hasKaratInName = /18K/i.test(product.name);
   const productTitle = truncateAtWord(
-    product.name.includes('18K') ? `${product.name} by Jorge Uquillas` : `${product.name}, 18k Gold Ring by Jorge Uquillas`,
+    hasKaratInName || !metalLabel
+      ? `${product.name} by Jorge Uquillas`
+      : `${product.name}, ${metalLabel} ${pieceType} by Jorge Uquillas`,
     58,
   );
 
@@ -165,6 +213,7 @@ export function ProductPage() {
         description={metaDescription}
         url={`/produto/${product.slug}`}
         image={product.images[0]}
+        pageType="ItemPage"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
@@ -220,7 +269,7 @@ export function ProductPage() {
                   muted
                   loop
                   playsInline
-                  preload="metadata"
+                  preload="none"
                   className="w-full h-auto max-h-[62vh] mx-auto drop-shadow-[0_24px_60px_rgba(0,0,0,0.85)]"
                 />
               ) : (
@@ -278,7 +327,7 @@ export function ProductPage() {
                     }`}
                   >
                     {isVideo ? (
-                      <video src={img} muted playsInline preload="metadata" className="w-full h-full object-cover" aria-hidden />
+                      <video src={img} muted playsInline preload="none" className="w-full h-full object-cover" aria-hidden />
                     ) : (
                       <ResponsiveImg
                         src={img}
@@ -350,7 +399,15 @@ export function ProductPage() {
             <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
               <button
                 onClick={() => {
-                  if (product) add(product.slug);
+                  if (product) {
+                    add(product.slug);
+                    track('add_to_cart', {
+                      item_id: product.slug,
+                      item_name: product.name,
+                      price: product.priceNumber,
+                      currency: 'USD',
+                    });
+                  }
                   navigate('/cart');
                 }}
                 className="group h-[52px] rounded-full bg-gradient-to-r from-[#9A7B38] via-[#E6CA85] to-[#C5A059] text-[#020202] font-sans-luxury text-[12px] font-bold uppercase tracking-[0.18em] hover:brightness-110 hover:shadow-[0_8px_32px_rgba(197,160,89,0.35)] active:scale-[0.98] transition-all inline-flex items-center justify-center gap-2"
@@ -360,7 +417,18 @@ export function ProductPage() {
               </button>
 
               <button
-                onClick={() => openConsultation(`${pieceLabel}, pagamento via PayPal`)}
+                onClick={() => {
+                  if (product) {
+                    track('begin_checkout', {
+                      method: 'paypal',
+                      item_id: product.slug,
+                      item_name: product.name,
+                      price: product.priceNumber,
+                      currency: 'USD',
+                    });
+                  }
+                  openConsultation(`${pieceLabel}, pagamento via PayPal`);
+                }}
                 className="h-[52px] rounded-full bg-[#FFC439] hover:bg-[#FFD84D] hover:shadow-[0_8px_32px_rgba(255,196,57,0.3)] active:scale-[0.98] transition-all flex items-center justify-center gap-2"
               >
                 <span className="font-sans-luxury text-[20px] font-bold tracking-tight text-[#003087]">
@@ -440,6 +508,14 @@ export function ProductPage() {
               <span className="block text-[9px] uppercase tracking-[0.3em] text-[#C5A059] mb-1">{t.pages.productSymbolism}</span>
               {product.symbolism}
             </p>
+          </div>
+
+          <div className="mt-10 pt-8 border-t border-[#C5A059]/20 text-left max-w-2xl mx-auto">
+            <h3 className="font-cinzel text-[#C5A059] text-xs uppercase tracking-[0.3em] mb-4">
+              {craftCopy.title}
+            </h3>
+            <p className="text-sm leading-relaxed text-[#A8A296]">{craftCopy.body}</p>
+            <p className="mt-4 text-sm leading-relaxed text-[#A8A296]">{craftCopy.provenance}</p>
           </div>
         </section>
 

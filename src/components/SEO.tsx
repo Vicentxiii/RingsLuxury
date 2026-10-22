@@ -3,8 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 import { absoluteUrl, HAS_SITE_URL } from '../site.config';
 import { useLanguage } from '../i18n/LanguageContext';
-import contact from '../data/contact.json';
-import locationsData from '../data/locations.json';
 
 /**
  * Corta em fronteira de palavra, sem deixar pontuação solta.
@@ -34,9 +32,14 @@ interface SEOProps {
   modifiedTime?: string;
   author?: string;
   articleSection?: string;
+  /**
+   * Tipo schema.org da página. O padrão é WebPage; usar CollectionPage só em
+   * páginas que realmente listam uma coleção, ItemPage em produto, etc.
+   */
+  pageType?: 'WebPage' | 'CollectionPage' | 'ItemPage' | 'AboutPage' | 'ContactPage' | 'FAQPage';
 }
 
-export function SEO({ title, description, keywords, url, image, imageAlt, noindex, publishedTime, modifiedTime, author, articleSection }: SEOProps) {
+export function SEO({ title, description, keywords, url, image, imageAlt, noindex, publishedTime, modifiedTime, author, articleSection, pageType = 'WebPage' }: SEOProps) {
   const { pathname } = useLocation();
   const { lang } = useLanguage();
 
@@ -49,7 +52,6 @@ export function SEO({ title, description, keywords, url, image, imageAlt, noinde
   // EN (padrão) canonicaliza limpo; ES/PT usam ?lang= (URLs reais, lidas pelo
   // LanguageContext), cada idioma com self-canonical + hreflang bidirecional.
   const canonical = absoluteUrl(lang === 'en' ? path : `${path}?lang=${lang}`);
-  const canonicalEn = absoluteUrl(path);
   // Sem domínio configurado não há imagem absoluta confiável; og:image
   // apontando para um host errado é pior que omitir.
   const defaultImage = HAS_SITE_URL ? absoluteUrl('/og-image.jpg') : undefined;
@@ -60,7 +62,10 @@ export function SEO({ title, description, keywords, url, image, imageAlt, noinde
   const ogImageAlt = imageAlt ?? `${title} by Jorge Uquillas, RINGS LUXURY`;
   const isArticle = Boolean(publishedTime);
 
-  const seoTitle = `${title} | RINGS LUXURY`;
+  // Algumas páginas (políticas, FAQ) já passam o nome da marca no título.
+  // Sem limpar, o resultado era "Privacy Policy | RINGS LUXURY | RINGS LUXURY".
+  const cleanTitle = title.replace(/\s*\|\s*RINGS LUXURY.*$/i, '').trim();
+  const seoTitle = `${cleanTitle} | RINGS LUXURY`;
 
   /*
     Teto de caracteres do title.
@@ -74,7 +79,7 @@ export function SEO({ title, description, keywords, url, image, imageAlt, noinde
   const finalTitle =
     seoTitle.length <= TITLE_MAX
       ? seoTitle
-      : `${truncateAtWord(title, TITLE_MAX - ' | RINGS LUXURY'.length)} | RINGS LUXURY`;
+      : `${truncateAtWord(cleanTitle, TITLE_MAX - ' | RINGS LUXURY'.length)} | RINGS LUXURY`;
 
   return (
     <Helmet>
@@ -97,15 +102,14 @@ export function SEO({ title, description, keywords, url, image, imageAlt, noinde
       {/* Canonical por rota. Sem domínio definido, fica omitido de propósito. */}
       {HAS_SITE_URL && <link rel="canonical" href={canonical} />}
 
-      {/* hreflang EN/ES/PT + x-default: evita duplicata entre idiomas */}
-      {HAS_SITE_URL && !noindex && (
-        <>
-          <link rel="alternate" hrefLang="x-default" href={canonicalEn} />
-          <link rel="alternate" hrefLang="en" href={canonicalEn} />
-          <link rel="alternate" hrefLang="es" href={absoluteUrl(`${path}?lang=es`)} />
-          <link rel="alternate" hrefLang="pt" href={absoluteUrl(`${path}?lang=pt`)} />
-        </>
-      )}
+      {/*
+        hreflang NÃO é renderizado aqui.
+        O react-helmet-async trata `rel="alternate"` como atributo primário e
+        mantém apenas UM link alternate por página, o que fazia os quatro
+        hreflang (x-default/en/es/pt) sumirem ou brigarem com o link do
+        llms.txt. O build injeta os quatro links no HTML pré-renderizado de
+        cada rota (scripts/prerender.mjs), que é o que o Google lê.
+      */}
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={isArticle ? 'article' : 'website'} />
@@ -159,7 +163,7 @@ export function SEO({ title, description, keywords, url, image, imageAlt, noinde
           '@context': 'https://schema.org',
           '@graph': [
             {
-              '@type': ['WebPage', 'CollectionPage'],
+              '@type': pageType,
               ...(HAS_SITE_URL ? { '@id': `${absoluteUrl(path)}#webpage` } : {}),
               url: canonical,
               name: seoTitle,
@@ -188,69 +192,12 @@ export function SEO({ title, description, keywords, url, image, imageAlt, noinde
       </script>
 
       {/*
-        Schema.org para Google, HandCrafted aneis artesanais.
-        NAP (telefone/email/horario) vem de src/data/contact.json (NAP unico).
-        `url` e a home FIXA, nunca a URL da pagina: see o comentario do grafo
-        acima. `address` so entra com dado real em locations.json.
+        O bloco JewelryStore duplicado que existia aqui foi removido. A
+        entidade única (Organization + JewelryStore + NAP + reviews) já é
+        emitida no HTML estático pelo vite-plugin-seo-inject.ts. Repetir a
+        loja em cada página criava duas entidades concorrentes e ainda usava
+        bairro como streetAddress.
       */}
-      <script type="application/ld+json">
-        {JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'JewelryStore',
-          ...(HAS_SITE_URL ? { '@id': `${absoluteUrl('/')}#store` } : {}),
-          name: 'RINGS LUXURY by Jorge Uquillas',
-          legalName: 'RINGS LUXURY by Jorge Uquillas',
-          alternateName: ['RINGS LUXURY', 'Rings Luxury', 'RINGS LUXURY ATELIER'],
-          url: HAS_SITE_URL ? absoluteUrl('/') : '/',
-          ...(HAS_SITE_URL ? { parentOrganization: { '@id': `${absoluteUrl('/')}#organization` } } : {}),
-          founder: {
-            '@type': 'Person',
-            '@id': HAS_SITE_URL ? `${absoluteUrl('/jorge-uquillas')}#jorge` : undefined,
-            name: 'Jorge Uquillas',
-            jobTitle: 'Master Goldsmith and Hand Engraver',
-            ...(HAS_SITE_URL ? { url: absoluteUrl('/jorge-uquillas') } : {}),
-          },
-          ...(HAS_SITE_URL ? { logo: absoluteUrl(contact.logo ?? '/PUBLIC/logo-novo-rings-luxury.webp') } : {}),
-          description:
-            'Atelier of haute joaillerie HandCrafted by Jorge Uquillas: 1/1 handmade 18k gold diamond rings and necklaces, hand-engraved with hand gravers, at São Paulo and Miami ateliers.',
-          image: ogImage,
-          priceRange: "$$$$",
-          currenciesAccepted: 'USD, BRL',
-          telephone: contact.phone,
-          email: contact.email,
-          openingHoursSpecification: {
-            '@type': 'OpeningHoursSpecification',
-            dayOfWeek: contact.hours.days.map((d) => `https://schema.org/${d}`),
-            opens: contact.hours.opens,
-            closes: contact.hours.closes,
-          },
-          areaServed: locationsData.locations.map((l) => ({
-            '@type': 'City',
-            name: l.city,
-            ...(l.region ? { addressRegion: l.region } : {}),
-            ...(l.countryCode ? { addressCountry: l.countryCode } : {}),
-          })),
-          // Nos dois atelieis. `address` so entra quando locations.json tiver o
-          // endereco real: postcode/logradouro ficticio em markup e o caminho
-          // mais curto para acao manual do Google.
-          location: locationsData.locations.map((l) => ({
-            '@type': 'Place',
-            name: l.label,
-            address: {
-              '@type': 'PostalAddress',
-              ...(l.district ? { streetAddress: l.district } : {}),
-              addressLocality: l.city,
-              ...(l.region ? { addressRegion: l.region } : {}),
-              addressCountry: l.countryCode,
-            },
-          })),
-          sameAs: contact.sameAs,
-          keywords: contact.keywords,
-          knowsAbout: ['HandCrafted jewelry', 'Hand engraving', '18k solid gold rings', 'Natural diamonds', 'High jewelry atelier', 'Haute joaillerie', 'One of one rings'],
-          ...(HAS_SITE_URL ? { hasMerchantReturnPolicy: absoluteUrl('/returns') } : {}),
-          ...(HAS_SITE_URL ? { hasShippingPolicy: absoluteUrl('/shipping') } : {}),
-        })}
-      </script>
     </Helmet>
   );
 }

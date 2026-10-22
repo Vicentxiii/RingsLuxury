@@ -6,6 +6,12 @@ const en = {
   heroEyebrow2: "MASTER PIECES",
   heroH1Keyword: "Luxury Rings, Handcrafted 18k Gold by Jorge Uquillas",
   heroViewCollection: "Ver coleção",
+  // ---- HomeFilm ----
+  filmAria: "RINGS LUXURY, the atelier film",
+  filmEyebrow: "THE FILM",
+  filmTitle: "The ring, in motion",
+  filmDescription: "A short film from the atelier of Jorge Uquillas: hand engraving, solid 18k gold and natural diamonds, seen up close.",
+  filmPlay: "Play film",
   // ---- QuemSouEu ----
   quemAria: "Jorge Uquillas, Master Engraver biography",
   quemImageAlt: "Jorge Uquillas, Master Engraver com anéis artesanais handcrafted ao redor",
@@ -278,6 +284,12 @@ const es: Record<Keys, string> = {
   heroEyebrow2: "OBRAS MAESTRAS",
   heroH1Keyword: "Anillos de lujo, oro 18k artesanal por Jorge Uquillas",
   heroViewCollection: "Ver la colección",
+  // ---- HomeFilm ----
+  filmAria: "RINGS LUXURY, la película del atelier",
+  filmEyebrow: "LA PELÍCULA",
+  filmTitle: "El anillo, en movimiento",
+  filmDescription: "Un cortometraje del atelier de Jorge Uquillas: grabado a mano, oro 18k macizo y diamantes naturales, vistos de cerca.",
+  filmPlay: "Reproducir película",
   // ---- QuemSouEu ----
   quemAria: "Jorge Uquillas, Biografía del Master Engraver",
   quemImageAlt: "Jorge Uquillas, Master Engraver con anillos artesanales handcrafted alrededor",
@@ -548,6 +560,12 @@ const pt: Record<Keys, string> = {
   heroEyebrow2: "OBRAS-PRIMAS",
   heroH1Keyword: "Anéis de luxo, ouro 18k artesanal por Jorge Uquillas",
   heroViewCollection: "Ver coleção",
+  // ---- HomeFilm ----
+  filmAria: "RINGS LUXURY, o filme do atelier",
+  filmEyebrow: "O FILME",
+  filmTitle: "O anel, em movimento",
+  filmDescription: "Um curta do atelier de Jorge Uquillas: gravação à mão, ouro 18k maciço e diamantes naturais, vistos de perto.",
+  filmPlay: "Assistir ao filme",
   // ---- QuemSouEu ----
   quemAria: "Jorge Uquillas, Biografia do Master Engraver",
   quemImageAlt: "Jorge Uquillas, Master Engraver com anéis artesanais handcrafted ao redor",

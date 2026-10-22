@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
-import { products } from '../data/products';
 
 interface EpicPreloaderProps {
   isExiting: boolean;
@@ -10,10 +9,11 @@ export function EpicPreloader({ isExiting }: EpicPreloaderProps) {
   const { t } = useLanguage();
   const [progress, setProgress] = useState(0);
 
-  // Progress visível em 4s, animação contínua e suave, realística
+  // Progresso curto: 350ms. O preloader é apenas uma cortina de marca;
+  // nunca deve atrasar a leitura do conteúdo.
   useEffect(() => {
     const start = performance.now();
-    const duration = 4000;
+    const duration = 350;
     let raf = 0;
     const tick = (now: number) => {
       const elapsed = now - start;
@@ -32,17 +32,10 @@ export function EpicPreloader({ isExiting }: EpicPreloaderProps) {
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  // Anel aleatório do catálogo a cada visita: SOMENTE ANÉIS das categorias
-  // Luxury Rings, Emperor, Special Editions e Gold & Silver. Fora:
-  // Necklaces, Luxury Queens e fotos genéricas/Unsplash.
-  const featuredPiece = useMemo(() => {
-    const ALLOWED = new Set(['luxury-rings', 'emperor-rings', 'special-editions', 'gold-silver-rings']);
-    const pool = products.filter((p) => ALLOWED.has(p.categorySlug) && p.images[0]?.startsWith('/PUBLIC/'));
-    const list = pool.length ? pool : products;
-    return list[Math.floor(Math.random() * list.length)];
-  }, []);
+  // Sem imagem de produto aleatória: o preloader não deve baixar nenhum
+  // asset de catálogo antes do conteúdo principal.
   const particles = useMemo(() => {
-    return Array.from({ length: 55 }, (_, i) => ({
+    return Array.from({ length: 24 }, (_, i) => ({
       id: i,
       left: Math.random() * 100,
       top: Math.random() * 100,
@@ -120,29 +113,21 @@ export function EpicPreloader({ isExiting }: EpicPreloaderProps) {
 
       {/* Conteúdo central - adaptado mobile */}
       <div className={`relative z-10 flex flex-col items-center text-center px-4 sm:px-6 transition-all duration-700 ease-out max-h-[100dvh] overflow-hidden py-6 ${isExiting ? 'scale-95 opacity-0 blur-[8px]' : 'scale-100 opacity-100 blur-0'}`}>
-        {/* Anel em destaque, peça real do catálogo, sorteada a cada visita */}
+        {/* Marca no centro, sem baixar imagem de produto. */}
         <div className="relative flex items-center justify-center shrink-0">
-          {/* Halo atrás do WEBP - deixado bem mais sutil */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[100px] sm:w-[280px] sm:h-[130px] bg-[#C5A059]/[0.03] blur-[55px] sm:blur-[65px] rounded-full pointer-events-none opacity-[0.12] sm:opacity-[0.15]" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140px] h-[60px] sm:w-[200px] sm:h-[90px] bg-[#E6CA85]/[0.02] blur-[30px] sm:blur-[40px] rounded-full pointer-events-none opacity-[0.18]" />
-          
-          {/* Logo leve (47KB) com preload no index.html: aparece de cara, sem ícone quebrado.
-              O webp anterior (logo-novo-high-resolution) não existia: dava 404 e caía num PNG de 20MB. */}
-          {featuredPiece && (
-            <img
-              key={featuredPiece.id}
-              src={featuredPiece.images[0]}
-              alt={featuredPiece.name}
-              fetchPriority="high"
-              decoding="async"
-              draggable={false}
-              className="relative w-[150px] sm:w-[190px] md:w-[210px] h-auto object-contain select-none max-w-[68vw] max-h-[32dvh] animate-[epicRingIn_1s_ease-out]"
-              style={{ filter: 'drop-shadow(0 0 22px rgba(197,160,89,0.28)) drop-shadow(0 18px 44px rgba(0,0,0,0.9))' }}
-              onError={(e) => {
-                ((e.currentTarget as HTMLImageElement).style.display = 'none');
-              }}
-            />
-          )}
+          <img
+            src="/PUBLIC/logo-novo-rings-luxury.webp"
+            alt="RINGS LUXURY"
+            width={190}
+            height={190}
+            fetchPriority="high"
+            decoding="async"
+            draggable={false}
+            className="relative w-[132px] sm:w-[164px] md:w-[180px] h-auto object-contain select-none"
+            onError={(e) => {
+              ((e.currentTarget as HTMLImageElement).style.display = 'none');
+            }}
+          />
         </div>
 
         {/* Tipografia - escala menor no mobile */}

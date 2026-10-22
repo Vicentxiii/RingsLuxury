@@ -1,17 +1,32 @@
+/* Fontes self-hosted: mesmo numero de familias e pesos, mas sem CSS do
+   Google Fonts bloqueando a renderizacao, sem conexao com terceiros e com
+   cache imutavel na propria origem. Latin cobre pt-BR, es e en. */
+@import "@fontsource/cinzel/latin-400.css";
+@import "@fontsource/cinzel/latin-600.css";
+@import "@fontsource/cinzel/latin-700.css";
+@import "@fontsource/cormorant-garamond/latin-300.css";
+@import "@fontsource/cormorant-garamond/latin-400.css";
+@import "@fontsource/cormorant-garamond/latin-600.css";
+@import "@fontsource/cormorant-garamond/latin-300-italic.css";
+@import "@fontsource/cormorant-garamond/latin-400-italic.css";
+@import "@fontsource/outfit/latin-300.css";
+@import "@fontsource/outfit/latin-400.css";
+@import "@fontsource/outfit/latin-500.css";
+
 @import "tailwindcss";
 
 @layer base {
   :root {
     --font-cinzel: 'Cinzel', serif;
-    --font-cinzel-decorative: 'Cinzel Decorative', serif;
     --font-cormorant: 'Cormorant Garamond', serif;
-    --font-sans: 'Plus Jakarta Sans', sans-serif;
-    --font-poppins: 'Poppins', sans-serif;
+    --font-sans: 'Outfit', sans-serif;
   }
 }
 
+/* Aliases de compatibilidade: o JSX antigo ainda usa estas classes, mas
+   todas resolvem para uma das 3 famílias carregadas no index.html. */
 .font-poppins {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .font-cinzel {
@@ -19,7 +34,7 @@
 }
 
 .font-decorative {
-  font-family: 'Cinzel Decorative', serif;
+  font-family: 'Cinzel', serif;
 }
 
 .font-cormorant {
@@ -27,7 +42,7 @@
 }
 
 .font-sans-luxury {
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 /* Luxury Antique Gold Colors */

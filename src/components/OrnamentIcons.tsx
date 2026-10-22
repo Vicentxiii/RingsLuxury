@@ -5,7 +5,7 @@ import React from 'react';
 export function GreekKeyBorder({ className = "w-full h-3" }: { className?: string }) {
   return (
     <div className={`overflow-hidden flex items-center opacity-70 ${className}`}>
-      <svg className="w-full h-full text-[#C5A059]" fill="none" viewBox="0 0 400 12" preserveAspectRatio="repeat-x">
+      <svg className="w-full h-full text-[#C5A059]" fill="none" viewBox="0 0 400 12" preserveAspectRatio="none">
         <pattern id="greek-key" width="32" height="12" patternUnits="userSpaceOnUse">
           <path
             d="M0 10 H14 V2 H6 V6 H10 V4 H8 M16 2 H30 V10 H22 V6 H26 V8 H24"

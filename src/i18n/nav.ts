@@ -1,5 +1,6 @@
 const en = {
   home: 'HOME',
+  allPieces: 'ALL PIECES',
   luxuryRings: 'LUXURY RINGS',
   emperorRings: 'EMPEROR RINGS',
   specialEditions: 'SPECIAL EDITIONS',
@@ -21,6 +22,7 @@ type Keys = keyof typeof en;
 
 const es: Record<Keys, string> = {
   home: 'INICIO',
+  allPieces: 'TODAS LAS PIEZAS',
   luxuryRings: 'ANILLOS DE LUJO',
   emperorRings: 'ANILLOS DEL EMPERADOR',
   specialEditions: 'EDICIONES ESPECIALES',
@@ -40,6 +42,7 @@ const es: Record<Keys, string> = {
 
 const pt: Record<Keys, string> = {
   home: 'INÍCIO',
+  allPieces: 'TODAS AS PEÇAS',
   luxuryRings: 'ANÉIS DE LUXO',
   emperorRings: 'ANÉIS DO IMPERADOR',
   specialEditions: 'EDIÇÕES ESPECIAIS',

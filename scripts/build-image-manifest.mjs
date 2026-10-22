@@ -52,7 +52,9 @@ async function main() {
     if (!m) continue;
 
     const width = Number(m[1]);
-    if (!Number.isFinite(width) || width <= 0) continue;
+    // Ignora falsos positivos de nomes com ano/data (foto-2026.webp) e
+    // variantes acima do teto de 1600px.
+    if (!Number.isFinite(width) || width < 200 || width > 1600) continue;
 
     const originalBase = base.slice(0, base.length - m[0].length);
     const key = path

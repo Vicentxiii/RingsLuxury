@@ -21,3 +21,5 @@ dist
 *-[0-9][0-9][0-9][0-9].webp
 *-[0-9][0-9][0-9].avif
 *-[0-9][0-9][0-9][0-9].avif
+# Bundle SSR usado apenas no build local.
+dist-server

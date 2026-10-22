@@ -5,6 +5,7 @@ import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
 import { Contact } from '../components/Contact';
 import { Breadcrumbs } from '../components/Breadcrumbs';
+import { ResponsiveImg } from '../components/ResponsiveImg';
 import { GreekMeanderDivider } from '../components/OrnamentIcons';
 import { formatPrice } from '../data/products';
 import { useCart } from '../context/CartContext';
@@ -37,10 +38,13 @@ export function CartPage() {
 
       {/* FUNDO, mesma foto das páginas de produto */}
       <div className="fixed inset-0 z-0 overflow-hidden bg-black pointer-events-none" aria-hidden>
-        <img
+        <ResponsiveImg
           src={CART_BG}
           alt=""
-          draggable={false}
+          decorative
+          sizes="100vw"
+          width={1600}
+          height={900}
           className="absolute inset-0 w-full h-full object-cover opacity-[0.13]"
           onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
         />

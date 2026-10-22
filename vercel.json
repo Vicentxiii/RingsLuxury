@@ -1,5 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "trailingSlash": false,
   "redirects": [
     {
       "source": "/(.*)",
@@ -16,12 +17,36 @@
       "source": "/jorgeuquillas",
       "destination": "/jorge-uquillas",
       "permanent": true
-    }
-  ],
-  "rewrites": [
+    },
     {
-      "source": "/((?!.*\\..*).*)",
-      "destination": "/index.html"
+      "source": "/produto/golden-epoch-commanders-ring",
+      "destination": "/collections",
+      "permanent": true
+    },
+    {
+      "source": "/produto/archons-seal-bespoke-signet",
+      "destination": "/collections",
+      "permanent": true
+    },
+    {
+      "source": "/produto/aphrodites-tear-queens-ring",
+      "destination": "/collections",
+      "permanent": true
+    },
+    {
+      "source": "/produto/empress-theodora-byzantine-halo",
+      "destination": "/collections",
+      "permanent": true
+    },
+    {
+      "source": "/produto/laocoon-bronze-and-time-atelier",
+      "destination": "/collections",
+      "permanent": true
+    },
+    {
+      "source": "/produto/helen-of-troy-poetry-in-gold",
+      "destination": "/collections",
+      "permanent": true
     }
   ],
   "headers": [

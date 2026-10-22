@@ -1,10 +1,66 @@
-import React from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { GreekKeyBorder, GreekMeanderDivider, AcanthusLeaf } from './OrnamentIcons';
 import { useLanguage } from '../i18n/LanguageContext';
+import { ResponsiveImg } from './ResponsiveImg';
 
 const ATELIER_VIDEO = '/PUBLIC/atelier-video-monograma-maconico-templarios.mp4';
 const AGUIA_IMG =
   '/PUBLIC/luxury-rings-collection-anel-aguia-maconica-by-jorge-uquillas-rings-luxury.webp';
+
+/**
+ * Vídeo do ateliê sob demanda.
+ *
+ * - preload="none" e sem src até a seção chegar perto da viewport.
+ * - Só então o navegador baixa o arquivo (já comprimido para 720p) e tenta
+ *   tocar mudo. Se o autoplay for bloqueado, o primeiro frame/poster fica.
+ */
+function LazyAtelierVideo({ ariaLabel }: { ariaLabel: string }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === 'undefined') {
+      setShouldLoad(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '300px 0px' },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!shouldLoad) return;
+    const el = videoRef.current;
+    if (!el) return;
+    el.play().catch(() => {
+      // Autoplay bloqueado: mantém o poster, sem erro visível ao visitante.
+    });
+  }, [shouldLoad]);
+
+  return (
+    <video
+      ref={videoRef}
+      src={shouldLoad ? ATELIER_VIDEO : undefined}
+      poster={AGUIA_IMG}
+      muted
+      loop
+      playsInline
+      preload="none"
+      aria-label={ariaLabel}
+      className="w-full h-full object-cover filter contrast-[1.1] brightness-95"
+    />
+  );
+}
 
 export function Atelier() {
   const { t } = useLanguage();
@@ -96,16 +152,7 @@ export function Atelier() {
               <div className="absolute -bottom-1 -right-1 w-2.5 h-2.5 border-b border-r border-[#C5A059]" />
 
               <div className="overflow-hidden aspect-[16/11] bg-[#020202]">
-                <video
-                  src={ATELIER_VIDEO}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  aria-label={t.home.atVideoAria}
-                  className="w-full h-full object-cover filter contrast-[1.1] brightness-95"
-                />
+                <LazyAtelierVideo ariaLabel={t.home.atVideoAria} />
               </div>
 
               {/* Caption SEO, peça real: maçônico 18k com citrino */}
@@ -117,11 +164,12 @@ export function Atelier() {
             {/* Overlapping secondary vignette (Águia Maçônica) */}
             <div className="hidden sm:block absolute -bottom-12 -left-10 w-48 md:w-56 border border-[#C5A059]/40 bg-[#0A0A0A] p-2 shadow-[0_20px_50px_rgba(0,0,0,0.9)]">
               <div className="aspect-square overflow-hidden bg-black">
-                <img
+                <ResponsiveImg
                   src={AGUIA_IMG}
                   alt={t.home.atAguiaAlt}
-                  referrerPolicy="no-referrer"
-                  loading="lazy"
+                  width={800}
+                  height={800}
+                  sizes="224px"
                   className="w-full h-full object-contain filter contrast-110"
                 />
               </div>

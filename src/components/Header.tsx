@@ -66,6 +66,12 @@ export function Header({ onOpenConsultation }: HeaderProps) {
       onClick: (e) => handleNavigation(e, '/'),
     },
     {
+      label: t.nav.allPieces,
+      ariaLabel: 'Browse every one-of-one piece in the catalogue',
+      link: '/collections',
+      onClick: (e) => handleNavigation(e, '/collections'),
+    },
+    {
       label: t.nav.luxuryRings,
       link: '/luxury-rings',
       onClick: (e) => handleNavigation(e, '/luxury-rings'),

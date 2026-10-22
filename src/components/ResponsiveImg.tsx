@@ -90,7 +90,9 @@ export function ResponsiveImg({
     style,
     draggable,
     onError,
-    decoding: 'async' as const,
+    // No LCP, decode síncrono garante que a imagem esteja pronta no primeiro
+    // paint em vez de aparecer depois da decodificação assíncrona.
+    decoding: (priority ? 'sync' : 'async') as 'sync' | 'async',
     // Imagem acima da dobra nao entra em lazy: lazy atrasa o LCP.
     loading: (priority ? 'eager' : 'lazy') as 'eager' | 'lazy',
     fetchPriority: priority ? ('high' as const) : ('low' as const),

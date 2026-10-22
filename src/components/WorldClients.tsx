@@ -37,6 +37,9 @@ export function WorldClients() {
   // reduzido e a aba está visível. WCAG 2.2.2 exige forma de pausar.
   useEffect(() => {
     if (paused) return;
+    // No pré-render, não avança o carrossel: o HTML salvo precisa refletir o
+    // índice inicial 0, senão a hidratação encontra outro depoimento no texto.
+    if (typeof window !== 'undefined' && (window as Window & { __PRERENDER__?: boolean }).__PRERENDER__) return;
     if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     let timer: number | undefined;

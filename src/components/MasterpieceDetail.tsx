@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Sparkles, ZoomIn, Info, BadgeCheck, X } from 'lucide-react';
 import { GreekKeyBorder, GreekMeanderDivider, LaurelWreath, AcanthusLeaf } from './OrnamentIcons';
+import { ResponsiveImg } from './ResponsiveImg';
 import { useLanguage } from '../i18n/LanguageContext';
 
 /** Anel Kraken em ouro, rubis e diamantes, substitui a macro do cuff */
@@ -27,13 +28,18 @@ export function MasterpieceDetail() {
   const { t } = useLanguage();
   // No mobile (toque) nenhum dot começa revelado: os textos só aparecem ao tocar.
   // No desktop mantém o primeiro selecionado como antes.
-  const [activeHotspot, setActiveHotspot] = useState<string | null>(() =>
-    typeof window !== 'undefined' &&
-    typeof window.matchMedia === 'function' &&
-    window.matchMedia('(pointer: coarse)').matches
-      ? null
-      : 'hotspot-1',
-  );
+  // O HTML do servidor não conhece o tipo de ponteiro. Começa com o primeiro
+  // hotspot, como no desktop; no mobile o efeito abaixo esconde os textos até
+  // o toque, depois da hidratação.
+  const [activeHotspot, setActiveHotspot] = useState<string | null>('hotspot-1');
+  useEffect(() => {
+    if (
+      typeof window.matchMedia === 'function' &&
+      window.matchMedia('(pointer: coarse)').matches
+    ) {
+      setActiveHotspot(null);
+    }
+  }, []);
   const [isZoomed, setIsZoomed] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const RING_CENTER = { x: 47, y: 43 };
@@ -187,11 +193,12 @@ export function MasterpieceDetail() {
             }}
             className="relative w-full h-full overflow-hidden bg-[#020202]"
           >
-            <img
+            <ResponsiveImg
               src={KRAKEN_IMG}
               alt={t.home.mpImageAlt}
-              referrerPolicy="no-referrer"
-              loading="lazy"
+              width={1276}
+              height={1920}
+              sizes="(max-width: 768px) 100vw, 50vw"
               className={`w-full h-full object-cover object-[50%_38%] filter contrast-[1.12] brightness-[0.95] transition-transform duration-700 ease-out ${
                 isZoomed ? 'scale-[2.2] origin-center cursor-move' : 'scale-[1.08]'
               }`}

@@ -3,6 +3,8 @@
 interface ImportMetaEnv {
   /** Domínio do site, ex.: https://seudominio.com. Vazio = não publicar canonical/sitemap. */
   readonly VITE_SITE_URL?: string;
+  /** ID opcional do GA4 (G-XXXXXXXXXX). Vazio = não carregar Google Analytics. */
+  readonly VITE_GA4_ID?: string;
 }
 
 interface ImportMeta {

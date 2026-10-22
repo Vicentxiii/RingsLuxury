@@ -51,15 +51,25 @@ function load(): CartLine[] {
 }
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
-  const [lines, setLines] = useState<CartLine[]>(() => load());
+  // Servidor e cliente começam com carrinho vazio. O localStorage é lido
+  // depois da hidratação; se fosse lido no inicializador, o contador do header
+  // divergia do HTML estático e o React descartava a árvore.
+  const [lines, setLines] = useState<CartLine[]>([]);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    setLines(load());
+    setReady(true);
+  }, []);
+
+  useEffect(() => {
+    if (!ready) return;
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(lines));
     } catch {
       /* ignore */
     }
-  }, [lines]);
+  }, [lines, ready]);
 
   const value = useMemo<CartValue>(() => {
     const detailed: CartLineDetailed[] = lines.flatMap((l) => {

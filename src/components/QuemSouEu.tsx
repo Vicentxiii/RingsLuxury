@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
+import { ResponsiveImg } from './ResponsiveImg';
 
 interface QuemSouEuProps {}
 
@@ -24,10 +25,13 @@ export function QuemSouEu({}: QuemSouEuProps) {
       <div className="absolute inset-0 z-0 overflow-hidden bg-black">
         {/* FADE SUPERIOR, dissolve o corte com o hero acima */}
         <div className="absolute top-0 left-0 w-full h-[140px] sm:h-[180px] bg-gradient-to-b from-[#020202] to-transparent pointer-events-none" aria-hidden />
-        <img
+        <ResponsiveImg
           src="/PUBLIC/fundo-quem-sou-eu.webp"
           alt=""
-          draggable={false}
+          decorative
+          sizes="100vw"
+          width={1600}
+          height={900}
           className="absolute inset-0 w-full h-full object-cover object-center opacity-[0.95] scale-[1.12]"
           style={{ filter: 'blur(3.5px)', WebkitFilter: 'blur(3.5px)' }}
           onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
@@ -53,13 +57,13 @@ export function QuemSouEu({}: QuemSouEuProps) {
           {/* ESQUERDA, Montagem Jorge + anéis */}
           <div className="order-1 flex justify-center lg:justify-end items-center">
             <div className="relative w-full max-w-[480px] sm:max-w-[540px] lg:max-w-[610px] xl:max-w-[640px]">
-              <img
+              <ResponsiveImg
                 src="/PUBLIC/jorge-montagem-sobre-mim.webp"
                 alt={t.home.quemImageAlt}
-                loading="lazy"
-                decoding="async"
+                width={640}
+                height={800}
+                sizes="(max-width: 640px) 92vw, (max-width: 1024px) 540px, 640px"
                 className="w-full h-auto object-contain select-none"
-                draggable={false}
                 style={{ filter: 'drop-shadow(0 22px 48px rgba(0,0,0,0.72))' }}
                 onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
               />

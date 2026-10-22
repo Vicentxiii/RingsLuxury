@@ -43,16 +43,28 @@ const ROOT = path.resolve(process.cwd(), 'public');
 const DIR = argValue('dir', '');
 const QUALITY = Number(argValue('quality', '82'));
 const AVIF_QUALITY = Number(argValue('avif-quality', '55'));
-const WIDTHS = argValue('widths', '480,800,1200,1600,2400')
+const WIDTHS = argValue('widths', '480,800,1200,1600')
   .split(',')
   .map((w) => Number(w.trim()))
-  .filter(Boolean)
+  .filter((w) => Number.isFinite(w) && w > 0 && w <= 1600)
   .sort((a, b) => a - b);
 
 /** Abaixo deste tamanho o arquivo e considerado ja otimizado. */
 const SKIP_BELOW = 120 * 1024;
 
-const SOURCE_EXT = new Set(['.jpg', '.jpeg', '.png']);
+/**
+ * Exceções ao corte por peso. A imagem do hero é pequena em bytes, mas é o
+ * elemento de LCP: sem variantes, um celular baixa/decodifica 1600 px para
+ * exibir ~400 px. Forçar 480/800/1200/1600 aqui dá ao navegador uma versão
+ * leve e mantém o teto de 1600 px.
+ */
+const FORCE_VARIANTS = new Set([
+  'medusa-e-odim-capa-do-site-rings-luxury-by-jorge-uquillas.webp',
+]);
+
+const SOURCE_EXT = new Set(['.jpg', '.jpeg', '.png', '.webp']);
+/** Nao reprocessar variantes já geradas (x-800.webp, x-1600.avif...). */
+const GENERATED_VARIANT = /-\d+\.(webp|avif)$/i;
 
 /*
  * AVIF depende de como o libvips foi compilado no binario instalado. O pacote
@@ -65,7 +77,9 @@ const SOURCE_EXT = new Set(['.jpg', '.jpeg', '.png']);
  * tem hoisting de valor, e ler QUALITY aqui lancaria ReferenceError.
  */
 const AVAILABLE = {
-  avif: Boolean(sharp.format?.avif?.output),
+  // Em versões recentes do sharp, AVIF aparece como alias de `heif`, não
+  // como `format.avif`. Ler só `format.avif` desabilitava AVIF sem motivo.
+  avif: Boolean(sharp.format?.avif?.output || sharp.format?.heif?.output),
   webp: Boolean(sharp.format?.webp?.output),
 };
 
@@ -98,9 +112,13 @@ async function* walk(dir) {
 async function optimizeOne(file) {
   const ext = path.extname(file).toLowerCase();
   if (!SOURCE_EXT.has(ext)) return null;
+  // Evita criar x-800-800.webp em builds seguintes.
+  if (GENERATED_VARIANT.test(path.basename(file))) return null;
 
   const stat = await fs.stat(file);
-  if (stat.size <= SKIP_BELOW) return null;
+  if (stat.size <= SKIP_BELOW && !FORCE_VARIANTS.has(path.basename(file).toLowerCase())) {
+    return null;
+  }
 
   const base = path.basename(file, ext);
   const stem = path.join(path.dirname(file), base);
@@ -108,16 +126,17 @@ async function optimizeOne(file) {
   const image = sharp(file, { failOn: 'none' });
   const meta = await image.metadata();
   const originalWidth = meta.width ?? 1600;
+  // Teto de 1600px: acima disso o ganho visual não compensa o peso em mobile.
+  const cappedWidth = Math.min(originalWidth, 1600);
 
   /*
     Lista de larguras a gerar.
 
-    Regra: nunca ampliar (bytes jogados fora) e SEMPRE incluir a largura original
-    como variante 1:1. Sem essa variante, uma foto de 1080px so receberia a de
-    800px e ficaria suave em tela retina, num site cuja venda e a imagem.
+    Regra: nunca ampliar e nunca passar de 1600px. Inclui a largura final
+    (limitada a 1600) para haver uma variante 1:1 quando o original já é menor.
   */
-  const widths = new Set(WIDTHS.filter((w) => w < originalWidth));
-  widths.add(originalWidth);
+  const widths = new Set(WIDTHS.filter((w) => w < cappedWidth));
+  widths.add(cappedWidth);
   const widthList = [...widths].sort((a, b) => a - b);
 
   const before = stat.size;

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 /**
  * Folhas douradas, aparecem na seção QUEM SOU EU (Jorge Uquillas)
@@ -17,15 +17,18 @@ export function FolhasScroll() {
   const rangeRef = useRef({ start: 0, end: 1600 });
   const rafRef = useRef(0);
   const tickingRef = useRef(false);
-  // sombra estática só no desktop (no mobile ela força repaint por frame)
-  const leafFilter = useMemo(
-    () =>
+  // Sombra estática só no desktop (no mobile ela força repaint por frame).
+  // Começa undefined nos dois lados para o HTML do servidor bater com a
+  // hidratação; o filtro entra depois, só em apontador fino.
+  const [leafFilter, setLeafFilter] = useState<string | undefined>(undefined);
+  useEffect(() => {
+    if (
       typeof window.matchMedia === 'function' &&
-      window.matchMedia('(pointer: coarse)').matches
-        ? undefined
-        : 'drop-shadow(0 10px 22px rgba(0,0,0,0.48)) brightness(1.02)',
-    [],
-  );
+      !window.matchMedia('(pointer: coarse)').matches
+    ) {
+      setLeafFilter('drop-shadow(0 10px 22px rgba(0,0,0,0.48)) brightness(1.02)');
+    }
+  }, []);
 
   useEffect(() => {
     const calcRange = () => {

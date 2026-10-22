@@ -1,6 +1,7 @@
-import React, { Suspense, lazy, useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { Home } from './pages/Home';
+import { NotFound } from './pages/NotFound';
 import { Necklaces } from './pages/Necklaces';
 import { LuxuryRings } from './pages/LuxuryRings';
 import { EmperorRings } from './pages/EmperorRings';
@@ -8,23 +9,27 @@ import { SpecialEditions } from './pages/SpecialEditions';
 import { GoldSilverRings } from './pages/GoldSilverRings';
 import { LuxuryQueens } from './pages/LuxuryQueens';
 import { Courses } from './pages/Courses';
-import { NotFound } from './pages/NotFound';
-// WebGL pesado (three.js), carrega só ao visitar /contact
-const ContactPage = lazy(() =>
-  import('./pages/ContactPage').then((m) => ({ default: m.ContactPage })),
-);
+import { ContactPage } from './pages/ContactPage';
 import { Blog } from './pages/Blog';
 import { BlogPost } from './pages/BlogPost';
 import { FaqPage } from './pages/FaqPage';
 import { PolicyPage } from './pages/PolicyPage';
 import { Gallery } from './pages/Gallery';
-import { LuxuryRingsGuide } from './pages/LuxuryRingsGuide';import { ProductPage } from './pages/ProductPage';
+import { AllPieces } from './pages/AllPieces';
+import { LuxuryRingsGuide } from './pages/LuxuryRingsGuide';
+import { ProductPage } from './pages/ProductPage';
 import { CartPage } from './pages/CartPage';
 import { JorgeUquillas } from './pages/JorgeUquillas';
+
+// Rotas estáticas de propósito. O HTML pré-renderizado foi gerado por
+// renderização no cliente e não tem os marcadores de Suspense que o React
+// exige para hidratar. Com lazy/Suspense, a hidratação descartava a árvore
+// inteira e repintava o hero no fim (LCP 8 s). Sem Suspense, o React hidrata
+// o HTML existente e o LCP fica no primeiro paint.
 import { AudioProvider } from './context/AudioProvider';
 import { LanguageProvider } from './i18n/LanguageContext';
 import { CartProvider } from './context/CartContext';
-import { EpicPreloader } from './components/EpicPreloader';
+import { Analytics } from './components/Analytics';
 
 /** Sempre abre a nova rota do início (topo), mobile + desktop.
  * Sem isso o React Router mantém o scroll anterior e a página
@@ -41,75 +46,15 @@ function ScrollToTop() {
 }
 
 export default function App() {
-  const [isPreloading, setIsPreloading] = useState(true);
-  const [isRevealing, setIsRevealing] = useState(false);
-  const [showPreloader, setShowPreloader] = useState(true);
-  const [revealSettled, setRevealSettled] = useState(false);
-
-  useEffect(() => {
-    // Bloqueia scroll enquanto preloader visível
-    if (showPreloader) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [showPreloader]);
-
-  useEffect(() => {
-    // 4s de loading épico, depois inicia blur reveal de 1.2s
-    const t1 = setTimeout(() => {
-      setIsPreloading(false);
-      // pequeno delay para sincronizar blur com fade do preloader
-      requestAnimationFrame(() => setIsRevealing(true));
-    }, 4000);
-
-    // remove preloader do DOM após fade (700ms) + buffer
-    const t2 = setTimeout(() => {
-      setShowPreloader(false);
-    }, 4000 + 750);
-
-    return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-    };
-  }, []);
-
-  // filter/transform criam containing block e quebram position:fixed do header.
-  // Removidos assim que o reveal termina, para o menu/audio ficarem fixos no viewport.
-  useEffect(() => {
-    if (!isRevealing) return;
-    const t3 = setTimeout(() => setRevealSettled(true), 1250);
-    return () => clearTimeout(t3);
-  }, [isRevealing]);
-
+  // Sem preloader. O conteúdo é pintado no primeiro frame e nenhum overlay
+  // atrasa LCP, leitura ou interação. O componente EpicPreloader permanece
+  // no repositório apenas como referência visual e não é carregado.
   return (
     <AudioProvider>
       <LanguageProvider>
       <CartProvider>
-      {showPreloader && <EpicPreloader isExiting={!isPreloading} />}
-      <div
-        className={
-          revealSettled
-            ? undefined
-            : 'transition-all ease-[cubic-bezier(0.16,1,0.3,1)] will-change-[filter,opacity,transform]'
-        }
-        style={
-          revealSettled
-            ? undefined
-            : {
-                filter: isRevealing ? 'blur(0px)' : 'blur(16px)',
-                opacity: isRevealing ? 1 : 0,
-                transform: isRevealing ? 'scale(1)' : 'scale(0.985)',
-                transitionDuration: '1200ms',
-                transitionProperty: 'filter, opacity, transform',
-              }
-        }
-      >
+      <div>
         <ScrollToTop />
-        <Suspense fallback={<div className="min-h-screen bg-black" />}>
         <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/luxury-rings" element={<LuxuryRings />} />
@@ -124,10 +69,17 @@ export default function App() {
       <Route path="/blog/:slug" element={<BlogPost />} />
       {/* FAQ mestre: respostas diretas, alvo de citacao por Google e IA. */}
       <Route path="/faq" element={<FaqPage />} />
-      {/* Politicas: sinal de confianca de e-commerce + exigencia legal
-          (LGPD/GDPR/CCPA). Textos em src/data/policies.ts. */}
-      <Route path="/:policy(privacy|terms|shipping|returns|warranty)" element={<PolicyPage />} />
+      {/* Politicas: sinal de confiança de e-commerce + exigência legal
+          (LGPD/GDPR/CCPA). Textos em src/data/policies.ts.
+          Rotas explícitas: o React Router 7 não casa o padrão de regex
+          `/:policy(privacy|terms|...)`; com ele, as cinco URLs caíam em 404. */}
+      <Route path="/privacy" element={<PolicyPage />} />
+      <Route path="/terms" element={<PolicyPage />} />
+      <Route path="/shipping" element={<PolicyPage />} />
+      <Route path="/returns" element={<PolicyPage />} />
+      <Route path="/warranty" element={<PolicyPage />} />
       <Route path="/gallery" element={<Gallery />} />
+      <Route path="/collections" element={<AllPieces />} />
       <Route path="/luxury-rings-guide" element={<LuxuryRingsGuide />} />
       <Route path="/produto/:slug" element={<ProductPage />} />
       <Route path="/product/:slug" element={<ProductPage />} />
@@ -136,7 +88,7 @@ export default function App() {
       <Route path="/jorgeuquillas" element={<Navigate to="/jorge-uquillas" replace />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
-        </Suspense>
+        <Analytics />
       </div>
       </CartProvider>
       </LanguageProvider>

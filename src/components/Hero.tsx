@@ -1,35 +1,17 @@
-import React, { useEffect, useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
+import { ResponsiveImg } from './ResponsiveImg';
 
 interface HeroProps {
   onEnterAtelier: () => void;
 }
 
-// Imagem composta da HERO antiga (Odin esquerda + Medusa direita), 2048x1080
-const OLD_HERO_COMPOSITE = encodeURI(
+// Imagem composta da HERO (Odin esquerda + Medusa direita), 1600x844.
+const HERO_IMAGE = encodeURI(
   '/PUBLIC/medusa-e-odim-capa-do-site-rings-luxury-by-jorge-uquillas.webp'
 );
 
-// Fallback estático caso o embed do YouTube não carregue / bloqueie
-const FALLBACK_COVER = OLD_HERO_COMPOSITE;
-
-const YOUTUBE_ID = 'ieNPhZ4Vdss';
-// autoplay mudo em loop, sem controles, sem relacionados, modest branding.
-// Começa em 1:11 (71s) — momento em que já está gravando o anel.
-// disablekb/fs/cc: esconde ao máximo o chrome do player (teclado, fullscreen, legendas).
-const YOUTUBE_EMBED = `https://www.youtube.com/embed/${YOUTUBE_ID}?autoplay=1&mute=1&controls=0&loop=1&playlist=${YOUTUBE_ID}&playsinline=1&modestbranding=1&rel=0&iv_load_policy=3&showinfo=0&enablejsapi=0&disablekb=1&fs=0&cc_load_policy=0&start=71`;
-
 export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
   const { t } = useLanguage();
-  // Autoplay ao entrar: o iframe carrega mutado (mute=1 + playsinline),
-  // liberado em desktop e mobile. A capa dissolve sozinha (videoReady).
-  const [playVideo, setPlayVideo] = useState(false);
-  // Véu anti-chrome: cobre o iframe até o vídeo arrancar (quando o YouTube
-  // exibe título/barra), depois dissolve sozinho. Toque também revela.
-  const [videoReady, setVideoReady] = useState(false);
-  useEffect(() => {
-    setPlayVideo(true);
-  }, []);
   return (
     <section
       id="hero"
@@ -37,50 +19,7 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
       style={{ height: '92vh', minHeight: '560px', maxHeight: '900px' }}
       aria-label={t.home.heroSectionAria}
     >
-      {/* 1. VIDEO BACKGROUND - YouTube com fachada (só carrega após o clique) */}
-      <div className="absolute inset-0 z-0 overflow-hidden bg-[#040404]">
-        {playVideo ? (
-          <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none">
-            <iframe
-              title={t.home.heroVideoTitle}
-              src={YOUTUBE_EMBED}
-              className="absolute top-1/2 left-1/2 w-[420%] h-[420%] sm:w-[300%] sm:h-[300%] lg:w-[170%] lg:h-[170%] -translate-x-1/2 -translate-y-1/2 object-cover scale-[1.15] brightness-[1.35] contrast-[1.05] sm:brightness-100 sm:contrast-100"
-              style={{ border: 0, opacity: 1 }}
-              allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-              allowFullScreen={false}
-              loading="eager"
-              referrerPolicy="strict-origin-when-cross-origin"
-              onLoad={() => {
-                window.setTimeout(() => setVideoReady(true), 1800);
-              }}
-            />
-            {/* capa que esconde a UI do player no arranque; dissolve sozinha */}
-            <div
-              aria-hidden
-              onClick={() => setVideoReady(true)}
-              className={`absolute inset-0 bg-[#040404] bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${videoReady ? 'opacity-0' : 'opacity-100'}`}
-              style={{
-                backgroundImage: `url("${FALLBACK_COVER}")`,
-                pointerEvents: videoReady ? 'none' : 'auto',
-              }}
-            />
-          </div>
-        ) : (
-          <button
-            type="button"
-            onClick={() => setPlayVideo(true)}
-            aria-label={t.home.heroVideoTitle}
-            className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat opacity-30 cursor-pointer group/video"
-            style={{ backgroundImage: `url("${FALLBACK_COVER}")` }}
-          >
-            <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full border border-[#C5A059]/60 bg-black/50 backdrop-blur flex items-center justify-center transition-transform group-hover/video:scale-110">
-              <span className="block w-0 h-0 border-y-[8px] border-y-transparent border-l-[12px] border-l-[#E6CA85] ml-1" aria-hidden />
-            </span>
-          </button>
-        )}
-      </div>
-
-      {/* 2. DARKEN OVERLAYS, AINDA MAIS CLARO */}
+      {/* 1. DARKEN OVERLAYS, AINDA MAIS CLARO */}
       <div className="absolute inset-0 z-10 bg-[#020202]/07" aria-hidden />
       <div
         className="absolute inset-0 z-10 pointer-events-none"
@@ -95,12 +34,16 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
       <div className="absolute inset-y-0 left-0 w-[10%] z-10 bg-gradient-to-r from-[#020202]/14 via-[#020202]/03 to-transparent pointer-events-none hidden sm:block" aria-hidden />
       <div className="absolute inset-y-0 right-0 w-[10%] z-10 bg-gradient-to-l from-[#020202]/14 via-[#020202]/03 to-transparent pointer-events-none hidden sm:block" aria-hidden />
 
-      {/* 3. COMPOSITE ODIN + MEDUSA por cima do video, liso sem textura */}
+      {/* 2. COMPOSITE ODIN + MEDUSA, liso sem textura */}
       <div className="absolute inset-0 z-20 pointer-events-none select-none overflow-hidden" aria-hidden>
-        <img
-          src={OLD_HERO_COMPOSITE}
+        <ResponsiveImg
+          src={HERO_IMAGE}
           alt=""
-          draggable={false}
+          decorative
+          width={1600}
+          height={844}
+          sizes="100vw"
+          priority
           className="absolute inset-0 w-full h-full object-cover object-center scale-[1.12] opacity-60 sm:opacity-[0.84]"
           style={{ objectPosition: 'center center' }}
           onError={(e) => {

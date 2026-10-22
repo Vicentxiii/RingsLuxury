@@ -18,19 +18,11 @@ function isLang(v: unknown): v is Lang {
 }
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLangState] = useState<Lang>(() => {
-    try {
-      // ?lang= tem prioridade: torna as URLs de idioma reais, compartilháveis
-      // e rastreáveis (base do hreflang no <SEO>).
-      const param = new URLSearchParams(window.location.search).get('lang');
-      if (isLang(param)) return param;
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (isLang(stored)) return stored;
-    } catch {
-      /* ignore */
-    }
-    return 'en';
-  });
+  // O primeiro render é sempre EN, igual ao HTML do servidor. O idioma
+  // salvo/?lang= é restaurado depois da hidratação; ler localStorage no
+  // inicializador fazia o React encontrar ES/PT onde o servidor escreveu EN.
+  const [lang, setLangState] = useState<Lang>('en');
+  const [ready, setReady] = useState(false);
 
   const setLang = (l: Lang) => {
     if (!isLang(l)) return;
@@ -38,6 +30,22 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   };
 
   useEffect(() => {
+    try {
+      const param = new URLSearchParams(window.location.search).get('lang');
+      if (isLang(param)) {
+        setLangState(param);
+      } else {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (isLang(stored)) setLangState(stored);
+      }
+    } catch {
+      /* ignore */
+    }
+    setReady(true);
+  }, []);
+
+  useEffect(() => {
+    if (!ready) return;
     try {
       localStorage.setItem(STORAGE_KEY, lang);
     } catch {
@@ -57,7 +65,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     } catch {
       /* ignore */
     }
-  }, [lang]);
+  }, [lang, ready]);
 
   const value = useMemo<LanguageValue>(
     () => ({ lang, setLang, t: translations[lang] }),

@@ -6,7 +6,7 @@ import { loadEnv, type HtmlTagDescriptor, type Plugin } from 'vite';
 // navegacao para crawlers sem JS, o sitemap.xml e o IndexNow do build.
 // Paginas de politica entram aqui de proposito: sao as URLs que o Google usa
 // para avaliar confianca de e-commerce, e nao podem faltar do sitemap.
-const STATIC_ROUTES = ['/', '/luxury-rings', '/emperor-rings', '/special-editions', '/gold-silver-rings', '/necklaces', '/luxuryqueens', '/courses', '/gallery', '/blog', '/faq', '/contact', '/luxury-rings-guide', '/jorge-uquillas', '/privacy', '/terms', '/shipping', '/returns', '/warranty'];
+const STATIC_ROUTES = ['/', '/collections', '/luxury-rings', '/emperor-rings', '/special-editions', '/gold-silver-rings', '/necklaces', '/luxuryqueens', '/courses', '/gallery', '/blog', '/faq', '/contact', '/luxury-rings-guide', '/jorge-uquillas', '/privacy', '/terms', '/shipping', '/returns', '/warranty'];
 
 const buildRobots = (siteUrl: string) => `# ringsluxuryart.com
 User-agent: *
@@ -51,8 +51,9 @@ Allow: /
 User-agent: Bytespider
 Disallow: /
 
-# Guia de leitura para LLMs (GEO). crawlers de IA procuram este header.
-Llms-Txt: ${siteUrl}/llms.txt
+# Guia de leitura para LLMs (GEO). O arquivo /llms.txt continua publicado e
+# declarado no <link rel="alternate"> do HTML. Nao usar diretiva customizada
+# aqui: o robots.txt aceita apenas os campos padrao.
 
 Sitemap: ${siteUrl}/sitemap.xml
 `;
@@ -221,12 +222,13 @@ const buildGraph = (data: ReviewsData, siteUrl: string, locs: LocationsData, con
       address: {
         '@type': 'PostalAddress',
         ...(l.address ? { streetAddress: l.address } : {}),
-        ...(l.district && !l.address ? { streetAddress: l.district } : {}),
+        // Bairro NAO e rua. Antes `district` caia em streetAddress e o markup
+        // declarava "Brickell" / "Avenida Paulista" como endereco de rua.
         addressLocality: l.city,
         ...(l.region ? { addressRegion: l.region } : {}),
         addressCountry: l.countryCode,
       },
-      telephone: contact.phone,
+      ...(l.countryCode === 'BR' ? { telephone: contact.phone } : {}),
       email: contact.email,
       priceRange: '$$$$',
       currenciesAccepted: 'USD, BRL',
@@ -423,11 +425,15 @@ export function seoInject(): Plugin {
 
     /**
      * robots.txt e sitemap.xml gerados em build para ficarem sempre em sync
-     * com products.ts / blogPosts.ts. <lastmod> = data do build: após
-     * renomeações e publicações, sinaliza frescor e provoca recrawl.
+     * com products.ts / blogPosts.ts.
      *
-     * O sitemap so e emitido com dominio configurado: publicar <loc> apontando
-     * para um host inexistente convida o Google a indexar URLs que nao
+     * O sitemap lista SOMENTE as URLs canônicas (sem ?lang=). As variantes de
+     * idioma são descobertas pelas tags hreflang de cada página; colocá-las no
+     * sitemap triplicava o número de URLs e diluía o crawl em páginas que eram
+     * apenas a mesma página com um query param.
+     *
+     * O sitemap só é emitido com domínio configurado: publicar <loc> apontando
+     * para um host inexistente convida o Google a indexar URLs que não
      * respondem.
      */
     async generateBundle() {
@@ -446,38 +452,38 @@ export function seoInject(): Plugin {
         ...slugs('src/data/blogPosts.ts').map((s) => `/blog/${s}`),
       ];
 
-      // hreflang é client-side (pós-JS): o Google descobre ES/PT mais rápido
-      // se as variantes ?lang= também estiverem no sitemap. EN limpo + es + pt.
-      const urls = baseUrls.flatMap((u) => (u === '/' ? [u, '/?lang=es', '/?lang=pt'] : [u, `${u}?lang=es`, `${u}?lang=pt`]));
-
-      const today = new Date().toISOString().slice(0, 10);
+      const urls = baseUrls;
       const escXml = (s: string) => s.replace(/&/g, '&amp;');
       const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map((u) => `  <url><loc>${escXml(`${siteUrl}${u}`)}</loc><lastmod>${today}</lastmod></url>`).join('\n')}
+${urls.map((u) => `  <url><loc>${escXml(`${siteUrl}${u}`)}</loc></url>`).join('\n')}
 </urlset>
 `;
 
       this.emitFile({ type: 'asset', fileName: 'sitemap.xml', source: sitemap });
 
-      // IndexNow: só canônicas (sem ?lang=): Bing rejeita query params com 400.
-      // As variantes ?lang= ficam no sitemap para descoberta via Google.
+      // IndexNow: só canônicas (sem ?lang=). As variantes de idioma ficam
+      // fora do sitemap e são descobertas por hreflang.
       const INDEXNOW_KEY = 'd3c59e041d774eb193020a68ad60b6bd8626ae04b4f74983a6bebdddca56b4fd';
-      try {
-        const host = siteUrl.replace(/^https?:\/\//, '');
-        const res = await fetch('https://api.indexnow.org/indexnow.json', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            host,
-            key: INDEXNOW_KEY,
-            keyLocation: `${siteUrl}/${INDEXNOW_KEY}.txt`,
-            urlList: baseUrls.map((u) => `${siteUrl}${u}`),
-          }),
-        });
-        console.log(`[seo-inject] IndexNow: ${res.status} (${baseUrls.length} urls)`);
-      } catch {
-        console.log('[seo-inject] IndexNow: envio pulado (sem rede)');
+      if (process.env.VERCEL !== '1' && process.env.INDEXNOW_FORCE !== '1') {
+        console.log('[seo-inject] IndexNow: envio pulado fora do build da Vercel');
+      } else {
+        try {
+          const host = siteUrl.replace(/^https?:\/\//, '');
+          const res = await fetch('https://api.indexnow.org/indexnow.json', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              host,
+              key: INDEXNOW_KEY,
+              keyLocation: `${siteUrl}/${INDEXNOW_KEY}.txt`,
+              urlList: baseUrls.map((u) => `${siteUrl}${u}`),
+            }),
+          });
+          console.log(`[seo-inject] IndexNow: ${res.status} (${baseUrls.length} urls)`);
+        } catch {
+          console.log('[seo-inject] IndexNow: envio pulado (sem rede)');
+        }
       }
     },
   };

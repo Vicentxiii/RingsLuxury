@@ -72,7 +72,7 @@ const SOCIAL_LINKS = (contact.sameAs ?? [])
   });
 
 export function Footer() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   const COLLECTIONS = COLLECTIONS_ROUTES.map((c) => ({
     to: c.to,
@@ -191,6 +191,11 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link to="/collections" className="hover:text-[#C5A059] transition-colors">
+                  {lang === 'es' ? 'TODAS LAS PIEZAS' : lang === 'pt' ? 'TODAS AS PEÇAS' : 'ALL PIECES'}
+                </Link>
+              </li>
             </ul>
           </nav>
 
