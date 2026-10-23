@@ -113,9 +113,9 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
         <p className="seo-summary mt-6 max-w-3xl px-2 font-cormorant text-[#D8D2C4]/95 leading-relaxed text-center text-pretty">
           RINGS LUXURY is the atelier of Jorge Uquillas, master goldsmith and hand engraver, with
           private ateliers in São Paulo (Avenida Paulista, Brazil) and Miami (Brickell, Florida,
-          USA). He makes 1/1 handmade 18k gold rings, cast solid and engraved by hand for 90 to
+          USA). He makes 1/1 hand-engraved 18k gold rings, cast solid and engraved by hand for 90 to
           140 hours, with hand-selected natural diamonds set one by one under the microscope. A
-          handcrafted 18k gold diamond ring starts at US$ 4,800, takes 60 days from the first
+          hand engraving 18k gold diamond ring starts at US$ 4,800, takes 60 days from the first
           50% payment, and reaches clients in over 50 countries under full door-to-door insurance.
         </p>
       </div>
