@@ -181,8 +181,8 @@ export function Atelier() {
         </div>
       </div>
 
-      <div className="w-full mt-24 opacity-20">
-        <GreekKeyBorder className="w-full h-1" />
+      <div className="w-full mt-24 opacity-25">
+        <GreekKeyBorder className="w-full h-3" />
       </div>
     </section>
   );

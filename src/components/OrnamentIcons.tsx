@@ -3,18 +3,22 @@ import React from 'react';
 // Subtle antique gold SVG ornaments and Greek architectural motifs
 
 export function GreekKeyBorder({ className = "w-full h-3" }: { className?: string }) {
+  const id = React.useId().replace(/:/g, '');
   return (
-    <div className={`overflow-hidden flex items-center opacity-70 ${className}`}>
-      <svg className="w-full h-full text-[#C5A059]" fill="none" viewBox="0 0 400 12" preserveAspectRatio="none">
-        <pattern id="greek-key" width="32" height="12" patternUnits="userSpaceOnUse">
-          <path
-            d="M0 10 H14 V2 H6 V6 H10 V4 H8 M16 2 H30 V10 H22 V6 H26 V8 H24"
-            stroke="currentColor"
-            strokeWidth="0.8"
-            strokeLinecap="square"
-          />
-        </pattern>
-        <rect width="100%" height="12" fill="url(#greek-key)" />
+    <div className={`overflow-hidden flex items-center ${className}`}>
+      <svg className="w-full h-[12px] text-[#C5A059]" fill="none" aria-hidden="true">
+        <defs>
+          <pattern id={`greek-key-${id}`} width="32" height="12" patternUnits="userSpaceOnUse">
+            <path
+              d="M0 10.5 H13.5 V1.5 H4.5 V6 H9 V4.5 M13.5 1.5 H29.5 V10.5 H20.5 V6 H25 V7.5 M29.5 10.5 H32"
+              stroke="currentColor"
+              strokeWidth="0.9"
+              strokeLinecap="square"
+              strokeLinejoin="miter"
+            />
+          </pattern>
+        </defs>
+        <rect width="100%" height="12" fill={`url(#greek-key-${id})`} />
       </svg>
     </div>
   );

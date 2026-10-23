@@ -105,47 +105,37 @@ export function JorgeUquillas() {
       <h1 className="sr-only">
         Jorge Uquillas, Master Goldsmith — 1/1 handcrafted 18k gold diamond rings, hand-engraved. Atelier Brazil • Miami.
       </h1>
-      {/* Iframe que carrega a experiência imersiva completa, pocket watch 3D */}
-      {/*
-          Corpo visivel fora do iframe, com sr-only para nao alterar o design.
-          A pagina e 100% um iframe 3D: para o Google, para as IAs e para quem
-          desliga JS/3D, este texto e a UNICA bio legivel que existe. Sem ele,
-          a pagina de autoria do maker (o principal ativo de E-E-A-T do site)
-          nao tinha uma unica frase de conteudo.
-        */}
-      <div className="sr-only">
-        <h2>Who is Jorge Uquillas</h2>
-        <p>
-          Jorge Uquillas is a master goldsmith and hand engraver, founder of RINGS LUXURY, with
-          private ateliers in São Paulo (Avenida Paulista, Brazil) and Miami (Brickell, Florida,
-          USA). He is known for 1/1 handmade 18k gold diamond rings engraved with hand gravers,
-          running 90 to 140 hours of hand engraving per piece, with hand-selected natural
-          diamonds set one by one under the microscope.
-        </p>
-        <h2>His technique</h2>
-        <p>
-          Jorge Uquillas holds the hand engraver himself: the engraving is cut directly into the
-          solid metal with tempered-steel gravers, never by laser or machine, and every piece
-          leaves with a master hallmark, an archival folio and a certificate of authenticity.
-          The original wax matrix is destroyed after casting, so no client piece can ever be
-          reproduced.
-        </p>
-        <h2>Teaching</h2>
-        <p>
-          He teaches the same discipline at the atelier academy, in a program of design,
-          artistic engraving fundamentals, the alchemy of metals, advanced gem setting and the
-          final masterpiece.
-        </p>
-        <h2>Clients and consultations</h2>
-        <p>
-          Clients in 50+ countries are received in person at the São Paulo and Miami ateliers, or
-          by private video consultation.
-        </p>
-        <p>
-          <a href="/blog">Journal of the atelier</a> · <a href="/faq">Frequently asked questions</a>{' '}
-          · <a href="/contact">Request a private consultation</a>
-        </p>
-      </div>
+
+      {/* Conteúdo visível sobre Jorge Uquillas (E-E-A-T).
+          Fica em um card discreto sobre o fundo preto, sem poluir o visual imersivo do iframe. */}
+      <section className="absolute inset-0 z-20 flex flex-col items-center justify-center pt-24 pb-12 px-6 sm:px-12">
+        <div className="max-w-[720px] bg-[#0a0a0a]/60 backdrop-blur-sm border border-[#C5A059]/20 rounded-2xl p-8 sm:p-12 text-center text-[#EAE6DF]/90">
+          <h2 className="font-cinzel text-[#E6CA85] text-2xl sm:text-3xl tracking-[0.14em] uppercase mb-6">
+            Jorge Uquillas, Master Goldsmith & Hand Engraver
+          </h2>
+          <p className="text-lg leading-relaxed mb-6">
+            Jorge Uquillas é um mestre ourives e gravador artístico, fundador da RINGS LUXURY,
+            com ateliês privados em São Paulo (Avenida Paulista, Brasil) e Miami (Brickell, Flórida,
+            EUA). É conhecido por anéis de diamantes em ouro 18k feitos à mão, com gravação por
+            hand engraver — 90 a 140 horas de gravação por peça, diamantes naturais cravejados
+            um a um sob o microscópio.
+          </p>
+          <p className="text-lg leading-relaxed mb-6">
+            A gravação é feita diretamente no metal maciço com buris de aço temperado, nunca a laser
+            nem por máquina. Cada peça sai com contraste mestre, folheto de arquivo e certificado
+            de autenticidade. A matriz de cera original é destruída após a fundição, então nenhuma
+            peça pode ser reproduzida.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+            <a href="/contact" className="font-cinzel text-[#C5A059] tracking-[0.16em] uppercase border border-[#C5A059]/40 px-6 py-3 rounded hover:bg-[#C5A059] hover:text-[#020202] transition-colors text-sm sm:text-base">
+              Consulta Privada
+            </a>
+            <a href="/blog" className="font-cinzel text-[#EAE6DF]/70 tracking-[0.16em] uppercase border border-[#C5A059]/20 px-6 py-3 rounded hover:text-[#C5A059] hover:border-[#C5A059]/60 transition-colors text-sm sm:text-base">
+              Diário do Atelier
+            </a>
+          </div>
+        </div>
+      </section>
 
       <iframe
         src="/jorge-uquillas.html"

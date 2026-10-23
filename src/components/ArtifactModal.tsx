@@ -332,7 +332,7 @@ export function ArtifactModal({ artifact, onClose, onRequestAcquisition }: Artif
         </div>
 
         {/* Bottom Greek Key Motif */}
-        <GreekKeyBorder className="w-full h-1.5 opacity-25" />
+        <GreekKeyBorder className="w-full h-3 opacity-30" />
       </div>
     </div>
   </div>

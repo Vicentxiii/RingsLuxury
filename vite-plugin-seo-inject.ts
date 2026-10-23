@@ -6,7 +6,7 @@ import { loadEnv, type HtmlTagDescriptor, type Plugin } from 'vite';
 // navegacao para crawlers sem JS, o sitemap.xml e o IndexNow do build.
 // Paginas de politica entram aqui de proposito: sao as URLs que o Google usa
 // para avaliar confianca de e-commerce, e nao podem faltar do sitemap.
-const STATIC_ROUTES = ['/', '/collections', '/luxury-rings', '/emperor-rings', '/special-editions', '/gold-silver-rings', '/necklaces', '/luxuryqueens', '/courses', '/gallery', '/blog', '/faq', '/contact', '/luxury-rings-guide', '/jorge-uquillas', '/privacy', '/terms', '/shipping', '/returns', '/warranty'];
+const STATIC_ROUTES = ['/', '/collections', '/luxury-rings', '/emperor-rings', '/special-editions', '/gold-silver-rings', '/necklaces', '/luxuryqueens', '/courses', '/gallery', '/blog', '/faq', '/contact', '/luxury-rings-guide', '/jorge-uquillas', '/hand-engraving', '/privacy', '/terms', '/shipping', '/returns', '/warranty'];
 
 const buildRobots = (siteUrl: string) => `# ringsluxuryart.com
 User-agent: *

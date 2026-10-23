@@ -301,7 +301,7 @@ export function Craftsmanship() {
       </div>
 
       <div className="w-full mt-24 opacity-25">
-        <GreekKeyBorder className="w-full h-1" />
+        <GreekKeyBorder className="w-full h-3" />
       </div>
     </section>
   );

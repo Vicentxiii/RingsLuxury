@@ -48,6 +48,7 @@ const STATIC_ROUTES = [
   '/gallery',
   '/luxury-rings-guide',
   '/jorge-uquillas',
+  '/hand-engraving',
   '/cart',
   '/privacy',
   '/terms',

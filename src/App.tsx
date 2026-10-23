@@ -20,6 +20,7 @@ import { LuxuryRingsGuide } from './pages/LuxuryRingsGuide';
 import { ProductPage } from './pages/ProductPage';
 import { CartPage } from './pages/CartPage';
 import { JorgeUquillas } from './pages/JorgeUquillas';
+import { HandEngraving } from './pages/HandEngraving';
 
 // Rotas estáticas de propósito. O HTML pré-renderizado foi gerado por
 // renderização no cliente e não tem os marcadores de Suspense que o React
@@ -86,6 +87,7 @@ export default function App() {
       <Route path="/cart" element={<CartPage />} />
       <Route path="/jorge-uquillas" element={<JorgeUquillas />} />
       <Route path="/jorgeuquillas" element={<Navigate to="/jorge-uquillas" replace />} />
+      <Route path="/hand-engraving" element={<HandEngraving />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
         <Analytics />

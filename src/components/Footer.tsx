@@ -321,7 +321,7 @@ export function Footer() {
 
       {/* Sub Greek Key Border at Very Bottom */}
       <div className="w-full mt-12 opacity-30">
-        <GreekKeyBorder className="w-full h-1.5" />
+        <GreekKeyBorder className="w-full h-3" />
       </div>
     </footer>
   );
