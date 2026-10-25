@@ -83,19 +83,23 @@ export function ShippingWorldwide() {
           <span className="h-px w-16 sm:w-24 bg-gradient-to-l from-transparent to-[#C5A059]/80" />
         </div>
 
-        {/* CARROSSEL DE BANDEIRAS, swipe suave com snap (deslize com o dedo) */}
+        {/* CARROSSEL DE BANDEIRAS — marquee infinito, rola sozinho para a lateral */}
         <div
-          className="relative mt-8 sm:mt-10 overflow-x-auto snap-x snap-mandatory scroll-smooth"
+          className="relative mt-8 sm:mt-10 overflow-hidden"
           style={{
-            scrollbarWidth: 'none',
             maskImage: 'linear-gradient(to right, transparent, black 12%, black 88%, transparent)',
             WebkitMaskImage: 'linear-gradient(to right, transparent, black 12%, black 88%, transparent)',
           }}
         >
-          <div className="flex w-max items-center px-6">
+          {/* Track duplicado para loop perfeito sem salto */}
+          <div
+            className="flex w-max items-center"
+            style={{ animation: 'flagsMarquee 22s linear infinite' }}
+          >
+            {/* primeira cópia */}
             {FLAG_SRCS.map((src, i) => (
               <img
-                key={src}
+                key={`a-${src}`}
                 src={src}
                 alt={t.home[FLAG_ALT_KEYS[i]]}
                 draggable={false}
@@ -103,12 +107,38 @@ export function ShippingWorldwide() {
                 decoding="async"
                 width={52}
                 height={52}
-                className="mx-3 sm:mx-4 w-11 h-11 sm:w-[52px] sm:h-[52px] object-contain select-none snap-center shrink-0"
+                className="mx-3 sm:mx-4 w-11 h-11 sm:w-[52px] sm:h-[52px] object-contain select-none shrink-0"
+                onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+              />
+            ))}
+            {/* segunda cópia para o loop contínuo */}
+            {FLAG_SRCS.map((src, i) => (
+              <img
+                key={`b-${src}`}
+                src={src}
+                alt=""
+                aria-hidden
+                draggable={false}
+                loading="lazy"
+                decoding="async"
+                width={52}
+                height={52}
+                className="mx-3 sm:mx-4 w-11 h-11 sm:w-[52px] sm:h-[52px] object-contain select-none shrink-0"
                 onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
               />
             ))}
           </div>
         </div>
+
+        <style>{`
+          @keyframes flagsMarquee {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          @media (prefers-reduced-motion: reduce) {
+            .shipping-flags-track { animation-play-state: paused; }
+          }
+        `}</style>
       </div>
     </section>
   );

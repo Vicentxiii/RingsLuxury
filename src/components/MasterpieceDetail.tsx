@@ -47,6 +47,31 @@ export function MasterpieceDetail() {
   const [showCert, setShowCert] = useState(false);
   const certDialogRef = useRef<HTMLDivElement>(null);
 
+  // Touch drag state for zoom mode on mobile
+  const touchStartRef = useRef<{ x: number; y: number; lx: number; ly: number } | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!isZoomed) return;
+    const t = e.touches[0];
+    touchStartRef.current = { x: t.clientX, y: t.clientY, lx: lensPos.x, ly: lensPos.y };
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!isZoomed || !touchStartRef.current) return;
+    e.preventDefault();
+    const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
+    const t = e.touches[0];
+    const dx = ((touchStartRef.current.x - t.clientX) / rect.width) * 100;
+    const dy = ((touchStartRef.current.y - t.clientY) / rect.height) * 100;
+    const nx = Math.min(100, Math.max(0, touchStartRef.current.lx + dx));
+    const ny = Math.min(100, Math.max(0, touchStartRef.current.ly + dy));
+    setLensPos({ x: nx, y: ny });
+  };
+
+  const handleTouchEnd = () => {
+    touchStartRef.current = null;
+  };
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -191,7 +216,10 @@ export function MasterpieceDetail() {
               setLensPos(RING_CENTER);
               setScattered(false);
             }}
-            className="relative w-full h-full overflow-hidden bg-[#020202]"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            className={`relative w-full h-full overflow-hidden bg-[#020202] ${isZoomed ? 'touch-none' : ''}`}
           >
             <ResponsiveImg
               src={KRAKEN_IMG}
@@ -247,26 +275,26 @@ export function MasterpieceDetail() {
                     >
                       {/* halo sutil */}
                       <span
-                        className={`absolute w-4 h-4 rounded-full border border-[#C5A059]/50 transition-all ${
-                          isSelected ? 'scale-125 border-[#C5A059]' : 'group-hover:scale-110'
+                        className={`absolute w-4 h-4 rounded-full border transition-all ${
+                          isSelected ? 'scale-125 border-white' : 'border-white/60 group-hover:scale-110'
                         }`}
                       />
                       <span
-                        className={`absolute w-4 h-4 rounded-full bg-[#C5A059]/15 ${
+                        className={`absolute w-4 h-4 rounded-full bg-white/20 ${
                           isSelected ? 'animate-ping [animation-duration:2.2s]' : 'hidden group-hover:block group-hover:animate-ping group-hover:[animation-duration:2.2s]'
                         }`}
                       />
-                      {/* dot central, 10px */}
+                      {/* dot central, 10px — branco para máxima visibilidade sobre o anel */}
                       <span
-                        className={`relative w-2.5 h-2.5 rounded-full border flex items-center justify-center transition-all shadow-[0_0_10px_rgba(197,160,89,0.8)] ${
+                        className={`relative w-3 h-3 rounded-full border-2 flex items-center justify-center transition-all shadow-[0_0_12px_rgba(255,255,255,0.9),0_0_4px_rgba(0,0,0,0.8)] ${
                           isSelected
-                            ? 'bg-[#C5A059] border-[#E6CA85] scale-110'
-                            : 'bg-[#050505]/90 border-[#C5A059] group-hover:bg-[#C5A059]/80'
+                            ? 'bg-white border-white scale-110'
+                            : 'bg-white/85 border-white group-hover:bg-white'
                         }`}
                       >
                         <span
                           className={`w-1 h-1 rounded-full ${
-                            isSelected ? 'bg-[#020202]' : 'bg-[#C5A059] group-hover:bg-[#020202]'
+                            isSelected ? 'bg-[#C5A059]' : 'bg-[#C5A059]/70 group-hover:bg-[#C5A059]'
                           }`}
                         />
                       </span>
@@ -312,6 +340,11 @@ export function MasterpieceDetail() {
               <ZoomIn className="w-3.5 h-3.5" />
               <span>{isZoomed ? t.home.mpZoomOut : t.home.mpZoomIn}</span>
             </button>
+            {isZoomed && (
+              <p className="block sm:hidden text-[8px] uppercase tracking-[0.2em] text-[#C5A059]/70 text-center w-full mt-1 pointer-events-none">
+                ↕ drag to navigate
+              </p>
+            )}
           </div>
         </div>
 

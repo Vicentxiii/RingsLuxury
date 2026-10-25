@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { ChevronDown } from 'lucide-react';
 
 export interface FaqItem {
   q: string;
@@ -6,16 +7,14 @@ export interface FaqItem {
 }
 
 /**
- * FAQ answer-first: a resposta direta aparece SEMPRE aberta, o resto fica em
- * <details>.
+ * FAQ accordion: pergunta visível com seta, resposta oculta até o clique.
+ * Todas as respostas fechadas por padrão — melhora LCP.
  *
- * Antes a resposta inteira ficava escondida atras do <summary>. Isso quebra o
- * AEO de duas formas: crawler de IA que nao abre <details> lia so a pergunta,
- * e o rich result do Google depende do texto estar visivel na pagina.
- *
- * Regra: a primeira frase da resposta e a "resposta direta" e sempre visivel.
+ * JSON-LD FAQPage mantido integralmente para SEO/rich results.
  */
 export function FAQ({ items, heading }: { items: FaqItem[]; heading: string }) {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -26,14 +25,6 @@ export function FAQ({ items, heading }: { items: FaqItem[]; heading: string }) {
     })),
   };
 
-  /** Primeira frase da resposta, com no minimo 2 frases no restante. */
-  const splitAnswer = (answer: string): { lead: string; rest: string } => {
-    const sentences = answer.match(/[^.!?]+[.!?]+(\s|$)/g);
-    if (!sentences || sentences.length < 2) return { lead: answer, rest: '' };
-    const lead = sentences[0].trim();
-    return { lead, rest: answer.slice(lead.length).trim() };
-  };
-
   return (
     <section aria-label={heading} className="max-w-3xl mx-auto mt-20 md:mt-24">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
@@ -41,26 +32,49 @@ export function FAQ({ items, heading }: { items: FaqItem[]; heading: string }) {
         {heading}
       </h2>
       <div className="space-y-3">
-        {items.map((f) => {
-          const { lead, rest } = splitAnswer(f.a);
+        {items.map((f, idx) => {
+          const isOpen = openIndex === idx;
           return (
-            <details
+            <div
               key={f.q}
-              className="group rounded-xl border border-[#C5A059]/25 bg-[#020202]/65 px-5 py-4 open:border-[#C5A059]/60 transition-colors"
+              className={`rounded-xl border bg-[#020202]/65 transition-colors duration-300 ${
+                isOpen ? 'border-[#C5A059]/60' : 'border-[#C5A059]/25 hover:border-[#C5A059]/40'
+              }`}
             >
-              <summary className="cursor-pointer list-none font-cormorant text-lg text-[#F3EFE6] flex items-center justify-between gap-4 marker:hidden">
+              <button
+                type="button"
+                onClick={() => setOpenIndex(isOpen ? null : idx)}
+                aria-expanded={isOpen}
+                className="w-full px-5 py-4 cursor-pointer font-cormorant text-lg text-[#F3EFE6] flex items-center justify-between gap-4 text-left"
+              >
                 <span>{f.q}</span>
-                <span className="text-[#C5A059] text-xl leading-none group-open:rotate-45 transition-transform" aria-hidden>
-                  +
+                <span
+                  className={`text-[#C5A059] shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                  aria-hidden
+                >
+                  <ChevronDown className="w-5 h-5" />
                 </span>
-              </summary>
-              {/* Resposta direta sempre visivel. */}
-              <p className="mt-3 text-sm leading-relaxed text-[#A8A296]">{lead}</p>
-              {rest && <p className="mt-2 text-sm leading-relaxed text-[#A8A296]">{rest}</p>}
-            </details>
+              </button>
+
+              {/* Resposta — só renderiza no DOM quando aberta, para não pesar no LCP */}
+              {isOpen && (
+                <div
+                  className="px-5 pb-5 text-sm leading-relaxed text-[#A8A296] animate-[faqOpen_0.25s_ease-out]"
+                >
+                  {f.a}
+                </div>
+              )}
+            </div>
           );
         })}
       </div>
+
+      <style>{`
+        @keyframes faqOpen {
+          from { opacity: 0; transform: translateY(-6px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </section>
   );
 }

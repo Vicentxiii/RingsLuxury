@@ -8,57 +8,53 @@ const AGUIA_IMG =
   '/PUBLIC/luxury-rings-collection-anel-aguia-maconica-by-jorge-uquillas-rings-luxury.webp';
 
 /**
- * Vídeo do ateliê sob demanda.
+ * Vídeo do ateliê sob demanda — sem autoplay.
  *
- * - preload="none" e sem src até a seção chegar perto da viewport.
- * - Só então o navegador baixa o arquivo (já comprimido para 720p) e tenta
- *   tocar mudo. Se o autoplay for bloqueado, o primeiro frame/poster fica.
+ * Exibe um poster com botão de play; o vídeo só carrega quando o utilizador
+ * toca/clica em "play", eliminando o impacto no LCP.
  */
 function LazyAtelierVideo({ ariaLabel }: { ariaLabel: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [shouldLoad, setShouldLoad] = useState(false);
+  const [playing, setPlaying] = useState(false);
 
-  useEffect(() => {
-    const el = videoRef.current;
-    if (!el) return;
-    if (typeof IntersectionObserver === 'undefined') {
-      setShouldLoad(true);
-      return;
-    }
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          setShouldLoad(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: '300px 0px' },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!shouldLoad) return;
-    const el = videoRef.current;
-    if (!el) return;
-    el.play().catch(() => {
-      // Autoplay bloqueado: mantém o poster, sem erro visível ao visitante.
-    });
-  }, [shouldLoad]);
+  const handlePlay = () => {
+    setPlaying(true);
+    // Give React a tick to render the src, then play
+    setTimeout(() => {
+      videoRef.current?.play().catch(() => {});
+    }, 50);
+  };
 
   return (
-    <video
-      ref={videoRef}
-      src={shouldLoad ? ATELIER_VIDEO : undefined}
-      poster={AGUIA_IMG}
-      muted
-      loop
-      playsInline
-      preload="none"
-      aria-label={ariaLabel}
-      className="w-full h-full object-cover filter contrast-[1.1] brightness-95"
-    />
+    <div className="relative w-full h-full bg-[#020202] overflow-hidden">
+      <video
+        ref={videoRef}
+        src={playing ? ATELIER_VIDEO : undefined}
+        poster={AGUIA_IMG}
+        muted
+        loop
+        playsInline
+        preload="none"
+        aria-label={ariaLabel}
+        className="w-full h-full object-cover filter contrast-[1.1] brightness-95"
+      />
+      {!playing && (
+        <button
+          type="button"
+          onClick={handlePlay}
+          aria-label={ariaLabel}
+          className="absolute inset-0 flex items-center justify-center group"
+        >
+          {/* Dark overlay */}
+          <span className="absolute inset-0 bg-[#020202]/30 transition-opacity duration-500 group-hover:bg-[#020202]/10" aria-hidden />
+          {/* Play ring */}
+          <span className="relative flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-full border-2 border-[#E6CA85]/60 bg-black/40 backdrop-blur-md shadow-[0_0_30px_rgba(197,160,89,0.25)] transition-all duration-500 group-hover:scale-110 group-hover:border-[#E6CA85]/90 group-hover:shadow-[0_0_50px_rgba(197,160,89,0.4)]">
+            <span className="absolute inset-0 rounded-full border border-[#C5A059]/20 scale-125 animate-ping" aria-hidden style={{ animationDuration: '2.5s' }} />
+            <span className="ml-1 block h-0 w-0 border-y-[10px] border-y-transparent border-l-[16px] border-l-[#E6CA85] drop-shadow-[0_2px_6px_rgba(230,202,133,0.5)]" aria-hidden />
+          </span>
+        </button>
+      )}
+    </div>
   );
 }
 
