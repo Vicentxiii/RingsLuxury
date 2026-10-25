@@ -228,8 +228,17 @@ export function JorgeUquillas() {
       clearTimeout(t1);
       clearTimeout(t2);
       mq.removeEventListener('change', handler);
+      document.body.style.overflow = '';
     };
   }, []);
+
+  useEffect(() => {
+    if (showPreloader) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [showPreloader]);
 
   const handleOpenConsultation = () => {
     navigate('/');
@@ -371,21 +380,33 @@ export function JorgeUquillas() {
       {/* ── PRELOADER 5s com logo PNG do favicon ─────────────────────────── */}
       {showPreloader && (
         <div
-          className={`absolute inset-0 z-[9999] flex flex-col items-center justify-center bg-[#020202] transition-opacity duration-700 ${
+          className={`fixed inset-0 z-[99999] w-screen h-screen flex flex-col items-center justify-center bg-[#020202] transition-opacity duration-700 overflow-hidden ${
             preloaderFading ? 'opacity-0 pointer-events-none' : 'opacity-100'
           }`}
+          style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-[#020202] via-[#020202]/90 to-[#020202] pointer-events-none" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(197,160,89,0.12)_0%,_transparent_65%)] pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#020202] via-[#020202]/95 to-[#020202] pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(197,160,89,0.18)_0%,_transparent_65%)] pointer-events-none" />
 
-          <div className="relative flex flex-col items-center gap-8 px-6 text-center">
+          <div className="relative z-10 flex flex-col items-center gap-6 px-6 text-center max-w-sm mx-auto">
             {/* Logo PNG do favicon em vez do "RL" */}
-            <div className="w-24 h-24 rounded-full border border-[#C5A059]/30 flex items-center justify-center bg-[#0a0805] shadow-[0_0_40px_rgba(197,160,89,0.25)] overflow-hidden p-1">
+            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full border border-[#C5A059]/40 flex items-center justify-center bg-[#080808] shadow-[0_0_50px_rgba(197,160,89,0.35)] overflow-hidden p-3.5 shrink-0">
               <img
-                src={FAVICON_LOGO}
-                alt="Rings Luxury"
-                className="w-full h-full object-contain"
+                src="/favicon.png"
+                alt="Rings Luxury Logo"
+                width={96}
+                height={96}
+                className="w-full h-full object-contain select-none"
+                loading="eager"
                 draggable={false}
+                onError={(e) => {
+                  const target = e.currentTarget as HTMLImageElement;
+                  if (!target.src.includes('logo-novo-para-favcon')) {
+                    target.src = FAVICON_LOGO;
+                  } else if (!target.src.includes('logo-novo-rings-luxury')) {
+                    target.src = '/PUBLIC/logo-novo-rings-luxury.webp';
+                  }
+                }}
               />
             </div>
 
