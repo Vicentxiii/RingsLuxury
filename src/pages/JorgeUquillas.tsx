@@ -96,19 +96,21 @@ function MobileJorgeStory({ onBack }: { onBack: () => void }) {
           </div>
         </div>
 
-        {/* Foto de Jorge */}
-        <div className="relative mb-8 border border-[#C5A059]/30 bg-[#070707] p-2 shadow-[0_20px_60px_rgba(0,0,0,0.8)]">
-          <div className="absolute -top-1 -left-1 w-3 h-3 border-t border-l border-[#C5A059]" />
-          <div className="absolute -top-1 -right-1 w-3 h-3 border-t border-r border-[#C5A059]" />
-          <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b border-l border-[#C5A059]" />
-          <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b border-r border-[#C5A059]" />
-          <img
-            src={JORGE_PHOTO}
-            alt="Jorge Uquillas, RINGS LUXURY HandCrafted"
-            className="w-full h-auto object-cover"
-            loading="eager"
-          />
-          <p className="mt-2 text-center text-[9px] uppercase tracking-[0.25em] text-[#9A7B38]">
+        {/* Foto de Jorge com zoom e enquadramento cinematográfico */}
+        <div className="relative mb-8 border border-[#C5A059]/30 bg-[#070707] p-2 shadow-[0_20px_60px_rgba(0,0,0,0.8)] overflow-hidden">
+          <div className="absolute top-1 left-1 w-3 h-3 border-t border-l border-[#C5A059] z-10" />
+          <div className="absolute top-1 right-1 w-3 h-3 border-t border-r border-[#C5A059] z-10" />
+          <div className="absolute bottom-1 left-1 w-3 h-3 border-b border-l border-[#C5A059] z-10" />
+          <div className="absolute bottom-1 right-1 w-3 h-3 border-b border-r border-[#C5A059] z-10" />
+          <div className="relative aspect-[4/5] overflow-hidden bg-black rounded-sm flex items-center justify-center">
+            <img
+              src={JORGE_PHOTO}
+              alt="Jorge Uquillas, RINGS LUXURY HandCrafted"
+              className="w-full h-full object-cover scale-[1.22] object-top translate-y-[2%]"
+              loading="eager"
+            />
+          </div>
+          <p className="mt-2.5 text-center text-[9px] uppercase tracking-[0.25em] text-[#9A7B38]">
             Jorge Uquillas · Master Engraver · São Paulo, Brazil
           </p>
         </div>
