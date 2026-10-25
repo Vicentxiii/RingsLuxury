@@ -1195,6 +1195,44 @@
       }
     ]
   },
+  "PUBLIC/cnc-machine-cutting-metal-vs-hand-engraving-rings-luxury": {
+    "webp": [
+      {
+        "w": 480,
+        "file": "PUBLIC/cnc-machine-cutting-metal-vs-hand-engraving-rings-luxury-480.webp"
+      },
+      {
+        "w": 800,
+        "file": "PUBLIC/cnc-machine-cutting-metal-vs-hand-engraving-rings-luxury-800.webp"
+      },
+      {
+        "w": 1200,
+        "file": "PUBLIC/cnc-machine-cutting-metal-vs-hand-engraving-rings-luxury-1200.webp"
+      },
+      {
+        "w": 1280,
+        "file": "PUBLIC/cnc-machine-cutting-metal-vs-hand-engraving-rings-luxury-1280.webp"
+      }
+    ],
+    "avif": [
+      {
+        "w": 480,
+        "file": "PUBLIC/cnc-machine-cutting-metal-vs-hand-engraving-rings-luxury-480.avif"
+      },
+      {
+        "w": 800,
+        "file": "PUBLIC/cnc-machine-cutting-metal-vs-hand-engraving-rings-luxury-800.avif"
+      },
+      {
+        "w": 1200,
+        "file": "PUBLIC/cnc-machine-cutting-metal-vs-hand-engraving-rings-luxury-1200.avif"
+      },
+      {
+        "w": 1280,
+        "file": "PUBLIC/cnc-machine-cutting-metal-vs-hand-engraving-rings-luxury-1280.avif"
+      }
+    ]
+  },
   "PUBLIC/emperor-heraldic-ring-18k-gold-monogram-by-jorge-uquillas-rings-luxury": {
     "webp": [
       {

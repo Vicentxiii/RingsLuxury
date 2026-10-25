@@ -120,6 +120,7 @@ export function Blog() {
                   src={post.image} 
                   alt={post.title} 
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                  style={{ objectPosition: (post as any).imagePosition ?? 'center' }}
                 />
                 <div className="absolute top-4 left-4 z-20 bg-[#020202]/80 backdrop-blur-sm px-3 py-1 border border-[#C5A059]/30">
                   <span className="font-poppins text-[10px] uppercase tracking-widest text-[#C5A059]">{post.category}</span>

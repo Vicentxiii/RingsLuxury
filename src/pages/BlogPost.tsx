@@ -43,7 +43,7 @@ export function BlogPost() {
   return (
     <div className="min-h-screen bg-[#020202] text-[#EAE6DF] selection:bg-[#C5A059] selection:text-[#020202] font-sans-luxury relative overflow-x-hidden pt-24">
       <SEO 
-        title={post.title}
+        title={(post as any).seoTitle ?? post.title}
         description={post.excerpt}
         keywords={(post as any).keywords}
         url={`/blog/${post.slug}`}
@@ -151,7 +151,12 @@ export function BlogPost() {
         </header>
 
         <div className="relative aspect-[16/9] w-full mb-16 border border-[#C5A059]/20">
-          <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+          <img
+            src={post.image}
+            alt={post.title}
+            className="w-full h-full object-cover"
+            style={{ objectPosition: (post as any).imagePosition ?? 'center' }}
+          />
         </div>
 
         {/*
@@ -170,6 +175,9 @@ export function BlogPost() {
             '[&_ol]:mb-6 [&_ol]:pl-5 [&_ol]:list-decimal',
             '[&_a]:text-[#C5A059] [&_a]:underline [&_a]:underline-offset-4',
             '[&_strong]:text-[#F3EFE6]',
+            '[&_table]:w-full [&_table]:border-collapse [&_table]:text-base',
+            '[&_th]:border [&_th]:border-[#C5A059]/25 [&_th]:bg-[#C5A059]/10 [&_th]:px-4 [&_th]:py-3 [&_th]:text-left [&_th]:font-poppins [&_th]:text-[10px] [&_th]:uppercase [&_th]:tracking-[0.18em] [&_th]:text-[#C5A059]',
+            '[&_td]:border [&_td]:border-[#C5A059]/15 [&_td]:px-4 [&_td]:py-3 [&_td]:align-top [&_td]:text-[15px] [&_td]:leading-relaxed',
             '[&_figure]:my-8',
             '[&_figcaption]:text-center [&_figcaption]:text-sm [&_figcaption]:uppercase [&_figcaption]:tracking-[0.12em] [&_figcaption]:text-[#9A7B38] [&_figcaption]:mt-3',
           ].join(' ')}

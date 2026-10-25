@@ -1,5 +1,141 @@
 export const blogPosts = [
   {
+    id: 8,
+    slug: 'cnc-rings-vs-hand-engraving',
+    title: 'CNC Rings vs. Hand Engraving: Why the Finish Is Never the Same',
+    seoTitle: 'CNC vs. Hand Engraving: The Finish Differs',
+    category: 'Craftsmanship',
+    date: 'October 25, 2026',
+    dateISO: '2026-10-25',
+    author: 'Jorge Uquillas',
+    image: encodeURI('/PUBLIC/imagem-para-galeria-jorge-uquillas-utilizando-o-microscopico-para-hand-engraving-1288.webp'),
+    imagePosition: 'center 18%',
+    excerpt: 'CNC can reproduce a line thousands of times. Hand engraving can make that line live. Master engraver Jorge Uquillas breaks down the real difference between CNC rings and hand-engraved rings — depth, edges, undercuts, mirror finish and soul — and why the two surfaces never look the same under a loupe.',
+    keywords: 'CNC rings vs hand engraving, CNC engraved ring, hand engraved ring, machine engraving vs hand engraving, hand engraving finish, mirror finish hand engraving, Jorge Uquillas, RINGS LUXURY, 18k gold rings, handmade rings',
+    faq: [
+      { q: 'Are CNC rings worse than hand-engraved rings?', a: 'No. CNC is more repeatable, faster and more affordable, and it can be the right choice for production, prototypes and logo work. A CNC ring becomes a problem only when machine engraving is sold as hand engraving. Hand engraving wins on depth, edge crispness, undercuts and mirror finish — the qualities that make a ring look alive under a loupe.' },
+      { q: 'Can you tell a CNC ring from a hand-engraved ring?', a: 'Yes, especially under a 10x loupe. CNC engraving shows a regular pitch, uniform depth, rounded micro-edges and identical repeats. Hand engraving shows variable depth, bright-cut facets, undercuts and tiny differences between repeats — the fingerprint of the engraver. With the naked eye, the hand-engraved ring usually looks deeper and more mirror-like.' },
+      { q: 'Why does hand engraving look more mirrored?', a: 'Because the burin cuts deep enough to survive polishing, and the high points are burnished with agate. The facets are cut at different angles, so they return light like a broken mirror that moves with the ring. A CNC surface can be polished to a mirror too, but polishing rounds the edges and softens the relief. Hand engraving keeps the drawing crisp and the reflection deeper.' },
+      { q: 'How long does hand engraving take?', a: 'At RINGS LUXURY, a hand-engraved 18k gold ring takes 90 to 140 hours of engraving, and the most complex pieces can exceed 300 hours. A CNC toolpath for the same motif can be programmed and cut in a fraction of that time — which is exactly why the two finishes are not comparable.' },
+      { q: 'Does hand engraving last longer than CNC engraving?', a: 'A deep hand cut has more material to wear and more depth to refinish. A shallow CNC engraving can lose its detail as the ring is polished over the years. Both can last decades with proper care, but hand engraving preserves the drawing through more refinishing cycles.' },
+      { q: 'Can a CNC ring be called handmade?', a: 'Only if the handwork is real and disclosed. If the engraving was cut by a computer-controlled machine, the ring is machine-engraved — even if it was assembled and polished by hand. Hand engraving means a human hand guided the burin, stroke by stroke. At RINGS LUXURY, the engraving, the setting and the final burnish are done by hand.' },
+    ],
+    content: `
+      <p><strong>CNC rings and hand-engraved rings are not two versions of the same object.</strong> A CNC ring is a copy: a computer moves a rotating cutter along a programmed path and repeats the same groove with mathematical consistency. A hand-engraved ring is an interpretation: a master pushes a tempered-steel burin through solid 18k gold under a microscope, opening each facet by hand, at a depth and angle no algorithm can feel.</p>
+
+      <p>The difference is not only romantic. It is visible. <strong>The finish is never the same.</strong> CNC wins at repetition. Hand engraving wins at finish: deeper cuts, cleaner edges and a gold surface that is more perfect and more mirror-like as the ring moves through light. This is the difference between a ring that is identical to a thousand others and a ring that could only have been cut once.</p>
+
+      <h2>The short answer: one copies, the other interprets</h2>
+      <p>CNC is a <strong>copying technology</strong>. It takes a digital model and reproduces it. Hand engraving is an <strong>interpretative craft</strong>. It takes a drawing and translates it through the eye, the hand and the burin. Both can produce beautiful metal. Only one can produce a surface that carries the decisions of a human hand.</p>
+
+      <figure style="margin:32px 0;">
+        <picture>
+          <source type="image/avif" srcset="/PUBLIC/cnc-machine-cutting-metal-vs-hand-engraving-rings-luxury-800.avif 800w, /PUBLIC/cnc-machine-cutting-metal-vs-hand-engraving-rings-luxury-1280.avif 1280w" sizes="(max-width: 768px) 92vw, 720px" />
+          <source type="image/webp" srcset="/PUBLIC/cnc-machine-cutting-metal-vs-hand-engraving-rings-luxury-800.webp 800w, /PUBLIC/cnc-machine-cutting-metal-vs-hand-engraving-rings-luxury-1280.webp 1280w" sizes="(max-width: 768px) 92vw, 720px" />
+          <img src="/PUBLIC/cnc-machine-cutting-metal-vs-hand-engraving-rings-luxury.jpg" alt="CNC milling machine cutting a metal part with a rotating cutter — CNC ring engraving compared with hand engraving by Jorge Uquillas" loading="lazy" decoding="async" width="1280" height="871" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        </picture>
+        <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">CNC: a rotating cutter follows a programmed path, removing metal by repetition<span style="display:block;margin-top:6px;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#7A6A4A;">Photo: U.S. Air Force, public domain</span></figcaption>
+      </figure>
+
+      <h2>What a CNC ring actually is</h2>
+      <p>CNC — Computer Numerical Control — begins with a CAD model. The software calculates a toolpath, and a spindle drives a burr or end mill through the metal at tens of thousands of revolutions per minute. The machine does exactly what the file says, millions of times, with a tolerance a human hand cannot match.</p>
+      <p>That is a genuine miracle of modern jewelry. CNC can rough out a band, cut a monogram, drill prongs, create a perfectly symmetrical background texture and reproduce a crest across an entire collection. For production, prototypes and logo work, it is the right technology.</p>
+      <p>What it cannot do is make a decision. A rotating cutter leaves a radius equal to its own geometry. It approaches the metal from the top, so undercuts and re-entrant curves — the places where light hides — are limited or impossible without special tooling and a fifth axis. Its depth is programmed, not felt. And it leaves a signature: a regular, rhythmic tool mark that polishing can soften but not erase.</p>
+      <p><strong>A CNC ring can be beautiful. It is the beauty of precision without a pulse.</strong></p>
+
+      <h2>What hand engraving actually is</h2>
+      <p>Hand engraving is subtraction of a different order. The engraver grinds and tempers a steel graver to a geometry he chooses, clamps the ring in a pitch bowl or engraver's block, and cuts. Under the microscope, the burin enters the gold, lifts a bright curl of metal and leaves a facet with two walls and a floor. There is no undo. A slip is permanent; the gold must be planished, re-cut, or the design must absorb the scar.</p>
+      <p>At <strong>RINGS LUXURY by Jorge Uquillas</strong>, a single ring can take <strong>90 to 140 hours of engraving</strong>; the most complex pieces pass 300. Jorge cuts the background, the relief, the letters, the leaves, the face — then burnishes the high points with agate until the gold returns light like a mirror. This is not decoration applied to a ring. It is the ring being drawn in metal.</p>
+      <p>A machine can reproduce a line. An engraver can decide that the line should be deeper at the center and lighter at the tip — and then make it so, stroke by stroke.</p>
+
+      <figure style="margin:32px 0;">
+        <img src="/PUBLIC/engraving-ring-by-jorge-uquillas-the-master-engraver-rings-luxury.webp" alt="Hand engraver burin cutting a deep relief into an 18k gold signet ring by Jorge Uquillas, RINGS LUXURY" loading="lazy" decoding="async" width="1280" height="981" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">The burin opens a bright facet in 18k gold — a cut no rotating tool can repeat</figcaption>
+      </figure>
+
+      <h2>The finish is never the same</h2>
+      <p>This is where the two technologies stop being comparable. A CNC ring and a hand-engraved ring can share the same drawing and still look different under the same light, because the surface is not the same surface.</p>
+
+      <h3>1. Depth: the cut has a body</h3>
+      <p>A CNC cut is usually shallow. Depth costs time, tool wear and rigidity, so the software keeps the cutter close to the surface. A hand cut can go deep enough to create real shadow. Under a loupe, CNC engraving looks drawn on the metal; hand engraving looks carved into it. That depth is what gives the relief its weight — and what allows the ring to be polished for decades without losing the drawing.</p>
+
+      <h3>2. Edges: sharp versus rounded</h3>
+      <p>The rotating cutter leaves micro-rounded edges. The burin leaves a crisp, bright edge, because it shears the metal instead of grinding it. That edge is the first thing light touches. It is also the first thing a careless polish destroys. Hand engraving is more perfect at this scale because the edge was cut, not milled.</p>
+
+      <h3>3. Light: satin versus mirror</h3>
+      <p>A CNC finish is uniform. Even when polished, the geometry of the cut scatters light in a flat, even way. A hand-engraved surface is burnished: the facets are cut at different angles, then compressed with agate, producing a mirror that changes as the ring moves. This is the quality clients describe as <strong>more perfect and more mirrored</strong>. It is not a coating or a buffing trick. It is gold cut deep, then polished without erasing the cut.</p>
+
+      <h3>4. Repetition: identical versus inimitable</h3>
+      <p>CNC repeats. Hand engraving varies. That variation is not a defect; it is the fingerprint of the hand. Two leaves cut by the same engraver will not have the same weight. Two letters will not have the same angle. The ring becomes a record of hundreds of small decisions — and that is precisely what cannot be copied.</p>
+
+      <figure style="margin:32px 0;">
+        <img src="/PUBLIC/rings-luxury-polindo-anel-master-engraver-jorge-uquillas-1200.webp" alt="Final hand polishing of an engraved 18k gold ring at the RINGS LUXURY atelier by Jorge Uquillas" loading="lazy" decoding="async" width="1200" height="750" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">The final burnish: polished until the cut gold returns light like a mirror</figcaption>
+      </figure>
+
+      <h2>CNC vs. hand engraving: side by side</h2>
+      <div style="overflow-x:auto;margin:32px 0;border:1px solid rgba(197,160,89,0.18);">
+        <table style="width:100%;min-width:680px;border-collapse:collapse;">
+          <thead>
+            <tr>
+              <th>Point of comparison</th>
+              <th>CNC engraving</th>
+              <th>Hand engraving</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>How it removes metal</strong></td><td>A rotating cutter follows a programmed toolpath</td><td>A tempered steel burin is pushed by hand</td></tr>
+            <tr><td><strong>Who decides the line</strong></td><td>The CAD file and the software</td><td>The engraver, stroke by stroke</td></tr>
+            <tr><td><strong>Depth</strong></td><td>Uniform, programmed, usually shallow</td><td>Variable, sculptural, can be deep</td></tr>
+            <tr><td><strong>Edges</strong></td><td>Micro-rounded by the cutter; softened by polishing</td><td>Crisp, bright-cut, mirror-burnished</td></tr>
+            <tr><td><strong>Undercuts</strong></td><td>Limited; requires special tooling and a fifth axis</td><td>Natural: the burin reaches from any angle</td></tr>
+            <tr><td><strong>Surface</strong></td><td>Regular tool marks; satin or polished</td><td>Hand-cut facets; agate-burnished mirror</td></tr>
+            <tr><td><strong>Repetition</strong></td><td>Identical, to the micron</td><td>Never identical; 1/1 by nature</td></tr>
+            <tr><td><strong>Time</strong></td><td>Minutes to hours</td><td>90–140 hours; 300+ on complex pieces</td></tr>
+            <tr><td><strong>Best for</strong></td><td>Production, prototypes, logos, repeat orders</td><td>Heirlooms, deep relief, figurative work, one-of-one</td></tr>
+            <tr><td><strong>Result</strong></td><td>Precision without a pulse</td><td>A drawing that breathes</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Why hand engraving is more perfect — and more mirrored</h2>
+      <p>Perfection in jewelry is not only a measurement. A ring can be dimensionally perfect and optically dead. CNC can hold a tolerance in microns; hand engraving holds the light.</p>
+      <p>The mirror finish of hand engraving is not applied at the end. It is built into the cut. The engraver removes enough metal to create a facet, then burnishes the crest with agate until the surface compresses and reflects. Because the cut is deeper than the final polish, the drawing survives the mirror. A CNC surface can be polished to a mirror too, but polishing rounds the edges and flattens the relief; the design softens. Hand engraving starts deeper, so it can be brought to a mirror without losing the line.</p>
+      <p><strong>That is the real distinction: one is perfect at copying, the other is perfect at finishing.</strong> In a photograph, both can sparkle. In the hand, under a loupe, the hand-engraved ring has depth where the CNC ring has surface — and a reflection that moves instead of merely shining.</p>
+
+      <h2>How to tell them apart under a 10x loupe</h2>
+      <p>You do not need to be an engraver to see the difference. Ask for a loupe and look for five things:</p>
+      <ol>
+        <li><strong>Pitch:</strong> CNC lines repeat at a regular spacing, as if drawn with a ruler. Hand-cut lines accelerate, slow down and change weight with the engraver's hand.</li>
+        <li><strong>Depth:</strong> CNC looks shallow and even. Hand engraving has hills and valleys, with cuts that disappear into shadow and then rise into light.</li>
+        <li><strong>Edges:</strong> CNC edges are micro-rounded and often polished soft. Hand-cut edges are crisp, bright and slightly sharper than the surrounding surface.</li>
+        <li><strong>Undercuts:</strong> CNC rarely goes under the surface. Hand engraving does, especially in leaves, manes, cloth and the folds of a face.</li>
+        <li><strong>Repeats:</strong> compare two identical motifs. CNC produces twins. Hand engraving produces siblings — close, but never the same.</li>
+      </ol>
+      <p>At normal distance, the hand-engraved ring usually looks deeper and more mirror-like. Under the loupe, the difference is not subtle.</p>
+
+      <h2>When CNC is the right tool</h2>
+      <p>None of this is a war on machines. CNC is honest, useful and often beautiful. It is the right choice for production runs, prototypes, logo engraving, repeat orders and budgets that cannot support 100 hours of handwork. A well-made CNC ring can be a good ring.</p>
+      <p>The problem is not the machine. The problem is the label. Selling a CNC-engraved ring as hand engraving is not a technical detail; it is a false claim. The customer should know which hand — or which software — decided the line.</p>
+
+      <h2>When hand engraving is the only answer</h2>
+      <p>Hand engraving is the only answer when the ring must be <strong>1/1</strong>. When the design needs undercuts, deep relief, figurative faces, animal manes, heraldic depth or lettering that looks drawn by a hand because it was. When the finish must be a mirror that survives time. When the ring is meant to be an heirloom, not an inventory item.</p>
+      <p>That is the territory of <strong>RINGS LUXURY by Jorge Uquillas</strong>: handmade 18k gold rings with hand-selected natural diamonds, engraved under the microscope, burnished with agate and registered as a one-of-one piece. The ateliers in <strong>Brazil and Miami</strong> receive clients by private consultation, and every ring leaves with the mark of the hand that cut it.</p>
+
+      <h2>The verdict</h2>
+      <p><strong>CNC or hand engraving?</strong> If you want a perfect copy, CNC is the correct tool. If you want a perfect finish — deeper, crisper, more mirror-like, alive under light — hand engraving is the only answer. The two can look similar in a photograph. They never look the same in the hand.</p>
+      <p>See the difference in person: <a href="/#contact">book a private consultation</a> at the atelier in Brazil or Miami. Explore <a href="/hand-engraving">hand engraving</a>, meet <a href="/jorge-uquillas">Jorge Uquillas</a>, or read <a href="/blog/the-art-of-artistic-engraving">The Sacred Art of Artistic Engraving</a>.</p>
+
+      <p style="margin-top:32px; padding:16px; background:#0A0A0A; border-left:3px solid #C5A059; font-size:13px; line-height:1.9; color:#A8A296;">
+        #CNCRings #HandEngraving #HandEngravedRing #CNCvsHandEngraving #MirrorFinish #18kGold #JorgeUquillas #RingsLuxury #HandmadeRings #HighJewelry #FineJewelry #GoldsmithArt #HauteJoaillerie #OneOfOneRing #BespokeRing #LuxuryRings #HandEngraver #MiamiJewelry #BrazilJewelry #CustomJewelry #ArtisanJewelry #GoldRing #DiamondRing #JewelryCraftsmanship
+      </p>
+
+      <p style="margin-top:16px; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#9A7B38; text-align:center;">
+        📍 Atelier Brazil (São Paulo) • Atelier Miami (Brickell), global service by private consultation, <a href="/#contact" style="color:#C5A059;">Book with Jorge Uquillas</a>
+      </p>
+    `
+  },
+  {
     id: 1,
     slug: 'the-art-of-artistic-engraving',
     title: 'The Sacred Art of Artistic Engraving',
