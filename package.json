@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
-    "build": "node scripts/optimize-images.mjs --dir PUBLIC --widths 480,800,1200,1600 && node scripts/build-image-manifest.mjs && vite build && npm run build:ssr && node scripts/prerender.mjs",
+    "build": "node scripts/build-image-manifest.mjs && vite build && npm run build:ssr && node scripts/prerender.mjs",
     "preview": "vite preview",
     "build:ssr": "vite build --ssr src/entry-server.tsx --outDir dist-server --emptyOutDir",
     "prerender": "node scripts/prerender.mjs",
