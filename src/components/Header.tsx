@@ -1,226 +1,183 @@
-import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { ShoppingBag } from 'lucide-react';
-import { AudioAtmosphere } from './AudioAtmosphere';
-import { LanguageFlags } from './LanguageFlags';
+import { ShoppingCart } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
 import { useCart } from '../context/CartContext';
-import { StaggeredMenu, StaggeredMenuItem, StaggeredMenuSocialItem } from './StaggeredMenu';
 
 interface HeaderProps {
   onOpenConsultation: () => void;
   onNavigateToJorgeUquillas?: () => void;
 }
 
-export function Header({ onOpenConsultation }: HeaderProps) {
-  const [isScrolled, setIsScrolled] = useState(false);
+export function Header({ onOpenConsultation: _onOpenConsultation }: HeaderProps) {
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useLanguage();
   const { count } = useCart();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 40) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>, path: string, isAnchor: boolean = false) => {
+  const handleNav = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
     e.preventDefault();
-    if (isAnchor) {
-      if (location.pathname !== '/') {
-        navigate('/');
-        setTimeout(() => {
-          const el = document.getElementById(path.replace('#', ''));
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      } else {
-        const el = document.getElementById(path.replace('#', ''));
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }
+    if (location.pathname !== path) {
+      navigate(path);
+      window.scrollTo({ top: 0, behavior: 'auto' });
     } else {
-      if (location.pathname !== path) {
-        navigate(path);
-        // instantâneo: abre do início, sem passar pelo rodapé no smooth
-        requestAnimationFrame(() => {
-          window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-          document.documentElement.scrollTop = 0;
-        });
-      } else {
-        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
-  const menuItems: StaggeredMenuItem[] = [
-    {
-      label: t.nav.home,
-      ariaLabel: 'Return to introduction and temple of art',
-      link: '/',
-      onClick: (e) => handleNavigation(e, '/'),
-    },
-    {
-      label: t.nav.allPieces,
-      ariaLabel: 'Browse every one-of-one piece in the catalogue',
-      link: '/collections',
-      onClick: (e) => handleNavigation(e, '/collections'),
-    },
-    {
-      label: t.nav.luxuryRings,
-      link: '/luxury-rings',
-      onClick: (e) => handleNavigation(e, '/luxury-rings'),
-    },
-    {
-      label: t.nav.emperorRings,
-      link: '/emperor-rings',
-      onClick: (e) => handleNavigation(e, '/emperor-rings'),
-    },
-    {
-      label: t.nav.specialEditions,
-      link: '/special-editions',
-      onClick: (e) => handleNavigation(e, '/special-editions'),
-    },
-    {
-      label: t.nav.goldSilverRings,
-      link: '/gold-silver-rings',
-      onClick: (e) => handleNavigation(e, '/gold-silver-rings'),
-    },
-    {
-      label: t.nav.luxuryQueens,
-      link: '/luxuryqueens',
-      onClick: (e) => handleNavigation(e, '/luxuryqueens'),
-    },
-    {
-      label: t.nav.necklaces,
-      link: '/necklaces',
-      onClick: (e) => handleNavigation(e, '/necklaces'),
-    },
-    {
-      label: t.nav.courses,
-      link: '/courses',
-      onClick: (e) => handleNavigation(e, '/courses'),
-    },
-    {
-      label: t.nav.gallery,
-      link: '/gallery',
-      onClick: (e) => handleNavigation(e, '/gallery'),
-    },
-    {
-      label: t.nav.contact,
-      link: '/contact',
-      onClick: (e) => handleNavigation(e, '/contact'),
-    },
-    {
-      label: t.nav.blog,
-      link: '/blog',
-      onClick: (e) => handleNavigation(e, '/blog'),
-    },
-    {
-      label: t.nav.cart,
-      link: '/cart',
-      onClick: (e) => handleNavigation(e, '/cart'),
-    }
-  ];
-
-  const socialItems: StaggeredMenuSocialItem[] = [
-    { label: 'Miami', link: '#contact' },
-    { label: 'São Paulo Brasil', link: '#contact' },
-    { label: 'Instagram @ringsluxury', link: 'https://www.instagram.com/ringsluxury' },
+  const navLinks = [
+    { label: 'HOME',            path: '/' },
+    { label: 'LUXURY RINGS',   path: '/luxury-rings' },
+    { label: 'EMPEROR RINGS',  path: '/emperor-rings' },
+    { label: 'SPECIAL EDITIONS', path: '/special-editions' },
+    { label: 'GOLD-SILVER RINGS', path: '/gold-silver-rings' },
+    { label: 'LUXURY QUEENS',  path: '/luxuryqueens' },
+    { label: 'NECKLACES',      path: '/necklaces' },
+    { label: 'COURSES',        path: '/courses' },
+    { label: 'CONTACT',        path: '/contact' },
   ];
 
   return (
-    <>
-      {/* Background glass strip when scrolling */}
-      <div
-        className={`fixed top-0 left-0 w-full pointer-events-none z-40 transition-all duration-700 ${
-          isScrolled
-            ? 'h-20 bg-[#020202]/90 backdrop-blur-xl border-b border-[#C5A059]/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]'
-            : 'h-24 bg-gradient-to-b from-[#020202]/80 to-transparent'
-        }`}
-      />
+    <header
+      id="site-header"
+      className="fixed top-0 left-0 w-full z-50 bg-[#0a0a0a]"
+      style={{ borderBottom: '1px solid rgba(197,160,89,0.15)' }}
+    >
+      <div className="relative flex items-center justify-center px-4 h-[46px]">
 
-      {/* The React Bits StaggeredMenu Component */}
-      <StaggeredMenu
-        isFixed={true}
-        position="right"
-        colors={['#18140E', '#2B2213', '#080808']}
-        customLogo={
-          <a
-            href="/"
-            id="brand-logo"
-            onClick={(e) => handleNavigation(e, '/')}
-            className="group flex items-center gap-2 sm:gap-3 min-w-0 text-left focus:outline-none transition-transform hover:scale-[1.02]"
+        {/* NAV LINKS — centered */}
+        <nav aria-label={t.nav.home} className="hidden md:flex items-center gap-0">
+          {navLinks.map((item, i) => {
+            const isActive = location.pathname === item.path;
+            return (
+              <span key={item.path} className="flex items-center">
+                {i > 0 && (
+                  <span
+                    aria-hidden
+                    className="text-[#C5A059]/40 mx-3 select-none"
+                    style={{ fontSize: '11px' }}
+                  >
+                    |
+                  </span>
+                )}
+                <a
+                  href={item.path}
+                  onClick={(e) => handleNav(e, item.path)}
+                  className="transition-colors duration-200 whitespace-nowrap"
+                  style={{
+                    fontFamily: "'Arial', sans-serif",
+                    fontSize: '11px',
+                    fontWeight: 700,
+                    letterSpacing: '0.08em',
+                    color: isActive ? '#C5A059' : '#D4AF6A',
+                    textDecoration: 'none',
+                    lineHeight: 1,
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isActive) (e.currentTarget as HTMLAnchorElement).style.color = '#fff';
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isActive) (e.currentTarget as HTMLAnchorElement).style.color = '#D4AF6A';
+                  }}
+                >
+                  {item.label}
+                </a>
+              </span>
+            );
+          })}
+        </nav>
+
+        {/* CART — absolute right */}
+        <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center">
+          <button
+            onClick={() => navigate('/cart')}
+            aria-label="Carrinho de compras"
+            className="relative flex items-center justify-center w-8 h-8 hover:opacity-80 transition-opacity"
           >
-            <img
-              src="/PUBLIC/logo-novo-rings-luxury.webp"
-              alt="RINGS LUXURY by Jorge Uquillas, Anéis artesanais HandCrafted ouro 18k"
-              className="w-8 h-8 sm:w-10 sm:h-10 object-contain select-none shrink-0"
-              draggable={false}
-              onError={(e) => {
-                const target = e.currentTarget;
-                if (!target.src.includes('logo-novo-rings-luxury.webp')) {
-                  target.src = '/PUBLIC/logo-original.webp';
-                } else if (!target.src.includes('logo.svg')) {
-                  target.src = '/logo.svg';
-                }
-              }}
+            <ShoppingCart
+              className="w-5 h-5"
+              style={{ color: '#C5A059' }}
+              aria-hidden
             />
-            <div className="flex flex-col min-w-0">
-              <span className="font-cinzel text-[11px] tracking-[0.2em] truncate sm:text-sm sm:tracking-[0.28em] md:text-lg font-semibold text-[#F3EFE6] group-hover:text-[#C5A059] transition-colors duration-500">
-                RINGS LUXURY
+            {count > 0 && (
+              <span className="absolute -top-1 -right-1 min-w-[16px] h-[16px] px-0.5 rounded-full bg-[#C5A059] text-[#020202] text-[9px] font-bold flex items-center justify-center">
+                {count > 9 ? '9+' : count}
               </span>
-              <span className="hidden sm:block text-[8.5px] uppercase tracking-[0.35em] text-[#9A7B38] truncate">
-                {t.nav.logoSubtitle}
-              </span>
-            </div>
-          </a>
-        }
-        extraHeaderActions={
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            {/* Pill de áudio só no desktop: no mobile ela sai da header (vira flutuante no canto inferior esquerdo) */}
-            <span className="hidden sm:block">
-              <AudioAtmosphere />
-            </span>
-            <button
-              onClick={() => navigate('/cart')}
-              aria-label={t.nav.cart}
-              className="relative w-9 h-9 rounded-full border border-[#C5A059]/40 hover:border-[#C5A059] hover:bg-[#C5A059]/10 flex items-center justify-center transition-colors"
-            >
-              <ShoppingBag className="w-4 h-4 text-[#C5A059]" aria-hidden />
-              {count > 0 && (
-                <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-[#C5A059] text-[#020202] text-[10px] font-bold flex items-center justify-center">
-                  {count > 9 ? '9+' : count}
-                </span>
-              )}
-            </button>
-            <LanguageFlags />
-          </div>
-        }
-        items={menuItems}
-        socialItems={socialItems}
-        displaySocials={true}
-        displayItemNumbering={false}
-        menuButtonColor="#C5A059"
-        openMenuButtonColor="#C5A059"
-        accentColor="#C5A059"
-        changeMenuColorOnOpen={true}
-        closeOnClickAway={true}
-      />
+            )}
+          </button>
+        </div>
 
-      {/* Player mobile: fixo no canto inferior esquerdo, fora da header */}
-      <div
-        className="sm:hidden fixed left-4 z-[55]"
-        style={{ bottom: 'max(1rem, env(safe-area-inset-bottom))' }}
-      >
-        <AudioAtmosphere />
+        {/* MOBILE HAMBURGER — shown only on mobile */}
+        <div className="absolute left-4 top-1/2 -translate-y-1/2 md:hidden flex items-center">
+          <MobileMenu navLinks={navLinks} handleNav={handleNav} cartCount={count} navigate={navigate} />
+        </div>
+
       </div>
+    </header>
+  );
+}
+
+/* ── Mobile Menu (hamburger) ─────────────────────────────────────────── */
+import React, { useState } from 'react';
+import { Menu, X } from 'lucide-react';
+
+function MobileMenu({
+  navLinks,
+  handleNav,
+  cartCount,
+  navigate,
+}: {
+  navLinks: { label: string; path: string }[];
+  handleNav: (e: React.MouseEvent<HTMLAnchorElement>, path: string) => void;
+  cartCount: number;
+  navigate: ReturnType<typeof useNavigate>;
+}) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <button
+        onClick={() => setOpen(!open)}
+        aria-label={open ? 'Fechar menu' : 'Abrir menu'}
+        className="flex items-center justify-center w-8 h-8"
+      >
+        {open
+          ? <X className="w-5 h-5 text-[#C5A059]" />
+          : <Menu className="w-5 h-5 text-[#C5A059]" />
+        }
+      </button>
+
+      {open && (
+        <div
+          className="fixed inset-0 top-[46px] bg-[#0a0a0a]/98 z-50 flex flex-col items-center justify-center gap-0"
+          onClick={() => setOpen(false)}
+        >
+          {navLinks.map((item, i) => (
+            <React.Fragment key={item.path}>
+              {i > 0 && (
+                <span className="text-[#C5A059]/30 text-xs">|</span>
+              )}
+              <a
+                href={item.path}
+                onClick={(e) => { handleNav(e, item.path); setOpen(false); }}
+                className="py-3 text-[13px] font-bold tracking-[0.12em] text-[#D4AF6A] hover:text-white transition-colors"
+              >
+                {item.label}
+              </a>
+            </React.Fragment>
+          ))}
+          <div className="mt-6">
+            <button
+              onClick={() => { navigate('/cart'); setOpen(false); }}
+              className="flex items-center gap-2 text-[#C5A059] text-[12px] tracking-[0.1em]"
+            >
+              <ShoppingCart className="w-4 h-4" />
+              CART {cartCount > 0 && `(${cartCount})`}
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 }
+
 export default Header;

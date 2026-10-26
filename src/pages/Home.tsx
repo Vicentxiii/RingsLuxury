@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Header } from '../components/Header';
 import { Hero } from '../components/Hero';
-import { HomeFilm } from '../components/HomeFilm';
 import { QuemSouEu } from '../components/QuemSouEu';
 import { FeaturedRing } from '../components/FeaturedRing';
 import { WhyChoose } from '../components/WhyChoose';
@@ -10,7 +9,6 @@ import { ShippingWorldwide } from '../components/ShippingWorldwide';
 import { FolhasScroll } from '../components/FolhasScroll';
 import { Atelier } from '../components/Atelier';
 import { Craftsmanship } from '../components/Craftsmanship';
-import { MasterpieceDetail } from '../components/MasterpieceDetail';
 import { QuoteSection } from '../components/QuoteSection';
 import { HomeDirectAnswers } from '../components/HomeDirectAnswers';
 import { WorldClients } from '../components/WorldClients';
@@ -41,9 +39,9 @@ export function Home() {
   };
 
   const handleEnterAtelier = () => {
-    const masterpieceElem = document.getElementById('masterpiece');
-    if (masterpieceElem) {
-      masterpieceElem.scrollIntoView({ behavior: 'smooth' });
+    const targetElem = document.getElementById('sobre') || document.getElementById('quem-sou-eu');
+    if (targetElem) {
+      targetElem.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -101,19 +99,13 @@ export function Home() {
         {/* I. Cinematic Hero */}
         <Hero onEnterAtelier={handleEnterAtelier} />
 
-        {/* I.2 The film: player sob demanda, logo abaixo da hero */}
-        <HomeFilm />
-
-        {/* II. THE MASTERPIECE DETAIL / MICROSCOPIC PROVENANCE, logo após o filme */}
-        <MasterpieceDetail />
-
-        {/* III. 18K GOLD RING OF POWER, logo após a segunda seção */}
-        <FeaturedRing />
-
-        {/* IV. SOBRE MIM / QUEM SOU EU, bio JORGE UQUILLAS, após o anel */}
+        {/* II. SOBRE MIM / QUEM SOU EU — JORGE UQUILLAS (Segunda Seção) */}
         <QuemSouEu />
 
-        {/* I.2, WHY CHOOSE RINGS LUXURY?, terceira seção fiel ao print */}
+        {/* III. 18K GOLD RING OF POWER */}
+        <FeaturedRing />
+
+        {/* IV. WHY CHOOSE RINGS LUXURY? */}
         <WhyChoose />
 
         {/* IV. The Atelier: The Hand of the Master, logo abaixo do WHY CHOOSE */}

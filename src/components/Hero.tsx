@@ -1,137 +1,156 @@
+import { useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
-import { ResponsiveImg } from './ResponsiveImg';
 
 interface HeroProps {
   onEnterAtelier: () => void;
 }
 
-// Imagem da HERO (capa do site).
-const HERO_IMAGE = encodeURI(
-  '/PUBLIC/Foto para CAPA sessão HERO do site nova.webp'
-);
+const YOUTUBE_ID = 'ieNPhZ4Vdss';
+const POSTER     = `https://i.ytimg.com/vi/${YOUTUBE_ID}/maxresdefault.jpg`;
+const POSTER_FB  = `https://i.ytimg.com/vi/${YOUTUBE_ID}/hqdefault.jpg`;
+// Vídeo inicia em 1 minuto (start=60), mudo, autoplay e em loop contínuo
+const EMBED      = `https://www.youtube-nocookie.com/embed/${YOUTUBE_ID}?autoplay=1&controls=0&rel=0&modestbranding=1&playsinline=1&mute=1&loop=1&playlist=${YOUTUBE_ID}&start=60&enablejsapi=1`;
+
+const MEDUSA_ODIN_PNG  = '/PUBLIC/medusa-e-odim-capa-do-site-rings-luxury-by-jorge-uquillas.png';
+const MEDUSA_ODIN_WEBP = '/PUBLIC/medusa-e-odim-capa-do-site-rings-luxury-by-jorge-uquillas-transparente.webp';
 
 export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
   const { t } = useLanguage();
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [posterErr, setPosterErr]     = useState(false);
+
   return (
     <section
       id="hero"
-      className="relative w-full bg-[#020202] overflow-hidden flex items-center justify-center isolate"
-      style={{ height: '92vh', minHeight: '560px', maxHeight: '900px' }}
+      className="relative w-full overflow-hidden flex items-center justify-center bg-[#020202]"
+      style={{ height: '94vh', minHeight: '580px', maxHeight: '1000px' }}
       aria-label={t.home.heroSectionAria}
     >
-      {/* 1. DARKEN OVERLAYS, AINDA MAIS CLARO */}
-      <div className="absolute inset-0 z-10 bg-[#020202]/07" aria-hidden />
-      <div
-        className="absolute inset-0 z-10 pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(ellipse 90% 74% at 50% 52%, transparent 58%, rgba(2,2,2,0.05) 72%, rgba(2,2,2,0.16) 94%)',
-        }}
-        aria-hidden
-      />
-      <div className="absolute inset-x-0 top-0 h-[6%] z-10 bg-gradient-to-b from-[#020202]/28 via-[#020202]/04 to-transparent pointer-events-none" aria-hidden />
-      <div className="absolute inset-y-0 left-0 w-[10%] z-10 bg-gradient-to-r from-[#020202]/14 via-[#020202]/03 to-transparent pointer-events-none hidden sm:block" aria-hidden />
-      <div className="absolute inset-y-0 right-0 w-[10%] z-10 bg-gradient-to-l from-[#020202]/14 via-[#020202]/03 to-transparent pointer-events-none hidden sm:block" aria-hidden />
 
-      {/* 2. COMPOSITE ODIN + MEDUSA, liso sem textura */}
-      <div className="absolute inset-0 z-20 pointer-events-none select-none overflow-hidden" aria-hidden>
-        <ResponsiveImg
-          src={HERO_IMAGE}
-          alt=""
-          decorative
-          width={1600}
-          height={844}
-          sizes="100vw"
-          priority
-          className="absolute inset-0 w-full h-full object-contain object-center scale-[1.37] opacity-60 sm:opacity-[0.84]"
-          style={{ objectPosition: 'center center' }}
-          onError={(e) => {
-            (e.currentTarget as HTMLImageElement).style.display = 'none';
+      {/* ── CAMADA DE BAIXO: VÍDEO DO ATELIER (YOUTUBE) ── */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        {/* Poster de carregamento enquanto o iframe do YouTube inicializa */}
+        {!videoLoaded && (
+          <img
+            src={posterErr ? POSTER_FB : POSTER}
+            alt=""
+            aria-hidden
+            className="absolute inset-0 w-full h-full object-cover"
+            onError={() => setPosterErr(true)}
+          />
+        )}
+
+        <iframe
+          title="Rings Luxury Atelier Film"
+          src={EMBED}
+          className="absolute pointer-events-none"
+          style={{
+            border: 0,
+            top: '50%',
+            left: '50%',
+            width: '100vw',
+            height: '56.25vw', // Proporção 16:9
+            minHeight: '100%',
+            minWidth: '177.77vh', // Proporção 16:9
+            transform: 'translate(-50%, -50%) scale(1.15)',
+            transformOrigin: 'center center',
           }}
+          allow="autoplay; encrypted-media"
+          onLoad={() => setVideoLoaded(true)}
         />
-        <div className="absolute inset-0 bg-[#020202]/03" />
-        <div className="absolute inset-0 shadow-[inset_0_0_40px_rgba(0,0,0,0.12)]" />
+
+        {/* Leve película para integrar o vídeo ao fundo escuro e dar contraste ideal */}
+        <div className="absolute inset-0 bg-[#020202]/30" aria-hidden />
       </div>
 
-      {/* 5. TEXTO CENTRAL, WELCOME TO RINGS LUXURY / MASTER PIECES */}
-      <div className="relative z-30 w-full max-w-6xl mx-auto px-6 flex flex-col items-center justify-center text-center pointer-events-none">
-        <h1 className="flex flex-col items-center gap-3 sm:gap-4">
-          <span
-            className="font-cormorant font-light text-[#E9E2D6]/95 leading-none whitespace-nowrap"
+      {/* ── CAMADA SUPERIOR: MEDUSA E ODIN (PNG TRANSPARENTE COBRINDO A TELA TODA) ── */}
+      <div className="absolute inset-0 z-10 pointer-events-none select-none overflow-hidden" aria-hidden>
+        <picture className="w-full h-full">
+          <source srcSet={MEDUSA_ODIN_WEBP} type="image/webp" />
+          <img
+            src={MEDUSA_ODIN_PNG}
+            alt=""
+            aria-hidden
+            className="absolute inset-0 w-full h-full object-cover object-center"
             style={{
-              fontSize: 'clamp(11px, 1.9vw, 22px)',
-              letterSpacing: '0.62em',
-              textShadow: '0 2px 18px rgba(0,0,0,0.85), 0 0 30px rgba(0,0,0,0.55)',
-              fontWeight: 300,
+              filter: 'drop-shadow(0 4px 20px rgba(0,0,0,0.6))',
             }}
-          >
-            {t.home.heroWelcome}
-          </span>
-          <span
-            className="font-cormorant font-light text-[#E9E2D6]/80 leading-none whitespace-nowrap"
-            style={{
-              fontSize: 'clamp(8px, 1.05vw, 11.5px)',
-              letterSpacing: '0.78em',
-              textShadow: '0 1px 12px rgba(0,0,0,0.9)',
-              fontWeight: 300,
+            onError={(e) => {
+              // Fallback caso a imagem não carregue
+              const target = e.currentTarget as HTMLImageElement;
+              if (target.src !== MEDUSA_ODIN_PNG) {
+                target.src = MEDUSA_ODIN_PNG;
+              }
             }}
-          >
-            {t.home.heroEyebrow2}
-          </span>
-          {/* H1 keyword: frase visível curta com o termo que o cliente busca.
-              Mantém o visual luxo e entrega relevância para Google/IAs. */}
-          <span
-            className="font-cormorant italic text-[#C5A059]/90 leading-snug max-w-2xl text-balance"
-            style={{
-              fontSize: 'clamp(11px, 1.4vw, 15px)',
-              letterSpacing: '0.08em',
-              textShadow: '0 1px 12px rgba(0,0,0,0.9)',
-              fontWeight: 400,
-            }}
-          >
-            {t.home.heroH1Keyword}
-          </span>
+          />
+        </picture>
+      </div>
+
+      {/* ── CAMADA DO TEXTO: CENTRALIZADO EM CIMA DO VÍDEO ── */}
+      <div className="relative z-20 flex flex-col items-center justify-center text-center px-4 pointer-events-none w-full">
+
+        {/* WELCOME TO RINGS LUXURY */}
+        <h1
+          className="font-cormorant font-light text-[#E8E2D8] uppercase leading-tight tracking-[0.42em] sm:tracking-[0.55em]"
+          style={{
+            fontSize:   'clamp(15px, 2.3vw, 28px)',
+            textShadow: '0 2px 14px rgba(0,0,0,0.95), 0 0 30px rgba(0,0,0,0.9)',
+          }}
+        >
+          {t.home.heroWelcome}
         </h1>
 
-        {/*
-            Resumo de abertura da Home, logo abaixo do H1.
+        {/* MASTER PIECES */}
+        <p
+          className="mt-2 font-cormorant font-light text-[#C5A059]/90 uppercase tracking-[0.62em] sm:tracking-[0.78em]"
+          style={{
+            fontSize:   'clamp(10px, 1.2vw, 15px)',
+            textShadow: '0 2px 10px rgba(0,0,0,0.95), 0 0 20px rgba(0,0,0,0.85)',
+          }}
+        >
+          {t.home.heroEyebrow2}
+        </p>
 
-            O H1 e uma frase poetica, curta e sem numero: boa para marca, ruim
-            para quem pergunta. Este paragrafo e o trecho que o Google extrai e que
-            a IA cita, entao ele abre com a resposta direta e carrega numeros
-            verificaveis (preco, prazo, horas de gravacao, paises).
-            A classe `seo-summary` e o alvo do speakable no JSON-LD: e este
-            paragrafo que o assistente deve ler em voz alta.
-          */}
-        <p className="seo-summary mt-6 max-w-3xl px-2 font-cormorant text-[#D8D2C4]/95 leading-relaxed text-center text-pretty">
-          RINGS LUXURY is the atelier of Jorge Uquillas, master goldsmith and hand engraver, with
-          private ateliers in São Paulo (Avenida Paulista, Brazil) and Miami (Brickell, Florida,
-          USA). He makes 1/1 hand-engraved 18k gold rings, cast solid and engraved by hand for 90 to
-          140 hours, with hand-selected natural diamonds set one by one under the microscope. A
-          hand engraving 18k gold diamond ring starts at US$ 4,800, takes 60 days from the first
-          50% payment, and reaches clients in over 50 countries under full door-to-door insurance.
+        {/* SEO Hidden Summary for Search Crawlers */}
+        <p className="seo-summary sr-only">
+          RINGS LUXURY is the atelier of Jorge Uquillas, master goldsmith and hand engraver,
+          with private ateliers in São Paulo (Avenida Paulista, Brazil) and Miami (Brickell, Florida, USA).
+          He makes 1/1 hand-engraved 18k gold rings, cast solid and engraved by hand for 90 to 140 hours,
+          with hand-selected natural diamonds set one by one under the microscope.
+          A hand engraving 18k gold diamond ring starts at US$ 4,800 and reaches clients in over 50 countries.
         </p>
       </div>
 
-      {/* 6. LINHA INFERIOR CURVA */}
-      <div className="absolute bottom-0 left-0 w-full h-[38px] z-20 pointer-events-none overflow-hidden" aria-hidden>
-        <svg
-          viewBox="0 0 1440 38"
-          preserveAspectRatio="none"
+      {/* ── ÍCONE DA CHAMA / GOTA DOURADA — INFERIOR CENTRAL ── */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center pointer-events-none" aria-hidden>
+        <div className="relative w-4 h-5 flex items-center justify-center">
+          <svg width="14" height="20" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-[0_0_8px_rgba(197,160,89,0.8)]">
+            <path
+              d="M7 0C7 0 2.5 5 2.5 10C2.5 13.5 4.5 16.5 7 16.5C9.5 16.5 11.5 13.5 11.5 10C11.5 5 7 0 7 0Z"
+              fill="url(#flame_grad)"
+            />
+            <circle cx="7" cy="11.5" r="2.5" fill="#FFE29A" />
+            <defs>
+              <radialGradient id="flame_grad" cx="50%" cy="60%" r="50%">
+                <stop offset="0%" stopColor="#FFF2D1" />
+                <stop offset="40%" stopColor="#E5B25D" />
+                <stop offset="100%" stopColor="#8C5C1A" />
+              </radialGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+      {/* ── CURVA INFERIOR SUAVE PARA TRANSIÇÃO ── */}
+      <div className="absolute bottom-0 left-0 w-full h-[32px] z-20 pointer-events-none overflow-hidden" aria-hidden>
+        <svg viewBox="0 0 1440 32" preserveAspectRatio="none"
           className="w-full h-full block text-[#020202]"
-          fill="currentColor"
-          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor" xmlns="http://www.w3.org/2000/svg"
         >
-          <path d="M0 28 C 260 38, 420 2, 720 14 C 1020 26, 1180 36, 1440 12 L 1440 38 L 0 38 Z" opacity="0.98" />
+          <path d="M0 24 C 260 32, 420 2, 720 12 C 1020 22, 1180 30, 1440 10 L 1440 32 L 0 32 Z" opacity="0.98" />
         </svg>
       </div>
 
-      <a
-        href="#masterpiece"
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 opacity-0 focus:opacity-100 focus:pointer-events-auto pointer-events-none text-[10px] tracking-[0.3em] text-[#C5A059] border border-[#C5A059]/40 px-4 py-2 rounded-full bg-black/60 backdrop-blur"
-      >
-        {t.home.heroViewCollection}
-      </a>
     </section>
   );
 }
