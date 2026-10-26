@@ -7,7 +7,6 @@ import { WhyChoose } from '../components/WhyChoose';
 import { YouDecide } from '../components/YouDecide';
 import { ShippingWorldwide } from '../components/ShippingWorldwide';
 import { FolhasScroll } from '../components/FolhasScroll';
-import { Atelier } from '../components/Atelier';
 import { Craftsmanship } from '../components/Craftsmanship';
 import { QuoteSection } from '../components/QuoteSection';
 import { HomeDirectAnswers } from '../components/HomeDirectAnswers';
@@ -107,9 +106,6 @@ export function Home() {
 
         {/* IV. WHY CHOOSE RINGS LUXURY? */}
         <WhyChoose />
-
-        {/* IV. The Atelier: The Hand of the Master, logo abaixo do WHY CHOOSE */}
-        <Atelier />
 
         {/* I.3, YOU DECIDE EVERY STONE EVERY DETAIL, com carrossel do ateliê */}
         <YouDecide />
