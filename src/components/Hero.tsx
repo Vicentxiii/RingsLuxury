@@ -44,7 +44,7 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
           height={844}
           sizes="100vw"
           priority
-          className="absolute inset-0 w-full h-full object-cover object-center scale-[1.12] opacity-60 sm:opacity-[0.84]"
+          className="absolute inset-0 w-full h-full object-contain object-center scale-[1.14] opacity-60 sm:opacity-[0.84]"
           style={{ objectPosition: 'center center' }}
           onError={(e) => {
             (e.currentTarget as HTMLImageElement).style.display = 'none';
