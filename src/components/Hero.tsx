@@ -30,7 +30,6 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
         aria-hidden
       />
       <div className="absolute inset-x-0 top-0 h-[6%] z-10 bg-gradient-to-b from-[#020202]/28 via-[#020202]/04 to-transparent pointer-events-none" aria-hidden />
-      <div className="absolute inset-x-0 bottom-0 h-[8%] z-10 bg-gradient-to-t from-[#020202]/20 via-[#020202]/03 to-transparent pointer-events-none" aria-hidden />
       <div className="absolute inset-y-0 left-0 w-[10%] z-10 bg-gradient-to-r from-[#020202]/14 via-[#020202]/03 to-transparent pointer-events-none hidden sm:block" aria-hidden />
       <div className="absolute inset-y-0 right-0 w-[10%] z-10 bg-gradient-to-l from-[#020202]/14 via-[#020202]/03 to-transparent pointer-events-none hidden sm:block" aria-hidden />
 
@@ -44,7 +43,7 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
           height={844}
           sizes="100vw"
           priority
-          className="absolute inset-0 w-full h-full object-contain object-center scale-[1.14] opacity-60 sm:opacity-[0.84]"
+          className="absolute inset-0 w-full h-full object-contain object-center scale-[1.37] opacity-60 sm:opacity-[0.84]"
           style={{ objectPosition: 'center center' }}
           onError={(e) => {
             (e.currentTarget as HTMLImageElement).style.display = 'none';
@@ -53,12 +52,6 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
         <div className="absolute inset-0 bg-[#020202]/03" />
         <div className="absolute inset-0 shadow-[inset_0_0_40px_rgba(0,0,0,0.12)]" />
       </div>
-
-      {/* 4. FADE PRETO NA BASE, dissolve o corte entre o hero e a próxima seção */}
-      <div
-        className="absolute inset-x-0 bottom-0 h-[28%] z-[25] pointer-events-none bg-gradient-to-t from-[#020202] via-[#020202]/70 to-transparent"
-        aria-hidden
-      />
 
       {/* 5. TEXTO CENTRAL, WELCOME TO RINGS LUXURY / MASTER PIECES */}
       <div className="relative z-30 w-full max-w-6xl mx-auto px-6 flex flex-col items-center justify-center text-center pointer-events-none">

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 import { LaurelWreath, GreekMeanderDivider } from './OrnamentIcons';
+import { ResponsiveImg } from './ResponsiveImg';
 
 const YOUTUBE_ID = 'ieNPhZ4Vdss';
 const POSTER = `https://i.ytimg.com/vi/${YOUTUBE_ID}/maxresdefault.jpg`;
@@ -25,6 +26,22 @@ export function HomeFilm() {
       aria-label={t.home.filmAria}
       className="relative overflow-hidden bg-[#020202] py-20 sm:py-32"
     >
+      {/* Background Image: Medusa e Odim Junto bem mais claro */}
+      <div className="absolute inset-0 pointer-events-none select-none overflow-hidden" aria-hidden>
+        <ResponsiveImg
+          src="/PUBLIC/medusa-e-odim-capa-do-site-rings-luxury-by-jorge-uquillas.webp"
+          alt=""
+          decorative
+          width={1600}
+          height={844}
+          sizes="100vw"
+          className="absolute inset-0 w-full h-full object-contain object-center scale-[1.03] opacity-85 sm:opacity-95"
+        />
+        {/* Apenas sutis fades no topo e base para dissolver com as seções adjacentes sem escurecer a foto */}
+        <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#020202] to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#020202] to-transparent" />
+      </div>
+
       {/* Ambient gold glow */}
       <div
         className="pointer-events-none absolute inset-0"
@@ -41,23 +58,29 @@ export function HomeFilm() {
         <div className="text-center mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-3 mb-5">
             <LaurelWreath className="w-4 h-4 text-[#C5A059]" />
-            <span className="font-cinzel text-[10px] sm:text-[11px] uppercase tracking-[0.46em] text-[#C5A059] font-medium">
+            <span className="font-cinzel text-[10px] sm:text-[11px] uppercase tracking-[0.46em] text-[#C5A059] font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
               {t.home.filmEyebrow}
             </span>
             <LaurelWreath className="w-4 h-4 text-[#C5A059] transform -scale-x-100" />
           </div>
 
           <h2 className="font-cinzel font-light text-[#FBF9F5] uppercase tracking-[0.14em] leading-[1.08] mb-6"
-            style={{ fontSize: 'clamp(28px, 5vw, 56px)' }}
+            style={{
+              fontSize: 'clamp(28px, 5vw, 56px)',
+              textShadow: '0 2px 20px rgba(0,0,0,0.95), 0 0 35px rgba(0,0,0,0.85)',
+            }}
           >
             {t.home.filmTitle}
           </h2>
 
-          <GreekMeanderDivider className="mx-auto mb-7 opacity-50 w-40" />
+          <GreekMeanderDivider className="mx-auto mb-7 opacity-70 w-40 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]" />
 
           <p
-            className="font-cormorant italic text-[#CFC8B9]/90 leading-relaxed max-w-2xl mx-auto"
-            style={{ fontSize: 'clamp(16px, 1.5vw, 21px)' }}
+            className="font-cormorant italic text-[#F0EBE0] leading-relaxed max-w-2xl mx-auto"
+            style={{
+              fontSize: 'clamp(16px, 1.5vw, 21px)',
+              textShadow: '0 2px 14px rgba(0,0,0,0.95), 0 0 25px rgba(0,0,0,0.8)',
+            }}
           >
             {t.home.filmDescription}
           </p>

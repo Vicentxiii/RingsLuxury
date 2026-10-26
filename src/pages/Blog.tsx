@@ -19,11 +19,21 @@ export function Blog() {
     }
   };
 
-  const filteredPosts = blogPosts.filter(post => 
-    post.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-    post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    post.category.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredPosts = blogPosts
+    .map((post) => {
+      const tr = (post as any).translations?.[lang];
+      return {
+        ...post,
+        title: tr?.title ?? post.title ?? '',
+        excerpt: tr?.excerpt ?? post.excerpt ?? '',
+      };
+    })
+    .filter(
+      (post) =>
+        (post.title || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (post.excerpt || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (post.category || '').toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
   return (
     <div className="min-h-screen bg-[#020202] text-[#EAE6DF] selection:bg-[#C5A059] selection:text-[#020202] font-sans-luxury relative overflow-x-hidden pt-24">

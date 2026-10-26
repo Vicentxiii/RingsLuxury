@@ -12,10 +12,19 @@ import { useLanguage } from '../i18n/LanguageContext';
 export function BlogPost() {
   const { t, lang } = useLanguage();
   const { slug } = useParams<{ slug: string }>();
-  const [post, setPost] = useState(blogPosts.find(p => p.slug === slug));
+  const rawPost = blogPosts.find((p) => p.slug === slug);
+  const translation = (rawPost as any)?.translations?.[lang];
+  const post = rawPost
+    ? {
+        ...rawPost,
+        title: translation?.title ?? rawPost.title,
+        seoTitle: translation?.seoTitle ?? (rawPost as any).seoTitle ?? rawPost.title,
+        excerpt: translation?.excerpt ?? rawPost.excerpt,
+        content: translation?.content ?? rawPost.content,
+      }
+    : undefined;
 
   useEffect(() => {
-    setPost(blogPosts.find(p => p.slug === slug));
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [slug]);
 

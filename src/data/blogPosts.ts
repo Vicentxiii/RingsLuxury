@@ -2,34 +2,105 @@ export const blogPosts = [
   {
     id: 8,
     slug: 'cnc-rings-vs-hand-engraving',
-    /*
-      Traduções do post por idioma (pt / es). A interface de UI (t.pages.*) já
-      troca via LanguageContext; o conteúdo do artigo em si ficava hardcoded em
-      inglês e não mudava ao clicar nas bandeiras. Aqui o blogPosts passa a
-      suportar pt/es por slug.
-    */
+    title: 'CNC Rings vs. Hand Engraving: Why the Finish Is Never the Same',
+    seoTitle: 'CNC vs. Hand Engraving: The Finish Differs',
+    category: 'Craftsmanship',
+    date: 'October 25, 2026',
+    dateISO: '2026-10-25',
+    author: 'Jorge Uquillas',
+    image: encodeURI('/PUBLIC/Capa do post no blog CNS vc Hand Made.png'),
+    imagePosition: 'center 18%',
+    excerpt: 'CNC can reproduce a line thousands of times. Hand engraving can make that line live. Master engraver Jorge Uquillas breaks down the real difference between CNC rings and hand-engraved rings — depth, edges, undercuts, mirror finish and soul — and why the two surfaces never look the same under a loupe.',
+    keywords: 'CNC rings vs hand engraving, CNC engraved ring, hand engraved ring, machine engraving vs hand engraving, hand engraving finish, mirror finish hand engraving, Jorge Uquillas, RINGS LUXURY, 18k gold rings, handmade rings',
     translations: {
       pt: {
-        title: 'Anéis CNC vs. Gravação a Mão: Por Que a Acabação Nunca é a Mesma',
-        seoTitle: 'CNC vs. Gravação a Mão: A Acabação Diferente',
-        excerpt: 'A CNC pode reproduzir uma linha milhares de vezes. A gravação a mão pode fazer essa linha viver. O mestre gravador Jorge Uquillas explica a diferença real entre anéis CNC e anéis gravados a mão — profundidade, bordas, subterços, acabamento espelhado e alma — e por que as duas superfícies nunca se parecem.',
+        title: 'Anéis CNC vs. Gravação a Mão: Por Que o Acabamento Nunca é o Mesmo',
+        seoTitle: 'CNC vs. Gravação a Mão: O Acabamento Diferente',
+        excerpt: 'A CNC pode reproduzir uma linha milhares de vezes. A gravação a mão pode fazer essa linha viver. O mestre gravador Jorge Uquillas explica a diferença real entre anéis CNC e anéis gravados a mão — profundidade, bordas, rebaixos, acabamento espelhado e alma — e por que as duas superfícies nunca se parecem.',
         content: `
       <p><strong>Anéis CNC e anéis gravados a mão não são duas versões da mesma coisa.</strong> Um anel CNC é uma cópia: um computador move um cortador rotativo por um caminho programado e repete o mesmo sulco com consistência matemática. Um anel gravado a mão é uma interpretação: um mestre empurra um buril de aço temperado através do ouro 18k maciço sob um microscópio, abrindo cada faceta à mão, numa profundidade e ângulo que nenhum algoritmo consegue sentir.</p>
 
       <figure style="margin:32px 0;">
         <img src="/PUBLIC/CNC%20RING%201.jpg" alt="Anel CNC 1 — processo de usinagem CNC de um anel em metal por Jorge Uquillas, RINGS LUXURY" loading="lazy" decoding="async" width="1280" height="871" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
-        <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">CNC RING 1 — CNC machine cutting a metal ring</figcaption>
+        <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">CNC RING 1 — Máquina CNC cortando anel de metal</figcaption>
       </figure>
 
       <figure style="margin:32px 0;">
-        <img src="/PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-7-1055.jpg" alt="Anel Cheetah processo de fabricação by Jorge Uquillas, Rings Luxury" loading="lazy" decoding="async" width="1280" height="871" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
-        <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">Anel Cheetah — processo de fabricação</figcaption>
+        <picture>
+          <source type="image/avif" srcset="/PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-7-480.avif 480w, /PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-7-800.avif 800w, /PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-7-1055.avif 1055w" sizes="(max-width: 768px) 92vw, 720px" />
+          <source type="image/webp" srcset="/PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-7-480.webp 480w, /PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-7-800.webp 800w, /PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-7-1055.webp 1055w" sizes="(max-width: 768px) 92vw, 720px" />
+          <img src="/PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-7.jpg" alt="Anel Cheetah processo de fabricação by Jorge Uquillas, Rings Luxury" loading="lazy" decoding="async" width="1055" height="719" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        </picture>
+        <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">Anel Cheetah — processo de fabricação artesanal</figcaption>
       </figure>
 
-      <p>A diferença não é só romântica. Ela é visível. <strong>A acabação nunca é a mesma.</strong> A CNC vence na repetição. A gravação a mão vence na acabação: cortes mais profundos, bordas mais limpas e uma superfície de ouro que é mais perfeita e mais espelhada enquanto o anel se move na luz. Essa é a diferença entre um anel idêntico a milhares de outros e um anel que só poderia ter sido cortado uma vez.</p>
+      <p>A diferença não é só romântica. Ela é visível. <strong>O acabamento nunca é o mesmo.</strong> A CNC vence na repetição. A gravação a mão vence no acabamento: cortes mais profundos, bordas mais limpas e uma superfície de ouro que é mais perfeita e mais espelhada enquanto o anel se move na luz. Essa é a diferença entre um anel idêntico a milhares de outros e um anel que só poderia ter sido cortado uma vez.</p>
 
       <h2>A resposta curta: um copia, o outro interpreta</h2>
       <p>A CNC é uma <strong>tecnologia de cópia</strong>. Ela pega um modelo digital e o reproduz. A gravação a mão é uma <strong>arte interpretativa</strong>. Ela pega um desenho e o traduz através do olhar, da mão e do buril. Ambas podem produzir metal bonito. Só uma pode produzir uma superfície que carrega as decisões da mão humana.</p>
+
+      <figure style="margin:32px 0;">
+        <picture>
+          <source type="image/avif" srcset="/PUBLIC/cnc-machine-cutting-metal-vs-hand-engraving-rings-luxury-800.avif 800w, /PUBLIC/cnc-machine-cutting-metal-vs-hand-engraving-rings-luxury-1280.avif 1280w" sizes="(max-width: 768px) 92vw, 720px" />
+          <source type="image/webp" srcset="/PUBLIC/cnc-machine-cutting-metal-vs-hand-engraving-rings-luxury-800.webp 800w, /PUBLIC/cnc-machine-cutting-metal-vs-hand-engraving-rings-luxury-1280.webp 1280w" sizes="(max-width: 768px) 92vw, 720px" />
+          <img src="/PUBLIC/cnc-machine-cutting-metal-vs-hand-engraving-rings-luxury.jpg" alt="Fresadora CNC usinando peça de metal comparada à gravação manual por Jorge Uquillas" loading="lazy" decoding="async" width="1280" height="871" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        </picture>
+        <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">CNC: um cortador rotativo segue um caminho programado, removendo metal por repetição</figcaption>
+      </figure>
+
+      <h2>O que um anel CNC realmente é</h2>
+      <p>CNC — Controle Numérico Computadorizado — começa com um modelo CAD. O software calcula um caminho de usinagem e um motor gira uma fresa através do metal a dezenas de milhares de rotações por minuto. A máquina faz exatamente o que o arquivo manda, milhares de vezes, com uma tolerância milimétrica que uma mão humana não busca.</p>
+      <p>Isso é uma grande conveniência na joalheria para produção em escala, protótipos e logotipos. O que ela não faz é tomar decisões. Um cortador rotativo deixa bordas microrredondas iguais à sua própria geometria. Não alcança rebaixos profundos nem sob-cortes onde a luz se esconde. Sua profundidade é programada, não sentida.</p>
+
+      <h2>O que a gravação a mão realmente é</h2>
+      <p>A gravação manual é uma escultura de precisão pura. O gravador afia um buril de aço temperado no ângulo exato que sua mão exige. Sob o microscópio, o buril penetra o ouro 18k maciço, levanta uma apara brilhante e abre facetas com duas paredes e um fundo luminoso. Não existe botão de desfazer. Cada corte é definitivo.</p>
+      <p>Na <strong>RINGS LUXURY por Jorge Uquillas</strong>, um único anel leva de <strong>90 a 140 horas de gravação manual</strong>, e peças complexas superam 300 horas. Jorge esculpe o fundo, o relevo, os ornamentos e os detalhes — depois brunidor de ágata comprime as cristas do ouro até que reflitam a luz como um espelho líquido.</p>
+
+      <figure style="margin:32px 0;">
+        <img src="/PUBLIC/engraving-ring-by-jorge-uquillas-the-master-engraver-rings-luxury.webp" alt="Buril de gravação manual cortando relevo profundo em anel de ouro 18k por Jorge Uquillas, RINGS LUXURY" loading="lazy" decoding="async" width="1280" height="981" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">O buril abrindo facetas brilhantes no ouro 18k — um corte que ferramenta rotativa nenhuma reproduz</figcaption>
+      </figure>
+
+      <h2>O acabamento nunca é o mesmo</h2>
+      <p>É aqui que as duas tecnologias deixam de ser comparáveis. Um anel CNC e um anel gravado a mão podem compartilhar o mesmo desenho e ainda assim parecer completamente diferentes sob a luz:</p>
+
+      <h3>1. Profundidade: o corte tem corpo</h3>
+      <p>O corte CNC é raso para não forçar a ferramenta. O corte manual vai fundo o suficiente para criar sombras reais e relevo escultural que resiste a décadas de polimento.</p>
+
+      <h3>2. Bordas: nítidas contra arredondadas</h3>
+      <p>O cortador rotativo deixa bordas arredondadas. O buril manual tosa o metal, deixando arestas nítidas e brilhantes que captam a luz com vida.</p>
+
+      <h3>3. Luz: brilho estático vs. espelho dinâmico</h3>
+      <p>O acabamento CNC espalha a luz de forma uniforme e plana. A superfície gravada a mão é brunida com ágata: as facetas cortadas em diferentes ângulos retornam a luz como espelhos móveis quando o anel se move.</p>
+
+      <h3>4. Repetição: cópia vs. peça única</h3>
+      <p>A máquina repete identicamente. A gravação manual carrega o pulso do mestre: cada folha, cada arabesco e cada faceta é uma decisão única, transformando o anel em uma peça verdadeiramente 1/1.</p>
+
+      <figure style="margin:32px 0;">
+        <img src="/PUBLIC/rings-luxury-polindo-anel-master-engraver-jorge-uquillas-1200.webp" alt="Polimento e brunimento manual final de anel gravado em ouro 18k por Jorge Uquillas" loading="lazy" decoding="async" width="1200" height="750" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">O brunimento final: ouro polido até refletir a luz como um espelho</figcaption>
+      </figure>
+
+      <h2>O veredito</h2>
+      <p><strong>CNC ou gravação manual?</strong> Se o objetivo for uma cópia rápida e repetível, a CNC é a ferramenta certa. Mas se você busca acabamento perfeito — cortes profundos, arestas vivas, brilho espelhado e alma que respira na luz — a gravação manual é a única resposta.</p>
+      <p>Conheça a diferença de perto: <a href="/#contact">agende uma consulta privativa</a> no ateliê no Brasil ou em Miami. Conheça o processo de <a href="/hand-engraving">gravação manual</a> e o mestre <a href="/jorge-uquillas">Jorge Uquillas</a>.</p>
+
+      <figure style="margin:32px 0;">
+        <picture>
+          <source type="image/avif" srcset="/PUBLIC/avengers-angulos-novos-18k-solid-gold-ring-by-jorge-uquillas-rings-luxury-4-480.avif 480w, /PUBLIC/avengers-angulos-novos-18k-solid-gold-ring-by-jorge-uquillas-rings-luxury-4-800.avif 800w, /PUBLIC/avengers-angulos-novos-18k-solid-gold-ring-by-jorge-uquillas-rings-luxury-4-1200.avif 1200w" sizes="(max-width: 768px) 92vw, 720px" />
+          <source type="image/webp" srcset="/PUBLIC/avengers-angulos-novos-18k-solid-gold-ring-by-jorge-uquillas-rings-luxury-4-480.webp 480w, /PUBLIC/avengers-angulos-novos-18k-solid-gold-ring-by-jorge-uquillas-rings-luxury-4-800.webp 800w, /PUBLIC/avengers-angulos-novos-18k-solid-gold-ring-by-jorge-uquillas-rings-luxury-4-1200.webp 1200w" sizes="(max-width: 768px) 92vw, 720px" />
+          <img src="/PUBLIC/avengers-angulos-novos-18k-solid-gold-ring-by-jorge-uquillas-rings-luxury-4-800.webp" alt="Anel Avengers em ouro 18k maciço gravado a mão por Jorge Uquillas, RINGS LUXURY" loading="lazy" decoding="async" width="800" height="800" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        </picture>
+        <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">Anel Avengers — ouro 18k maciço gravado à mão com acabamento espelhado por Jorge Uquillas</figcaption>
+      </figure>
+
+      <p style="margin-top:32px; padding:16px; background:#0A0A0A; border-left:3px solid #C5A059; font-size:13px; line-height:1.9; color:#A8A296;">
+        #CNCRings #HandEngraving #AnelGravadoAMao #MirrorFinish #Ouro18k #JorgeUquillas #RingsLuxury #AltaJoalheria #OneOfOneRing #JoiasArtesanais #HandEngraver
+      </p>
+
+      <p style="margin-top:16px; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#9A7B38; text-align:center;">
+        📍 Ateliê Brasil (São Paulo) • Ateliê Miami (Brickell), atendimento global com agendamento privativo, <a href="/#contact" style="color:#C5A059;">Fale com Jorge Uquillas</a>
+      </p>
     `
       },
       es: {
@@ -37,38 +108,38 @@ export const blogPosts = [
         seoTitle: 'CNC vs. Grabado a Mano: El Acabado Diferente',
         excerpt: 'La CNC puede reproducir una línea miles de veces. El grabado a mano puede hacer esa línea vivir. El maestro grabador Jorge Uquillas explica la diferencia real entre anillos CNC y anillos grabados a mano — profundidad, bordes, socavados, acabado espejo y alma — y por qué las dos superficies nunca se parecen.',
         content: `
-      <p><strong>Los anillos CNC y los anillos grabados a mano no son dos dos mismos.</strong> Un anillo CNC es una copia: un computador mueve un cortador rotativo a lo largo de un camino programado y repite el mismo surco con consistencia matemática. Un anillo grabado a mano es una interpretación: un maestro empuja un buril de acero templado a través del oro 18k macizo bajo el microscopio, abriendo cada faceta a mano, con una profundidad y ángulo que ningún algoritmo puede sentir.</p>
+      <p><strong>Los anillos CNC y los anillos grabados a mano no son dos versiones del mismo objeto.</strong> Un anillo CNC es una copia: un computador mueve un cortador rotativo a lo largo de un camino programado y repite el mismo surco con consistencia matemática. Un anillo grabado a mano es una interpretación: un maestro empuja un buril de acero templado a través del oro 18k macizo bajo el microscopio, abriendo cada faceta a mano, con una profundidad y ángulo que ningún algoritmo puede sentir.</p>
 
       <figure style="margin:32px 0;">
         <img src="/PUBLIC/CNC%20RING%201.jpg" alt="CNC ring 1 — CNC engraving process on a metal ring by Jorge Uquillas, RINGS LUXURY" loading="lazy" decoding="async" width="1280" height="871" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
-        <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">CNC RING 1 — CNC machine cutting a metal ring</figcaption>
+        <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">CNC RING 1 — Máquina CNC cortando anillo de metal</figcaption>
       </figure>
 
       <figure style="margin:32px 0;">
-        <img src="/PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-7-1055.jpg" alt="Anel Cheetah processo de fabricação by Jorge Uquillas, Rings Luxury" loading="lazy" decoding="async" width="1280" height="871" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
-        <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">Anel Cheetah — proceso de fabricación</figcaption>
+        <picture>
+          <source type="image/avif" srcset="/PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-7-480.avif 480w, /PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-7-800.avif 800w, /PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-7-1055.avif 1055w" sizes="(max-width: 768px) 92vw, 720px" />
+          <source type="image/webp" srcset="/PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-7-480.webp 480w, /PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-7-800.webp 800w, /PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-7-1055.webp 1055w" sizes="(max-width: 768px) 92vw, 720px" />
+          <img src="/PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-7.jpg" alt="Anel Cheetah processo de fabricação by Jorge Uquillas, Rings Luxury" loading="lazy" decoding="async" width="1055" height="719" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        </picture>
+        <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">Anillo Cheetah — proceso de fabricación artesanal</figcaption>
       </figure>
 
-      <p>La diferencia no es solo romántica. Es visible. <strong>El acabado nunca es el mismo.</strong> La CNC gana en repetición. El grabado a mano gana en acabado: cortes más profundos, bordes más limpios y una superficie de oro que es más perfecta y más espejo mientras el anillo se mueve con la luz. Es la diferencia entre un anel idéntico a mil otros y un anel que solo podría haber sido cortado una vez.</p>
+      <p>La diferencia no es solo romántica. Es visible. <strong>El acabado nunca es el mismo.</strong> La CNC gana en repetición. El grabado a mano gana en acabado: cortes más profundos, bordes más limpios y una superficie de oro que es más perfecta y más espejo mientras el anillo se mueve con la luz. Es la diferencia entre un anillo idéntico a mil otros y un anillo que solo podría haber sido cortado una vez.</p>
 
       <h2>La respuesta corta: uno copia, el otro interpreta</h2>
       <p>La CNC es una <strong>tecnología de copia</strong>. Toma un modelo digital y lo reproduce. El grabado a mano es una <strong>artesanía interpretativa</strong>. Toma un dibujo y lo traduce a través del ojo, la mano y el buril. Ambas pueden producir metal bonito. Solo una puede producir una superficie que lleva las decisiones de la mano humana.</p>
+
+      <figure style="margin:32px 0;">
+        <picture>
+          <source type="image/avif" srcset="/PUBLIC/avengers-angulos-novos-18k-solid-gold-ring-by-jorge-uquillas-rings-luxury-4-480.avif 480w, /PUBLIC/avengers-angulos-novos-18k-solid-gold-ring-by-jorge-uquillas-rings-luxury-4-800.avif 800w, /PUBLIC/avengers-angulos-novos-18k-solid-gold-ring-by-jorge-uquillas-rings-luxury-4-1200.avif 1200w" sizes="(max-width: 768px) 92vw, 720px" />
+          <source type="image/webp" srcset="/PUBLIC/avengers-angulos-novos-18k-solid-gold-ring-by-jorge-uquillas-rings-luxury-4-480.webp 480w, /PUBLIC/avengers-angulos-novos-18k-solid-gold-ring-by-jorge-uquillas-rings-luxury-4-800.webp 800w, /PUBLIC/avengers-angulos-novos-18k-solid-gold-ring-by-jorge-uquillas-rings-luxury-4-1200.webp 1200w" sizes="(max-width: 768px) 92vw, 720px" />
+          <img src="/PUBLIC/avengers-angulos-novos-18k-solid-gold-ring-by-jorge-uquillas-rings-luxury-4-800.webp" alt="Anillo Avengers en oro 18k grabado a mano por Jorge Uquillas, RINGS LUXURY" loading="lazy" decoding="async" width="800" height="800" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        </picture>
+        <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">Anillo Avengers — oro 18k grabado a mano con acabado espejo por Jorge Uquillas</figcaption>
+      </figure>
     `
       },
     },
-  },
-  {
-    id: 1,
-    title: 'CNC Rings vs. Hand Engraving: Why the Finish Is Never the Same',
-    seoTitle: 'CNC vs. Hand Engraving: The Finish Differs',
-    category: 'Craftsmanship',
-    date: 'October 25, 2026',
-    dateISO: '2026-10-25',
-    author: 'Jorge Uquillas',
-    image: '/PUBLIC/Capa do post no blog CNS vc Hand Made.png',
-    imagePosition: 'center 18%',
-    excerpt: 'CNC can reproduce a line thousands of times. Hand engraving can make that line live. Master engraver Jorge Uquillas breaks down the real difference between CNC rings and hand-engraved rings — depth, edges, undercuts, mirror finish and soul — and why the two surfaces never look the same under a loupe.',
-    keywords: 'CNC rings vs hand engraving, CNC engraved ring, hand engraved ring, machine engraving vs hand engraving, hand engraving finish, mirror finish hand engraving, Jorge Uquillas, RINGS LUXURY, 18k gold rings, handmade rings',
     faq: [
       { q: 'Are CNC rings worse than hand-engraved rings?', a: 'No. CNC is more repeatable, faster and more affordable, and it can be the right choice for production, prototypes and logo work. A CNC ring becomes a problem only when machine engraving is sold as hand engraving. Hand engraving wins on depth, edge crispness, undercuts and mirror finish — the qualities that make a ring look alive under a loupe.' },
       { q: 'Can you tell a CNC ring from a hand-engraved ring?', a: 'Yes, especially under a 10x loupe. CNC engraving shows a regular pitch, uniform depth, rounded micro-edges and identical repeats. Hand engraving shows variable depth, bright-cut facets, undercuts and tiny differences between repeats — the fingerprint of the engraver. With the naked eye, the hand-engraved ring usually looks deeper and more mirror-like.' },
@@ -86,8 +157,12 @@ export const blogPosts = [
       </figure>
 
       <figure style="margin:32px 0;">
-        <img src="/PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-7-1055.jpg" alt="Anel Cheetah processo de fabricação by Jorge Uquillas, Rings Luxury" loading="lazy" decoding="async" width="1280" height="871" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
-        <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">CNC RING 3 — CNC ring engraving detail</figcaption>
+        <picture>
+          <source type="image/avif" srcset="/PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-7-480.avif 480w, /PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-7-800.avif 800w, /PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-7-1055.avif 1055w" sizes="(max-width: 768px) 92vw, 720px" />
+          <source type="image/webp" srcset="/PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-7-480.webp 480w, /PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-7-800.webp 800w, /PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-7-1055.webp 1055w" sizes="(max-width: 768px) 92vw, 720px" />
+          <img src="/PUBLIC/anel-cheeta-processo-by-rings-luxury-jorge-uquillas-7.jpg" alt="Cheetah ring handcrafting process by Jorge Uquillas, Rings Luxury" loading="lazy" decoding="async" width="1055" height="719" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        </picture>
+        <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">Cheetah Ring — handcrafting and engraving process</figcaption>
       </figure>
 
       <p>The difference is not only romantic. It is visible. <strong>The finish is never the same.</strong> CNC wins at repetition. Hand engraving wins at finish: deeper cuts, cleaner edges and a gold surface that is more perfect and more mirror-like as the ring moves through light. This is the difference between a ring that is identical to a thousand others and a ring that could only have been cut once.</p>
@@ -192,6 +267,15 @@ export const blogPosts = [
       <h2>The verdict</h2>
       <p><strong>CNC or hand engraving?</strong> If you want a perfect copy, CNC is the correct tool. If you want a perfect finish — deeper, crisper, more mirror-like, alive under light — hand engraving is the only answer. The two can look similar in a photograph. They never look the same in the hand.</p>
       <p>See the difference in person: <a href="/#contact">book a private consultation</a> at the atelier in Brazil or Miami. Explore <a href="/hand-engraving">hand engraving</a>, meet <a href="/jorge-uquillas">Jorge Uquillas</a>, or read <a href="/blog/the-art-of-artistic-engraving">The Sacred Art of Artistic Engraving</a>.</p>
+
+      <figure style="margin:32px 0;">
+        <picture>
+          <source type="image/avif" srcset="/PUBLIC/avengers-angulos-novos-18k-solid-gold-ring-by-jorge-uquillas-rings-luxury-4-480.avif 480w, /PUBLIC/avengers-angulos-novos-18k-solid-gold-ring-by-jorge-uquillas-rings-luxury-4-800.avif 800w, /PUBLIC/avengers-angulos-novos-18k-solid-gold-ring-by-jorge-uquillas-rings-luxury-4-1200.avif 1200w" sizes="(max-width: 768px) 92vw, 720px" />
+          <source type="image/webp" srcset="/PUBLIC/avengers-angulos-novos-18k-solid-gold-ring-by-jorge-uquillas-rings-luxury-4-480.webp 480w, /PUBLIC/avengers-angulos-novos-18k-solid-gold-ring-by-jorge-uquillas-rings-luxury-4-800.webp 800w, /PUBLIC/avengers-angulos-novos-18k-solid-gold-ring-by-jorge-uquillas-rings-luxury-4-1200.webp 1200w" sizes="(max-width: 768px) 92vw, 720px" />
+          <img src="/PUBLIC/avengers-angulos-novos-18k-solid-gold-ring-by-jorge-uquillas-rings-luxury-4-800.webp" alt="Avengers 18k solid gold ring hand engraved by Jorge Uquillas, RINGS LUXURY" loading="lazy" decoding="async" width="800" height="800" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        </picture>
+        <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">Avengers Ring — solid 18k gold hand-engraved with mirror finish by Jorge Uquillas</figcaption>
+      </figure>
 
       <p style="margin-top:32px; padding:16px; background:#0A0A0A; border-left:3px solid #C5A059; font-size:13px; line-height:1.9; color:#A8A296;">
         #CNCRings #HandEngraving #HandEngravedRing #CNCvsHandEngraving #MirrorFinish #18kGold #JorgeUquillas #RingsLuxury #HandmadeRings #HighJewelry #FineJewelry #GoldsmithArt #HauteJoaillerie #OneOfOneRing #BespokeRing #LuxuryRings #HandEngraver #MiamiJewelry #BrazilJewelry #CustomJewelry #ArtisanJewelry #GoldRing #DiamondRing #JewelryCraftsmanship
