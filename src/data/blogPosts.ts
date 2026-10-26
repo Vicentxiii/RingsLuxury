@@ -77,7 +77,11 @@ export const blogPosts = [
       <p>A máquina repete identicamente. A gravação manual carrega o pulso do mestre: cada folha, cada arabesco e cada faceta é uma decisão única, transformando o anel em uma peça verdadeiramente 1/1.</p>
 
       <figure style="margin:32px 0;">
-        <img src="/PUBLIC/rings-luxury-polindo-anel-master-engraver-jorge-uquillas-1200.webp" alt="Polimento e brunimento manual final de anel gravado em ouro 18k por Jorge Uquillas" loading="lazy" decoding="async" width="1200" height="750" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        <picture>
+          <source type="image/avif" srcset="/PUBLIC/rings-luxury-polindo-anel-master-engraver-jorge-uquillas-480.avif 480w, /PUBLIC/rings-luxury-polindo-anel-master-engraver-jorge-uquillas-800.avif 800w, /PUBLIC/rings-luxury-polindo-anel-master-engraver-jorge-uquillas-1200.avif 1200w" sizes="(max-width: 768px) 92vw, 720px" />
+          <source type="image/webp" srcset="/PUBLIC/rings-luxury-polindo-anel-master-engraver-jorge-uquillas-480.webp 480w, /PUBLIC/rings-luxury-polindo-anel-master-engraver-jorge-uquillas-800.webp 800w, /PUBLIC/rings-luxury-polindo-anel-master-engraver-jorge-uquillas-1200.webp 1200w" sizes="(max-width: 768px) 92vw, 720px" />
+          <img src="/PUBLIC/rings-luxury-polindo-anel-master-engraver-jorge-uquillas.webp" alt="Polimento e brunimento manual final de anel gravado em ouro 18k por Jorge Uquillas" loading="lazy" decoding="async" width="1200" height="750" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        </picture>
         <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">O brunimento final: ouro polido até refletir a luz como um espelho</figcaption>
       </figure>
 
