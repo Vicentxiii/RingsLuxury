@@ -167,7 +167,7 @@ export function BlogPost() {
         */}
         <article
           className={[
-            'max-w-none font-cormorant text-lg text-[#A8A296] leading-relaxed',
+            'max-w-none font-cormorant text-lg text-[#FFFFFF] leading-relaxed',
             '[&_h2]:font-cinzel [&_h2]:text-2xl [&_h2]:md:text-3xl [&_h2]:text-[#F3EFE6] [&_h2]:font-medium [&_h2]:mt-12 [&_h2]:mb-5',
             '[&_h3]:font-cinzel [&_h3]:text-xl [&_h3]:text-[#F3EFE6] [&_h3]:mt-8 [&_h3]:mb-4',
             '[&_p]:mb-6',

@@ -5,9 +5,9 @@ interface HeroProps {
   onEnterAtelier: () => void;
 }
 
-// Imagem composta da HERO (Odin esquerda + Medusa direita), 1600x844.
+// Imagem da HERO (capa do site).
 const HERO_IMAGE = encodeURI(
-  '/PUBLIC/medusa-e-odim-capa-do-site-rings-luxury-by-jorge-uquillas.webp'
+  '/PUBLIC/Foto para CAPA sessão HERO do site nova.webp'
 );
 
 export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {

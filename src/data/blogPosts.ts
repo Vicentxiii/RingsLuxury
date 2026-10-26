@@ -8,7 +8,7 @@ export const blogPosts = [
     date: 'October 25, 2026',
     dateISO: '2026-10-25',
     author: 'Jorge Uquillas',
-    image: encodeURI('/PUBLIC/imagem-para-galeria-jorge-uquillas-utilizando-o-microscopico-para-hand-engraving-1288.webp'),
+    image: encodeURI('/PUBLIC/Capa%20do%20post%20no%20blog%20CNS%20vc%20Hand%20Made.png'),
     imagePosition: 'center 18%',
     excerpt: 'CNC can reproduce a line thousands of times. Hand engraving can make that line live. Master engraver Jorge Uquillas breaks down the real difference between CNC rings and hand-engraved rings — depth, edges, undercuts, mirror finish and soul — and why the two surfaces never look the same under a loupe.',
     keywords: 'CNC rings vs hand engraving, CNC engraved ring, hand engraved ring, machine engraving vs hand engraving, hand engraving finish, mirror finish hand engraving, Jorge Uquillas, RINGS LUXURY, 18k gold rings, handmade rings',
@@ -22,6 +22,16 @@ export const blogPosts = [
     ],
     content: `
       <p><strong>CNC rings and hand-engraved rings are not two versions of the same object.</strong> A CNC ring is a copy: a computer moves a rotating cutter along a programmed path and repeats the same groove with mathematical consistency. A hand-engraved ring is an interpretation: a master pushes a tempered-steel burin through solid 18k gold under a microscope, opening each facet by hand, at a depth and angle no algorithm can feel.</p>
+
+      <figure style="margin:32px 0;">
+        <img src="/PUBLIC/CNC%20RING%201.jpg" alt="CNC ring 1 — CNC engraving process on a metal ring by Jorge Uquillas, RINGS LUXURY" loading="lazy" decoding="async" width="1280" height="871" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">CNC RING 1 — CNC machine cutting a metal ring</figcaption>
+      </figure>
+
+      <figure style="margin:32px 0;">
+        <img src="/PUBLIC/CNC%20RING%203.jpg" alt="CNC ring 3 — CNC engraving detail on a metal ring by Jorge Uquillas, RINGS LUXURY" loading="lazy" decoding="async" width="1280" height="871" style="width:100%;height:auto;border:1px solid rgba(197,160,89,0.25);display:block;" />
+        <figcaption style="text-align:center;font-size:14px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:12px;">CNC RING 3 — CNC ring engraving detail</figcaption>
+      </figure>
 
       <p>The difference is not only romantic. It is visible. <strong>The finish is never the same.</strong> CNC wins at repetition. Hand engraving wins at finish: deeper cuts, cleaner edges and a gold surface that is more perfect and more mirror-like as the ring moves through light. This is the difference between a ring that is identical to a thousand others and a ring that could only have been cut once.</p>
 
