@@ -121,18 +121,18 @@ export function YouDecide() {
                 textShadow: '0 2px 20px rgba(197,160,89,0.3)',
               }}
             >
-              YOU DECIDE EVERY STONE
+              {t.home.ydTitleA} {t.home.ydTitleStone}
               <br />
-              EVERY DETAIL
+              {t.home.ydTitleDetail}
             </h2>
 
             {/* PARÁGRAFOS DESCRITIVOS FIÉIS À REFERÊNCIA */}
             <div className="mt-8 space-y-4 font-sans-luxury text-[#E5DFD3]/90 text-[13.5px] sm:text-[14.5px] lg:text-[15.5px] leading-[1.78] max-w-[530px]">
               <p>
-                Upon confirmation of your payment, you will receive the serial number of your powerful ring along with exact delivery dates (time upon request).
+                {t.home.ydText1}
               </p>
               <p>
-                First I make a mock sketch based on your ideas and details, so you can really see what your exclusive jewelry will look like, subject to change or approval, we start making it in the precious metal of your choice, and you follow the process during the making of your masterpiece!
+                {t.home.ydText2}
               </p>
             </div>
 
@@ -257,9 +257,9 @@ export function YouDecide() {
         </div>
 
         {/* ── ASSINATURA DE JORGE UQUILLAS QUE CRESCE LENTAMENTE COM O SCROLL ── */}
-        <div className="relative mt-8 sm:mt-12 flex justify-start sm:justify-center pointer-events-none select-none">
+        <div className="relative mt-8 sm:mt-12 flex justify-center items-center text-center pointer-events-none select-none w-full">
           <div
-            className="transition-transform duration-200 ease-out will-change-transform"
+            className="flex justify-center items-center transition-transform duration-200 ease-out will-change-transform"
             style={{
               transform: `scale(${sigScale})`,
               opacity: sigOpacity,
@@ -268,7 +268,7 @@ export function YouDecide() {
             <img
               src="/PUBLIC/assinatura-jorge-uquillas-rings-luxury.webp"
               alt="Assinatura Jorge Uquillas"
-              className="w-[180px] sm:w-[220px] lg:w-[260px] h-auto object-contain filter drop-shadow-[0_4px_12px_rgba(197,160,89,0.35)]"
+              className="w-[180px] sm:w-[220px] lg:w-[260px] h-auto object-contain filter drop-shadow-[0_4px_12px_rgba(197,160,89,0.35)] mx-auto"
             />
           </div>
         </div>

@@ -48,11 +48,11 @@ export function FeaturedRing() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 xl:gap-12 items-center">
 
           {/* COLUNA ESQUERDA: TÍTULO, SEPARADOR, DESCRIÇÃO E BOTÕES */}
-          <div className="lg:col-span-6 xl:col-span-6 flex flex-col items-start text-left">
+          <div className="lg:col-span-6 xl:col-span-6 flex flex-col items-center lg:items-start text-center lg:text-left">
 
             {/* TÍTULO: RINGS LUXURY (Itálico dourado imponente) */}
             <h2
-              className="font-cormorant italic font-normal text-[#E8C278] leading-none tracking-[0.06em]"
+              className="font-cormorant italic font-normal text-[#E8C278] leading-none tracking-[0.06em] text-center lg:text-left"
               style={{
                 fontSize: 'clamp(36px, 4.4vw, 64px)',
                 textShadow: '0 2px 24px rgba(197,160,89,0.38), 0 0 45px rgba(197,160,89,0.2)',
@@ -62,18 +62,18 @@ export function FeaturedRing() {
             </h2>
 
             {/* SEPARADOR DOURADO COM ARABESCOS E PONTO DE LUZ */}
-            <div className="w-full max-w-[340px] sm:max-w-[420px] my-3.5 sm:my-4 select-none pointer-events-none">
+            <div className="w-full max-w-[340px] sm:max-w-[420px] my-3.5 sm:my-4 select-none pointer-events-none mx-auto lg:mx-0">
               <img
                 src={SEPARATOR_IMAGE}
                 alt=""
                 aria-hidden
-                className="w-full h-auto object-contain block"
+                className="w-full h-auto object-contain block mx-auto lg:mx-0"
               />
             </div>
 
             {/* TEXTO DESCRITIVO DE PODER E AMBIÇÃO */}
             <p
-              className="font-sans-luxury text-[#E5DFD3]/90 text-[13.5px] sm:text-[15px] lg:text-[16px] leading-[1.78] max-w-[530px] my-2"
+              className="font-sans-luxury text-[#E5DFD3]/90 text-[13.5px] sm:text-[15px] lg:text-[16px] leading-[1.78] max-w-[530px] my-2 text-center lg:text-left mx-auto lg:mx-0"
               style={{
                 textShadow: '0 2px 14px rgba(0,0,0,0.95)',
               }}
@@ -83,7 +83,7 @@ export function FeaturedRing() {
             </p>
 
             {/* BOTÕES DE AÇÃO: I'D LIKE SEE MORE PIECES & I'D LIKE A PIECE FOR ME */}
-            <div className="mt-7 sm:mt-8 flex flex-row flex-wrap items-center gap-3.5 sm:gap-4.5">
+            <div className="mt-7 sm:mt-8 flex flex-row flex-wrap items-center justify-center lg:justify-start gap-3.5 sm:gap-4.5 w-full">
               
               {/* Botão 1: I'd like see more pieces */}
               <button

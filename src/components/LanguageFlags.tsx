@@ -75,7 +75,7 @@ export function LanguageFlags() {
   ];
 
   return (
-    <div className="flex items-center gap-1.5" role="group" aria-label="Language">
+    <div className="flex items-center gap-1 sm:gap-1.5" role="group" aria-label="Language">
       {flags.map(({ code, label, title, Flag }) => {
         const active = lang === code;
         return (
@@ -86,15 +86,14 @@ export function LanguageFlags() {
             aria-label={label}
             title={title}
             aria-pressed={active}
-            // 44x44 hit area (WCAG 2.5.5 / 2.5.8) kept visually identical via negative margin.
-            className="-m-[11px] p-[11px] bg-transparent border-0"
+            className="relative flex items-center justify-center p-0.5 bg-transparent border-0 cursor-pointer transition-transform duration-200 hover:scale-110 active:scale-95 focus:outline-none"
           >
             <span
               aria-hidden="true"
-              className={`block w-[22px] h-[22px] rounded-full overflow-hidden border transition-all duration-300 ${
+              className={`block w-[20px] h-[20px] sm:w-[22px] sm:h-[22px] rounded-full overflow-hidden border transition-all duration-300 ${
                 active
-                  ? 'border-[#C5A059] shadow-[0_0_8px_rgba(197,160,89,0.8)] opacity-100'
-                  : 'border-white/20 hover:border-white/50 opacity-70 hover:opacity-100'
+                  ? 'border-[#C5A059] shadow-[0_0_8px_rgba(197,160,89,0.85)] opacity-100 ring-1 ring-[#C5A059]/50'
+                  : 'border-white/30 hover:border-white/70 opacity-70 hover:opacity-100'
               }`}
             >
               <Flag />
