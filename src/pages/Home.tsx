@@ -7,7 +7,6 @@ import { WhyChoose } from '../components/WhyChoose';
 import { YouDecide } from '../components/YouDecide';
 import { ShippingWorldwide } from '../components/ShippingWorldwide';
 import { FolhasScroll } from '../components/FolhasScroll';
-import { Craftsmanship } from '../components/Craftsmanship';
 import { HomeDirectAnswers } from '../components/HomeDirectAnswers';
 import { WorldClients } from '../components/WorldClients';
 import { AtelierLocations } from '../components/AtelierLocations';
@@ -108,9 +107,6 @@ export function Home() {
 
         {/* I.3, YOU DECIDE EVERY STONE EVERY DETAIL, com carrossel do ateliê */}
         <YouDecide />
-
-        {/* V. Craftsmanship: Five Sacred Stages, logo abaixo do YOU DECIDE */}
-        <Craftsmanship />
 
         {/* I.4, SHIPPING WORLDWIDE, mini-carrossel de bandeiras */}
         <ShippingWorldwide />
