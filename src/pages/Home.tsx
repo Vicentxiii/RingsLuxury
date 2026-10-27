@@ -8,7 +8,6 @@ import { YouDecide } from '../components/YouDecide';
 import { ShippingWorldwide } from '../components/ShippingWorldwide';
 import { FolhasScroll } from '../components/FolhasScroll';
 import { Craftsmanship } from '../components/Craftsmanship';
-import { QuoteSection } from '../components/QuoteSection';
 import { HomeDirectAnswers } from '../components/HomeDirectAnswers';
 import { WorldClients } from '../components/WorldClients';
 import { AtelierLocations } from '../components/AtelierLocations';
@@ -121,9 +120,6 @@ export function Home() {
 
         {/* I.6, VISITS IN THE PHYSICAL WORKSHOP UNDER SCHEDULE, Miami + São Paulo */}
         <AtelierLocations />
-
-        {/* IX. Sententia Aurea Quote */}
-        <QuoteSection />
 
         {/* IX.2, RESPOSTAS DIRETAS: perguntas do cliente em titulo, com numeros
             reais. Fecha a home antes do formulario de contato porque e aqui que
