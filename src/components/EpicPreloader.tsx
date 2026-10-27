@@ -116,7 +116,7 @@ export function EpicPreloader({ isExiting }: EpicPreloaderProps) {
         {/* Marca no centro, sem baixar imagem de produto. */}
         <div className="relative flex items-center justify-center shrink-0">
           <img
-            src="/PUBLIC/logo-novo-rings-luxury.webp"
+            src="/PUBLIC/logo-cortado-versao-nova.webp"
             alt="RINGS LUXURY"
             width={190}
             height={190}

@@ -23,7 +23,7 @@
   ],
   "$keywordsComment": "Keywords do negocio (entity-level). Termos que descrevem O QUE a empresa e, nao a pagina. Mantido aqui para o JSON-LD de SEO.tsx ler junto com o NAP.",
   "keywords": "RINGS LUXURY, Jorge Uquillas, HandCrafted jewelry, handmade 18k gold diamond rings, hand engraving, hand engraver, haute joaillerie, one of one ring, natural diamonds, aneis artesanais, ourivesaria, master goldsmith",
-  "logo": "/PUBLIC/logo-novo-rings-luxury.webp",
+  "logo": "/PUBLIC/logo-cortado-versao-nova.webp",
   "credit": {
     "prefix": "Site created by",
     "name": "Vicente Czar",

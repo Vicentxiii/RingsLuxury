@@ -116,18 +116,10 @@ export function Footer() {
           <div className="md:col-span-4 space-y-6">
             <div className="flex items-center gap-3">
               <img
-                src="/PUBLIC/logo-novo-rings-luxury.webp"
+                src="/PUBLIC/logo-cortado-versao-nova.webp"
                 alt="RINGS LUXURY by Jorge Uquillas"
-                className="w-auto h-14 md:h-16 object-contain select-none shrink-0"
+                className="w-auto h-16 md:h-20 object-contain select-none shrink-0 drop-shadow-[0_4px_16px_rgba(197,160,89,0.25)]"
                 draggable={false}
-                onError={(e) => {
-                  const target = e.currentTarget;
-                  if (!target.src.includes('logo-novo-rings-luxury.webp')) {
-                    target.src = '/PUBLIC/logo-original.webp';
-                  } else if (!target.src.includes('logo.svg')) {
-                    target.src = '/logo.svg';
-                  }
-                }}
               />
               <div className="flex flex-col">
                 <span

@@ -8,8 +8,8 @@ import contact from '../data/contact.json';
 import locationsData from '../data/locations.json';
 import { Instagram, ArrowLeft, ChevronDown } from 'lucide-react';
 
-// ── Logo do favicon (PNG com fundo branco/transparente) ─────────────────────
-const FAVICON_LOGO = '/PUBLIC/logo-novo-para-favcon-by-rings-luxury-site.png';
+// ── Logo do favicon (logo-cortado versao nova) ─────────────────────────────
+const FAVICON_LOGO = '/PUBLIC/logo-cortado-versao-nova.webp';
 
 // ── Foto de Jorge Uquillas ───────────────────────────────────────────────────
 const JORGE_PHOTO = '/PUBLIC/captura-de-tela-2026-09-12-185443.webp';
@@ -394,21 +394,13 @@ export function JorgeUquillas() {
             {/* Logo PNG do favicon em vez do "RL" */}
             <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full border border-[#C5A059]/40 flex items-center justify-center bg-[#080808] shadow-[0_0_50px_rgba(197,160,89,0.35)] overflow-hidden p-3.5 shrink-0">
               <img
-                src="/favicon.png"
+                src={FAVICON_LOGO}
                 alt="Rings Luxury Logo"
                 width={96}
                 height={96}
                 className="w-full h-full object-contain select-none"
                 loading="eager"
                 draggable={false}
-                onError={(e) => {
-                  const target = e.currentTarget as HTMLImageElement;
-                  if (!target.src.includes('logo-novo-para-favcon')) {
-                    target.src = FAVICON_LOGO;
-                  } else if (!target.src.includes('logo-novo-rings-luxury')) {
-                    target.src = '/PUBLIC/logo-novo-rings-luxury.webp';
-                  }
-                }}
               />
             </div>
 
