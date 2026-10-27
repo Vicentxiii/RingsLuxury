@@ -43,7 +43,7 @@ export function Header({ onOpenConsultation: _onOpenConsultation }: HeaderProps)
     <>
       <header
         id="site-header"
-        className="fixed top-0 left-0 w-full z-50 bg-transparent transition-colors duration-300"
+        className="fixed top-0 left-0 w-full z-50 bg-transparent transition-colors duration-300 pt-[12px]"
       >
         <div className="relative flex items-center justify-center px-4 sm:px-6 h-[52px]">
 
@@ -135,7 +135,7 @@ export function Header({ onOpenConsultation: _onOpenConsultation }: HeaderProps)
       {/* ── MENU DRAWER MOBILE (QUANDO O BURGER É ABERTO) ── */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-0 top-[52px] bg-[#050505]/98 backdrop-blur-md z-40 flex flex-col items-center justify-center gap-0 md:hidden animate-in fade-in duration-300 px-6"
+          className="fixed inset-0 top-[64px] bg-[#050505]/98 backdrop-blur-md z-40 flex flex-col items-center justify-center gap-0 md:hidden animate-in fade-in duration-300 px-6"
           onClick={() => setMobileMenuOpen(false)}
         >
           {/* Logo nova no topo do menu mobile */}

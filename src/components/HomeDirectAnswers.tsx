@@ -1,23 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ChevronDown } from 'lucide-react';
 import { absoluteUrl, HAS_SITE_URL } from '../site.config';
 
 /** Ultima revisao editorial da Home, mostrada e declarada no JSON-LD. */
 const PAGE_UPDATED = '2026-10-17';
 
 /**
- * Respostas diretas na Home.
- *
- * POR QUE ISTO EXISTE
- * A auditoria mediu 0 perguntas na Home. O titulo da home e uma frase poetica,
- * sem numero: boa para marca, ruim para quem pesquisa "quanto custa um anel de
- * ouro 18k feito a mao". Busca por voz e IA comecam com pergunta, e o trecho
- * citado vem de uma pagina que faz a MESMA pergunta num titulo.
- *
- * Aqui cada titulo e a pergunta literal do cliente e o paragrafo seguinte
- * responde em 2 frases, com numero verificavel. Os ids existem para o buscador
- * levar o leitor direto na resposta, e o indice no topo da secao cria os links
- * de ancora internos que o Google usa para exibir os subitens.
+ * Respostas diretas na Home em formato FAQ Accordion (Clique para revelar).
  */
 interface QA {
   id: string;
@@ -78,28 +68,19 @@ const QUESTIONS: QA[] = [
   },
 ];
 
-/** Ancoras das secoes da propria Home, para o indice navegar dentro da pagina. */
-const SECTION_LINKS = [
-  { href: '#sobre', label: 'The master' },
-  { href: '#por-que-rings-luxury', label: 'Why Rings Luxury' },
-  { href: '#atelier', label: 'The atelier' },
-  { href: '#oficio', label: 'How it is made' },
-  { href: '#envio-mundial', label: 'Worldwide shipping' },
-  { href: '#clientes', label: 'What clients say' },
-  { href: '#atelieis', label: 'Miami and São Paulo' },
-  { href: '#contact', label: 'Contact' },
-];
-
 export function HomeDirectAnswers() {
+  const [openId, setOpenId] = useState<string | null>(null);
+
+  const toggle = (id: string) => {
+    setOpenId((prev) => (prev === id ? null : id));
+  };
+
   return (
     <section
       aria-labelledby="respostas-diretas"
-      className="relative py-24 md:py-32 px-6"
+      className="relative py-24 md:py-32 px-6 bg-[#020202]"
     >
-      {/*
-        FAQPage da Home. As perguntas sao as mesmas que aparecem logo abaixo em
-        <h3>, entao o rich result e valido (o Google exige o texto visivel).
-      */}
+      {/* FAQPage Schema para SEO */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -132,48 +113,70 @@ export function HomeDirectAnswers() {
           Direct answers, with the real numbers of the atelier: price, time, method, shipping and
           warranty.
         </p>
-        <p className="text-[10px] uppercase tracking-[0.28em] text-[#9A7B38] text-center mb-10">
+        <p className="text-[10px] uppercase tracking-[0.28em] text-[#9A7B38] text-center mb-12">
           Prices updated {PAGE_UPDATED} · metal purity per ISO 8653 · stones graded per GIA
         </p>
 
-        {/* Indice: links de ancora para as secoes da Home e para as respostas. */}
-        <nav aria-label="On this page" className="mb-14">
-          <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2 mb-4">
-            {SECTION_LINKS.map((s) => (
-              <li key={s.href}>
-                <a
-                  href={s.href}
-                  className="text-[10px] uppercase tracking-[0.2em] text-[#9A7B38] hover:text-[#C5A059] transition-colors"
+        {/* ── FAQ ACCORDION (Clique para revelar a resposta) ── */}
+        <div className="space-y-3.5">
+          {QUESTIONS.map((f) => {
+            const isOpen = openId === f.id;
+
+            return (
+              <div
+                key={f.id}
+                id={f.id}
+                className={`scroll-mt-28 rounded-xl border transition-all duration-300 overflow-hidden ${
+                  isOpen
+                    ? 'border-[#C5A059]/70 bg-[#070707] shadow-[0_4px_24px_rgba(197,160,89,0.12)]'
+                    : 'border-[#C5A059]/25 bg-[#050505]/60 hover:border-[#C5A059]/50'
+                }`}
+              >
+                <button
+                  type="button"
+                  onClick={() => toggle(f.id)}
+                  aria-expanded={isOpen}
+                  className="w-full py-5 px-6 flex items-center justify-between text-left gap-4 cursor-pointer focus:outline-none"
                 >
-                  {s.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <dl className="space-y-10">
-          {QUESTIONS.map((f) => (
-            <div key={f.id} id={f.id} className="scroll-mt-28 border-l-2 border-[#C5A059]/40 pl-6">
-              <dt className="font-cinzel text-lg md:text-xl text-[#F3EFE6] leading-snug">{f.q}</dt>
-              <dd className="font-cormorant text-lg leading-relaxed text-[#A8A296] mt-2">
-                {f.a}
-                {f.detail && <span className="block mt-2">{f.detail}</span>}
-                {f.link && (
-                  <Link
-                    to={f.link.to}
-                    className="inline-block mt-3 text-[10px] uppercase tracking-[0.2em] text-[#C5A059] hover:text-[#E6CA85] transition-colors"
+                  <span
+                    className={`font-cinzel text-base md:text-lg leading-snug transition-colors ${
+                      isOpen ? 'text-[#E6CA85]' : 'text-[#F3EFE6] hover:text-[#E6CA85]'
+                    }`}
                   >
-                    {f.link.label} →
-                  </Link>
-                )}
-              </dd>
-            </div>
-          ))}
-        </dl>
+                    {f.q}
+                  </span>
+                  <span
+                    className={`w-8 h-8 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ${
+                      isOpen
+                        ? 'border-[#C5A059] bg-[#C5A059]/20 text-[#E6CA85] rotate-180'
+                        : 'border-[#C5A059]/30 text-[#C5A059] rotate-0'
+                    }`}
+                  >
+                    <ChevronDown className="w-4 h-4" />
+                  </span>
+                </button>
 
-        {/* Resumo de fechamento: a versao curta que o mecanismo prefere citar. */}
-        <div className="mt-16 border border-[#C5A059]/25 bg-[#050505]/50 p-7 md:p-9">
+                {isOpen && (
+                  <div className="px-6 pb-6 pt-1 text-[#A8A296] font-cormorant text-lg leading-relaxed border-t border-[#C5A059]/15 animate-in fade-in duration-300">
+                    <p className="text-[#EDE8DB]">{f.a}</p>
+                    {f.detail && <p className="mt-2 text-[#C2BDB2]">{f.detail}</p>}
+                    {f.link && (
+                      <Link
+                        to={f.link.to}
+                        className="inline-block mt-3 text-[10px] uppercase tracking-[0.2em] text-[#C5A059] hover:text-[#E6CA85] transition-colors"
+                      >
+                        {f.link.label} →
+                      </Link>
+                    )}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Resumo de fechamento */}
+        <div className="mt-14 border border-[#C5A059]/25 bg-[#050505]/50 p-7 md:p-9 rounded-2xl">
           <h3 className="font-cinzel text-sm uppercase tracking-[0.24em] text-[#C5A059] mb-4">
             In short
           </h3>
@@ -189,7 +192,7 @@ export function HomeDirectAnswers() {
           </p>
         </div>
 
-        {/* Assinatura: texto sem autor identificavel pesa menos em confiabilidade. */}
+        {/* Assinatura */}
         <p className="font-cormorant text-lg text-[#D8D2C4] text-center mt-12">
           Written by <span className="text-[#C5A059]">Jorge Uquillas</span>, master goldsmith and
           hand engraver, founder of RINGS LUXURY.
