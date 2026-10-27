@@ -63,7 +63,7 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
         <div className="absolute inset-0 bg-[#020202]/30" aria-hidden />
       </div>
 
-      {/* ── CAMADA SUPERIOR: MEDUSA E ODIN (REFORÇADAS +30% DE PRESENÇA E CONTRASTE) ── */}
+      {/* ── CAMADA SUPERIOR: MEDUSA E ODIN (PNG TRANSPARENTE COBRINDO A TELA TODA) ── */}
       <div className="absolute inset-0 z-10 pointer-events-none select-none overflow-hidden" aria-hidden>
         <picture className="w-full h-full">
           <source srcSet={MEDUSA_ODIN_WEBP} type="image/webp" />
@@ -73,7 +73,7 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
             aria-hidden
             className="absolute inset-0 w-full h-full object-cover object-center"
             style={{
-              filter: 'contrast(1.2) brightness(1.12) drop-shadow(0 8px 30px rgba(0,0,0,0.85))',
+              filter: 'drop-shadow(0 4px 20px rgba(0,0,0,0.6))',
             }}
             onError={(e) => {
               // Fallback caso a imagem não carregue
