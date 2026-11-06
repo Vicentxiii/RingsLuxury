@@ -1,5 +1,108 @@
 export const blogPosts = [
   {
+    id: 9,
+    slug: 'charizard-ouro-18k-diamantes-thiago-nigro',
+    title: 'Charizard in Solid 18k Gold & Diamonds: Behind Thiago Nigro’s Private Commission with Jorge Uquillas',
+    seoTitle: 'Charizard in Solid 18k Gold & Diamonds | Thiago Nigro & Jorge Uquillas',
+    category: 'Bespoke Commissions',
+    date: 'November 6, 2026',
+    dateISO: '2026-11-06',
+    author: 'Jorge Uquillas',
+    image: '/PUBLIC/charizard-ouro-18k-thiago-nigro-capa.webp',
+    imagePosition: 'center 25%',
+    excerpt: 'A monumental sculpture in solid 18k yellow gold, wings paved with natural brilliant-cut diamonds, and flame breath in incandescing gems. Master artisan Jorge Uquillas reveals the creation of the exclusive 1/1 Charizard pendant commissioned by Thiago Nigro.',
+    keywords: 'Thiago Nigro Charizard, Thiago Nigro ouro, Thiago Nigro joia, Jorge Uquillas Thiago Nigro, Charizard ouro 18k diamantes, pingente Charizard ouro, joia Charizard Thiago Nigro, O Primo Rico Charizard, alta joalheria personalizada, bespoke jewelry Brazil, Jorge Uquillas, RINGS LUXURY',
+    translations: {
+      pt: {
+        title: 'Charizard em Ouro 18k Maciço e Diamantes: A Joia Exclusiva de Thiago Nigro por Jorge Uquillas',
+        seoTitle: 'Charizard em Ouro 18k e Diamantes: Thiago Nigro e Jorge Uquillas',
+        excerpt: 'Uma escultura monumental em ouro 18k maciço, asas cravejadas em pavê de diamantes naturais e chama viva. Jorge Uquillas revela os bastidores da criação do pingente exclusivo 1/1 de Charizard para Thiago Nigro.',
+        content: `
+      <p><strong>A alta joalheria contemporânea ganha sua máxima expressão quando a iconografia pessoal encontra a maestria do metal nobre.</strong></p>
+
+      <p>Quando <strong>Thiago Nigro</strong> procurou o ateliê de <strong>Jorge Uquillas</strong> para dar vida a uma encomenda privada sob medida, o desafio era claro: elevar uma das figuras mais emblemáticas da cultura mundial — o lendário <strong>Charizard</strong> — ao ápice da alta joalheria escultórica, esculpido em <strong>ouro 18k maciço</strong> e adornado com <strong>diamantes naturais</strong> selecionados um a um.</p>
+
+      <figure style="margin:36px 0;">
+        <img src="/PUBLIC/charizard-ouro-18k-diamantes-thiago-nigro-jorge-uquillas.webp" alt="Projeto do pingente Charizard em ouro 18k e diamantes para Thiago Nigro por Jorge Uquillas, RINGS LUXURY" loading="lazy" decoding="async" width="1024" height="2215" style="width:100%;max-width:560px;margin:0 auto;height:auto;border:1px solid rgba(197,160,89,0.3);border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.8);display:block;" />
+        <figcaption style="text-align:center;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:14px;">O projeto de alta joalheria: vistas frontal, lateral e posterior do pingente Charizard em ouro 18k e pavê de diamantes para Thiago Nigro</figcaption>
+      </figure>
+
+      <h2>A Arquitetura da Escultura: Anatomia, Força e Fogo</h2>
+      <p>Diferente de peças comerciais fundidas em série, o pingente desenvolvido para Thiago Nigro foi desenhado como uma <strong>escultura anatômica viva</strong>:</p>
+
+      <ul>
+        <li><strong>Ouro Amarelo 18k Maciço (750):</strong> Cada músculo, garra e expressão facial foi modelado com volume tridimensional pleno, alternando áreas em polimento espelhado com texturas acetinadas que conferem profundidade natural à peça.</li>
+        <li><strong>Pavê de Diamantes Naturais nas Asas:</strong> As duas envergaduras foram preparadas com rebaixos milimétricos para receber dezenas de diamantes naturais com lapidação brilhante, garantindo reflexão de luz constante sob qualquer ângulo.</li>
+        <li><strong>Argola (Bail) Forrada em Diamantes:</strong> A sustentação do pingente recebeu cravação de brilhantes de ponta a ponta, harmonizando com a monumental <strong>corrente de esferas facetadas em ouro 18k</strong>.</li>
+        <li><strong>A Chama Tridimensional:</strong> A labareda de fogo na boca e na cauda foi concebida com linhas orgânicas dinâmicas, trazendo o calor e a energia do lendário dragão ao ouro nobre.</li>
+      </ul>
+
+      <figure style="margin:36px 0;">
+        <img src="/PUBLIC/charizard-ouro-18k-work-in-progress-jorge-uquillas.webp" alt="Processo de fabricação do pingente Charizard em ouro 18k maciço na bancada de Jorge Uquillas para Thiago Nigro" loading="lazy" decoding="async" width="1024" height="2215" style="width:100%;max-width:560px;margin:0 auto;height:auto;border:1px solid rgba(197,160,89,0.3);border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.8);display:block;" />
+        <figcaption style="text-align:center;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:14px;">Na bancada do ateliê: Jorge Uquillas inspecionando a escultura fundida em ouro 18k maciço antes da cravação dos diamantes</figcaption>
+      </figure>
+
+      <h2>Da Bancada à Eternidade: O Trabalho de Jorge Uquillas</h2>
+      <p>No vídeo compartilhado nos bastidores, o mestre <strong>Jorge Uquillas</strong> exibe a peça recém-saída da fundição bruta em ouro 18k, no estágio exato em que o metal começa a ser trabalhado, limado, ajustado à mão e preparado para o cravador.</p>
+      
+      <p>Não há atalhos industriais. Cada cavidade onde um diamante descansará é aberta e ajustada com precisão óptica sob microscópio. Para figuras com o dinamismo de <strong>Thiago Nigro</strong>, que compreende o valor dos ativos reais e do tempo dedicado à verdadeira arte, a joia torna-se um símbolo palpável de conquista, identidade e longevidade.</p>
+
+      <h2>1/1 — One of One: A Filosofia do Ateliê</h2>
+      <p>Na <strong>RINGS LUXURY</strong>, nenhuma encomenda privada é replicada. A peça criada para Thiago Nigro é uma obra <strong>1/1 (One of One)</strong>: única no mundo, catalogada e assinada pelo mestre Jorge Uquillas.</p>
+
+      <div style="border:1px solid rgba(197,160,89,0.35);background:rgba(5,5,5,0.7);padding:24px 28px;border-radius:14px;margin:36px 0;text-align:center;">
+        <p style="font-family:'Cinzel',serif;font-size:16px;color:#E6CA85;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:8px;">Comissões Privadas sob Medida</p>
+        <p style="font-size:14px;color:#A8A296;line-height:1.7;margin-bottom:18px;">Assim como a peça de Thiago Nigro, o mestre Jorge Uquillas recebe clientes por consulta privada em São Paulo (Avenida Paulista) e Miami (Brickell) para desenhar e esculpir joias singulares em ouro 18k e diamantes.</p>
+        <a href="/contact" style="display:inline-block;padding:12px 28px;border-radius:999px;background:linear-gradient(135deg,#9A7B38,#E6CA85 55%,#C5A059);color:#0A0805;font-weight:700;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;text-decoration:none;">Agendar Consulta com Jorge Uquillas</a>
+      </div>
+
+      <p style="margin-top:24px; font-size:12px; color:#A8A296; line-height:1.8;">
+        <strong>Palavras-chave:</strong> Thiago Nigro, Jorge Uquillas, Charizard Ouro 18k, Pingente Charizard Thiago Nigro, Joia Ouro e Diamantes, O Primo Rico, RINGS LUXURY Atelier, Alta Joalheria São Paulo, Escultura em Ouro 18k.
+      </p>
+    `
+      }
+    },
+    content: `
+      <p><strong>Contemporary haute joaillerie reaches its peak when personal iconography meets master craftsmanship.</strong></p>
+
+      <p>When Brazilian entrepreneur and financial educator <strong>Thiago Nigro</strong> commissioned master goldsmith and engraver <strong>Jorge Uquillas</strong> for an exclusive bespoke piece, the mission was unmistakable: elevate one of the world's most legendary pop culture icons — <strong>Charizard</strong> — into sculptural haute joaillerie, cast in <strong>solid 18k yellow gold</strong> and paved with hand-selected <strong>natural diamonds</strong>.</p>
+
+      <figure style="margin:36px 0;">
+        <img src="/PUBLIC/charizard-ouro-18k-diamantes-thiago-nigro-jorge-uquillas.webp" alt="Charizard solid 18k gold and diamond pendant design for Thiago Nigro by Jorge Uquillas, RINGS LUXURY" loading="lazy" decoding="async" width="1024" height="2215" style="width:100%;max-width:560px;margin:0 auto;height:auto;border:1px solid rgba(197,160,89,0.3);border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.8);display:block;" />
+        <figcaption style="text-align:center;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:14px;">The haute joaillerie design: front, side, and rear perspective of the solid 18k gold Charizard pendant with diamond pavé wings for Thiago Nigro</figcaption>
+      </figure>
+
+      <h2>Sculptural Architecture: Anatomy, Power and Flame</h2>
+      <p>Unlike commercial cast jewelry, this pendant was engineered as an anatomical sculpture in the round:</p>
+
+      <ul>
+        <li><strong>Solid 18k Yellow Gold (750):</strong> Every muscle, claw, and facial contour is fully sculpted in three dimensions, balancing mirror-polished planes with satin-brushed gold textures.</li>
+        <li><strong>Natural Diamond Pavé on Wings:</strong> Both wings are precision-drilled under a microscope to receive dozens of brilliant-cut natural diamonds that reflect light with every movement.</li>
+        <li><strong>Diamond-Encrusted Bail:</strong> The suspension loop is fully set with natural diamonds, designed to glide smoothly over an 18k gold faceted sphere chain.</li>
+        <li><strong>Three-Dimensional Flame:</strong> The breath of fire is sculpted with organic flowing lines, giving life and warmth to the precious metal.</li>
+      </ul>
+
+      <figure style="margin:36px 0;">
+        <img src="/PUBLIC/charizard-ouro-18k-work-in-progress-jorge-uquillas.webp" alt="Work in progress: solid 18k gold Charizard pendant cast by master artisan Jorge Uquillas for Thiago Nigro" loading="lazy" decoding="async" width="1024" height="2215" style="width:100%;max-width:560px;margin:0 auto;height:auto;border:1px solid rgba(197,160,89,0.3);border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.8);display:block;" />
+        <figcaption style="text-align:center;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:14px;">Bench work in progress: Jorge Uquillas examining the freshly cast solid 18k gold Charizard sculpture prior to stone setting</figcaption>
+      </figure>
+
+      <h2>From the Bench to Eternity: Handcrafted by Jorge Uquillas</h2>
+      <p>In behind-the-scenes glimpses shared by the atelier, master artisan <strong>Jorge Uquillas</strong> inspects the substantial weight of the piece straight from the casting tree. Every cavity that will cradle a diamond is carved with surgical optical precision under high magnification.</p>
+
+      <p>For collectors and leaders like <strong>Thiago Nigro</strong>, who value enduring tangible assets and the time required to create true art, this piece stands as an authentic testament to mastery, discipline, and timeless value.</p>
+
+      <h2>1/1 — One of One: The Atelier Philosophy</h2>
+      <p>At <strong>RINGS LUXURY</strong>, bespoke commissions are never replicated. The piece created for Thiago Nigro is an irreproducible <strong>1/1 (One of One)</strong> work of art, cataloged in the atelier archive and signed by Jorge Uquillas.</p>
+
+      <div style="border:1px solid rgba(197,160,89,0.35);background:rgba(5,5,5,0.7);padding:24px 28px;border-radius:14px;margin:36px 0;text-align:center;">
+        <p style="font-family:'Cinzel',serif;font-size:16px;color:#E6CA85;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:8px;">Private Bespoke Commissions</p>
+        <p style="font-size:14px;color:#A8A296;line-height:1.7;margin-bottom:18px;">Jorge Uquillas welcomes private consultations in São Paulo (Avenida Paulista) and Miami (Brickell) to design and sculpt singular 1/1 heirlooms in solid 18k gold and diamonds.</p>
+        <a href="/contact" style="display:inline-block;padding:12px 28px;border-radius:999px;background:linear-gradient(135deg,#9A7B38,#E6CA85 55%,#C5A059);color:#0A0805;font-weight:700;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;text-decoration:none;">Book a Consultation with Jorge Uquillas</a>
+      </div>
+    `
+  },
+  {
     id: 8,
     slug: 'cnc-rings-vs-hand-engraving',
     title: 'CNC Rings vs. Hand Engraving: Why the Finish Is Never the Same',
