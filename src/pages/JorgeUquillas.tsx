@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SEO } from '../components/SEO';
 import { Header } from '../components/Header';
+import { Footer } from '../components/Footer';
 import { useLanguage } from '../i18n/LanguageContext';
 import { absoluteUrl, HAS_SITE_URL } from '../site.config';
 import contact from '../data/contact.json';
 import locationsData from '../data/locations.json';
-import { Instagram, ArrowLeft, ChevronDown } from 'lucide-react';
+import { Instagram, ArrowLeft, ChevronDown, Calendar, Sparkles } from 'lucide-react';
 
 // ── Logo do favicon (logo-cortado versao nova) ─────────────────────────────
 const FAVICON_LOGO = '/PUBLIC/logo-cortado-versao-nova.webp';
@@ -47,49 +48,48 @@ const STORY_SLIDES: StorySlide[] = [
 // Mobile story layout — scrollable, richly styled, no iframe / no heavy WebGL
 // ═══════════════════════════════════════════════════════════════════════════════
 function MobileJorgeStory({ onBack }: { onBack: () => void }) {
+  const navigate = useNavigate();
   const [openSlide, setOpenSlide] = useState<number | null>(0);
 
   return (
-    <div className="min-h-screen bg-[#020202] text-[#EAE6DF] pb-20">
-      {/* ── Hero: leão 3D pequeno via iframe ─────────────────────────────── */}
-      <div className="relative w-full" style={{ height: '42vh', maxHeight: 340 }}>
-        {/* iframe do leão 3D — tamanho reduzido, pointer-events desativados */}
+    <div className="min-h-screen bg-[#020202] text-[#EAE6DF] pb-0">
+      {/* ── Hero: leão 3D interativo via iframe 3D-only ─────────────────── */}
+      <div className="relative w-full h-[46vh] min-h-[320px] max-h-[460px] bg-black overflow-hidden">
         <iframe
-          src="/jorge-uquillas.html"
-          title="Jorge Uquillas 3D Ring"
-          className="absolute inset-0 w-full h-full border-0 pointer-events-none"
+          src="/jorge-uquillas.html?embed=3d-only"
+          title="Jorge Uquillas 3D Lion Head"
+          className="w-full h-full border-0 pointer-events-auto"
           allow="autoplay"
           loading="eager"
           style={{ background: '#000' }}
         />
         {/* Fade inferior para transição suave para o conteúdo */}
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#020202] to-transparent pointer-events-none" />
-        {/* Fade lateral para o efeito de borda */}
-        <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#020202]/60 to-transparent pointer-events-none" />
-        {/* Badge de escala */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[9px] uppercase tracking-[0.3em] text-[#C5A059]/70 bg-[#020202]/70 backdrop-blur-sm px-3 py-1 border border-[#C5A059]/20 whitespace-nowrap">
-          3D Preview • scroll for story
+        {/* Badge de interação 3D */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-[9.5px] uppercase tracking-[0.25em] text-[#E6CA85] bg-[#020202]/85 backdrop-blur-md px-4 py-1.5 rounded-full border border-[#C5A059]/40 shadow-[0_4px_20px_rgba(0,0,0,0.8)] pointer-events-none whitespace-nowrap flex items-center gap-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#C5A059] animate-pulse" />
+          <span>3D Interativo • Arraste para girar</span>
         </div>
       </div>
 
       {/* ── Conteúdo editorial scrollável ───────────────────────────────── */}
-      <div className="px-5 pt-2 pb-10">
+      <div className="px-5 pt-4 pb-12">
 
         {/* Logo + título */}
         <div className="flex flex-col items-center text-center mb-8">
           <img
             src={FAVICON_LOGO}
             alt="Rings Luxury Logo"
-            className="w-16 h-16 object-contain mb-4"
+            className="w-14 h-14 object-contain mb-3 drop-shadow-[0_4px_16px_rgba(197,160,89,0.35)]"
             loading="eager"
           />
-          <h1 className="font-cinzel text-[#E6CA85] text-2xl tracking-[0.16em] uppercase leading-tight mb-2">
+          <h1 className="font-cinzel text-[#E6CA85] text-2xl tracking-[0.16em] uppercase leading-tight mb-1.5">
             Jorge Uquillas
           </h1>
           <p className="font-cormorant italic text-[#C5A059] text-base tracking-wider">
             Master Goldsmith &amp; Hand Engraver
           </p>
-          <div className="flex items-center gap-3 mt-4 opacity-70">
+          <div className="flex items-center gap-3 mt-3 opacity-70">
             <span className="h-px w-12 bg-gradient-to-r from-transparent to-[#C5A059]" />
             <span className="text-[#C5A059] text-[10px]">⟡</span>
             <span className="h-px w-12 bg-gradient-to-l from-transparent to-[#C5A059]" />
@@ -97,7 +97,7 @@ function MobileJorgeStory({ onBack }: { onBack: () => void }) {
         </div>
 
         {/* Foto de Jorge com zoom e enquadramento cinematográfico */}
-        <div className="relative mb-8 border border-[#C5A059]/30 bg-[#070707] p-2 shadow-[0_20px_60px_rgba(0,0,0,0.8)] overflow-hidden">
+        <div className="relative mb-8 border border-[#C5A059]/30 bg-[#070707] p-2 shadow-[0_20px_60px_rgba(0,0,0,0.8)] overflow-hidden rounded-sm">
           <div className="absolute top-1 left-1 w-3 h-3 border-t border-l border-[#C5A059] z-10" />
           <div className="absolute top-1 right-1 w-3 h-3 border-t border-r border-[#C5A059] z-10" />
           <div className="absolute bottom-1 left-1 w-3 h-3 border-b border-l border-[#C5A059] z-10" />
@@ -129,7 +129,7 @@ function MobileJorgeStory({ onBack }: { onBack: () => void }) {
                 <button
                   type="button"
                   onClick={() => setOpenSlide(isOpen ? null : idx)}
-                  className="w-full px-5 py-4 flex items-center justify-between gap-3 text-left"
+                  className="w-full px-5 py-4 flex items-center justify-between gap-3 text-left cursor-pointer"
                 >
                   <span className="font-cinzel text-[#E6CA85] text-sm uppercase tracking-[0.18em]">
                     {slide.title}
@@ -141,7 +141,7 @@ function MobileJorgeStory({ onBack }: { onBack: () => void }) {
                   />
                 </button>
                 {isOpen && (
-                  <div className="px-5 pb-5 text-sm leading-relaxed text-[#A8A296] font-sans-luxury animate-[faqOpen_0.25s_ease-out]">
+                  <div className="px-5 pb-5 text-sm leading-relaxed text-[#D8D2C4] font-sans-luxury animate-[faqOpen_0.25s_ease-out]">
                     {slide.content}
                   </div>
                 )}
@@ -160,7 +160,7 @@ function MobileJorgeStory({ onBack }: { onBack: () => void }) {
           ].map((stat) => (
             <div
               key={stat.label}
-              className="border border-[#C5A059]/25 bg-[#070707] p-4 text-center"
+              className="border border-[#C5A059]/25 bg-[#070707] p-4 text-center rounded-lg"
             >
               <div className="font-cinzel text-[#E6CA85] text-lg tracking-wider mb-1">
                 {stat.num}
@@ -174,25 +174,35 @@ function MobileJorgeStory({ onBack }: { onBack: () => void }) {
 
         {/* CTAs */}
         <div className="flex flex-col gap-3">
+          <button
+            type="button"
+            onClick={() => navigate('/contact')}
+            className="flex items-center justify-center gap-2 py-3.5 bg-gradient-to-r from-[#9A7B38] via-[#E6CA85] to-[#C5A059] text-[#020202] font-cinzel text-[11px] font-bold uppercase tracking-[0.25em] rounded-full hover:brightness-110 active:scale-95 transition-all shadow-lg cursor-pointer"
+          >
+            <Calendar className="w-4 h-4" />
+            Consulta Privada
+          </button>
+          <button
+            type="button"
+            onClick={() => navigate('/collections')}
+            className="flex items-center justify-center gap-2 py-3.5 border border-[#C5A059]/60 text-[#E6CA85] font-cinzel text-[10px] uppercase tracking-[0.25em] rounded-full hover:bg-[#C5A059]/10 active:scale-95 transition-all cursor-pointer"
+          >
+            <Sparkles className="w-4 h-4" />
+            Ver Coleções
+          </button>
           <a
             href="https://www.instagram.com/ringsluxury"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 py-3.5 border border-[#C5A059]/40 text-[#C5A059] font-cinzel text-[10px] uppercase tracking-[0.3em] rounded-full hover:bg-[#C5A059]/10 transition-colors"
+            className="flex items-center justify-center gap-2 py-3 border border-[#C5A059]/30 text-[#C5A059] font-cinzel text-[10px] uppercase tracking-[0.25em] rounded-full hover:bg-[#C5A059]/10 transition-colors"
           >
             <Instagram className="w-4 h-4" />
             @ringsluxury
           </a>
-          <button
-            type="button"
-            onClick={onBack}
-            className="flex items-center justify-center gap-2 py-3.5 bg-[#C5A059] text-[#020202] font-cinzel text-[10px] uppercase tracking-[0.3em] rounded-full hover:bg-[#E6CA85] transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Atelier
-          </button>
         </div>
       </div>
+
+      <Footer />
 
       <style>{`
         @keyframes faqOpen {
@@ -217,15 +227,15 @@ export function JorgeUquillas() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
 
-    // Detectar mobile
-    const mq = window.matchMedia('(max-width: 767px)');
+    // Breakpoint alinhado com o scrollytelling desktop vs mobile
+    const mq = window.matchMedia('(max-width: 900px)');
     setIsMobile(mq.matches);
     const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
     mq.addEventListener('change', handler);
 
-    // Preloader 5 s
-    const t1 = setTimeout(() => setPreloaderFading(true), 4300);
-    const t2 = setTimeout(() => setShowPreloader(false), 5000);
+    // Preloader suave que não trava a tela por 5s
+    const t1 = setTimeout(() => setPreloaderFading(true), 800);
+    const t2 = setTimeout(() => setShowPreloader(false), 1200);
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
@@ -243,11 +253,7 @@ export function JorgeUquillas() {
   }, [showPreloader]);
 
   const handleOpenConsultation = () => {
-    navigate('/');
-    setTimeout(() => {
-      const el = document.getElementById('contact');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
+    navigate('/contact');
   };
 
   return (
@@ -325,48 +331,30 @@ export function JorgeUquillas() {
         Atelier Brazil • Miami.
       </h1>
 
-      {/* ── MOBILE: layout scrollável com leão pequeno ──────────────────── */}
+      {/* ── MOBILE: layout scrollável nativo com 3D interativo no topo ── */}
       {isMobile ? (
-        <div className="pt-16">
+        <div className="pt-14">
           <MobileJorgeStory onBack={() => navigate('/')} />
         </div>
       ) : (
         <>
-          {/* ── DESKTOP: experiência imersiva original com iframe ─────────── */}
-          <section className="absolute inset-0 z-20 flex flex-col items-center justify-center pt-24 pb-12 px-6 sm:px-12 pointer-events-none">
-            <div className="max-w-[720px] bg-[#0a0a0a]/60 backdrop-blur-sm border border-[#C5A059]/20 rounded-2xl p-8 sm:p-12 text-center text-[#EAE6DF]/90 pointer-events-auto">
-              <h2 className="font-cinzel text-[#E6CA85] text-2xl sm:text-3xl tracking-[0.14em] uppercase mb-6">
-                Jorge Uquillas, Master Goldsmith &amp; Hand Engraver
-              </h2>
-              <p className="text-lg leading-relaxed mb-6">
-                Jorge Uquillas é um mestre ourives e gravador artístico, fundador da RINGS LUXURY,
-                com ateliês privados em São Paulo (Avenida Paulista, Brasil) e Miami (Brickell,
-                Flórida, EUA). É conhecido por anéis de diamantes em ouro 18k feitos à mão, com
-                gravação por hand engraver — 90 a 140 horas de gravação por peça, diamantes
-                naturais cravejados um a um sob o microscópio.
-              </p>
-              <p className="text-lg leading-relaxed mb-6">
-                A gravação é feita diretamente no metal maciço com buris de aço temperado, nunca a
-                laser nem por máquina. Cada peça sai com contraste mestre, folheto de arquivo e
-                certificado de autenticidade. A matriz de cera original é destruída após a fundição,
-                então nenhuma peça pode ser reproduzida.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-                <a
-                  href="/contact"
-                  className="font-cinzel text-[#C5A059] tracking-[0.16em] uppercase border border-[#C5A059]/40 px-6 py-3 rounded hover:bg-[#C5A059] hover:text-[#020202] transition-colors text-sm sm:text-base"
-                >
-                  Consulta Privada
-                </a>
-                <a
-                  href="/blog"
-                  className="font-cinzel text-[#EAE6DF]/70 tracking-[0.16em] uppercase border border-[#C5A059]/20 px-6 py-3 rounded hover:text-[#C5A059] hover:border-[#C5A059]/60 transition-colors text-sm sm:text-base"
-                >
-                  Diário do Atelier
-                </a>
-              </div>
-            </div>
-          </section>
+          {/* Conteúdo mantido para leitores de tela e SEO (E-E-A-T), sem bloquear o visual */}
+          <div className="sr-only">
+            <h2>Jorge Uquillas, Master Goldsmith &amp; Hand Engraver</h2>
+            <p>
+              Jorge Uquillas é um mestre ourives e gravador artístico, fundador da RINGS LUXURY,
+              com ateliês privados em São Paulo (Avenida Paulista, Brasil) e Miami (Brickell,
+              Flórida, EUA). É conhecido por anéis de diamantes em ouro 18k feitos à mão, com
+              gravação por hand engraver — 90 a 140 horas de gravação por peça, diamantes
+              naturais cravejados um a um sob o microscópio.
+            </p>
+            <p>
+              A gravação é feita diretamente no metal maciço com buris de aço temperado, nunca a
+              laser nem por máquina. Cada peça sai com contraste mestre, folheto de arquivo e
+              certificado de autenticidade. A matriz de cera original é destruída após a fundição,
+              então nenhuma peça pode ser reproduzida.
+            </p>
+          </div>
 
           <iframe
             src="/jorge-uquillas.html"
@@ -375,14 +363,18 @@ export function JorgeUquillas() {
             allow="autoplay; fullscreen"
             loading="eager"
             style={{ background: '#000' }}
+            onLoad={() => {
+              setPreloaderFading(true);
+              setTimeout(() => setShowPreloader(false), 300);
+            }}
           />
         </>
       )}
 
-      {/* ── PRELOADER 5s com logo PNG do favicon ─────────────────────────── */}
+      {/* ── PRELOADER suave ── */}
       {showPreloader && (
         <div
-          className={`fixed inset-0 z-[99999] w-screen h-screen flex flex-col items-center justify-center bg-[#020202] transition-opacity duration-700 overflow-hidden ${
+          className={`fixed inset-0 z-[99999] w-screen h-screen flex flex-col items-center justify-center bg-[#020202] transition-opacity duration-500 overflow-hidden ${
             preloaderFading ? 'opacity-0 pointer-events-none' : 'opacity-100'
           }`}
           style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
@@ -391,41 +383,33 @@ export function JorgeUquillas() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(197,160,89,0.18)_0%,_transparent_65%)] pointer-events-none" />
 
           <div className="relative z-10 flex flex-col items-center gap-6 px-6 text-center max-w-sm mx-auto">
-            {/* Logo PNG do favicon em vez do "RL" */}
-            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full border border-[#C5A059]/40 flex items-center justify-center bg-[#080808] shadow-[0_0_50px_rgba(197,160,89,0.35)] overflow-hidden p-3.5 shrink-0">
+            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border border-[#C5A059]/40 flex items-center justify-center bg-[#080808] shadow-[0_0_50px_rgba(197,160,89,0.35)] overflow-hidden p-3 shrink-0">
               <img
                 src={FAVICON_LOGO}
                 alt="Rings Luxury Logo"
-                width={96}
-                height={96}
+                width={80}
+                height={80}
                 className="w-full h-full object-contain select-none"
                 loading="eager"
                 draggable={false}
               />
             </div>
 
-            <div className="space-y-3">
-              <p className="font-cinzel text-[11px] tracking-[0.45em] uppercase text-[#E6CA85]">
+            <div className="space-y-2">
+              <p className="font-cinzel text-[10px] tracking-[0.4em] uppercase text-[#E6CA85]">
                 {t.pages.jorgePreloaderBrand}
               </p>
-              <p className="font-cormorant text-2xl sm:text-3xl italic text-[#FBF9F5] tracking-[0.08em]">
+              <p className="font-cormorant text-2xl italic text-[#FBF9F5] tracking-[0.08em]">
                 {t.pages.jorgePreloaderPiece}
-              </p>
-              <p className="font-sans-luxury text-[10px] tracking-[0.28em] uppercase text-[#9A7B38]">
-                {t.pages.jorgePreloaderSub}
               </p>
             </div>
 
-            {/* Barra de loading */}
-            <div className="w-48 h-px bg-gradient-to-r from-transparent via-[#C5A059]/50 to-transparent overflow-hidden">
+            <div className="w-40 h-px bg-gradient-to-r from-transparent via-[#C5A059]/50 to-transparent overflow-hidden">
               <div
                 className="h-full bg-[#C5A059] animate-[shimmer_1.2s_ease-in-out_infinite]"
                 style={{ width: '60%' }}
               />
             </div>
-            <p className="font-cinzel text-[9px] tracking-[0.35em] uppercase text-white/50">
-              {t.pages.jorgePreloaderLoading}
-            </p>
           </div>
 
           <style>{`

@@ -8,6 +8,39 @@
     <link rel="canonical" href="https://www.ringsluxuryart.com/jorge-uquillas">
     <meta property="og:title" content="RINGS LUXURY by Jorge Uquillas, Laocoön Bronze Horse | HandCrafted">
     <meta property="og:description" content="Anéis artesanais HandCrafted em ouro 18k com diamantes por Jorge Uquillas, RINGS LUXURY. Laocoön Bronze and Time.">
+
+    <script>
+        if (window.location.search.includes('embed=3d-only') || window.location.search.includes('embed=true')) {
+            document.documentElement.classList.add('embed-3d-only');
+        }
+    </script>
+    <style>
+        .embed-3d-only body {
+            min-height: 100vh !important;
+            height: 100vh !important;
+            overflow: hidden !important;
+            display: block !important;
+            cursor: grab !important;
+        }
+        .embed-3d-only .cinematic-container,
+        .embed-3d-only .grid-lines,
+        .embed-3d-only .grid-horizontal-line,
+        .embed-3d-only .bottom-fade,
+        .embed-3d-only .cursor-inner,
+        .embed-3d-only .cursor-outer {
+            display: none !important;
+        }
+        .embed-3d-only #webgl {
+            position: fixed !important;
+            inset: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            touch-action: none !important;
+            z-index: 10 !important;
+            order: 0 !important;
+            cursor: grab !important;
+        }
+    </style>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Italiana&family=Outfit:wght@300;400;600&family=Playfair+Display:ital,wght@1,500&display=swap');
 
@@ -558,12 +591,20 @@
                 white-space: normal !important;
                 text-shadow: 0 2px 22px rgba(0,0,0,0.95), 0 0 50px rgba(0,0,0,0.85);
             }
+            .slide-title .char {
+                opacity: 1 !important;
+                transform: none !important;
+                filter: none !important;
+                display: inline-block !important;
+            }
             .slide-desc {
                 font-size: 15px !important;
                 line-height: 1.75;
                 width: 100% !important;
                 max-width: none !important;
                 margin: 0 !important;
+                opacity: 1 !important;
+                transform: none !important;
             }
             /* Zera os recuos em px/vw que existiam no desktop para nao encostar
                o texto na borda da tela. */
@@ -1153,7 +1194,7 @@
            - inclinacao limitada: passar disso mostra o dente da malha em vez
              de uma rotacao agradavel.
            ----------------------------------------------------------------- */
-        if (window.matchMedia && window.matchMedia('(hover: none)').matches) {
+        if ((window.matchMedia && window.matchMedia('(hover: none)').matches) || document.documentElement.classList.contains('embed-3d-only')) {
             const canvasEl = document.querySelector('#webgl');
             if (canvasEl) {
                 let dragging = false;
@@ -1162,12 +1203,14 @@
                 const touch = { spin: 0, tilt: 0 };
 
                 canvasEl.addEventListener('pointerdown', (e) => {
-                    // Mouse continua pelo caminho antigo do mousemove.
-                    if (e.pointerType === 'mouse') return;
+                    if (e.pointerType === 'mouse' && !document.documentElement.classList.contains('embed-3d-only')) return;
                     dragging = true;
+                    window.__rlDragging = true;
                     lastX = e.clientX;
                     lastY = e.clientY;
-                    if (canvasEl.setPointerCapture) canvasEl.setPointerCapture(e.pointerId);
+                    if (canvasEl.setPointerCapture) {
+                        try { canvasEl.setPointerCapture(e.pointerId); } catch (err) {}
+                    }
                 }, { passive: true });
 
                 canvasEl.addEventListener('pointermove', (e) => {
@@ -1175,8 +1218,8 @@
                     e.preventDefault();
                     touch.spin += (e.clientX - lastX) * 0.012;
                     touch.tilt += (e.clientY - lastY) * 0.006;
-                    if (touch.tilt > 0.35) touch.tilt = 0.35;
-                    if (touch.tilt < -0.35) touch.tilt = -0.35;
+                    if (touch.tilt > 0.45) touch.tilt = 0.45;
+                    if (touch.tilt < -0.45) touch.tilt = -0.45;
                     lastX = e.clientX;
                     lastY = e.clientY;
                 }, { passive: false });
@@ -1184,12 +1227,10 @@
                 const endDrag = (e) => {
                     if (!dragging) return;
                     dragging = false;
+                    window.__rlDragging = false;
                     if (canvasEl.releasePointerCapture) {
                         try { canvasEl.releasePointerCapture(e.pointerId); } catch (err) {}
                     }
-                    // Volta suave para a pose de rolagem.
-                    touch.spin *= 0.92;
-                    touch.tilt *= 0.92;
                 };
                 canvasEl.addEventListener('pointerup', endDrag, { passive: true });
                 canvasEl.addEventListener('pointercancel', endDrag, { passive: true });
@@ -1302,6 +1343,9 @@
             if (modelPivot) {
                 // Gira junto com a câmera, devagar, mantém o rosto visível ao longo do scroll
                 const tRot = window.__rlTouchRotation;
+                if (tRot && !window.__rlDragging && document.documentElement.classList.contains('embed-3d-only')) {
+                    tRot.spin += 0.0035;
+                }
                 modelPivot.rotation.y = mouseX * 0.18 + currentScroll * Math.PI * 1.6 + (tRot ? tRot.spin : 0);
                 modelPivot.rotation.x = mouseY * 0.12 + Math.sin(currentScroll * Math.PI) * 0.15 + (tRot ? tRot.tilt : 0);
             }
