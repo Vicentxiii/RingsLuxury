@@ -1,42 +1,44 @@
 <!doctype html>
 <html lang="en" class="scroll-smooth bg-[#020202] text-[#EAE6DF]">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- canonical e og:url sao injetados por vite-plugin-seo-inject.ts, que so
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- canonical e og:url sao injetados por vite-plugin-seo-inject.ts, que so
          os publica quando VITE_SITE_URL esta definido. Nao declarar aqui. -->
-    <title>Luxury Rings, Handcrafted 18k Gold | RINGS LUXURY</title>
-    <!--
+  <title>Luxury Rings, Handcrafted 18k Gold | RINGS LUXURY</title>
+  <!--
       As metas de SEO (description, robots, canonical, hreflang, Open Graph,
       Twitter e JSON-LD por página) NÃO ficam mais fixas aqui. O build
       pré-renderiza cada rota com o <SEO> do React já no HTML; manter tags
       estáticas da home fazia todas as URLs compartilharem o mesmo preview e
       criava metas duplicadas depois do Helmet.
     -->
-    <!-- Verificação de propriedade: arquivos public/googled61df07492a0b6a4.html e
+  <!-- Verificação de propriedade: arquivos public/googled61df07492a0b6a4.html e
          public/BingSiteAuth.xml já verificam Search Console e Bing.
          Só recoloque as metas abaixo com códigos reais se o painel pedir. -->
-    <link rel="icon" type="image/png" sizes="256x256" href="/favicon.png?v=6" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=6" />
-    <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png?v=6" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=6" />
-    <link rel="shortcut icon" href="/favicon.png?v=6" />
-    <!-- Guia de LLMs (GEO). Declarar o arquivo como "alternate" e o que permite
+  <link rel="icon" type="image/png" sizes="256x256" href="/favicon.png?v=7" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=7" />
+  <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png?v=7" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=7" />
+  <link rel="shortcut icon" href="/favicon.png?v=7" />
+  <!-- Guia de LLMs (GEO). Declarar o arquivo como "alternate" e o que permite
          a um crawler de IA descubrir o resumo estructurado da empresa antes mesmo
          de renderizar a pagina. O mesmo caminho e anunciado no robots.txt. -->
-    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM guide, RINGS LUXURY" />
-    <meta name="author" content="Jorge Uquillas" />
-    <meta name="geo.region" content="US-FL, BR-SP" />
-    <meta name="geo.placename" content="Miami, São Paulo" />
-    <!-- As 3 familias (Cinzel, Cormorant Garamond e Outfit) sao self-hosted
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM guide, RINGS LUXURY" />
+  <meta name="author" content="Jorge Uquillas" />
+  <meta name="geo.region" content="US-FL, BR-SP" />
+  <meta name="geo.placename" content="Miami, São Paulo" />
+  <!-- As 3 familias (Cinzel, Cormorant Garamond e Outfit) sao self-hosted
          via @fontsource em src/index.css. Sem preconnect e sem CSS externo do
          Google, que era o unico recurso bloqueando a primeira renderizacao.
          O logo entra pelo HTML pre-renderizado; nao precisa de preload proprio
          competindo com a imagem do hero. -->
-  </head>
-  <body class="bg-[#020202] text-[#EAE6DF] antialiased selection:bg-[#C5A059] selection:text-[#020202] overflow-x-hidden">
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+</head>
 
+<body class="bg-[#020202] text-[#EAE6DF] antialiased selection:bg-[#C5A059] selection:text-[#020202] overflow-x-hidden">
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
+</html>

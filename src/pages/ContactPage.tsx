@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
-import { Instagram, ArrowRight } from 'lucide-react';
+import { Instagram, ArrowRight, ChevronDown } from 'lucide-react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
@@ -12,7 +12,7 @@ import contact from '../data/contact.json';
 import reviewsData from '../data/reviews.json';
 import { track } from '../lib/analytics';
 
-const PARTICLE_COUNT = 550;
+const PARTICLE_COUNT = 440; // Reduzido em 20% (de 550 para 440)
 
 /** Ultima revisao editorial desta pagina, mostrada e declarada no JSON-LD. */
 const PAGE_UPDATED = '2026-10-17';
@@ -111,6 +111,14 @@ export function ContactPage() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [bookingCode, setBookingCode] = useState('');
+  const [openQuestions, setOpenQuestions] = useState<Record<string, boolean>>({});
+
+  const toggleQuestion = (id: string, forceOpen?: boolean) => {
+    setOpenQuestions((prev) => ({
+      ...prev,
+      [id]: forceOpen !== undefined ? forceOpen : !prev[id],
+    }));
+  };
 
   // Golden dust, WebGL, pure black, mouse-reactive
   useEffect(() => {
@@ -566,6 +574,7 @@ export function ContactPage() {
                 <li key={s.id}>
                   <a
                     href={`#${s.id}`}
+                    onClick={() => toggleQuestion(s.id, true)}
                     className="font-poppins text-[10px] uppercase tracking-[0.18em] text-[#A8A296] hover:text-[#C5A059] transition-colors"
                   >
                     {s.q}
@@ -575,18 +584,57 @@ export function ContactPage() {
             </ul>
           </nav>
 
-          <dl className="space-y-8 mb-14">
-            {CONTACT_SECTIONS.map((s) => (
-              <div key={s.id} id={s.id} className="scroll-mt-32 border-l-2 border-[#C5A059]/40 pl-5 md:pl-7">
-                <dt className="font-cinzel text-lg md:text-xl text-[#F3EFE6] leading-snug">
-                  {s.q}
-                </dt>
-                <dd className="font-cormorant text-lg leading-relaxed text-[#A8A296] mt-2">
-                  {s.a}
-                </dd>
-              </div>
-            ))}
-          </dl>
+          {/* Perguntas como hovers fechados e expansíveis com clique */}
+          <div className="space-y-3.5 mb-14 max-w-3xl mx-auto">
+            {CONTACT_SECTIONS.map((s) => {
+              const isOpen = Boolean(openQuestions[s.id]);
+              return (
+                <div
+                  key={s.id}
+                  id={s.id}
+                  className={`scroll-mt-32 rounded-xl border transition-all duration-300 overflow-hidden ${
+                    isOpen
+                      ? 'bg-[#090909]/85 border-[#C5A059]/50 shadow-[0_4px_20px_rgba(197,160,89,0.12)]'
+                      : 'bg-[#030303]/65 border-[#C5A059]/20 hover:border-[#C5A059]/45 hover:bg-[#080808]/80'
+                  }`}
+                >
+                  <button
+                    type="button"
+                    onClick={() => toggleQuestion(s.id)}
+                    aria-expanded={isOpen}
+                    className="w-full px-5 sm:px-6 py-4 cursor-pointer flex items-center justify-between gap-4 text-left group transition-colors"
+                  >
+                    <span className="font-cinzel text-base sm:text-lg text-[#F3EFE6] group-hover:text-[#E6CA85] transition-colors leading-snug">
+                      {s.q}
+                    </span>
+                    <span
+                      className={`text-[#C5A059] shrink-0 p-1.5 rounded-full border border-[#C5A059]/25 group-hover:border-[#C5A059]/60 transition-all duration-300 ${
+                        isOpen ? 'rotate-180 bg-[#C5A059]/15' : 'bg-transparent'
+                      }`}
+                      aria-hidden
+                    >
+                      <ChevronDown className="w-4 h-4" />
+                    </span>
+                  </button>
+
+                  {isOpen && (
+                    <div className="px-5 sm:px-6 pb-5 pt-1 border-t border-[#C5A059]/15 animate-[faqOpen_0.25s_ease-out]">
+                      <p className="font-cormorant text-base sm:text-lg leading-relaxed text-[#D8D2C4]">
+                        {s.a}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          <style>{`
+            @keyframes faqOpen {
+              from { opacity: 0; transform: translateY(-4px); }
+              to   { opacity: 1; transform: translateY(0); }
+            }
+          `}</style>
 
           {/* Fonte dos dados, para o trecho ser rastreavel ate a origem. */}
           <p className="font-cormorant text-sm text-[#9A7B38] italic mb-14">

@@ -16,6 +16,19 @@ export function Header({ onOpenConsultation: _onOpenConsultation }: HeaderProps)
   const { t } = useLanguage();
   const { count } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Detecta o scroll da página para ativar o vidro fumê escuro sofisticado
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 20;
+      setScrolled((prev) => (prev !== isScrolled ? isScrolled : prev));
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Trava o scroll da página enquanto o menu mobile estiver aberto
   useEffect(() => {
@@ -50,37 +63,64 @@ export function Header({ onOpenConsultation: _onOpenConsultation }: HeaderProps)
   };
 
   const navLinks = [
-    { label: t.nav.home,              path: '/' },
+    { label: t.nav.home,            path: '/' },
     { label: t.nav.luxuryRings,     path: '/luxury-rings' },
     { label: t.nav.emperorRings,    path: '/emperor-rings' },
     { label: t.nav.specialEditions, path: '/special-editions' },
     { label: t.nav.goldSilverRings, path: '/gold-silver-rings' },
     { label: t.nav.luxuryQueens,    path: '/luxuryqueens' },
-    { label: t.nav.necklaces,        path: '/necklaces' },
-    { label: t.nav.courses,          path: '/courses' },
-    { label: t.nav.contact,          path: '/contact' },
+    { label: t.nav.necklaces,       path: '/necklaces' },
+    { label: t.nav.courses,         path: '/courses' },
+    { label: t.nav.blog,            path: '/blog' },
+    { label: t.nav.contact,         path: '/contact' },
   ];
 
   return (
     <>
       <header
         id="site-header"
-        className="fixed top-0 left-0 w-full z-50 bg-transparent transition-colors duration-300 pt-[12px]"
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-out ${
+          scrolled
+            ? 'bg-[#030303]/85 backdrop-blur-md border-b border-[#C5A059]/20 shadow-[0_4px_30px_rgba(0,0,0,0.7)] py-2 sm:py-2.5'
+            : 'bg-transparent pt-[12px] pb-2 border-b border-transparent shadow-none'
+        }`}
+        style={{
+          WebkitBackdropFilter: scrolled ? 'blur(12px)' : 'none',
+        }}
       >
-        <div className="relative flex items-center justify-center px-3 sm:px-6 h-[52px]">
+        <div className="relative flex items-center justify-center px-3 sm:px-6 h-[48px] sm:h-[52px]">
 
-          {/* ── DESKTOP NAV LINKS — 100% transparente, apenas letras com sombra suave ── */}
+          {/* ── MOBILE LOGO: Canto esquerdo superior, elegante, nítido e clicável ── */}
+          <div className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 flex md:hidden items-center">
+            <a
+              href="/"
+              onClick={(e) => handleNav(e, '/')}
+              className="flex items-center gap-2 group cursor-pointer"
+              aria-label="RINGS LUXURY Home"
+            >
+              <img
+                src="/PUBLIC/logo-cortado-versao-nova.webp"
+                alt="RINGS LUXURY"
+                className="w-auto h-7 sm:h-8 object-contain drop-shadow-[0_2px_8px_rgba(197,160,89,0.35)] group-active:scale-95 transition-transform duration-200"
+              />
+            </a>
+          </div>
+
+          {/* ── DESKTOP NAV LINKS — elegante com separadores delicados ── */}
           <nav aria-label={t.nav.home} className="hidden md:flex items-center gap-0">
             {navLinks.map((item, i) => {
-              const isActive = location.pathname === item.path;
+              const isActive =
+                item.path === '/'
+                  ? location.pathname === '/'
+                  : location.pathname.startsWith(item.path);
+              const isHome = item.path === '/';
               return (
                 <span key={item.path} className="flex items-center">
                   {i > 0 && (
                     <span
                       aria-hidden
-                      className="text-[#C5A059]/40 mx-2.5 lg:mx-3 select-none"
+                      className="text-[#C5A059]/40 mx-1 md:mx-1.5 lg:mx-2 xl:mx-2.5 select-none text-[11px]"
                       style={{
-                        fontSize: '11px',
                         textShadow: '0 1px 4px rgba(0,0,0,0.9)',
                       }}
                     >
@@ -90,10 +130,9 @@ export function Header({ onOpenConsultation: _onOpenConsultation }: HeaderProps)
                   <a
                     href={item.path}
                     onClick={(e) => handleNav(e, item.path)}
-                    className="transition-colors duration-200 whitespace-nowrap"
+                    className="inline-flex items-center transition-colors duration-200 whitespace-nowrap text-[8.5px] md:text-[9px] lg:text-[10px] xl:text-[11px]"
                     style={{
                       fontFamily: "'Arial', sans-serif",
-                      fontSize: '11px',
                       fontWeight: 700,
                       letterSpacing: '0.08em',
                       color: isActive ? '#C5A059' : '#D4AF6A',
@@ -108,7 +147,14 @@ export function Header({ onOpenConsultation: _onOpenConsultation }: HeaderProps)
                       if (!isActive) (e.currentTarget as HTMLAnchorElement).style.color = '#D4AF6A';
                     }}
                   >
-                    {item.label}
+                    {isHome && (
+                      <img
+                        src="/PUBLIC/logo-cortado-versao-nova.webp"
+                        alt=""
+                        className="w-auto h-5 md:h-5 lg:h-6 object-contain inline-block mr-1.5 align-middle drop-shadow-[0_2px_8px_rgba(197,160,89,0.4)]"
+                      />
+                    )}
+                    <span>{item.label}</span>
                   </a>
                 </span>
               );
@@ -203,13 +249,17 @@ export function Header({ onOpenConsultation: _onOpenConsultation }: HeaderProps)
         {/* Meio: Links sofisticados com entrada suave e micro-interação */}
         <div className="my-auto py-5 flex flex-col items-center w-full max-w-[290px] mx-auto relative z-10">
           {navLinks.map((item, i) => {
-            const isActive = location.pathname === item.path;
+            const isActive =
+              item.path === '/'
+                ? location.pathname === '/'
+                : location.pathname.startsWith(item.path);
+            const isHome = item.path === '/';
             return (
               <a
                 key={item.path}
                 href={item.path}
                 onClick={(e) => handleNav(e, item.path)}
-                className={`group relative py-2.5 px-4 text-center w-full transition-all duration-500 ease-out font-cinzel text-[12.5px] tracking-[0.2em] uppercase ${
+                className={`group relative py-2.5 px-4 text-center w-full transition-all duration-500 ease-out font-cinzel text-[12.5px] tracking-[0.2em] uppercase flex items-center justify-center gap-2 ${
                   mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
                 }`}
                 style={{
@@ -218,6 +268,13 @@ export function Header({ onOpenConsultation: _onOpenConsultation }: HeaderProps)
                   textShadow: isActive ? '0 0 14px rgba(197,160,89,0.7)' : 'none',
                 }}
               >
+                {isHome && (
+                  <img
+                    src="/PUBLIC/logo-cortado-versao-nova.webp"
+                    alt=""
+                    className="w-auto h-4 object-contain inline-block drop-shadow-[0_2px_6px_rgba(197,160,89,0.4)]"
+                  />
+                )}
                 <span className="relative z-10 inline-block transition-transform duration-300 group-hover:scale-105 group-hover:text-[#FFF]">
                   {item.label}
                 </span>
