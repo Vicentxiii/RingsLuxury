@@ -2,97 +2,126 @@ export const blogPosts = [
   {
     id: 9,
     slug: 'charizard-ouro-18k-diamantes-thiago-nigro',
-    title: 'Charizard in Solid 18k Gold & Diamonds: Behind Thiago Nigro’s Private Commission with Jorge Uquillas',
-    seoTitle: 'Charizard in Solid 18k Gold & Diamonds | Thiago Nigro & Jorge Uquillas',
+    title: 'Charizard from Pokémon Pendant in Solid 18k Gold & Diamonds: Thiago Nigro’s Private Commission with Jorge Uquillas',
+    seoTitle: 'Pingente do Charizard em Ouro 18k Pokémon | Thiago Nigro & Jorge Uquillas',
     category: 'Bespoke Commissions',
     date: 'November 6, 2026',
     dateISO: '2026-11-06',
     author: 'Jorge Uquillas',
     image: '/PUBLIC/charizard-ouro-18k-thiago-nigro-capa.webp',
     imagePosition: 'center 25%',
-    excerpt: 'A monumental sculpture in solid 18k yellow gold, wings paved with natural brilliant-cut diamonds, and flame breath in incandescing gems. Master artisan Jorge Uquillas reveals the creation of the exclusive 1/1 Charizard pendant commissioned by Thiago Nigro.',
-    keywords: 'Thiago Nigro Charizard, Thiago Nigro ouro, Thiago Nigro joia, Jorge Uquillas Thiago Nigro, Charizard ouro 18k diamantes, pingente Charizard ouro, joia Charizard Thiago Nigro, O Primo Rico Charizard, alta joalheria personalizada, bespoke jewelry Brazil, Jorge Uquillas, RINGS LUXURY',
+    excerpt: 'A monumental sculpture in solid 18k yellow gold with diamond-paved wings, the legendary Charizard from Pokémon becomes haute joaillerie. Master artisan Jorge Uquillas reveals the 1/1 solid gold Charizard pendant commissioned by Thiago Nigro.',
+    keywords: 'pingente do charizard em ouro, pingente charizard ouro, pingente charizard pokemon ouro, charizard pokemon ouro, charizard do pokemon em ouro, pingente charizard pokemon ouro 18k, joia charizard pokemon, thiago nigro charizard pokemon, pingente pokemon ouro 18k, charizard ouro 18k diamantes, colar charizard ouro, jorge uquillas thiago nigro charizard, alta joalheria pokemon, bespoke pokemon jewelry gold diamonds, RINGS LUXURY',
+    faq: [
+      {
+        q: 'O pingente do Charizard de Thiago Nigro é feito em ouro 18k?',
+        a: 'Sim. O pingente do Charizard do Pokémon criado por Jorge Uquillas para Thiago Nigro foi esculpido em ouro amarelo 18k maciço (750), com asas cravejadas em pavê de diamantes naturais e argola cravejada.'
+      },
+      {
+        q: 'É possível encomendar um pingente do Charizard do Pokémon em ouro?',
+        a: 'Sim. O ateliê RINGS LUXURY de Jorge Uquillas desenvolve peças 1/1 exclusivas sob medida em ouro 18k e diamantes para colecionadores, mediante consulta privada em São Paulo ou Miami.'
+      },
+      {
+        q: 'Quem fez a joia do Charizard em ouro para Thiago Nigro?',
+        a: 'A joia foi desenhada e esculpida pelo mestre joalheiro e gravador Jorge Uquillas, fundador da RINGS LUXURY.'
+      }
+    ],
     translations: {
       pt: {
-        title: 'Charizard em Ouro 18k Maciço e Diamantes: A Joia Exclusiva de Thiago Nigro por Jorge Uquillas',
-        seoTitle: 'Charizard em Ouro 18k e Diamantes: Thiago Nigro e Jorge Uquillas',
-        excerpt: 'Uma escultura monumental em ouro 18k maciço, asas cravejadas em pavê de diamantes naturais e chama viva. Jorge Uquillas revela os bastidores da criação do pingente exclusivo 1/1 de Charizard para Thiago Nigro.',
+        title: 'Pingente do Charizard do Pokémon em Ouro 18k e Diamantes: A Joia Exclusiva de Thiago Nigro por Jorge Uquillas',
+        seoTitle: 'Pingente do Charizard em Ouro 18k Pokémon | Thiago Nigro & Jorge Uquillas',
+        excerpt: 'Esculpido em ouro 18k maciço com asas em pavê de diamantes naturais, o lendário Charizard do Pokémon ganha vida como alta joalheria. Conheça a criação do pingente do Charizard em ouro encomendado por Thiago Nigro ao mestre Jorge Uquillas.',
+        keywords: 'pingente do charizard em ouro, pingente charizard ouro, pingente charizard pokemon ouro, charizard pokemon ouro, charizard do pokemon em ouro, pingente charizard pokemon ouro 18k, joia charizard pokemon, thiago nigro charizard pokemon, pingente pokemon ouro 18k, charizard ouro 18k diamantes, colar charizard ouro, jorge uquillas thiago nigro charizard, alta joalheria pokemon, RINGS LUXURY',
+        faq: [
+          {
+            q: 'O pingente do Charizard de Thiago Nigro é feito em ouro 18k maciço?',
+            a: 'Sim. O pingente do Charizard do Pokémon encomendado por Thiago Nigro ao mestre Jorge Uquillas foi esculpido em ouro amarelo 18k maciço (750), com asas cravejadas em pavê de diamantes naturais e argola forrada em brilhantes.'
+          },
+          {
+            q: 'É possível encomendar um pingente do Charizard do Pokémon em ouro?',
+            a: 'Sim. O ateliê RINGS LUXURY de Jorge Uquillas desenvolve joias sob encomenda 1/1 exclusivas em ouro 18k e diamantes para colecionadores, mediante consulta privada em São Paulo ou Miami.'
+          },
+          {
+            q: 'Quem produziu a joia do Charizard para Thiago Nigro?',
+            a: 'A peça foi desenhada, esculpida e forjada pelo mestre joalheiro e gravador Jorge Uquillas, fundador da RINGS LUXURY.'
+          }
+        ],
         content: `
-      <p><strong>A alta joalheria contemporânea ganha sua máxima expressão quando a iconografia pessoal encontra a maestria do metal nobre.</strong></p>
+      <p><strong>A alta joalheria contemporânea ganha sua máxima expressão quando a iconografia lendária encontra a maestria do metal nobre.</strong></p>
 
-      <p>Quando <strong>Thiago Nigro</strong> procurou o ateliê de <strong>Jorge Uquillas</strong> para dar vida a uma encomenda privada sob medida, o desafio era claro: elevar uma das figuras mais emblemáticas da cultura mundial — o lendário <strong>Charizard</strong> — ao ápice da alta joalheria escultórica, esculpido em <strong>ouro 18k maciço</strong> e adornado com <strong>diamantes naturais</strong> selecionados um a um.</p>
+      <p>Se você procura por um <strong>pingente do Charizard em ouro</strong> ou quer entender como um ícone da cultura pop atinge o patamar de museu, a resposta está na ourivesaria sob medida de <strong>Jorge Uquillas</strong>. Quando <strong>Thiago Nigro</strong> procurou o ateliê para dar vida a uma encomenda privada, o objetivo era claro: eternizar o lendário <strong>Charizard do Pokémon</strong> em uma escultura de <strong>ouro 18k maciço</strong> com asas cravejadas em pavê de <strong>diamantes naturais</strong>.</p>
 
       <figure style="margin:36px 0;">
-        <img src="/PUBLIC/charizard-ouro-18k-diamantes-thiago-nigro-jorge-uquillas.webp" alt="Projeto do pingente Charizard em ouro 18k e diamantes para Thiago Nigro por Jorge Uquillas, RINGS LUXURY" loading="lazy" decoding="async" width="1024" height="2215" style="width:100%;max-width:560px;margin:0 auto;height:auto;border:1px solid rgba(197,160,89,0.3);border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.8);display:block;" />
-        <figcaption style="text-align:center;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:14px;">O projeto de alta joalheria: vistas frontal, lateral e posterior do pingente Charizard em ouro 18k e pavê de diamantes para Thiago Nigro</figcaption>
+        <img src="/PUBLIC/charizard-ouro-18k-diamantes-thiago-nigro-jorge-uquillas.webp" alt="Projeto do pingente do Charizard do Pokémon em ouro 18k maciço e diamantes para Thiago Nigro por Jorge Uquillas" loading="lazy" decoding="async" width="1024" height="2215" style="width:100%;max-width:560px;margin:0 auto;height:auto;border:1px solid rgba(197,160,89,0.3);border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.8);display:block;" />
+        <figcaption style="text-align:center;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:14px;">Projeto de alta joalheria: vistas frontal, lateral e posterior do pingente do Charizard do Pokémon em ouro 18k e pavê de diamantes para Thiago Nigro</figcaption>
       </figure>
 
-      <h2>A Arquitetura da Escultura: Anatomia, Força e Fogo</h2>
-      <p>Diferente de peças comerciais fundidas em série, o pingente desenvolvido para Thiago Nigro foi desenhado como uma <strong>escultura anatômica viva</strong>:</p>
+      <h2>O Pingente do Charizard de Pokémon em Ouro 18k Maciço: Anatomia e Fogo</h2>
+      <p>Diferente de miniaturas comuns ou peças comerciais fundidas em série, o <strong>pingente do Charizard do Pokémon em ouro</strong> desenvolvido para Thiago Nigro foi desenhado como uma escultura anatômica tridimensional viva:</p>
 
       <ul>
-        <li><strong>Ouro Amarelo 18k Maciço (750):</strong> Cada músculo, garra e expressão facial foi modelado com volume tridimensional pleno, alternando áreas em polimento espelhado com texturas acetinadas que conferem profundidade natural à peça.</li>
-        <li><strong>Pavê de Diamantes Naturais nas Asas:</strong> As duas envergaduras foram preparadas com rebaixos milimétricos para receber dezenas de diamantes naturais com lapidação brilhante, garantindo reflexão de luz constante sob qualquer ângulo.</li>
+        <li><strong>Ouro Amarelo 18k Maciço (750):</strong> Cada músculo, garra e expressão facial do Pokémon de fogo foi modelado com volume escultórico pleno, alternando áreas em polimento espelhado com texturas acetinadas que conferem profundidade natural.</li>
+        <li><strong>Pavê de Diamantes Naturais nas Asas:</strong> As duas envergaduras foram preparadas para receber dezenas de diamantes naturais com lapidação brilhante, garantindo reflexão de luz constante sob qualquer ângulo.</li>
         <li><strong>Argola (Bail) Forrada em Diamantes:</strong> A sustentação do pingente recebeu cravação de brilhantes de ponta a ponta, harmonizando com a monumental <strong>corrente de esferas facetadas em ouro 18k</strong>.</li>
-        <li><strong>A Chama Tridimensional:</strong> A labareda de fogo na boca e na cauda foi concebida com linhas orgânicas dinâmicas, trazendo o calor e a energia do lendário dragão ao ouro nobre.</li>
+        <li><strong>A Chama Tridimensional:</strong> A labareda de fogo na boca e na cauda de Charizard foi concebida com linhas orgânicas dinâmicas, trazendo a energia do lendário dragão ao ouro nobre.</li>
       </ul>
 
       <figure style="margin:36px 0;">
-        <img src="/PUBLIC/charizard-ouro-18k-work-in-progress-jorge-uquillas.webp" alt="Processo de fabricação do pingente Charizard em ouro 18k maciço na bancada de Jorge Uquillas para Thiago Nigro" loading="lazy" decoding="async" width="1024" height="2215" style="width:100%;max-width:560px;margin:0 auto;height:auto;border:1px solid rgba(197,160,89,0.3);border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.8);display:block;" />
-        <figcaption style="text-align:center;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:14px;">Na bancada do ateliê: Jorge Uquillas inspecionando a escultura fundida em ouro 18k maciço antes da cravação dos diamantes</figcaption>
+        <img src="/PUBLIC/charizard-ouro-18k-work-in-progress-jorge-uquillas.webp" alt="Processo de fabricação do pingente do Charizard do Pokémon em ouro 18k maciço na bancada de Jorge Uquillas para Thiago Nigro" loading="lazy" decoding="async" width="1024" height="2215" style="width:100%;max-width:560px;margin:0 auto;height:auto;border:1px solid rgba(197,160,89,0.3);border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.8);display:block;" />
+        <figcaption style="text-align:center;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:14px;">Na bancada do ateliê: Jorge Uquillas inspecionando o pingente do Charizard em ouro 18k maciço antes da cravação dos diamantes</figcaption>
       </figure>
 
-      <h2>Da Bancada à Eternidade: O Trabalho de Jorge Uquillas</h2>
-      <p>No vídeo compartilhado nos bastidores, o mestre <strong>Jorge Uquillas</strong> exibe a peça recém-saída da fundição bruta em ouro 18k, no estágio exato em que o metal começa a ser trabalhado, limado, ajustado à mão e preparado para o cravador.</p>
+      <h2>Da Bancada à Eternidade: A Escultura do Charizard por Jorge Uquillas</h2>
+      <p>No vídeo compartilhado nos bastidores, o mestre <strong>Jorge Uquillas</strong> exibe a peça recém-saída da fundição bruta em ouro 18k, no estágio exato em que o metal é limado, esculpido e ajustado sob microscópio para receber cada diamante.</p>
       
-      <p>Não há atalhos industriais. Cada cavidade onde um diamante descansará é aberta e ajustada com precisão óptica sob microscópio. Para figuras com o dinamismo de <strong>Thiago Nigro</strong>, que compreende o valor dos ativos reais e do tempo dedicado à verdadeira arte, a joia torna-se um símbolo palpável de conquista, identidade e longevidade.</p>
+      <p>Não há atalhos industriais. Para quem busca um <strong>pingente do Charizard em ouro</strong> autêntico, cada cavidade onde repousará uma gema é aberta com precisão milimétrica. Para <strong>Thiago Nigro</strong>, que valoriza ativos reais e o rigor da arte autoral, a joia consolida o fascínio pelo universo Pokémon em uma relíquia eterna de valor inestimável.</p>
 
-      <h2>1/1 — One of One: A Filosofia do Ateliê</h2>
+      <h2>1/1 — One of One: Joias de Pokémon sob Medida</h2>
       <p>Na <strong>RINGS LUXURY</strong>, nenhuma encomenda privada é replicada. A peça criada para Thiago Nigro é uma obra <strong>1/1 (One of One)</strong>: única no mundo, catalogada e assinada pelo mestre Jorge Uquillas.</p>
 
       <div style="border:1px solid rgba(197,160,89,0.35);background:rgba(5,5,5,0.7);padding:24px 28px;border-radius:14px;margin:36px 0;text-align:center;">
         <p style="font-family:'Cinzel',serif;font-size:16px;color:#E6CA85;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:8px;">Comissões Privadas sob Medida</p>
-        <p style="font-size:14px;color:#A8A296;line-height:1.7;margin-bottom:18px;">Assim como a peça de Thiago Nigro, o mestre Jorge Uquillas recebe clientes por consulta privada em São Paulo (Avenida Paulista) e Miami (Brickell) para desenhar e esculpir joias singulares em ouro 18k e diamantes.</p>
+        <p style="font-size:14px;color:#A8A296;line-height:1.7;margin-bottom:18px;">Assim como a joia de Thiago Nigro, o mestre Jorge Uquillas recebe clientes por consulta privada em São Paulo (Avenida Paulista) e Miami (Brickell) para desenhar e esculpir pingentes e anéis singulares em ouro 18k e diamantes.</p>
         <a href="/contact" style="display:inline-block;padding:12px 28px;border-radius:999px;background:linear-gradient(135deg,#9A7B38,#E6CA85 55%,#C5A059);color:#0A0805;font-weight:700;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;text-decoration:none;">Agendar Consulta com Jorge Uquillas</a>
       </div>
 
       <p style="margin-top:24px; font-size:12px; color:#A8A296; line-height:1.8;">
-        <strong>Palavras-chave:</strong> Thiago Nigro, Jorge Uquillas, Charizard Ouro 18k, Pingente Charizard Thiago Nigro, Joia Ouro e Diamantes, O Primo Rico, RINGS LUXURY Atelier, Alta Joalheria São Paulo, Escultura em Ouro 18k.
+        <strong>Palavras-chave:</strong> Pingente do Charizard em ouro, pingente Charizard Pokemon ouro, Charizard do Pokemon em ouro, joia Charizard Pokemon, Thiago Nigro Charizard, Jorge Uquillas, RINGS LUXURY, pingente ouro 18k diamantes, alta joalheria sob medida.
       </p>
     `
       }
     },
     content: `
-      <p><strong>Contemporary haute joaillerie reaches its peak when personal iconography meets master craftsmanship.</strong></p>
+      <p><strong>Contemporary haute joaillerie reaches its peak when legendary iconography meets master craftsmanship.</strong></p>
 
-      <p>When Brazilian entrepreneur and financial educator <strong>Thiago Nigro</strong> commissioned master goldsmith and engraver <strong>Jorge Uquillas</strong> for an exclusive bespoke piece, the mission was unmistakable: elevate one of the world's most legendary pop culture icons — <strong>Charizard</strong> — into sculptural haute joaillerie, cast in <strong>solid 18k yellow gold</strong> and paved with hand-selected <strong>natural diamonds</strong>.</p>
+      <p>For collectors searching for an authentic <strong>solid gold Charizard pendant</strong>, the creation by master goldsmith <strong>Jorge Uquillas</strong> sets a new benchmark in fine jewelry. When Brazilian entrepreneur and financial educator <strong>Thiago Nigro</strong> commissioned a bespoke 1/1 piece, the vision was clear: elevate the world-renowned <strong>Charizard from Pokémon</strong> into museum-grade fine jewelry, cast in <strong>solid 18k yellow gold</strong> and paved with brilliant-cut <strong>natural diamonds</strong>.</p>
 
       <figure style="margin:36px 0;">
-        <img src="/PUBLIC/charizard-ouro-18k-diamantes-thiago-nigro-jorge-uquillas.webp" alt="Charizard solid 18k gold and diamond pendant design for Thiago Nigro by Jorge Uquillas, RINGS LUXURY" loading="lazy" decoding="async" width="1024" height="2215" style="width:100%;max-width:560px;margin:0 auto;height:auto;border:1px solid rgba(197,160,89,0.3);border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.8);display:block;" />
-        <figcaption style="text-align:center;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:14px;">The haute joaillerie design: front, side, and rear perspective of the solid 18k gold Charizard pendant with diamond pavé wings for Thiago Nigro</figcaption>
+        <img src="/PUBLIC/charizard-ouro-18k-diamantes-thiago-nigro-jorge-uquillas.webp" alt="Solid 18k gold Charizard from Pokémon pendant design with diamonds for Thiago Nigro by Jorge Uquillas, RINGS LUXURY" loading="lazy" decoding="async" width="1024" height="2215" style="width:100%;max-width:560px;margin:0 auto;height:auto;border:1px solid rgba(197,160,89,0.3);border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.8);display:block;" />
+        <figcaption style="text-align:center;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:14px;">Haute joaillerie project: front, side, and rear perspective of the solid 18k gold Charizard from Pokémon pendant with diamond pavé wings for Thiago Nigro</figcaption>
       </figure>
 
-      <h2>Sculptural Architecture: Anatomy, Power and Flame</h2>
-      <p>Unlike commercial cast jewelry, this pendant was engineered as an anatomical sculpture in the round:</p>
+      <h2>The Solid 18k Gold Charizard from Pokémon Pendant: Anatomy & Fire</h2>
+      <p>Far beyond commercial merchandise or flat charms, this bespoke <strong>Charizard from Pokémon gold pendant</strong> was engineered as an anatomical sculpture in the round:</p>
 
       <ul>
-        <li><strong>Solid 18k Yellow Gold (750):</strong> Every muscle, claw, and facial contour is fully sculpted in three dimensions, balancing mirror-polished planes with satin-brushed gold textures.</li>
-        <li><strong>Natural Diamond Pavé on Wings:</strong> Both wings are precision-drilled under a microscope to receive dozens of brilliant-cut natural diamonds that reflect light with every movement.</li>
-        <li><strong>Diamond-Encrusted Bail:</strong> The suspension loop is fully set with natural diamonds, designed to glide smoothly over an 18k gold faceted sphere chain.</li>
-        <li><strong>Three-Dimensional Flame:</strong> The breath of fire is sculpted with organic flowing lines, giving life and warmth to the precious metal.</li>
+        <li><strong>Solid 18k Yellow Gold (750):</strong> Every contour, muscle group, and tooth of the iconic Fire-type Pokémon is fully sculpted in heavy 18k gold, balancing lustrous mirror polish with satin micro-finishes.</li>
+        <li><strong>Natural Diamond Pavé on Wings:</strong> Both dragon wings are micro-drilled to set rows of natural diamonds that scintillate with every tilt of light.</li>
+        <li><strong>Diamond-Encrusted Bail:</strong> The suspension loop is fully paved with diamonds, tailored to slide onto a solid 18k gold faceted sphere chain.</li>
+        <li><strong>Three-Dimensional Flame:</strong> The breath and tail flame capture the iconic kinetic energy of Pokémon's Charizard in precious gold.</li>
       </ul>
 
       <figure style="margin:36px 0;">
-        <img src="/PUBLIC/charizard-ouro-18k-work-in-progress-jorge-uquillas.webp" alt="Work in progress: solid 18k gold Charizard pendant cast by master artisan Jorge Uquillas for Thiago Nigro" loading="lazy" decoding="async" width="1024" height="2215" style="width:100%;max-width:560px;margin:0 auto;height:auto;border:1px solid rgba(197,160,89,0.3);border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.8);display:block;" />
-        <figcaption style="text-align:center;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:14px;">Bench work in progress: Jorge Uquillas examining the freshly cast solid 18k gold Charizard sculpture prior to stone setting</figcaption>
+        <img src="/PUBLIC/charizard-ouro-18k-work-in-progress-jorge-uquillas.webp" alt="Work in progress: solid 18k gold Charizard from Pokémon pendant at the bench of Jorge Uquillas for Thiago Nigro" loading="lazy" decoding="async" width="1024" height="2215" style="width:100%;max-width:560px;margin:0 auto;height:auto;border:1px solid rgba(197,160,89,0.3);border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.8);display:block;" />
+        <figcaption style="text-align:center;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#9A7B38;margin-top:14px;">At the atelier bench: Jorge Uquillas inspecting the freshly cast solid 18k gold Charizard sculpture prior to stone setting</figcaption>
       </figure>
 
       <h2>From the Bench to Eternity: Handcrafted by Jorge Uquillas</h2>
-      <p>In behind-the-scenes glimpses shared by the atelier, master artisan <strong>Jorge Uquillas</strong> inspects the substantial weight of the piece straight from the casting tree. Every cavity that will cradle a diamond is carved with surgical optical precision under high magnification.</p>
+      <p>In exclusive footage from the bench, master artisan <strong>Jorge Uquillas</strong> inspects the raw 18k gold cast. Every seat for each diamond is prepared and hand-engraved with tempered steel gravers under microscope optics.</p>
 
-      <p>For collectors and leaders like <strong>Thiago Nigro</strong>, who value enduring tangible assets and the time required to create true art, this piece stands as an authentic testament to mastery, discipline, and timeless value.</p>
+      <p>For discerning patrons like <strong>Thiago Nigro</strong>, who value lasting tangible assets and generational craft, this <strong>solid gold Charizard Pokémon pendant</strong> transforms personal passion into an eternal family heirloom.</p>
 
-      <h2>1/1 — One of One: The Atelier Philosophy</h2>
+      <h2>1/1 — One of One: Bespoke Commissions</h2>
       <p>At <strong>RINGS LUXURY</strong>, bespoke commissions are never replicated. The piece created for Thiago Nigro is an irreproducible <strong>1/1 (One of One)</strong> work of art, cataloged in the atelier archive and signed by Jorge Uquillas.</p>
 
       <div style="border:1px solid rgba(197,160,89,0.35);background:rgba(5,5,5,0.7);padding:24px 28px;border-radius:14px;margin:36px 0;text-align:center;">

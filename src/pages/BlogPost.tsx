@@ -21,6 +21,8 @@ export function BlogPost() {
         seoTitle: translation?.seoTitle ?? (rawPost as any).seoTitle ?? rawPost.title,
         excerpt: translation?.excerpt ?? rawPost.excerpt,
         content: translation?.content ?? rawPost.content,
+        keywords: translation?.keywords ?? (rawPost as any).keywords,
+        faq: translation?.faq ?? (rawPost as any).faq,
       }
     : undefined;
 
