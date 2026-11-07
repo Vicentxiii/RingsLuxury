@@ -86,8 +86,8 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
         </picture>
       </div>
 
-      {/* ── CAMADA DO TEXTO: CENTRALIZADO EM CIMA DO VÍDEO ── */}
-      <div className="relative z-20 flex flex-col items-center justify-center text-center px-4 pointer-events-none w-full">
+      {/* ── CAMADA DO TEXTO: CENTRALIZADO EM CIMA DO VÍDEO (DESLOCADO 20% PARA CIMA) ── */}
+      <div className="relative z-20 flex flex-col items-center justify-center text-center px-4 pointer-events-none w-full -translate-y-[18.8vh]">
 
         {/* WELCOME TO RINGS LUXURY */}
         <h1

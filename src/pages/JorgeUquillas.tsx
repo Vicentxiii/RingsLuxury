@@ -12,8 +12,8 @@ import { Instagram, ArrowLeft, ChevronDown, Calendar, Sparkles } from 'lucide-re
 // ── Logo do favicon (logo-cortado versao nova) ─────────────────────────────
 const FAVICON_LOGO = '/PUBLIC/logo-cortado-versao-nova.webp';
 
-// ── Foto de Jorge Uquillas ───────────────────────────────────────────────────
-const JORGE_PHOTO = '/PUBLIC/captura-de-tela-2026-09-12-185443.webp';
+// ── Foto de Jorge Uquillas (Retrato oficial em altíssima definição 1080x1350) ───
+const JORGE_PHOTO = '/PUBLIC/rings-luxury-master-engraver-site.webp';
 
 // ── Seções da história ───────────────────────────────────────────────────────
 interface StorySlide {
@@ -106,8 +106,9 @@ function MobileJorgeStory({ onBack }: { onBack: () => void }) {
             <img
               src={JORGE_PHOTO}
               alt="Jorge Uquillas, RINGS LUXURY HandCrafted"
-              className="w-full h-full object-cover scale-[1.22] object-top translate-y-[2%]"
+              className="w-full h-full object-cover object-center"
               loading="eager"
+              decoding="sync"
             />
           </div>
           <p className="mt-2.5 text-center text-[9px] uppercase tracking-[0.25em] text-[#9A7B38]">

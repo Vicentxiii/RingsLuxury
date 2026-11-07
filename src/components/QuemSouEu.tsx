@@ -57,15 +57,15 @@ export function QuemSouEu({}: QuemSouEuProps) {
           {/* ESQUERDA, Montagem Jorge + anéis */}
           <div className="order-1 flex justify-center lg:justify-end items-center">
             <div className="relative w-full max-w-[480px] sm:max-w-[540px] lg:max-w-[610px] xl:max-w-[640px]">
-              <ResponsiveImg
+              <img
                 src="/PUBLIC/jorge-montagem-sobre-mim.webp"
                 alt={t.home.quemImageAlt}
-                width={640}
-                height={800}
-                sizes="(max-width: 640px) 92vw, (max-width: 1024px) 540px, 640px"
+                width={1096}
+                height={1418}
                 className="w-full h-auto object-contain select-none"
                 style={{ filter: 'drop-shadow(0 22px 48px rgba(0,0,0,0.72))' }}
-                onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
+                loading="eager"
+                decoding="sync"
               />
             </div>
           </div>

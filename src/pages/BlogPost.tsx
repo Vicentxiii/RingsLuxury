@@ -161,12 +161,14 @@ export function BlogPost() {
           </div>
         </header>
 
-        <div className="relative aspect-[16/9] w-full mb-16 border border-[#C5A059]/20">
+        <div className="relative w-full max-h-[75vh] mb-16 border border-[#C5A059]/20 bg-[#040404] flex items-center justify-center overflow-hidden rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.85)]">
           <img
             src={post.image}
             alt={post.title}
-            className="w-full h-full object-cover"
+            className="w-full h-auto max-h-[75vh] object-contain mx-auto"
             style={{ objectPosition: (post as any).imagePosition ?? 'center' }}
+            loading="eager"
+            decoding="sync"
           />
         </div>
 
