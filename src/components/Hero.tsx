@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 
 interface HeroProps {
@@ -16,8 +16,25 @@ const MEDUSA_ODIN_WEBP = '/PUBLIC/medusa-e-odim-capa-do-site-rings-luxury-by-jor
 
 export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
   const { t } = useLanguage();
-  const [videoLoaded, setVideoLoaded] = useState(false);
-  const [posterErr, setPosterErr]     = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [posterErr, setPosterErr] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  useEffect(() => {
+    // Detecta quando o YouTube começa efetivamente a tocar para só então sumir com o poster
+    const handleMessage = (e: MessageEvent) => {
+      try {
+        const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
+        // YouTube API info 1 = PLAYING (reproduzindo vídeo)
+        if (data?.event === 'onStateChange' && data?.info === 1) {
+          setTimeout(() => setIsPlaying(true), 400);
+        }
+      } catch {}
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, []);
 
   return (
     <section
@@ -27,23 +44,39 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
       aria-label={t.home.heroSectionAria}
     >
 
-      {/* ── CAMADA DE BAIXO: VÍDEO DO ATELIER (YOUTUBE) ── */}
+      {/* ── CAMADA DE BAIXO: VÍDEO DO ATELIER (YOUTUBE COM OVERSCAN & FADE SUAVE) ── */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        {/* Poster de carregamento enquanto o iframe do YouTube inicializa */}
-        {!videoLoaded && (
+        {/*
+          Poster de alta definição: permanece visível durante todo o buffer e carregamento inicial do YouTube.
+          Só faz fade out quando o primeiro frame do vídeo já estiver em reprodução ativa.
+        */}
+        <div
+          className={`absolute inset-0 transition-opacity duration-1000 ease-out z-[2] ${
+            isPlaying ? 'opacity-0 pointer-events-none' : 'opacity-100'
+          }`}
+        >
           <img
             src={posterErr ? POSTER_FB : POSTER}
             alt=""
             aria-hidden
-            className="absolute inset-0 w-full h-full object-cover"
+            className="w-full h-full object-cover"
             onError={() => setPosterErr(true)}
           />
-        )}
+        </div>
 
+        {/*
+          Iframe do YouTube:
+          1. Opacidade 0 até estar tocando (evita tela preta, spinner e título inicial do YouTube).
+          2. Scale(1.38): técnica de overscan que projeta as barras de título e controles do YouTube
+             para fora dos limites cortados da tela (overflow-hidden), tornando o player 100% invisível.
+        */}
         <iframe
+          ref={iframeRef}
           title="Rings Luxury Atelier Film"
           src={EMBED}
-          className="absolute pointer-events-none"
+          className={`absolute pointer-events-none transition-opacity duration-1000 ease-in ${
+            isPlaying ? 'opacity-100' : 'opacity-0'
+          }`}
           style={{
             border: 0,
             top: '50%',
@@ -52,15 +85,22 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
             height: '56.25vw', // Proporção 16:9
             minHeight: '100%',
             minWidth: '177.77vh', // Proporção 16:9
-            transform: 'translate(-50%, -50%) scale(1.15)',
+            transform: 'translate(-50%, -50%) scale(1.38)',
             transformOrigin: 'center center',
           }}
           allow="autoplay; encrypted-media"
-          onLoad={() => setVideoLoaded(true)}
+          onLoad={(e) => {
+            // Solicita eventos de estado ao YouTube iframe
+            try {
+              e.currentTarget.contentWindow?.postMessage(JSON.stringify({ event: 'listening' }), '*');
+            } catch {}
+            // Fallback de segurança: se a API de mensagem não responder em 2s, transiciona suavemente
+            setTimeout(() => setIsPlaying(true), 2000);
+          }}
         />
 
         {/* Leve película para integrar o vídeo ao fundo escuro e dar contraste ideal */}
-        <div className="absolute inset-0 bg-[#020202]/30" aria-hidden />
+        <div className="absolute inset-0 bg-[#020202]/30 z-[3]" aria-hidden />
       </div>
 
       {/* ── CAMADA SUPERIOR: MEDUSA E ODIN (PNG TRANSPARENTE COBRINDO A TELA TODA) ── */}

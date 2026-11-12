@@ -5,7 +5,10 @@ import { Footer } from '../components/Footer';
 import { SEO } from '../components/SEO';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { FAQ, type FaqItem } from '../components/FAQ';
+import { ProcessCarousel, type ProcessStep } from '../components/ProcessCarousel';
+import { RelatedProductsCarousel } from '../components/RelatedProductsCarousel';
 import { blogPosts } from '../data/blogPosts';
+import { products } from '../data/products';
 import { absoluteUrl, HAS_SITE_URL } from '../site.config';
 import { useLanguage } from '../i18n/LanguageContext';
 
@@ -23,6 +26,8 @@ export function BlogPost() {
         content: translation?.content ?? rawPost.content,
         keywords: translation?.keywords ?? (rawPost as any).keywords,
         faq: translation?.faq ?? (rawPost as any).faq,
+        processGallery: translation?.processGallery ?? (rawPost as any).processGallery,
+        relatedCategory: (rawPost as any).relatedCategory,
       }
     : undefined;
 
@@ -178,8 +183,9 @@ export function BlogPost() {
           `prose-*` eram inertes: o texto saia sem espacamento entre h2/p/ul e
           a hierarquia visual do post se perdia.
         */}
-        <article
-          className={[
+        {(() => {
+          const postProcessGallery = (post as any).processGallery as ProcessStep[] | undefined;
+          const articleClassName = [
             'max-w-none font-cormorant text-lg text-[#FFFFFF] leading-relaxed',
             '[&_h2]:font-cinzel [&_h2]:text-2xl [&_h2]:md:text-3xl [&_h2]:text-[#F3EFE6] [&_h2]:font-medium [&_h2]:mt-12 [&_h2]:mb-5',
             '[&_h3]:font-cinzel [&_h3]:text-xl [&_h3]:text-[#F3EFE6] [&_h3]:mt-8 [&_h3]:mb-4',
@@ -193,9 +199,29 @@ export function BlogPost() {
             '[&_td]:border [&_td]:border-[#C5A059]/15 [&_td]:px-4 [&_td]:py-3 [&_td]:align-top [&_td]:text-[15px] [&_td]:leading-relaxed',
             '[&_figure]:my-8',
             '[&_figcaption]:text-center [&_figcaption]:text-sm [&_figcaption]:uppercase [&_figcaption]:tracking-[0.12em] [&_figcaption]:text-[#9A7B38] [&_figcaption]:mt-3',
-          ].join(' ')}
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
+          ].join(' ');
+
+          const contentParts = postProcessGallery && post.content?.includes('<!-- PROCESS_CAROUSEL -->')
+            ? post.content.split('<!-- PROCESS_CAROUSEL -->')
+            : null;
+
+          if (contentParts) {
+            return (
+              <>
+                <article className={articleClassName} dangerouslySetInnerHTML={{ __html: contentParts[0] }} />
+                <ProcessCarousel items={postProcessGallery!} />
+                <article className={articleClassName} dangerouslySetInnerHTML={{ __html: contentParts[1] }} />
+              </>
+            );
+          }
+
+          return (
+            <>
+              <article className={articleClassName} dangerouslySetInnerHTML={{ __html: post.content }} />
+              {postProcessGallery && <ProcessCarousel items={postProcessGallery} />}
+            </>
+          );
+        })()}
 
         {/*
           FAQ do post. Antes o JSON-LD FAQPage era emitido mas as perguntas NUNCA
@@ -241,13 +267,35 @@ export function BlogPost() {
            <h3 className="font-cinzel text-2xl text-[#F3EFE6] mb-6">{t.pages.blogPostCtaTitle}</h3>
            <button 
               onClick={() => handleOpenConsultation()}
-              className="relative group/btn overflow-hidden border border-[#C5A059] px-12 py-4 bg-[#C5A059]/5 hover:bg-[#C5A059]/10 transition-colors inline-block"
+              className="relative group/btn overflow-hidden border border-[#C5A059] px-12 py-4 bg-[#C5A059]/5 hover:bg-[#C5A059]/10 transition-colors inline-block cursor-pointer"
             >
               <span className="relative font-poppins text-xs tracking-[0.2em] uppercase text-[#C5A059]">
                 {t.pages.blogPostCtaButton}
               </span>
             </button>
         </div>
+
+        {/* Seção de anéis relacionados da categoria Special Rings */}
+        {(() => {
+          const postRelatedCategory = (post as any).relatedCategory as string | undefined;
+          if (!postRelatedCategory) return null;
+          const specialRings = products.filter((p) => p.categorySlug === postRelatedCategory);
+          if (specialRings.length === 0) return null;
+
+          return (
+            <div className="mt-20 pt-12 border-t border-[#C5A059]/20">
+              <RelatedProductsCarousel
+                products={specialRings}
+                title={lang === 'pt' ? 'Obras Relacionadas • Special Rings' : 'Related Masterpieces • Special Rings'}
+                subtitle={
+                  lang === 'pt'
+                    ? 'Anéis 1/1 esculpidos e gravados à mão livre em ouro 18k por Jorge Uquillas'
+                    : '1/1 bespoke masterpieces hand-engraved in solid 18k gold by Jorge Uquillas'
+                }
+              />
+            </div>
+          );
+        })()}
       </main>
 
       <Footer />

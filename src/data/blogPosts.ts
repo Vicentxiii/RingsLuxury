@@ -1,5 +1,208 @@
 export const blogPosts = [
   {
+    id: 10,
+    slug: 'anel-esmeralda-ouro-18k-diamantes-jorge-uquillas',
+    title: 'Solid 18k Gold Emerald Ring with Diamonds: The Master Hand Engraving Art by Jorge Uquillas',
+    seoTitle: 'Hand-Engraved 18k Gold Emerald Ring with Diamonds | Jorge Uquillas',
+    category: 'Masterpieces',
+    date: 'November 12, 2026',
+    dateISO: '2026-11-12',
+    author: 'Jorge Uquillas',
+    image: '/PUBLIC/anel-esmeralda-ouro-18k-diamantes-jorge-uquillas-capa.webp',
+    imagePosition: 'center 30%',
+    relatedCategory: 'special-editions',
+    excerpt: 'Sculpted in solid 18k gold, crowned by a monumental natural green emerald and paved with natural brilliant-cut diamonds. Discover the bespoke creation journey hand-engraved with hardened steel burins by master hand engraver Jorge Uquillas.',
+    keywords: 'emerald gold ring, hand engraved gold ring, jorge uquillas hand engraver, master hand engraver, 18k gold emerald ring, bespoke jewelry miami sao paulo, natural emerald diamonds ring, hand engraving jewelry, haute joaillerie, RINGS LUXURY',
+    processGallery: [
+      {
+        src: '/PUBLIC/anel-esmeralda-processo-1-corte-ouro-18k.webp',
+        step: '01 / 09',
+        title: 'Initial Sawing & Calibration of 18k Gold',
+        caption: 'The creation begins with solid 18k yellow gold bars at the jeweler bench pin. Using fine German saw blades and micrometric gauges, the precious metal is hand-measured and sectioned.'
+      },
+      {
+        src: '/PUBLIC/anel-esmeralda-processo-2-caixa-octogonal-ouro.webp',
+        step: '02 / 09',
+        title: 'Crafting the Octagonal Emerald Bezel',
+        caption: 'Manual assembly and fine-tuning of the octagonal gallery, architecturally calculated to secure the magnificent cut of the natural emerald with millimeter precision.'
+      },
+      {
+        src: '/PUBLIC/anel-esmeralda-processo-3-soldagem-fogo-ouro.webp',
+        step: '03 / 09',
+        title: 'Iron Wire Binding & High-Heat Soldering',
+        caption: 'Secured with high-tensile iron wire, the crown and cathedral shank are fused with gold solder under an open oxygen-gas flame exceeding 850°C on refractory ceramic.'
+      },
+      {
+        src: '/PUBLIC/anel-esmeralda-processo-4-limagem-perfil-catedral.webp',
+        step: '04 / 09',
+        title: 'Needle Filing the Cathedral Architecture',
+        caption: 'Master Jorge Uquillas meticulously carves each architectural angle with Swiss needle files, preparing the gold canvas for deep relief hand engraving.'
+      },
+      {
+        src: '/PUBLIC/anel-esmeralda-processo-5-recozimento-macarico.webp',
+        step: '05 / 09',
+        title: 'Thermal Annealing for Metal Malleability',
+        caption: 'Heating the gold to a glowing dull cherry red relieves internal crystal stress, restoring maximum malleability for the burin to cut without micro-fracturing the gold.'
+      },
+      {
+        src: '/PUBLIC/anel-esmeralda-processo-6-armacao-ouro-18k.webp',
+        step: '06 / 09',
+        title: 'Consolidated Monolithic Gold Structure',
+        caption: 'Resting on the charcoal soldering block, the unified heavy 18k gold frame reveals its monumental proportions, ready for chemical cleansing.'
+      },
+      {
+        src: '/PUBLIC/anel-esmeralda-processo-7-banho-decapagem-acidos.webp',
+        step: '07 / 09',
+        title: 'Acid Pickling & Oxidation Stripping',
+        caption: 'Submerged using solid copper tongs into warm acid pickling solutions, surface flux and oxidation are neutralized, unveiling the rich natural hue of 18k gold.'
+      },
+      {
+        src: '/PUBLIC/anel-esmeralda-processo-8-calibracao-tribule-anel.webp',
+        step: '08 / 09',
+        title: 'Triblet Mandrel Rounding & Anatomical Fit',
+        caption: 'Formed and calibrated over a hardened steel ring mandrel, ensuring structural integrity, absolute roundness, and ergonomic luxury for the collector hand.'
+      },
+      {
+        src: '/PUBLIC/anel-esmeralda-processo-9-esmeralda-natural-buril.webp',
+        step: '09 / 09',
+        title: 'The Natural Emerald & Master Burin Work',
+        caption: 'The extraordinary natural emerald meets the prepared ring. Jorge Uquillas carves intricate Renaissance acanthus scrolls with hardened steel gravers, culminating in diamond micro-pavé setting.'
+      }
+    ],
+    faq: [
+      {
+        q: 'How is the 18k gold emerald ring engraved by Jorge Uquillas?',
+        a: 'Every scroll, relief, and texture is cut 100% freehand using hardened steel burins under high-magnification optical microscopes. Jorge Uquillas never uses lasers, CNC milling, or casting molds for the engraving.'
+      },
+      {
+        q: 'What is the quality of the emerald and diamonds in this piece?',
+        a: 'The ring features an exceptional natural green emerald in an emerald cut, complemented by natural conflict-free diamonds set in multi-row micro-pavé along the bezel and cathedral shoulders.'
+      },
+      {
+        q: 'Can I commission a bespoke 18k gold ring with Jorge Uquillas?',
+        a: 'Yes. Through private consultation in São Paulo or Miami, Jorge Uquillas creates 1/1 bespoke pieces tailored to each collector taste, eternalized in solid 18k gold.'
+      }
+    ],
+    content: `
+      <p><strong>In haute joaillerie, few creations evoke the monumental power achieved when solid 18k gold, the verdant fire of a natural emerald, and the ancestral virtuosity of a Master Hand Engraver collide.</strong> Under the disciplined hands of <strong>Jorge Uquillas</strong>, each ring is forged not as an ornament, but as a living sculpture of authority — handcrafted without molds, engraved burin stroke by burin stroke, and crowned with the aristocratic distinction that defines <strong>RINGS LUXURY</strong>.</p>
+
+      <!-- PROCESS_CAROUSEL -->
+
+      <h2>The Living Burin: Why Machine Lasers Can Never Match Hand Engraving</h2>
+      <p>The title of <strong>Master Hand Engraver</strong> carries centuries of sacred atelier tradition passed from generation to generation. In an era inundated by automated CNC milling and flat laser etchings, the artistry of <strong>Jorge Uquillas</strong> preserves the brilliance of the bright-cut. When a hardened steel burin cuts into solid 18k gold freehand, it cleanly shears the metal at precise reflective angles that act as micro-mirrors, creating dynamic light play and tactile relief that no computer algorithm can imitate.</p>
+
+      <h2>From Raw Gold Bar to Emerald Crown: The Journey of Mastery</h2>
+      <p>Every phase of construction demands surgical metallurgy and sacred geometry:</p>
+      <ul>
+        <li><strong>Solid 18k Yellow Gold (750 Purity):</strong> Forged directly from heavy bullion bars, yielding an unmistakable heft, balance, and authority on the wearer hand.</li>
+        <li><strong>Natural Octagonal Emerald:</strong> An exceptional center stone exhibiting the coveted deep vivid green and natural inclusions (<em>jardin</em>) that certify geological rarity, cradled inside a bespoke hand-fitted bezel.</li>
+        <li><strong>Natural Diamond Pavé Halo:</strong> Rows of natural brilliant-cut diamonds frame the emerald and descend along the cathedral shoulders, creating an electric dance between diamond fire and golden warmth.</li>
+        <li><strong>High-Relief Acanthus Scrolls:</strong> The lateral flanks feature Jorge Uquillas’ signature Baroque scrollwork and microscopic cross-hatching, carved directly into solid gold under stereo microscopy.</li>
+      </ul>
+
+      <h2>An Eternal Legacy on the Hand of Achievement</h2>
+      <p>A bespoke 1/1 creation from the <strong>RINGS LUXURY</strong> atelier is never duplicated. Captured in the cover of this story, the ring graces the hand of a visionary signing decisions that shape horizons. It stands as a timeless heirloom — signed with master contrast, accompanied by an archive dossier, and destined to outlive empires.</p>
+    `,
+    translations: {
+      pt: {
+        title: 'Anel de Ouro 18k com Esmeralda e Diamantes: A Arte Viva do Hand Engraving por Jorge Uquillas',
+        seoTitle: 'Anel de Esmeralda em Ouro 18k Gravado à Mão | Jorge Uquillas Hand Engraver',
+        excerpt: 'Uma obra monumental esculpida em ouro 18k maciço, coroada por uma extraordinária esmeralda natural e pavê de diamantes. Conheça a jornada de criação e gravação à mão livre pelo mestre gravador Jorge Uquillas.',
+        keywords: 'anel de esmeralda ouro 18k, anel esmeralda gravado a mao, jorge uquillas hand engraver, master hand engraver, gravador de joias ouro, anel com esmeralda e diamantes ouro 18k, alta joalheria sob medida, buril gravacao ouro, RINGS LUXURY',
+        processGallery: [
+          {
+            src: '/PUBLIC/anel-esmeralda-processo-1-corte-ouro-18k.webp',
+            step: '01 / 09',
+            title: 'Corte e Traçado na Bancada',
+            caption: 'O nascimento da joia começa na forja de ouro 18k maciço. Com serra de precisão alemã e réguas micrométricas, o bloco nobre é seccionado na bancada de madeira do ateliê.'
+          },
+          {
+            src: '/PUBLIC/anel-esmeralda-processo-2-caixa-octogonal-ouro.webp',
+            step: '02 / 09',
+            title: 'A Caixa Octogonal da Esmeralda',
+            caption: 'Construção artesanal da caixa octogonal sob medida, milimetricamente calculada para abraçar a geometria imponente da gema natural sem qualquer folga estrutural.'
+          },
+          {
+            src: '/PUBLIC/anel-esmeralda-processo-3-soldagem-fogo-ouro.webp',
+            step: '03 / 09',
+            title: 'Amarração e Fusão a Fogo',
+            caption: 'As galerias superiores e a base do aro são amarradas com arame de ferro temperado para suportar o maçarico de oxigênio a mais de 850°C, fundindo a solda de ouro nobre.'
+          },
+          {
+            src: '/PUBLIC/anel-esmeralda-processo-4-limagem-perfil-catedral.webp',
+            step: '04 / 09',
+            title: 'Escultura dos Ângulos Catedralícios',
+            caption: 'Com limas suíças de corte fino, Jorge Uquillas esculpe manualmente cada plano geométrico e ângulo da estrutura, preparando as laterais para o buril.'
+          },
+          {
+            src: '/PUBLIC/anel-esmeralda-processo-5-recozimento-macarico.webp',
+            step: '05 / 09',
+            title: 'Recozimento Térmico do Ouro 18k',
+            caption: 'O ouro aquecido ao rubro tem suas tensões moleculares aliviadas. O recozimento devolve ao metal a maleabilidade ideal para receber o corte profundo dos buris sem trincar.'
+          },
+          {
+            src: '/PUBLIC/anel-esmeralda-processo-6-armacao-ouro-18k.webp',
+            step: '06 / 09',
+            title: 'A Estrutura Monolítica Consolidada',
+            caption: 'Após o resfriamento no bloco refratário, a arquitetura do anel se revela em uma única peça maciça e indestrutível, pronta para os tratamentos de decapagem química.'
+          },
+          {
+            src: '/PUBLIC/anel-esmeralda-processo-7-banho-decapagem-acidos.webp',
+            step: '07 / 09',
+            title: 'Decapagem em Banho Ácido',
+            caption: 'Submerso com pinças de cobre na solução decapante, todos os óxidos e resíduos de fundentes são neutralizados, revelando o tom dourado acetinado e puro do ouro 18k.'
+          },
+          {
+            src: '/PUBLIC/anel-esmeralda-processo-8-calibracao-tribule-anel.webp',
+            step: '08 / 09',
+            title: 'Calibração Ergonômica no Tribulé',
+            caption: 'O aro é forjado e calibrado no tribulé de aço temperado até atingir a circularidade absoluta e o conforto anatômico perfeito para a mão do cliente.'
+          },
+          {
+            src: '/PUBLIC/anel-esmeralda-processo-9-esmeralda-natural-buril.webp',
+            step: '09 / 09',
+            title: 'A Esmeralda Natural e o Buril do Gravador',
+            caption: 'A majestosa esmeralda de verde profundo se encontra com o anel. Sob microscópio estéreo, Jorge Uquillas inicia os entalhes florais em alto-relevo com buris de aço, culminando na obra-prima finalizada com diamantes.'
+          }
+        ],
+        faq: [
+          {
+            q: 'Como é feita a gravação do anel de esmeralda por Jorge Uquillas?',
+            a: 'Cada voluta, sombra e entalhe é cortado 100% à mão livre com buris de aço temperado sob microscópio estéreo. Jorge Uquillas não utiliza laser, CNC ou fundição seriada para o trabalho de gravação.'
+          },
+          {
+            q: 'Qual é a qualidade da esmeralda e dos diamantes nesta peça?',
+            a: 'O anel é coroado por uma esmeralda natural de cor verde profunda e lapidação esmeralda, emoldurada por fileiras de diamantes naturais em cravação pavê de altíssimo brilho.'
+          },
+          {
+            q: 'Como solicitar uma joia sob encomenda com Jorge Uquillas?',
+            a: 'O ateliê RINGS LUXURY atende colecionadores do mundo inteiro mediante consulta privada em São Paulo ou Miami, desenvolvendo peças 1/1 personalizadas e irrepetíveis.'
+          }
+        ],
+        content: `
+      <p><strong>Na alta joalheria mundial, poucas criações reúnem tamanha imponência quanto o encontro entre o ouro 18k maciço, o fogo verde de uma esmeralda natural e a virtuosidade milenar de um Master Hand Engraver.</strong> Sob as mãos de <strong>Jorge Uquillas</strong>, cada peça nasce não como um acessório, mas como uma escultura de poder eterno — forjada sem moldes industriais, esculpida golpe a golpe com buris de aço e coroada com a elegância aristocrática que define a <strong>RINGS LUXURY</strong>.</p>
+
+      <!-- PROCESS_CAROUSEL -->
+
+      <h2>A Tradição do Buril: A Arte que o Laser Jamais Poderá Replicar</h2>
+      <p>O título de <strong>Master Hand Engraver</strong> carrega séculos de disciplina transmitida de mestre para discípulo. Em um mercado saturado por impressões 3D e gravações superficiais a laser, o trabalho de <strong>Jorge Uquillas</strong> se destaca pela autenticidade do corte vivo. Quando o buril de aço temperado corta o ouro 18k a mão livre, ele não queima o metal: ele remove filamentos precisos com ângulos facetados que funcionam como verdadeiros espelhos microscópicos, criando um brilho reflexivo e uma profundidade tridimensional inalcançáveis por qualquer máquina contemporânea.</p>
+
+      <h2>Da Barra Bruta à Coroa de Esmeralda: A Anatomia da Criação</h2>
+      <p>Cada etapa do processo exige domínio absoluto sobre a metalurgia e a geometria sagrada:</p>
+      <ul>
+        <li><strong>Ouro Amarelo 18k Maciço (Teor 750):</strong> A estrutura catedralícia do anel foi construída a partir de barras sólidas, conferindo densidade, peso e presença inconfundíveis ao toque.</li>
+        <li><strong>A Esmeralda Natural de Lapidação Octogonal:</strong> Uma gema imponente, de tonalidade verde viva e inclusões naturais (<em>jardim</em>) que atestam sua autenticidade e raridade geológica, abrigada em uma caixa de ouro com bisel reforçado.</li>
+        <li><strong>Pavê de Diamantes Naturais:</strong> Dezenas de brilhantes naturais contornam a mesa e descem pelas galerias do anel, criando um contraste deslumbrante entre o brilho frio dos diamantes e a riqueza quente do ouro amarelo.</li>
+        <li><strong>Volutas e Folhas de Acanto em Alto-Relevo:</strong> As laterais trazem a assinatura inconfundível de Jorge Uquillas — folhagens barrocas e ornamentos clássicos entalhados com sombreamento hachurado no metal maciço.</li>
+      </ul>
+
+      <h2>O Símbolo do Homem Contemporâneo que Constrói seu Próprio Legado</h2>
+      <p>Mais do que um anel, esta obra representa a consolidação de conquistas. Na foto de capa deste artigo, o anel brilha na mão de quem assina decisões que moldam futuros. Uma joia 1/1 produzida no ateliê da <strong>RINGS LUXURY</strong> nunca é reproduzida: sua matriz é única, seu contraste é assinado e seu valor transcende gerações como patrimônio e legado vivo.</p>
+        `
+      }
+    }
+  },
+  {
     id: 9,
     slug: 'charizard-ouro-18k-diamantes-thiago-nigro',
     title: 'Charizard from Pokémon Pendant in Solid 18k Gold & Diamonds: Thiago Nigro’s Private Commission with Jorge Uquillas',
