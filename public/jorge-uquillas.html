@@ -475,20 +475,9 @@
                 flex-direction: column;
             }
 
-            /* --- 1. O LEAO: bloco proprio no topo, com altura definida --- */
-            #webgl {
-                position: relative;   /* era: fixed, tela cheia */
-                order: -1;   /* #webgl e o ultimo filho do DOM: sem order:-1 o leao cai no fim da pagina */
-                inset: auto;
-                top: auto; left: auto; right: auto; bottom: auto;
-                width: 100%;
-                height: 42vh;
-                min-height: 240px;
-                margin: 0;
-                z-index: 1;
-                /* O dedo gira o leao em vez de arrastar a pagina. Aplicado
-                   SO no canvas: o restante da pagina continua rolavel. */
-                touch-action: none;
+            /* --- 1. O LEAO: ocultado no mobile para focar nas informacoes --- */
+            body:not(.embed-3d-only) #webgl {
+                display: none !important;
             }
 
             /* --- 2. Container vira coluna --- */
@@ -502,7 +491,7 @@
                 flex-direction: column;
                 justify-content: flex-start;
                 gap: 0;
-                padding: 156px 20px 72px 20px;
+                padding: 24px 20px 72px 20px;
                 z-index: 10;
             }
 
@@ -849,7 +838,7 @@
             renderer.shadowMap.enabled = true;
             renderer.shadowMap.type = THREE.PCFSoftShadowMap;
             renderer.toneMapping = THREE.ACESFilmicToneMapping;
-            renderer.toneMappingExposure = 2.8;
+            renderer.toneMappingExposure = 1.15;
 
             initLighting();
             initEnvironment();
@@ -858,17 +847,18 @@
         }
 
         function initLighting() {
-            const ambientLight = new THREE.AmbientLight('#fff8e7', 0.9);
+            const ambientLight = new THREE.AmbientLight('#fff4dc', 0.2);
             scene.add(ambientLight);
-            const hemiLight = new THREE.HemisphereLight('#ffe8a0', '#1a1208', 1.35);
+            const hemiLight = new THREE.HemisphereLight('#ffe8a0', '#1a1208', 0.4);
             scene.add(hemiLight);
-            const hemiGold = new THREE.HemisphereLight('#ffd86b', '#0a0800', 0.9);
+            const hemiGold = new THREE.HemisphereLight('#ffd86b', '#0a0800', 0.25);
             scene.add(hemiGold);
 
-            const keyLight = new THREE.SpotLight('#fff6d6', 32.0);
+            // Key light com tom dourado quente e intensidade controlada (evita estourar brancos)
+            const keyLight = new THREE.SpotLight('#ffe8b8', 22.0);
             keyLight.position.set(4, 6, 3);
-            keyLight.angle = Math.PI / 4;
-            keyLight.penumbra = 0.9;
+            keyLight.angle = Math.PI / 4.5;
+            keyLight.penumbra = 0.6;
             keyLight.castShadow = true;
             keyLight.shadow.mapSize.width = 2048;
             keyLight.shadow.mapSize.height = 2048;
@@ -877,16 +867,16 @@
             keyLight.shadow.bias = -0.001;
             scene.add(keyLight);
 
-            const rimLight = new THREE.DirectionalLight('#ffde8a', 14.0);
+            const rimLight = new THREE.DirectionalLight('#ffca5a', 12.0);
             rimLight.position.set(-5, 3, -4);
             scene.add(rimLight);
 
-            const fillLight = new THREE.DirectionalLight('#ffe8a0', 2.9);
+            const fillLight = new THREE.DirectionalLight('#ffe8a0', 1.0);
             fillLight.position.set(-2, -4, 2);
             scene.add(fillLight);
 
-            // Luz frontal quente do lado da câmera, revela os detalhes do rosto/juba
-            const frontLight = new THREE.DirectionalLight('#fff3d9', 3.15);
+            // Luz frontal suave para leitura suave do entalhe
+            const frontLight = new THREE.DirectionalLight('#ffecc2', 1.2);
             frontLight.position.set(1.5, 1.5, 5);
             scene.add(frontLight);
         }
@@ -905,11 +895,12 @@
                 mesh.lookAt(0, 0, 0);
                 envScene.add(mesh);
             };
-            panel('#fff3d0', 5.4, 4, 6, 5);   // chave quente frontal-direita
-            panel('#ffd98a', 3.6, -5, 3, 2);  // lateral esquerda dourada
-            panel('#fff8e7', 2.7, 0, -4, 4);  // rebote inferior
-            panel('#c9a24a', 2.25, 0, 5, -6);  // topo/fundo dourado
-            panel('#ffffff', 1.35, -2, 1, 6);  // brilho frontal suave
+            // Reflexos em tons dourados suaves (sem brancos crus estourando)
+            panel('#ffe8b8', 3.0, 4, 6, 5);   // reflexo dourado suave
+            panel('#ffd060', 2.5, -5, 3, 2);  // lateral dourada
+            panel('#fff4dc', 1.4, 0, -4, 4);  // rebote inferior
+            panel('#c9a24a', 1.8, 0, 5, -6);  // topo/fundo dourado
+            panel('#ffeec2', 1.0, -2, 1, 6);  // frontal morno sem estourar branco
             const pmrem = new THREE.PMREMGenerator(renderer);
             scene.environment = pmrem.fromScene(envScene, 0.04).texture;
             pmrem.dispose();
@@ -999,17 +990,17 @@
                                     if (child.material.color) child.material.color.setHex(0xC5A059);
                                     if (child.material.map) child.material.map.anisotropy = 16;
                                 } catch {}
-                                child.material.roughness = 0.28;
-                                child.material.metalness = 0.9;
-                                child.material.envMapIntensity = 2.35;
+                                child.material.roughness = 0.24;
+                                child.material.metalness = 0.95;
+                                child.material.envMapIntensity = 1.8;
                                 child.material.flatShading = false;
                                 if ('clearcoat' in child.material) {
-                                    child.material.clearcoat = 1.0;
-                                    child.material.clearcoatRoughness = 0.08;
+                                    child.material.clearcoat = 0.0;
+                                    child.material.clearcoatRoughness = 0.1;
                                 }
                                 if (child.material.emissive) {
-                                    child.material.emissive.setHex(0x3a2a0c);
-                                    child.material.emissiveIntensity = 0.3;
+                                    child.material.emissive.setHex(0x000000);
+                                    child.material.emissiveIntensity = 0.0;
                                 }
                                 child.material.needsUpdate = true;
                             }

@@ -53,27 +53,8 @@ function MobileJorgeStory({ onBack }: { onBack: () => void }) {
 
   return (
     <div className="min-h-screen bg-[#020202] text-[#EAE6DF] pb-0">
-      {/* ── Hero: leão 3D interativo via iframe 3D-only ─────────────────── */}
-      <div className="relative w-full h-[46vh] min-h-[320px] max-h-[460px] bg-black overflow-hidden">
-        <iframe
-          src="/jorge-uquillas.html?embed=3d-only"
-          title="Jorge Uquillas 3D Lion Head"
-          className="w-full h-full border-0 pointer-events-auto"
-          allow="autoplay"
-          loading="eager"
-          style={{ background: '#000' }}
-        />
-        {/* Fade inferior para transição suave para o conteúdo */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#020202] to-transparent pointer-events-none" />
-        {/* Badge de interação 3D */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-[9.5px] uppercase tracking-[0.25em] text-[#E6CA85] bg-[#020202]/85 backdrop-blur-md px-4 py-1.5 rounded-full border border-[#C5A059]/40 shadow-[0_4px_20px_rgba(0,0,0,0.8)] pointer-events-none whitespace-nowrap flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#C5A059] animate-pulse" />
-          <span>3D Interativo • Arraste para girar</span>
-        </div>
-      </div>
-
-      {/* ── Conteúdo editorial scrollável ───────────────────────────────── */}
-      <div className="px-5 pt-4 pb-12">
+      {/* ── Conteúdo editorial scrollável (sem 3D no mobile) ─────────────── */}
+      <div className="px-5 pt-8 pb-12">
 
         {/* Logo + título */}
         <div className="flex flex-col items-center text-center mb-8">
