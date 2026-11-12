@@ -127,6 +127,8 @@ export function SEO({ title, description, keywords, url, image, imageAlt, noinde
       <meta property="og:locale:alternate" content="es_ES" />
       <meta property="og:locale:alternate" content="pt_BR" />
       {ogImage && <meta property="og:image" content={ogImage} />}
+      {ogImage && ogImage.startsWith('https://') && <meta property="og:image:secure_url" content={ogImage} />}
+      {ogImage && <meta property="og:image:type" content={ogImage.endsWith('.png') ? 'image/png' : ogImage.endsWith('.webp') ? 'image/webp' : 'image/jpeg'} />}
       {ogImage && isDefaultImage && <meta property="og:image:width" content="1200" />}
       {ogImage && isDefaultImage && <meta property="og:image:height" content="630" />}
       {ogImage && <meta property="og:image:alt" content={ogImageAlt} />}

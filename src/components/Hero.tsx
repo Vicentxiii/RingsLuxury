@@ -8,8 +8,8 @@ interface HeroProps {
 const YOUTUBE_ID = 'ieNPhZ4Vdss';
 const POSTER     = `https://i.ytimg.com/vi/${YOUTUBE_ID}/maxresdefault.jpg`;
 const POSTER_FB  = `https://i.ytimg.com/vi/${YOUTUBE_ID}/hqdefault.jpg`;
-// Vídeo inicia em 1 minuto (start=60), mudo, autoplay e em loop contínuo
-const EMBED      = `https://www.youtube-nocookie.com/embed/${YOUTUBE_ID}?autoplay=1&controls=0&rel=0&modestbranding=1&playsinline=1&mute=1&loop=1&playlist=${YOUTUBE_ID}&start=60&enablejsapi=1`;
+// Vídeo inicia no minuto 0:00 (start=0), mudo, autoplay e em loop contínuo sem interface do player
+const EMBED      = `https://www.youtube-nocookie.com/embed/${YOUTUBE_ID}?autoplay=1&controls=0&rel=0&modestbranding=1&playsinline=1&mute=1&loop=1&playlist=${YOUTUBE_ID}&start=0&enablejsapi=1&iv_load_policy=3&disablekb=1&fs=0`;
 
 const MEDUSA_ODIN_PNG  = '/PUBLIC/medusa-e-odim-capa-do-site-rings-luxury-by-jorge-uquillas.png';
 const MEDUSA_ODIN_WEBP = '/PUBLIC/medusa-e-odim-capa-do-site-rings-luxury-by-jorge-uquillas-transparente.webp';
