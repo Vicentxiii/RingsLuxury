@@ -273,6 +273,21 @@ export function YouDecide() {
           </div>
         </div>
 
+        {/* ── BANNER EXCLUSIVO: ANEL DE PODER GRAVADO À MÃO ── */}
+        <div className="relative mt-12 sm:mt-16 w-full max-w-[1240px] mx-auto overflow-hidden rounded-2xl border border-[#C5A059]/20 shadow-[0_12px_45px_rgba(0,0,0,0.85)] group">
+          <div className="relative w-full aspect-[16/7] sm:aspect-[21/9] md:aspect-[2.4/1] bg-[#020202] overflow-hidden">
+            <img
+              src="/PUBLIC/banner-anel-tigre-ouro-you-decide.webp"
+              alt="Anel de Ouro 18k esculpido à mão por Jorge Uquillas"
+              className="w-full h-full object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
+              loading="lazy"
+            />
+            {/* Vinheta de fusão com as bordas para integração de luxo */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-transparent to-transparent opacity-60 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#020202]/40 via-transparent to-[#020202]/40 pointer-events-none" />
+          </div>
+        </div>
+
       </div>
     </section>
   );
