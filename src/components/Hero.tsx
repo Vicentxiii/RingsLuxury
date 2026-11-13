@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 
 interface HeroProps {
@@ -6,107 +5,14 @@ interface HeroProps {
 }
 
 const YOUTUBE_ID = 'ieNPhZ4Vdss';
-const POSTER = `https://i.ytimg.com/vi/${YOUTUBE_ID}/maxresdefault.jpg`;
-const POSTER_FB = `https://i.ytimg.com/vi/${YOUTUBE_ID}/hqdefault.jpg`;
+// start=0, muted, autoplay=1, loop contínuo, sem controles, sem branding
+const EMBED = `https://www.youtube-nocookie.com/embed/${YOUTUBE_ID}?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&loop=1&playlist=${YOUTUBE_ID}&start=0&iv_load_policy=3&disablekb=1&fs=0`;
 
-const MEDUSA_ODIN_PNG = '/PUBLIC/medusa-e-odim-capa-do-site-rings-luxury-by-jorge-uquillas.png';
+const MEDUSA_ODIN_PNG  = '/PUBLIC/medusa-e-odim-capa-do-site-rings-luxury-by-jorge-uquillas.png';
 const MEDUSA_ODIN_WEBP = '/PUBLIC/medusa-e-odim-capa-do-site-rings-luxury-by-jorge-uquillas-transparente.webp';
-
-/* ── YouTube IFrame API types ── */
-declare global {
-  interface Window {
-    YT?: { Player: new (...args: unknown[]) => unknown; PlayerState: Record<string, number> };
-    onYouTubeIframeAPIReady?: () => void;
-    _ytApiLoaded?: boolean;
-  }
-}
 
 export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
   const { t } = useLanguage();
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [posterErr, setPosterErr] = useState(false);
-  const playerRef = useRef<unknown>(null);
-  const fallbackRef = useRef<ReturnType<typeof setTimeout>>();
-
-  /* Cria o player usando a API oficial do YouTube */
-  const createPlayer = useCallback(() => {
-    if (playerRef.current || !window.YT?.Player) return;
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    playerRef.current = new (window.YT.Player as any)('hero-yt-player', {
-      videoId: YOUTUBE_ID,
-      host: 'https://www.youtube-nocookie.com',
-      width: '100%',
-      height: '100%',
-      playerVars: {
-        autoplay: 1,
-        controls: 0,
-        rel: 0,
-        modestbranding: 1,
-        playsinline: 1,
-        mute: 1,
-        loop: 1,
-        playlist: YOUTUBE_ID,
-        start: 0,
-        iv_load_policy: 3,
-        disablekb: 1,
-        fs: 0,
-        origin: window.location.origin,
-      },
-      events: {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        onReady: (e: any) => {
-          e.target.mute();
-          e.target.playVideo();
-        },
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        onStateChange: (e: any) => {
-          if (e.data === 1 /* YT.PlayerState.PLAYING */) {
-            clearTimeout(fallbackRef.current);
-            setTimeout(() => setIsPlaying(true), 300);
-          }
-        },
-        onError: () => {
-          // Se o YouTube falhar, mostra a área do vídeo (poster sai)
-          setIsPlaying(true);
-        },
-      },
-    });
-  }, []);
-
-  useEffect(() => {
-    /* Se a API já está carregada (navegação SPA) */
-    if (window._ytApiLoaded && window.YT?.Player) {
-      createPlayer();
-    } else {
-      /* Registra o callback global */
-      const prevCallback = window.onYouTubeIframeAPIReady;
-      window.onYouTubeIframeAPIReady = () => {
-        window._ytApiLoaded = true;
-        prevCallback?.();
-        createPlayer();
-      };
-
-      /* Carrega o script apenas uma vez */
-      if (!document.querySelector('script[src*="youtube.com/iframe_api"]')) {
-        const tag = document.createElement('script');
-        tag.src = 'https://www.youtube.com/iframe_api';
-        document.head.appendChild(tag);
-      }
-    }
-
-    /* Fallback de segurança: se nada acontecer em 5s, remove o poster */
-    fallbackRef.current = setTimeout(() => setIsPlaying(true), 5000);
-
-    return () => {
-      clearTimeout(fallbackRef.current);
-      try {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (playerRef.current as any)?.destroy?.();
-      } catch { /* ignore */ }
-      playerRef.current = null;
-    };
-  }, [createPlayer]);
 
   return (
     <section
@@ -116,49 +22,35 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
       aria-label={t.home.heroSectionAria}
     >
 
-      {/* ── CAMADA DE BAIXO: VÍDEO DO ATELIER (YOUTUBE API + OVERSCAN) ── */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-
-        {/* Poster HD: visível enquanto o vídeo não confirma PLAYING via API */}
-        <div
-          className={`absolute inset-0 transition-opacity duration-1000 ease-out z-[2] ${isPlaying ? 'opacity-0 pointer-events-none' : 'opacity-100'
-            }`}
-        >
-          <img
-            src={posterErr ? POSTER_FB : POSTER}
-            alt=""
-            aria-hidden
-            className="w-full h-full object-cover"
-            onError={() => setPosterErr(true)}
-          />
-        </div>
-
+      {/* ── CAMADA DE BAIXO: VÍDEO DO ATELIER (YOUTUBE COM OVERSCAN TOTAL) ── */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-[#020202]">
         {/*
-          Container do player YouTube (API injeta o iframe dentro do #hero-yt-player).
-          Scale(1.38): overscan que empurra título/controles do YouTube para fora
-          do overflow-hidden — player 100% limpo e invisível.
+          Iframe do YouTube direto, sem imagem de poster ou botões de play intermediários.
+          Overscan scale(1.4) esconde qualquer barra, watermark ou título do YouTube.
         */}
-        <div
+        <iframe
+          title="Rings Luxury Atelier Film"
+          src={EMBED}
           className="absolute pointer-events-none"
           style={{
+            border: 0,
             top: '50%',
             left: '50%',
             width: '100vw',
-            height: '56.25vw',
+            height: '56.25vw', // Proporção 16:9
             minHeight: '100%',
             minWidth: '177.77vh',
-            transform: 'translate(-50%, -50%) scale(1.38)',
+            transform: 'translate(-50%, -50%) scale(1.4)',
             transformOrigin: 'center center',
           }}
-        >
-          <div id="hero-yt-player" style={{ width: '100%', height: '100%' }} />
-        </div>
+          allow="autoplay; encrypted-media"
+        />
 
-        {/* Película de integração */}
-        <div className="absolute inset-0 bg-[#020202]/30 z-[3]" aria-hidden />
+        {/* Leve película para integrar o vídeo ao fundo escuro e dar contraste ideal */}
+        <div className="absolute inset-0 bg-[#020202]/30 z-[1]" aria-hidden />
       </div>
 
-      {/* ── CAMADA SUPERIOR: MEDUSA E ODIN ── */}
+      {/* ── CAMADA SUPERIOR: MEDUSA E ODIN (PNG TRANSPARENTE COBRINDO A TELA TODA) ── */}
       <div className="absolute inset-0 z-10 pointer-events-none select-none overflow-hidden" aria-hidden>
         <picture className="w-full h-full">
           <source srcSet={MEDUSA_ODIN_WEBP} type="image/webp" />
@@ -180,14 +72,14 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
         </picture>
       </div>
 
-      {/* ── TEXTO CENTRAL ── */}
+      {/* ── CAMADA DO TEXTO: CENTRALIZADO EM CIMA DO VÍDEO (DESLOCADO PARA CIMA) ── */}
       <div className="relative z-20 flex flex-col items-center justify-center text-center px-4 pointer-events-none w-full -translate-y-[18.8vh]">
 
         {/* WELCOME TO RINGS LUXURY */}
         <h1
           className="font-cormorant font-light text-[#E8E2D8] uppercase leading-tight tracking-[0.42em] sm:tracking-[0.55em]"
           style={{
-            fontSize: 'clamp(15px, 2.3vw, 28px)',
+            fontSize:   'clamp(15px, 2.3vw, 28px)',
             textShadow: '0 2px 14px rgba(0,0,0,0.95), 0 0 30px rgba(0,0,0,0.9)',
           }}
         >
@@ -198,14 +90,14 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
         <p
           className="mt-2 font-cormorant font-light text-[#C5A059]/90 uppercase tracking-[0.62em] sm:tracking-[0.78em]"
           style={{
-            fontSize: 'clamp(10px, 1.2vw, 15px)',
+            fontSize:   'clamp(10px, 1.2vw, 15px)',
             textShadow: '0 2px 10px rgba(0,0,0,0.95), 0 0 20px rgba(0,0,0,0.85)',
           }}
         >
           {t.home.heroEyebrow2}
         </p>
 
-        {/* SEO Hidden Summary */}
+        {/* SEO Hidden Summary for Search Crawlers */}
         <p className="seo-summary sr-only">
           RINGS LUXURY is the atelier of Jorge Uquillas, master goldsmith and hand engraver,
           with private ateliers in São Paulo (Avenida Paulista, Brazil) and Miami (Brickell, Florida, USA).
@@ -215,7 +107,7 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
         </p>
       </div>
 
-      {/* ── CHAMA / GOTA DOURADA ── */}
+      {/* ── ÍCONE DA CHAMA / GOTA DOURADA — INFERIOR CENTRAL ── */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center pointer-events-none" aria-hidden>
         <div className="relative w-4 h-5 flex items-center justify-center">
           <svg width="14" height="20" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-[0_0_8px_rgba(197,160,89,0.8)]">
@@ -235,7 +127,7 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
         </div>
       </div>
 
-      {/* ── CURVA INFERIOR ── */}
+      {/* ── CURVA INFERIOR SUAVE PARA TRANSIÇÃO ── */}
       <div className="absolute bottom-0 left-0 w-full h-[32px] z-20 pointer-events-none overflow-hidden" aria-hidden>
         <svg viewBox="0 0 1440 32" preserveAspectRatio="none"
           className="w-full h-full block text-[#020202]"

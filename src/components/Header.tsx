@@ -151,7 +151,7 @@ export function Header({ onOpenConsultation: _onOpenConsultation }: HeaderProps)
                       <img
                         src="/PUBLIC/logo-cortado-versao-nova.webp"
                         alt=""
-                        className="w-auto h-5 md:h-5 lg:h-6 object-contain inline-block mr-1.5 align-middle drop-shadow-[0_2px_8px_rgba(197,160,89,0.4)]"
+                        className="w-auto h-6 md:h-7 lg:h-8 object-contain inline-block mr-3 md:mr-3.5 lg:mr-4 align-middle drop-shadow-[0_2px_8px_rgba(197,160,89,0.4)]"
                       />
                     )}
                     <span>{item.label}</span>
