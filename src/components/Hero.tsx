@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 
 interface HeroProps {
@@ -9,32 +9,15 @@ const YOUTUBE_ID = 'ieNPhZ4Vdss';
 const POSTER     = `https://i.ytimg.com/vi/${YOUTUBE_ID}/maxresdefault.jpg`;
 const POSTER_FB  = `https://i.ytimg.com/vi/${YOUTUBE_ID}/hqdefault.jpg`;
 // Vídeo inicia no minuto 0:00 (start=0), mudo, autoplay e em loop contínuo sem interface do player
-const EMBED      = `https://www.youtube-nocookie.com/embed/${YOUTUBE_ID}?autoplay=1&controls=0&rel=0&modestbranding=1&playsinline=1&mute=1&loop=1&playlist=${YOUTUBE_ID}&start=0&enablejsapi=1&iv_load_policy=3&disablekb=1&fs=0`;
+const EMBED      = `https://www.youtube-nocookie.com/embed/${YOUTUBE_ID}?autoplay=1&controls=0&rel=0&modestbranding=1&playsinline=1&mute=1&loop=1&playlist=${YOUTUBE_ID}&start=0&iv_load_policy=3&disablekb=1&fs=0`;
 
 const MEDUSA_ODIN_PNG  = '/PUBLIC/medusa-e-odim-capa-do-site-rings-luxury-by-jorge-uquillas.png';
 const MEDUSA_ODIN_WEBP = '/PUBLIC/medusa-e-odim-capa-do-site-rings-luxury-by-jorge-uquillas-transparente.webp';
 
 export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
   const { t } = useLanguage();
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
   const [posterErr, setPosterErr] = useState(false);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-
-  useEffect(() => {
-    // Detecta quando o YouTube começa efetivamente a tocar para só então sumir com o poster
-    const handleMessage = (e: MessageEvent) => {
-      try {
-        const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
-        // YouTube API info 1 = PLAYING (reproduzindo vídeo)
-        if (data?.event === 'onStateChange' && data?.info === 1) {
-          setTimeout(() => setIsPlaying(true), 400);
-        }
-      } catch {}
-    };
-
-    window.addEventListener('message', handleMessage);
-    return () => window.removeEventListener('message', handleMessage);
-  }, []);
 
   return (
     <section
@@ -47,12 +30,13 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
       {/* ── CAMADA DE BAIXO: VÍDEO DO ATELIER (YOUTUBE COM OVERSCAN & FADE SUAVE) ── */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         {/*
-          Poster de alta definição: permanece visível durante todo o buffer e carregamento inicial do YouTube.
-          Só faz fade out quando o primeiro frame do vídeo já estiver em reprodução ativa.
+          Poster de alta definição: permanece visível durante o carregamento inicial.
+          Faz fade out assim que o iframe termina de carregar (onLoad).
+          O iframe fica SEMPRE visível — nunca opacity-0 — para garantir autoplay.
         */}
         <div
           className={`absolute inset-0 transition-opacity duration-1000 ease-out z-[2] ${
-            isPlaying ? 'opacity-0 pointer-events-none' : 'opacity-100'
+            videoLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'
           }`}
         >
           <img
@@ -65,18 +49,14 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
         </div>
 
         {/*
-          Iframe do YouTube:
-          1. Opacidade 0 até estar tocando (evita tela preta, spinner e título inicial do YouTube).
-          2. Scale(1.38): técnica de overscan que projeta as barras de título e controles do YouTube
-             para fora dos limites cortados da tela (overflow-hidden), tornando o player 100% invisível.
+          Iframe do YouTube: SEMPRE renderizado com opacity-100.
+          Scale(1.38): overscan que empurra a barra de título e controles do YouTube
+          para fora dos limites cortados da tela (overflow-hidden) — UI 100% invisível.
         */}
         <iframe
-          ref={iframeRef}
           title="Rings Luxury Atelier Film"
           src={EMBED}
-          className={`absolute pointer-events-none transition-opacity duration-1000 ease-in ${
-            isPlaying ? 'opacity-100' : 'opacity-0'
-          }`}
+          className="absolute pointer-events-none"
           style={{
             border: 0,
             top: '50%',
@@ -89,14 +69,7 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
             transformOrigin: 'center center',
           }}
           allow="autoplay; encrypted-media"
-          onLoad={(e) => {
-            // Solicita eventos de estado ao YouTube iframe
-            try {
-              e.currentTarget.contentWindow?.postMessage(JSON.stringify({ event: 'listening' }), '*');
-            } catch {}
-            // Fallback de segurança: se a API de mensagem não responder em 2s, transiciona suavemente
-            setTimeout(() => setIsPlaying(true), 2000);
-          }}
+          onLoad={() => setVideoLoaded(true)}
         />
 
         {/* Leve película para integrar o vídeo ao fundo escuro e dar contraste ideal */}
