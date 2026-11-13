@@ -6,10 +6,10 @@ interface HeroProps {
 }
 
 const YOUTUBE_ID = 'ieNPhZ4Vdss';
-const POSTER     = `https://i.ytimg.com/vi/${YOUTUBE_ID}/maxresdefault.jpg`;
-const POSTER_FB  = `https://i.ytimg.com/vi/${YOUTUBE_ID}/hqdefault.jpg`;
+const POSTER = `https://i.ytimg.com/vi/${YOUTUBE_ID}/maxresdefault.jpg`;
+const POSTER_FB = `https://i.ytimg.com/vi/${YOUTUBE_ID}/hqdefault.jpg`;
 
-const MEDUSA_ODIN_PNG  = '/PUBLIC/medusa-e-odim-capa-do-site-rings-luxury-by-jorge-uquillas.png';
+const MEDUSA_ODIN_PNG = '/PUBLIC/medusa-e-odim-capa-do-site-rings-luxury-by-jorge-uquillas.png';
 const MEDUSA_ODIN_WEBP = '/PUBLIC/medusa-e-odim-capa-do-site-rings-luxury-by-jorge-uquillas-transparente.webp';
 
 /* ── YouTube IFrame API types ── */
@@ -121,9 +121,8 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
 
         {/* Poster HD: visível enquanto o vídeo não confirma PLAYING via API */}
         <div
-          className={`absolute inset-0 transition-opacity duration-1000 ease-out z-[2] ${
-            isPlaying ? 'opacity-0 pointer-events-none' : 'opacity-100'
-          }`}
+          className={`absolute inset-0 transition-opacity duration-1000 ease-out z-[2] ${isPlaying ? 'opacity-0 pointer-events-none' : 'opacity-100'
+            }`}
         >
           <img
             src={posterErr ? POSTER_FB : POSTER}
@@ -188,7 +187,7 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
         <h1
           className="font-cormorant font-light text-[#E8E2D8] uppercase leading-tight tracking-[0.42em] sm:tracking-[0.55em]"
           style={{
-            fontSize:   'clamp(15px, 2.3vw, 28px)',
+            fontSize: 'clamp(15px, 2.3vw, 28px)',
             textShadow: '0 2px 14px rgba(0,0,0,0.95), 0 0 30px rgba(0,0,0,0.9)',
           }}
         >
@@ -199,7 +198,7 @@ export function Hero({ onEnterAtelier: _onEnterAtelier }: HeroProps) {
         <p
           className="mt-2 font-cormorant font-light text-[#C5A059]/90 uppercase tracking-[0.62em] sm:tracking-[0.78em]"
           style={{
-            fontSize:   'clamp(10px, 1.2vw, 15px)',
+            fontSize: 'clamp(10px, 1.2vw, 15px)',
             textShadow: '0 2px 10px rgba(0,0,0,0.95), 0 0 20px rgba(0,0,0,0.85)',
           }}
         >
