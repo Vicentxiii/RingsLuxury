@@ -1,5 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react';
+﻿import React, { useEffect, useMemo, useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
+import { products } from '../data/products';
 
 interface EpicPreloaderProps {
   isExiting: boolean;
@@ -9,11 +10,10 @@ export function EpicPreloader({ isExiting }: EpicPreloaderProps) {
   const { t } = useLanguage();
   const [progress, setProgress] = useState(0);
 
-  // Progresso curto: 350ms. O preloader é apenas uma cortina de marca;
-  // nunca deve atrasar a leitura do conteúdo.
+  // Progress visível em 4s — animação contínua e suave, realística
   useEffect(() => {
     const start = performance.now();
-    const duration = 350;
+    const duration = 4000;
     let raf = 0;
     const tick = (now: number) => {
       const elapsed = now - start;
@@ -32,10 +32,21 @@ export function EpicPreloader({ isExiting }: EpicPreloaderProps) {
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  // Sem imagem de produto aleatória: o preloader não deve baixar nenhum
-  // asset de catálogo antes do conteúdo principal.
+  // Anel aleatório do catálogo a cada visita — SÓ anéis com foto PNG real
+  // do atelier (images[0] em /PUBLIC/). Fora: fotos genéricas/Unsplash,
+  // artesão trabalhando e colares (id 043). Sempre peça real do Jorge.
+  const featuredPiece = useMemo(() => {
+    const pool = products.filter(
+      (p) =>
+        p.images[0]?.startsWith('/PUBLIC/') &&
+        p.categorySlug !== 'necklaces' &&
+        p.id !== '043',
+    );
+    const list = pool.length ? pool : products;
+    return list[Math.floor(Math.random() * list.length)];
+  }, []);
   const particles = useMemo(() => {
-    return Array.from({ length: 24 }, (_, i) => ({
+    return Array.from({ length: 55 }, (_, i) => ({
       id: i,
       left: Math.random() * 100,
       top: Math.random() * 100,
@@ -53,13 +64,10 @@ export function EpicPreloader({ isExiting }: EpicPreloaderProps) {
       className={`fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-[#020202] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
         isExiting ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
-      role="status"
-      aria-live="polite"
-      aria-label="Loading"
       aria-hidden={isExiting}
     >
       {/* Fundo épico com gradientes */}
-      <div className="absolute inset-0" aria-hidden="true">
+      <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[#020202]" />
         {/* Halo dourado central sutil */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full opacity-[0.08] blur-[90px] bg-[radial-gradient(circle_at_center,_#C5A059_0%,_transparent_70%)]" />
@@ -69,7 +77,7 @@ export function EpicPreloader({ isExiting }: EpicPreloaderProps) {
       </div>
 
       {/* Partículas minúsculas amarelas flutuantes */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {particles.map((p) => (
           <span
             key={p.id}
@@ -113,27 +121,35 @@ export function EpicPreloader({ isExiting }: EpicPreloaderProps) {
 
       {/* Conteúdo central - adaptado mobile */}
       <div className={`relative z-10 flex flex-col items-center text-center px-4 sm:px-6 transition-all duration-700 ease-out max-h-[100dvh] overflow-hidden py-6 ${isExiting ? 'scale-95 opacity-0 blur-[8px]' : 'scale-100 opacity-100 blur-0'}`}>
-        {/* Marca no centro, sem baixar imagem de produto. */}
+        {/* Anel em destaque — peça real do catálogo, sorteada a cada visita */}
         <div className="relative flex items-center justify-center shrink-0">
-          <img
-            src="/PUBLIC/logo-cortado-versao-nova.webp"
-            alt="RINGS LUXURY"
-            width={190}
-            height={190}
-            fetchPriority="high"
-            decoding="async"
-            draggable={false}
-            className="relative w-[132px] sm:w-[164px] md:w-[180px] h-auto object-contain select-none"
-            onError={(e) => {
-              ((e.currentTarget as HTMLImageElement).style.display = 'none');
-            }}
-          />
+          {/* Halo atrás do WEBP - deixado bem mais sutil */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[100px] sm:w-[280px] sm:h-[130px] bg-[#C5A059]/[0.03] blur-[55px] sm:blur-[65px] rounded-full pointer-events-none opacity-[0.12] sm:opacity-[0.15]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140px] h-[60px] sm:w-[200px] sm:h-[90px] bg-[#E6CA85]/[0.02] blur-[30px] sm:blur-[40px] rounded-full pointer-events-none opacity-[0.18]" />
+          
+          {/* Logo leve (47KB) com preload no index.html: aparece de cara, sem ícone quebrado.
+              O webp anterior (logo-novo-high-resolution) não existia: dava 404 e caía num PNG de 20MB. */}
+          {featuredPiece && (
+            <img
+              key={featuredPiece.id}
+              src={featuredPiece.images[0]}
+              alt={featuredPiece.name}
+              fetchPriority="high"
+              decoding="async"
+              draggable={false}
+              className="relative w-[150px] sm:w-[190px] md:w-[210px] h-auto object-contain select-none max-w-[68vw] max-h-[32dvh] animate-[epicRingIn_1s_ease-out]"
+              style={{ filter: 'drop-shadow(0 0 22px rgba(197,160,89,0.28)) drop-shadow(0 18px 44px rgba(0,0,0,0.9))' }}
+              onError={(e) => {
+                ((e.currentTarget as HTMLImageElement).style.display = 'none');
+              }}
+            />
+          )}
         </div>
 
         {/* Tipografia - escala menor no mobile */}
         <div className="mt-5 sm:mt-7 flex flex-col items-center shrink-0">
           {/* div, não h1: o preloader é global e o <h1> aqui duplicava o
-              único H1 de cada página. Estilos de fonte preservados, o
+              único H1 de cada página. Estilos de fonte preservados — o
               navegador herda de div, então o className segue valendo. */}
           <div className="font-cinzel text-[16px] sm:text-[22px] md:text-[26px] tracking-[0.32em] sm:tracking-[0.42em] text-[#FBF9F5] font-light flex items-center gap-2 sm:gap-3">
             RINGS
@@ -147,7 +163,7 @@ export function EpicPreloader({ isExiting }: EpicPreloaderProps) {
             </p>
             <span className="h-px w-5 sm:w-8 bg-gradient-to-l from-transparent to-[#C5A059]/60" />
           </div>
-          <p className="mt-1 text-[7px] sm:text-[8.5px] tracking-[0.22em] sm:tracking-[0.28em] uppercase text-[#9A7B38]">
+          <p className="mt-1 text-[7px] sm:text-[8.5px] tracking-[0.22em] sm:tracking-[0.28em] uppercase text-[#9A7B38]/80">
             {t.home.preCities}
           </p>
         </div>
@@ -182,14 +198,14 @@ export function EpicPreloader({ isExiting }: EpicPreloaderProps) {
         </div>
 
         {/* Texto inferior */}
-        <p className="mt-4 text-[7.5px] tracking-[0.32em] uppercase text-[#9A7B38]/90 animate-[pulse_2s_ease-in-out_infinite]">
+        <p className="mt-4 text-[7.5px] tracking-[0.32em] uppercase text-[#9A7B38]/55 animate-[pulse_2s_ease-in-out_infinite]">
           {t.home.preTagline}
         </p>
       </div>
 
       {/* Borda inferior dourada sutil */}
-      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#C5A059]/30 to-transparent" aria-hidden="true" />
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 opacity-30" aria-hidden="true">
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#C5A059]/30 to-transparent" />
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 opacity-30">
         <span className="w-6 h-px bg-[#C5A059]/40" />
         <span className="w-1 h-1 rotate-45 border border-[#C5A059]/60" />
         <span className="w-6 h-px bg-[#C5A059]/40" />
